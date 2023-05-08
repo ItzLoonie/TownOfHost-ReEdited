@@ -20,6 +20,7 @@ internal class ControllerManagerUpdatePatch
 
     public static void Postfix(ControllerManager __instance)
     {
+        
         //切换自定义设置的页面
         if (GameStates.IsLobby)
         {
@@ -130,6 +131,7 @@ internal class ControllerManagerUpdatePatch
             Logger.Info("倒计时修改为0", "KeyCommand");
             GameStartManager.Instance.countDownTimer = 0;
         }
+        
         //倒计时取消
         if (Input.GetKeyDown(KeyCode.C) && GameStates.IsCountDown)
         {
