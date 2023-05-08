@@ -33,8 +33,9 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = "哟这不TOHE吗，几天不见Bug又多了？";
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "2.3.1";
-    public const int PluginCreate = 1;
+    public const string PluginVersion = "2.3.3";
+    public const int PluginCreate = 4;
+    public const bool Canary = false;
 
     public static readonly bool ShowQQButton = true;
     public static readonly string QQInviteUrl = "https://jq.qq.com/?_wv=1027&k=2RpigaN6";
@@ -88,6 +89,7 @@ public class Main : BasePlugin
     public static string LastVotedPlayer;
     public static List<byte> ResetCamPlayerList = new();
     public static List<byte> winnerList = new();
+    public static List<string> winnerNameList = new();
     public static List<int> clientIdList = new();
     public static List<(string, byte, string)> MessagesToSend = new();
     public static bool isChatCommand = false;
@@ -187,7 +189,7 @@ public class Main : BasePlugin
         HideName = Config.Bind("Client Options", "Hide Game Code Name", "TOHE");
         HideColor = Config.Bind("Client Options", "Hide Game Code Color", $"{ModColor}");
         AutoStart = Config.Bind("Client Options", "AutoStart", false);
-        UnlockFPS = Config.Bind("Client Options", "UnlockFPS", true);
+        UnlockFPS = Config.Bind("Client Options", "UnlockFPS", false);
         SwitchVanilla = Config.Bind("Client Options", "SwitchVanilla", false);
         VersionCheat = Config.Bind("Client Options", "VersionCheat", false);
         GodMode = Config.Bind("Client Options", "GodMode", false);
@@ -241,6 +243,7 @@ public class Main : BasePlugin
         LastShapeshifterCooldown = Config.Bind("Other", "LastShapeshifterCooldown", (float)30);
 
         CustomWinnerHolder.Reset();
+        ServerAddManager.Init();
         Translator.Init();
         BanManager.Init();
         TemplateManager.Init();
@@ -266,7 +269,6 @@ public class Main : BasePlugin
                 {CustomRoles.ScientistTOHE, "#8ee98e"},
                 {CustomRoles.GuardianAngelTOHE, "#77e6d1"},
                 //特殊クルー役職
-                {CustomRoles.Bait, "#00f7ff"},
                 {CustomRoles.Luckey, "#b8d7a3" },
                 {CustomRoles.Needy, "#a4dffe"},
                 {CustomRoles.SabotageMaster, "#3333ff"},
@@ -280,7 +282,6 @@ public class Main : BasePlugin
                 {CustomRoles.CyberStar, "#ee4a55" },
                 {CustomRoles.SpeedBooster, "#00ffff"},
                 {CustomRoles.Doctor, "#80ffdd"},
-                {CustomRoles.Trapper, "#5a8fd0"},
                 {CustomRoles.Dictator, "#df9b00"},
                 {CustomRoles.Detective, "#7160e8" },
                 {CustomRoles.SwordsMan, "#f0e68c"},
@@ -323,6 +324,7 @@ public class Main : BasePlugin
                 {CustomRoles.Poisoner, "#ed2f91"},
                 {CustomRoles.NWitch, "#BF5FFF"},
                 {CustomRoles.Totocalcio, "#ff9409"},
+                {CustomRoles.Succubus, "#cf6acd"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -349,6 +351,9 @@ public class Main : BasePlugin
                 {CustomRoles.Guesser, "#FFFF00"},
                 {CustomRoles.Necroview, "#663399"},
                 {CustomRoles.Reach, "#74ba43"},
+                {CustomRoles.Charmed, "#cf6acd"},
+                {CustomRoles.Bait, "#00f7ff"},
+                {CustomRoles.Trapper, "#5a8fd0"},
                 //SoloKombat
                 {CustomRoles.KB_Normal, "#f55252"}
             };
@@ -505,6 +510,7 @@ public enum CustomRoles
     Sunnyboy,
     BloodKnight,
     Totocalcio,
+    Succubus,
 
     //SoloKombat
     KB_Normal,
@@ -538,7 +544,8 @@ public enum CustomRoles
     Mimic,
     Guesser,
     Necroview,
-    Reach
+    Reach,
+    Charmed,
 }
 //WinData
 public enum CustomWinner
@@ -568,6 +575,7 @@ public enum CustomWinner
     Collector = CustomRoles.Collector,
     BloodKnight = CustomRoles.BloodKnight,
     Poisoner = CustomRoles.Poisoner,
+    Succubus = CustomRoles.Succubus,
 }
 public enum AdditionalWinners
 {

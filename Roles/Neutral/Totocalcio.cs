@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using static TOHE.Options;
+using static TOHE.Translator;
 
 namespace TOHE.Roles.Neutral;
 
@@ -117,7 +118,7 @@ public static class Totocalcio
         if (!seer.Is(CustomRoles.Totocalcio))
         {
             if (!BetTargetKnowTotocalcio.GetBool()) return "";
-            return (BetPlayer.TryGetValue(target.PlayerId, out var x) && seer.PlayerId == x) ? 
+            return (BetPlayer.TryGetValue(target.PlayerId, out var x) && seer.PlayerId == x) ?
                 Utils.ColorString(Utils.GetRoleColor(CustomRoles.Totocalcio), "♦") : "";
         }
         var GetValue = BetPlayer.TryGetValue(seer.PlayerId, out var targetId);
