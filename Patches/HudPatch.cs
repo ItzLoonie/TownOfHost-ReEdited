@@ -1,10 +1,9 @@
 using HarmonyLib;
+using Il2CppSystem.Text;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
 using static TOHE.Translator;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 namespace TOHE;
 
@@ -24,7 +23,6 @@ class HudManagerPatch
         if (!GameStates.IsModHost) return;
         var player = PlayerControl.LocalPlayer;
         if (player == null) return;
-        var TaskTextPrefix = "";
         //壁抜け
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
@@ -193,6 +191,9 @@ class HudManagerPatch
                     case CustomRoles.Totocalcio:
                         __instance.KillButton.OverrideText($"{GetString("TotocalcioKillButtonText")}");
                         break;
+                    case CustomRoles.Succubus:
+                        __instance.KillButton.OverrideText($"{GetString("SuccubusKillButtonText")}");
+                        break;
                 }
 
                 //バウンティハンターのターゲットテキスト
@@ -258,12 +259,6 @@ class HudManagerPatch
                 {
                     __instance.KillButton.SetDisabled();
                     __instance.KillButton.ToggleVisible(false);
-                }
-                switch (player.GetCustomRole())
-                {
-                    case CustomRoles.Jester:
-                        TaskTextPrefix += GetString(StringNames.FakeTasks);
-                        break;
                 }
 
                 bool CanUseVent = player.CanUseImpostorVentButton();
@@ -409,7 +404,7 @@ class SetHudActivePatch
 }
 [HarmonyPatch(typeof(VentButton), nameof(VentButton.DoClick))]
 class VentButtonDoClickPatch
-{ 
+{
     public static bool Prefix(VentButton __instance)
     {
         var pc = PlayerControl.LocalPlayer;
@@ -449,26 +444,43 @@ class TaskPanelBehaviourPatch
         {
             var RoleWithInfo = $"{player.GetDisplayRoleName()}:\r\n";
             RoleWithInfo += player.GetRoleInfo();
-            
-            var AllText = Utils.ColorString(player.GetRoleColor(), RoleWithInfo) + "\r\n\r\n";
+
+            var AllText = Utils.ColorString(player.GetRoleColor(), RoleWithInfo);
 
             var taskText = __instance.taskText.text;
-            if (taskText != "None" && Utils.HasTasks(player.Data, false))
+            if (taskText != "None")
             {
-                int endOf = taskText.LastIndexOf("</color>\r\n") + "</color>\r\n".Length;
-                if (endOf != -1) AllText += taskText[endOf..] + "\r\n\r\n";
+                var lines = taskText.Split("\r\n</color>\n")[0].Split("\r\n\n")[0].Split("\r\n");
+                StringBuilder sb = new();
+                foreach (var eachLine in lines)
+                {
+                    var line = eachLine.Trim();
+                    if (line.StartsWith("<color=#FF1919FF>") || line.StartsWith("<color=#FF0000FF>") && sb.Length < 1) continue;
+                    sb.Append(line + "\r\n");
+                }
+                if (sb.Length > 1 && !player.Data.IsDead)
+                {
+                    var text = sb.ToString().TrimEnd('\n').TrimEnd('\r');
+                    if (!Utils.HasTasks(player.Data, false))
+                        text = $"{Utils.ColorString(new Color32(255, 20, 147, byte.MaxValue), GetString("FakeTask"))}\r\n{text}";
+                    AllText += $"\r\n\r\n<size=85%>{text}</size>";
+                }
             }
 
-            AllText += $"<size=70%>{GetString("PressF1ShowMainRoleDes")}\r\n{GetString("PressF2ShowAddRoleDes")}</size>";
+            if (MeetingStates.FirstMeeting)
+            {
+                AllText += $"\r\n\r\n</color><size=70%>{GetString("PressF1ShowMainRoleDes")}";
+                if (Main.PlayerStates.TryGetValue(PlayerControl.LocalPlayer.PlayerId, out var ps) && ps.SubRoles.Count >= 1)
+                    AllText += $"\r\n{GetString("PressF2ShowAddRoleDes")}";
+                AllText += "</size>";
+            }
 
-            __instance.taskText.text = __instance.taskText.text = Utils.ColorString(player.GetRoleColor(), RoleWithInfo) + "\n" + __instance.taskText.text;
+            __instance.taskText.text = AllText;
         }
 
         // RepairSenderの表示
         if (RepairSender.enabled && AmongUsClient.Instance.NetworkMode != NetworkModes.OnlineGame)
-        {
             __instance.taskText.text = RepairSender.GetText();
-        }
     }
 }
 

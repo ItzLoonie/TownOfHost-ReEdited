@@ -145,8 +145,11 @@ class CheckForEndVotingPatch
                         }
                     }
                 }
+
                 //隐藏占卜师的票
-                if (CheckRole(ps.TargetPlayerId, CustomRoles.Divinator)) continue;
+                if (CheckRole(ps.TargetPlayerId, CustomRoles.Divinator) && Divinator.HideVote.GetBool()) continue;
+                //隐藏抹除者的票
+                if (CheckRole(ps.TargetPlayerId, CustomRoles.Eraser) && Eraser.HideVote.GetBool()) continue;
 
                 //主动叛变模式下自票无效
                 if (ps.TargetPlayerId == ps.VotedFor && Options.MadmateSpawnMode.GetInt() == 2) continue;
@@ -156,6 +159,7 @@ class CheckForEndVotingPatch
                     VoterId = ps.TargetPlayerId,
                     VotedForId = ps.VotedFor
                 });
+                
                 if (CheckRole(ps.TargetPlayerId, CustomRoles.Mayor) && !Options.MayorHideVote.GetBool()) //Mayorの投票数
                 {
                     for (var i2 = 0; i2 < Options.MayorAdditionalVote.GetFloat(); i2++)
@@ -282,13 +286,7 @@ class CheckForEndVotingPatch
         var player = Utils.GetPlayerById(exiledPlayer.PlayerId);
         var role = GetString(exiledPlayer.GetCustomRole().ToString());
         var crole = exiledPlayer.GetCustomRole();
-        var coloredRole = Utils.ColorString(Utils.GetRoleColor(exiledPlayer.GetCustomRole()), $"{role}");
-        if (Options.ConfirmMadmateOnEject.GetBool() && player.Is(CustomRoles.Madmate))
-            coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Madmate), GetRoleString("Mad-") + coloredRole.RemoveHtmlTags());
-        if (Options.ConfirmEgoistOnEject.GetBool() && player.Is(CustomRoles.Egoist))
-            coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Egoist), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
-        if (Options.ConfirmSidekickOnEject.GetBool() && player.Is(CustomRoles.Sidekick))
-            coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Sidekick), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
+        var coloredRole = Utils.GetDisplayRoleName(exileId, true);
         var name = "";
         int impnum = 0;
         int neutralnum = 0;
@@ -325,16 +323,15 @@ class CheckForEndVotingPatch
                 break;
             case 2:
                 name = string.Format(GetString("PlayerIsRole"), realName, coloredRole);
-               
-            if (Options.ShowTeamNextToRoleNameOnEject.GetBool())
+                if (Options.ShowTeamNextToRoleNameOnEject.GetBool())
                 {
                     name += " (";
-                    if (player.GetCustomRole().IsImpostor())
+                    if (player.GetCustomRole().IsImpostor() || player.Is(CustomRoles.Madmate))
                         name += Utils.ColorString(new Color32(255, 25, 25, byte.MaxValue), GetString("TeamImpostor"));
+                    else if (player.GetCustomRole().IsNeutral() || player.Is(CustomRoles.Charmed))
+                        name += Utils.ColorString(new Color32(255, 171, 27, byte.MaxValue), GetString("TeamNeutral"));
                     else if (player.GetCustomRole().IsCrewmate())
                         name += Utils.ColorString(new Color32(140, 255, 255, byte.MaxValue), GetString("TeamCrewmate"));
-                    else if (player.GetCustomRole().IsNeutral())
-                        name += Utils.ColorString(new Color32(255, 171, 27, byte.MaxValue), GetString("TeamNeutral"));
                     name += ")";
                 }
                 break;
@@ -605,8 +602,7 @@ class MeetingHudStartPatch
         {
             var pc = Utils.GetPlayerById(pva.TargetPlayerId);
             if (pc == null) continue;
-            var RoleTextData = Utils.GetRoleText(pc.PlayerId, !pc.AmOwner && !PlayerControl.LocalPlayer.Data.IsDead);
-            if (pc.GetCustomRole().IsImpostor() && PlayerControl.LocalPlayer.GetCustomRole().IsImpostor() && !PlayerControl.LocalPlayer.Data.IsDead) RoleTextData = Utils.GetRoleText(pc.PlayerId, true);
+            var RoleTextData = Utils.GetRoleText(PlayerControl.LocalPlayer.PlayerId, pc.PlayerId);
             var roleTextMeeting = UnityEngine.Object.Instantiate(pva.NameText);
             roleTextMeeting.transform.SetParent(pva.NameText.transform);
             roleTextMeeting.transform.localPosition = new Vector3(0f, -0.18f, 0f);
@@ -628,6 +624,7 @@ class MeetingHudStartPatch
                 (pc.Is(CustomRoles.Sidekick) && PlayerControl.LocalPlayer.Is(CustomRoles.Jackal)) ||
                 (pc.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) ||
                 (Totocalcio.KnowRole(PlayerControl.LocalPlayer, pc)) ||
+                (Succubus.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 PlayerControl.LocalPlayer.Is(CustomRoles.God) ||
                 PlayerControl.LocalPlayer.Is(CustomRoles.GM) ||
                 Main.GodMode.Value;
@@ -804,9 +801,13 @@ class MeetingHudStartPatch
             sb.Append(Totocalcio.TargetMark(seer, target));
 
 
+            //赌徒提示
+            sb.Append(Totocalcio.TargetMark(seer, target));
+
             //会議画面ではインポスター自身の名前にSnitchマークはつけません。
 
             pva.NameText.text += sb.ToString();
+            pva.ColorBlindName.transform.localPosition -= new Vector3(1.35f, 0f, 0f);
         }
     }
 }
@@ -838,7 +839,7 @@ class MeetingHudUpdatePatch
         }
 
         //投票结束时销毁全部技能按钮
-        if (!GameStates.IsVoting && __instance.discussionTimer > 0)
+        if (!GameStates.IsVoting && __instance.lastSecond < 0)
         {
             if (GameObject.Find("ShootButton") != null) ClearShootButton(__instance, true);
             return;
@@ -846,7 +847,7 @@ class MeetingHudUpdatePatch
 
         //会议技能UI处理
         bufferTime--;
-        if (bufferTime < 0 && __instance.lastSecond > 3)
+        if (bufferTime < 0 && __instance.discussionTimer > 0)
         {
             bufferTime = 10;
             var myRole = PlayerControl.LocalPlayer.GetCustomRole();

@@ -202,6 +202,8 @@ internal class ChangeRoleSettings
             Swooper.Init();
             BloodKnight.Init();
             Totocalcio.Init();
+            Succubus.Init();
+
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
             AntiBlackout.Reset();
@@ -533,11 +535,14 @@ internal class SelectRolesPatch
                     case CustomRoles.BloodKnight:
                         BloodKnight.Add(pc.PlayerId);
                         break;
-                    case CustomRoles.Wildling:
-                        Wildling.Add(pc.PlayerId);
-                        break;
                     case CustomRoles.Totocalcio:
                         Totocalcio.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Succubus:
+                        Succubus.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Wildling:
+                        Wildling.Add(pc.PlayerId);
                         break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())
@@ -554,7 +559,6 @@ internal class SelectRolesPatch
         EndOfSelectRolePatch:
 
             HudManager.Instance.SetHudActive(true);
-            bool sidekickSpawn = false;
             List<PlayerControl> AllPlayers = new();
             CustomRpcSender sender = CustomRpcSender.Create("SelectRoles Sender", SendOption.Reliable);
             foreach (var pc in Main.AllPlayerControls)

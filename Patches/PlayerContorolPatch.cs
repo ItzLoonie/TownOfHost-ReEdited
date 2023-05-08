@@ -22,7 +22,7 @@ class CheckProtectPatch
     public static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] PlayerControl target)
     {
         if (!AmongUsClient.Instance.AmHost) return false;
-        Logger.Info("CheckProtect発生: " + __instance.GetNameWithRole().RemoveHtmlTags() + "=>" + target.GetNameWithRole().RemoveHtmlTags(), "CheckProtect");
+        Logger.Info("CheckProtect発生: " + __instance.GetNameWithRole() + "=>" + target.GetNameWithRole(), "CheckProtect");
         if (__instance.Is(CustomRoles.Sheriff))
         {
             if (__instance.Data.IsDead)
@@ -55,12 +55,12 @@ class CheckMurderPatch
 
         var killer = __instance; //読み替え変数
 
-        Logger.Info($"{killer.GetNameWithRole().RemoveHtmlTags()} => {target.GetNameWithRole().RemoveHtmlTags()}", "CheckMurder");
+        Logger.Info($"{killer.GetNameWithRole()} => {target.GetNameWithRole()}", "CheckMurder");
 
         //死人はキルできない
         if (killer.Data.IsDead)
         {
-            Logger.Info($"{killer.GetNameWithRole().RemoveHtmlTags()}は死亡しているためキャンセルされました。", "CheckMurder");
+            Logger.Info($"{killer.GetNameWithRole()}は死亡しているためキャンセルされました。", "CheckMurder");
             return false;
         }
 
@@ -99,7 +99,7 @@ class CheckMurderPatch
         //キル可能判定
         if (killer.PlayerId != target.PlayerId && !killer.CanUseKillButton())
         {
-            Logger.Info(killer.GetNameWithRole().RemoveHtmlTags() + "击杀者不被允许使用击杀键，击杀被取消", "CheckMurder");
+            Logger.Info(killer.GetNameWithRole() + "击杀者不被允许使用击杀键，击杀被取消", "CheckMurder");
             return false;
         }
 
@@ -111,7 +111,7 @@ class CheckMurderPatch
 
         //実際のキラーとkillerが違う場合の入れ替え処理
         if (Sniper.IsEnable) Sniper.TryGetSniper(target.PlayerId, ref killer);
-        if (killer != __instance) Logger.Info($"Real Killer={killer.GetNameWithRole().RemoveHtmlTags()}", "CheckMurder");
+        if (killer != __instance) Logger.Info($"Real Killer={killer.GetNameWithRole()}", "CheckMurder");
 
         //鹈鹕肚子里的人无法击杀
         if (Pelican.IsEaten(target.PlayerId))
@@ -271,8 +271,11 @@ class CheckMurderPatch
                     Main.Provoked.TryAdd(killer.PlayerId, target.PlayerId);
                     return false;
                 case CustomRoles.Totocalcio:
-                    if (!Totocalcio.OnCheckMurder(killer, target)) return false;
-                    break;
+                    Totocalcio.OnCheckMurder(killer, target);
+                    return false;
+                case CustomRoles.Succubus:
+                    Succubus.OnCheckMurder(killer, target);
+                    return false;
 
                 //==========船员职业==========//
                 case CustomRoles.Sheriff:
@@ -395,7 +398,7 @@ class CheckMurderPatch
             //击杀老兵
             case CustomRoles.Veteran:
                 if (Main.VeteranInProtect.ContainsKey(target.PlayerId) && killer.PlayerId != target.PlayerId)
-                    if (Main.VeteranInProtect[target.PlayerId] + Options.VeteranSkillDuration.GetInt() >= Utils.GetTimeStamp(DateTime.Now))
+                    if (Main.VeteranInProtect[target.PlayerId] + Options.VeteranSkillDuration.GetInt() >= Utils.GetTimeStamp())
                     {
                         killer.SetRealKiller(target);
                         target.RpcMurderPlayerV3(killer);
@@ -496,7 +499,7 @@ class MurderPlayerPatch
 {
     public static void Prefix(PlayerControl __instance, [HarmonyArgument(0)] PlayerControl target)
     {
-        Logger.Info($"{__instance.GetNameWithRole().RemoveHtmlTags()} => {target.GetNameWithRole().RemoveHtmlTags()}{(target.protectedByGuardian ? "(Protected)" : "")}", "MurderPlayer");
+        Logger.Info($"{__instance.GetNameWithRole()} => {target.GetNameWithRole()}{(target.protectedByGuardian ? "(Protected)" : "")}", "MurderPlayer");
 
         if (RandomSpawn.CustomNetworkTransformPatch.NumOfTP.TryGetValue(__instance.PlayerId, out var num) && num > 2) RandomSpawn.CustomNetworkTransformPatch.NumOfTP[__instance.PlayerId] = 3;
         if (!target.protectedByGuardian)
@@ -521,7 +524,7 @@ class MurderPlayerPatch
         }
         if (killer != __instance)
         {
-            Logger.Info($"Real Killer={killer.GetNameWithRole().RemoveHtmlTags()}", "MurderPlayer");
+            Logger.Info($"Real Killer={killer.GetNameWithRole()}", "MurderPlayer");
 
         }
         if (Main.PlayerStates[target.PlayerId].deathReason == PlayerState.DeathReason.etc)
@@ -541,6 +544,25 @@ class MurderPlayerPatch
         //记录首刀
         if (Main.FirstDied == byte.MaxValue)
             Main.FirstDied = target.PlayerId;
+
+        if (target.Is(CustomRoles.Bait))
+        {
+            if (killer.PlayerId != target.PlayerId || target.GetRealKiller()?.GetCustomRole() is CustomRoles.Swooper)
+            {
+                killer.RPCPlayCustomSound("Congrats");
+                target.RPCPlayCustomSound("Congrats");
+                float delay;
+                if (Options.BaitDelayMax.GetFloat() < Options.BaitDelayMin.GetFloat()) delay = 0f;
+                else delay = IRandom.Instance.Next((int)Options.BaitDelayMin.GetFloat(), (int)Options.BaitDelayMax.GetFloat() + 1);
+                delay = Math.Max(delay, 0.15f);
+                if (delay > 0.15f && Options.BaitDelayNotify.GetBool()) killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Bait), string.Format(GetString("KillBaitNotify"), (int)delay)), delay);
+                Logger.Info($"{killer.GetNameWithRole()} 击杀诱饵 => {target.GetNameWithRole()}", "MurderPlayer");
+                new LateTask(() => { if (GameStates.IsInTask) killer.CmdReportDeadBody(target.Data); }, delay, "Bait Self Report");
+            }
+        }
+
+        if (target.Is(CustomRoles.Trapper) && killer != target)
+            killer.TrapperKilled(target);
 
         switch (target.GetCustomRole())
         {
@@ -658,7 +680,7 @@ class MurderPlayerPatch
         Hacker.AddDeadBody(target);
         Mortician.OnPlayerDead(target);
 
-        FixedUpdatePatch.LoversSuicide(target.PlayerId);
+        Utils.AfterPlayerDeathTasks(target);
 
         Main.PlayerStates[target.PlayerId].SetDead();
         target.SetRealKiller(killer, true); //既に追加されてたらスキップ
@@ -675,8 +697,6 @@ class MurderPlayerPatch
         {
             Utils.SyncAllSettings();
         }
-
-        Utils.NotifyRoles();
     }
 }
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.Shapeshift))]
@@ -684,14 +704,14 @@ class ShapeshiftPatch
 {
     public static void Prefix(PlayerControl __instance, [HarmonyArgument(0)] PlayerControl target)
     {
-        Logger.Info($"{__instance?.GetNameWithRole()} => {target?.GetNameWithRole().RemoveHtmlTags()}", "Shapeshift");
+        Logger.Info($"{__instance?.GetNameWithRole()} => {target?.GetNameWithRole()}", "Shapeshift");
 
         var shapeshifter = __instance;
         var shapeshifting = shapeshifter.PlayerId != target.PlayerId;
 
         if (Main.CheckShapeshift.TryGetValue(shapeshifter.PlayerId, out var last) && last == shapeshifting)
         {
-            Logger.Info($"{__instance?.GetNameWithRole().RemoveHtmlTags()}:Cancel Shapeshift.Prefix", "Shapeshift");
+            Logger.Info($"{__instance?.GetNameWithRole()}:Cancel Shapeshift.Prefix", "Shapeshift");
             return;
         }
 
@@ -871,7 +891,7 @@ class ReportDeadBodyPatch
             return false;
         }
 
-        Logger.Info($"{__instance.GetNameWithRole()} => {target?.Object?.GetNameWithRole().RemoveHtmlTags() ?? "null"}", "ReportDeadBody");
+        Logger.Info($"{__instance.GetNameWithRole()} => {target?.Object?.GetNameWithRole() ?? "null"}", "ReportDeadBody");
 
         foreach (var kvp in Main.PlayerStates)
         {
@@ -890,7 +910,7 @@ class ReportDeadBodyPatch
             //以下、检查是否允许本次会议
             //=============================================
 
-            var killer = __instance.GetRealKiller();
+            var killer = target?.Object?.GetRealKiller();
             var killerRole = killer?.GetCustomRole();
 
             //杀戮机器无法报告或拍灯
@@ -926,11 +946,7 @@ class ReportDeadBodyPatch
                 if (Main.CleanerBodies.Contains(target.PlayerId)) return false;
 
                 // 胆小鬼不敢报告
-                if (__instance.Is(CustomRoles.Oblivious))
-                {
-                    if (killerRole != CustomRoles.Hacker && target.GetCustomRole() != CustomRoles.Bait)
-                        return false;
-                }
+                if (__instance.Is(CustomRoles.Oblivious) && (target?.Object == null || !target.Object.Is(CustomRoles.Bait))) return false;
 
                 // 报告了诡雷尸体
                 if (Main.BoobyTrapBody.Contains(target.PlayerId) && __instance.IsAlive())
@@ -1487,7 +1503,7 @@ class FixedUpdatePatch
             }
             if (GameStates.IsInGame)
             {
-                var RoleTextData = Utils.GetRoleText(__instance.PlayerId, !__instance.AmOwner && !PlayerControl.LocalPlayer.Data.IsDead);
+                var RoleTextData = Utils.GetRoleText(PlayerControl.LocalPlayer.PlayerId, __instance.PlayerId);
                 //if (Options.CurrentGameMode == CustomGameMode.HideAndSeek)
                 //{
                 //    var hasRole = main.AllPlayerCustomRoles.TryGetValue(__instance.PlayerId, out var role);
@@ -1507,6 +1523,8 @@ class FixedUpdatePatch
                 else if (__instance.Is(CustomRoles.Jackal) && PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick)) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Sidekick) && PlayerControl.LocalPlayer.Is(CustomRoles.Jackal)) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) RoleText.enabled = true;
+                else if (Totocalcio.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
+                else if (Succubus.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (PlayerControl.LocalPlayer.Is(CustomRoles.God)) RoleText.enabled = true;
                 else if (PlayerControl.LocalPlayer.Is(CustomRoles.GM)) RoleText.enabled = true;
                 else if (Totocalcio.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
@@ -1534,7 +1552,7 @@ class FixedUpdatePatch
 
                 //名前色変更処理
                 //自分自身の名前の色を変更
-                if (target.AmOwner && AmongUsClient.Instance.IsGameStarted)
+                if (target.AmOwner && GameStates.IsInTask)
                 { //targetが自分自身
                     if (target.Is(CustomRoles.Arsonist) && target.IsDouseDone())
                         RealName = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Arsonist), GetString("EnterVentToWin"));
@@ -1611,7 +1629,6 @@ class FixedUpdatePatch
                 Mark.Append(Medicaler.TargetMark(seer, target));
 
                 Mark.Append(Totocalcio.TargetMark(seer, target));
-
 
                 if (seer.Is(CustomRoles.Puppeteer))
                 {
@@ -1830,6 +1847,8 @@ class EnterVentPatch
         Main.LastEnteredVentLocation.Remove(pc.PlayerId);
         Main.LastEnteredVentLocation.Add(pc.PlayerId, pc.GetTruePosition());
 
+        Swooper.OnEnterVent(pc, __instance);
+
         if (pc.Is(CustomRoles.Veteran))
         {
             if (Main.VeteranNumOfUsed[pc.PlayerId] < 1)
@@ -1851,13 +1870,13 @@ class EnterVentPatch
             if (pc.Is(CustomRoles.Madmate))
             {
                 Main.MadGrenadierBlinding.Remove(pc.PlayerId);
-                Main.MadGrenadierBlinding.Add(pc.PlayerId, Utils.GetTimeStamp(DateTime.Now));
+                Main.MadGrenadierBlinding.Add(pc.PlayerId, Utils.GetTimeStamp());
                 Main.AllPlayerControls.Where(x => x.IsModClient()).Where(x => !x.GetCustomRole().IsImpostorTeam() && !x.Is(CustomRoles.Madmate)).Do(x => x.RPCPlayCustomSound("FlashBang"));
             }
             else
             {
                 Main.GrenadierBlinding.Remove(pc.PlayerId);
-                Main.GrenadierBlinding.Add(pc.PlayerId, Utils.GetTimeStamp(DateTime.Now));
+                Main.GrenadierBlinding.Add(pc.PlayerId, Utils.GetTimeStamp());
                 Main.AllPlayerControls.Where(x => x.IsModClient()).Where(x => x.GetCustomRole().IsImpostor() || (x.GetCustomRole().IsNeutral() && Options.GrenadierCanAffectNeutral.GetBool())).Do(x => x.RPCPlayCustomSound("FlashBang"));
             }
             pc.RpcGuardAndKill(pc);
@@ -1999,7 +2018,7 @@ class PlayerControlProtectPlayerPatch
 {
     public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] PlayerControl target)
     {
-        Logger.Info($"{__instance.GetNameWithRole().RemoveHtmlTags()} => {target.GetNameWithRole().RemoveHtmlTags()}", "ProtectPlayer");
+        Logger.Info($"{__instance.GetNameWithRole()} => {target.GetNameWithRole()}", "ProtectPlayer");
     }
 }
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.RemoveProtection))]
@@ -2007,7 +2026,7 @@ class PlayerControlRemoveProtectionPatch
 {
     public static void Postfix(PlayerControl __instance)
     {
-        Logger.Info($"{__instance.GetNameWithRole().RemoveHtmlTags()}", "RemoveProtection");
+        Logger.Info($"{__instance.GetNameWithRole()}", "RemoveProtection");
     }
 }
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.RpcSetRole))]
@@ -2016,7 +2035,7 @@ class PlayerControlSetRolePatch
     public static bool Prefix(PlayerControl __instance, ref RoleTypes roleType)
     {
         var target = __instance;
-        var targetName = __instance.GetNameWithRole().RemoveHtmlTags();
+        var targetName = __instance.GetNameWithRole();
         Logger.Info($"{targetName} =>{roleType}", "PlayerControl.RpcSetRole");
         if (!ShipStatus.Instance.enabled) return true;
         if (roleType is RoleTypes.CrewmateGhost or RoleTypes.ImpostorGhost)
