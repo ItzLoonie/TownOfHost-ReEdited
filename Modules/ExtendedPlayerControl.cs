@@ -166,7 +166,7 @@ static class ExtendedPlayerControl
     public static void RpcGuardAndKill(this PlayerControl killer, PlayerControl target = null, int colorId = 0, bool forObserver = false)
     {
         if (target == null) target = killer;
-        if (!forObserver) Main.AllPlayerControls.Where(x => x.Is(CustomRoles.Observer)).Do(x => x.RpcGuardAndKill(target, colorId, true));
+        if (!forObserver && !MeetingStates.FirstMeeting) Main.AllPlayerControls.Where(x => x.Is(CustomRoles.Observer) && killer.PlayerId != x.PlayerId).Do(x => x.RpcGuardAndKill(target, colorId, true));
         // Host
         if (killer.AmOwner)
         {
@@ -443,6 +443,7 @@ static class ExtendedPlayerControl
             CustomRoles.BloodKnight => pc.IsAlive(),
             CustomRoles.Crewpostor => false,
             CustomRoles.Totocalcio => Totocalcio.CanUseKillButton(pc),
+            CustomRoles.Succubus => Succubus.CanUseKillButton(pc),
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
     }
@@ -461,6 +462,8 @@ static class ExtendedPlayerControl
             CustomRoles.NWitch or
             CustomRoles.DarkHide or
             CustomRoles.Provocateur or
+            CustomRoles.Totocalcio or
+            CustomRoles.Succubus or
             CustomRoles.Wildling
             => false,
 
@@ -614,6 +617,15 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Crewpostor:
                 Main.AllPlayerKillCooldown[player.PlayerId] = 300f;
+                break;
+            case CustomRoles.Totocalcio:
+                Totocalcio.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Gangster:
+                Gangster.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Succubus:
+                Succubus.SetKillCooldown(player.PlayerId);
                 break;
         }
         if (player.PlayerId == LastImpostor.currentId)

@@ -13,7 +13,6 @@ internal static class CustomRolesHelper
             {
                 CustomRoles.Sniper => CustomRoles.Shapeshifter,
                 CustomRoles.Jester => CustomRoles.Crewmate,
-           //     CustomRoles.Bait => CustomRoles.Crewmate,
                 CustomRoles.Mayor => Options.MayorHasPortableButton.GetBool() ? CustomRoles.Engineer : CustomRoles.Crewmate,
                 CustomRoles.Opportunist => CustomRoles.Crewmate,
                 CustomRoles.Snitch => CustomRoles.Crewmate,
@@ -33,7 +32,6 @@ internal static class CustomRolesHelper
                 CustomRoles.SerialKiller => CustomRoles.Shapeshifter,
                 CustomRoles.FireWorks => CustomRoles.Shapeshifter,
                 CustomRoles.SpeedBooster => CustomRoles.Crewmate,
-           //     CustomRoles.Trapper => CustomRoles.Crewmate,
                 CustomRoles.Dictator => CustomRoles.Crewmate,
                 CustomRoles.Mare => CustomRoles.Impostor,
                 CustomRoles.Doctor => CustomRoles.Scientist,
@@ -123,10 +121,11 @@ internal static class CustomRolesHelper
             CustomRoles.Poisoner => RoleTypes.Impostor,
             CustomRoles.NWitch => RoleTypes.Impostor,
             CustomRoles.Totocalcio => RoleTypes.Impostor,
+            CustomRoles.Succubus => RoleTypes.Impostor,
             _ => RoleTypes.GuardianAngel
         };
     }
-    public static bool IsAdditionRole(this CustomRoles role)
+    public static bool IsAdditionRole(this CustomRoles role) // �Ƿ񸽼�
     {
         return role is
             CustomRoles.Lovers or
@@ -153,7 +152,10 @@ internal static class CustomRolesHelper
             CustomRoles.TicketsStealer or
             CustomRoles.DualPersonality or
             CustomRoles.Mimic or
-            CustomRoles.Reach;
+            CustomRoles.Reach or
+            CustomRoles.Charmed or
+            CustomRoles.Bait or
+            CustomRoles.Trapper;
     }
     public static bool IsNK(this CustomRoles role) // �Ƿ��������
     {
@@ -186,7 +188,8 @@ internal static class CustomRolesHelper
             CustomRoles.Workaholic or
             CustomRoles.Collector or
             CustomRoles.Poisoner or
-            CustomRoles.BloodKnight;
+            CustomRoles.BloodKnight or
+            CustomRoles.Succubus;
     }
     public static bool IsCK(this CustomRoles role) // �Ƿ������Ա
     {
@@ -271,7 +274,8 @@ internal static class CustomRolesHelper
             CustomRoles.Provocateur or
             CustomRoles.Sunnyboy or
             CustomRoles.BloodKnight or
-            CustomRoles.Totocalcio;
+            CustomRoles.Totocalcio or
+            CustomRoles.Succubus;
     }
     public static bool CheckAddonConfilct(CustomRoles role, PlayerControl pc)
     {
@@ -295,8 +299,8 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.TicketsStealer && (pc.Is(CustomRoles.Bomber) || pc.Is(CustomRoles.BoobyTrap))) return false;
         if (role is CustomRoles.Mimic && pc.Is(CustomRoles.Mafia)) return false;
         if (role is CustomRoles.Necroview && pc.Is(CustomRoles.Doctor) || pc.Is(CustomRoles.God) || pc.Is(CustomRoles.GuardianAngelTOHE)) return false;
-    //    if (role is CustomRoles.Bait && !pc.GetCustomRole().IsCrewmate() && pc.Is(CustomRoles.Trapper)) return false;
-    //    if (role is CustomRoles.Trapper && !pc.GetCustomRole().IsCrewmate() && pc.Is(CustomRoles.Bait)) return false;
+        if (role is CustomRoles.Bait && ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeBait.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeBait.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeBait.GetBool()))) return false;
+        if (role is CustomRoles.Trapper && ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeTrapper.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeTrapper.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeTrapper.GetBool()))) return false;
         if (role is CustomRoles.DualPersonality && ((!pc.GetCustomRole().IsImpostor() && !pc.GetCustomRole().IsCrewmate()) || pc.Is(CustomRoles.Madmate))) return false;
         if (role is CustomRoles.DualPersonality && pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeDualPersonality.GetBool()) return false;
         if (role is CustomRoles.DualPersonality && pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeDualPersonality.GetBool() || pc.Is(CustomRoles.GuardianAngelTOHE)) return false;
@@ -311,6 +315,7 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Sidekick && pc.Is(CustomRoles.Jackal)) return false;
         if (role is CustomRoles.Bait && pc.Is(CustomRoles.GuardianAngelTOHE)) return false;
         if (role is CustomRoles.Trapper && pc.Is(CustomRoles.GuardianAngelTOHE)) return false;
+
         if (role is CustomRoles.Reach && !pc.CanUseKillButton()) return false;
         return true;
     }
@@ -401,6 +406,7 @@ internal static class CustomRolesHelper
            CustomRoles.Pelican => CountTypes.Pelican,
            CustomRoles.Gamer => CountTypes.Gamer,
            CustomRoles.BloodKnight => CountTypes.BloodKnight,
+           CustomRoles.Succubus => CountTypes.Succubus,
            _ => role.IsImpostorTeam() ? CountTypes.Impostor : CountTypes.Crew,
        };
 
@@ -424,4 +430,6 @@ public enum CountTypes
     Gamer,
     BloodKnight,
     Poisoner,
+    Charmed,
+    Succubus,
 }

@@ -64,6 +64,30 @@ public class PlayerState
 
         if (!SubRoles.Contains(role))
             SubRoles.Add(role);
+
+        if (role == CustomRoles.Madmate)
+        {
+            countTypes = Options.MadmateCountMode.GetInt() switch
+            {
+                0 => CountTypes.OutOfGame,
+                1 => CountTypes.Impostor,
+                2 => CountTypes.Crew,
+                _ => throw new NotImplementedException()
+            };
+            SubRoles.Remove(CustomRoles.Charmed);
+        }
+        if (role == CustomRoles.Charmed)
+        {
+            countTypes = Succubus.CharmedCountMode.GetInt() switch
+            {
+                0 => CountTypes.OutOfGame,
+                1 => CountTypes.Succubus,
+                2 => countTypes,
+                _ => throw new NotImplementedException()
+            };
+            SubRoles.Remove(CustomRoles.Madmate);
+        }
+
     }
     public void RemoveSubRole(CustomRoles role)
     {
