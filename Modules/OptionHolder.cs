@@ -227,6 +227,13 @@ public static class Options
     public static OptionItem CrewCanBeTrapper;
     public static OptionItem NeutralCanBeTrapper;
 
+    // Guesser Addon
+     public static OptionItem GCanGuessImp;
+    public static OptionItem GCanGuessCrew;
+    public static OptionItem GCanGuessAdt;
+    public static OptionItem GCanGuessTaskDoneSnitch;
+    public static OptionItem GTryHideMsg;
+
     // タスク無効化
     public static OptionItem DisableTasks;
     public static OptionItem DisableSwipeCard;
@@ -377,6 +384,7 @@ public static class Options
     public static OptionItem SendRoleDescriptionFirstMeeting;
     public static OptionItem RoleAssigningAlgorithm;
     public static OptionItem EndWhenPlayerBug;
+    public static OptionItem BardKillCooldown;
 
     public static OptionItem EnableUpMode;
     public static OptionItem AutoKickStart;
@@ -868,11 +876,15 @@ public static class Options
             .SetColor(new Color32(247, 70, 49, byte.MaxValue));
         SetupRoleOptions(120000, TabGroup.ExclusiveRoles, CustomRoles.ShapeshifterTOHE);
         Wildling.SetupCustomOption();
+        SetupRoleOptions(120155, TabGroup.ExclusiveRoles, CustomRoles.Bard);
+        BardKillCooldown = FloatOptionItem.Create(120215, "KillCooldown", new(5f, 999f, 2.5f), 40f, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bard])
+            .SetValueFormat(OptionFormat.Seconds);
         TextOptionItem.Create(120020, "OtherRoles.CrewmateRoles", TabGroup.ExclusiveRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(140, 255, 255, byte.MaxValue));
         SetupRoleOptions(120005, TabGroup.ExclusiveRoles, CustomRoles.EngineerTOHE);
         SetupRoleOptions(120010, TabGroup.ExclusiveRoles, CustomRoles.ScientistTOHE);
+        SetupRoleOptions(120150, TabGroup.ExclusiveRoles, CustomRoles.Sunnyboy);
    //     SetupSingleRoleOptions(6050525, TabGroup.ExclusiveRoles, CustomRoles.GuardianAngelTOHE, 1, zeroOne: false);
         Marshall.SetupCustomOption();
         TextOptionItem.Create(120030, "OtherRoles.NeutralRoles", TabGroup.ExclusiveRoles)
@@ -895,7 +907,13 @@ public static class Options
         NeutralCanBeSidekick = BooleanOptionItem.Create(6050515, "NeutralsCanBeSidekick", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Sidekick]);
         ImpostorCanBeSidekick = BooleanOptionItem.Create(6050540, "ImpostorsCanBeSidekick", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Sidekick]);
         SidekickCanKillJackal = BooleanOptionItem.Create(6050520, "SidekickCanKillJackal", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Sidekick]);
-
+        SetupAdtRoleOptions(6050550, CustomRoles.Guesser, canSetNum: true, tab: TabGroup.ExclusiveRoles);
+        GCanGuessImp = BooleanOptionItem.Create(6050555, "GCanGuessImp", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
+        GCanGuessCrew = BooleanOptionItem.Create(6050560, "GCanGuessCrew", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
+        GCanGuessAdt = BooleanOptionItem.Create(6050565, "GCanGuessAdt", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
+        GCanGuessTaskDoneSnitch = BooleanOptionItem.Create(6050570, "GCanGuessTaskDoneSnitch", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
+        GTryHideMsg = BooleanOptionItem.Create(6050575, "GuesserTryHideMsg", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser])
+            .SetColor(Color.green);
         #endregion
 
         #region 系统设置
