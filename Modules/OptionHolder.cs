@@ -882,6 +882,7 @@ public static class Options
         SetupSingleRoleOptions(6050530, TabGroup.ExclusiveRoles, CustomRoles.NWitch, 1, zeroOne: false);
         ControlCooldown = FloatOptionItem.Create(6050532, "ControlCooldown", new(0f, 999f, 2.5f), 30f, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NWitch])
             .SetValueFormat(OptionFormat.Seconds);
+        Lawyer.SetupCustomOption();
         TextOptionItem.Create(120025, "OtherRoles.Addons", TabGroup.ExclusiveRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 154, 206, byte.MaxValue));

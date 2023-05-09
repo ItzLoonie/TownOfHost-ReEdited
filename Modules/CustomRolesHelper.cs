@@ -21,6 +21,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Mafia => CustomRoles.Impostor,
                 CustomRoles.Terrorist => CustomRoles.Engineer,
                 CustomRoles.Executioner => CustomRoles.Crewmate,
+                CustomRoles.Lawyer => CustomRoles.Crewmate,
                 CustomRoles.Vampire => CustomRoles.Impostor,
                 CustomRoles.Poisoner => CustomRoles.Impostor,
                 CustomRoles.BountyHunter => CustomRoles.Shapeshifter,
@@ -257,6 +258,7 @@ internal static class CustomRolesHelper
             CustomRoles.NWitch or
             CustomRoles.Terrorist or
             CustomRoles.Executioner or
+            CustomRoles.Lawyer or
             CustomRoles.Arsonist or
             CustomRoles.Jackal or
             CustomRoles.God or
