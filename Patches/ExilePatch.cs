@@ -88,6 +88,7 @@ class ExileControllerWrapUpPatch
 
             //判断处刑人胜利
             if (Executioner.CheckExileTarget(exiled, DecidedWinner)) DecidedWinner = true;
+            if (Lawyer.CheckExileTarget(exiled, DecidedWinner)) DecidedWinner = false;
 
             //判断恐怖分子胜利
             if (role == CustomRoles.Terrorist) Utils.CheckTerroristWin(exiled);

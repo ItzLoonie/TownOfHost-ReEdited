@@ -199,6 +199,17 @@ class GameEndChecker
                         CustomWinnerHolder.AdditionalWinnerTeams.Add(AdditionalWinners.Totocalcio);
                     }
                 }
+                foreach (var pc in Main.AllPlayerControls.Where(x => x.Is(CustomRoles.Lawyer)))
+                {
+                    if (Lawyer.Target.TryGetValue(pc.PlayerId, out var lawyertarget) && (
+                        CustomWinnerHolder.WinnerIds.Contains(lawyertarget) ||
+                        (Main.PlayerStates.TryGetValue(lawyertarget, out var ps) && CustomWinnerHolder.WinnerRoles.Contains(ps.MainRole)
+                        )))
+                    {
+                        CustomWinnerHolder.WinnerIds.Add(pc.PlayerId);
+                        CustomWinnerHolder.AdditionalWinnerTeams.Add(AdditionalWinners.Lawyer);
+                    }
+                }
 
 
                 //中立共同胜利
