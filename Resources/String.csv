@@ -33,7 +33,7 @@
 
 "# 阵营 / Teams"
 "TeamImpostor","内鬼阵营","Impostor","Предатель","偽裝者陣營","EquipoImpostor"
-"TeamNeutral","中立阵营","Evil Neutral","Нейтрал","中立陣營","EquipoNeutro"
+"TeamNeutral","中立阵营","Neutral","Нейтрал","中立陣營","EquipoNeutro"
 "TeamCrewmate","船员阵营","Crewmate","Член Экипажа","船員陣營",""
 
 "## 个人竞技模式 / PVP"
