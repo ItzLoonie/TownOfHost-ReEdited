@@ -46,6 +46,14 @@ class GameEndChecker
             //カモフラージュ強制解除
             Main.AllPlayerControls.Do(pc => Camouflage.RpcSetSkin(pc, ForceRevert: true, RevertToDefault: true));
 
+            if (reason == GameOverReason.ImpostorBySabotage && Jackal.CanWinBySabotageWhenNoImpAlive.GetBool() && !Main.AllAlivePlayerControls.Any(x => x.GetCustomRole().IsImpostorTeam()))
+            {
+                reason = GameOverReason.ImpostorByKill;
+                CustomWinnerHolder.WinnerIds.Clear();
+                CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Jackal);
+                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Jackal);
+            }
+
             switch (CustomWinnerHolder.WinnerTeam)
             {
                 case CustomWinner.Crewmate:
@@ -199,6 +207,7 @@ class GameEndChecker
                         CustomWinnerHolder.AdditionalWinnerTeams.Add(AdditionalWinners.Totocalcio);
                     }
                 }
+                //Lawyer win cond
                 foreach (var pc in Main.AllPlayerControls.Where(x => x.Is(CustomRoles.Lawyer)))
                 {
                     if (Lawyer.Target.TryGetValue(pc.PlayerId, out var lawyertarget) && (
@@ -210,8 +219,6 @@ class GameEndChecker
                         CustomWinnerHolder.AdditionalWinnerTeams.Add(AdditionalWinners.Lawyer);
                     }
                 }
-
-
                 //中立共同胜利
                 if (Options.NeutralWinTogether.GetBool() && CustomWinnerHolder.WinnerIds.Where(x => Utils.GetPlayerById(x) != null && Utils.GetPlayerById(x).GetCustomRole().IsNeutral()).Count() >= 1)
                 {

@@ -58,7 +58,7 @@ class ExileControllerWrapUpPatch
 
             exiled.IsDead = true;
             Main.PlayerStates[exiled.PlayerId].deathReason = PlayerState.DeathReason.Vote;
-            var role = exiled.GetCustomRole();
+                        var role = exiled.GetCustomRole();
 
             //判断冤罪师胜利
             if (Main.AllPlayerControls.Any(x => x.Is(CustomRoles.Innocent) && !x.IsAlive() && x.GetRealKiller()?.PlayerId == exiled.PlayerId))

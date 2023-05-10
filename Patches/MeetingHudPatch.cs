@@ -18,7 +18,6 @@ class CheckForEndVotingPatch
     {
         if (!AmongUsClient.Instance.AmHost) return true;
         var voteLog = Logger.Handler("Vote");
-        
         try
         {
             List<MeetingHud.VoterState> statesList = new();
@@ -146,6 +145,20 @@ class CheckForEndVotingPatch
                         }
                     }
                 }
+
+                //隐藏占卜师的票
+                if (CheckRole(ps.TargetPlayerId, CustomRoles.Divinator) && Divinator.HideVote.GetBool()) continue;
+                //隐藏抹除者的票
+                if (CheckRole(ps.TargetPlayerId, CustomRoles.Eraser) && Eraser.HideVote.GetBool()) continue;
+
+                //主动叛变模式下自票无效
+                if (ps.TargetPlayerId == ps.VotedFor && Options.MadmateSpawnMode.GetInt() == 2) continue;
+
+                statesList.Add(new MeetingHud.VoterState()
+                {
+                    VoterId = ps.TargetPlayerId,
+                    VotedForId = ps.VotedFor
+                });
 
                 //隐藏占卜师的票
                 if (CheckRole(ps.TargetPlayerId, CustomRoles.Divinator) && Divinator.HideVote.GetBool()) continue;
@@ -294,8 +307,6 @@ class CheckForEndVotingPatch
             coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Sidekick), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
         if (Options.ConfirmCharmedOnEject.GetBool() && player.Is(CustomRoles.Charmed))
             coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Charmed), GetRoleString("Charmed-") + coloredRole.RemoveHtmlTags());
-        if (Options.ConfirmMadmateOnEject.GetBool() && player.Is(CustomRoles.Madmate))
-            coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Madmate), GetRoleString("Mad-") + coloredRole.RemoveHtmlTags());
         var name = "";
         int impnum = 0;
         int neutralnum = 0;
@@ -541,7 +552,7 @@ class MeetingHudStartPatch
         //提示神存活
         if (CustomRoles.God.RoleExist() && Options.NotifyGodAlive.GetBool())
             AddMsg(GetString("GodNoticeAlive"), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.God), GetString("GodAliveTitle")));
-            //工作狂的生存技巧
+        //工作狂的生存技巧
         if (MeetingStates.FirstMeeting && CustomRoles.Workaholic.RoleExist() && Options.WorkaholicGiveAdviceAlive.GetBool() && !Options.WorkaholicCannotWinAtDeath.GetBool() && !Options.GhostIgnoreTasks.GetBool())
         {
             foreach (var pc in Main.AllAlivePlayerControls.Where(x => x.Is(CustomRoles.Workaholic)))
@@ -605,9 +616,6 @@ class MeetingHudStartPatch
         GameStates.AlreadyDied |= !Utils.IsAllAlive;
         Main.AllPlayerControls.Do(x => ReportDeadBodyPatch.WaitReport[x.PlayerId].Clear());
         MeetingStates.MeetingCalled = true;
-
-        if (AmongUsClient.Instance.AmHost)
-            NotifyRoleSkillOnMeetingStart();
     }
     public static void Postfix(MeetingHud __instance)
     {
@@ -662,10 +670,16 @@ class MeetingHudStartPatch
         }
         if (AntiBlackout.OverrideExiledPlayer)
         {
-            Utils.SendMessage(Translator.GetString("Warning.OverrideExiledPlayer"));
+            new LateTask(() =>
+            {
+                Utils.SendMessage(GetString("Warning.OverrideExiledPlayer"), 255, Utils.ColorString(Color.red, GetString("DefaultSystemMessageTitle")));
+            }, 5f, "Warning OverrideExiledPlayer");
         }
         if (MeetingStates.FirstMeeting) TemplateManager.SendTemplate("OnFirstMeeting", noErr: true);
         TemplateManager.SendTemplate("OnMeeting", noErr: true);
+
+        if (AmongUsClient.Instance.AmHost)
+            NotifyRoleSkillOnMeetingStart();
 
         if (AmongUsClient.Instance.AmHost)
         {
@@ -768,8 +782,8 @@ class MeetingHudStartPatch
                     if (!seer.Data.IsDead && !target.Data.IsDead)
                         pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(seer.Is(CustomRoles.NiceGuesser) ? CustomRoles.NiceGuesser : CustomRoles.EvilGuesser), target.PlayerId.ToString()) + " " + pva.NameText.text;
                     break;
-                case CustomRoles.Judge:
                 case CustomRoles.Guesser:
+                case CustomRoles.Judge:
                     if (!seer.Data.IsDead && !target.Data.IsDead)
                         pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Judge), target.PlayerId.ToString()) + " " + pva.NameText.text;
 
@@ -863,7 +877,7 @@ class MeetingHudUpdatePatch
         }
 
         //投票结束时销毁全部技能按钮
-        if (!GameStates.IsVoting && __instance.lastSecond < 0)
+        if (!GameStates.IsVoting && __instance.lastSecond < 1)
         {
             if (GameObject.Find("ShootButton") != null) ClearShootButton(__instance, true);
             return;
