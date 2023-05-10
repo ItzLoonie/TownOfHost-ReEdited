@@ -709,8 +709,8 @@ public static class Utils
         foreach (CustomRoles role in Enum.GetValues(typeof(CustomRoles)))
         {
             headCount++;
-            if (role.IsImpostor() && headCount == 0) sb.Append("\n\n● " + GetString("TabGroup.ImpostorRoles"));
-            else if (role.IsCrewmate() && headCount == 1) sb.Append("\n\n● " + GetString("TabGroup.CrewmateRoles"));
+            if (role.IsImpostor() && headCount == 0) continue;
+            else if (role.IsCrewmate() && headCount == 1) sb.Append("\n\n● " + GetString("TabGroup.CrewmateAndImpostorRoles"));
             else if (role.IsNeutral() && headCount == 2) sb.Append("\n\n● " + GetString("TabGroup.NeutralRoles"));
             else if (role.IsAdditionRole() && headCount == 3) sb.Append("\n\n● " + GetString("TabGroup.Addons"));
             else headCount--;
@@ -1105,13 +1105,13 @@ public static class Utils
             string SelfName = $"{ColorString(seer.GetRoleColor(), SeerRealName)}{SelfDeathReason}{SelfMark}";
 
             if (seer.Is(CustomRoles.Arsonist) && seer.IsDouseDone())
-                SelfName = $"</size>\r\n{ColorString(seer.GetRoleColor(), GetString("EnterVentToWin"))}";
+                SelfName = $"{ColorString(seer.GetRoleColor(), GetString("EnterVentToWin"))}";
             if (seer.Is(CustomRoles.Revolutionist) && seer.IsDrawDone())
-                SelfName = $"</size>\r\n{ColorString(seer.GetRoleColor(), string.Format(GetString("EnterVentWinCountDown"), Main.RevolutionistCountdown.TryGetValue(seer.PlayerId, out var x) ? x : 10))}";
+                SelfName = $">{ColorString(seer.GetRoleColor(), string.Format(GetString("EnterVentWinCountDown"), Main.RevolutionistCountdown.TryGetValue(seer.PlayerId, out var x) ? x : 10))}";
             if (Pelican.IsEaten(seer.PlayerId))
-                SelfName = $"</size>\r\n{ColorString(GetRoleColor(CustomRoles.Pelican), GetString("EatenByPelican"))}";
-            if (NameNotifyManager.GetNameNotify(seer, ref SelfName))
-                SelfName = $"<size={fontSize}>{SelfTaskText}</size>\r\n{SelfName}";
+                SelfName = $"{ColorString(GetRoleColor(CustomRoles.Pelican), GetString("EatenByPelican"))}";
+            if (NameNotifyManager.GetNameNotify(seer, out var name))
+                SelfName = name;
 
             if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
             {
@@ -1275,7 +1275,7 @@ public static class Utils
                     TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Jackal), "♥"));
 
                 TargetMark.Append(Executioner.TargetMark(seer, target));
-                
+
                 TargetMark.Append(Lawyer.TargetMark(seer, target));
 
                 TargetMark.Append(Gamer.TargetMark(seer, target));
@@ -1328,7 +1328,7 @@ public static class Utils
         if (Options.AirShipVariableElectrical.GetBool())
             AirShipElectricalDoors.Initialize();
     }
-    public static void AfterPlayerDeathTasks(PlayerControl target)
+    public static void AfterPlayerDeathTasks(PlayerControl target, bool onMeeting = false)
     {
         switch (target.GetCustomRole())
         {
@@ -1377,7 +1377,9 @@ public static class Utils
         if (Lawyer.Target.ContainsValue(target.PlayerId))
             Lawyer.ChangeRoleByTarget(target);
 
-        FixedUpdatePatch.LoversSuicide(target.PlayerId);
+        FixedUpdatePatch.LoversSuicide(target.PlayerId, onMeeting);
+
+        Jackal.AfterPlayerDiedTask();
 
     }
     public static void ChangeInt(ref int ChangeTo, int input, int max)
