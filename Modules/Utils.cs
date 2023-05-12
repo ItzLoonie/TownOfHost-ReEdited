@@ -1223,6 +1223,7 @@ public static class Utils
                         (seer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Sidekick)) ||
                         (seer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Jackal))||
                         (target.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) ||
+                        (seer.Is(CustomRoles.Charmed) && target.Is(CustomRoles.Charmed) && Succubus.TargetKnowOtherTarget.GetBool()) ||
                         (Totocalcio.KnowRole(seer, target)) ||
                         (Succubus.KnowRole(seer, target)) ||
                         (seer.Is(CustomRoles.God)) ||
@@ -1250,11 +1251,18 @@ public static class Utils
                     {
                         TargetPlayerName = ColorString(GetRoleColor(CustomRoles.Mafia), target.PlayerId.ToString()) + " " + TargetPlayerName;
                     }
-                    if (seer.Is(CustomRoles.NiceGuesser) || seer.Is(CustomRoles.EvilGuesser) || seer.Is(CustomRoles.Guesser))
+                    if (seer.Is(CustomRoles.NiceGuesser) || seer.Is(CustomRoles.EvilGuesser))
                     {
                         if (seer.IsAlive() && target.IsAlive() && isForMeeting)
                         {
                             TargetPlayerName = ColorString(GetRoleColor(seer.Is(CustomRoles.NiceGuesser) ? CustomRoles.NiceGuesser : CustomRoles.EvilGuesser), target.PlayerId.ToString()) + " " + TargetPlayerName;
+                        }
+                    }
+                    if (seer.Is(CustomRoles.Guesser))
+                    {
+                        if (seer.IsAlive() && target.IsAlive() && isForMeeting)
+                        {
+                            TargetPlayerName = ColorString(GetRoleColor(CustomRoles.Guesser), target.PlayerId.ToString()) + " " + TargetPlayerName;
                         }
                     }
                     if (seer.Is(CustomRoles.Judge))
