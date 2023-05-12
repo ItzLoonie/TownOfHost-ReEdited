@@ -75,7 +75,8 @@ public static class Divinator
                 CustomRoles.Counterfeiter or
                 CustomRoles.God or
                 CustomRoles.Judge or
-                CustomRoles.Observer
+                CustomRoles.Observer or
+                CustomRoles.Undercover
                 => "HideMsg",
 
                 CustomRoles.Miner or
@@ -87,6 +88,7 @@ public static class Divinator
                 CustomRoles.Jackal or
             //    CustomRoles.Sidekick or
                 CustomRoles.Mario or
+                CustomRoles.Trickster or
                 CustomRoles.Cleaner or
                 CustomRoles.Crewpostor
                 => "Honest",

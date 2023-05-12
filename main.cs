@@ -300,6 +300,7 @@ public class Main : BasePlugin
                 {CustomRoles.Mortician, "#333c49"},
                 {CustomRoles.Mediumshiper, "#a200ff"},
                 {CustomRoles.Observer, "#a8e0fa"},
+                {CustomRoles.Undercover, "#ff1919"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Jester, "#ec62a5"},
@@ -451,6 +452,7 @@ public enum CustomRoles
     Eraser,
     OverKiller,
     Hangman,
+    Trickster,
     Bard,
     Swooper,
     Crewpostor,
@@ -474,6 +476,7 @@ public enum CustomRoles
     Dictator,
     Doctor,
     Detective,
+    Undercover,
     SwordsMan,
     NiceGuesser,
     Transporter,

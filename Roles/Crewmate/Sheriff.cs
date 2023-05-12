@@ -140,6 +140,11 @@ public static class Sheriff
                 CanKill = CanKillCharmed.GetBool();
         }
 
+        return player.GetCustomRole() switch
+        {
+            CustomRoles.Trickster => false,
+
+        };
         return cRole.GetCustomRoleTypes() switch
         {
             CustomRoleTypes.Impostor => true,
