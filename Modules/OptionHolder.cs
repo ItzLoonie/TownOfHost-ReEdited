@@ -216,6 +216,18 @@ public static class Options
     public static OptionItem CrewmateCanBeSidekick;
     public static OptionItem NeutralCanBeSidekick;
     public static OptionItem ImpostorCanBeSidekick;
+    public static OptionItem ImpCanBeWatcher;
+    public static OptionItem CrewCanBeWatcher;
+    public static OptionItem NeutralCanBeWatcher;
+    public static OptionItem ImpCanBeNecroview;
+    public static OptionItem CrewCanBeNecroview;
+    public static OptionItem NeutralCanBeNecroview;
+    public static OptionItem ImpCanBeOblivious;
+    public static OptionItem CrewCanBeOblivious;
+    public static OptionItem NeutralCanBeOblivious;
+    public static OptionItem ImpCanBeTiebreaker;
+    public static OptionItem CrewCanBeTiebreaker;
+    public static OptionItem NeutralCanBeTiebreaker;
     public static OptionItem ControlCooldown;
     public static OptionItem ImpCanBeBait;
     public static OptionItem CrewCanBeBait;
@@ -737,13 +749,22 @@ public static class Options
         // Add-Ons
         SetupLoversRoleOptionsToggle(50300);
         SetupAdtRoleOptions(6050320, CustomRoles.Watcher, canSetNum: true);
+        ImpCanBeWatcher = BooleanOptionItem.Create(6050323, "ImpCanBeWatcher", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Watcher]);
+        CrewCanBeWatcher = BooleanOptionItem.Create(6050324, "CrewCanBeWatcher", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Watcher]);
+        NeutralCanBeWatcher = BooleanOptionItem.Create(6050325, "NeutralCanBeWatcher", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Watcher]);
         SetupAdtRoleOptions(6050340, CustomRoles.Lighter, canSetNum: true);
         SetupAdtRoleOptions(6050350, CustomRoles.Seer, canSetNum: true);
         ImpCanBeSeer = BooleanOptionItem.Create(6050353, "ImpCanBeSeer", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Seer]);
         CrewCanBeSeer = BooleanOptionItem.Create(6050354, "CrewCanBeSeer", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Seer]);
         NeutralCanBeSeer = BooleanOptionItem.Create(6050355, "NeutralCanBeSeer", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Seer]);
         SetupAdtRoleOptions(6050360, CustomRoles.Brakar, canSetNum: true);
+        ImpCanBeTiebreaker = BooleanOptionItem.Create(6050363, "ImpCanBeTiebreaker", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Brakar]);
+        CrewCanBeTiebreaker = BooleanOptionItem.Create(6050364, "CrewCanBeTiebreaker", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Brakar]);
+        NeutralCanBeTiebreaker = BooleanOptionItem.Create(6050365, "NeutralCanBeTiebreaker", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Brakar]);
         SetupAdtRoleOptions(6050370, CustomRoles.Oblivious, canSetNum: true);
+        ImpCanBeOblivious = BooleanOptionItem.Create(6050373, "ImpCanBeOblivious", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Oblivious]);
+        CrewCanBeOblivious = BooleanOptionItem.Create(6050374, "CrewCanBeOblivious", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Oblivious]);
+        NeutralCanBeOblivious = BooleanOptionItem.Create(6050375, "NeutralCanBeOblivious", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Oblivious]);
         SetupAdtRoleOptions(6050380, CustomRoles.Bewilder, canSetNum: true);
         BewilderVision = FloatOptionItem.Create(6050383, "BewilderVision", new(0f, 5f, 0.05f), 0.6f, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bewilder])
             .SetValueFormat(OptionFormat.Multiplier);
@@ -905,6 +926,9 @@ public static class Options
             .SetGameMode(CustomGameMode.Standard)
             .SetHeader(true);
         SetupAdtRoleOptions(6050500, CustomRoles.Necroview, canSetNum: true, tab: TabGroup.ExclusiveRoles);
+        ImpCanBeNecroview = BooleanOptionItem.Create(6050503, "ImpCanBeNecroview", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Necroview]);
+        CrewCanBeNecroview = BooleanOptionItem.Create(6050504, "CrewCanBeNecroview", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Necroview]);
+        NeutralCanBeNecroview = BooleanOptionItem.Create(6050506, "NeutralCanBeNecroview", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Necroview]);
         SetupAdtRoleOptions(6050505, CustomRoles.Sidekick, canSetNum: true, tab: TabGroup.ExclusiveRoles);
         CrewmateCanBeSidekick = BooleanOptionItem.Create(6050510, "CrewmatesCanBeSidekick", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Sidekick]);
         NeutralCanBeSidekick = BooleanOptionItem.Create(6050515, "NeutralsCanBeSidekick", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Sidekick]);
