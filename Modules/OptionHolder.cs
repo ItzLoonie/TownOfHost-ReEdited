@@ -913,7 +913,7 @@ public static class Options
             .SetColor(new Color32(247, 70, 49, byte.MaxValue));
         SetupRoleOptions(120000, TabGroup.ExclusiveRoles, CustomRoles.ShapeshifterTOHE);
         Wildling.SetupCustomOption();
-        SetupRoleOptions(150000, TabGroup.ExclusiveRoles, CustomRoles.Trickster);
+//        SetupRoleOptions(150000, TabGroup.ExclusiveRoles, CustomRoles.Trickster);
         SetupRoleOptions(120110, TabGroup.ExclusiveRoles, CustomRoles.Bard);
         BardKillCooldown = FloatOptionItem.Create(120215, "KillCooldown", new(5f, 999f, 2.5f), 40f, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bard])
             .SetValueFormat(OptionFormat.Seconds);
@@ -966,7 +966,7 @@ public static class Options
         GCanGuessTaskDoneSnitch = BooleanOptionItem.Create(6050570, "GCanGuessTaskDoneSnitch", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
         GTryHideMsg = BooleanOptionItem.Create(6050575, "GuesserTryHideMsg", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser])
             .SetColor(Color.green);
-        SetupAdtRoleOptions(6050580, CustomRoles.Circumventor, canSetNum: true, tab: TabGroup.ExclusiveRoles);
+   //     SetupAdtRoleOptions(6050580, CustomRoles.Circumventor, canSetNum: true, tab: TabGroup.ExclusiveRoles);
 
         #endregion
 
