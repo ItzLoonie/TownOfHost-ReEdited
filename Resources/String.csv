@@ -33,7 +33,7 @@
 
 "# 阵营 / Teams"
 "TeamImpostor","内鬼阵营","Impostor","Предатель","偽裝者陣營","EquipoImpostor"
-"TeamNeutral","中立阵营","Evil Neutral","Нейтрал","中立陣營","EquipoNeutro"
+"TeamNeutral","中立阵营","Neutral","Нейтрал","中立陣營","EquipoNeutro"
 "TeamCrewmate","船员阵营","Crewmate","Член Экипажа","船員陣營",""
 
 "## 个人竞技模式 / PVP"
@@ -1372,7 +1372,7 @@
 "VampireBiteButtonText","吸血","Bite","УКУСИТЬ","吸血","吸血"
 "MinerTeleButtonText","传送","TP back","ОТПРАВИТЬСЯ","傳送","传送"
 "ArsonistDouseButtonText","涂油","Douse","ОБЛИТЬ","澆油","涂油"
-"PuppeteerOperateButtonText","操控","Manipulate","УПРАВЛЯТЬ","操控","操控"
+"PuppeteerOperateButtonText","操控","Control","УПРАВЛЯТЬ","操控","操控"
 "BountyHunterChangeButtonText","变更","Swap","ДО СМЕНЫ","變更","变更"
 "EvilTrackerChangeButtonText","追踪","Track","ОТСЛЕЖИВАТЬ","追蹤","追踪"
 "InnocentButtonText","栽赃","Frame","ПОДСТАВИТЬ","栽贓","栽赃"
