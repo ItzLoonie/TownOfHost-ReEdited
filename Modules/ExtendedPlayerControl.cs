@@ -449,11 +449,14 @@ static class ExtendedPlayerControl
     }
     public static bool CanUseImpostorVentButton(this PlayerControl pc)
     {
+                var cRole = pc.GetCustomRole();
+        var subRole = pc.GetCustomSubRoles();
+
         if (!pc.IsAlive() || pc.Data.Role.Role == RoleTypes.GuardianAngel) return false;
-   //     foreach (var subRole in pc.GetCustomSubRoles())
+        
 
         
-        return pc.GetCustomRole() switch
+        return cRole switch
         {
             CustomRoles.Minimalism or
             CustomRoles.Sheriff or
@@ -478,11 +481,14 @@ static class ExtendedPlayerControl
 
             CustomRoles.Arsonist => pc.IsDouseDone(),
             CustomRoles.Revolutionist => pc.IsDrawDone(),
+        
 
             //SoloKombat
             CustomRoles.KB_Normal => true,
 
             _ => pc.Is(CustomRoleTypes.Impostor),
+            
+            
         };
     }
     public static bool IsDousedPlayer(this PlayerControl arsonist, PlayerControl target)

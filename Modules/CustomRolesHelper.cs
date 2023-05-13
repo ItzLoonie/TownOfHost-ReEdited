@@ -251,11 +251,7 @@ internal static class CustomRolesHelper
             CustomRoles.Swooper or
             CustomRoles.Crewpostor;
     }
-    public static bool IsImmuneToSheriff(this CustomRoles role)
-    {
-        return role is
-            CustomRoles.Trickster;
-    }
+    
     public static bool IsNeutral(this CustomRoles role) // �Ƿ�����
     {
         return role is
@@ -368,7 +364,6 @@ internal static class CustomRolesHelper
         CustomRoleTypes type = CustomRoleTypes.Crewmate;
         if (role.IsImpostor()) type = CustomRoleTypes.Impostor;
         if (role.IsNeutral()) type = CustomRoleTypes.Neutral;
-        if (role.IsImmuneToSheriff()) type = CustomRoleTypes.InnocentImpostor;
         if (role.IsAdditionRole()) type = CustomRoleTypes.Addon;
         return type;
     }

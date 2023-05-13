@@ -913,7 +913,7 @@ public static class Options
             .SetColor(new Color32(247, 70, 49, byte.MaxValue));
         SetupRoleOptions(120000, TabGroup.ExclusiveRoles, CustomRoles.ShapeshifterTOHE);
         Wildling.SetupCustomOption();
-//        SetupRoleOptions(150000, TabGroup.ExclusiveRoles, CustomRoles.Trickster);
+        SetupRoleOptions(150000, TabGroup.ExclusiveRoles, CustomRoles.Trickster);
         SetupRoleOptions(120110, TabGroup.ExclusiveRoles, CustomRoles.Bard);
         BardKillCooldown = FloatOptionItem.Create(120215, "KillCooldown", new(5f, 999f, 2.5f), 40f, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bard])
             .SetValueFormat(OptionFormat.Seconds);
@@ -925,11 +925,11 @@ public static class Options
         SetupRoleOptions(120010, TabGroup.ExclusiveRoles, CustomRoles.ScientistTOHE);
    //     SetupSingleRoleOptions(6050525, TabGroup.ExclusiveRoles, CustomRoles.GuardianAngelTOHE, 1, zeroOne: false);
         Marshall.SetupCustomOption();
-        SetupRoleOptions(8021620, TabGroup.ExclusiveRoles, CustomRoles.Undercover);
+   /*     SetupRoleOptions(8021620, TabGroup.ExclusiveRoles, CustomRoles.Undercover);
         UndercoverHasImpostorVision = BooleanOptionItem.Create(8021640, "ImpostorVision", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Undercover]);
         ImpCanKillUndercover = BooleanOptionItem.Create(8021630, "ImpCanKillUndercover", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Undercover]);
         JackalCanKillUndercover = BooleanOptionItem.Create(8021660, "JackalCanKillUndercover", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Undercover]);
-        UndercoverDisguiseSidekick = BooleanOptionItem.Create(8021650, "UndercoverDisguiseSidekick", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Undercover]);
+        UndercoverDisguiseSidekick = BooleanOptionItem.Create(8021650, "UndercoverDisguiseSidekick", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Undercover]); */
         // Neutrals //
         TextOptionItem.Create(120030, "OtherRoles.NeutralRoles", TabGroup.ExclusiveRoles)
             .SetGameMode(CustomGameMode.Standard)
