@@ -141,11 +141,15 @@ public static class Sheriff
         }
 
         
-        return cRole.GetCustomRoleTypes() switch
+        return cRole switch
+        {
+            CustomRoles.Trickster => false,
+            _ => cRole.GetCustomRoleTypes() switch
         {
             CustomRoleTypes.Impostor => true,
             CustomRoleTypes.Neutral => CanKillNeutrals.GetBool() && (CanKillNeutralsMode.GetValue() == 0 || (!KillTargetOptions.TryGetValue(cRole, out var option) || option.GetBool())),
             _ => CanKill,
+        }
         };
     }
 }
