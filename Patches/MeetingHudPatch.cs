@@ -166,13 +166,7 @@ class CheckForEndVotingPatch
                 if (CheckRole(ps.TargetPlayerId, CustomRoles.Eraser) && Eraser.HideVote.GetBool()) continue;
 
                 //主动叛变模式下自票无效
-                if (ps.TargetPlayerId == ps.VotedFor && Options.MadmateSpawnMode.GetInt() == 2) continue;
-
-                statesList.Add(new MeetingHud.VoterState()
-                {
-                    VoterId = ps.TargetPlayerId,
-                    VotedForId = ps.VotedFor
-                });
+                
                 
                 if (CheckRole(ps.TargetPlayerId, CustomRoles.Mayor) && !Options.MayorHideVote.GetBool()) //Mayorの投票数
                 {
