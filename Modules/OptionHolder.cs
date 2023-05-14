@@ -142,6 +142,7 @@ public static class Options
     public static OptionItem MadmateCanKillImp;
     public static OptionItem JackalCanKillSidekick;
     public static OptionItem SidekickCanKillJackal;
+    public static OptionItem SidekickKnowOtherSidekick;
 
     public static OptionItem ShapeMasterShapeshiftDuration;
     public static OptionItem EGCanGuessImp;
@@ -177,6 +178,8 @@ public static class Options
     public static OptionItem WorkaholicCannotWinAtDeath;
     public static OptionItem WorkaholicVisibleToEveryone;
     public static OptionItem WorkaholicGiveAdviceAlive;
+    public static OptionItem BaitNotification;
+    public static OptionItem JackalWinWithSidekick;
     public static OptionItem ArsonistDouseTime;
     public static OptionItem ArsonistCooldown;
     public static OptionItem JesterCanUseButton;
@@ -213,9 +216,9 @@ public static class Options
     public static OptionItem ImpCanBeSeer;
     public static OptionItem CrewCanBeSeer;
     public static OptionItem NeutralCanBeSeer;
-    public static OptionItem CrewmateCanBeSidekick;
-    public static OptionItem NeutralCanBeSidekick;
-    public static OptionItem ImpostorCanBeSidekick;
+    public static OptionItem ImpCanBeGuesser;
+    public static OptionItem CrewCanBeGuesser;
+    public static OptionItem NeutralCanBeGuesser;
     public static OptionItem ImpCanBeWatcher;
     public static OptionItem CrewCanBeWatcher;
     public static OptionItem NeutralCanBeWatcher;
@@ -228,9 +231,9 @@ public static class Options
     public static OptionItem ImpCanBeTiebreaker;
     public static OptionItem CrewCanBeTiebreaker;
     public static OptionItem NeutralCanBeTiebreaker;
-    public static OptionItem ImpCanBeGuesser;
-    public static OptionItem CrewCanBeGuesser;
-    public static OptionItem NeutralCanBeGuesser;
+    public static OptionItem CrewmateCanBeSidekick;
+    public static OptionItem NeutralCanBeSidekick;
+    public static OptionItem ImpostorCanBeSidekick;
     public static OptionItem ControlCooldown;
     public static OptionItem ImpCanBeBait;
     public static OptionItem CrewCanBeBait;
@@ -241,20 +244,12 @@ public static class Options
     public static OptionItem ImpCanBeTrapper;
     public static OptionItem CrewCanBeTrapper;
     public static OptionItem NeutralCanBeTrapper;
-    public static OptionItem BardKillCooldown;
 
     public static OptionItem GCanGuessImp;
     public static OptionItem GCanGuessCrew;
     public static OptionItem GCanGuessAdt;
     public static OptionItem GCanGuessTaskDoneSnitch;
     public static OptionItem GTryHideMsg;
-
-    public static OptionItem ImpCanKillUndercover;
-    public static OptionItem JackalCanKillUndercover;
-    public static OptionItem UndercoverHasImpostorVision;
-    public static OptionItem UndercoverDisguiseSidekick;
-
-    public static OptionItem ParasiteRoleMode;
 
     // タスク無効化
     public static OptionItem DisableTasks;
@@ -340,7 +335,6 @@ public static class Options
         "MadmateCountMode.Imp",
         "MadmateCountMode.Crew",
     };
-    
     public static VoteMode GetWhenSkipVote() => (VoteMode)WhenSkipVote.GetValue();
     public static VoteMode GetWhenNonVote() => (VoteMode)WhenNonVote.GetValue();
 
@@ -724,7 +718,7 @@ public static class Options
         Mediumshiper.SetupCustomOption();
         SetupRoleOptions(8021618, TabGroup.CrewmateRoles, CustomRoles.Observer);
         // Neutral
-        DeadCrewCantSabotage = BooleanOptionItem.Create(900055, "DeadNeutralCantSabotage", false, TabGroup.NeutralRoles, false)
+        DeadNeutralCantSabotage = BooleanOptionItem.Create(900055, "DeadNeutralCantSabotage", false, TabGroup.NeutralRoles, false)
             .SetGameMode(CustomGameMode.Standard);
         SetupRoleOptions(50500, TabGroup.NeutralRoles, CustomRoles.Arsonist);
         ArsonistDouseTime = FloatOptionItem.Create(50510, "ArsonistDouseTime", new(0f, 10f, 1f), 3f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Arsonist])
@@ -796,6 +790,7 @@ public static class Options
         BaitDelayMax = FloatOptionItem.Create(20007, "BaitDelayMax", new(0f, 10f, 1f), 0f, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bait])
             .SetValueFormat(OptionFormat.Seconds);
         BaitDelayNotify = BooleanOptionItem.Create(20008, "BaitDelayNotify", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bait]);
+        BaitNotification = BooleanOptionItem.Create(20009, "BaitNotification", false, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bait]);
 
         SetupAdtRoleOptions(20800, CustomRoles.Trapper, canSetNum: true);
         ImpCanBeTrapper = BooleanOptionItem.Create(20803, "ImpCanBeTrapper", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Trapper]);
@@ -894,7 +889,6 @@ public static class Options
         ImpEgoistVisibalToAllies = BooleanOptionItem.Create(6050496, "ImpEgoistVisibalToAllies", true, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Egoist]);
 
         // Exclusive Roles
-        // Settings //
         TextOptionItem.Create(6050520, "MenuTitle.Settings", TabGroup.ExclusiveRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 255, 0, byte.MaxValue));
@@ -904,20 +898,13 @@ public static class Options
                     ConfirmSidekickOnEject = BooleanOptionItem.Create(6090124, "ConfirmSidekickOnEject", true, TabGroup.ExclusiveRoles, false)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 238, 232, byte.MaxValue));
-      //              ConfirmCharmedOnEject = BooleanOptionItem.Create(6090126, "ConfirmCharmedOnEject", true, TabGroup.ExclusiveRoles, false)
-      //      .SetGameMode(CustomGameMode.Standard)
-      //      .SetColor(new Color32(255, 238, 232, byte.MaxValue));
-      // Impostors //
+          
         TextOptionItem.Create(120015, "OtherRoles.ImpostorRoles", TabGroup.ExclusiveRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(247, 70, 49, byte.MaxValue));
         SetupRoleOptions(120000, TabGroup.ExclusiveRoles, CustomRoles.ShapeshifterTOHE);
         Wildling.SetupCustomOption();
         SetupRoleOptions(150000, TabGroup.ExclusiveRoles, CustomRoles.Trickster);
-        SetupRoleOptions(120110, TabGroup.ExclusiveRoles, CustomRoles.Bard);
-        BardKillCooldown = FloatOptionItem.Create(120215, "KillCooldown", new(5f, 999f, 2.5f), 40f, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bard])
-            .SetValueFormat(OptionFormat.Seconds);
-        // Crewmates //
         TextOptionItem.Create(120020, "OtherRoles.CrewmateRoles", TabGroup.ExclusiveRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(140, 255, 255, byte.MaxValue));
@@ -925,12 +912,6 @@ public static class Options
         SetupRoleOptions(120010, TabGroup.ExclusiveRoles, CustomRoles.ScientistTOHE);
    //     SetupSingleRoleOptions(6050525, TabGroup.ExclusiveRoles, CustomRoles.GuardianAngelTOHE, 1, zeroOne: false);
         Marshall.SetupCustomOption();
-   /*     SetupRoleOptions(8021620, TabGroup.ExclusiveRoles, CustomRoles.Undercover);
-        UndercoverHasImpostorVision = BooleanOptionItem.Create(8021640, "ImpostorVision", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Undercover]);
-        ImpCanKillUndercover = BooleanOptionItem.Create(8021630, "ImpCanKillUndercover", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Undercover]);
-        JackalCanKillUndercover = BooleanOptionItem.Create(8021660, "JackalCanKillUndercover", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Undercover]);
-        UndercoverDisguiseSidekick = BooleanOptionItem.Create(8021650, "UndercoverDisguiseSidekick", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Undercover]); */
-        // Neutrals //
         TextOptionItem.Create(120030, "OtherRoles.NeutralRoles", TabGroup.ExclusiveRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 171, 27, byte.MaxValue));
@@ -939,8 +920,7 @@ public static class Options
         ControlCooldown = FloatOptionItem.Create(6050532, "ControlCooldown", new(0f, 999f, 2.5f), 30f, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NWitch])
             .SetValueFormat(OptionFormat.Seconds);
         Lawyer.SetupCustomOption();
-        SetupRoleOptions(120115, TabGroup.ExclusiveRoles, CustomRoles.Sunnyboy);
-        // Add-ons //
+        HexMaster.SetupCustomOption();
         TextOptionItem.Create(120025, "OtherRoles.Addons", TabGroup.ExclusiveRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 154, 206, byte.MaxValue));
@@ -956,6 +936,8 @@ public static class Options
         NeutralCanBeSidekick = BooleanOptionItem.Create(6050515, "NeutralsCanBeSidekick", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Sidekick]);
         ImpostorCanBeSidekick = BooleanOptionItem.Create(6050540, "ImpostorsCanBeSidekick", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Sidekick]);
         SidekickCanKillJackal = BooleanOptionItem.Create(6050520, "SidekickCanKillJackal", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Sidekick]);
+        JackalWinWithSidekick = BooleanOptionItem.Create(6050580, "JackalWinWithSidekick", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Sidekick]);
+        SidekickKnowOtherSidekick = BooleanOptionItem.Create(6050585, "SidekickKnowOtherSidekick", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Sidekick]);
         SetupAdtRoleOptions(6050550, CustomRoles.Guesser, canSetNum: true, tab: TabGroup.ExclusiveRoles);
         ImpCanBeGuesser = BooleanOptionItem.Create(6060000, "ImpCanBeGuesser", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
         CrewCanBeGuesser = BooleanOptionItem.Create(6060005, "CrewCanBeGuesser", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
@@ -966,7 +948,6 @@ public static class Options
         GCanGuessTaskDoneSnitch = BooleanOptionItem.Create(6050570, "GCanGuessTaskDoneSnitch", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
         GTryHideMsg = BooleanOptionItem.Create(6050575, "GuesserTryHideMsg", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser])
             .SetColor(Color.green);
-   //     SetupAdtRoleOptions(6050580, CustomRoles.Circumventor, canSetNum: true, tab: TabGroup.ExclusiveRoles);
 
         #endregion
 

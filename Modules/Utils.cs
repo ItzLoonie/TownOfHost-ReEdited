@@ -406,6 +406,7 @@ public static class Utils
             case CustomRoles.Revolutionist:
             case CustomRoles.FFF:
             case CustomRoles.Gamer:
+            case CustomRoles.HexMaster:
             case CustomRoles.DarkHide:
             case CustomRoles.Collector:
             case CustomRoles.ImperiusCurse:
@@ -704,19 +705,19 @@ public static class Utils
             return;
         }
         var sb = new StringBuilder(GetString("Roles")).Append(":");
-        sb.AppendFormat("\n{0}:{1}", GetRoleName(CustomRoles.GM), Options.EnableGM.GetString().RemoveHtmlTags());
+        sb.AppendFormat("\n{0}: {1}", GetRoleName(CustomRoles.GM), Options.EnableGM.GetString().RemoveHtmlTags());
         int headCount = -1;
         foreach (CustomRoles role in Enum.GetValues(typeof(CustomRoles)))
         {
             headCount++;
-            if (role.IsImpostor() && headCount == 0) continue;
-            else if (role.IsCrewmate() && headCount == 1) sb.Append("\n\n● " + GetString("TabGroup.CrewmateAndImpostorRoles"));
+            if (role.IsImpostor() && headCount == 0) sb.Append("\n\n● " + GetString("TabGroup.ImpostorRoles"));
+            else if (role.IsCrewmate() && headCount == 1) sb.Append("\n\n● " + GetString("TabGroup.CrewmateRoles"));
             else if (role.IsNeutral() && headCount == 2) sb.Append("\n\n● " + GetString("TabGroup.NeutralRoles"));
             else if (role.IsAdditionRole() && headCount == 3) sb.Append("\n\n● " + GetString("TabGroup.Addons"));
             else headCount--;
 
             string mode = role.GetMode() == 1 ? GetString("RoleRateNoColor") : GetString("RoleOnNoColor");
-            if (role.IsEnable()) sb.AppendFormat("\n{0}:{1} x{2}", GetRoleName(role), $"{mode}", role.GetCount());
+            if (role.IsEnable()) sb.AppendFormat("\n{0}: {1} x{2}", GetRoleName(role), $"{mode}", role.GetCount());
         }
         SendMessage(sb.ToString(), PlayerId);
     }
@@ -1037,6 +1038,7 @@ public static class Utils
 
             //呪われている場合
             SelfMark.Append(Witch.GetSpelledMark(seer.PlayerId, isForMeeting));
+            SelfMark.Append(HexMaster.GetHexedMark(seer.PlayerId, isForMeeting));
 
             //如果是大明星
             if (seer.Is(CustomRoles.SuperStar) && Options.EveryOneKnowSuperStar.GetBool())
@@ -1074,6 +1076,10 @@ public static class Utils
             if (seer.Is(CustomRoles.Witch))
             {
                 SelfSuffix.Append(Witch.GetSpellModeText(seer, false, isForMeeting));
+            }
+            if (seer.Is(CustomRoles.HexMaster))
+            {
+                SelfSuffix.Append(HexMaster.GetHexModeText(seer, false, isForMeeting));
             }
             if (seer.Is(CustomRoles.AntiAdminer))
             {
@@ -1139,6 +1145,7 @@ public static class Utils
 
                 //呪われている人
                 TargetMark.Append(Witch.GetSpelledMark(target.PlayerId, isForMeeting));
+                TargetMark.Append(HexMaster.GetHexedMark(target.PlayerId, isForMeeting));
 
                 //如果是大明星
                 if (target.Is(CustomRoles.SuperStar) && Options.EveryOneKnowSuperStar.GetBool())
@@ -1223,7 +1230,6 @@ public static class Utils
                         (seer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Sidekick)) ||
                         (seer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Jackal))||
                         (target.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) ||
-                        (seer.Is(CustomRoles.Charmed) && target.Is(CustomRoles.Charmed) && Succubus.TargetKnowOtherTarget.GetBool()) ||
                         (Totocalcio.KnowRole(seer, target)) ||
                         (Succubus.KnowRole(seer, target)) ||
                         (seer.Is(CustomRoles.God)) ||
@@ -1251,18 +1257,11 @@ public static class Utils
                     {
                         TargetPlayerName = ColorString(GetRoleColor(CustomRoles.Mafia), target.PlayerId.ToString()) + " " + TargetPlayerName;
                     }
-                    if (seer.Is(CustomRoles.NiceGuesser) || seer.Is(CustomRoles.EvilGuesser))
+                    if (seer.Is(CustomRoles.NiceGuesser) || seer.Is(CustomRoles.EvilGuesser) || seer.Is(CustomRoles.Guesser))
                     {
                         if (seer.IsAlive() && target.IsAlive() && isForMeeting)
                         {
                             TargetPlayerName = ColorString(GetRoleColor(seer.Is(CustomRoles.NiceGuesser) ? CustomRoles.NiceGuesser : CustomRoles.EvilGuesser), target.PlayerId.ToString()) + " " + TargetPlayerName;
-                        }
-                    }
-                    if (seer.Is(CustomRoles.Guesser))
-                    {
-                        if (seer.IsAlive() && target.IsAlive() && isForMeeting)
-                        {
-                            TargetPlayerName = ColorString(GetRoleColor(CustomRoles.Guesser), target.PlayerId.ToString()) + " " + TargetPlayerName;
                         }
                     }
                     if (seer.Is(CustomRoles.Judge))
@@ -1280,7 +1279,9 @@ public static class Utils
                 if (seer.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoles.Marshall) && target.GetPlayerTaskState().IsTaskFinished)
                     TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Marshall), "★"));
                 if (seer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Sidekick))
-                    TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Jackal), "♥"));
+                    TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Jackal), " ♥"));
+                if (seer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Sidekick) && Options.SidekickKnowOtherSidekick.GetBool())
+                    TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Jackal), " ♥"));
 
                 TargetMark.Append(Executioner.TargetMark(seer, target));
 

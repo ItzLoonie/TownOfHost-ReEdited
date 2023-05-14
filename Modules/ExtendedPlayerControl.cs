@@ -428,7 +428,7 @@ static class ExtendedPlayerControl
             CustomRoles.Revolutionist => !pc.IsDrawDone(),
             CustomRoles.SwordsMan => pc.IsAlive(),
             CustomRoles.Jackal => pc.IsAlive(),
-      //      CustomRoles.Sidekick => pc.IsAlive(),
+            CustomRoles.HexMaster => pc.IsAlive(),
             CustomRoles.Poisoner => pc.IsAlive(),
             CustomRoles.NWitch => pc.IsAlive(),
             CustomRoles.Bomber => false,
@@ -449,14 +449,9 @@ static class ExtendedPlayerControl
     }
     public static bool CanUseImpostorVentButton(this PlayerControl pc)
     {
-                var cRole = pc.GetCustomRole();
-        var subRole = pc.GetCustomSubRoles();
-
         if (!pc.IsAlive() || pc.Data.Role.Role == RoleTypes.GuardianAngel) return false;
-        
 
-        
-        return cRole switch
+        return pc.GetCustomRole() switch
         {
             CustomRoles.Minimalism or
             CustomRoles.Sheriff or
@@ -478,17 +473,15 @@ static class ExtendedPlayerControl
             CustomRoles.Pelican => Pelican.CanVent.GetBool(),
             CustomRoles.Gamer => Gamer.CanVent.GetBool(),
             CustomRoles.BloodKnight => BloodKnight.CanVent.GetBool(),
+            CustomRoles.HexMaster => true,
 
             CustomRoles.Arsonist => pc.IsDouseDone(),
             CustomRoles.Revolutionist => pc.IsDrawDone(),
-        
 
             //SoloKombat
             CustomRoles.KB_Normal => true,
 
             _ => pc.Is(CustomRoleTypes.Impostor),
-            
-            
         };
     }
     public static bool IsDousedPlayer(this PlayerControl arsonist, PlayerControl target)
@@ -546,6 +539,9 @@ static class ExtendedPlayerControl
        //     case CustomRoles.Sidekick:
                 Jackal.SetKillCooldown(player.PlayerId);
                 break;
+            case CustomRoles.HexMaster:
+                Main.AllPlayerKillCooldown[player.PlayerId] = Options.DefaultKillCooldown;
+            break;
             case CustomRoles.Poisoner:
                 Poisoner.SetKillCooldown(player.PlayerId);
                 break;
@@ -615,11 +611,6 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.KB_Normal:
                 Main.AllPlayerKillCooldown[player.PlayerId] = SoloKombatManager.KB_ATKCooldown.GetFloat();
-                break;
-            case CustomRoles.Bard:
-                Main.AllPlayerKillCooldown[player.PlayerId] = Options.BardKillCooldown.GetFloat();
-                for (int i = 0; i < Main.BardCreations; i++)
-                    Main.AllPlayerKillCooldown[player.PlayerId] /= 2;
                 break;
             case CustomRoles.BloodKnight:
                 BloodKnight.SetKillCooldown(player.PlayerId);
