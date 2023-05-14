@@ -200,6 +200,8 @@ class BeginCrewmatePatch
             __instance.TeamTitle.text = GetString("TeamImpostor");
             __instance.TeamTitle.color = __instance.BackgroundBar.material.color = new Color32(255, 25, 25, byte.MaxValue);
             PlayerControl.LocalPlayer.Data.Role.IntroSound = GetIntroSound(RoleTypes.Impostor);
+                __instance.ImpostorText.gameObject.SetActive(true);
+                __instance.ImpostorText.text = GetString("SubText.Madmate");
         }
 
         if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
