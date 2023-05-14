@@ -75,20 +75,19 @@ public static class Divinator
                 CustomRoles.Counterfeiter or
                 CustomRoles.God or
                 CustomRoles.Judge or
-                CustomRoles.Observer or
-                CustomRoles.Undercover
+                CustomRoles.Observer
                 => "HideMsg",
 
                 CustomRoles.Miner or
                 CustomRoles.Scavenger or
                 CustomRoles.Luckey or
+                CustomRoles.Trickster or
                 CustomRoles.Needy or
                 CustomRoles.SabotageMaster or
                 CustomRoles.EngineerTOHE or
                 CustomRoles.Jackal or
             //    CustomRoles.Sidekick or
                 CustomRoles.Mario or
-                CustomRoles.Trickster or
                 CustomRoles.Cleaner or
                 CustomRoles.Crewpostor
                 => "Honest",
@@ -144,6 +143,7 @@ public static class Divinator
                 => "Strong",
 
                 CustomRoles.Witch or
+                CustomRoles.HexMaster or
                 CustomRoles.Puppeteer or
                 CustomRoles.NWitch or
                 CustomRoles.ShapeMaster or

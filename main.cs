@@ -31,10 +31,10 @@ public class Main : BasePlugin
     public const string DebugKeyHash = "c0fd562955ba56af3ae20d7ec9e64c664f0facecef4b3e366e109306adeae29d";
     public const string DebugKeySalt = "59687b";
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
-    public static readonly string MainMenuText = "With help from SolarFlare";
+    public static readonly string MainMenuText = "哟这不TOHE吗，几天不见Bug又多了？";
     public const string PluginGuid = "com.karped1em.townofhostedited";
     public const string PluginVersion = "2.3.4";
-    public const int PluginCreate = 4;
+    public const int PluginCreate = 5;
     public const bool Canary = false;
 
     public static readonly bool ShowQQButton = true;
@@ -100,6 +100,7 @@ public class Main : BasePlugin
     public static Dictionary<byte, Vector2> LastEnteredVentLocation = new();
     public static List<byte> CyberStarDead = new();
     public static List<byte> WorkaholicAlive = new();
+    public static List<byte> BaitAlive = new();
     public static List<byte> BoobyTrapBody = new();
     public static Dictionary<byte, byte> KillerOfBoobyTrapBody = new();
     public static Dictionary<byte, string> DetectiveNotify = new();
@@ -300,7 +301,6 @@ public class Main : BasePlugin
                 {CustomRoles.Mortician, "#333c49"},
                 {CustomRoles.Mediumshiper, "#a200ff"},
                 {CustomRoles.Observer, "#a8e0fa"},
-                {CustomRoles.Undercover, "#ff1919"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Jester, "#ec62a5"},
@@ -328,6 +328,7 @@ public class Main : BasePlugin
                 {CustomRoles.NWitch, "#BF5FFF"},
                 {CustomRoles.Totocalcio, "#ff9409"},
                 {CustomRoles.Succubus, "#cf6acd"},
+                {CustomRoles.HexMaster, "#ff00ff"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -351,7 +352,6 @@ public class Main : BasePlugin
                 {CustomRoles.TicketsStealer, "#ff1919"},
                 {CustomRoles.DualPersonality, "#3a648f"},
                 {CustomRoles.Mimic, "#ff1919"},
-                {CustomRoles.Circumventor, "#ff1919"},
                 {CustomRoles.Guesser, "#FFFF00"},
                 {CustomRoles.Necroview, "#663399"},
                 {CustomRoles.Reach, "#74ba43"},
@@ -452,8 +452,8 @@ public enum CustomRoles
     Eraser,
     OverKiller,
     Hangman,
-    Trickster,
     Bard,
+    Trickster,
     Swooper,
     Crewpostor,
     //Crewmate(Vanilla)
@@ -476,7 +476,6 @@ public enum CustomRoles
     Dictator,
     Doctor,
     Detective,
-    Undercover,
     SwordsMan,
     NiceGuesser,
     Transporter,
@@ -494,6 +493,7 @@ public enum CustomRoles
     Observer,
     //Neutral
     Arsonist,
+    HexMaster,
     Jester,
     God,
     Opportunist,
@@ -547,7 +547,6 @@ public enum CustomRoles
     TicketsStealer,
     DualPersonality,
     Mimic,
-    Circumventor,
     Guesser,
     Necroview,
     Reach,
@@ -571,6 +570,7 @@ public enum CustomWinner
     Arsonist = CustomRoles.Arsonist,
     Revolutionist = CustomRoles.Revolutionist,
     Jackal = CustomRoles.Jackal,
+    Sidekick = CustomRoles.Sidekick,
     God = CustomRoles.God,
     Mario = CustomRoles.Mario,
     Innocent = CustomRoles.Innocent,
@@ -583,6 +583,7 @@ public enum CustomWinner
     Collector = CustomRoles.Collector,
     BloodKnight = CustomRoles.BloodKnight,
     Poisoner = CustomRoles.Poisoner,
+    HexMaster = CustomRoles.HexMaster,
     Succubus = CustomRoles.Succubus,
 }
 public enum AdditionalWinners
@@ -597,6 +598,8 @@ public enum AdditionalWinners
     Sunnyboy = CustomRoles.Sunnyboy,
     Witch = CustomRoles.NWitch,
     Totocalcio = CustomRoles.Totocalcio,
+    Jackal = CustomRoles.Jackal,
+    Sidekick = CustomRoles.Sidekick,
 }
 public enum SuffixModes
 {
