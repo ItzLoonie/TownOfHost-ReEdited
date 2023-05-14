@@ -159,14 +159,6 @@ class CheckForEndVotingPatch
                     VoterId = ps.TargetPlayerId,
                     VotedForId = ps.VotedFor
                 });
-
-                //隐藏占卜师的票
-                if (CheckRole(ps.TargetPlayerId, CustomRoles.Divinator) && Divinator.HideVote.GetBool()) continue;
-                //隐藏抹除者的票
-                if (CheckRole(ps.TargetPlayerId, CustomRoles.Eraser) && Eraser.HideVote.GetBool()) continue;
-
-                //主动叛变模式下自票无效
-                
                 
                 if (CheckRole(ps.TargetPlayerId, CustomRoles.Mayor) && !Options.MayorHideVote.GetBool()) //Mayorの投票数
                 {
@@ -299,8 +291,6 @@ class CheckForEndVotingPatch
             coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Egoist), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
         if (Options.ConfirmSidekickOnEject.GetBool() && player.Is(CustomRoles.Sidekick))
             coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Sidekick), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
-        if (Options.ConfirmCharmedOnEject.GetBool() && player.Is(CustomRoles.Charmed))
-            coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Charmed), GetRoleString("Charmed-") + coloredRole.RemoveHtmlTags());
         var name = "";
         int impnum = 0;
         int neutralnum = 0;
@@ -421,6 +411,7 @@ class CheckForEndVotingPatch
     public static void CheckForDeathOnExile(PlayerState.DeathReason deathReason, params byte[] playerIds)
     {
         Witch.OnCheckForEndVoting(deathReason, playerIds);
+        HexMaster.OnCheckForEndVoting(deathReason, playerIds);
         foreach (var playerId in playerIds)
         {
             //Loversの後追い
@@ -557,6 +548,17 @@ class MeetingHudStartPatch
             string separator = TranslationController.Instance.currentLanguage.languageID is SupportedLangs.English or SupportedLangs.Russian ? "], [" : "】, 【";
             AddMsg(string.Format(GetString("WorkaholicAdviceAlive"), string.Join(separator, workaholicAliveList)), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Workaholic), GetString("WorkaholicAliveTitle")));
         }
+        //Bait Notify
+        if (MeetingStates.FirstMeeting && CustomRoles.Bait.RoleExist() && Options.BaitNotification.GetBool())
+        {
+            foreach (var pc in Main.AllAlivePlayerControls.Where(x => x.Is(CustomRoles.Bait)))
+                Main.BaitAlive.Add(pc.PlayerId);
+            List<string> baitAliveList = new();
+            foreach (var whId in Main.BaitAlive)
+                baitAliveList.Add(Main.AllPlayerNames[whId]);
+            string separator = TranslationController.Instance.currentLanguage.languageID is SupportedLangs.English or SupportedLangs.Russian ? "], [" : "】, 【";
+            AddMsg(string.Format(GetString("BaitAdviceAlive"), string.Join(separator, baitAliveList)), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Bait), GetString("BaitAliveTitle")));
+        }
         string MimicMsg = "";
         foreach (var pc in Main.AllPlayerControls)
         {
@@ -645,7 +647,6 @@ class MeetingHudStartPatch
                 (pc.Is(CustomRoles.Jackal) && PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick)) ||
                 (pc.Is(CustomRoles.Sidekick) && PlayerControl.LocalPlayer.Is(CustomRoles.Jackal)) ||
                 (pc.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) ||
-                (pc.Is(CustomRoles.Charmed) && PlayerControl.LocalPlayer.Is(CustomRoles.Charmed) && Succubus.TargetKnowOtherTarget.GetBool()) ||
                 (Totocalcio.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (Succubus.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 PlayerControl.LocalPlayer.Is(CustomRoles.God) ||
@@ -754,8 +755,6 @@ class MeetingHudStartPatch
                 case CustomRoles.Jackal:
                     if (target.Is(CustomRoles.Sidekick))
                     sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jackal), " ♥")); //変更対象にSnitchマークをつける
-                    if (target.Is(CustomRoles.Undercover) && Options.UndercoverDisguiseSidekick.GetBool())
-                    sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jackal), " ♥"));
                     sb.Append(Snitch.GetWarningMark(seer, target));
                     break;
 
@@ -809,6 +808,13 @@ class MeetingHudStartPatch
                             isLover = true;
                         }
                         break;
+                    case CustomRoles.Sidekick:
+                    if (seer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Sidekick) && Options.SidekickKnowOtherSidekick.GetBool())
+                    {
+                        sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jackal), " ♥")); //変更対象にSnitchマークをつける
+                    sb.Append(Snitch.GetWarningMark(seer, target));
+                    }
+                    break;
                 }
             }
 
@@ -820,6 +826,7 @@ class MeetingHudStartPatch
 
             //呪われている場合
             sb.Append(Witch.GetSpelledMark(target.PlayerId, true));
+            sb.Append(HexMaster.GetHexedMark(target.PlayerId, true));
 
             //如果是大明星
             if (target.Is(CustomRoles.SuperStar) && Options.EveryOneKnowSuperStar.GetBool())

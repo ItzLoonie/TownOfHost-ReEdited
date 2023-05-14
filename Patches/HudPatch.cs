@@ -85,6 +85,9 @@ class HudManagerPatch
                     case CustomRoles.Witch:
                         Witch.GetAbilityButtonText(__instance);
                         break;
+                    case CustomRoles.HexMaster:
+                        HexMaster.GetAbilityButtonText(__instance);
+                        break;
                     case CustomRoles.Vampire:
                         Vampire.SetKillButtonText();
                         break;
@@ -223,6 +226,10 @@ class HudManagerPatch
                 else if (player.Is(CustomRoles.Witch))
                 {
                     LowerInfoText.text = Witch.GetSpellModeText(player, true);
+                }
+                else if (player.Is(CustomRoles.HexMaster))
+                {
+                    LowerInfoText.text = HexMaster.GetHexModeText(player, true);
                 }
                 else if (player.Is(CustomRoles.FireWorks))
                 {
@@ -397,9 +404,6 @@ class SetHudActivePatch
             {
                 case CustomRoles.Oblivious:
                     __instance.ReportButton.ToggleVisible(false);
-                    break;
-                case CustomRoles.Circumventor:
-                    __instance.ImpostorVentButton.ToggleVisible(false);
                     break;
             }
         }

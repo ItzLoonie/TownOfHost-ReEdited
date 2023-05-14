@@ -167,6 +167,9 @@ class CheckMurderPatch
                 case CustomRoles.Witch:
                     if (!Witch.OnCheckMurder(killer, target)) return false;
                     break;
+                case CustomRoles.HexMaster:
+                    if (!HexMaster.OnCheckMurder(killer, target)) return false;
+                    break;
                 case CustomRoles.Puppeteer:
                     if (target.Is(CustomRoles.Needy)) return false;
                     Main.PuppeteerList[target.PlayerId] = killer.PlayerId;
@@ -372,12 +375,6 @@ class CheckMurderPatch
             return false;
         //禁止内鬼刀叛徒
         if (killer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Madmate) && !Options.ImpCanKillMadmate.GetBool())
-            return false;
-        //Imp can kill Undercover
-        if (killer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Undercover) && !Options.ImpCanKillUndercover.GetBool())
-            return false;
-        //Jackal can kill Undercover
-        if (killer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Undercover) && !Options.JackalCanKillUndercover.GetBool())
             return false;
 
         //禁止叛徒刀内鬼
@@ -1308,7 +1305,7 @@ class FixedUpdatePatch
                         float dis;
                         foreach (var target in Main.AllAlivePlayerControls)
                         {
-                            if (target.PlayerId != player.PlayerId && !target.Is(CountTypes.Impostor))
+                            if (target.PlayerId != player.PlayerId && !target.Is(CustomRoleTypes.Impostor))
                             {
                                 dis = Vector2.Distance(puppeteerPos, target.transform.position);
                                 targetDistance.Add(target.PlayerId, dis);
@@ -1329,6 +1326,46 @@ class FixedUpdatePatch
                                     player.RpcMurderPlayerV3(target);
                                     Utils.MarkEveryoneDirtySettings();
                                     Main.PuppeteerList.Remove(player.PlayerId);
+                                    Utils.NotifyRoles();
+                                }
+                            }
+                        }
+                    }
+                }
+                if (GameStates.IsInTask && Main.TaglockedList.ContainsKey(player.PlayerId))
+                {
+                    if (!player.IsAlive() || Pelican.IsEaten(player.PlayerId))
+                    {
+                        Main.TaglockedList.Remove(player.PlayerId);
+                    }
+                    else
+                    {
+                        Vector2 puppeteerPos = player.transform.position;//PuppeteerListのKeyの位置
+                        Dictionary<byte, float> targetDistance = new();
+                        float dis;
+                        foreach (var target in Main.AllAlivePlayerControls)
+                        {
+                            if (target.PlayerId != player.PlayerId && !target.Is(CustomRoles.NWitch))
+                            {
+                                dis = Vector2.Distance(puppeteerPos, target.transform.position);
+                                targetDistance.Add(target.PlayerId, dis);
+                            }
+                        }
+                        if (targetDistance.Count() != 0)
+                        {
+                            var min = targetDistance.OrderBy(c => c.Value).FirstOrDefault();//一番値が小さい
+                            PlayerControl target = Utils.GetPlayerById(min.Key);
+                            var KillRange = NormalGameOptionsV07.KillDistances[Mathf.Clamp(Main.NormalOptions.KillDistance, 0, 2)];
+                            if (min.Value <= KillRange && player.CanMove && target.CanMove)
+                            {
+                                if (player.RpcCheckAndMurder(target, true))
+                                {
+                                    var puppeteerId = Main.TaglockedList[player.PlayerId];
+                                    RPC.PlaySoundRPC(puppeteerId, Sounds.KillSound);
+                                    target.SetRealKiller(Utils.GetPlayerById(puppeteerId));
+                                    player.RpcMurderPlayerV3(target);
+                                    Utils.MarkEveryoneDirtySettings();
+                                    Main.TaglockedList.Remove(player.PlayerId);
                                     Utils.NotifyRoles();
                                 }
                             }
@@ -1406,7 +1443,6 @@ class FixedUpdatePatch
                 else if (__instance.Is(CustomRoles.Jackal) && PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick)) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Sidekick) && PlayerControl.LocalPlayer.Is(CustomRoles.Jackal)) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoles.Charmed) && PlayerControl.LocalPlayer.Is(CustomRoles.Charmed) && Succubus.TargetKnowOtherTarget.GetBool()) RoleText.enabled = true;
                 else if (Totocalcio.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (Succubus.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (PlayerControl.LocalPlayer.Is(CustomRoles.God)) RoleText.enabled = true;
@@ -1467,10 +1503,12 @@ class FixedUpdatePatch
                 {  
                     if (target.Is(CustomRoles.Sidekick)) //targetがタスクを終わらせたマッドスニッチ
                         Mark.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jackal), " ♥")); //targetにマーク付与
-                if (target.Is(CustomRoles.Undercover) && Options.UndercoverDisguiseSidekick.GetBool())
-                        Mark.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jackal), " ♥"));
-                }  
-                
+                }
+                if (seer.Is(CustomRoles.Sidekick)) //seerがインポスター
+                {  
+                    if (target.Is(CustomRoles.Sidekick) && Options.SidekickKnowOtherSidekick.GetBool()) //targetがタスクを終わらせたマッドスニッチ
+                        Mark.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jackal), " ♥")); //targetにマーク付与
+                }
                 if (seer.GetCustomRole().IsCrewmate() && seer.Is(CustomRoles.Madmate) && Marshall.OptionMadmateCanFindMarshall.GetBool()) //seerがインポスター
                 {  
                     if (target.Is(CustomRoles.Marshall) && target.GetPlayerTaskState().IsTaskFinished) //targetがタスクを終わらせたマッドスニッチ
@@ -1686,6 +1724,7 @@ class EnterVentPatch
     {
 
         Witch.OnEnterVent(pc);
+        HexMaster.OnEnterVent(pc);
 
         if (pc.Is(CustomRoles.Mayor))
         {
@@ -1895,7 +1934,7 @@ class PlayerControlCompleteTaskPatch
             Utils.NotifyRoles(SpecifySeer: pc);
         }
         if ((isTaskFinish &&
-            pc.GetCustomRole() is CustomRoles.Sunnyboy) ||
+            pc.GetCustomRole() is CustomRoles.Doctor or CustomRoles.Sunnyboy) ||
             pc.GetCustomRole() is CustomRoles.SpeedBooster)
         {
             //ライターもしくはスピードブースターもしくはドクターがいる試合のみタスク終了時にCustomSyncAllSettingsを実行する
