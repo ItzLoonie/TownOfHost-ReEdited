@@ -291,6 +291,8 @@ class CheckForEndVotingPatch
             coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Egoist), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
         if (Options.ConfirmSidekickOnEject.GetBool() && player.Is(CustomRoles.Sidekick))
             coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Sidekick), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
+        if (Options.ConfirmLoversOnEject.GetBool() && player.Is(CustomRoles.Lovers))
+            coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lovers), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
         var name = "";
         int impnum = 0;
         int neutralnum = 0;
