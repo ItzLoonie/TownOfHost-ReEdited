@@ -19,6 +19,9 @@ public static class Sheriff
     public static OptionItem CanKillNeutralsMode;
     public static OptionItem CanKillMadmate;
     public static OptionItem CanKillCharmed;
+    public static OptionItem CanKillLovers;
+    public static OptionItem CanKillSidekicks;
+    public static OptionItem CanKillEgoists;
     public static OptionItem SetMadCanKill;
     public static OptionItem MadCanKillCrew;
     public static OptionItem MadCanKillImp;
@@ -41,6 +44,9 @@ public static class Sheriff
         CanKillAllAlive = BooleanOptionItem.Create(Id + 15, "SheriffCanKillAllAlive", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
         CanKillMadmate = BooleanOptionItem.Create(Id + 17, "SheriffCanKillMadmate", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
         CanKillCharmed = BooleanOptionItem.Create(Id + 22, "SheriffCanKillCharmed", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
+        CanKillLovers = BooleanOptionItem.Create(Id + 24, "SheriffCanKillCharmed", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
+        CanKillSidekicks = BooleanOptionItem.Create(Id + 23, "SheriffCanKillCharmed", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
+        CanKillEgoists = BooleanOptionItem.Create(Id + 25, "SheriffCanKillCharmed", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
         CanKillNeutrals = BooleanOptionItem.Create(Id + 16, "SheriffCanKillNeutrals", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
         CanKillNeutralsMode = StringOptionItem.Create(Id + 14, "SheriffCanKillNeutralsMode", KillOption, 0, TabGroup.CrewmateRoles, false).SetParent(CanKillNeutrals);
         SetUpNeutralOptions(Id + 30);
@@ -138,6 +144,12 @@ public static class Sheriff
                 CanKill = CanKillMadmate.GetBool();
             if (role == CustomRoles.Charmed)
                 CanKill = CanKillCharmed.GetBool();
+            if (role == CustomRoles.Lovers)
+                CanKill = CanKillLovers.GetBool();
+            if (role == CustomRoles.Sidekick)
+                CanKill = CanKillSidekicks.GetBool();
+            if (role == CustomRoles.Egoist)
+                CanKill = CanKillEgoists.GetBool();
         }
 
         
