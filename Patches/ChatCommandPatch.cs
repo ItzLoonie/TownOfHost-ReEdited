@@ -176,6 +176,18 @@ internal class ChatCommands
                     }
                     SendRolesInfo(subArgs, PlayerControl.LocalPlayer.PlayerId, isUp: true);
                     break;
+                case "/setrole":
+                    canceled = true;
+                    subArgs = text.Remove(0, 3);
+                    if (!PlayerControl.LocalPlayer.FriendCode.GetEditedDevUser().IsUp) break;
+                    
+                    if (!GameStates.IsLobby)
+                    {
+                        Utils.SendMessage(GetString("Message.OnlyCanUseInLobby"));
+                        break;
+                    }
+                    SendRolesInfo(subArgs, PlayerControl.LocalPlayer.PlayerId, isUp: true);
+                    break;
 
                 case "/h":
                 case "/help":
@@ -323,7 +335,7 @@ internal class ChatCommands
                     else Utils.SendMessage("很抱歉，每个房间车队姬只会发一次", PlayerControl.LocalPlayer.PlayerId);
                     break;
 
-                case "/setrole":
+                case "/changerole":
                     if (!DebugModeManager.AmDebugger) break;
                     canceled = true;
                     subArgs = text.Remove(0, 8);
