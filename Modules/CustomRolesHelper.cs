@@ -94,6 +94,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Mediumshiper => CustomRoles.Crewmate,
                 CustomRoles.Bard => CustomRoles.Impostor,
                 CustomRoles.Swooper => CustomRoles.Impostor,
+                CustomRoles.Wraith => CustomRoles.Impostor,
                 CustomRoles.Crewpostor => CustomRoles.Crewmate,
                 CustomRoles.Observer => CustomRoles.Crewmate,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
@@ -119,6 +120,7 @@ internal static class CustomRolesHelper
             CustomRoles.Medicaler => RoleTypes.Impostor,
             CustomRoles.Gamer => RoleTypes.Impostor,
             CustomRoles.HexMaster => RoleTypes.Impostor,
+            CustomRoles.Wraith => RoleTypes.Impostor,
             CustomRoles.DarkHide => RoleTypes.Impostor,
             CustomRoles.Provocateur => RoleTypes.Impostor,
             CustomRoles.BloodKnight => RoleTypes.Impostor,
@@ -171,6 +173,7 @@ internal static class CustomRolesHelper
             CustomRoles.NWitch or
             CustomRoles.FFF or
             CustomRoles.HexMaster or
+            CustomRoles.Wraith or
             CustomRoles.Gamer or
             CustomRoles.DarkHide or
             CustomRoles.Poisoner or
@@ -188,6 +191,7 @@ internal static class CustomRolesHelper
             CustomRoles.Mario or
             CustomRoles.Innocent or
             CustomRoles.Pelican or
+            CustomRoles.Wraith or
             CustomRoles.HexMaster or
             CustomRoles.Egoist or
             CustomRoles.Gamer or
@@ -265,6 +269,7 @@ internal static class CustomRolesHelper
             CustomRoles.Mario or
             CustomRoles.HexMaster or
             CustomRoles.NWitch or
+            CustomRoles.Wraith or
             CustomRoles.Terrorist or
             CustomRoles.Executioner or
             CustomRoles.Lawyer or
@@ -424,6 +429,7 @@ internal static class CustomRolesHelper
            CustomRoles.Succubus => CountTypes.Succubus,
            CustomRoles.HexMaster => CountTypes.HexMaster,
            CustomRoles.NWitch => CountTypes.NWitch,
+           CustomRoles.Wraith => CountTypes.Wraith,
            _ => role.IsImpostorTeam() ? CountTypes.Impostor : CountTypes.Crew,
        };
 
@@ -451,4 +457,5 @@ public enum CountTypes
     Succubus,
     HexMaster,
     NWitch,
+    Wraith,
 }

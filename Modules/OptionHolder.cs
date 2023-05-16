@@ -928,6 +928,7 @@ public static class Options
             .SetValueFormat(OptionFormat.Seconds);
         Lawyer.SetupCustomOption();
         HexMaster.SetupCustomOption();
+        Wraith.SetupCustomOption();
         TextOptionItem.Create(120025, "OtherRoles.Addons", TabGroup.ExclusiveRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 154, 206, byte.MaxValue));

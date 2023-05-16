@@ -78,6 +78,7 @@ enum CustomRPC
     Guess,
     MafiaRevenge,
     SetSwooperTimer,
+    SetWraithTimer,
     SetBKTimer,
     SyncTotocalcioTargetAndTimes,
     SetSuccubusCharmLimit,
@@ -433,6 +434,9 @@ internal class RPCHandlerPatch
             case CustomRPC.SetSwooperTimer:
                 Swooper.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetWraithTimer:
+                Wraith.ReceiveRPC(reader);
+                break;
             case CustomRPC.SetBKTimer:
                 BloodKnight.ReceiveRPC(reader);
                 break;
@@ -748,6 +752,9 @@ internal static class RPC
                 break;
             case CustomRoles.Swooper:
                 Swooper.Add(targetId);
+                break;
+            case CustomRoles.Wraith:
+                Wraith.Add(targetId);
                 break;
             case CustomRoles.BloodKnight:
                 BloodKnight.Add(targetId);

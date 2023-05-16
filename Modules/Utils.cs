@@ -398,6 +398,7 @@ public static class Utils
             case CustomRoles.FFF:
             case CustomRoles.Gamer:
             case CustomRoles.HexMaster:
+            case CustomRoles.Wraith:
             case CustomRoles.DarkHide:
             case CustomRoles.Collector:
             case CustomRoles.ImperiusCurse:
@@ -703,8 +704,8 @@ public static class Utils
         foreach (CustomRoles role in Enum.GetValues(typeof(CustomRoles)))
         {
             headCount++;
-            if (role.IsImpostor() && headCount == 0) sb.Append("\n\n● " + GetString("TabGroup.ImpostorRoles"));
-            else if (role.IsCrewmate() && headCount == 1) sb.Append("\n\n● " + GetString("TabGroup.CrewmateRoles"));
+            if (role.IsImpostor() && headCount == 0) continue;
+            else if (role.IsCrewmate() && headCount == 1) sb.Append("\n\n● " + GetString("TabGroup.ImpCrewRoles"));
             else if (role.IsNeutral() && headCount == 2) sb.Append("\n\n● " + GetString("TabGroup.NeutralRoles"));
             else if (role.IsAdditionRole() && headCount == 3) sb.Append("\n\n● " + GetString("TabGroup.Addons"));
             else headCount--;
@@ -1107,6 +1108,7 @@ public static class Utils
                 SelfName = $"{ColorString(seer.GetRoleColor(), GetString("EnterVentToWin"))}";
             if (seer.Is(CustomRoles.Revolutionist) && seer.IsDrawDone())
                 SelfName = $">{ColorString(seer.GetRoleColor(), string.Format(GetString("EnterVentWinCountDown"), Main.RevolutionistCountdown.TryGetValue(seer.PlayerId, out var x) ? x : 10))}";
+            
             if (Pelican.IsEaten(seer.PlayerId))
                 SelfName = $"{ColorString(GetRoleColor(CustomRoles.Pelican), GetString("EatenByPelican"))}";
             if (NameNotifyManager.GetNameNotify(seer, out var name))
@@ -1324,6 +1326,7 @@ public static class Utils
     public static void AfterMeetingTasks()
     {
         Swooper.AfterMeetingTasks();
+        Wraith.AfterMeetingTasks();
         Eraser.AfterMeetingTasks();
         BountyHunter.AfterMeetingTasks();
         EvilTracker.AfterMeetingTasks();

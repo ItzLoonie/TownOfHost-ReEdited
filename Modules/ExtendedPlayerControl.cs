@@ -431,6 +431,7 @@ static class ExtendedPlayerControl
             CustomRoles.HexMaster => pc.IsAlive(),
             CustomRoles.Poisoner => pc.IsAlive(),
             CustomRoles.NWitch => pc.IsAlive(),
+            CustomRoles.Wraith => pc.IsAlive(),
             CustomRoles.Bomber => false,
             CustomRoles.Innocent => pc.IsAlive(),
             CustomRoles.Counterfeiter => Counterfeiter.CanUseKillButton(pc.PlayerId),
@@ -474,6 +475,7 @@ static class ExtendedPlayerControl
             CustomRoles.Gamer => Gamer.CanVent.GetBool(),
             CustomRoles.BloodKnight => BloodKnight.CanVent.GetBool(),
             CustomRoles.HexMaster => true,
+            CustomRoles.Wraith => true,
 
             CustomRoles.Arsonist => pc.IsDouseDone(),
             CustomRoles.Revolutionist => pc.IsDrawDone(),
@@ -540,6 +542,7 @@ static class ExtendedPlayerControl
                 Jackal.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.HexMaster:
+            case CustomRoles.Wraith:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.DefaultKillCooldown;
             break;
             case CustomRoles.Poisoner:

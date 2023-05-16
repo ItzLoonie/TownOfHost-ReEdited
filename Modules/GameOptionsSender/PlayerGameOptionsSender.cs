@@ -168,6 +168,10 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 opt.SetVision(true);
                 Main.NormalOptions.KillCooldown = Options.ControlCooldown.GetFloat();
                 break;
+            case CustomRoles.Wraith:
+                opt.SetVision(true);
+                Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
+                break;
             case CustomRoles.Jester:
                 Main.NormalOptions.CrewLightMod = Options.JesterVision.GetFloat();
             break;
