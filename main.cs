@@ -329,6 +329,7 @@ public class Main : BasePlugin
                 {CustomRoles.Totocalcio, "#ff9409"},
                 {CustomRoles.Succubus, "#cf6acd"},
                 {CustomRoles.HexMaster, "#ff00ff"},
+                {CustomRoles.Wraith, "#4B0082"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -516,6 +517,7 @@ public enum CustomRoles
     Provocateur,
     Sunnyboy,
     BloodKnight,
+    Wraith,
     Totocalcio,
     Succubus,
 
@@ -585,6 +587,7 @@ public enum CustomWinner
     Poisoner = CustomRoles.Poisoner,
     HexMaster = CustomRoles.HexMaster,
     Succubus = CustomRoles.Succubus,
+    Wraith = CustomRoles.Wraith,
 }
 public enum AdditionalWinners
 {

@@ -185,6 +185,7 @@ public static class Divinator
 
                 CustomRoles.Glitch or
                 CustomRoles.Concealer or
+                CustomRoles.Wraith or
                 CustomRoles.Swooper
                 => "Glitch",
 
