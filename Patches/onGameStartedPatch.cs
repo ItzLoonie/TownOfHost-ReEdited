@@ -204,6 +204,7 @@ internal class ChangeRoleSettings
             Mortician.Init();
             Mediumshiper.Init();
             Swooper.Init();
+            Wraith.Init();
             BloodKnight.Init();
             Totocalcio.Init();
             Succubus.Init();
@@ -541,6 +542,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Swooper:
                         Swooper.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Wraith:
+                        Wraith.Add(pc.PlayerId);
                         break;
                     case CustomRoles.BloodKnight:
                         BloodKnight.Add(pc.PlayerId);

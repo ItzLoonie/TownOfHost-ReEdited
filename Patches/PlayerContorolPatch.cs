@@ -218,6 +218,9 @@ class CheckMurderPatch
                 case CustomRoles.Swooper:
                     if (!Swooper.OnCheckMurder(killer, target)) return false;
                     break;
+                case CustomRoles.Wraith:
+                    if (!Wraith.OnCheckMurder(killer, target)) return false;
+                    break;
 
                 //==========中立阵营==========//
                 case CustomRoles.Arsonist:
@@ -559,7 +562,7 @@ class MurderPlayerPatch
 
         if (target.Is(CustomRoles.Bait))
         {
-            if (killer.PlayerId != target.PlayerId || target.GetRealKiller()?.GetCustomRole() is CustomRoles.Swooper)
+            if (killer.PlayerId != target.PlayerId || target.GetRealKiller()?.GetCustomRole() is CustomRoles.Swooper or CustomRoles.Wraith)
             {
                 killer.RPCPlayCustomSound("Congrats");
                 target.RPCPlayCustomSound("Congrats");
@@ -1285,6 +1288,7 @@ class FixedUpdatePatch
                 Pelican.OnFixedUpdate();
                 BallLightning.OnFixedUpdate();
                 Swooper.OnFixedUpdate(player);
+                Wraith.OnFixedUpdate(player);
                 BloodKnight.OnFixedUpdate(player);
 
                 if (GameStates.IsInTask && player.IsAlive() && Options.LadderDeath.GetBool()) FallFromLadder.FixedUpdate(player);
@@ -1465,11 +1469,13 @@ class FixedUpdatePatch
                 var target = __instance;
 
                 string RealName;
+            //    string SeerRealName;
                 Mark.Clear();
                 Suffix.Clear();
 
                 //名前変更
                 RealName = target.GetRealName();
+             //   SeerRealName = seer.GetRealName();
 
                 //名前色変更処理
                 //自分自身の名前の色を変更
@@ -1481,6 +1487,7 @@ class FixedUpdatePatch
                         RealName = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Revolutionist), string.Format(GetString("EnterVentWinCountDown"), Main.RevolutionistCountdown.TryGetValue(seer.PlayerId, out var x) ? x : 10));
                     if (Pelican.IsEaten(seer.PlayerId))
                         RealName = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Pelican), GetString("EatenByPelican"));
+                     
                     if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
                         SoloKombatManager.GetNameNotify(target, ref RealName);
                     if (NameNotifyManager.GetNameNotify(target, out var name))
@@ -1505,6 +1512,7 @@ class FixedUpdatePatch
                     if (target.Is(CustomRoles.Sidekick)) //targetがタスクを終わらせたマッドスニッチ
                         Mark.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jackal), " ♥")); //targetにマーク付与
                 }
+                
                 if (seer.Is(CustomRoles.Sidekick)) //seerがインポスター
                 {  
                     if (target.Is(CustomRoles.Sidekick) && Options.SidekickKnowOtherSidekick.GetBool()) //targetがタスクを終わらせたマッドスニッチ
@@ -1778,6 +1786,7 @@ class EnterVentPatch
         Main.LastEnteredVentLocation.Add(pc.PlayerId, pc.GetTruePosition());
 
         Swooper.OnEnterVent(pc, __instance);
+        Wraith.OnEnterVent(pc, __instance);
 
         if (pc.Is(CustomRoles.Veteran))
         {
@@ -1875,6 +1884,9 @@ class CoEnterVentPatch
 
         if (__instance.myPlayer.Is(CustomRoles.Swooper))
             Swooper.OnCoEnterVent(__instance, id);
+
+        if (__instance.myPlayer.Is(CustomRoles.Wraith))
+            Wraith.OnCoEnterVent(__instance, id);
 
         return true;
     }

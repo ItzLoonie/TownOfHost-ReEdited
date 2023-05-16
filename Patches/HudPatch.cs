@@ -174,6 +174,9 @@ class HudManagerPatch
                     case CustomRoles.Swooper:
                         __instance.ImpostorVentButton.OverrideText($"{GetString(Swooper.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "SwooperRevertVentButtonText" : "SwooperVentButtonText")}");
                         break;
+                    case CustomRoles.Wraith:
+                        __instance.ImpostorVentButton.OverrideText($"{GetString(Wraith.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "WraithRevertVentButtonText" : "WraithVentButtonText")}");
+                        break;
                     case CustomRoles.Mario:
                         __instance.AbilityButton.buttonLabelText.text = GetString("MarioVentButtonText");
                         __instance.AbilityButton.SetUsesRemaining(Options.MarioVentNumWin.GetInt() - (Main.MarioVentCount.TryGetValue(PlayerControl.LocalPlayer.PlayerId, out var mx) ? mx : 0));
@@ -239,6 +242,10 @@ class HudManagerPatch
                 else if (player.Is(CustomRoles.Swooper))
                 {
                     LowerInfoText.text = Swooper.GetHudText(player);
+                }
+                else if (player.Is(CustomRoles.Wraith))
+                {
+                    LowerInfoText.text = Wraith.GetHudText(player);
                 }
                 else if (player.Is(CustomRoles.BloodKnight))
                 {
@@ -416,10 +423,13 @@ class VentButtonDoClickPatch
 {
     public static bool Prefix(VentButton __instance)
     {
-        var pc = PlayerControl.LocalPlayer;
-        if (!pc.Is(CustomRoles.Swooper) || pc.inVent || __instance.currentTarget == null || !pc.CanMove || !__instance.isActiveAndEnabled) return true;
+            var pc = PlayerControl.LocalPlayer;
+        {
+        if (!pc.Is(CustomRoles.Swooper) || !pc.Is(CustomRoles.Wraith) || pc.inVent || __instance.currentTarget == null || !pc.CanMove || !__instance.isActiveAndEnabled) return true;
         pc?.MyPhysics?.RpcEnterVent(__instance.currentTarget.Id);
         return false;
+        }
+       
     }
 }
 [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.Show))]
