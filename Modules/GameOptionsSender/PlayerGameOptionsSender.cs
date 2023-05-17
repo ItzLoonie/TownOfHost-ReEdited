@@ -146,6 +146,11 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.EvilTracker:
                 EvilTracker.ApplyGameOptions(player.PlayerId);
                 break;
+            case CustomRoles.ShapeshifterTOHE:
+            case CustomRoles.Wildling:
+            AURoleOptions.ShapeshifterCooldown = Options.ShapeshiftCD.GetFloat();
+            AURoleOptions.ShapeshifterDuration = Options.ShapeshiftDur.GetFloat();
+            break;
             case CustomRoles.Jackal:
        //     case CustomRoles.Sidekick:
                 Jackal.ApplyGameOptions(opt);
@@ -168,7 +173,11 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 opt.SetVision(true);
                 Main.NormalOptions.KillCooldown = Options.ControlCooldown.GetFloat();
                 break;
+            case CustomRoles.Lawyer:
+                Main.NormalOptions.CrewLightMod = Lawyer.LawyerVision.GetFloat();
+            break;
             case CustomRoles.Wraith:
+            case CustomRoles.HexMaster:
                 opt.SetVision(true);
                 Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
                 break;

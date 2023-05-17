@@ -237,6 +237,7 @@ public static class Options
     public static OptionItem ImpostorCanBeSidekick;
     public static OptionItem ControlCooldown;
     public static OptionItem JesterVision;
+   // public static OptionItem LawyerVision;
     public static OptionItem ImpCanBeBait;
     public static OptionItem CrewCanBeBait;
     public static OptionItem NeutralCanBeBait;
@@ -246,6 +247,9 @@ public static class Options
     public static OptionItem ImpCanBeTrapper;
     public static OptionItem CrewCanBeTrapper;
     public static OptionItem NeutralCanBeTrapper;
+
+    public static OptionItem ShapeshiftCD;
+    public static OptionItem ShapeshiftDur;
 
     public static OptionItem GCanGuessImp;
     public static OptionItem GCanGuessCrew;
@@ -910,6 +914,10 @@ public static class Options
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(247, 70, 49, byte.MaxValue));
         SetupRoleOptions(120000, TabGroup.ExclusiveRoles, CustomRoles.ShapeshifterTOHE);
+        ShapeshiftCD = FloatOptionItem.Create(120003, "ShapeshiftCooldown", new(1f, 999f, 1f), 15f, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.ShapeshifterTOHE])
+            .SetValueFormat(OptionFormat.Seconds);
+        ShapeshiftDur = FloatOptionItem.Create(120004, "ShapeshiftDuration", new(1f, 999f, 1f), 30f, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.ShapeshifterTOHE])
+            .SetValueFormat(OptionFormat.Seconds);
         Wildling.SetupCustomOption();
         SetupRoleOptions(150000, TabGroup.ExclusiveRoles, CustomRoles.Trickster);
         TextOptionItem.Create(120020, "OtherRoles.CrewmateRoles", TabGroup.ExclusiveRoles)
