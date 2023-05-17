@@ -16,6 +16,7 @@ public static class Lawyer
     private static OptionItem CanTargetNeutralKiller;
     private static OptionItem CanTargetCrewmate;
     public static OptionItem ChangeRolesAfterTargetKilled;
+    public static OptionItem LawyerVision;
 
 
     /// <summary>
@@ -34,6 +35,8 @@ public static class Lawyer
     public static void SetupCustomOption()
     {
         SetupRoleOptions(Id, TabGroup.ExclusiveRoles, CustomRoles.Lawyer);
+        LawyerVision = FloatOptionItem.Create(Id + 14, "LawyerVision", new(0f, 5f, 0.05f), 1.25f, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Lawyer])
+            .SetValueFormat(OptionFormat.Multiplier);
         CanTargetImpostor = BooleanOptionItem.Create(Id + 10, "LawyerCanTargetImpostor", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Lawyer]);
         CanTargetNeutralKiller = BooleanOptionItem.Create(Id + 12, "LawyerCanTargetNeutralKiller", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Lawyer]);
         CanTargetCrewmate = BooleanOptionItem.Create(Id + 13, "LawyerCanTargetCrewmate", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Lawyer]);
