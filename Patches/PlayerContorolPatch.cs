@@ -1309,10 +1309,21 @@ class FixedUpdatePatch
                         float dis;
                         foreach (var target in Main.AllAlivePlayerControls)
                         {
-                            if (target.PlayerId != player.PlayerId && !target.Is(CustomRoleTypes.Impostor))
+                            if (player.Is(CustomRoles.Sidekick))
+                            {
+                                if (target.PlayerId != player.PlayerId && !target.Is(CustomRoles.Sidekick) && !target.Is(CustomRoles.Jackal))
                             {
                                 dis = Vector2.Distance(puppeteerPos, target.transform.position);
                                 targetDistance.Add(target.PlayerId, dis);
+                            }
+                            }
+                            if (!player.Is(CustomRoles.Sidekick))
+                            {
+                                if (target.PlayerId != player.PlayerId && !target.Is(CustomRoleTypes.Impostor))
+                            {
+                                dis = Vector2.Distance(puppeteerPos, target.transform.position);
+                                targetDistance.Add(target.PlayerId, dis);
+                            }
                             }
                         }
                         if (targetDistance.Count() != 0)
@@ -1349,10 +1360,21 @@ class FixedUpdatePatch
                         float dis;
                         foreach (var target in Main.AllAlivePlayerControls)
                         {
-                            if (target.PlayerId != player.PlayerId && !target.Is(CustomRoles.NWitch))
+                            if (player.Is(CustomRoles.Sidekick))
+                            {
+                                if (target.PlayerId != player.PlayerId && !target.Is(CustomRoles.NWitch) && !target.Is(CustomRoles.Sidekick) && !target.Is(CustomRoles.Jackal))
                             {
                                 dis = Vector2.Distance(puppeteerPos, target.transform.position);
                                 targetDistance.Add(target.PlayerId, dis);
+                            }
+                            }
+                            if (!player.Is(CustomRoles.Sidekick))
+                            {
+                                if (target.PlayerId != player.PlayerId && !target.Is(CustomRoles.NWitch))
+                            {
+                                dis = Vector2.Distance(puppeteerPos, target.transform.position);
+                                targetDistance.Add(target.PlayerId, dis);
+                            }
                             }
                         }
                         if (targetDistance.Count() != 0)

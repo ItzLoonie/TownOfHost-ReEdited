@@ -103,8 +103,10 @@ class HudManagerPatch
                         __instance.AbilityButton.buttonLabelText.text = GetString("RevolutionistVetnButtonText");
                         break;
                     case CustomRoles.Puppeteer:
-                    case CustomRoles.NWitch:
                         __instance.KillButton.OverrideText($"{GetString("PuppeteerOperateButtonText")}");
+                        break;
+                    case CustomRoles.NWitch:
+                        __instance.KillButton.OverrideText($"{GetString("WitchControlButtonText")}");
                         break;
                     case CustomRoles.BountyHunter:
                         BountyHunter.SetAbilityButtonText(__instance);

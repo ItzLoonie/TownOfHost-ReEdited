@@ -172,6 +172,15 @@ class OnPlayerLeftPatch
             case DisconnectReasons.Hacking:
                 Logger.SendInGame(string.Format(GetString("PlayerLeftByAU-Anticheat"), data?.PlayerName));
                 break;
+            case DisconnectReasons.Error:
+            Logger.SendInGame(string.Format(GetString("PlayerLeftByError"), data?.PlayerName));
+            new LateTask(() =>
+            {
+            GameManager.Instance.enabled = false;
+            GameManager.Instance.RpcEndGame(GameOverReason.ImpostorDisconnect, false);
+            }, 3f, "Disconnect Error Auto-end");
+
+            break;
         }
 
         Logger.Info($"{data?.PlayerName}(ClientID:{data?.Id}/FriendCode:{data?.FriendCode})断开连接(理由:{reason}，Ping:{AmongUsClient.Instance.Ping})", "Session");
