@@ -87,6 +87,17 @@ public class PlayerState
             };
             SubRoles.Remove(CustomRoles.Madmate);
         }
+        if (role == CustomRoles.Sidekick)
+        {
+            countTypes = Options.SidekickCountMode.GetInt() switch
+            {
+                0 => CountTypes.OutOfGame,
+                1 => CountTypes.Jackal,
+                2 => countTypes,
+                _ => throw new NotImplementedException()
+            };
+          //  SubRoles.Remove(CustomRoles.Madmate);
+        }
 
     }
     public void RemoveSubRole(CustomRoles role)
