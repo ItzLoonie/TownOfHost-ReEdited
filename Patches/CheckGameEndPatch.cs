@@ -182,21 +182,7 @@ class GameEndChecker
                         }
                     }
                 }
-                //Jackal follows Sidekick
-                if (Options.JackalWinWithSidekick.GetBool())
-                {
-                    if (CustomWinnerHolder.WinnerTeam is not CustomWinner.Jackal/* and not CustomWinner.Crewmate and not CustomWinner.Impostor*/)
-                {
-                    foreach (var pc in Main.AllPlayerControls.Where(x => x.Is(CustomRoles.Jackal)))
-                    {
-                        if (CustomWinnerHolder.WinnerIds.Where(x => Utils.GetPlayerById(x).Is(CustomRoles.Sidekick)).Count() > 0)
-                        {
-                            CustomWinnerHolder.WinnerIds.Add(pc.PlayerId);
-                            CustomWinnerHolder.AdditionalWinnerTeams.Add(AdditionalWinners.Jackal);
-                        }
-                    }
-                }
-                }
+                
 
                 //FFF
                 if (CustomWinnerHolder.WinnerTeam != CustomWinner.Lovers && !CustomWinnerHolder.AdditionalWinnerTeams.Contains(AdditionalWinners.Lovers) && !CustomRolesHelper.RoleExist(CustomRoles.Lovers) && !CustomRolesHelper.RoleExist(CustomRoles.Ntr))
@@ -260,16 +246,7 @@ class GameEndChecker
                                 .Where(p => p.Is(CustomRoles.Lovers) && !CustomWinnerHolder.WinnerIds.Contains(p.PlayerId))
                                 .Do(p => CustomWinnerHolder.WinnerIds.Add(p.PlayerId));
                 }
-                //Jackal
-                if (Options.JackalWinWithSidekick.GetBool())
-                {
-                    if (CustomWinnerHolder.WinnerTeam == CustomWinner.Jackal || CustomWinnerHolder.AdditionalWinnerTeams.Contains(AdditionalWinners.Jackal))
-                {
-                    Main.AllPlayerControls
-                                .Where(p => p.Is(CustomRoles.Sidekick) && !CustomWinnerHolder.WinnerIds.Contains(p.PlayerId))
-                                .Do(p => CustomWinnerHolder.WinnerIds.Add(p.PlayerId));
-                }
-                }
+                
 
             }
             ShipStatus.Instance.enabled = false;
