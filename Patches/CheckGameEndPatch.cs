@@ -433,12 +433,12 @@ class GameEndChecker
                 CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Wraith);
                 CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Wraith);
             }
-            else if (Imp == 0 && Jackal == 0 && Pel == 0 && Hex == 0 && BK == 0 && Gam == 0 && Pois == 0 && Crew <= CM) //嗜血骑士胜利
+            else if (Imp == 0 && Jackal == 0 && Pel == 0 && Wraith == 0 && Hex == 0 && BK == 0 && Gam == 0 && Pois == 0 && Crew <= CM) //嗜血骑士胜利
             {
                 reason = GameOverReason.ImpostorByKill;
                 CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Succubus);
             }
-            else if (Jackal == 0 && Pel == 0 && Imp == 0 && Hex == 0 && Pois == 0 && BK == 0 && Gam == 0 && CM == 0) //船员胜利
+            else if (Jackal == 0 && Pel == 0 && Imp == 0 && Wraith == 0 && Hex == 0 && Pois == 0 && BK == 0 && Gam == 0 && CM == 0) //船员胜利
             {
                 reason = GameOverReason.HumansByVote;
                 CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Crewmate);
