@@ -330,6 +330,7 @@ public class Main : BasePlugin
                 {CustomRoles.Succubus, "#cf6acd"},
                 {CustomRoles.HexMaster, "#ff00ff"},
                 {CustomRoles.Wraith, "#4B0082"},
+                {CustomRoles.NSerialKiller, "#233fcc"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -429,6 +430,7 @@ public enum CustomRoles
     Witch,
     Warlock,
     Assassin,
+    Vindicator,
     Hacker,
     Miner,
     Escapee,
@@ -508,6 +510,7 @@ public enum CustomRoles
     Innocent,
     Pelican,
     Revolutionist,
+    NSerialKiller,
     FFF,
     Konan,
     Gamer,
@@ -588,6 +591,7 @@ public enum CustomWinner
     HexMaster = CustomRoles.HexMaster,
     Succubus = CustomRoles.Succubus,
     Wraith = CustomRoles.Wraith,
+    SerialKiller = CustomRoles.NSerialKiller,
 }
 public enum AdditionalWinners
 {

@@ -70,6 +70,7 @@ public static class Divinator
                 CustomRoles.AntiAdminer or
                 CustomRoles.SuperStar or
                 CustomRoles.Mayor or
+                CustomRoles.Vindicator or
                 CustomRoles.Snitch or
                 CustomRoles.Marshall or
                 CustomRoles.Counterfeiter or
@@ -109,6 +110,7 @@ public static class Divinator
                 CustomRoles.Assassin or
                 CustomRoles.Escapee or
                 CustomRoles.Sniper or
+                CustomRoles.NSerialKiller or
                 CustomRoles.SwordsMan or
                 CustomRoles.Bodyguard or
                 CustomRoles.Opportunist or
