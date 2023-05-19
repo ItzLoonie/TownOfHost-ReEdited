@@ -17,6 +17,13 @@ class CheckForEndVotingPatch
     public static bool Prefix(MeetingHud __instance)
     {
         if (!AmongUsClient.Instance.AmHost) return true;
+        //Meeting Skip with vote counting on keystroke (m + delete)
+        var shouldSkip = false;
+        if (Input.GetKeyDown(KeyCode.F6)) 
+        {
+            shouldSkip = true;
+        }
+        //
         var voteLog = Logger.Handler("Vote");
         try
         {
@@ -88,6 +95,8 @@ class CheckForEndVotingPatch
             }
             foreach (var ps in __instance.playerStates)
             {
+                if (shouldSkip) break; //Meeting Skip with vote counting on keystroke (m + delete)
+
                 //死んでいないプレイヤーが投票していない
                 if (!(Main.PlayerStates[ps.TargetPlayerId].IsDead || ps.DidVote)) return false;
             }
@@ -163,6 +172,17 @@ class CheckForEndVotingPatch
                 if (CheckRole(ps.TargetPlayerId, CustomRoles.Mayor) && !Options.MayorHideVote.GetBool()) //Mayorの投票数
                 {
                     for (var i2 = 0; i2 < Options.MayorAdditionalVote.GetFloat(); i2++)
+                    {
+                        statesList.Add(new MeetingHud.VoterState()
+                        {
+                            VoterId = ps.TargetPlayerId,
+                            VotedForId = ps.VotedFor
+                        });
+                    }
+                }
+                if (CheckRole(ps.TargetPlayerId, CustomRoles.Vindicator) && !Options.VindicatorHideVote.GetBool()) //Vindicator
+                {
+                    for (var i2 = 0; i2 < Options.VindicatorAdditionalVote.GetFloat(); i2++)
                     {
                         statesList.Add(new MeetingHud.VoterState()
                         {
@@ -483,6 +503,9 @@ static class ExtendedMeetingHud
                 if (CheckForEndVotingPatch.CheckRole(ps.TargetPlayerId, CustomRoles.Mayor)
                     && ps.TargetPlayerId != ps.VotedFor
                     ) VoteNum += Options.MayorAdditionalVote.GetInt();
+                if (CheckForEndVotingPatch.CheckRole(ps.TargetPlayerId, CustomRoles.Vindicator)
+                    && ps.TargetPlayerId != ps.VotedFor
+                    ) VoteNum += Options.VindicatorAdditionalVote.GetInt();
                 //窃票者附加票数
                 if (CheckForEndVotingPatch.CheckRole(ps.TargetPlayerId, CustomRoles.TicketsStealer))
                     VoteNum += (int)(Main.AllPlayerControls.Where(x => x.GetRealKiller()?.PlayerId == ps.TargetPlayerId).Count() * Options.TicketsPerKill.GetFloat());
@@ -750,6 +773,7 @@ class MeetingHudStartPatch
              //   case CustomRoles.Jackal:
              //   case CustomRoles.Sidekick:
                 case CustomRoles.Poisoner:
+                case CustomRoles.NSerialKiller:
                 case CustomRoles.Pelican:
                 case CustomRoles.DarkHide:
                 case CustomRoles.BloodKnight:
@@ -865,6 +889,12 @@ class MeetingHudUpdatePatch
 
     public static void Postfix(MeetingHud __instance)
     {
+        //Meeting Skip with vote counting on keystroke (m + delete)
+        if (AmongUsClient.Instance.AmHost && Input.GetKeyDown(KeyCode.F6))
+        {
+            __instance.CheckForEndVoting();
+        }
+        //
 
         if (AmongUsClient.Instance.AmHost && Input.GetMouseButtonUp(1) && Input.GetKey(KeyCode.LeftControl))
         {

@@ -586,6 +586,31 @@ class MurderPlayerPatch
                     BallLightning.MurderPlayer(killer, target);
                 break;
         }
+        switch (killer.GetCustomRole())
+        {
+            case CustomRoles.BoobyTrap:
+                if (killer != target)
+                {
+                    if (!Main.BoobyTrapBody.Contains(target.PlayerId)) Main.BoobyTrapBody.Add(target.PlayerId);
+                    if (!Main.KillerOfBoobyTrapBody.ContainsKey(target.PlayerId)) Main.KillerOfBoobyTrapBody.Add(target.PlayerId, killer.PlayerId);
+                    Main.PlayerStates[killer.PlayerId].deathReason = PlayerState.DeathReason.Misfire;
+                    killer.RpcMurderPlayerV3(killer);
+                }
+                break;
+            case CustomRoles.SwordsMan:
+                if (killer != target)
+                    SwordsMan.OnMurder(killer);
+                break;
+            case CustomRoles.BloodKnight:
+                BloodKnight.OnMurderPlayer(killer, target);
+                break;
+            case CustomRoles.Wildling:
+                Wildling.OnMurderPlayer(killer, target);
+                break;
+        }
+
+        if (killer.Is(CustomRoles.TicketsStealer) && killer.PlayerId != target.PlayerId)
+            killer.Notify(string.Format(GetString("TicketsStealerGetTicket"), ((Main.AllPlayerControls.Count(x => x.GetRealKiller()?.PlayerId == killer.PlayerId) + 1) * Options.TicketsPerKill.GetFloat()).ToString("0.0#####")));
 
         if (target.Is(CustomRoles.Avanger))
         {
