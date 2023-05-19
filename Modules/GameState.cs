@@ -91,8 +91,8 @@ public class PlayerState
         {
             countTypes = Options.SidekickCountMode.GetInt() switch
             {
-                0 => CountTypes.OutOfGame,
-                1 => CountTypes.Jackal,
+                0 => CountTypes.Jackal,
+                1 => CountTypes.OutOfGame,
                 2 => countTypes,
                 _ => throw new NotImplementedException()
             };

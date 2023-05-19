@@ -162,6 +162,8 @@ public static class Options
     public static OptionItem GGCanGuessTime;
     public static OptionItem GGTryHideMsg;
     public static OptionItem LuckeyProbability;
+    public static OptionItem VindicatorAdditionalVote;
+    public static OptionItem VindicatorHideVote;
     public static OptionItem MayorAdditionalVote;
     public static OptionItem MayorHasPortableButton;
     public static OptionItem MayorNumOfUseButton;
@@ -184,6 +186,7 @@ public static class Options
     public static OptionItem ArsonistDouseTime;
     public static OptionItem ArsonistCooldown;
     public static OptionItem JesterCanUseButton;
+    public static OptionItem JesterCanVent;
     public static OptionItem NotifyGodAlive;
     public static OptionItem MarioVentNumWin;
     public static OptionItem VeteranSkillCooldown;
@@ -247,6 +250,10 @@ public static class Options
     public static OptionItem ImpCanBeTrapper;
     public static OptionItem CrewCanBeTrapper;
     public static OptionItem NeutralCanBeTrapper;
+
+    public static OptionItem NSerialKillerKillCD;
+    public static OptionItem NSerialKillerHasImpostorVision;
+    public static OptionItem NSerialKillerCanVent;
 
     public static OptionItem ShapeshiftCD;
     public static OptionItem ShapeshiftDur;
@@ -343,8 +350,8 @@ public static class Options
     };
     public static readonly string[] sidekickCountMode =
     {
-        "SidekickCountMode.None",
         "SidekickCountMode.Jackal",
+        "SidekickCountMode.None",
         "SidekickCountMode.Original",
     };
     public static VoteMode GetWhenSkipVote() => (VoteMode)WhenSkipVote.GetValue();
@@ -740,8 +747,9 @@ public static class Options
             .SetValueFormat(OptionFormat.Seconds);
         SetupRoleOptions(50000, TabGroup.NeutralRoles, CustomRoles.Jester);
         JesterCanUseButton = BooleanOptionItem.Create(6050007, "JesterCanUseButton", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Jester]);
-        JesterVision = FloatOptionItem.Create(6050008, "JesterVision", new(0f, 5f, 0.05f), 0.6f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Jester])
-            .SetValueFormat(OptionFormat.Multiplier);
+        JesterCanVent = BooleanOptionItem.Create(6050009, "CanVent", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Jester]);
+     //   JesterVision = FloatOptionItem.Create(6050008, "JesterVision", new(0f, 5f, 0.05f), 0.6f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Jester])
+     //       .SetValueFormat(OptionFormat.Multiplier);
         SetupRoleOptions(50100, TabGroup.NeutralRoles, CustomRoles.Opportunist);
         SetupRoleOptions(50200, TabGroup.NeutralRoles, CustomRoles.Terrorist);
         CanTerroristSuicideWin = BooleanOptionItem.Create(50210, "CanTerroristSuicideWin", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Terrorist]);
@@ -786,8 +794,8 @@ public static class Options
         CrewCanBeOblivious = BooleanOptionItem.Create(6050374, "CrewCanBeOblivious", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Oblivious]);
         NeutralCanBeOblivious = BooleanOptionItem.Create(6050375, "NeutralCanBeOblivious", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Oblivious]);
         SetupAdtRoleOptions(6050380, CustomRoles.Bewilder, canSetNum: true);
-        BewilderVision = FloatOptionItem.Create(6050383, "BewilderVision", new(0f, 5f, 0.05f), 0.6f, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bewilder])
-            .SetValueFormat(OptionFormat.Multiplier);
+      //  BewilderVision = FloatOptionItem.Create(6050383, "BewilderVision", new(0f, 5f, 0.05f), 0.6f, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bewilder])
+    //        .SetValueFormat(OptionFormat.Multiplier);
         SetupAdtRoleOptions(6050440, CustomRoles.Fool, canSetNum: true);
         Workhorse.SetupCustomOption();
         SetupAdtRoleOptions(6050450, CustomRoles.Avanger, canSetNum: true);
@@ -927,6 +935,10 @@ public static class Options
             .SetValueFormat(OptionFormat.Seconds);
         Wildling.SetupCustomOption();
         SetupRoleOptions(150000, TabGroup.ExclusiveRoles, CustomRoles.Trickster);
+        SetupRoleOptions(150005, TabGroup.ExclusiveRoles, CustomRoles.Vindicator);
+        VindicatorAdditionalVote = IntegerOptionItem.Create(150010, "MayorAdditionalVote", new(1, 99, 1), 3, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Vindicator])
+            .SetValueFormat(OptionFormat.Votes);
+        VindicatorHideVote = BooleanOptionItem.Create(150015, "MayorHideVote", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Vindicator]);
         TextOptionItem.Create(120020, "OtherRoles.CrewmateRoles", TabGroup.ExclusiveRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(140, 255, 255, byte.MaxValue));
@@ -944,6 +956,16 @@ public static class Options
         Lawyer.SetupCustomOption();
         HexMaster.SetupCustomOption();
         Wraith.SetupCustomOption();
+        SetupSingleRoleOptions(6050620, TabGroup.ExclusiveRoles, CustomRoles.NSerialKiller, 1, zeroOne: false);
+        NSerialKillerKillCD = FloatOptionItem.Create(6050625, "KillCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NSerialKiller])
+            .SetValueFormat(OptionFormat.Seconds);
+        NSerialKillerCanVent = BooleanOptionItem.Create(6050630, "CanVent", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NSerialKiller]);
+        NSerialKillerHasImpostorVision = BooleanOptionItem.Create(6050635, "ImpostorVision", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NSerialKiller]);
+   //     GGCanGuessTime = IntegerOptionItem.Create(6050625, "GuesserCanGuessTimes", new(1, 15, 1), 15, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NiceGuesser])
+   //         .SetValueFormat(OptionFormat.Times);
+   ////     GGCanGuessAdt = BooleanOptionItem.Create(6050630, "GGCanGuessAdt", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NiceGuesser]);
+   //     GGTryHideMsg = BooleanOptionItem.Create(6050635, "GuesserTryHideMsg", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NiceGuesser])
+    //        .SetColor(Color.green);
         TextOptionItem.Create(120025, "OtherRoles.Addons", TabGroup.ExclusiveRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 154, 206, byte.MaxValue));

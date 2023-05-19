@@ -430,6 +430,7 @@ static class ExtendedPlayerControl
             CustomRoles.Jackal => pc.IsAlive(),
             CustomRoles.HexMaster => pc.IsAlive(),
             CustomRoles.Poisoner => pc.IsAlive(),
+            CustomRoles.NSerialKiller => pc.IsAlive(),
             CustomRoles.NWitch => pc.IsAlive(),
             CustomRoles.Wraith => pc.IsAlive(),
             CustomRoles.Bomber => false,
@@ -471,6 +472,7 @@ static class ExtendedPlayerControl
             CustomRoles.Jackal => Jackal.CanVent.GetBool(),
        //     CustomRoles.Sidekick => Jackal.CanVent.GetBool(),
             CustomRoles.Poisoner => Poisoner.CanVent.GetBool(),
+            CustomRoles.NSerialKiller => Options.NSerialKillerCanVent.GetBool(),
             CustomRoles.Pelican => Pelican.CanVent.GetBool(),
             CustomRoles.Gamer => Gamer.CanVent.GetBool(),
             CustomRoles.BloodKnight => BloodKnight.CanVent.GetBool(),
@@ -544,6 +546,9 @@ static class ExtendedPlayerControl
             case CustomRoles.HexMaster:
             case CustomRoles.Wraith:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.DefaultKillCooldown;
+            break;
+            case CustomRoles.NSerialKiller:
+                Main.AllPlayerKillCooldown[player.PlayerId] = Options.NSerialKillerKillCD.GetFloat();
             break;
             case CustomRoles.Poisoner:
                 Poisoner.SetKillCooldown(player.PlayerId);

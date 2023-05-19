@@ -91,6 +91,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.SabotageMaster:
             case CustomRoles.Mario:
             case CustomRoles.EngineerTOHE:
+            case CustomRoles.Jester:
                 AURoleOptions.EngineerCooldown = 0f;
                 AURoleOptions.EngineerInVentMaxTime = 0f;
                 break;
@@ -173,6 +174,10 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 opt.SetVision(true);
                 Main.NormalOptions.KillCooldown = Options.ControlCooldown.GetFloat();
                 break;
+            case CustomRoles.NSerialKiller:
+                opt.SetVision(Options.NSerialKillerHasImpostorVision.GetBool());
+                Main.NormalOptions.KillCooldown = Options.NSerialKillerKillCD.GetFloat();
+                break;
             case CustomRoles.Lawyer:
                 Main.NormalOptions.CrewLightMod = Lawyer.LawyerVision.GetFloat();
             break;
@@ -181,9 +186,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 opt.SetVision(true);
                 Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
                 break;
-            case CustomRoles.Jester:
-                Main.NormalOptions.CrewLightMod = Options.JesterVision.GetFloat();
-            break;
+            
             case CustomRoles.Gamer:
                 Gamer.ApplyGameOptions(opt);
                 break;

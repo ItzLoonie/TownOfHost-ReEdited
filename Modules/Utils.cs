@@ -386,6 +386,7 @@ public static class Utils
             case CustomRoles.Arsonist:
             case CustomRoles.Jackal:
             case CustomRoles.Poisoner:
+            case CustomRoles.NSerialKiller:
             case CustomRoles.Jester:
             case CustomRoles.Opportunist:
             case CustomRoles.NWitch:
