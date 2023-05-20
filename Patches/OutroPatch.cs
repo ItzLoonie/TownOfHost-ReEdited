@@ -161,6 +161,13 @@ class SetEverythingUpPatch
                 WinnerText.text = GetString("ForceEndText");
                 WinnerText.color = Color.gray;
                 break;
+            case CustomWinner.Neutrals:
+                __instance.WinText.text = GetString("DefeatText");
+                __instance.WinText.color = Utils.GetRoleColor(CustomRoles.Impostor);
+                __instance.BackgroundBar.material.color = Utils.GetRoleColor(CustomRoles.EngineerTOHE);
+                WinnerText.text = GetString("NeutralsLeftText");
+                WinnerText.color = Utils.GetRoleColor(CustomRoles.EngineerTOHE);
+                break;
             //全滅
             case CustomWinner.None:
                 __instance.WinText.text = "";

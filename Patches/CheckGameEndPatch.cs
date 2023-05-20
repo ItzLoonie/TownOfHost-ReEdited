@@ -371,6 +371,7 @@ class GameEndChecker
             int Hex = Utils.AlivePlayersCount(CountTypes.HexMaster);
             int Wraith = Utils.AlivePlayersCount(CountTypes.Wraith);
             int SK = Utils.AlivePlayersCount(CountTypes.NSerialKiller);
+            int Witch = Utils.AlivePlayersCount(CountTypes.NWitch);
 
             Imp += Main.AllAlivePlayerControls.Count(x => x.GetCustomRole().IsImpostor() && x.Is(CustomRoles.DualPersonality));
             Crew += Main.AllAlivePlayerControls.Count(x => x.GetCustomRole().IsCrewmate() && x.Is(CustomRoles.DualPersonality));
@@ -445,11 +446,13 @@ class GameEndChecker
                 reason = GameOverReason.ImpostorByKill;
                 CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Succubus);
             }
+            
             else if (Jackal == 0 && Pel == 0 && Imp == 0 && Hex == 0 && SK == 0 && Wraith == 0 && Pois == 0 && BK == 0 && Gam == 0 && CM == 0) //船员胜利
             {
                 reason = GameOverReason.HumansByVote;
                 CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Crewmate);
             }
+            
             else return false; //胜利条件未达成
 
             return true;
