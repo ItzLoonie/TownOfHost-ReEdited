@@ -1307,6 +1307,8 @@
 "ForExample","使用例子","Example Use","Например","使用例子","使用例子"
 "ForceEnd","强制结束游戏","Aborted","Игра Окончена","強制結束遊戲","强制结束游戏"
 "EveryoneDied","无人生还","Everyone died","Все Мертвы","無人生還","无人生还"
+"DefeatText","","Defeat","","",""
+"NeutralsLeftText","","Only neutrals were left","","",""
 "ForceEndText","房主强制结束了游戏","Host has aborted the game","Хост завершил игру","房主強制結束了遊戲","房主强制结束了游戏"
 "HideGameCodes","直播模式","Hide Game Code","Скрыть Игровой Код","直播模式","直播模式"
 "updateButton","一键更新","Update","Обновление","一鍵更新","一键更新"
