@@ -177,16 +177,22 @@ internal class ChatCommands
                     SendRolesInfo(subArgs, PlayerControl.LocalPlayer.PlayerId, isUp: true);
                     break;
                 case "/setrole":
+                    if (DebugModeManager.AmDebugger) break;
                     canceled = true;
-                    subArgs = text.Remove(0, 3);
-                    if (!PlayerControl.LocalPlayer.FriendCode.GetEditedDevUser().IsUp) break;
-                    
-                    if (!GameStates.IsLobby)
+                    subArgs = text.Remove(0, 8);
+                    var setRole = FixRoleNameInput(subArgs.Trim());
+                    foreach (CustomRoles rl in Enum.GetValues(typeof(CustomRoles)))
                     {
-                        Utils.SendMessage(GetString("Message.OnlyCanUseInLobby"));
-                        break;
+                        if (rl.IsVanilla()) continue;
+                        var roleName = GetString(rl.ToString()).ToLower().Trim();
+                        if (setRole.Contains(roleName))
+                        {
+                            PlayerControl.LocalPlayer.RpcSetRole(rl.GetRoleTypes());
+                            PlayerControl.LocalPlayer.RpcSetCustomRole(rl);
+                            Utils.NotifyRoles();
+                            Utils.MarkEveryoneDirtySettings();
+                        }
                     }
-                    SendRolesInfo(subArgs, PlayerControl.LocalPlayer.PlayerId, isUp: true);
                     break;
 
                 case "/h":
@@ -334,26 +340,6 @@ internal class ChatCommands
                     if (Main.newLobby) Cloud.ShareLobby(true);
                     else Utils.SendMessage("很抱歉，每个房间车队姬只会发一次", PlayerControl.LocalPlayer.PlayerId);
                     break;
-
-                case "/changerole":
-                    if (!DebugModeManager.AmDebugger) break;
-                    canceled = true;
-                    subArgs = text.Remove(0, 8);
-                    var setRole = FixRoleNameInput(subArgs.Trim());
-                    foreach (CustomRoles rl in Enum.GetValues(typeof(CustomRoles)))
-                    {
-                        if (rl.IsVanilla()) continue;
-                        var roleName = GetString(rl.ToString()).ToLower().Trim();
-                        if (setRole.Contains(roleName))
-                        {
-                            PlayerControl.LocalPlayer.RpcSetRole(rl.GetRoleTypes());
-                            PlayerControl.LocalPlayer.RpcSetCustomRole(rl);
-                            Utils.NotifyRoles();
-                            Utils.MarkEveryoneDirtySettings();
-                        }
-                    }
-                    break;
-
                 case "/end":
                     canceled = true;
                     CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Draw);

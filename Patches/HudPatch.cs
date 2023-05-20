@@ -25,10 +25,10 @@ class HudManagerPatch
         if (!GameStates.IsModHost) return;
         var player = PlayerControl.LocalPlayer;
         if (player == null) return;
-        //壁抜け
+        //壁抜け - thats the one!
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            if ((!AmongUsClient.Instance.IsGameStarted || !GameStates.IsOnlineGame)
+            if ((!AmongUsClient.Instance.IsGameStarted || AmongUsClient.Instance.IsGameStarted || GameStates.IsLocalGame || GameStates.IsOnlineGame)
                 && player.CanMove)
             {
                 player.Collider.offset = new Vector2(0f, 127f);
@@ -37,7 +37,7 @@ class HudManagerPatch
         //壁抜け解除
         if (player.Collider.offset.y == 127f)
         {
-            if (!Input.GetKey(KeyCode.LeftControl) || (AmongUsClient.Instance.IsGameStarted && GameStates.IsOnlineGame))
+            if (!Input.GetKey(KeyCode.LeftControl) || (!AmongUsClient.Instance.IsGameStarted && !GameStates.IsOnlineGame))
             {
                 player.Collider.offset = new Vector2(0f, -0.3636f);
             }
@@ -398,10 +398,10 @@ class SetHudActivePatch
                 __instance.ReportButton.ToggleVisible(false);
                 break;
             case CustomRoles.Jackal:
-      //      case CustomRoles.Sidekick:
+                //      case CustomRoles.Sidekick:
                 Jackal.SetHudActive(__instance, isActive);
                 break;
-            
+
             case CustomRoles.Bomber:
                 __instance.KillButton.ToggleVisible(false);
                 break;
@@ -425,13 +425,13 @@ class VentButtonDoClickPatch
 {
     public static bool Prefix(VentButton __instance)
     {
-            var pc = PlayerControl.LocalPlayer;
+        var pc = PlayerControl.LocalPlayer;
         {
-        if (!pc.Is(CustomRoles.Swooper) || !pc.Is(CustomRoles.Wraith) || pc.inVent || __instance.currentTarget == null || !pc.CanMove || !__instance.isActiveAndEnabled) return true;
-        pc?.MyPhysics?.RpcEnterVent(__instance.currentTarget.Id);
-        return false;
+            if (!pc.Is(CustomRoles.Swooper) || !pc.Is(CustomRoles.Wraith) || pc.inVent || __instance.currentTarget == null || !pc.CanMove || !__instance.isActiveAndEnabled) return true;
+            pc?.MyPhysics?.RpcEnterVent(__instance.currentTarget.Id);
+            return false;
         }
-       
+
     }
 }
 [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.Show))]
