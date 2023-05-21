@@ -25,7 +25,10 @@ public static class Lawyer
     public static Dictionary<byte, byte> Target = new();
     public static readonly string[] ChangeRoles =
     {
-        CustomRoles.Crewmate.ToString(), CustomRoles.Jester.ToString(), CustomRoles.Opportunist.ToString(),
+        "Role.Crewmate",
+        "Role.Jester",
+        "Role.Opportunist",
+     //   CustomRoles.Crewmate.ToString(), CustomRoles.Jester.ToString(), CustomRoles.Opportunist.ToString(),
     };
     public static readonly CustomRoles[] CRoleChangeRoles =
     {
