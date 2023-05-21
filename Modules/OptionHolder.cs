@@ -264,27 +264,6 @@ public static class Options
     public static OptionItem GCanGuessTaskDoneSnitch;
     public static OptionItem GTryHideMsg;
 
-    // タスク無効化
-    public static OptionItem DisableTasks;
-    public static OptionItem DisableSwipeCard;
-    public static OptionItem DisableSubmitScan;
-    public static OptionItem DisableUnlockSafe;
-    public static OptionItem DisableUploadData;
-    public static OptionItem DisableStartReactor;
-    public static OptionItem DisableResetBreaker;
-    public static OptionItem DisableWires;
-    public static OptionItem DisableVentCleaning;
-    public static OptionItem DisableRebootWifi;
-    public static OptionItem DisableDiagnostics;
-    public static OptionItem DisableFuel;
-    public static OptionItem DisableInspectSample;
-    public static OptionItem DisablePhotoTask;
-    public static OptionItem DisableGemCode;
-    public static OptionItem DisableNodes;
-    public static OptionItem DisableWaterwheels;
-    public static OptionItem DisableKeys;
-    public static OptionItem DisableDivertPower;
-
     //デバイスブロック
     public static OptionItem DisableDevices;
     public static OptionItem DisableSkeldDevices;
@@ -307,6 +286,66 @@ public static class Options
     public static OptionItem DisableDevicesIgnoreNeutrals;
     public static OptionItem DisableDevicesIgnoreCrewmates;
     public static OptionItem DisableDevicesIgnoreAfterAnyoneDied;
+
+    //Task Management
+    public static OptionItem DisableShortTasks;
+    public static OptionItem DisableCleanVent;
+    public static OptionItem DisableCalibrateDistributor;
+    public static OptionItem DisableChartCourse;
+    public static OptionItem DisableStabilizeSteering;
+    public static OptionItem DisableCleanO2Filter;
+    public static OptionItem DisableUnlockManifolds;
+    public static OptionItem DisablePrimeShields;
+    public static OptionItem DisableMeasureWeather;
+    public static OptionItem DisableBuyBeverage;
+    public static OptionItem DisableAssembleArtifact;
+    public static OptionItem DisableSortSamples;
+    public static OptionItem DisableProcessData;
+    public static OptionItem DisableRunDiagnostics;
+    public static OptionItem DisableRepairDrill;
+    public static OptionItem DisableAlignTelescope;
+    public static OptionItem DisableRecordTemperature;
+    public static OptionItem DisableFillCanisters;
+    public static OptionItem DisableMonitorTree;
+    public static OptionItem DisableStoreArtifacts;
+    public static OptionItem DisablePutAwayPistols;
+    public static OptionItem DisablePutAwayRifles;
+    public static OptionItem DisableMakeBurger;
+    public static OptionItem DisableCleanToilet;
+    public static OptionItem DisableDecontaminate;
+    public static OptionItem DisableSortRecords;
+    public static OptionItem DisableFixShower;
+    public static OptionItem DisablePickUpTowels;
+    public static OptionItem DisablePolishRuby;
+    public static OptionItem DisableDressMannequin;
+    public static OptionItem DisableCommonTasks;
+    public static OptionItem DisableSwipeCard;
+    public static OptionItem DisableFixWiring;
+    public static OptionItem DisableEnterIdCode;
+    public static OptionItem DisableInsertKeys;
+    public static OptionItem DisableScanBoardingPass;
+    public static OptionItem DisableLongTasks;
+    public static OptionItem DisableSubmitScan;
+    public static OptionItem DisableUnlockSafe;
+    public static OptionItem DisableStartReactor;
+    public static OptionItem DisableResetBreaker;
+    public static OptionItem DisableAlignEngineOutput;
+    public static OptionItem DisableInspectSample;
+    public static OptionItem DisableEmptyChute;
+    public static OptionItem DisableClearAsteroids;
+    public static OptionItem DisableWaterPlants;
+    public static OptionItem DisableOpenWaterways;
+    public static OptionItem DisableReplaceWaterJug;
+    public static OptionItem DisableRebootWifi;
+    public static OptionItem DisableDevelopPhotos;
+    public static OptionItem DisableRewindTapes;
+    public static OptionItem DisableStartFans;
+    public static OptionItem DisableOtherTasks;
+    public static OptionItem DisableUploadData;
+    public static OptionItem DisableEmptyGarbage;
+    public static OptionItem DisableFuelEngines;
+    public static OptionItem DisableDivertPower;
+    public static OptionItem DisableActivateWeatherNodes;
 
     // ランダムマップ
     public static OptionItem RandomMapsMode;
@@ -1108,24 +1147,8 @@ public static class Options
         DisableTaskWin = BooleanOptionItem.Create(66_900_001, "DisableTaskWin", false, TabGroup.GameSettings, false)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 153, 153, byte.MaxValue));
-        DisableTasks = BooleanOptionItem.Create(100300, "DisableTasks", false, TabGroup.GameSettings, false)
-            .SetGameMode(CustomGameMode.Standard)
-            .SetColor(new Color32(255, 153, 153, byte.MaxValue));
-        DisableSwipeCard = BooleanOptionItem.Create(100301, "DisableSwipeCardTask", false, TabGroup.GameSettings, false).SetParent(DisableTasks)
-            .SetGameMode(CustomGameMode.Standard);
-        DisableSubmitScan = BooleanOptionItem.Create(100302, "DisableSubmitScanTask", false, TabGroup.GameSettings, false).SetParent(DisableTasks)
-            .SetGameMode(CustomGameMode.Standard);
-        DisableUnlockSafe = BooleanOptionItem.Create(100303, "DisableUnlockSafeTask", false, TabGroup.GameSettings, false).SetParent(DisableTasks)
-            .SetGameMode(CustomGameMode.Standard);
-        DisableUploadData = BooleanOptionItem.Create(100304, "DisableUploadDataTask", false, TabGroup.GameSettings, false).SetParent(DisableTasks)
-            .SetGameMode(CustomGameMode.Standard);
-        DisableStartReactor = BooleanOptionItem.Create(100305, "DisableStartReactorTask", false, TabGroup.GameSettings, false).SetParent(DisableTasks)
-            .SetGameMode(CustomGameMode.Standard);
-        DisableResetBreaker = BooleanOptionItem.Create(100306, "DisableResetBreakerTask", false, TabGroup.GameSettings, false).SetParent(DisableTasks)
-            .SetGameMode(CustomGameMode.Standard);
 
         // 禁用任务
-
         DisableMeeting = BooleanOptionItem.Create(66_900_002, "DisableMeeting", false, TabGroup.GameSettings, false)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 153, 153, byte.MaxValue));
@@ -1180,6 +1203,141 @@ public static class Options
             .SetGameMode(CustomGameMode.Standard);
         DisableDevicesIgnoreAfterAnyoneDied = BooleanOptionItem.Create(101295, "IgnoreAfterAnyoneDied", false, TabGroup.GameSettings, false).SetParent(DisableDevicesIgnoreConditions)
             .SetGameMode(CustomGameMode.Standard);
+
+        //Task Management
+        TextOptionItem.Create(66_123_125, "MenuTitle.TaskManagement", TabGroup.GameSettings)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetColor(new Color32(72, 212, 60, byte.MaxValue));
+
+        //Disable Short Tasks
+        DisableShortTasks = BooleanOptionItem.Create(101000, "DisableShortTasks", false, TabGroup.GameSettings, false)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetHeader(true)
+            .SetColor(new Color32(72, 212, 60, byte.MaxValue));
+        DisableCleanVent = BooleanOptionItem.Create(101001, "DisableCleanVent", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableCalibrateDistributor = BooleanOptionItem.Create(101002, "DisableCalibrateDistributor", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableChartCourse = BooleanOptionItem.Create(101003, "DisableChartCourse", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableStabilizeSteering = BooleanOptionItem.Create(101004, "DisableStabilizeSteering", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableCleanO2Filter = BooleanOptionItem.Create(101005, "DisableCleanO2Filter", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableUnlockManifolds = BooleanOptionItem.Create(101006, "DisableUnlockManifolds", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisablePrimeShields = BooleanOptionItem.Create(101007, "DisablePrimeShields", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableMeasureWeather = BooleanOptionItem.Create(101008, "DisableMeasureWeather", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableBuyBeverage = BooleanOptionItem.Create(101009, "DisableBuyBeverage", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableAssembleArtifact = BooleanOptionItem.Create(101010, "DisableAssembleArtifact", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableSortSamples = BooleanOptionItem.Create(101011, "DisableSortSamples", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableProcessData = BooleanOptionItem.Create(101012, "DisableProcessData", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableRunDiagnostics = BooleanOptionItem.Create(101013, "DisableRunDiagnostics", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableRepairDrill = BooleanOptionItem.Create(101014, "DisableRepairDrill", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableAlignTelescope = BooleanOptionItem.Create(101015, "DisableAlignTelescope", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableRecordTemperature = BooleanOptionItem.Create(101016, "DisableRecordTemperature", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableFillCanisters = BooleanOptionItem.Create(101017, "DisableFillCanisters", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableMonitorTree = BooleanOptionItem.Create(101018, "DisableMonitorTree", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableStoreArtifacts = BooleanOptionItem.Create(101019, "DisableStoreArtifacts", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisablePutAwayPistols = BooleanOptionItem.Create(101020, "DisablePutAwayPistols", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisablePutAwayRifles = BooleanOptionItem.Create(101021, "DisablePutAwayRifles", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableMakeBurger = BooleanOptionItem.Create(101022, "DisableMakeBurger", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableCleanToilet = BooleanOptionItem.Create(101023, "DisableCleanToilet", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableDecontaminate = BooleanOptionItem.Create(101024, "DisableDecontaminate", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableSortRecords = BooleanOptionItem.Create(101025, "DisableSortRecords", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableFixShower = BooleanOptionItem.Create(101026, "DisableFixShower", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisablePickUpTowels = BooleanOptionItem.Create(101027, "DisablePickUpTowels", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisablePolishRuby = BooleanOptionItem.Create(101028, "DisablePolishRuby", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableDressMannequin = BooleanOptionItem.Create(101029, "DisableDressMannequin", false, TabGroup.GameSettings, false).SetParent(DisableShortTasks)
+            .SetGameMode(CustomGameMode.Standard);
+
+        //Disable Common Tasks
+        DisableCommonTasks = BooleanOptionItem.Create(102000, "DisableCommonTasks", false, TabGroup.GameSettings, false)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetColor(new Color32(72, 212, 60, byte.MaxValue));
+        DisableSwipeCard = BooleanOptionItem.Create(102301, "DisableSwipeCardTask", false, TabGroup.GameSettings, false).SetParent(DisableCommonTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableFixWiring = BooleanOptionItem.Create(102001, "DisableFixWiring", false, TabGroup.GameSettings, false).SetParent(DisableCommonTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableEnterIdCode = BooleanOptionItem.Create(102002, "DisableEnterIdCode", false, TabGroup.GameSettings, false).SetParent(DisableCommonTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableInsertKeys = BooleanOptionItem.Create(102003, "DisableInsertKeys", false, TabGroup.GameSettings, false).SetParent(DisableCommonTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableScanBoardingPass = BooleanOptionItem.Create(102004, "DisableScanBoardingPass", false, TabGroup.GameSettings, false).SetParent(DisableCommonTasks)
+            .SetGameMode(CustomGameMode.Standard);
+
+        //Disable Long Tasks
+        DisableLongTasks = BooleanOptionItem.Create(103000, "DisableLongTasks", false, TabGroup.GameSettings, false)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetColor(new Color32(72, 212, 60, byte.MaxValue));
+        DisableSubmitScan = BooleanOptionItem.Create(103302, "DisableSubmitScanTask", false, TabGroup.GameSettings, false).SetParent(DisableLongTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableUnlockSafe = BooleanOptionItem.Create(103303, "DisableUnlockSafeTask", false, TabGroup.GameSettings, false).SetParent(DisableLongTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableStartReactor = BooleanOptionItem.Create(103305, "DisableStartReactorTask", false, TabGroup.GameSettings, false).SetParent(DisableLongTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableResetBreaker = BooleanOptionItem.Create(103306, "DisableResetBreakerTask", false, TabGroup.GameSettings, false).SetParent(DisableLongTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableAlignEngineOutput = BooleanOptionItem.Create(103001, "DisableAlignEngineOutput", false, TabGroup.GameSettings, false).SetParent(DisableLongTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableInspectSample = BooleanOptionItem.Create(103002, "DisableInspectSample", false, TabGroup.GameSettings, false).SetParent(DisableLongTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableEmptyChute = BooleanOptionItem.Create(103003, "DisableEmptyChute", false, TabGroup.GameSettings, false).SetParent(DisableLongTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableClearAsteroids = BooleanOptionItem.Create(103004, "DisableClearAsteroids", false, TabGroup.GameSettings, false).SetParent(DisableLongTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableWaterPlants = BooleanOptionItem.Create(103005, "DisableWaterPlants", false, TabGroup.GameSettings, false).SetParent(DisableLongTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableOpenWaterways = BooleanOptionItem.Create(103006, "DisableOpenWaterways", false, TabGroup.GameSettings, false).SetParent(DisableLongTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableReplaceWaterJug = BooleanOptionItem.Create(103007, "DisableReplaceWaterJug", false, TabGroup.GameSettings, false).SetParent(DisableLongTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableRebootWifi = BooleanOptionItem.Create(103008, "DisableRebootWifi", false, TabGroup.GameSettings, false).SetParent(DisableLongTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableDevelopPhotos = BooleanOptionItem.Create(103009, "DisableDevelopPhotos", false, TabGroup.GameSettings, false).SetParent(DisableLongTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableRewindTapes = BooleanOptionItem.Create(103010, "DisableRewindTapes", false, TabGroup.GameSettings, false).SetParent(DisableLongTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableStartFans = BooleanOptionItem.Create(103011, "DisableStartFans", false, TabGroup.GameSettings, false).SetParent(DisableLongTasks)
+            .SetGameMode(CustomGameMode.Standard);
+
+        //Disable Divert Power, Weather Nodes and etc. situational Tasks
+        DisableOtherTasks = BooleanOptionItem.Create(104000, "DisableOtherTasks", false, TabGroup.GameSettings, false)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetColor(new Color32(72, 212, 60, byte.MaxValue));
+        DisableUploadData = BooleanOptionItem.Create(104304, "DisableUploadDataTask", false, TabGroup.GameSettings, false).SetParent(DisableOtherTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableEmptyGarbage = BooleanOptionItem.Create(104001, "DisableEmptyGarbage", false, TabGroup.GameSettings, false).SetParent(DisableOtherTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableFuelEngines = BooleanOptionItem.Create(104002, "DisableFuelEngines", false, TabGroup.GameSettings, false).SetParent(DisableOtherTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableDivertPower = BooleanOptionItem.Create(104003, "DisableDivertPower", false, TabGroup.GameSettings, false).SetParent(DisableOtherTasks)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableActivateWeatherNodes = BooleanOptionItem.Create(104004, "DisableActivateWeatherNodes", false, TabGroup.GameSettings, false).SetParent(DisableOtherTasks)
+            .SetGameMode(CustomGameMode.Standard);
+
 
         //会议相关设定
         TextOptionItem.Create(66_123_122, "MenuTitle.Meeting", TabGroup.GameSettings)
