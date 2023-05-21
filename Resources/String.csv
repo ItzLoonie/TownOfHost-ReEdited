@@ -23,7 +23,7 @@
 "### 但感谢有你，感谢TOHE短暂的生命中的每一位过客"
 
 "## 作者署名（会显示在右上角，不需要请留空）/ A sign of an author (Please leave blank when not needed)"
-"TextBelowVersionText","","Modified by Loonie, with help from SolarFlare","","",""
+"TextBelowVersionText","","This text should not appear.\nIf it does, you likely built this from the source code.","","",""
 
 "## Alignment Sub Text"
 "SubText.Crewmate","","Find and exile the <color=#ff1919>Impostors</color>","Найди и кикни <color=#ff1919>Предателей</color>","",""
@@ -45,6 +45,11 @@
 "## 个人竞技模式 / PVP"
 "KB_Normal","挑战者","Challenger","Боец","挑戰者","KB_Normal"
 "KB_NormalInfo","击败所有人！","Kill all of them!","Уничтожь их!","擊敗所有人!","Derrota a todos!"
+
+"## Roles in Settings"
+"Role.Crewmate","","<color=#ffffff>Crewmate</color>","","",""
+"Role.Jester","","<color=#ec62a5>Jester</color>","","",""
+"Role.Opportunist","","<color=#4dff4d>Opportunist</color>","","",""
 
 "## 职业 / Roles"
 
@@ -174,6 +179,7 @@
 "HexMaster","","Hex Master","Мастер Проклятий","",""
 "Wraith","","Wraith","Дух","",""
 "NSerialKiller","","Serial Killer","Шакал","",""
+"Juggernaut","","Juggernaut","","",""
 
 "# 附加职业 / Add-ons"
 "LastImpostor","绝境者","Last Impostor","Последний Предатель","絕境者","绝境者"
@@ -369,6 +375,7 @@
 "HexMasterInfo","","Hex players to kill them in meetings","Ставь порчу чтобы убивать в собраниях","",""
 "WraithInfo","","Vent to temporarily go invisible","Вентанитесь чтобы стать невидимым","",""
 "NSerialKillerInfo","","Kill off everyone to win!","Убейте всех!","",""
+"JuggernautInfo","","With each kill, your cooldown decreases","","",""
 
 "# 附加职业 / Add-ons descriptions"
 "LoversInfo","最重要的是，记得照顾好你的另一半","Stay Alive and win together","Выживите со своим Любовником","你墜入了愛河","最重要的是，记得照顾好你的另一半"
@@ -493,7 +500,7 @@
 "ArsonistInfoLong","(中立阵营):\n纵火犯可以通过对玩家点击击杀按钮并跟随其数秒来完成涂油，开始涂油以及涂油成功时会显示护盾破碎的动画作为提示（仅自己可见）。当所有存活玩家都被纵火犯涂油后，纵火犯可以通过跳通风管来点火，并单独获得胜利。\n\n玩家名显示「△」表示涂油中\n玩家名显示「▲」表示已涂油。","(Neutrals):\nThe Arsonist can douse by clicking the kill button on the player and following them for a few seconds. When the dousing starts and it's successful, a shield animation will be displayed as a reminder (only visible to themselves). When the Arsonist has doused all surviving players, the Arsonist can vent to start the fire and win alone.\n\nIf the player name shows 「△」, that means they are being doused;\nif the player name shows 「▲」, it means they have been completely doused.","(нейтральный): поджигатель может закончить смазку, нажав на кнопку убийства игрока и следуя за ним в течение нескольких секунд, начать мазать, а также показать анимацию разбитого щита, когда она будет успешной (только для себя). После того, как все выжившие игроки были смазаны поджигателем, поджигатель мог воспламенить его, перепрыгнув через вентиляционную трубу и одержать победу в одиночку. \ n что n игрок показыва「△」заяв в смазыва \ что n что игрок показыва「▲」что смазыва.","(中立陣營):\n縱火犯可以通過對玩家使用殺人鍵並跟隨數秒來澆油，開始以及結束澆油時會出現盾牌破碎的效果作為提示。當所有存活玩家都被縱火犯澆上油時，縱火犯可以以跳管道的方式來點火，並單獨獲勝。\n\n玩家名字顯示「△」表示澆油中\n顯示「▲」表示已經澆油。","(中立阵营):\n纵火犯可以通过对玩家点击击杀按钮并跟随其数秒来完成涂油，开始涂油以及涂油成功时会显示护盾破碎的动画作为提示（仅自己可见）。当所有存活玩家都被纵火犯涂油后，纵火犯可以通过跳通风管来点火，并单独获得胜利。\n\n玩家名显示「△」表示涂油中\n玩家名显示「▲」表示已涂油。"
 "JesterInfoLong","(中立阵营):\n小丑被票出则小丑单独游戏胜利。游戏结束时若小丑仍存活则小丑输掉游戏。请注意：小丑、处刑人、冤罪师可以共享胜利。","(Neutrals):\nIf the Jester get voted out, the Jester wins the game alone. If the Jester is still alive at the end of the game, the Jester loses the game. Note: Jester, Executioner, and Innocent can win together.","(Злой - Нейтрал):\nШут сможет выиграть игру, если за него проголосуют во время голосования и он будет изгнан.\nВ противном случае Шут проиграет. \nПримечание: Шут, Палач и Обвинитель могут победить вместе.","(中立陣營):\n如果小丑被票出時則小丑單獨獲勝。如果遊戲結束時小丑仍然存活則失敗。\n請注意: 小丑、暴民、冤罪師可以一同獲勝。","(中立阵营):\n小丑被票出则小丑单独游戏胜利。游戏结束时若小丑仍存活则小丑输掉游戏。请注意：小丑、处刑人、冤罪师可以共享胜利。"
 "TerroristInfoLong","(中立阵营):\n恐怖分子完成所有任务后死亡，则恐怖分子单独获得胜利。（怎么死都行，包括票死，反正死了就行）","(Neutrals):\nIf the Terrorist dies after completing all tasks, the Terrorist wins the game alone. (They can win by either being voted out or killed).","(Злой - Нейтрал):\nТеррорист побеждает в одиночку, если его убивают или изгоняют. \nНо только если все его задания будут выполнены.","(中立陣營):\n當恐怖分子完成所有任務後死亡的話，則恐怖分子單獨獲勝。(只要死了就可以)","(中立阵营):\n恐怖分子完成所有任务后死亡，则恐怖分子单独获得胜利。（怎么死都行，包括票死，反正死了就行）"
-"ExecutionerInfoLong","(中立阵营):\n游戏开始时处刑人会被分配到一个处刑目标，并在其昵称旁用菱形「♦」表示。若处刑目标被击杀，则处刑的职业会根据设置变为船员，小丑或投机者。如果处刑目标在会议中被票出则处刑人胜利。请注意：小丑、处刑人、冤罪师可以共享胜利。","(Neutrals):\Executioner has an prosecution target, which will be indicated by a diamond 「♦」 next to their name. If the prosecution target is killed, the Executioner will be changed to Crewmate, Jester or Opportunist according to the settings. If the prosecution target is voted out in the meeting, the Prosecutor wins. Note: Jester, Prosecutor, and Innocent can win together.","(Злой - Нейтрал):\nУ Палача есть цель, которая будет обозначена ромбом「♦」рядом с именем цели. Если цель убита, Палач сменит свою роль на Члена Экипажа, Шута или Выжившего в соответствии с настройками. Если его цель будет изгнана на собрании, то победит Палач. Примечание: Шут, Палач и Обвинитель могут победить вместе.","(中立陣營):\n當遊戲開始時暴民會被分配一個處刑目標，並在他的名字旁用「♦」標示。如果處刑目標被殺，那麼暴民的職業會根據設定變為船員、小丑、投機者。如果處刑目標被票出那麼暴民勝利。\n請注意: 小丑、暴民、冤罪師可以一同獲勝。","(中立阵营):\n游戏开始时处刑人会被分配到一个处刑目标，并在其昵称旁用菱形「♦」表示。若处刑目标被击杀，则处刑的职业会根据设置变为船员，小丑或投机者。如果处刑目标在会议中被票出则处刑人胜利。请注意：小丑、处刑人、冤罪师可以共享胜利。"
+"ExecutionerInfoLong","(中立阵营):\n游戏开始时处刑人会被分配到一个处刑目标，并在其昵称旁用菱形「♦」表示。若处刑目标被击杀，则处刑的职业会根据设置变为船员，小丑或投机者。如果处刑目标在会议中被票出则处刑人胜利。请注意：小丑、处刑人、冤罪师可以共享胜利。","(Neutrals):\nExecutioner has an execution target, which will be indicated by a diamond 「♦」 next to their name. If the execution target is killed, the Executioner will be changed to Crewmate, Jester or Opportunist according to the settings. If the execution target is voted out in the meeting, the Executioner wins. Note: Jester, Executioner, and Innocent can win together.","(Злой - Нейтрал):\nУ Палача есть цель, которая будет обозначена ромбом「♦」рядом с именем цели. Если цель убита, Палач сменит свою роль на Члена Экипажа, Шута или Выжившего в соответствии с настройками. Если его цель будет изгнана на собрании, то победит Палач. Примечание: Шут, Палач и Обвинитель могут победить вместе.","(中立陣營):\n當遊戲開始時暴民會被分配一個處刑目標，並在他的名字旁用「♦」標示。如果處刑目標被殺，那麼暴民的職業會根據設定變為船員、小丑、投機者。如果處刑目標被票出那麼暴民勝利。\n請注意: 小丑、暴民、冤罪師可以一同獲勝。","(中立阵营):\n游戏开始时处刑人会被分配到一个处刑目标，并在其昵称旁用菱形「♦」表示。若处刑目标被击杀，则处刑的职业会根据设置变为船员，小丑或投机者。如果处刑目标在会议中被票出则处刑人胜利。请注意：小丑、处刑人、冤罪师可以共享胜利。"
 "LawyerInfoLong","","(Neutrals):\nLawyer has a target to defend, which will be indicated by a diamond 「♦」 next to their name.\nIf your target wins, you win.\nIf they lose, you lose.","","",""
 "OpportunistInfoLong","(中立阵营):\n若投机者在游戏结束时存活，则投机者跟随获胜玩家一同获得胜利。","(Neutrals):\nIf the Opportunist survives at the end of the game, the Opportunist will win with the winning player.","(Добрый - Нейтрал):\nВыживший выигрывает игру с любыми другими ролями, но только если он выжил.","(中立陣營)\n若投機主義者活到遊戲結束時，那麼投機主義者會跟勝利方玩家一同獲勝。","(中立阵营):\n若投机者在游戏结束时存活，则投机者跟随获胜玩家一同获得胜利。"
 "MarioInfoLong","(中立阵营):\n马里奥跳管达到一定次数就会单独获得胜利。","(Neutrals):\nMario will win alone by venting a certain number of times.","(Злой - Нейтрал):\nМарио победит в одиночку, если прыгнет в вентиляцию определенное количество раз.","(中立陣營):\n當瑪利歐跳管道達到一定次數就會單獨獲勝。","(中立阵营):\n马里奥跳管达到一定次数就会单独获得胜利。"
@@ -517,6 +524,7 @@
 "HexMasterInfoLong","","(Neutrals):\nAs the Hex Master, you can hex players or kill them.\nHexing a player works the same as spelling as a Spellcaster.","(Злой - Нейтрал):\nМастер Проклятий может проклинать игроков или убивать их.\nПроклятие игрока работает точно так же, как заклинание у Ведьмы.","",""
 "WraithInfoLong","","(Neutrals):\nAs the Wraith, you can use vents to temporarily go invisible.\nDue to vents toggling your ability to go invisible, you cannot vent.\nTrying to vent while invisible will cause you to become visible again.\nEven when on cooldown, you cannot vent.\n\nKill everyone to win.","(Злой - Нейтрал):\nДух может использовать вентиляцию, чтобы временно стать невидимым.\nИз-за того, что вентиляция переключает вашу способность стать невидимым, вы не можете выйти из него.\nПопытка выйти из невидимости снова сделает вас видимым.\nДаже во время отката вентиляции вы не можете этого сделать.\n\nУбейте всех, чтобы победить.","",""
 "NSerialKillerInfoLong","","(Neutrals):\nAs the Serial Killer, your job is to simply murder everyone to win.","(Злой - Нейтрал):\nКак Серийный Убийца, ваша задача просто убить всех, чтобы победить.","",""
+"JuggernautInfoLong","","(Neutrals):\nAs the Juggernaut, your kill cooldown decreases with each kill you make.\n\nKill everyone to win.","","",""
 
 "# 附加职业 / Add-ons descriptions"
 "LastImpostorInfoLong","(附加职业):\n这个效果在内鬼仅剩一人时赋予该内鬼。使其击杀冷却缩短。","(Add-ons):\nThis effect is given to the last surviving Impostor. Reduces their kill cooldown.","(Атрибут):\nАтрибут, присваивается последнему Предателю. \nВремя отката убийства становится меньше, чем обычно. \nНе назначается Охотнику за головами, Серийному убийце или Вампиру.","(附加職業):\n這個效果只在偽裝者陣營只剩下一人時賦予該玩家，被賦予效果的玩家殺人冷卻將會縮短。","(附加职业):\n这个效果在内鬼仅剩一人时赋予该内鬼。使其击杀冷却缩短。"
@@ -807,7 +815,7 @@
 "MayorHideVote","隐藏市长附加的投票","Hide additional vote(s)","Скрыть дополнительные голоса","隱藏市長附加的投票","隐藏市长附加的投票"
 "ExecutionerCanTargetImpostor","<color=#ff1919>内鬼</color>可以成为目标","Can Target <color=#ff1919>Impostors</color>","Может иметь цель изгнать <color=#ff1919>Предателя</color>","<color=#ff1919>偽裝者</color>可以成為目標","<color=#ff1919>内鬼</color>可以成为目标"
 "ExecutionerCanTargetNeutralKiller","带刀<color=#ffab1b>中立</color>玩家可以成为目标","Can Target <color=#ffab1b>Neutral Killers</color>","Может иметь цель изгнать <color=#ffab1b>Нейтрального Убийцу</color>","帶刀<color=#ffab1b>中立</color>玩家可以成為目標","带刀<color=#ffab1b>中立</color>玩家可以成为目标"
-"ExecutionerChangeRolesAfterTargetKilled","目标死亡后将变为","When Target Dies, <color=#611c3a>Executioner</color> becomes","Роль после смерти его цели","目標死亡後將變為","目标死亡后将变为"
+"ExecutionerChangeRolesAfterTargetKilled","目标死亡后将变为","When Target Dies, <color=#c0c0c0>Executioner</color> becomes","Роль после смерти его цели","目標死亡後將變為","目标死亡后将变为"
 "LawyerCanTargetImpostor","","Can Target <color=#ff1919>Impostors</color>","Может иметь <color=#ff1919>Предателя</color> как цель","",""
 "LawyerCanTargetNeutralKiller","","Can Target <color=#ffab1b>Neutral Killers</color>","Может иметь <color=#ffab1b>Нейтральных Убийц</color> как цель","",""
 "LawyerCanTargetCrewmate","","Can Target <color=#8cffff>Crewmates</color>","Может иметь <color=#8cffff>Членов Экипажа</color> как цель","",""
