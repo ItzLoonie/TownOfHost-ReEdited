@@ -966,6 +966,7 @@ public static class Options
    ////     GGCanGuessAdt = BooleanOptionItem.Create(6050630, "GGCanGuessAdt", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NiceGuesser]);
    //     GGTryHideMsg = BooleanOptionItem.Create(6050635, "GuesserTryHideMsg", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NiceGuesser])
     //        .SetColor(Color.green);
+        Juggernaut.SetupCustomOption();
         TextOptionItem.Create(120025, "OtherRoles.Addons", TabGroup.ExclusiveRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 154, 206, byte.MaxValue));

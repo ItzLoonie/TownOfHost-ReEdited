@@ -22,6 +22,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Mafia => CustomRoles.Impostor,
                 CustomRoles.Terrorist => CustomRoles.Engineer,
                 CustomRoles.Executioner => CustomRoles.Crewmate,
+                CustomRoles.Juggernaut => CustomRoles.Impostor,
                 CustomRoles.Lawyer => CustomRoles.Crewmate,
                 CustomRoles.Vampire => CustomRoles.Impostor,
                 CustomRoles.Poisoner => CustomRoles.Impostor,
@@ -123,6 +124,7 @@ internal static class CustomRolesHelper
             CustomRoles.Gamer => RoleTypes.Impostor,
             CustomRoles.HexMaster => RoleTypes.Impostor,
             CustomRoles.Wraith => RoleTypes.Impostor,
+            CustomRoles.Juggernaut => RoleTypes.Impostor,
             CustomRoles.DarkHide => RoleTypes.Impostor,
             CustomRoles.Provocateur => RoleTypes.Impostor,
             CustomRoles.BloodKnight => RoleTypes.Impostor,
@@ -178,6 +180,7 @@ internal static class CustomRolesHelper
             CustomRoles.HexMaster or
             CustomRoles.Wraith or
             CustomRoles.Gamer or
+            CustomRoles.Juggernaut or
             CustomRoles.DarkHide or
             CustomRoles.Poisoner or
             CustomRoles.NSerialKiller or
@@ -189,6 +192,7 @@ internal static class CustomRolesHelper
         return role is
             CustomRoles.Terrorist or
             CustomRoles.Arsonist or
+            CustomRoles.Juggernaut or
             CustomRoles.Jackal or
        //     CustomRoles.Sidekick or
             CustomRoles.God or
@@ -278,6 +282,7 @@ internal static class CustomRolesHelper
             CustomRoles.Wraith or
             CustomRoles.Terrorist or
             CustomRoles.Executioner or
+            CustomRoles.Juggernaut or
             CustomRoles.Lawyer or
             CustomRoles.Arsonist or
             CustomRoles.Jackal or
@@ -439,6 +444,7 @@ internal static class CustomRolesHelper
            CustomRoles.NWitch => CountTypes.NWitch,
            CustomRoles.Wraith => CountTypes.Wraith,
            CustomRoles.NSerialKiller => CountTypes.NSerialKiller,
+           CustomRoles.Juggernaut => CountTypes.Juggernaut,
            _ => role.IsImpostorTeam() ? CountTypes.Impostor : CountTypes.Crew,
        };
 
@@ -468,4 +474,5 @@ public enum CountTypes
     NWitch,
     Wraith,
     NSerialKiller,
+    Juggernaut,
 }
