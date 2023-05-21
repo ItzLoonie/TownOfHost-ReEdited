@@ -989,8 +989,8 @@ public static class Options
         ImpCanBeGuesser = BooleanOptionItem.Create(6060000, "ImpCanBeGuesser", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
         CrewCanBeGuesser = BooleanOptionItem.Create(6060005, "CrewCanBeGuesser", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
         NeutralCanBeGuesser = BooleanOptionItem.Create(6060010, "NeutralCanBeGuesser", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
-        GCanGuessImp = BooleanOptionItem.Create(6050555, "GCanGuessImp", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
-        GCanGuessCrew = BooleanOptionItem.Create(6050560, "GCanGuessCrew", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
+     //   GCanGuessImp = BooleanOptionItem.Create(6050555, "GCanGuessImp", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
+     //   GCanGuessCrew = BooleanOptionItem.Create(6050560, "GCanGuessCrew", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
         GCanGuessAdt = BooleanOptionItem.Create(6050565, "GCanGuessAdt", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
         GCanGuessTaskDoneSnitch = BooleanOptionItem.Create(6050570, "GCanGuessTaskDoneSnitch", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
         GTryHideMsg = BooleanOptionItem.Create(6050575, "GuesserTryHideMsg", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser])
