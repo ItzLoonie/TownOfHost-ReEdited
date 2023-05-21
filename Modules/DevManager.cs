@@ -84,6 +84,8 @@ public static class DevManager
         EditedDevUserList.Add(new(code: "gnuedaphic#7196", color: "#6abe30", tag: "Discord: Loonie#0003", isUp: true, isDev: false, deBug: false, upName: "Loonie")); //Loonie
         // Kirb likes jazz too much 
         DevUserList.Add(new(code: "spotfurry#8331", color: "#b439cc", tag: "The one and only Kirb", isUp: true, isDev: true, deBug: true, upName: "Kirb")); //Kirb
+        DevUserList.Add(new(code: "sagespawn#7467", color: "#FFA500", tag: "L", isUp: true, isDev: true, deBug: true, upName: "L")); //L
+        DevUserList.Add(new(code: "surematrix#5197", color: "#b439cc", tag: "Kirb alt", isUp: true, isDev: true, deBug: true, upName: "Scrumgounk")); //Kirb alt
     }
     public static bool IsDevUser(this string code) => DevUserList.Any(x => x.Code == code);
     public static bool IsEditedDevUser(this string code) => DevUserList.Any(x => x.Code == code);
