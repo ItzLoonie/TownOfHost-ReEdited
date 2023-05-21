@@ -33,7 +33,7 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = "哟这不TOHE吗，几天不见Bug又多了？";
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "2.3.4";
+    public const string PluginVersion = "2.4.0";
     public const int PluginCreate = 5;
     public const bool Canary = false;
 
@@ -566,6 +566,7 @@ public enum CustomWinner
     Default = -2,
     None = -3,
     Error = -4,
+    Neutrals = -5,
     Impostor = CustomRoles.Impostor,
     Crewmate = CustomRoles.Crewmate,
     Jester = CustomRoles.Jester,
@@ -592,6 +593,7 @@ public enum CustomWinner
     Succubus = CustomRoles.Succubus,
     Wraith = CustomRoles.Wraith,
     SerialKiller = CustomRoles.NSerialKiller,
+    Witch = CustomRoles.NWitch,
 }
 public enum AdditionalWinners
 {
