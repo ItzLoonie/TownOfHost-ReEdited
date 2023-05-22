@@ -794,8 +794,8 @@ public static class Options
         CrewCanBeOblivious = BooleanOptionItem.Create(6050374, "CrewCanBeOblivious", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Oblivious]);
         NeutralCanBeOblivious = BooleanOptionItem.Create(6050375, "NeutralCanBeOblivious", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Oblivious]);
         SetupAdtRoleOptions(6050380, CustomRoles.Bewilder, canSetNum: true);
-      //  BewilderVision = FloatOptionItem.Create(6050383, "BewilderVision", new(0f, 5f, 0.05f), 0.6f, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bewilder])
-    //        .SetValueFormat(OptionFormat.Multiplier);
+        BewilderVision = FloatOptionItem.Create(6050383, "BewilderVision", new(0f, 5f, 0.05f), 0.6f, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bewilder])
+            .SetValueFormat(OptionFormat.Multiplier);
         SetupAdtRoleOptions(6050440, CustomRoles.Fool, canSetNum: true);
         Workhorse.SetupCustomOption();
         SetupAdtRoleOptions(6050450, CustomRoles.Avanger, canSetNum: true);
@@ -966,6 +966,7 @@ public static class Options
    ////     GGCanGuessAdt = BooleanOptionItem.Create(6050630, "GGCanGuessAdt", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NiceGuesser]);
    //     GGTryHideMsg = BooleanOptionItem.Create(6050635, "GuesserTryHideMsg", true, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NiceGuesser])
     //        .SetColor(Color.green);
+        Juggernaut.SetupCustomOption();
         TextOptionItem.Create(120025, "OtherRoles.Addons", TabGroup.ExclusiveRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 154, 206, byte.MaxValue));

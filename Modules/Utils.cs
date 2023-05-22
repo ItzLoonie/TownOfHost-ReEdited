@@ -400,6 +400,7 @@ public static class Utils
             case CustomRoles.Gamer:
             case CustomRoles.HexMaster:
             case CustomRoles.Wraith:
+            case CustomRoles.Juggernaut:
             case CustomRoles.DarkHide:
             case CustomRoles.Collector:
             case CustomRoles.ImperiusCurse:
@@ -1256,7 +1257,7 @@ public static class Utils
                     }
                     if (seer.Is(CustomRoles.NiceGuesser) || seer.Is(CustomRoles.EvilGuesser) || seer.Is(CustomRoles.Guesser))
                     {
-                        if (seer.IsAlive() && target.IsAlive() && isForMeeting)
+                        if (seer.IsAlive() && target.IsAlive() && isForMeeting && NoCache)
                         {
                             TargetPlayerName = ColorString(GetRoleColor(seer.Is(CustomRoles.NiceGuesser) ? CustomRoles.NiceGuesser : CustomRoles.EvilGuesser), target.PlayerId.ToString()) + " " + TargetPlayerName;
                         }

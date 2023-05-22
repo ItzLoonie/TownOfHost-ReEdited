@@ -97,6 +97,7 @@ public static class Divinator
                 CustomRoles.BountyHunter or
                 CustomRoles.Minimalism or
                 CustomRoles.Sans or
+                CustomRoles.Juggernaut or
                 CustomRoles.SpeedBooster or
                 CustomRoles.Sheriff or
                 CustomRoles.Arsonist or
