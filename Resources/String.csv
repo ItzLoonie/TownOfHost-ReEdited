@@ -765,6 +765,7 @@
 "MenuTitle.Other","★ 其它设定","★Different★","★Другое★","★ 其他設定","★ 其它设定"
 "MenuTitle.Ejections","★ 驱逐相关设定","★Ejection★","★Выбрасивание★","★ 逐出相關設定","★ 驱逐相关设定"
 "MenuTitle.Settings","★Settings★","★Settings★","★Настройки★","★Settings★","★Settings★"
+"MenuTitle.TaskManagement","","★Task Management★","★Управление Заданиями★","",""
 "ShieldPersonDiedFirst","首刀保护（仅限被杀）","Shield the person who got killed first in the last game","Щит для первого убитого в прошлой игре","首刀保護(僅限被殺)","首刀保护（仅限被杀）"
 "JackalWinWithSidekick","","<color=#00b4eb>Jackal</color> can win with <color=#00b4eb>Sidekick</color>'s team","<color=#00b4eb>Шакал</color> может победить с командой <color=#00b4eb>Союзника</color>","",""
 "SidekickKnowOtherSidekick","","<color=#00b4eb>Sidekicks</color> know each other","<color=#00b4eb>Союзники</color> могуть знать друг друга","",""
