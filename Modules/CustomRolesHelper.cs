@@ -169,11 +169,30 @@ internal static class CustomRolesHelper
             CustomRoles.Trapper or
             CustomRoles.Guesser;
     }
+    public static bool IsNonNK(this CustomRoles role)
+    {
+        return role is
+            CustomRoles.Jester or
+            CustomRoles.Terrorist or
+            CustomRoles.Opportunist or
+            CustomRoles.Arsonist or
+            CustomRoles.Executioner or
+            CustomRoles.Mario or
+            CustomRoles.Lawyer or
+            CustomRoles.God or
+            CustomRoles.Innocent or
+            CustomRoles.Revolutionist or
+            CustomRoles.Workaholic or
+            CustomRoles.Collector or
+            CustomRoles.Sunnyboy or
+            CustomRoles.Totocalcio or
+            CustomRoles.Succubus;
+    }
     public static bool IsNK(this CustomRoles role) // �Ƿ��������
     {
         return role is
             CustomRoles.Jackal or
-        //    CustomRoles.Sidekick or
+            //CustomRoles.Sidekick or
             CustomRoles.Pelican or
             CustomRoles.NWitch or
             CustomRoles.FFF or

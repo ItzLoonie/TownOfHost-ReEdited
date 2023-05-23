@@ -17,23 +17,35 @@ internal class CustomRoleSelector
         var rd = IRandom.Instance;
         int playerCount = Main.AllAlivePlayerControls.Count();
         int optImpNum = Main.RealOptionsData.GetInt(Int32OptionNames.NumImpostors);
-        int optNeutralNum = 0;
-        if (Options.NeutralRolesMaxPlayer.GetInt() > 0 && Options.NeutralRolesMaxPlayer.GetInt() >= Options.NeutralRolesMinPlayer.GetInt())
-            optNeutralNum = rd.Next(Options.NeutralRolesMinPlayer.GetInt(), Options.NeutralRolesMaxPlayer.GetInt() + 1);
+        int optNonNeutralKillingNum = 0;
+        int optNeutralKillingNum = 0;
+
+        if (Options.NonNeutraKillingRolesMaxPlayer.GetInt() > 0 && Options.NonNeutraKillingRolesMaxPlayer.GetInt() >= Options.NonNeutraKillingRolesMinPlayer.GetInt())
+        {
+            optNonNeutralKillingNum = rd.Next(Options.NonNeutraKillingRolesMinPlayer.GetInt(), Options.NonNeutraKillingRolesMaxPlayer.GetInt() + 1);
+        }
+        if (Options.NeutralKillingRolesMaxPlayer.GetInt() > 0 && Options.NeutralKillingRolesMaxPlayer.GetInt() >= Options.NeutralKillingRolesMinPlayer.GetInt())
+        {
+            optNeutralKillingNum = rd.Next(Options.NeutralKillingRolesMinPlayer.GetInt(), Options.NeutralKillingRolesMaxPlayer.GetInt() + 1);
+        }
 
         int readyRoleNum = 0;
-        int readyNeutralNum = 0;
+        int readyNonNeutralKillingNum = 0;
+        int readyNeutralKillingNum = 0;
 
         List<CustomRoles> rolesToAssign = new();
-
         List<CustomRoles> roleList = new();
         List<CustomRoles> roleOnList = new();
+
         List<CustomRoles> ImpOnList = new();
-        List<CustomRoles> NeutralOnList = new();
+        List<CustomRoles> ImpRateList = new();
+
+        List<CustomRoles> NonNeutraKillingOnList = new();
+        List<CustomRoles> NeutraKillingOnList = new();
 
         List<CustomRoles> roleRateList = new();
-        List<CustomRoles> ImpRateList = new();
-        List<CustomRoles> NeutralRateList = new();
+        List<CustomRoles> NonNeutraKillingRateList = new();
+        List<CustomRoles> NeutraKillingRateList = new();
 
         if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
         {
@@ -56,14 +68,16 @@ internal class CustomRoleSelector
         foreach (var role in roleList) if (role.GetMode() == 2)
             {
                 if (role.IsImpostor()) ImpOnList.Add(role);
-                else if (role.IsNeutral()) NeutralOnList.Add(role);
+                else if (role.IsNonNK()) NonNeutraKillingOnList.Add(role); 
+                else if (role.IsNK()) NeutraKillingOnList.Add(role);
                 else roleOnList.Add(role);
             }
         // 职业设置为：启用
         foreach (var role in roleList) if (role.GetMode() == 1)
             {
                 if (role.IsImpostor()) ImpRateList.Add(role);
-                else if (role.IsNeutral()) NeutralRateList.Add(role);
+                else if (role.IsNonNK()) NonNeutraKillingOnList.Add(role);
+                else if (role.IsNK()) NeutraKillingOnList.Add(role);
                 else roleRateList.Add(role);
             }
 
@@ -93,31 +107,57 @@ internal class CustomRoleSelector
             }
         }
 
-        // 抽取优先职业（中立）
-        while (NeutralOnList.Count > 0 && optNeutralNum > 0)
+        while (NonNeutraKillingOnList.Count > 0 && optNonNeutralKillingNum > 0)
         {
-            var select = NeutralOnList[rd.Next(0, NeutralOnList.Count)];
-            NeutralOnList.Remove(select);
+            var select = NonNeutraKillingOnList[rd.Next(0, NonNeutraKillingOnList.Count)];
+            NonNeutraKillingOnList.Remove(select);
             rolesToAssign.Add(select);
             readyRoleNum++;
-            readyNeutralNum += select.GetCount();
+            readyNonNeutralKillingNum += select.GetCount();
             Logger.Info(select.ToString() + " 加入中立职业待选列表（优先）", "CustomRoleSelector");
             if (readyRoleNum >= playerCount) goto EndOfAssign;
-            if (readyNeutralNum >= optNeutralNum) break;
+            if (readyNonNeutralKillingNum >= optNonNeutralKillingNum) break;
         }
-        // 优先职业不足以分配，开始分配启用的职业（中立）
-        if (readyRoleNum < playerCount && readyNeutralNum < optNeutralNum)
+
+        while (NeutraKillingOnList.Count > 0 && optNeutralKillingNum > 0)
         {
-            while (NeutralRateList.Count > 0 && optNeutralNum > 0)
+            var select = NeutraKillingOnList[rd.Next(0, NeutraKillingOnList.Count)];
+            NeutraKillingOnList.Remove(select);
+            rolesToAssign.Add(select);
+            readyRoleNum++;
+            readyNeutralKillingNum += select.GetCount();
+            Logger.Info(select.ToString() + " 加入中立职业待选列表（优先）", "CustomRoleSelector");
+            if (readyRoleNum >= playerCount) goto EndOfAssign;
+            if (readyNeutralKillingNum >= optNeutralKillingNum) break;
+        }
+
+        if (readyRoleNum < playerCount && readyNonNeutralKillingNum < optNonNeutralKillingNum)
+        {
+            while (NonNeutraKillingRateList.Count > 0 && optNonNeutralKillingNum > 0)
             {
-                var select = NeutralRateList[rd.Next(0, NeutralRateList.Count)];
-                NeutralRateList.Remove(select);
+                var select = NonNeutraKillingRateList[rd.Next(0, NonNeutraKillingRateList.Count)];
+                NonNeutraKillingRateList.Remove(select);
                 rolesToAssign.Add(select);
                 readyRoleNum++;
-                readyNeutralNum += select.GetCount();
+                readyNonNeutralKillingNum += select.GetCount();
                 Logger.Info(select.ToString() + " 加入中立职业待选列表", "CustomRoleSelector");
                 if (readyRoleNum >= playerCount) goto EndOfAssign;
-                if (readyNeutralNum >= optNeutralNum) break;
+                if (readyNonNeutralKillingNum >= optNonNeutralKillingNum) break;
+            }
+        }
+
+        if (readyRoleNum < playerCount && readyNeutralKillingNum < optNeutralKillingNum)
+        {
+            while (NeutraKillingRateList.Count > 0 && optNeutralKillingNum > 0)
+            {
+                var select = NeutraKillingRateList[rd.Next(0, NeutraKillingRateList.Count)];
+                NeutraKillingRateList.Remove(select);
+                rolesToAssign.Add(select);
+                readyRoleNum++;
+                readyNeutralKillingNum += select.GetCount();
+                Logger.Info(select.ToString() + " 加入中立职业待选列表", "CustomRoleSelector");
+                if (readyRoleNum >= playerCount) goto EndOfAssign;
+                if (readyNeutralKillingNum >= optNeutralKillingNum) break;
             }
         }
 
