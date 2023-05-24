@@ -201,7 +201,7 @@ public static class GuessManager
                     //死者检查
                     Utils.AfterPlayerDeathTasks(dp, true);
 
-                    Utils.NotifyRoles(isForMeeting: true, NoCache: true);
+                    Utils.NotifyRoles(isForMeeting: false, NoCache: true);
 
                     new LateTask(() => { Utils.SendMessage(string.Format(GetString("GuessKill"), Name), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.NiceGuesser), GetString("GuessKillTitle"))); }, 0.6f, "Guess Msg");
 

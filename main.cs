@@ -305,7 +305,7 @@ public class Main : BasePlugin
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Jester, "#ec62a5"},
                 {CustomRoles.Terrorist, "#00e600"},
-                {CustomRoles.Executioner, "#611c3a"},
+                {CustomRoles.Executioner, "#c0c0c0"},
                 {CustomRoles.Lawyer, "#008080"},
                 {CustomRoles.God, "#f96464"},
                 {CustomRoles.Opportunist, "#4dff4d"},
@@ -323,7 +323,6 @@ public class Main : BasePlugin
                 {CustomRoles.Collector, "#9d8892"},
                 {CustomRoles.Provocateur, "#74ba43"},
                 {CustomRoles.Sunnyboy, "#ff9902"},
-                {CustomRoles.BloodKnight, "#630000"},
                 {CustomRoles.Poisoner, "#ed2f91"},
                 {CustomRoles.NWitch, "#BF5FFF"},
                 {CustomRoles.Totocalcio, "#ff9409"},
@@ -331,6 +330,8 @@ public class Main : BasePlugin
                 {CustomRoles.HexMaster, "#ff00ff"},
                 {CustomRoles.Wraith, "#4B0082"},
                 {CustomRoles.NSerialKiller, "#233fcc"},
+                {CustomRoles.BloodKnight, "#630000"},
+                {CustomRoles.Juggernaut, "#A41342"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -511,6 +512,7 @@ public enum CustomRoles
     Pelican,
     Revolutionist,
     NSerialKiller,
+    Juggernaut,
     FFF,
     Konan,
     Gamer,
@@ -594,6 +596,7 @@ public enum CustomWinner
     Wraith = CustomRoles.Wraith,
     SerialKiller = CustomRoles.NSerialKiller,
     Witch = CustomRoles.NWitch,
+    Juggernaut = CustomRoles.Juggernaut,
 }
 public enum AdditionalWinners
 {

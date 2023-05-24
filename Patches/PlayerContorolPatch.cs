@@ -212,6 +212,9 @@ class CheckMurderPatch
                 case CustomRoles.Sans:
                     Sans.OnCheckMurder(killer);
                     break;
+                case CustomRoles.Juggernaut:
+                    Juggernaut.OnCheckMurder(killer);
+                    break;
                 case CustomRoles.Hangman:
                     if (!Hangman.OnCheckMurder(killer, target)) return false;
                     break;
