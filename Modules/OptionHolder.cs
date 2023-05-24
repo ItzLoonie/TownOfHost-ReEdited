@@ -264,6 +264,29 @@ public static class Options
     public static OptionItem GCanGuessTaskDoneSnitch;
     public static OptionItem GTryHideMsg;
 
+    // Maps
+    public static OptionItem RandomMapsMode;
+    public static OptionItem AddedTheSkeld;
+    public static OptionItem AddedMiraHQ;
+    public static OptionItem AddedPolus;
+    public static OptionItem AddedTheAirShip;
+    public static OptionItem AddedDleks;
+    public static OptionItem RandomSpawn;
+    public static OptionItem AirshipAdditionalSpawn;
+    public static OptionItem AirShipVariableElectrical;
+
+    // Sabotage
+    public static OptionItem SabotageTimeControl;
+    public static OptionItem PolusReactorTimeLimit;
+    public static OptionItem AirshipReactorTimeLimit;
+    public static OptionItem LightsOutSpecialSettings;
+    public static OptionItem DisableAirshipViewingDeckLightsPanel;
+    public static OptionItem DisableAirshipGapRoomLightsPanel;
+    public static OptionItem DisableAirshipCargoLightsPanel;
+    public static OptionItem CommsCamouflage;
+    public static OptionItem DisableReportWhenCC;
+    public static OptionItem KPDCamouflageMode;
+
     // タスク無効化
     public static OptionItem DisableTasks;
     public static OptionItem DisableSwipeCard;
@@ -307,18 +330,6 @@ public static class Options
     public static OptionItem DisableDevicesIgnoreNeutrals;
     public static OptionItem DisableDevicesIgnoreCrewmates;
     public static OptionItem DisableDevicesIgnoreAfterAnyoneDied;
-
-    // ランダムマップ
-    public static OptionItem RandomMapsMode;
-    public static OptionItem AddedTheSkeld;
-    public static OptionItem AddedMiraHQ;
-    public static OptionItem AddedPolus;
-    public static OptionItem AddedTheAirShip;
-    public static OptionItem AddedDleks;
-
-    // ランダムスポーン
-    public static OptionItem RandomSpawn;
-    public static OptionItem AirshipAdditionalSpawn;
 
     // 投票モード
     public static OptionItem VoteMode;
@@ -374,19 +385,6 @@ public static class Options
     //転落死
     public static OptionItem LadderDeath;
     public static OptionItem LadderDeathChance;
-    //エレキ構造変化
-    public static OptionItem AirShipVariableElectrical;
-
-    // リアクターの時間制御
-    public static OptionItem SabotageTimeControl;
-    public static OptionItem PolusReactorTimeLimit;
-    public static OptionItem AirshipReactorTimeLimit;
-
-    // 停電の特殊設定
-    public static OptionItem LightsOutSpecialSettings;
-    public static OptionItem DisableAirshipViewingDeckLightsPanel;
-    public static OptionItem DisableAirshipGapRoomLightsPanel;
-    public static OptionItem DisableAirshipCargoLightsPanel;
 
     // タスク上書き
     public static OverrideTasksData TerroristTasks;
@@ -401,9 +399,6 @@ public static class Options
     public static OptionItem GhostCanSeeOtherVotes;
     public static OptionItem GhostCanSeeDeathReason;
     public static OptionItem GhostIgnoreTasks;
-    public static OptionItem CommsCamouflage;
-    public static OptionItem DisableReportWhenCC;
-    public static OptionItem KPDCamouflageMode;
 
     // プリセット対象外
     public static OptionItem AllowConsole;
@@ -1182,6 +1177,69 @@ public static class Options
         DisableDevicesIgnoreAfterAnyoneDied = BooleanOptionItem.Create(101295, "IgnoreAfterAnyoneDied", false, TabGroup.GameSettings, false).SetParent(DisableDevicesIgnoreConditions)
             .SetGameMode(CustomGameMode.Standard);
 
+        //Maps Settings
+        TextOptionItem.Create(66_123_127, "MenuTitle.MapsSettings", TabGroup.GameSettings)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetColor(new Color32(19, 188, 233, byte.MaxValue));
+
+        // RandomMapsMode
+        RandomMapsMode = BooleanOptionItem.Create(100400, "RandomMapsMode", false, TabGroup.GameSettings, false)
+            .SetHeader(true)
+            .SetColor(new Color32(19, 188, 233, byte.MaxValue));
+        AddedTheSkeld = BooleanOptionItem.Create(100401, "AddedTheSkeld", false, TabGroup.GameSettings, false).SetParent(RandomMapsMode);
+        AddedMiraHQ = BooleanOptionItem.Create(100402, "AddedMIRAHQ", false, TabGroup.GameSettings, false).SetParent(RandomMapsMode);
+        AddedPolus = BooleanOptionItem.Create(100403, "AddedPolus", false, TabGroup.GameSettings, false).SetParent(RandomMapsMode);
+        AddedTheAirShip = BooleanOptionItem.Create(100404, "AddedTheAirShip", false, TabGroup.GameSettings, false).SetParent(RandomMapsMode);
+        // MapDleks = CustomOption.Create(100405, Color.white, "AddedDleks", false, RandomMapMode);
+
+        // RandomSpawn
+        RandomSpawn = BooleanOptionItem.Create(101300, "RandomSpawn", false, TabGroup.GameSettings, false)
+            .SetGameMode(CustomGameMode.Standard)
+           .SetColor(new Color32(19, 188, 233, byte.MaxValue));
+        AirshipAdditionalSpawn = BooleanOptionItem.Create(101301, "AirshipAdditionalSpawn", false, TabGroup.GameSettings, false).SetParent(RandomSpawn)
+            .SetGameMode(CustomGameMode.Standard);
+
+        // Airship Variable Electrical
+        AirShipVariableElectrical = BooleanOptionItem.Create(101600, "AirShipVariableElectrical", false, TabGroup.GameSettings, false)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetColor(new Color32(19, 188, 233, byte.MaxValue));
+
+
+        // 破坏相关设定
+        TextOptionItem.Create(66_123_121, "MenuTitle.Sabotage", TabGroup.GameSettings)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetColor(new Color32(243, 96, 96, byte.MaxValue));
+
+        // 通讯破坏小黑人
+        CommsCamouflage = BooleanOptionItem.Create(900_013, "CommsCamouflage", false, TabGroup.GameSettings, false)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetHeader(true)
+            .SetColor(new Color32(243, 96, 96, byte.MaxValue));
+        DisableReportWhenCC = BooleanOptionItem.Create(900_015, "DisableReportWhenCC", false, TabGroup.GameSettings, false).SetParent(CommsCamouflage)
+            .SetGameMode(CustomGameMode.Standard);
+
+        // 破坏时间设定
+        SabotageTimeControl = BooleanOptionItem.Create(100800, "SabotageTimeControl", false, TabGroup.GameSettings, false)
+           .SetColor(new Color32(243, 96, 96, byte.MaxValue))
+            .SetGameMode(CustomGameMode.Standard);
+        PolusReactorTimeLimit = FloatOptionItem.Create(100801, "PolusReactorTimeLimit", new(1f, 60f, 1f), 30f, TabGroup.GameSettings, false).SetParent(SabotageTimeControl)
+            .SetValueFormat(OptionFormat.Seconds)
+            .SetGameMode(CustomGameMode.Standard);
+        AirshipReactorTimeLimit = FloatOptionItem.Create(100802, "AirshipReactorTimeLimit", new(1f, 90f, 1f), 60f, TabGroup.GameSettings, false).SetParent(SabotageTimeControl)
+            .SetValueFormat(OptionFormat.Seconds)
+            .SetGameMode(CustomGameMode.Standard);
+
+        // 停电特殊设定（飞艇）
+        LightsOutSpecialSettings = BooleanOptionItem.Create(101500, "LightsOutSpecialSettings", false, TabGroup.GameSettings, false)
+          .SetColor(new Color32(243, 96, 96, byte.MaxValue))
+            .SetGameMode(CustomGameMode.Standard);
+        DisableAirshipViewingDeckLightsPanel = BooleanOptionItem.Create(101511, "DisableAirshipViewingDeckLightsPanel", false, TabGroup.GameSettings, false).SetParent(LightsOutSpecialSettings)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableAirshipGapRoomLightsPanel = BooleanOptionItem.Create(101512, "DisableAirshipGapRoomLightsPanel", false, TabGroup.GameSettings, false).SetParent(LightsOutSpecialSettings)
+            .SetGameMode(CustomGameMode.Standard);
+        DisableAirshipCargoLightsPanel = BooleanOptionItem.Create(101513, "DisableAirshipCargoLightsPanel", false, TabGroup.GameSettings, false).SetParent(LightsOutSpecialSettings)
+            .SetGameMode(CustomGameMode.Standard);
+
         //会议相关设定
         TextOptionItem.Create(66_123_122, "MenuTitle.Meeting", TabGroup.GameSettings)
             .SetGameMode(CustomGameMode.Standard)
@@ -1231,67 +1289,30 @@ public static class Options
         WhenTie = StringOptionItem.Create(100530, "WhenTie", tieModes, 0, TabGroup.GameSettings, false).SetParent(VoteMode)
             .SetGameMode(CustomGameMode.Standard);
 
-        // 破坏相关设定
-        TextOptionItem.Create(66_123_121, "MenuTitle.Sabotage", TabGroup.GameSettings)
+        // 幽灵相关设定
+        TextOptionItem.Create(66_123_124, "MenuTitle.Ghost", TabGroup.GameSettings)
             .SetGameMode(CustomGameMode.Standard)
-            .SetColor(new Color32(241, 212, 227, byte.MaxValue));
+            .SetColor(new Color32(217, 218, 255, byte.MaxValue));
 
-        // 通讯破坏小黑人
-        CommsCamouflage = BooleanOptionItem.Create(900_013, "CommsCamouflage", false, TabGroup.GameSettings, false)
+        // 幽灵设置
+        GhostIgnoreTasks = BooleanOptionItem.Create(900_012, "GhostIgnoreTasks", false, TabGroup.GameSettings, false)
             .SetGameMode(CustomGameMode.Standard)
             .SetHeader(true)
-            .SetColor(new Color32(241, 212, 227, byte.MaxValue));
-        DisableReportWhenCC = BooleanOptionItem.Create(900_015, "DisableReportWhenCC", false, TabGroup.GameSettings, false).SetParent(CommsCamouflage)
-            .SetGameMode(CustomGameMode.Standard);
-
-        // 破坏时间设定
-        SabotageTimeControl = BooleanOptionItem.Create(100800, "SabotageTimeControl", false, TabGroup.GameSettings, false)
-           .SetColor(new Color32(241, 212, 227, byte.MaxValue))
-            .SetGameMode(CustomGameMode.Standard);
-        PolusReactorTimeLimit = FloatOptionItem.Create(100801, "PolusReactorTimeLimit", new(1f, 60f, 1f), 30f, TabGroup.GameSettings, false).SetParent(SabotageTimeControl)
-            .SetValueFormat(OptionFormat.Seconds)
-            .SetGameMode(CustomGameMode.Standard);
-        AirshipReactorTimeLimit = FloatOptionItem.Create(100802, "AirshipReactorTimeLimit", new(1f, 90f, 1f), 60f, TabGroup.GameSettings, false).SetParent(SabotageTimeControl)
-            .SetValueFormat(OptionFormat.Seconds)
-            .SetGameMode(CustomGameMode.Standard);
-
-        // 停电特殊设定（飞艇）
-        LightsOutSpecialSettings = BooleanOptionItem.Create(101500, "LightsOutSpecialSettings", false, TabGroup.GameSettings, false)
-          .SetColor(new Color32(241, 212, 227, byte.MaxValue))
-            .SetGameMode(CustomGameMode.Standard);
-        DisableAirshipViewingDeckLightsPanel = BooleanOptionItem.Create(101511, "DisableAirshipViewingDeckLightsPanel", false, TabGroup.GameSettings, false).SetParent(LightsOutSpecialSettings)
-            .SetGameMode(CustomGameMode.Standard);
-        DisableAirshipGapRoomLightsPanel = BooleanOptionItem.Create(101512, "DisableAirshipGapRoomLightsPanel", false, TabGroup.GameSettings, false).SetParent(LightsOutSpecialSettings)
-            .SetGameMode(CustomGameMode.Standard);
-        DisableAirshipCargoLightsPanel = BooleanOptionItem.Create(101513, "DisableAirshipCargoLightsPanel", false, TabGroup.GameSettings, false).SetParent(LightsOutSpecialSettings)
-            .SetGameMode(CustomGameMode.Standard);
-
-        // 飞艇地图随机关闭配电门
-        AirShipVariableElectrical = BooleanOptionItem.Create(101600, "AirShipVariableElectrical", false, TabGroup.GameSettings, false)
+            .SetColor(new Color32(217, 218, 255, byte.MaxValue));
+        GhostCanSeeOtherRoles = BooleanOptionItem.Create(900_010, "GhostCanSeeOtherRoles", true, TabGroup.GameSettings, false)
             .SetGameMode(CustomGameMode.Standard)
-            .SetColor(new Color32(241, 212, 227, byte.MaxValue));
+            .SetColor(new Color32(217, 218, 255, byte.MaxValue));
+        GhostCanSeeOtherVotes = BooleanOptionItem.Create(900_011, "GhostCanSeeOtherVotes", true, TabGroup.GameSettings, false)
+            .SetGameMode(CustomGameMode.Standard)
+             .SetColor(new Color32(217, 218, 255, byte.MaxValue));
+        GhostCanSeeDeathReason = BooleanOptionItem.Create(900_014, "GhostCanSeeDeathReason", true, TabGroup.GameSettings, false)
+            .SetGameMode(CustomGameMode.Standard)
+           .SetColor(new Color32(217, 218, 255, byte.MaxValue));
 
         // 其它设定
         TextOptionItem.Create(66_123_123, "MenuTitle.Other", TabGroup.GameSettings)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(193, 255, 209, byte.MaxValue));
-
-        // 随机地图模式
-        RandomMapsMode = BooleanOptionItem.Create(100400, "RandomMapsMode", false, TabGroup.GameSettings, false)
-            .SetHeader(true)
-            .SetColor(new Color32(193, 255, 209, byte.MaxValue));
-        AddedTheSkeld = BooleanOptionItem.Create(100401, "AddedTheSkeld", false, TabGroup.GameSettings, false).SetParent(RandomMapsMode);
-        AddedMiraHQ = BooleanOptionItem.Create(100402, "AddedMIRAHQ", false, TabGroup.GameSettings, false).SetParent(RandomMapsMode);
-        AddedPolus = BooleanOptionItem.Create(100403, "AddedPolus", false, TabGroup.GameSettings, false).SetParent(RandomMapsMode);
-        AddedTheAirShip = BooleanOptionItem.Create(100404, "AddedTheAirShip", false, TabGroup.GameSettings, false).SetParent(RandomMapsMode);
-        // MapDleks = CustomOption.Create(100405, Color.white, "AddedDleks", false, RandomMapMode);
-
-        // 随机出生点
-        RandomSpawn = BooleanOptionItem.Create(101300, "RandomSpawn", false, TabGroup.GameSettings, false)
-            .SetGameMode(CustomGameMode.Standard)
-           .SetColor(new Color32(193, 255, 209, byte.MaxValue));
-        AirshipAdditionalSpawn = BooleanOptionItem.Create(101301, "AirshipAdditionalSpawn", false, TabGroup.GameSettings, false).SetParent(RandomSpawn)
-            .SetGameMode(CustomGameMode.Standard);
 
         // 梯子摔死
         LadderDeath = BooleanOptionItem.Create(101100, "LadderDeath", false, TabGroup.GameSettings, false)
@@ -1315,26 +1336,6 @@ public static class Options
            .SetColor(new Color32(193, 255, 209, byte.MaxValue))
             .SetValueFormat(OptionFormat.Seconds)
             .SetGameMode(CustomGameMode.Standard);
-
-        // 幽灵相关设定
-        TextOptionItem.Create(66_123_124, "MenuTitle.Ghost", TabGroup.GameSettings)
-            .SetGameMode(CustomGameMode.Standard)
-            .SetColor(new Color32(217, 218, 255, byte.MaxValue));
-
-        // 幽灵设置
-        GhostIgnoreTasks = BooleanOptionItem.Create(900_012, "GhostIgnoreTasks", false, TabGroup.GameSettings, false)
-            .SetGameMode(CustomGameMode.Standard)
-            .SetHeader(true)
-            .SetColor(new Color32(217, 218, 255, byte.MaxValue));
-        GhostCanSeeOtherRoles = BooleanOptionItem.Create(900_010, "GhostCanSeeOtherRoles", true, TabGroup.GameSettings, false)
-            .SetGameMode(CustomGameMode.Standard)
-            .SetColor(new Color32(217, 218, 255, byte.MaxValue));
-        GhostCanSeeOtherVotes = BooleanOptionItem.Create(900_011, "GhostCanSeeOtherVotes", true, TabGroup.GameSettings, false)
-            .SetGameMode(CustomGameMode.Standard)
-             .SetColor(new Color32(217, 218, 255, byte.MaxValue));
-        GhostCanSeeDeathReason = BooleanOptionItem.Create(900_014, "GhostCanSeeDeathReason", true, TabGroup.GameSettings, false)
-            .SetGameMode(CustomGameMode.Standard)
-           .SetColor(new Color32(217, 218, 255, byte.MaxValue));
 
         #endregion 
 
