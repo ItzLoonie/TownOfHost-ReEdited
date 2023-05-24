@@ -22,6 +22,7 @@
 
 ---
 **If you are following TOHE, you might know KARPED1EM has quit developing and stopped service and supports of TOHE.**
+
 **This repo is the TOHE-Restored, the continue version of TOHE.**
 ---
 
@@ -34,7 +35,7 @@
 > 
 > - TOHE repo is forked from TOH
 > 
-### :star: [TOH](https://github.com/KARPED1EM/TownOfHostEdited) :
+### :star: [TOHE](https://github.com/KARPED1EM/TownOfHostEdited) :
 > 
 > - This repo is forked from TOHE 
 > 
