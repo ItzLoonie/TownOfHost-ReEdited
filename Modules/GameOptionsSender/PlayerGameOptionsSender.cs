@@ -186,6 +186,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             break;
             case CustomRoles.Wraith:
             case CustomRoles.HexMaster:
+            case CustomRoles.Parasite:
                 opt.SetVision(true);
                 Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
                 break;
@@ -274,6 +275,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                     break;
                 case CustomRoles.Reach:
                     opt.SetInt(Int32OptionNames.KillDistance, 2);
+                    break;
+                case CustomRoles.Madmate:
+                    opt.SetVision(Options.MadmateHasImpostorVision.GetBool());
                     break;
             }
         }

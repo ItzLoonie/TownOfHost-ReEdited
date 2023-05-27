@@ -432,6 +432,7 @@ static class ExtendedPlayerControl
             CustomRoles.Poisoner => pc.IsAlive(),
             CustomRoles.Juggernaut => pc.IsAlive(),
             CustomRoles.NSerialKiller => pc.IsAlive(),
+            CustomRoles.Parasite => pc.IsAlive(),
             CustomRoles.NWitch => pc.IsAlive(),
             CustomRoles.Wraith => pc.IsAlive(),
             CustomRoles.Bomber => false,
@@ -480,6 +481,7 @@ static class ExtendedPlayerControl
             CustomRoles.Juggernaut => Juggernaut.CanVent.GetBool(),
             CustomRoles.HexMaster => true,
             CustomRoles.Wraith => true,
+            CustomRoles.Parasite => true,
 
             CustomRoles.Arsonist => pc.IsDouseDone(),
             CustomRoles.Revolutionist => pc.IsDrawDone(),
@@ -547,6 +549,7 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.HexMaster:
             case CustomRoles.Wraith:
+            case CustomRoles.Parasite:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.DefaultKillCooldown;
             break;
             case CustomRoles.NSerialKiller:

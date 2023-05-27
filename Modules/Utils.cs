@@ -387,6 +387,7 @@ public static class Utils
             case CustomRoles.Jackal:
             case CustomRoles.Poisoner:
             case CustomRoles.NSerialKiller:
+            case CustomRoles.Parasite:
             case CustomRoles.Jester:
             case CustomRoles.Opportunist:
             case CustomRoles.NWitch:
@@ -1259,7 +1260,7 @@ public static class Utils
                     {
                         if (seer.IsAlive() && target.IsAlive() && isForMeeting && NoCache)
                         {
-                            TargetPlayerName = ColorString(GetRoleColor(seer.Is(CustomRoles.NiceGuesser) ? CustomRoles.NiceGuesser : CustomRoles.EvilGuesser), target.PlayerId.ToString()) + " " + TargetPlayerName;
+                            TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
                         }
                     }
                     if (seer.Is(CustomRoles.Judge))
