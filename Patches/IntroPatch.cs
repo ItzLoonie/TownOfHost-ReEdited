@@ -112,12 +112,20 @@ class BeginCrewmatePatch
             __instance.overlayHandle.color = Palette.ImpostorRed;
             return false;
         }
-        else if (PlayerControl.LocalPlayer.Is(CustomRoleTypes.Neutral))
+        else if (PlayerControl.LocalPlayer.Is(CustomRoleTypes.Neutral) && !PlayerControl.LocalPlayer.Is(CustomRoles.Parasite))
         {
             teamToDisplay = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             teamToDisplay.Add(PlayerControl.LocalPlayer);
         }
         else if (PlayerControl.LocalPlayer.Is(CustomRoles.Madmate))
+        {
+            teamToDisplay = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
+            teamToDisplay.Add(PlayerControl.LocalPlayer);
+            __instance.BeginImpostor(teamToDisplay);
+            __instance.overlayHandle.color = Palette.ImpostorRed;
+            return false;
+        }
+         else if (PlayerControl.LocalPlayer.Is(CustomRoles.Parasite))
         {
             teamToDisplay = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             teamToDisplay.Add(PlayerControl.LocalPlayer);
@@ -204,6 +212,15 @@ class BeginCrewmatePatch
                 __instance.ImpostorText.text = GetString("SubText.Madmate");
         }
 
+        if (PlayerControl.LocalPlayer.Is(CustomRoles.Parasite))
+        {
+            __instance.TeamTitle.text = GetString("TeamImpostor");
+            __instance.TeamTitle.color = __instance.BackgroundBar.material.color = new Color32(255, 25, 25, byte.MaxValue);
+            PlayerControl.LocalPlayer.Data.Role.IntroSound = GetIntroSound(RoleTypes.Impostor);
+                __instance.ImpostorText.gameObject.SetActive(true);
+                __instance.ImpostorText.text = GetString("SubText.Madmate");
+        }
+
         if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
         {
             var color = ColorUtility.TryParseHtmlString("#f55252", out var c) ? c : new(255, 255, 255, 255);
@@ -270,6 +287,13 @@ class BeginImpostorPatch
             return true;
         }
         else if (PlayerControl.LocalPlayer.Is(CustomRoles.Madmate))
+        {
+            yourTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
+            yourTeam.Add(PlayerControl.LocalPlayer);
+            __instance.overlayHandle.color = Palette.ImpostorRed;
+            return true;
+        }
+        else if (PlayerControl.LocalPlayer.Is(CustomRoles.Parasite))
         {
             yourTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             yourTeam.Add(PlayerControl.LocalPlayer);

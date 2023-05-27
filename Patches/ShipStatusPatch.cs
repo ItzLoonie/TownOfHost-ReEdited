@@ -74,6 +74,7 @@ class RepairSystemPatch
             if (player.Is(CustomRoleTypes.Crewmate) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
             if (player.Is(CustomRoleTypes.Neutral) && !player.Is(CustomRoles.Jackal) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
             if (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) return true;
+            if (player.Is(CustomRoles.Parasite) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
             return false;
         }
 

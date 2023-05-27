@@ -340,11 +340,11 @@ class CheckForEndVotingPatch
                 name = string.Format(GetString("PlayerExiled"), realName);
                 break;
             case 1:
-                if (player.GetCustomRole().IsImpostor())
+                if (player.GetCustomRole().IsImpostor() || player.Is(CustomRoles.Parasite))
                     name = string.Format(GetString("BelongTo"), realName, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Impostor), GetString("TeamImpostor")));
-                else if (player.GetCustomRole().IsCrewmate())
+                else if (player.GetCustomRole().IsCrewmate() || !player.Is(CustomRoles.Sidekick))
                     name = string.Format(GetString("IsGood"), realName);
-                else if (player.GetCustomRole().IsNeutral())
+                else if (player.GetCustomRole().IsNeutral() && !player.Is(CustomRoles.Parasite) || player.Is(CustomRoles.Sidekick))
                     name = string.Format(GetString("BelongTo"), realName, Utils.ColorString(new Color32(255, 171, 27, byte.MaxValue), GetString("TeamNeutral")));
                 break;
             case 2:
@@ -805,7 +805,7 @@ class MeetingHudStartPatch
                     if (!seer.Data.IsDead && !target.Data.IsDead)
                         pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(seer.Is(CustomRoles.NiceGuesser) ? CustomRoles.NiceGuesser : CustomRoles.EvilGuesser), target.PlayerId.ToString()) + " " + pva.NameText.text;
                     break;
-                case CustomRoles.Guesser:
+           //     case CustomRoles.Guesser:
                 case CustomRoles.Judge:
                     if (!seer.Data.IsDead && !target.Data.IsDead)
                         pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Judge), target.PlayerId.ToString()) + " " + pva.NameText.text;
@@ -842,6 +842,11 @@ class MeetingHudStartPatch
                     sb.Append(Snitch.GetWarningMark(seer, target));
                     }
                     break;
+                 //   case CustomRoles.Guesser:
+                //    if (!seer.Data.IsDead && !target.Data.IsDead)
+                 //       pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + pva.NameText.text;
+
+                //    break;
                 }
             }
 

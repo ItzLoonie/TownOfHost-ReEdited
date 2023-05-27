@@ -392,6 +392,7 @@ class GameEndChecker
             {
                 reason = GameOverReason.ImpostorByKill;
                 CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Impostor);
+                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Parasite);
             }
             else if (Imp == 0 && Pel == 0 && Gam == 0 && Wraith == 0 && Juggy == 0 && SK == 0 && Hex == 0 && BK == 0 && Pois == 0 && CM == 0 && Crew <= Jackal) //豺狼胜利
             {
