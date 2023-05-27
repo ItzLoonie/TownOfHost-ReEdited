@@ -332,6 +332,7 @@ public class Main : BasePlugin
                 {CustomRoles.NSerialKiller, "#233fcc"},
                 {CustomRoles.BloodKnight, "#630000"},
                 {CustomRoles.Juggernaut, "#A41342"},
+                {CustomRoles.Parasite, "#ff1919"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -355,7 +356,7 @@ public class Main : BasePlugin
                 {CustomRoles.TicketsStealer, "#ff1919"},
                 {CustomRoles.DualPersonality, "#3a648f"},
                 {CustomRoles.Mimic, "#ff1919"},
-                {CustomRoles.Guesser, "#FFFF00"},
+                {CustomRoles.Guesser, "#ffb347"},
                 {CustomRoles.Necroview, "#663399"},
                 {CustomRoles.Reach, "#74ba43"},
                 {CustomRoles.Charmed, "#cf6acd"},
@@ -416,6 +417,7 @@ public enum CustomRoles
     ScientistTOHE,
     GuardianAngelTOHE,
     ShapeshifterTOHE,
+    ImpostorTOHE,
     //Impostor
     BountyHunter,
     FireWorks,
@@ -513,6 +515,7 @@ public enum CustomRoles
     Revolutionist,
     NSerialKiller,
     Juggernaut,
+    Parasite,
     FFF,
     Konan,
     Gamer,

@@ -87,6 +87,8 @@ public static class Divinator
                 CustomRoles.SabotageMaster or
                 CustomRoles.EngineerTOHE or
                 CustomRoles.Jackal or
+                CustomRoles.Parasite or
+                CustomRoles.Impostor or
             //    CustomRoles.Sidekick or
                 CustomRoles.Mario or
                 CustomRoles.Cleaner or
