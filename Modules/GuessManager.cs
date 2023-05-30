@@ -121,7 +121,7 @@ public static class GuessManager
             else pc.ShowPopUp(GetString("GuessNotAllowed"));
             return true;
         }
-        if (pc.GetCustomRole().IsNonNK() && !Options.PassiveNeutralsCanGuess.GetBool())
+        if (pc.GetCustomRole().IsNonNK()/* && !Options.PassiveNeutralsCanGuess.GetBool()*/)
         {
             if (!isUI) Utils.SendMessage(GetString("GuessNotAllowed"), pc.PlayerId);
             else pc.ShowPopUp(GetString("GuessNotAllowed"));
@@ -433,8 +433,8 @@ public static class GuessManager
                 CreateGuesserButton(__instance);
             if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.GetCustomRole().IsNK() && Options.NeutralKillersCanGuess.GetBool())
                 CreateGuesserButton(__instance);
-            if (PlayerControl.LocalPlayer.IsAlive() && !PlayerControl.LocalPlayer.GetCustomRole().IsNonNK() && Options.PassiveNeutralsCanGuess.GetBool())
-                CreateGuesserButton(__instance);
+        //    if (PlayerControl.LocalPlayer.IsAlive() && !PlayerControl.LocalPlayer.GetCustomRole().IsNonNK() && Options.PassiveNeutralsCanGuess.GetBool())
+         //       CreateGuesserButton(__instance);
 
             }
         }

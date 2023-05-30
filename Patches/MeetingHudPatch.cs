@@ -743,9 +743,9 @@ class MeetingHudStartPatch
                 if (Options.NeutralKillersCanGuess.GetBool() && seer.GetCustomRole().IsNK())
                     if (!seer.Data.IsDead && !target.Data.IsDead)
                     pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + pva.NameText.text;
-                if (Options.PassiveNeutralsCanGuess.GetBool() && !seer.GetCustomRole().IsNonNK())
-                    if (!seer.Data.IsDead && !target.Data.IsDead)
-                    pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + pva.NameText.text;
+          //      if (Options.PassiveNeutralsCanGuess.GetBool() && !seer.GetCustomRole().IsNonNK())
+           //         if (!seer.Data.IsDead && !target.Data.IsDead)
+            //        pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + pva.NameText.text;
 
             }
             //とりあえずSnitchは会議中にもインポスターを確認することができる仕様にしていますが、変更する可能性があります。

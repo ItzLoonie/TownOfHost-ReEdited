@@ -1315,10 +1315,10 @@ public static class Utils
                         {
                             TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
                         }
-                        if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.PassiveNeutralsCanGuess.GetBool() && !seer.GetCustomRole().IsNK() && seer.GetCustomRole().IsNeutral())
-                        {
-                            TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
-                        }
+                  //      if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.PassiveNeutralsCanGuess.GetBool() && !seer.GetCustomRole().IsNK() && seer.GetCustomRole().IsNeutral())
+                   //     {
+                  //          TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
+                  //      }
                     }
                 //ターゲットのプレイヤー名の色を書き換えます。
                 TargetPlayerName = TargetPlayerName.ApplyNameColorData(seer, target, isForMeeting);

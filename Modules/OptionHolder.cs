@@ -1429,7 +1429,7 @@ public static class Options
         CrewmatesCanGuess = BooleanOptionItem.Create(6050820, "CrewmatesCanGuess", false, TabGroup.GameSettings, false).SetParent(GuesserMode);
         ImpostorsCanGuess = BooleanOptionItem.Create(6050825, "ImpostorsCanGuess", false, TabGroup.GameSettings, false).SetParent(GuesserMode);
         NeutralKillersCanGuess = BooleanOptionItem.Create(6050830, "NeutralKillersCanGuess", false, TabGroup.GameSettings, false).SetParent(GuesserMode);
-        PassiveNeutralsCanGuess = BooleanOptionItem.Create(6050835, "PassiveNeutralsCanGuess", false, TabGroup.GameSettings, false).SetParent(GuesserMode);
+     //   PassiveNeutralsCanGuess = BooleanOptionItem.Create(6050835, "PassiveNeutralsCanGuess", false, TabGroup.GameSettings, false).SetParent(GuesserMode);
         CanGuessAddons = BooleanOptionItem.Create(6050845, "CanGuessAddons", true, TabGroup.GameSettings, false).SetParent(GuesserMode);
         HideGuesserCommands = BooleanOptionItem.Create(6050840, "GuesserTryHideMsg", true, TabGroup.GameSettings, false).SetParent(GuesserMode)
             .SetColor(Color.green);
