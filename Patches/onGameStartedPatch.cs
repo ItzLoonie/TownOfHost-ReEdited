@@ -209,6 +209,7 @@ internal class ChangeRoleSettings
             BloodKnight.Init();
             Totocalcio.Init();
             Succubus.Init();
+            NVampire.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
@@ -558,6 +559,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Succubus:
                         Succubus.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.NVampire:
+                        NVampire.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Wildling:
                         Wildling.Add(pc.PlayerId);

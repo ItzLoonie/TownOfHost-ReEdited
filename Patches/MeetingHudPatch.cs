@@ -345,7 +345,7 @@ class CheckForEndVotingPatch
                 else if (player.GetCustomRole().IsCrewmate() || !player.Is(CustomRoles.Sidekick))
                     name = string.Format(GetString("IsGood"), realName);
                 else if (player.GetCustomRole().IsNeutral() && !player.Is(CustomRoles.Parasite) || player.Is(CustomRoles.Sidekick))
-                    name = string.Format(GetString("BelongTo"), realName, Utils.ColorString(new Color32(255, 171, 27, byte.MaxValue), GetString("TeamNeutral")));
+                    name = string.Format(GetString("BelongTo"), realName, Utils.ColorString(new Color32(127, 140, 141, byte.MaxValue), GetString("TeamNeutral")));
                 break;
             case 2:
                 name = string.Format(GetString("PlayerIsRole"), realName, coloredRole);
@@ -355,7 +355,7 @@ class CheckForEndVotingPatch
                     if (player.GetCustomRole().IsImpostor() || player.Is(CustomRoles.Madmate))
                         name += Utils.ColorString(new Color32(255, 25, 25, byte.MaxValue), GetString("TeamImpostor"));
                     else if (player.GetCustomRole().IsNeutral() || player.Is(CustomRoles.Charmed))
-                        name += Utils.ColorString(new Color32(255, 171, 27, byte.MaxValue), GetString("TeamNeutral"));
+                        name += Utils.ColorString(new Color32(127, 140, 141, byte.MaxValue), GetString("TeamNeutral"));
                     else if (player.GetCustomRole().IsCrewmate())
                         name += Utils.ColorString(new Color32(140, 255, 255, byte.MaxValue), GetString("TeamCrewmate"));
                     name += ")";
@@ -675,6 +675,7 @@ class MeetingHudStartPatch
                 (pc.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) ||
                 (Totocalcio.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (Succubus.KnowRole(PlayerControl.LocalPlayer, pc)) ||
+                (NVampire.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 PlayerControl.LocalPlayer.Is(CustomRoles.God) ||
                 PlayerControl.LocalPlayer.Is(CustomRoles.GM) ||
                 Main.GodMode.Value;
@@ -728,7 +729,25 @@ class MeetingHudStartPatch
             //自分自身の名前の色を変更
             //NameColorManager準拠の処理
             pva.NameText.text = pva.NameText.text.ApplyNameColorData(seer, target, true);
+            
 
+            // Guesser Mode //
+            if (Options.GuesserMode.GetBool())
+            {
+                if (Options.CrewmatesCanGuess.GetBool() && seer.GetCustomRole().IsCrewmate())
+                    if (!seer.Data.IsDead && !target.Data.IsDead)
+                    pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + pva.NameText.text;
+                if (Options.ImpostorsCanGuess.GetBool() && seer.GetCustomRole().IsImpostor())
+                    if (!seer.Data.IsDead && !target.Data.IsDead)
+                    pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + pva.NameText.text;
+                if (Options.NeutralKillersCanGuess.GetBool() && seer.GetCustomRole().IsNK())
+                    if (!seer.Data.IsDead && !target.Data.IsDead)
+                    pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + pva.NameText.text;
+                if (Options.PassiveNeutralsCanGuess.GetBool() && !seer.GetCustomRole().IsNonNK())
+                    if (!seer.Data.IsDead && !target.Data.IsDead)
+                    pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + pva.NameText.text;
+
+            }
             //とりあえずSnitchは会議中にもインポスターを確認することができる仕様にしていますが、変更する可能性があります。
 
             if (seer.KnowDeathReason(target))
@@ -740,7 +759,7 @@ class MeetingHudStartPatch
                 if (target.Is(CustomRoleTypes.Impostor)  && target.Data.IsDead || target.Is(CustomRoles.Madmate) && target.Data.IsDead)
                         sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Impostor), "★")); //Necroview
                 if (target.Is(CustomRoleTypes.Neutral) && target.Data.IsDead)
-                        sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.EngineerTOHE), "★")); //Necroview
+                        sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Executioner), "★")); //Necroview
 
 
             }
