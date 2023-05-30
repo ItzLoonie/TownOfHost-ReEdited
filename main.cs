@@ -464,6 +464,7 @@ public enum CustomRoles
     Trickster,
     Swooper,
     Crewpostor,
+    Disperser,
     //Crewmate(Vanilla)
     Engineer,
     GuardianAngel,

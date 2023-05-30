@@ -829,6 +829,10 @@ class ShapeshiftPatch
             case CustomRoles.Hacker:
                 Hacker.OnShapeshift(shapeshifter, shapeshifting, target);
                 break;
+            case CustomRoles.Disperser:
+                if (!shapeshifting)
+                    Utils.DispersePlayers();
+                break;
         }
 
     End:
