@@ -940,6 +940,7 @@
 "EvilTrackerTargetMode.EveryMeeting","每次会议","Every Meeting","На каждой встрече","每次會議","每次会议"
 "EvilTrackerTargetMode.Always","永久显示","Any time","Всегда","隨時隨地","永久显示"
 "WitchModeSwitchAction","切换击杀模式","Switch Action via","Действие для Смены Режима","切換模式操作","切换击杀模式"
+"ImperiusCurseModeTp","","Teleport Mode","","",""
 "NBareRed","友善<color=#7f8c8d>中立</color>视为邪恶","Nice <color=#7f8c8d>Neutrals</color> can be red","<color=#7f8c8d>Добрые Нейтралы</color> показываются красным","友善<color=#7f8c8d>中立</color>視為邪惡","友善<color=#7f8c8d>中立</color>视为邪恶"
 "NEareRed","邪恶<color=#7f8c8d>中立</color>视为邪恶","Evil <color=#7f8c8d>Neutrals</color> can be red","<color=#7f8c8d>Злые Нейтралы</color> показываются красным","邪惡<color=#7f8c8d>中立</color>視為邪惡","邪恶<color=#7f8c8d>中立</color>视为邪恶"
 "CrewKillingRed","带刀<color=#8cffff>船员</color>视为邪恶","<color=#8cffff>Crewmate</color> Killings can be red","<color=#8cffff>Члены Экипажа</color> убийцы показываются красным","帶刀<color=#8cffff>船員</color>視為邪惡","带刀<color=#8cffff>船员</color>视为邪恶"
