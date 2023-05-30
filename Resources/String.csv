@@ -1298,6 +1298,8 @@
 "BittenByNVampire","","You were bitten by the Vampire!","Вас укусил Вампир!","",""
 "NVampireBittenPlayer","","You successfully bit a player","Вы успешно укусили игрока","",""
 "GuessNotAllowed","","Sorry, your role does not have access to guessing.","Извините, ваша роль не имеет доступа к угадыванию","",""
+"TeleportedInRndVentByDisperser","","Everyone was teleport to vents","Всех телепортировали к вентам","",""
+"LighterVision","执灯视野大小","<color=#eee5be>Lighter</color> Vision","Дальность <color=#eee5be>Фонарика</color>","",""
 
 "## 信息 / Message"
 "Message.SetToSeconds","信息发送冷却时间为【{0}】秒","Set to 【{0}】 seconds.","Установлен на 【{0}】 секунды","訊息傳送冷卻時間設為【{0}】秒","信息发送冷却时间为【{0}】秒"
