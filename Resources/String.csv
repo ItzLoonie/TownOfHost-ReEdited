@@ -1104,6 +1104,7 @@
 "SuccubusCharmMax","魅惑次数上限","Maximum Number Of Charm","Максимально Зачарованных","魅惑次數上限",""
 "SuccubusKnowTargetRole","可以知道魅惑目标的职业","Know <color=#cf6acd>Charmed</color> Player's Role","Знает роли зачарованных","可以知道魅惑目標的職業",""
 "SuccubusTargetKnowOtherTarget","被魅惑的玩家可以互认","<color=#cf6acd>Charmed</color> players know each other","Зачарованные игроки могут знать друг друга","被魅惑的玩家可以互認",""
+"SuccubusCanCharmNeutral","","Neutral Roles can be <color=#cf6acd>Charmed</color>","","",""
 "NVampireBiteCooldown","","Convert Cooldown","","",""
 "NVampireBiteCooldownIncrese","","Convert Cooldown Increase Per Bite","","",""
 "NVampireBiteMax","","Maximum Conversions","","",""
