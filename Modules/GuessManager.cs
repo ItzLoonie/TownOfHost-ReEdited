@@ -121,7 +121,7 @@ public static class GuessManager
             else pc.ShowPopUp(GetString("GuessNotAllowed"));
             return true;
         }
-        if (pc.GetCustomRole().IsNonNK()/* && !Options.PassiveNeutralsCanGuess.GetBool()*/)
+        if (pc.GetCustomRole().IsNonNK())
         {
             if (!isUI) Utils.SendMessage(GetString("GuessNotAllowed"), pc.PlayerId);
             else pc.ShowPopUp(GetString("GuessNotAllowed"));
