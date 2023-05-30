@@ -891,7 +891,7 @@ public static class Options
    //     GGTryHideMsg = BooleanOptionItem.Create(6050635, "GuesserTryHideMsg", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NiceGuesser])
     //        .SetColor(Color.green);
         Juggernaut.SetupCustomOption();
-        NVampire.SetupCustomOption();
+        Infectious.SetupCustomOption();
 
         // Add-Ons
         AddBracketsToAddons = BooleanOptionItem.Create(6050512, "BracketAddons", false, TabGroup.Addons, false)

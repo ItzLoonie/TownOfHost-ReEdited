@@ -448,7 +448,7 @@ static class ExtendedPlayerControl
             CustomRoles.Crewpostor => false,
             CustomRoles.Totocalcio => Totocalcio.CanUseKillButton(pc),
             CustomRoles.Succubus => Succubus.CanUseKillButton(pc),
-            CustomRoles.NVampire => NVampire.CanUseKillButton(pc),
+            CustomRoles.Infectious => Infectious.CanUseKillButton(pc),
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
     }
@@ -480,7 +480,7 @@ static class ExtendedPlayerControl
             CustomRoles.Gamer => Gamer.CanVent.GetBool(),
             CustomRoles.BloodKnight => BloodKnight.CanVent.GetBool(),
             CustomRoles.Juggernaut => Juggernaut.CanVent.GetBool(),
-            CustomRoles.NVampire => NVampire.CanVent.GetBool(),
+            CustomRoles.Infectious => Infectious.CanVent.GetBool(),
             CustomRoles.HexMaster => true,
             CustomRoles.Wraith => true,
             CustomRoles.Parasite => true,
@@ -645,8 +645,8 @@ static class ExtendedPlayerControl
             case CustomRoles.Succubus:
                 Succubus.SetKillCooldown(player.PlayerId);
                 break;
-            case CustomRoles.NVampire:
-                NVampire.SetKillCooldown(player.PlayerId);
+            case CustomRoles.Infectious:
+                Infectious.SetKillCooldown(player.PlayerId);
                 break;
         }
         if (player.PlayerId == LastImpostor.currentId)

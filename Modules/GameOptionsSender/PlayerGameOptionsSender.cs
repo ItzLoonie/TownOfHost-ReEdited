@@ -181,8 +181,8 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Juggernaut:
                 opt.SetVision(Juggernaut.HasImpostorVision.GetBool());
                 break;
-            case CustomRoles.NVampire:
-                opt.SetVision(NVampire.HasImpostorVision.GetBool());
+            case CustomRoles.Infectious:
+                opt.SetVision(Infectious.HasImpostorVision.GetBool());
                 break;
             case CustomRoles.Lawyer:
              //   Main.NormalOptions.CrewLightMod = Lawyer.LawyerVision.GetFloat();
