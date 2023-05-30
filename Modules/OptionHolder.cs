@@ -129,8 +129,8 @@ public static class Options
     public static OptionItem ConfirmLoversOnEject;
 
 
-    public static OptionItem NonNeutraKillingRolesMinPlayer;
-    public static OptionItem NonNeutraKillingRolesMaxPlayer;
+    public static OptionItem NonNeutralKillingRolesMinPlayer;
+    public static OptionItem NonNeutralKillingRolesMaxPlayer;
     public static OptionItem NeutralKillingRolesMinPlayer;
     public static OptionItem NeutralKillingRolesMaxPlayer;
     public static OptionItem CovenRolesMinPlayer;
@@ -645,11 +645,11 @@ public static class Options
         DeadImpCantSabotage = BooleanOptionItem.Create(900051, "DeadImpCantSabotage", false, TabGroup.ImpostorRoles, false)
             .SetGameMode(CustomGameMode.Standard);
 
-        NonNeutraKillingRolesMinPlayer = IntegerOptionItem.Create(505007, "NonNeutraKillingRolesMinPlayer", new(0, 15, 1), 0, TabGroup.NeutralRoles, false)
+        NonNeutralKillingRolesMinPlayer = IntegerOptionItem.Create(505007, "NonNeutralKillingRolesMinPlayer", new(0, 15, 1), 0, TabGroup.NeutralRoles, false)
             .SetGameMode(CustomGameMode.Standard)
             .SetHeader(true)
             .SetValueFormat(OptionFormat.Players);
-        NonNeutraKillingRolesMaxPlayer = IntegerOptionItem.Create(505009, "NonNeutraKillingRolesMaxPlayer", new(0, 15, 1), 0, TabGroup.NeutralRoles, false)
+        NonNeutralKillingRolesMaxPlayer = IntegerOptionItem.Create(505009, "NonNeutralKillingRolesMaxPlayer", new(0, 15, 1), 0, TabGroup.NeutralRoles, false)
             .SetGameMode(CustomGameMode.Standard)
             .SetValueFormat(OptionFormat.Players);
 
