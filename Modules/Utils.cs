@@ -306,12 +306,12 @@ public static class Utils
             {
                 if (Options.ImpEgoistVisibalToAllies.GetBool())
                 {
-            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers))
+            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers and not CustomRoles.Bitten))
                 RoleText = ColorString(GetRoleColor(subRole), GetString("PrefixB." + subRole.ToString())) + RoleText;
                 }
                 if (!Options.ImpEgoistVisibalToAllies.GetBool())
                 {
-            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers))
+            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers and not CustomRoles.Bitten))
                 RoleText = ColorString(GetRoleColor(subRole), GetString("PrefixB." + subRole.ToString())) + RoleText;
                 }
             }
@@ -319,12 +319,12 @@ public static class Utils
             {
                 if (Options.ImpEgoistVisibalToAllies.GetBool())
                 {
-            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers))
+            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers and not CustomRoles.Bitten))
                 RoleText = ColorString(GetRoleColor(subRole), GetString("Prefix." + subRole.ToString())) + RoleText;
                 }
                     if (!Options.ImpEgoistVisibalToAllies.GetBool())
                 {
-            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers))
+            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers and not CustomRoles.Bitten))
                 RoleText = ColorString(GetRoleColor(subRole), GetString("Prefix." + subRole.ToString())) + RoleText;
                 }
             }
@@ -339,6 +339,11 @@ public static class Utils
         {
             RoleColor = GetRoleColor(CustomRoles.Charmed);
             RoleText = GetRoleString("Charmed-") + RoleText;
+        }
+        if (targetSubRoles.Contains(CustomRoles.Bitten) && (self || pure || seerMainRole == CustomRoles.NVampire || (NVampire.TargetKnowOtherTarget.GetBool() && seerSubRoles.Contains(CustomRoles.Bitten))))
+        {
+            RoleColor = GetRoleColor(CustomRoles.Bitten);
+            RoleText = GetRoleString("Bitten-") + RoleText;
         }
         
 
@@ -411,6 +416,7 @@ public static class Utils
             case CustomRoles.Concealer:
             case CustomRoles.Totocalcio:
             case CustomRoles.Succubus:
+            case CustomRoles.NVampire:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:
@@ -443,6 +449,7 @@ public static class Utils
                 case CustomRoles.Lovers:
                 case CustomRoles.Sidekick:
                 case CustomRoles.Egoist:
+                case CustomRoles.Bitten:
                     //ラバーズはタスクを勝利用にカウントしない
                     hasTasks &= !ForRecompute;
                     break;
@@ -472,8 +479,9 @@ public static class Utils
         var Comms = false;
         if (taskState.hasTasks)
         {
+            if (IsActive(SystemTypes.Comms)) Comms = true;
             if (Concealer.IsHidding) Comms = true;
-            if (PlayerControl.LocalPlayer.myTasks.ToArray().Any(x => x.TaskType == TaskTypes.FixComms)) Comms = true;
+           // if (PlayerControl.LocalPlayer.myTasks.ToArray().Any(x => x.TaskType == TaskTypes.FixComms)) Comms = true;
         }
         return GetProgressText(pc.PlayerId, Comms);
     }
@@ -546,6 +554,9 @@ public static class Utils
                 break;
             case CustomRoles.Succubus:
                 ProgressText.Append(Succubus.GetCharmLimit());
+                break;
+            case CustomRoles.NVampire:
+                ProgressText.Append(NVampire.GetBiteLimit());
                 break;
             default:
                 //タスクテキスト
@@ -624,6 +635,7 @@ public static class Utils
 
         SendMessage(sb.ToString(), PlayerId);
     }
+    
     public static void ShowAllActiveSettings(byte PlayerId = byte.MaxValue)
     {
         var mapId = Main.NormalOptions.MapId;
@@ -809,7 +821,7 @@ public static class Utils
         {
             if (role is CustomRoles.NotAssigned or
                         CustomRoles.LastImpostor) continue;
-            if (summary && role is CustomRoles.Madmate or CustomRoles.Charmed) continue;
+            if (summary && role is CustomRoles.Madmate or CustomRoles.Charmed or CustomRoles.Bitten) continue;
 
             var RoleText = disableColor ? GetRoleName(role) : ColorString(GetRoleColor(role), GetRoleName(role));
             sb.Append($"{ColorString(Color.white, " + ")}{RoleText}");
@@ -986,7 +998,7 @@ public static class Utils
     private static StringBuilder SelfMark = new(20);
     private static StringBuilder TargetSuffix = new();
     private static StringBuilder TargetMark = new(20);
-    public static void NotifyRoles(bool isForMeeting = false, PlayerControl SpecifySeer = null, bool NoCache = false, bool ForceLoop = false)
+    public static void NotifyRoles(bool isForMeeting = false, PlayerControl SpecifySeer = null, bool NoCache = false, bool ForceLoop = false, bool CamouflageIsForMeeting = false)
     {
         if (!AmongUsClient.Instance.AmHost) return;
         if (Main.AllPlayerControls == null) return;
@@ -1124,7 +1136,7 @@ public static class Utils
             }
             else SelfName = SelfRoleName + "\r\n" + SelfName;
             SelfName += SelfSuffix.ToString() == "" ? "" : "\r\n " + SelfSuffix.ToString();
-            if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Concealer.IsHidding) && !isForMeeting)
+            if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Concealer.IsHidding) && !CamouflageIsForMeeting)
                 SelfName = SelfRoleName;
             if (!isForMeeting) SelfName += "\r\n";
 
@@ -1157,7 +1169,7 @@ public static class Utils
                         if (target.Is(CustomRoleTypes.Impostor)  && target.Data.IsDead || target.Is(CustomRoles.Madmate)  && target.Data.IsDead)
                         TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Impostor), "★"));
                         if (target.Is(CustomRoleTypes.Neutral) && target.Data.IsDead)
-                        TargetMark.Append(ColorString(GetRoleColor(CustomRoles.EngineerTOHE), "★"));
+                        TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Executioner), "★"));
                     }
 
 
@@ -1231,6 +1243,7 @@ public static class Utils
                         (target.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) ||
                         (Totocalcio.KnowRole(seer, target)) ||
                         (Succubus.KnowRole(seer, target)) ||
+                        (NVampire.KnowRole(seer, target)) ||
                         (seer.Is(CustomRoles.God)) ||
                         (target.Is(CustomRoles.GM))
                         ? $"<size={fontSize}>{target.GetDisplayRoleName(seer.PlayerId != target.PlayerId && !seer.Data.IsDead)}{GetProgressText(target)}</size>\r\n" : "";
@@ -1270,6 +1283,25 @@ public static class Utils
                             TargetPlayerName = ColorString(GetRoleColor(CustomRoles.Judge), target.PlayerId.ToString()) + " " + TargetPlayerName;
                         }
                     }
+                    if (Options.GuesserMode.GetBool())
+                    {
+                        if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.CrewmatesCanGuess.GetBool() && seer.GetCustomRole().IsCrewmate())
+                        {
+                            TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
+                        }
+                        if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.ImpostorsCanGuess.GetBool() && seer.GetCustomRole().IsImpostor())
+                        {
+                            TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
+                        }
+                        if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.NeutralKillersCanGuess.GetBool() && seer.GetCustomRole().IsNK())
+                        {
+                            TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
+                        }
+                        if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.PassiveNeutralsCanGuess.GetBool() && !seer.GetCustomRole().IsNK() && seer.GetCustomRole().IsNeutral())
+                        {
+                            TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
+                        }
+                    }
                 //ターゲットのプレイヤー名の色を書き換えます。
                 TargetPlayerName = TargetPlayerName.ApplyNameColorData(seer, target, isForMeeting);
 
@@ -1302,7 +1334,7 @@ public static class Utils
                 if (seer.KnowDeathReason(target))
                     TargetDeathReason = $"({ColorString(GetRoleColor(CustomRoles.Doctor), GetVitalText(target.PlayerId))})";
 
-                if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Concealer.IsHidding) && !isForMeeting)
+                if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Concealer.IsHidding) && !CamouflageIsForMeeting)
                     TargetPlayerName = $"<size=0%>{TargetPlayerName}</size>";
 
                 //全てのテキストを合成します。

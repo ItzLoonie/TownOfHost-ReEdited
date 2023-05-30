@@ -448,6 +448,7 @@ static class ExtendedPlayerControl
             CustomRoles.Crewpostor => false,
             CustomRoles.Totocalcio => Totocalcio.CanUseKillButton(pc),
             CustomRoles.Succubus => Succubus.CanUseKillButton(pc),
+            CustomRoles.NVampire => NVampire.CanUseKillButton(pc),
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
     }
@@ -479,6 +480,7 @@ static class ExtendedPlayerControl
             CustomRoles.Gamer => Gamer.CanVent.GetBool(),
             CustomRoles.BloodKnight => BloodKnight.CanVent.GetBool(),
             CustomRoles.Juggernaut => Juggernaut.CanVent.GetBool(),
+            CustomRoles.NVampire => NVampire.CanVent.GetBool(),
             CustomRoles.HexMaster => true,
             CustomRoles.Wraith => true,
             CustomRoles.Parasite => true,
@@ -553,7 +555,7 @@ static class ExtendedPlayerControl
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.DefaultKillCooldown;
             break;
             case CustomRoles.NSerialKiller:
-                Main.AllPlayerKillCooldown[player.PlayerId] = Options.NSerialKillerKillCD.GetFloat();
+                Main.AllPlayerKillCooldown[player.PlayerId] = Options.DefaultKillCooldown;
             break;
             case CustomRoles.Poisoner:
                 Poisoner.SetKillCooldown(player.PlayerId);
@@ -642,6 +644,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Succubus:
                 Succubus.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.NVampire:
+                NVampire.SetKillCooldown(player.PlayerId);
                 break;
         }
         if (player.PlayerId == LastImpostor.currentId)

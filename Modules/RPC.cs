@@ -82,6 +82,7 @@ enum CustomRPC
     SetBKTimer,
     SyncTotocalcioTargetAndTimes,
     SetSuccubusCharmLimit,
+    SetNVampireBiteLimit,
 
     //SoloKombat
     SyncKBPlayer,
@@ -446,6 +447,9 @@ internal class RPCHandlerPatch
             case CustomRPC.SetSuccubusCharmLimit:
                 Succubus.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetNVampireBiteLimit:
+                NVampire.ReceiveRPC(reader);
+                break;
         }
     }
 }
@@ -767,6 +771,9 @@ internal static class RPC
                 break;
             case CustomRoles.Succubus:
                 Succubus.Add(targetId);
+                break;
+            case CustomRoles.NVampire:
+                NVampire.Add(targetId);
                 break;
         }
         HudManager.Instance.SetHudActive(true);

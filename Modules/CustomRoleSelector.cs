@@ -17,21 +17,21 @@ internal class CustomRoleSelector
         var rd = IRandom.Instance;
         int playerCount = Main.AllAlivePlayerControls.Count();
         int optImpNum = Main.RealOptionsData.GetInt(Int32OptionNames.NumImpostors);
-        int optNonNeutralKillingNum = 0;
-        int optNeutralKillingNum = 0;
+        int optNeutralNum = 0;
+     //   int optCovenNum = 0;
 
-        if (Options.NonNeutraKillingRolesMaxPlayer.GetInt() > 0 && Options.NonNeutraKillingRolesMaxPlayer.GetInt() >= Options.NonNeutraKillingRolesMinPlayer.GetInt())
+        if (Options.NeutralRolesMaxPlayer.GetInt() > 0 && Options.NeutralRolesMaxPlayer.GetInt() >= Options.NeutralRolesMinPlayer.GetInt())
         {
-            optNonNeutralKillingNum = rd.Next(Options.NonNeutraKillingRolesMinPlayer.GetInt(), Options.NonNeutraKillingRolesMaxPlayer.GetInt() + 1);
+            optNeutralNum = rd.Next(Options.NeutralRolesMinPlayer.GetInt(), Options.NeutralRolesMaxPlayer.GetInt() + 1);
         }
-        if (Options.NeutralKillingRolesMaxPlayer.GetInt() > 0 && Options.NeutralKillingRolesMaxPlayer.GetInt() >= Options.NeutralKillingRolesMinPlayer.GetInt())
-        {
-            optNeutralKillingNum = rd.Next(Options.NeutralKillingRolesMinPlayer.GetInt(), Options.NeutralKillingRolesMaxPlayer.GetInt() + 1);
-        }
+    //    if (Options.CovenRolesMaxPlayer.GetInt() > 0 && Options.CovenRolesMaxPlayer.GetInt() >= Options.CovenRolesMinPlayer.GetInt())
+    //    {
+   //         optCovenNum = rd.Next(Options.CovenRolesMinPlayer.GetInt(), Options.CovenRolesMaxPlayer.GetInt() + 1);
+   //     }
 
         int readyRoleNum = 0;
-        int readyNonNeutralKillingNum = 0;
-        int readyNeutralKillingNum = 0;
+        int readyNeutralNum = 0;
+     //   int readyCovenNum = 0;
 
         List<CustomRoles> rolesToAssign = new();
         List<CustomRoles> roleList = new();
@@ -40,12 +40,12 @@ internal class CustomRoleSelector
         List<CustomRoles> ImpOnList = new();
         List<CustomRoles> ImpRateList = new();
 
-        List<CustomRoles> NonNeutraKillingOnList = new();
-        List<CustomRoles> NeutraKillingOnList = new();
+        List<CustomRoles> NeutralsOnList = new();
+     //   List<CustomRoles> CovenOnList = new();
 
         List<CustomRoles> roleRateList = new();
-        List<CustomRoles> NonNeutraKillingRateList = new();
-        List<CustomRoles> NeutraKillingRateList = new();
+        List<CustomRoles> NeutralsRateList = new();
+      //  List<CustomRoles> CovenRateList = new();
 
         if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
         {
@@ -68,16 +68,16 @@ internal class CustomRoleSelector
         foreach (var role in roleList) if (role.GetMode() == 2)
             {
                 if (role.IsImpostor()) ImpOnList.Add(role);
-                else if (role.IsNonNK()) NonNeutraKillingOnList.Add(role); 
-                else if (role.IsNK()) NeutraKillingOnList.Add(role);
+                else if (role.IsNeutral()) NeutralsOnList.Add(role); 
+           //     else if (role.IsCoven()) CovenOnList.Add(role);
                 else roleOnList.Add(role);
             }
         // 职业设置为：启用
         foreach (var role in roleList) if (role.GetMode() == 1)
             {
                 if (role.IsImpostor()) ImpRateList.Add(role);
-                else if (role.IsNonNK()) NonNeutraKillingOnList.Add(role);
-                else if (role.IsNK()) NeutraKillingOnList.Add(role);
+                else if (role.IsNeutral()) NeutralsOnList.Add(role);
+           //     else if (role.IsCoven()) CovenOnList.Add(role);
                 else roleRateList.Add(role);
             }
 
@@ -107,59 +107,59 @@ internal class CustomRoleSelector
             }
         }
 
-        while (NonNeutraKillingOnList.Count > 0 && optNonNeutralKillingNum > 0)
+        while (NeutralsOnList.Count > 0 && optNeutralNum > 0)
         {
-            var select = NonNeutraKillingOnList[rd.Next(0, NonNeutraKillingOnList.Count)];
-            NonNeutraKillingOnList.Remove(select);
+            var select = NeutralsOnList[rd.Next(0, NeutralsOnList.Count)];
+            NeutralsOnList.Remove(select);
             rolesToAssign.Add(select);
             readyRoleNum++;
-            readyNonNeutralKillingNum += select.GetCount();
+            readyNeutralNum += select.GetCount();
             Logger.Info(select.ToString() + " 加入中立职业待选列表（优先）", "CustomRoleSelector");
             if (readyRoleNum >= playerCount) goto EndOfAssign;
-            if (readyNonNeutralKillingNum >= optNonNeutralKillingNum) break;
+            if (readyNeutralNum >= optNeutralNum) break;
         }
 
-        while (NeutraKillingOnList.Count > 0 && optNeutralKillingNum > 0)
+    /*    while (CovenOnList.Count > 0 && optCovenNum > 0)
         {
-            var select = NeutraKillingOnList[rd.Next(0, NeutraKillingOnList.Count)];
-            NeutraKillingOnList.Remove(select);
+            var select = CovenOnList[rd.Next(0, CovenOnList.Count)];
+            CovenOnList.Remove(select);
             rolesToAssign.Add(select);
             readyRoleNum++;
-            readyNeutralKillingNum += select.GetCount();
+            readyCovenNum += select.GetCount();
             Logger.Info(select.ToString() + " 加入中立职业待选列表（优先）", "CustomRoleSelector");
             if (readyRoleNum >= playerCount) goto EndOfAssign;
-            if (readyNeutralKillingNum >= optNeutralKillingNum) break;
-        }
+            if (readyCovenNum >= optCovenNum) break;
+        } */
 
-        if (readyRoleNum < playerCount && readyNonNeutralKillingNum < optNonNeutralKillingNum)
+        if (readyRoleNum < playerCount && readyNeutralNum < optNeutralNum)
         {
-            while (NonNeutraKillingRateList.Count > 0 && optNonNeutralKillingNum > 0)
+            while (NeutralsRateList.Count > 0 && optNeutralNum > 0)
             {
-                var select = NonNeutraKillingRateList[rd.Next(0, NonNeutraKillingRateList.Count)];
-                NonNeutraKillingRateList.Remove(select);
+                var select = NeutralsRateList[rd.Next(0, NeutralsRateList.Count)];
+                NeutralsRateList.Remove(select);
                 rolesToAssign.Add(select);
                 readyRoleNum++;
-                readyNonNeutralKillingNum += select.GetCount();
+                readyNeutralNum += select.GetCount();
                 Logger.Info(select.ToString() + " 加入中立职业待选列表", "CustomRoleSelector");
                 if (readyRoleNum >= playerCount) goto EndOfAssign;
-                if (readyNonNeutralKillingNum >= optNonNeutralKillingNum) break;
+                if (readyNeutralNum >= optNeutralNum) break;
             }
         }
 
-        if (readyRoleNum < playerCount && readyNeutralKillingNum < optNeutralKillingNum)
+     /*   if (readyRoleNum < playerCount && readyCovenNum < optCovenNum)
         {
-            while (NeutraKillingRateList.Count > 0 && optNeutralKillingNum > 0)
+            while (CovenRateList.Count > 0 && optCovenNum > 0)
             {
-                var select = NeutraKillingRateList[rd.Next(0, NeutraKillingRateList.Count)];
-                NeutraKillingRateList.Remove(select);
+                var select = CovenRateList[rd.Next(0, CovenRateList.Count)];
+                CovenRateList.Remove(select);
                 rolesToAssign.Add(select);
                 readyRoleNum++;
-                readyNeutralKillingNum += select.GetCount();
+                readyCovenNum += select.GetCount();
                 Logger.Info(select.ToString() + " 加入中立职业待选列表", "CustomRoleSelector");
                 if (readyRoleNum >= playerCount) goto EndOfAssign;
-                if (readyNeutralKillingNum >= optNeutralKillingNum) break;
+                if (readyCovenNum >= optCovenNum) break;
             }
-        }
+        } */
 
         // 抽取优先职业
         while (roleOnList.Count > 0)

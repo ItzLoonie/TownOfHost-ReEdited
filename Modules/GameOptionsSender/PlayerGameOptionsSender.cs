@@ -176,10 +176,13 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
             case CustomRoles.NSerialKiller:
                 opt.SetVision(Options.NSerialKillerHasImpostorVision.GetBool());
-                Main.NormalOptions.KillCooldown = Options.NSerialKillerKillCD.GetFloat();
+                Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
                 break;
             case CustomRoles.Juggernaut:
                 opt.SetVision(Juggernaut.HasImpostorVision.GetBool());
+                break;
+            case CustomRoles.NVampire:
+                opt.SetVision(NVampire.HasImpostorVision.GetBool());
                 break;
             case CustomRoles.Lawyer:
              //   Main.NormalOptions.CrewLightMod = Lawyer.LawyerVision.GetFloat();

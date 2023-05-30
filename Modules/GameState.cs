@@ -75,6 +75,8 @@ public class PlayerState
                 _ => throw new NotImplementedException()
             };
             SubRoles.Remove(CustomRoles.Charmed);
+            SubRoles.Remove(CustomRoles.Sidekick);
+            SubRoles.Remove(CustomRoles.Bitten);
         }
         if (role == CustomRoles.Charmed)
         {
@@ -86,6 +88,8 @@ public class PlayerState
                 _ => throw new NotImplementedException()
             };
             SubRoles.Remove(CustomRoles.Madmate);
+            SubRoles.Remove(CustomRoles.Sidekick);
+            SubRoles.Remove(CustomRoles.Bitten);
         }
         if (role == CustomRoles.Sidekick)
         {
@@ -96,7 +100,16 @@ public class PlayerState
                 2 => countTypes,
                 _ => throw new NotImplementedException()
             };
-          //  SubRoles.Remove(CustomRoles.Madmate);
+            SubRoles.Remove(CustomRoles.Madmate);
+            SubRoles.Remove(CustomRoles.Charmed);
+            SubRoles.Remove(CustomRoles.Bitten);
+        }
+        if (role == CustomRoles.Bitten)
+        {
+            countTypes = CountTypes.NVampire;
+            SubRoles.Remove(CustomRoles.Madmate);
+            SubRoles.Remove(CustomRoles.Sidekick);
+            SubRoles.Remove(CustomRoles.Charmed);
         }
 
     }
