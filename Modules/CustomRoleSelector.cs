@@ -21,9 +21,9 @@ internal class CustomRoleSelector
         int optNeutralKillingNum = 0;
         //int optCovenNum = 0;
 
-        if (Options.NonNeutraKillingRolesMaxPlayer.GetInt() > 0 && Options.NonNeutraKillingRolesMaxPlayer.GetInt() >= Options.NonNeutraKillingRolesMinPlayer.GetInt())
+        if (Options.NonNeutralKillingRolesMaxPlayer.GetInt() > 0 && Options.NonNeutralKillingRolesMaxPlayer.GetInt() >= Options.NonNeutralKillingRolesMinPlayer.GetInt())
         {
-            optNonNeutralKillingNum = rd.Next(Options.NonNeutraKillingRolesMinPlayer.GetInt(), Options.NonNeutraKillingRolesMaxPlayer.GetInt() + 1);
+            optNonNeutralKillingNum = rd.Next(Options.NonNeutralKillingRolesMinPlayer.GetInt(), Options.NonNeutralKillingRolesMaxPlayer.GetInt() + 1);
         }
         if (Options.NeutralKillingRolesMaxPlayer.GetInt() > 0 && Options.NeutralKillingRolesMaxPlayer.GetInt() >= Options.NeutralKillingRolesMinPlayer.GetInt())
         {
@@ -46,12 +46,12 @@ internal class CustomRoleSelector
         List<CustomRoles> ImpOnList = new();
         List<CustomRoles> ImpRateList = new();
 
-        List<CustomRoles> NonNeutraKillingOnList = new();
-        List<CustomRoles> NonNeutraKillingRateList = new();
+        List<CustomRoles> NonNeutralKillingOnList = new();
+        List<CustomRoles> NonNeutralKillingRateList = new();
         // List<CustomRoles> CovenOnList = new();
 
-        List<CustomRoles> NeutraKillingOnList = new();
-        List<CustomRoles> NeutraKillingRateList = new();
+        List<CustomRoles> NeutralKillingOnList = new();
+        List<CustomRoles> NeutralKillingRateList = new();
         // List<CustomRoles> CovenRateList = new();
 
         List<CustomRoles> roleRateList = new();
@@ -77,8 +77,8 @@ internal class CustomRoleSelector
         foreach (var role in roleList) if (role.GetMode() == 2)
         {
             if (role.IsImpostor()) ImpOnList.Add(role);
-            else if (role.IsNonNK()) NonNeutraKillingOnList.Add(role);
-            else if (role.IsNK()) NeutraKillingOnList.Add(role);
+            else if (role.IsNonNK()) NonNeutralKillingOnList.Add(role);
+            else if (role.IsNK()) NeutralKillingOnList.Add(role);
             // else if (role.IsCoven()) CovenOnList.Add(role);
             else roleOnList.Add(role);
         }
@@ -86,8 +86,8 @@ internal class CustomRoleSelector
         foreach (var role in roleList) if (role.GetMode() == 1)
         {
             if (role.IsImpostor()) ImpRateList.Add(role);
-            else if (role.IsNonNK()) NonNeutraKillingRateList.Add(role);
-            else if (role.IsNK()) NeutraKillingRateList.Add(role);
+            else if (role.IsNonNK()) NonNeutralKillingRateList.Add(role);
+            else if (role.IsNK()) NeutralKillingRateList.Add(role);
             // else if (role.IsCoven()) CovenRateList.Add(role);
             else roleRateList.Add(role);
         }
@@ -119,10 +119,10 @@ internal class CustomRoleSelector
         }
 
         // Select NonNeutralKilling "Always"
-        while (NonNeutraKillingOnList.Count > 0 && optNonNeutralKillingNum > 0)
+        while (NonNeutralKillingOnList.Count > 0 && optNonNeutralKillingNum > 0)
         {
-            var select = NonNeutraKillingOnList[rd.Next(0, NonNeutraKillingOnList.Count)];
-            NonNeutraKillingOnList.Remove(select);
+            var select = NonNeutralKillingOnList[rd.Next(0, NonNeutralKillingOnList.Count)];
+            NonNeutralKillingOnList.Remove(select);
             rolesToAssign.Add(select);
             readyRoleNum++;
             readyNonNeutralKillingNum += select.GetCount();
@@ -134,10 +134,10 @@ internal class CustomRoleSelector
         // Select NonNeutralKilling "Random"
         if (readyRoleNum < playerCount && readyNonNeutralKillingNum < optNonNeutralKillingNum)
         {
-            while (NonNeutraKillingRateList.Count > 0 && optNonNeutralKillingNum > 0)
+            while (NonNeutralKillingRateList.Count > 0 && optNonNeutralKillingNum > 0)
             {
-                var select = NonNeutraKillingRateList[rd.Next(0, NonNeutraKillingRateList.Count)];
-                NonNeutraKillingRateList.Remove(select);
+                var select = NonNeutralKillingRateList[rd.Next(0, NonNeutralKillingRateList.Count)];
+                NonNeutralKillingRateList.Remove(select);
                 rolesToAssign.Add(select);
                 readyRoleNum++;
                 readyNonNeutralKillingNum += select.GetCount();
@@ -148,10 +148,10 @@ internal class CustomRoleSelector
         }
 
         // Select NeutralKilling "Always"
-        while (NeutraKillingOnList.Count > 0 && optNeutralKillingNum > 0)
+        while (NeutralKillingOnList.Count > 0 && optNeutralKillingNum > 0)
         {
-            var select = NeutraKillingOnList[rd.Next(0, NeutraKillingOnList.Count)];
-            NeutraKillingOnList.Remove(select);
+            var select = NeutralKillingOnList[rd.Next(0, NeutralKillingOnList.Count)];
+            NeutralKillingOnList.Remove(select);
             rolesToAssign.Add(select);
             readyRoleNum++;
             readyNeutralKillingNum += select.GetCount();
@@ -163,10 +163,10 @@ internal class CustomRoleSelector
         // Select NeutralKilling "Random"
         if (readyRoleNum < playerCount && readyNeutralKillingNum < optNeutralKillingNum)
         {
-            while (NeutraKillingRateList.Count > 0 && optNeutralKillingNum > 0)
+            while (NeutralKillingRateList.Count > 0 && optNeutralKillingNum > 0)
             {
-                var select = NeutraKillingRateList[rd.Next(0, NeutraKillingRateList.Count)];
-                NeutraKillingRateList.Remove(select);
+                var select = NeutralKillingRateList[rd.Next(0, NeutralKillingRateList.Count)];
+                NeutralKillingRateList.Remove(select);
                 rolesToAssign.Add(select);
                 readyRoleNum++;
                 readyNeutralKillingNum += select.GetCount();
