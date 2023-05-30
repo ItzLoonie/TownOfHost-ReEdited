@@ -333,6 +333,7 @@ public class Main : BasePlugin
                 {CustomRoles.BloodKnight, "#630000"},
                 {CustomRoles.Juggernaut, "#A41342"},
                 {CustomRoles.Parasite, "#ff1919"},
+                {CustomRoles.NVampire, "#7B8968"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -350,7 +351,7 @@ public class Main : BasePlugin
                 {CustomRoles.Bewilder, "#c894f5"},
                 {CustomRoles.Workhorse, "#00ffff"},
                 {CustomRoles.Fool, "#e6e7ff"},
-                {CustomRoles.Avanger, "#ffab1b"},
+                {CustomRoles.Avanger, "#ffab1c"},
                 {CustomRoles.Youtuber, "#fb749b"},
                 {CustomRoles.Egoist, "#5600ff"},
                 {CustomRoles.TicketsStealer, "#ff1919"},
@@ -362,6 +363,7 @@ public class Main : BasePlugin
                 {CustomRoles.Charmed, "#cf6acd"},
                 {CustomRoles.Bait, "#00f7ff"},
                 {CustomRoles.Trapper, "#5a8fd0"},
+                {CustomRoles.Bitten, "#7B8968"},
                 //SoloKombat
                 {CustomRoles.KB_Normal, "#f55252"}
             };
@@ -516,6 +518,7 @@ public enum CustomRoles
     NSerialKiller,
     Juggernaut,
     Parasite,
+    NVampire,
     FFF,
     Konan,
     Gamer,
@@ -563,6 +566,7 @@ public enum CustomRoles
     Charmed,
     Bait,
     Trapper,
+    Bitten,
 }
 //WinData
 public enum CustomWinner
@@ -600,6 +604,7 @@ public enum CustomWinner
     SerialKiller = CustomRoles.NSerialKiller,
     Witch = CustomRoles.NWitch,
     Juggernaut = CustomRoles.Juggernaut,
+    Vampire = CustomRoles.NVampire,
 }
 public enum AdditionalWinners
 {
