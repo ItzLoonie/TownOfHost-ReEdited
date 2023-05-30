@@ -465,6 +465,7 @@ public static class Utils
                 pc.RPCPlayCustomSound("Teleport");
                 var vent = vents[rd.Next(0, vents.Count)];
                 TP(pc.NetTransform, new Vector2(vent.transform.position.x, vent.transform.position.y));
+                pc.Notify(ColorString(GetRoleColor(CustomRoles.Disperser), string.Format(GetString("TeleportedInRndVentByDisperser"), pc.GetRealName())));
             }
         }, 1.5f, "Disperser Disperse Players");
     }

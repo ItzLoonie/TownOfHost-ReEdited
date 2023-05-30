@@ -1262,6 +1262,7 @@
 "CharmedBySuccubus","您已被魅魔魅惑","You have been charmed by the Succubus","Вы были зачарованы Суккубом","您已被魅魔魅惑",""
 "SuccubusInvalidTarget","目标无法被魅惑","Target cannot be charmed","Цель не может быть зачарована","目標無法被魅惑",""
 "KillBaitNotify","目标为诱饵，将在{0}秒后报告","You'll self-report in {0}s","Вы зарепортите труп через {0} с.","目標為誘餌，將在{0}秒後報告",""
+"TeleportedInRndVentByDisperser","","Everyone was teleport to vents","Всех телепортировали к вентам","",""
 
 "## 信息 / Message"
 "Message.SetToSeconds","信息发送冷却时间为【{0}】秒","Set to 【{0}】 seconds.","Установлен на 【{0}】 секунды","訊息傳送冷卻時間設為【{0}】秒","信息发送冷却时间为【{0}】秒"
