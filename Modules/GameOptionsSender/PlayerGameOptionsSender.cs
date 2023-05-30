@@ -231,6 +231,10 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.BloodKnight:
                 BloodKnight.ApplyGameOptions(opt);
                 break;
+            case CustomRoles.Disperser:
+                AURoleOptions.ShapeshifterCooldown = Options.DisperserShapeshiftCooldown.GetFloat();
+                AURoleOptions.ShapeshifterDuration = 1f;
+                break;
         }
 
         // Ϊ�Ի��ߵ�����

@@ -103,6 +103,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Crewpostor => CustomRoles.Crewmate,
                 CustomRoles.Observer => CustomRoles.Crewmate,
                 CustomRoles.NVampire => CustomRoles.Impostor,
+                CustomRoles.Disperser => CustomRoles.Shapeshifter,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
     }
@@ -295,7 +296,8 @@ internal static class CustomRolesHelper
             CustomRoles.Hangman or
             CustomRoles.Bard or
             CustomRoles.Swooper or
-            CustomRoles.Crewpostor;
+            CustomRoles.Crewpostor or
+            CustomRoles.Disperser;
     }
     public static bool IsNeutral(this CustomRoles role) // �Ƿ�����
     {
