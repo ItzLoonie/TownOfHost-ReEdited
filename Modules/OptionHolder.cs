@@ -129,8 +129,10 @@ public static class Options
     public static OptionItem ConfirmLoversOnEject;
 
 
-    public static OptionItem NeutralRolesMinPlayer;
-    public static OptionItem NeutralRolesMaxPlayer;
+    public static OptionItem NonNeutraKillingRolesMinPlayer;
+    public static OptionItem NonNeutraKillingRolesMaxPlayer;
+    public static OptionItem NeutralKillingRolesMinPlayer;
+    public static OptionItem NeutralKillingRolesMaxPlayer;
     public static OptionItem CovenRolesMinPlayer;
     public static OptionItem CovenRolesMaxPlayer;
     public static OptionItem NeutralRoleWinTogether;
@@ -643,21 +645,29 @@ public static class Options
         DeadImpCantSabotage = BooleanOptionItem.Create(900051, "DeadImpCantSabotage", false, TabGroup.ImpostorRoles, false)
             .SetGameMode(CustomGameMode.Standard);
 
-        NeutralRolesMinPlayer = IntegerOptionItem.Create(505007, "NeutralRolesMinPlayer", new(0, 15, 1), 0, TabGroup.NeutralRoles, false)
+        NonNeutraKillingRolesMinPlayer = IntegerOptionItem.Create(505007, "NonNeutraKillingRolesMinPlayer", new(0, 15, 1), 0, TabGroup.NeutralRoles, false)
             .SetGameMode(CustomGameMode.Standard)
             .SetHeader(true)
             .SetValueFormat(OptionFormat.Players);
-        NeutralRolesMaxPlayer = IntegerOptionItem.Create(505009, "NeutralRolesMaxPlayer", new(0, 15, 1), 0, TabGroup.NeutralRoles, false)
+        NonNeutraKillingRolesMaxPlayer = IntegerOptionItem.Create(505009, "NonNeutraKillingRolesMaxPlayer", new(0, 15, 1), 0, TabGroup.NeutralRoles, false)
             .SetGameMode(CustomGameMode.Standard)
             .SetValueFormat(OptionFormat.Players);
-        
-   //     CovenRolesMinPlayer = IntegerOptionItem.Create(505011, "CovenRolesMinPlayer", new(0, 15, 1), 0, TabGroup.NeutralRoles, false)
-   //         .SetGameMode(CustomGameMode.Standard)
-   //         .SetHeader(true)
-    //        .SetValueFormat(OptionFormat.Players);
-    //    CovenRolesMaxPlayer = IntegerOptionItem.Create(505013, "CovenRolesMaxPlayer", new(0, 15, 1), 0, TabGroup.NeutralRoles, false)
-    //        .SetGameMode(CustomGameMode.Standard)
-    //        .SetValueFormat(OptionFormat.Players);
+
+        NeutralKillingRolesMinPlayer = IntegerOptionItem.Create(505011, "NeutralKillingRolesMinPlayer", new(0, 15, 1), 0, TabGroup.NeutralRoles, false)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetHeader(true)
+            .SetValueFormat(OptionFormat.Players);
+        NeutralKillingRolesMaxPlayer = IntegerOptionItem.Create(505013, "NeutralKillingRolesMaxPlayer", new(0, 15, 1), 0, TabGroup.NeutralRoles, false)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetValueFormat(OptionFormat.Players);
+
+        //     CovenRolesMinPlayer = IntegerOptionItem.Create(505011, "CovenRolesMinPlayer", new(0, 15, 1), 0, TabGroup.NeutralRoles, false)
+        //         .SetGameMode(CustomGameMode.Standard)
+        //         .SetHeader(true)
+        //        .SetValueFormat(OptionFormat.Players);
+        //    CovenRolesMaxPlayer = IntegerOptionItem.Create(505013, "CovenRolesMaxPlayer", new(0, 15, 1), 0, TabGroup.NeutralRoles, false)
+        //        .SetGameMode(CustomGameMode.Standard)
+        //        .SetValueFormat(OptionFormat.Players);
 
         NeutralRoleWinTogether = BooleanOptionItem.Create(505015, "NeutralRoleWinTogether", false, TabGroup.NeutralRoles, false)
             .SetGameMode(CustomGameMode.Standard)
