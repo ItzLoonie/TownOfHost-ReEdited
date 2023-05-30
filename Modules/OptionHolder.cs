@@ -261,6 +261,8 @@ public static class Options
     public static OptionItem ShapeshiftCD;
     public static OptionItem ShapeshiftDur;
 
+    public static OptionItem DisperserShapeshiftCooldown;
+
     public static OptionItem GCanGuessImp;
     public static OptionItem GCanGuessCrew;
     public static OptionItem GCanGuessAdt;
@@ -994,6 +996,9 @@ public static class Options
             .SetValueFormat(OptionFormat.Votes);
         VindicatorHideVote = BooleanOptionItem.Create(150015, "MayorHideVote", false, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Vindicator]);
         SetupSingleRoleOptions(6050720, TabGroup.ExclusiveRoles, CustomRoles.Parasite, 1, zeroOne: false);
+        SetupRoleOptions(170005, TabGroup.ExclusiveRoles, CustomRoles.Disperser);
+        DisperserShapeshiftCooldown = FloatOptionItem.Create(170010, "ShapeshiftCooldown", new(1f, 999f, 1f), 15f, TabGroup.ExclusiveRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Disperser])
+            .SetValueFormat(OptionFormat.Seconds);
         TextOptionItem.Create(120020, "OtherRoles.CrewmateRoles", TabGroup.ExclusiveRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(140, 255, 255, byte.MaxValue));

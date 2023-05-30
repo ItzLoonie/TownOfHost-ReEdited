@@ -450,6 +450,24 @@ public static class Utils
 
         return hasTasks;
     }
+    public static void DispersePlayers()
+    {
+        var rd = new System.Random();
+        var vents = UnityEngine.Object.FindObjectsOfType<Vent>();
+
+        new LateTask(() =>
+        {
+            foreach (var pc in PlayerControl.AllPlayerControls)
+            {
+                if (pc == null || pc.Data.IsDead || pc.inVent)
+                    continue;
+
+                pc.RPCPlayCustomSound("Teleport");
+                var vent = vents[rd.Next(0, vents.Count)];
+                TP(pc.NetTransform, new Vector2(vent.transform.position.x, vent.transform.position.y));
+            }
+        }, 1.5f, "Disperser Disperse Players");
+    }
     public static bool CanBeMadmate(this PlayerControl pc)
     {
         return pc != null && pc.GetCustomRole().IsCrewmate() && !pc.Is(CustomRoles.Madmate)
