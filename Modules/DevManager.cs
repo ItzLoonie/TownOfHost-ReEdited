@@ -40,6 +40,8 @@ public static class DevManager
         DevUserList.Add(new(code: "taskunsold#2701", color: "null", tag: "<color=#426798>Tem</color><color=#f6e509>mie</color>", isUp: false, isDev: true, deBug: false, upName: null)); //Tem
         DevUserList.Add(new(code: "timedapper#9496", color: "#48FFFF", tag: "#Dev", isUp: false, isDev: true, deBug: false, upName: null)); //阿龍
         DevUserList.Add(new(code: "sofaagile#3120", color: "null", tag: "null", isUp: false, isDev: true, deBug: true, upName: null)); //天寸
+        DevUserList.Add(new(code: "takinglea#1930", color: "#880808", tag: "#Sauce", isUp: true, isDev: true, deBug: false, upName: null)); //Sauce
+        DevUserList.Add(new(code: "tidypeople#7578", color: "#880808", tag: "♥", isUp: true, isDev: false, deBug: false, upName: null)); //Juna
 
         // Up
         DevUserList.Add(new(code: "truantwarm#9165", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, upName: "萧暮不姓萧"));
