@@ -27,9 +27,16 @@ public static class Mediumshiper
     public static void OnReportDeadBody(PlayerControl pc, GameData.PlayerInfo target)
     {
         ContactPlayer = new();
-        if (!pc.Is(CustomRoles.Mediumshiper) || target == null) return;
-        ContactPlayer.TryAdd(target.PlayerId, pc.PlayerId);
-        Logger.Info($"通灵师{pc.GetNameWithRole()}报告了{target.PlayerName}的尸体，已建立联系", "Mediumshiper");
+        if (target == null) return;
+        foreach (var _pc in Main.AllAlivePlayerControls.Where(x => playerIdList.Contains(x.PlayerId) && x.PlayerId != target.PlayerId))
+        {
+            //if (ContactLimit[pc.PlayerId] >= 1)
+            {
+                //ContactLimit[pc.PlayerId]--;
+                ContactPlayer.TryAdd(target.PlayerId, _pc.PlayerId);
+                Logger.Info($"通灵师建立联系：{_pc.GetNameWithRole()} => {target.PlayerName}", "Mediumshiper");
+            }
+        }
     }
     public static bool MsMsg(PlayerControl pc, string msg)
     {
