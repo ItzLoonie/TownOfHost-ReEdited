@@ -275,7 +275,7 @@ public class Main : BasePlugin
                 {CustomRoles.Needy, "#a4dffe"},
                 {CustomRoles.SabotageMaster, "#3333ff"},
                 {CustomRoles.Snitch, "#b8fb4f"},
-                {CustomRoles.Marshall, "#1E90FF"},
+                {CustomRoles.Marshall, "#5573aa"},
                 {CustomRoles.Mayor, "#204d42"},
                 {CustomRoles.Paranoia, "#c993f5"},
                 {CustomRoles.Psychic, "#6F698C"},
@@ -333,7 +333,7 @@ public class Main : BasePlugin
                 {CustomRoles.BloodKnight, "#630000"},
                 {CustomRoles.Juggernaut, "#A41342"},
                 {CustomRoles.Parasite, "#ff1919"},
-                {CustomRoles.NVampire, "#7B8968"},
+                {CustomRoles.Infectious, "#7B8968"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -363,7 +363,7 @@ public class Main : BasePlugin
                 {CustomRoles.Charmed, "#cf6acd"},
                 {CustomRoles.Bait, "#00f7ff"},
                 {CustomRoles.Trapper, "#5a8fd0"},
-                {CustomRoles.Bitten, "#7B8968"},
+                {CustomRoles.Infected, "#7B8968"},
                 //SoloKombat
                 {CustomRoles.KB_Normal, "#f55252"}
             };
@@ -519,7 +519,7 @@ public enum CustomRoles
     NSerialKiller,
     Juggernaut,
     Parasite,
-    NVampire,
+    Infectious,
     FFF,
     Konan,
     Gamer,
@@ -567,7 +567,7 @@ public enum CustomRoles
     Charmed,
     Bait,
     Trapper,
-    Bitten,
+    Infected,
 }
 //WinData
 public enum CustomWinner
@@ -605,7 +605,7 @@ public enum CustomWinner
     SerialKiller = CustomRoles.NSerialKiller,
     Witch = CustomRoles.NWitch,
     Juggernaut = CustomRoles.Juggernaut,
-    Vampire = CustomRoles.NVampire,
+    Infectious = CustomRoles.Infectious,
 }
 public enum AdditionalWinners
 {

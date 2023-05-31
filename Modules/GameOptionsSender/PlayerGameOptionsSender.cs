@@ -181,8 +181,8 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Juggernaut:
                 opt.SetVision(Juggernaut.HasImpostorVision.GetBool());
                 break;
-            case CustomRoles.NVampire:
-                opt.SetVision(NVampire.HasImpostorVision.GetBool());
+            case CustomRoles.Infectious:
+                opt.SetVision(Infectious.HasImpostorVision.GetBool());
                 break;
             case CustomRoles.Lawyer:
              //   Main.NormalOptions.CrewLightMod = Lawyer.LawyerVision.GetFloat();
@@ -272,8 +272,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                     Main.AllPlayerSpeed[player.PlayerId] = Options.FlashmanSpeed.GetFloat();
                     break;
                 case CustomRoles.Lighter:
-                    opt.SetFloat(FloatOptionNames.CrewLightMod, 12f);
-                    opt.SetFloat(FloatOptionNames.ImpostorLightMod, 12f);
+                    opt.SetVision(false);
+                    opt.SetFloat(FloatOptionNames.CrewLightMod, Options.LighterVision.GetFloat());
+                    opt.SetFloat(FloatOptionNames.ImpostorLightMod, Options.LighterVision.GetFloat());
                     break;
                 case CustomRoles.Bewilder:
                     opt.SetVision(false);

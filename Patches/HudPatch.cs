@@ -204,8 +204,8 @@ class HudManagerPatch
                     case CustomRoles.Succubus:
                         __instance.KillButton.OverrideText($"{GetString("SuccubusKillButtonText")}");
                         break;
-                    case CustomRoles.NVampire:
-                        __instance.KillButton.OverrideText($"{GetString("NVampireKillButtonText")}");
+                    case CustomRoles.Infectious:
+                        __instance.KillButton.OverrideText($"{GetString("InfectiousKillButtonText")}");
                         break;
                 }
 

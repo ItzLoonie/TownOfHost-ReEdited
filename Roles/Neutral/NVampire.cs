@@ -6,7 +6,7 @@ using static TOHE.Translator;
 
 namespace TOHE.Roles.Neutral;
 
-public static class NVampire
+public static class Infectious
 {
     private static readonly int Id = 7052222;
     private static List<byte> playerIdList = new();
@@ -25,18 +25,18 @@ public static class NVampire
 
     public static void SetupCustomOption()
     {
-        SetupSingleRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.NVampire, 1, zeroOne: false);
-        BiteCooldown = FloatOptionItem.Create(Id + 10, "NVampireBiteCooldown", new(0f, 990f, 2.5f), 30f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NVampire])
+        SetupSingleRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.Infectious, 1, zeroOne: false);
+        BiteCooldown = FloatOptionItem.Create(Id + 10, "InfectiousBiteCooldown", new(0f, 990f, 2.5f), 30f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Infectious])
             .SetValueFormat(OptionFormat.Seconds);
-     //   BiteCooldownIncrese = FloatOptionItem.Create(Id + 11, "NVampireBiteCooldownIncrese", new(0f, 180f, 2.5f), 0f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NVampire])
+     //   BiteCooldownIncrese = FloatOptionItem.Create(Id + 11, "InfectiousBiteCooldownIncrese", new(0f, 180f, 2.5f), 0f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Infectious])
     //        .SetValueFormat(OptionFormat.Seconds);
-        BiteMax = IntegerOptionItem.Create(Id + 12, "NVampireBiteMax", new(1, 15, 1), 15, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NVampire])
+        BiteMax = IntegerOptionItem.Create(Id + 12, "InfectiousBiteMax", new(1, 15, 1), 15, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Infectious])
             .SetValueFormat(OptionFormat.Times);
-        KnowTargetRole = BooleanOptionItem.Create(Id + 13, "NVampireKnowTargetRole", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NVampire]);
-        TargetKnowOtherTarget = BooleanOptionItem.Create(Id + 14, "NVampireTargetKnowOtherTarget", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NVampire]);
-        HasImpostorVision = BooleanOptionItem.Create(Id + 15, "ImpostorVision", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NVampire]);
-        CanVent = BooleanOptionItem.Create(Id + 16, "CanVent", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NVampire]);
-     //   HideBittenRolesOnEject = BooleanOptionItem.Create(Id + 17, "HideBittenRolesOnEject", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NVampire]);        
+        KnowTargetRole = BooleanOptionItem.Create(Id + 13, "InfectiousKnowTargetRole", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Infectious]);
+        TargetKnowOtherTarget = BooleanOptionItem.Create(Id + 14, "InfectiousTargetKnowOtherTarget", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Infectious]);
+        HasImpostorVision = BooleanOptionItem.Create(Id + 15, "ImpostorVision", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Infectious]);
+        CanVent = BooleanOptionItem.Create(Id + 16, "CanVent", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Infectious]);
+     //   HideBittenRolesOnEject = BooleanOptionItem.Create(Id + 17, "HideBittenRolesOnEject", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Infectious]);        
     }
     public static void Init()
     {
@@ -56,7 +56,7 @@ public static class NVampire
 
     private static void SendRPC()
     {
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetNVampireBiteLimit, SendOption.Reliable, -1);
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetInfectiousBiteLimit, SendOption.Reliable, -1);
         writer.Write(BiteLimit);
         AmongUsClient.Instance.FinishRpcImmediately(writer);
     }
@@ -73,10 +73,10 @@ public static class NVampire
         {
             BiteLimit--;
             SendRPC();
-            target.RpcSetCustomRole(CustomRoles.Bitten);
+            target.RpcSetCustomRole(CustomRoles.Infected);
 
-            killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.NVampire), GetString("NVampireBittenPlayer")));
-            target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.NVampire), GetString("BittenByNVampire")));
+            killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Infectious), GetString("InfectiousBittenPlayer")));
+            target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Infectious), GetString("BittenByInfectious")));
             Utils.NotifyRoles();
 
             killer.ResetKillCooldown();
@@ -85,25 +85,25 @@ public static class NVampire
             target.RpcGuardAndKill(killer);
             target.RpcGuardAndKill(target);
 
-            Logger.Info("设置职业:" + target?.Data?.PlayerName + " = " + target.GetCustomRole().ToString() + " + " + CustomRoles.Bitten.ToString(), "Assign " + CustomRoles.Bitten.ToString());
-            Logger.Info($"{killer.GetNameWithRole()} : 剩余{BiteLimit}次魅惑机会", "NVampire");
+            Logger.Info("设置职业:" + target?.Data?.PlayerName + " = " + target.GetCustomRole().ToString() + " + " + CustomRoles.Infected.ToString(), "Assign " + CustomRoles.Infected.ToString());
+            Logger.Info($"{killer.GetNameWithRole()} : 剩余{BiteLimit}次魅惑机会", "Infectious");
             return;
         }
-        killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.NVampire), GetString("NVampireInvalidTarget")));
-        Logger.Info($"{killer.GetNameWithRole()} : 剩余{BiteLimit}次魅惑机会", "NVampire");
+        killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Infectious), GetString("InfectiousInvalidTarget")));
+        Logger.Info($"{killer.GetNameWithRole()} : 剩余{BiteLimit}次魅惑机会", "Infectious");
         return;
     }
     public static bool KnowRole(PlayerControl player, PlayerControl target)
     {
-        if (player.Is(CustomRoles.Bitten) && target.Is(CustomRoles.NVampire)) return true;
-        if (KnowTargetRole.GetBool() && player.Is(CustomRoles.NVampire) && target.Is(CustomRoles.Bitten)) return true;
-        if (TargetKnowOtherTarget.GetBool() && player.Is(CustomRoles.Bitten) && target.Is(CustomRoles.Bitten)) return true;
+        if (player.Is(CustomRoles.Infected) && target.Is(CustomRoles.Infectious)) return true;
+        if (KnowTargetRole.GetBool() && player.Is(CustomRoles.Infectious) && target.Is(CustomRoles.Infected)) return true;
+        if (TargetKnowOtherTarget.GetBool() && player.Is(CustomRoles.Infected) && target.Is(CustomRoles.Infected)) return true;
         return false;
     }
-    public static string GetBiteLimit() => Utils.ColorString(BiteLimit >= 1 ? Utils.GetRoleColor(CustomRoles.NVampire) : Color.gray, $"({BiteLimit})");
+    public static string GetBiteLimit() => Utils.ColorString(BiteLimit >= 1 ? Utils.GetRoleColor(CustomRoles.Infectious) : Color.gray, $"({BiteLimit})");
     public static bool CanBeBitten(this PlayerControl pc)
     {
-        return pc != null && (pc.GetCustomRole().IsCrewmate() || pc.GetCustomRole().IsImpostor() || pc.GetCustomRole().IsNK()) && !pc.Is(CustomRoles.Bitten)
+        return pc != null && (pc.GetCustomRole().IsCrewmate() || pc.GetCustomRole().IsImpostor() || pc.GetCustomRole().IsNK()) && !pc.Is(CustomRoles.Infected)
         && !(
             false
             );

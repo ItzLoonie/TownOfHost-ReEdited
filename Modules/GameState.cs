@@ -76,7 +76,7 @@ public class PlayerState
             };
             SubRoles.Remove(CustomRoles.Charmed);
             SubRoles.Remove(CustomRoles.Sidekick);
-            SubRoles.Remove(CustomRoles.Bitten);
+            SubRoles.Remove(CustomRoles.Infected);
         }
         if (role == CustomRoles.Charmed)
         {
@@ -89,7 +89,7 @@ public class PlayerState
             };
             SubRoles.Remove(CustomRoles.Madmate);
             SubRoles.Remove(CustomRoles.Sidekick);
-            SubRoles.Remove(CustomRoles.Bitten);
+            SubRoles.Remove(CustomRoles.Infected);
         }
         if (role == CustomRoles.Sidekick)
         {
@@ -102,11 +102,11 @@ public class PlayerState
             };
             SubRoles.Remove(CustomRoles.Madmate);
             SubRoles.Remove(CustomRoles.Charmed);
-            SubRoles.Remove(CustomRoles.Bitten);
+            SubRoles.Remove(CustomRoles.Infected);
         }
-        if (role == CustomRoles.Bitten)
+        if (role == CustomRoles.Infected)
         {
-            countTypes = CountTypes.NVampire;
+            countTypes = CountTypes.Infectious;
             SubRoles.Remove(CustomRoles.Madmate);
             SubRoles.Remove(CustomRoles.Sidekick);
             SubRoles.Remove(CustomRoles.Charmed);

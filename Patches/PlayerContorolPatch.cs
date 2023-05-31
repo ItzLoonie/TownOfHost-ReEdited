@@ -285,8 +285,8 @@ class CheckMurderPatch
                 case CustomRoles.Succubus:
                     Succubus.OnCheckMurder(killer, target);
                     return false;
-                case CustomRoles.NVampire:
-                    NVampire.OnCheckMurder(killer, target);
+                case CustomRoles.Infectious:
+                    Infectious.OnCheckMurder(killer, target);
                     return false;
 
                 //==========船员职业==========//
@@ -390,13 +390,13 @@ class CheckMurderPatch
         if (killer.Is(CustomRoles.Madmate) && target.Is(CustomRoleTypes.Impostor) && !Options.MadmateCanKillImp.GetBool())
             return false;
         //Bitten players cannot kill Vampire
-        if (killer.Is(CustomRoles.Bitten) && target.Is(CustomRoles.NVampire))
+        if (killer.Is(CustomRoles.Infected) && target.Is(CustomRoles.Infectious))
             return false;
         //Vampire cannot kill bitten players
-        if (killer.Is(CustomRoles.NVampire) && target.Is(CustomRoles.Bitten))
+        if (killer.Is(CustomRoles.Infectious) && target.Is(CustomRoles.Infected))
             return false;
         //Bitten players cannot kill each other
-        if (killer.Is(CustomRoles.Bitten) && target.Is(CustomRoles.Bitten) && !NVampire.TargetKnowOtherTarget.GetBool())
+        if (killer.Is(CustomRoles.Infected) && target.Is(CustomRoles.Infected) && !Infectious.TargetKnowOtherTarget.GetBool())
             return false;
         //Sidekick can kill Sidekick
         if (killer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Sidekick) && !Options.SidekickCanKillSidekick.GetBool())
@@ -1520,7 +1520,7 @@ class FixedUpdatePatch
                 else if (__instance.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) RoleText.enabled = true;
                 else if (Totocalcio.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (Succubus.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
-                else if (NVampire.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
+                else if (Infectious.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (PlayerControl.LocalPlayer.Is(CustomRoles.God)) RoleText.enabled = true;
                 else if (PlayerControl.LocalPlayer.Is(CustomRoles.GM)) RoleText.enabled = true;
                 else if (Totocalcio.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;

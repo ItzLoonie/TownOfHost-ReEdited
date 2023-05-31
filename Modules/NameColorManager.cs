@@ -47,9 +47,9 @@ public static class NameColorManager
         if (seer.Is(CustomRoles.Charmed) && target.Is(CustomRoles.Charmed) && Succubus.TargetKnowOtherTarget.GetBool()) color = Main.roleColors[CustomRoles.Charmed];
 
         // Neutral Vampire
-        if (seer.Is(CustomRoles.Bitten) && target.Is(CustomRoles.NVampire)) color = Main.roleColors[CustomRoles.NVampire];
-        if (seer.Is(CustomRoles.NVampire) && target.Is(CustomRoles.Bitten)) color = Main.roleColors[CustomRoles.Bitten];
-        if (seer.Is(CustomRoles.Bitten) && target.Is(CustomRoles.Bitten) && NVampire.TargetKnowOtherTarget.GetBool()) color = Main.roleColors[CustomRoles.NVampire];
+        if (seer.Is(CustomRoles.Infected) && target.Is(CustomRoles.Infectious)) color = Main.roleColors[CustomRoles.Infectious];
+        if (seer.Is(CustomRoles.Infectious) && target.Is(CustomRoles.Infected)) color = Main.roleColors[CustomRoles.Infected];
+        if (seer.Is(CustomRoles.Infected) && target.Is(CustomRoles.Infected) && Infectious.TargetKnowOtherTarget.GetBool()) color = Main.roleColors[CustomRoles.Infectious];
 
 
         if (color != "") return true;

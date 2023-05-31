@@ -102,7 +102,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Wraith => CustomRoles.Impostor,
                 CustomRoles.Crewpostor => CustomRoles.Crewmate,
                 CustomRoles.Observer => CustomRoles.Crewmate,
-                CustomRoles.NVampire => CustomRoles.Impostor,
+                CustomRoles.Infectious => CustomRoles.Impostor,
                 CustomRoles.Disperser => CustomRoles.Shapeshifter,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
@@ -138,7 +138,7 @@ internal static class CustomRolesHelper
             CustomRoles.NWitch => RoleTypes.Impostor,
             CustomRoles.Totocalcio => RoleTypes.Impostor,
             CustomRoles.Succubus => RoleTypes.Impostor,
-            CustomRoles.NVampire => RoleTypes.Impostor,
+            CustomRoles.Infectious => RoleTypes.Impostor,
             _ => RoleTypes.GuardianAngel
         };
     }
@@ -171,6 +171,7 @@ internal static class CustomRolesHelper
             CustomRoles.Mimic or
             CustomRoles.Reach or
             CustomRoles.Charmed or
+            CustomRoles.Infected or
             CustomRoles.Bait or
             CustomRoles.Trapper or
             CustomRoles.Guesser;
@@ -192,7 +193,7 @@ internal static class CustomRolesHelper
             CustomRoles.Collector or
             CustomRoles.Sunnyboy or
             CustomRoles.Totocalcio or
-            CustomRoles.NVampire or
+            CustomRoles.Infectious or
             CustomRoles.Succubus;
     }
     public static bool IsNK(this CustomRoles role) // �Ƿ��������
@@ -238,7 +239,7 @@ internal static class CustomRolesHelper
             CustomRoles.NSerialKiller or
             CustomRoles.NWitch or
             CustomRoles.BloodKnight or
-            CustomRoles.NVampire or
+            CustomRoles.Infectious or
             CustomRoles.Succubus;
     }
     public static bool IsCK(this CustomRoles role) // �Ƿ������Ա
@@ -329,7 +330,7 @@ internal static class CustomRolesHelper
             CustomRoles.Konan or
             CustomRoles.Gamer or
             CustomRoles.DarkHide or
-            CustomRoles.NVampire or
+            CustomRoles.Infectious or
             CustomRoles.Workaholic or
             CustomRoles.Collector or
             CustomRoles.Provocateur or
@@ -346,6 +347,7 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Lighter && (!pc.GetCustomRole().IsCrewmate() || pc.Is(CustomRoles.Bewilder) || pc.Is(CustomRoles.GuardianAngelTOHE))) return false;
         if (role is CustomRoles.Bewilder && (pc.GetCustomRole().IsImpostor() || pc.Is(CustomRoles.Lighter) || pc.Is(CustomRoles.GuardianAngelTOHE))) return false;
         if (role is CustomRoles.Ntr && (pc.Is(CustomRoles.Lovers) || pc.Is(CustomRoles.FFF) || pc.Is(CustomRoles.GuardianAngelTOHE))) return false;
+        if (role is CustomRoles.Lovers && pc.Is(CustomRoles.FFF)) return false;
         if (role is CustomRoles.Guesser && ((pc.GetCustomRole().IsCrewmate() && (!Options.CrewCanBeGuesser.GetBool() || pc.Is(CustomRoles.NiceGuesser) || pc.Is(CustomRoles.Judge))) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeGuesser.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeGuesser.GetBool() || pc.Is(CustomRoles.EvilGuesser)) || pc.Is(CustomRoles.GuardianAngelTOHE))) return false;
         if (role is CustomRoles.Madmate && !Utils.CanBeMadmate(pc)) return false;
         if (role is CustomRoles.Oblivious && (pc.Is(CustomRoles.Detective) || pc.Is(CustomRoles.Cleaner) || pc.Is(CustomRoles.Mortician) || pc.Is(CustomRoles.Mediumshiper) || pc.Is(CustomRoles.GuardianAngelTOHE))) return false;
@@ -479,7 +481,7 @@ internal static class CustomRolesHelper
            CustomRoles.Parasite => CountTypes.Impostor,
            CustomRoles.NSerialKiller => CountTypes.NSerialKiller,
            CustomRoles.Juggernaut => CountTypes.Juggernaut,
-           CustomRoles.NVampire => CountTypes.NVampire,
+           CustomRoles.Infectious => CountTypes.Infectious,
            _ => role.IsImpostorTeam() ? CountTypes.Impostor : CountTypes.Crew,
        };
 
@@ -510,5 +512,5 @@ public enum CountTypes
     Wraith,
     NSerialKiller,
     Juggernaut,
-    NVampire,
+    Infectious,
 }

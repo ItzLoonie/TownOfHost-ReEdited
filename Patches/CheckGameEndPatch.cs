@@ -58,12 +58,12 @@ class GameEndChecker
             {
                 case CustomWinner.Crewmate:
                     Main.AllPlayerControls
-                        .Where(pc => pc.Is(CustomRoleTypes.Crewmate) && !pc.Is(CustomRoles.Lovers) && !pc.Is(CustomRoles.Madmate) && !pc.Is(CustomRoles.Charmed) && !pc.Is(CustomRoles.Bitten))
+                        .Where(pc => pc.Is(CustomRoleTypes.Crewmate) && !pc.Is(CustomRoles.Lovers) && !pc.Is(CustomRoles.Madmate) && !pc.Is(CustomRoles.Charmed) && !pc.Is(CustomRoles.Infected))
                         .Do(pc => CustomWinnerHolder.WinnerIds.Add(pc.PlayerId));
                     break;
                 case CustomWinner.Impostor:
                     Main.AllPlayerControls
-                        .Where(pc => (pc.Is(CustomRoleTypes.Impostor) || pc.Is(CustomRoles.Madmate)) && !pc.Is(CustomRoles.Lovers) && !pc.Is(CustomRoles.Charmed) && !pc.Is(CustomRoles.Bitten))
+                        .Where(pc => (pc.Is(CustomRoleTypes.Impostor) || pc.Is(CustomRoles.Madmate)) && !pc.Is(CustomRoles.Lovers) && !pc.Is(CustomRoles.Charmed) && !pc.Is(CustomRoles.Infected))
                         .Do(pc => CustomWinnerHolder.WinnerIds.Add(pc.PlayerId));
                     break;
                 case CustomWinner.Succubus:
@@ -71,14 +71,14 @@ class GameEndChecker
                         .Where(pc => pc.Is(CustomRoles.Succubus) || pc.Is(CustomRoles.Charmed))
                         .Do(pc => CustomWinnerHolder.WinnerIds.Add(pc.PlayerId));
                     break;
-                case CustomWinner.Vampire:
+                case CustomWinner.Infectious:
                     Main.AllPlayerControls
-                        .Where(pc => pc.Is(CustomRoles.NVampire) || pc.Is(CustomRoles.Bitten))
+                        .Where(pc => pc.Is(CustomRoles.Infectious) || pc.Is(CustomRoles.Infected))
                         .Do(pc => CustomWinnerHolder.WinnerIds.Add(pc.PlayerId));
                     break;
                 case CustomWinner.Jackal:
                     Main.AllPlayerControls
-                        .Where(pc => (pc.Is(CustomRoles.Jackal) || pc.Is(CustomRoles.Sidekick)) && !pc.Is(CustomRoles.Lovers) && !pc.Is(CustomRoles.Bitten))
+                        .Where(pc => (pc.Is(CustomRoles.Jackal) || pc.Is(CustomRoles.Sidekick)) && !pc.Is(CustomRoles.Lovers) && !pc.Is(CustomRoles.Infected))
                         .Do(pc => CustomWinnerHolder.WinnerIds.Add(pc.PlayerId));
                     break;
             }
@@ -378,7 +378,7 @@ class GameEndChecker
             int SK = Utils.AlivePlayersCount(CountTypes.NSerialKiller);
             int Witch = Utils.AlivePlayersCount(CountTypes.NWitch);
             int Juggy = Utils.AlivePlayersCount(CountTypes.Juggernaut);
-            int Vamp = Utils.AlivePlayersCount(CountTypes.NVampire);
+            int Vamp = Utils.AlivePlayersCount(CountTypes.Infectious);
 
             Imp += Main.AllAlivePlayerControls.Count(x => x.GetCustomRole().IsImpostor() && x.Is(CustomRoles.DualPersonality));
             Crew += Main.AllAlivePlayerControls.Count(x => x.GetCustomRole().IsCrewmate() && x.Is(CustomRoles.DualPersonality));
@@ -463,7 +463,7 @@ class GameEndChecker
             else if (Imp == 0 && Jackal == 0 && Pel == 0 && CM == 0 && Juggy == 0 && Hex == 0 && SK == 0 && Wraith == 0 && BK == 0 && Gam == 0 && Pois == 0 && Crew <= Vamp) //嗜血骑士胜利
             {
                 reason = GameOverReason.ImpostorByKill;
-                CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Vampire);
+                CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Infectious);
             }
             
             else if (Jackal == 0 && Pel == 0 && Imp == 0 && Vamp == 0 && Juggy == 0 && Hex == 0 && SK == 0 && Wraith == 0 && Pois == 0 && BK == 0 && Gam == 0 && CM == 0) //船员胜利
