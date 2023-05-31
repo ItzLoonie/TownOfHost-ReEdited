@@ -172,11 +172,11 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
              case CustomRoles.NWitch:
                 opt.SetVision(true);
-                Main.NormalOptions.KillCooldown = Options.ControlCooldown.GetFloat();
+         //       Main.NormalOptions.KillCooldown = Options.ControlCooldown.GetFloat();
                 break;
             case CustomRoles.NSerialKiller:
                 opt.SetVision(Options.NSerialKillerHasImpostorVision.GetBool());
-                Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
+            //    Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
                 break;
             case CustomRoles.Juggernaut:
                 opt.SetVision(Juggernaut.HasImpostorVision.GetBool());
@@ -191,7 +191,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.HexMaster:
             case CustomRoles.Parasite:
                 opt.SetVision(true);
-                Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
+           //     Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
                 break;
             
             case CustomRoles.Gamer:

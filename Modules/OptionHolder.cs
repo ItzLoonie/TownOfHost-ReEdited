@@ -248,6 +248,9 @@ public static class Options
     public static OptionItem CrewmateCanBeSidekick;
     public static OptionItem NeutralCanBeSidekick;
     public static OptionItem ImpostorCanBeSidekick;
+    public static OptionItem ImpCanBeOnbound;
+    public static OptionItem CrewCanBeOnbound;
+    public static OptionItem NeutralCanBeOnbound;
     public static OptionItem ControlCooldown;
     public static OptionItem JesterVision;
    // public static OptionItem LawyerVision;
@@ -950,6 +953,10 @@ public static class Options
         ImpCanBeNecroview = BooleanOptionItem.Create(6050503, "ImpCanBeNecroview", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Necroview]);
         CrewCanBeNecroview = BooleanOptionItem.Create(6050504, "CrewCanBeNecroview", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Necroview]);
         NeutralCanBeNecroview = BooleanOptionItem.Create(6050506, "NeutralCanBeNecroview", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Necroview]);
+        SetupAdtRoleOptions(6050605, CustomRoles.Onbound, canSetNum: true, tab: TabGroup.OtherRoles);
+        ImpCanBeOnbound = BooleanOptionItem.Create(6050607, "ImpCanBeOnbound", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Onbound]);
+        CrewCanBeOnbound = BooleanOptionItem.Create(6050608, "CrewCanBeOnbound", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Onbound]);
+        NeutralCanBeOnbound = BooleanOptionItem.Create(6050609, "NeutralCanBeOnbound", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Onbound]);
         SetupAdtRoleOptions(6050390, CustomRoles.Madmate, canSetNum: true, canSetChance: false);
         MadmateSpawnMode = StringOptionItem.Create(6060444, "MadmateSpawnMode", madmateSpawnMode, 0, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Madmate]);
         MadmateCountMode = StringOptionItem.Create(6060445, "MadmateCountMode", madmateCountMode, 0, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Madmate]);
