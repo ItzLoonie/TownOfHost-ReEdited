@@ -582,7 +582,7 @@ internal class ChatCommands
         }
 
         string[] param = role.Split(' ');
-        if (param.Length == 2)
+        if (param.Length == 2 || param.Length == 3)
         {
             if (!int.TryParse(param[0], out int assignPlayer))
             {
@@ -590,7 +590,7 @@ internal class ChatCommands
             }
 
             playerId = (byte)assignPlayer;
-            role = param[1];
+            role = param[1] + (param.Length == 3 ? " " + param[2] : string.Empty);
         }
         else
         {
