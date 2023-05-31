@@ -413,7 +413,7 @@ public static class Utils
             case CustomRoles.Provocateur:
             case CustomRoles.Medicaler:
             case CustomRoles.BloodKnight:
-            case CustomRoles.Concealer:
+            case CustomRoles.Camouflager:
             case CustomRoles.Totocalcio:
             case CustomRoles.Succubus:
             case CustomRoles.Infectious:
@@ -498,8 +498,8 @@ public static class Utils
         if (taskState.hasTasks)
         {
             if (IsActive(SystemTypes.Comms)) Comms = true;
-            if (Concealer.IsHidding) Comms = true;
-           // if (PlayerControl.LocalPlayer.myTasks.ToArray().Any(x => x.TaskType == TaskTypes.FixComms)) Comms = true;
+            if (Camouflager.IsActive) Comms = true;
+            //if (PlayerControl.LocalPlayer.myTasks.ToArray().Any(x => x.TaskType == TaskTypes.FixComms)) Comms = true;
         }
         return GetProgressText(pc.PlayerId, Comms);
     }
@@ -1154,7 +1154,7 @@ public static class Utils
             }
             else SelfName = SelfRoleName + "\r\n" + SelfName;
             SelfName += SelfSuffix.ToString() == "" ? "" : "\r\n " + SelfSuffix.ToString();
-            if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Concealer.IsHidding) && !CamouflageIsForMeeting)
+            if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive) && !CamouflageIsForMeeting)
                 SelfName = SelfRoleName;
             if (!isForMeeting) SelfName += "\r\n";
 
@@ -1352,7 +1352,7 @@ public static class Utils
                 if (seer.KnowDeathReason(target))
                     TargetDeathReason = $"({ColorString(GetRoleColor(CustomRoles.Doctor), GetVitalText(target.PlayerId))})";
 
-                if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Concealer.IsHidding) && !CamouflageIsForMeeting)
+                if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive) && !CamouflageIsForMeeting)
                     TargetPlayerName = $"<size=0%>{TargetPlayerName}</size>";
 
                 //全てのテキストを合成します。

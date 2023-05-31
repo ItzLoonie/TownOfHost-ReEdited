@@ -387,9 +387,6 @@ internal class RPCHandlerPatch
             case CustomRPC.SetMarkedPlayer:
                 Assassin.ReceiveRPC(reader);
                 break;
-            case CustomRPC.SetConcealerTimer:
-                Concealer.ReceiveRPC(reader);
-                break;
             case CustomRPC.SetMedicalerProtectList:
                 Medicaler.ReceiveRPCForProtectList(reader);
                 break;
@@ -720,9 +717,6 @@ internal static class RPC
                 break;
             case CustomRoles.CursedWolf:
                 Main.CursedWolfSpellCount[targetId] = Options.GuardSpellTimes.GetInt();
-                break;
-            case CustomRoles.Concealer:
-                Concealer.Add(targetId);
                 break;
             case CustomRoles.Eraser:
                 Eraser.Add(targetId);

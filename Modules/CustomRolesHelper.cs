@@ -89,7 +89,6 @@ internal static class CustomRolesHelper
                 CustomRoles.Glitch => CustomRoles.Crewmate,
                 CustomRoles.ImperiusCurse => CustomRoles.Shapeshifter,
                 CustomRoles.QuickShooter => CustomRoles.Shapeshifter,
-                CustomRoles.Concealer => CustomRoles.Shapeshifter,
                 CustomRoles.Eraser => CustomRoles.Impostor,
                 CustomRoles.OverKiller => CustomRoles.Impostor,
                 CustomRoles.Hangman => CustomRoles.Shapeshifter,
@@ -104,6 +103,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Observer => CustomRoles.Crewmate,
                 CustomRoles.Infectious => CustomRoles.Impostor,
                 CustomRoles.Disperser => CustomRoles.Shapeshifter,
+                CustomRoles.Camouflager => CustomRoles.Shapeshifter,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
     }
@@ -292,14 +292,14 @@ internal static class CustomRolesHelper
             CustomRoles.CursedWolf or
             CustomRoles.ImperiusCurse or
             CustomRoles.QuickShooter or
-            CustomRoles.Concealer or
             CustomRoles.Eraser or
             CustomRoles.OverKiller or
             CustomRoles.Hangman or
             CustomRoles.Bard or
             CustomRoles.Swooper or
             CustomRoles.Crewpostor or
-            CustomRoles.Disperser;
+            CustomRoles.Disperser or
+            CustomRoles.Camouflager;
     }
     public static bool IsNeutral(this CustomRoles role) // �Ƿ�����
     {
