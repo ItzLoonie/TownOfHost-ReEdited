@@ -47,10 +47,10 @@ namespace TOHE.Roles.Impostor
                                 Utils.TP(pc.NetTransform, originPs);
                                 break;
                             case SwitchTrigger.Drag:
-                                Utils.TP(pc.NetTransform, originPs);
+                                Utils.TP(target.NetTransform, pc.GetTruePosition());
                                 break; 
                             case SwitchTrigger.Jump:
-                                Utils.TP(target.NetTransform, pc.GetTruePosition());
+                                Utils.TP(pc.NetTransform, originPs);
                                 break;
                         }
                     }
