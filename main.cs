@@ -113,6 +113,7 @@ public class Main : BasePlugin
     public static Dictionary<byte, float> AllPlayerSpeed = new();
     public const float MinSpeed = 0.0001f;
     public static List<byte> CleanerBodies = new();
+    public static List<byte> InfectedBodies = new();
     public static List<byte> BrakarVoteFor = new();
     public static Dictionary<byte, (byte, float)> BitPlayers = new();
     public static Dictionary<byte, float> WarlockTimer = new();
