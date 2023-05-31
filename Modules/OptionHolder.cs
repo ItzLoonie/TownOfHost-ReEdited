@@ -712,6 +712,7 @@ public static class Options
         SetupRoleOptions(901595, TabGroup.ImpostorRoles, CustomRoles.Escapee);
         Witch.SetupCustomOption();
         Swooper.SetupCustomOption();
+        Camouflager.SetupCustomOption();
         SetupRoleOptions(1600, TabGroup.ImpostorRoles, CustomRoles.Mafia);
         MafiaCanKillNum = IntegerOptionItem.Create(901615, "MafiaCanKillNum", new(0, 15, 1), 1, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Mafia])
             .SetValueFormat(OptionFormat.Players);
@@ -986,7 +987,6 @@ public static class Options
         CapitalismSkillCooldown = FloatOptionItem.Create(902558, "CapitalismSkillCooldown", new(2.5f, 900f, 2.5f), 20f, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Capitalism])
             .SetValueFormat(OptionFormat.Seconds);
         BallLightning.SetupCustomOption();
-        Concealer.SetupCustomOption();
         Eraser.SetupCustomOption();
         SetupRoleOptions(902622, TabGroup.OtherRoles, CustomRoles.OverKiller);
         SetupRoleOptions(907090, TabGroup.OtherRoles, CustomRoles.Crewpostor);
@@ -1229,8 +1229,9 @@ public static class Options
             .SetGameMode(CustomGameMode.Standard)
             .SetHeader(true)
             .SetColor(new Color32(243, 96, 96, byte.MaxValue));
-        DisableReportWhenCC = BooleanOptionItem.Create(900_015, "DisableReportWhenCC", false, TabGroup.GameSettings, false).SetParent(CommsCamouflage)
-            .SetGameMode(CustomGameMode.Standard);
+        DisableReportWhenCC = BooleanOptionItem.Create(900_015, "DisableReportWhenCC", false, TabGroup.GameSettings, false)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetColor(new Color32(243, 96, 96, byte.MaxValue));
 
         // SabotageTimeControl
         SabotageTimeControl = BooleanOptionItem.Create(100800, "SabotageTimeControl", false, TabGroup.GameSettings, false)

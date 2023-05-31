@@ -457,7 +457,6 @@ public enum CustomRoles
     CursedWolf,
     ImperiusCurse,
     QuickShooter,
-    Concealer,
     Eraser,
     OverKiller,
     Hangman,
@@ -466,6 +465,7 @@ public enum CustomRoles
     Swooper,
     Crewpostor,
     Disperser,
+    Camouflager,
     //Crewmate(Vanilla)
     Engineer,
     GuardianAngel,

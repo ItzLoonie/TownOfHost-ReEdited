@@ -192,7 +192,7 @@ internal class ChangeRoleSettings
             Greedier.Init();
             Collector.Init();
             QuickShooter.Init();
-            Concealer.Init();
+            Camouflager.Init();
             Divinator.Init();
             Eraser.Init();
             Assassin.Init();
@@ -508,9 +508,6 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.CursedWolf:
                         Main.CursedWolfSpellCount[pc.PlayerId] = Options.GuardSpellTimes.GetInt();
-                        break;
-                    case CustomRoles.Concealer:
-                        Concealer.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Eraser:
                         Eraser.Add(pc.PlayerId);
