@@ -306,12 +306,12 @@ public static class Utils
             {
                 if (Options.ImpEgoistVisibalToAllies.GetBool())
                 {
-            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers and not CustomRoles.Infected))
+            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers and not CustomRoles.Infected and not CustomRoles.Contagious))
                 RoleText = ColorString(GetRoleColor(subRole), GetString("PrefixB." + subRole.ToString())) + RoleText;
                 }
                 if (!Options.ImpEgoistVisibalToAllies.GetBool())
                 {
-            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers and not CustomRoles.Infected))
+            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers and not CustomRoles.Infected and not CustomRoles.Contagious))
                 RoleText = ColorString(GetRoleColor(subRole), GetString("PrefixB." + subRole.ToString())) + RoleText;
                 }
             }
@@ -319,12 +319,12 @@ public static class Utils
             {
                 if (Options.ImpEgoistVisibalToAllies.GetBool())
                 {
-            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers and not CustomRoles.Infected))
+            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers and not CustomRoles.Infected and not CustomRoles.Contagious))
                 RoleText = ColorString(GetRoleColor(subRole), GetString("Prefix." + subRole.ToString())) + RoleText;
                 }
                     if (!Options.ImpEgoistVisibalToAllies.GetBool())
                 {
-            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers and not CustomRoles.Infected))
+            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers and not CustomRoles.Infected and not CustomRoles.Contagious))
                 RoleText = ColorString(GetRoleColor(subRole), GetString("Prefix." + subRole.ToString())) + RoleText;
                 }
             }
@@ -455,6 +455,7 @@ public static class Utils
                 case CustomRoles.Sidekick:
                 case CustomRoles.Egoist:
                 case CustomRoles.Infected:
+                case CustomRoles.Contagious:
                     //ラバーズはタスクを勝利用にカウントしない
                     hasTasks &= !ForRecompute;
                     break;
@@ -847,7 +848,7 @@ public static class Utils
         {
             if (role is CustomRoles.NotAssigned or
                         CustomRoles.LastImpostor) continue;
-            if (summary && role is CustomRoles.Madmate or CustomRoles.Charmed or CustomRoles.Infected) continue;
+            if (summary && role is CustomRoles.Madmate or CustomRoles.Charmed or CustomRoles.Infected or CustomRoles.Contagious) continue;
 
             var RoleText = disableColor ? GetRoleName(role) : ColorString(GetRoleColor(role), GetRoleName(role));
             sb.Append($"{ColorString(Color.white, " + ")}{RoleText}");
