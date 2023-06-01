@@ -345,7 +345,11 @@ public static class Utils
             RoleColor = GetRoleColor(CustomRoles.Infected);
             RoleText = GetRoleString("Infected-") + RoleText;
         }
-        
+        if (targetSubRoles.Contains(CustomRoles.Contagious) && (self || pure || seerMainRole == CustomRoles.Virus || (Virus.TargetKnowOtherTarget.GetBool() && seerSubRoles.Contains(CustomRoles.Contagious))))
+        {
+            RoleColor = GetRoleColor(CustomRoles.Contagious);
+            RoleText = GetRoleString("Contagious-") + RoleText;
+        }
 
         return (RoleText, RoleColor);
     }
@@ -417,6 +421,7 @@ public static class Utils
             case CustomRoles.Totocalcio:
             case CustomRoles.Succubus:
             case CustomRoles.Infectious:
+            case CustomRoles.Virus:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:
@@ -575,6 +580,9 @@ public static class Utils
                 break;
             case CustomRoles.Infectious:
                 ProgressText.Append(Infectious.GetBiteLimit());
+                break;
+            case CustomRoles.Virus:
+                ProgressText.Append(Virus.GetInfectLimit());
                 break;
             default:
                 //タスクテキスト
@@ -1262,6 +1270,7 @@ public static class Utils
                         (Totocalcio.KnowRole(seer, target)) ||
                         (Succubus.KnowRole(seer, target)) ||
                         (Infectious.KnowRole(seer, target)) ||
+                        (Virus.KnowRole(seer, target)) ||
                         (seer.Is(CustomRoles.God)) ||
                         (target.Is(CustomRoles.GM))
                         ? $"<size={fontSize}>{target.GetDisplayRoleName(seer.PlayerId != target.PlayerId && !seer.Data.IsDead)}{GetProgressText(target)}</size>\r\n" : "";

@@ -676,6 +676,7 @@ class MeetingHudStartPatch
                 (Totocalcio.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (Succubus.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (Infectious.KnowRole(PlayerControl.LocalPlayer, pc)) ||
+                (Virus.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 PlayerControl.LocalPlayer.Is(CustomRoles.God) ||
                 PlayerControl.LocalPlayer.Is(CustomRoles.GM) ||
                 Main.GodMode.Value;

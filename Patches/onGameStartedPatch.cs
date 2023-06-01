@@ -211,6 +211,7 @@ internal class ChangeRoleSettings
             Totocalcio.Init();
             Succubus.Init();
             Infectious.Init();
+            Virus.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
@@ -563,6 +564,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Infectious:
                         Infectious.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Virus:
+                        Virus.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Wildling:
                         Wildling.Add(pc.PlayerId);

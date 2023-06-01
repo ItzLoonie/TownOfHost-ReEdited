@@ -139,6 +139,7 @@ internal static class CustomRolesHelper
             CustomRoles.Totocalcio => RoleTypes.Impostor,
             CustomRoles.Succubus => RoleTypes.Impostor,
             CustomRoles.Infectious => RoleTypes.Impostor,
+            CustomRoles.Virus => RoleTypes.Impostor,
             _ => RoleTypes.GuardianAngel
         };
     }
@@ -194,6 +195,7 @@ internal static class CustomRolesHelper
             CustomRoles.Sunnyboy or
             CustomRoles.Totocalcio or
             CustomRoles.Infectious or
+            CustomRoles.Virus or
             CustomRoles.Succubus;
     }
     public static bool IsNK(this CustomRoles role) // �Ƿ��������
@@ -240,6 +242,7 @@ internal static class CustomRolesHelper
             CustomRoles.NWitch or
             CustomRoles.BloodKnight or
             CustomRoles.Infectious or
+            CustomRoles.Virus or
             CustomRoles.Succubus;
     }
     public static bool IsCK(this CustomRoles role) // �Ƿ������Ա
@@ -482,6 +485,7 @@ internal static class CustomRolesHelper
            CustomRoles.NSerialKiller => CountTypes.NSerialKiller,
            CustomRoles.Juggernaut => CountTypes.Juggernaut,
            CustomRoles.Infectious => CountTypes.Infectious,
+           CustomRoles.Virus => CountTypes.Virus,
            _ => role.IsImpostorTeam() ? CountTypes.Impostor : CountTypes.Crew,
        };
 
@@ -513,4 +517,5 @@ public enum CountTypes
     NSerialKiller,
     Juggernaut,
     Infectious,
+    Virus
 }
