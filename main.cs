@@ -364,6 +364,7 @@ public class Main : BasePlugin
                 {CustomRoles.Bait, "#00f7ff"},
                 {CustomRoles.Trapper, "#5a8fd0"},
                 {CustomRoles.Infected, "#7B8968"},
+                {CustomRoles.Onbound, "#BAAAE9"},
                 //SoloKombat
                 {CustomRoles.KB_Normal, "#f55252"}
             };
@@ -456,7 +457,6 @@ public enum CustomRoles
     CursedWolf,
     ImperiusCurse,
     QuickShooter,
-    Concealer,
     Eraser,
     OverKiller,
     Hangman,
@@ -465,6 +465,7 @@ public enum CustomRoles
     Swooper,
     Crewpostor,
     Disperser,
+    Camouflager,
     //Crewmate(Vanilla)
     Engineer,
     GuardianAngel,
@@ -568,6 +569,7 @@ public enum CustomRoles
     Bait,
     Trapper,
     Infected,
+    Onbound,
 }
 //WinData
 public enum CustomWinner

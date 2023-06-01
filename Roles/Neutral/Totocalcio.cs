@@ -106,9 +106,9 @@ public static class Totocalcio
         killer.ResetKillCooldown();
         killer.SetKillCooldown();
 
-        killer.Notify(Translator.GetString("TotocalcioBetPlayer"));
+        killer.Notify(GetString("TotocalcioBetPlayer"));
         if (BetTargetKnowTotocalcio.GetBool())
-            target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Totocalcio), Translator.GetString("TotocalcioBetOnYou")));
+            target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Totocalcio), GetString("TotocalcioBetOnYou")));
 
         Logger.Info($"赌徒下注：{killer.GetNameWithRole()} => {target.GetNameWithRole()}", "Totocalcio");
         return false;

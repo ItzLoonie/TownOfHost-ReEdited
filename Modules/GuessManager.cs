@@ -101,27 +101,27 @@ public static class GuessManager
             return true;
         }
 
-        if (pc.GetCustomRole().IsCrewmate() && !Options.CrewmatesCanGuess.GetBool() && !pc.Is(CustomRoles.NiceGuesser))
+        if (pc.GetCustomRole().IsCrewmate() && !Options.CrewmatesCanGuess.GetBool() && !pc.Is(CustomRoles.NiceGuesser) && !pc.Is(CustomRoles.Guesser))
         {
             if (!isUI) Utils.SendMessage(GetString("GuessNotAllowed"), pc.PlayerId);
             else pc.ShowPopUp(GetString("GuessNotAllowed"));
             return true;
         }
 
-        if (pc.GetCustomRole().IsImpostor() && !Options.ImpostorsCanGuess.GetBool() && !pc.Is(CustomRoles.EvilGuesser))
+        if (pc.GetCustomRole().IsImpostor() && !Options.ImpostorsCanGuess.GetBool() && !pc.Is(CustomRoles.EvilGuesser) && !pc.Is(CustomRoles.Guesser))
         {
             if (!isUI) Utils.SendMessage(GetString("GuessNotAllowed"), pc.PlayerId);
             else pc.ShowPopUp(GetString("GuessNotAllowed"));
             return true;
         }
 
-        if (pc.GetCustomRole().IsNK() && !Options.NeutralKillersCanGuess.GetBool())
+        if (pc.GetCustomRole().IsNK() && !Options.NeutralKillersCanGuess.GetBool() && !pc.Is(CustomRoles.Guesser))
         {
             if (!isUI) Utils.SendMessage(GetString("GuessNotAllowed"), pc.PlayerId);
             else pc.ShowPopUp(GetString("GuessNotAllowed"));
             return true;
         }
-        if (pc.GetCustomRole().IsNonNK() && !Options.PassiveNeutralsCanGuess.GetBool())
+        if (pc.GetCustomRole().IsNonNK() && !Options.PassiveNeutralsCanGuess.GetBool() && !pc.Is(CustomRoles.Guesser))
         {
             if (!isUI) Utils.SendMessage(GetString("GuessNotAllowed"), pc.PlayerId);
             else pc.ShowPopUp(GetString("GuessNotAllowed"));
@@ -169,6 +169,12 @@ public static class GuessManager
                 if (role == CustomRoles.SuperStar && target.Is(CustomRoles.SuperStar))
                 {
                     Utils.SendMessage(GetString("GuessSuperStar"), pc.PlayerId);
+                    return true;
+                }
+                if (target.Is(CustomRoles.Onbound))
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessOnbound"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessOnbound"));
                     return true;
                 }
                 if (role == CustomRoles.GM || target.Is(CustomRoles.GM))

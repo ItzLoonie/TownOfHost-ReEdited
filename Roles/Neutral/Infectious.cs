@@ -66,13 +66,12 @@ public static class Infectious
     }
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = BiteCooldown.GetFloat();
     public static bool CanUseKillButton(PlayerControl player) => !player.Data.IsDead && BiteLimit >= 1;
-    public static void OnCheckMurder(PlayerControl killer, PlayerControl target)
+    public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
     {
-        if (BiteLimit < 1) return;
+        if (BiteLimit < 1) return false;
         if (CanBeBitten(target))
         {
             BiteLimit--;
-            SendRPC();
             target.RpcSetCustomRole(CustomRoles.Infected);
 
             killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Infectious), GetString("InfectiousBittenPlayer")));
@@ -86,12 +85,20 @@ public static class Infectious
             target.RpcGuardAndKill(target);
 
             Logger.Info("设置职业:" + target?.Data?.PlayerName + " = " + target.GetCustomRole().ToString() + " + " + CustomRoles.Infected.ToString(), "Assign " + CustomRoles.Infected.ToString());
-            Logger.Info($"{killer.GetNameWithRole()} : 剩余{BiteLimit}次魅惑机会", "Infectious");
-            return;
+            if (BiteLimit < 0)
+                HudManager.Instance.KillButton.OverrideText($"{GetString("KillButtonText")}");
+            Logger.Info($"{killer.GetNameWithRole()} : 剩余{BiteLimit}次招募机会", "Infectious");
+            return true;
         }
+        if (!CanBeBitten(target) && !target.Is(CustomRoles.Infected))
+        {
+            killer.RpcMurderPlayerV3(target);
+        }
+        if (BiteLimit < 0)
+            HudManager.Instance.KillButton.OverrideText($"{GetString("KillButtonText")}");
         killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Infectious), GetString("InfectiousInvalidTarget")));
-        Logger.Info($"{killer.GetNameWithRole()} : 剩余{BiteLimit}次魅惑机会", "Infectious");
-        return;
+        Logger.Info($"{killer.GetNameWithRole()} : 剩余{BiteLimit}次招募机会", "Infectious");
+        return false;
     }
     public static bool KnowRole(PlayerControl player, PlayerControl target)
     {
