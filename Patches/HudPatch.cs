@@ -154,8 +154,8 @@ class HudManagerPatch
                     case CustomRoles.Provocateur:
                         __instance.KillButton.OverrideText($"{GetString("ProvocateurButtonText")}");
                         break;
-                    case CustomRoles.Concealer:
-                        __instance.AbilityButton.OverrideText($"{GetString("ConcealerShapeshiftText")}");
+                    case CustomRoles.Camouflager:
+                        __instance.AbilityButton.OverrideText($"{GetString("CamouflagerShapeshiftText")}");
                         break;
                     case CustomRoles.OverKiller:
                         __instance.KillButton.OverrideText($"{GetString("OverKillerButtonText")}");

@@ -89,7 +89,6 @@ internal static class CustomRolesHelper
                 CustomRoles.Glitch => CustomRoles.Crewmate,
                 CustomRoles.ImperiusCurse => CustomRoles.Shapeshifter,
                 CustomRoles.QuickShooter => CustomRoles.Shapeshifter,
-                CustomRoles.Concealer => CustomRoles.Shapeshifter,
                 CustomRoles.Eraser => CustomRoles.Impostor,
                 CustomRoles.OverKiller => CustomRoles.Impostor,
                 CustomRoles.Hangman => CustomRoles.Shapeshifter,
@@ -104,6 +103,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Observer => CustomRoles.Crewmate,
                 CustomRoles.Infectious => CustomRoles.Impostor,
                 CustomRoles.Disperser => CustomRoles.Shapeshifter,
+                CustomRoles.Camouflager => CustomRoles.Shapeshifter,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
     }
@@ -172,6 +172,7 @@ internal static class CustomRolesHelper
             CustomRoles.Reach or
             CustomRoles.Charmed or
             CustomRoles.Infected or
+            CustomRoles.Onbound or
             CustomRoles.Bait or
             CustomRoles.Trapper or
             CustomRoles.Guesser;
@@ -193,7 +194,6 @@ internal static class CustomRolesHelper
             CustomRoles.Collector or
             CustomRoles.Sunnyboy or
             CustomRoles.Totocalcio or
-            CustomRoles.Infectious or
             CustomRoles.Succubus;
     }
     public static bool IsNK(this CustomRoles role) // �Ƿ��������
@@ -205,6 +205,7 @@ internal static class CustomRolesHelper
             CustomRoles.NWitch or
             CustomRoles.FFF or
             CustomRoles.HexMaster or
+            CustomRoles.Infectious or
             CustomRoles.Wraith or
             CustomRoles.Gamer or
             CustomRoles.Juggernaut or
@@ -291,14 +292,14 @@ internal static class CustomRolesHelper
             CustomRoles.CursedWolf or
             CustomRoles.ImperiusCurse or
             CustomRoles.QuickShooter or
-            CustomRoles.Concealer or
             CustomRoles.Eraser or
             CustomRoles.OverKiller or
             CustomRoles.Hangman or
             CustomRoles.Bard or
             CustomRoles.Swooper or
             CustomRoles.Crewpostor or
-            CustomRoles.Disperser;
+            CustomRoles.Disperser or
+            CustomRoles.Camouflager;
     }
     public static bool IsNeutral(this CustomRoles role) // �Ƿ�����
     {
@@ -385,6 +386,7 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Oblivious && ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeOblivious.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeOblivious.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeOblivious.GetBool()))) return false;
         if (role is CustomRoles.Brakar && ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeTiebreaker.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeTiebreaker.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeTiebreaker.GetBool()))) return false;
         if (role is CustomRoles.Guesser && ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeGuesser.GetBool() && pc.Is(CustomRoles.NiceGuesser)) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeGuesser.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeGuesser.GetBool() && pc.Is(CustomRoles.EvilGuesser)))) return false;
+        if (role is CustomRoles.Onbound && ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeOnbound.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeOnbound.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeOnbound.GetBool()))) return false;
         return true;
     }
     public static RoleTypes GetRoleTypes(this CustomRoles role)

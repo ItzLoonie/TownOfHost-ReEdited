@@ -812,8 +812,11 @@ class ShapeshiftPatch
             case CustomRoles.QuickShooter:
                 QuickShooter.OnShapeshift(shapeshifter, shapeshifting);
                 break;
-            case CustomRoles.Concealer:
-                Concealer.OnShapeshift(shapeshifting);
+            case CustomRoles.Camouflager:
+                if (shapeshifting)
+                    Camouflager.OnShapeshift();
+                if (!shapeshifting)
+                    Camouflager.OnReportDeadBody();
                 break;
             case CustomRoles.Hacker:
                 Hacker.OnShapeshift(shapeshifter, shapeshifting, target);
@@ -879,7 +882,7 @@ class ReportDeadBodyPatch
             //杀戮机器无法报告或拍灯
             if (__instance.Is(CustomRoles.Minimalism)) return false;
             //禁止小黑人报告
-            if (((Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Concealer.IsHidding) && Options.DisableReportWhenCC.GetBool()) return false;
+            if (((Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive) && Options.DisableReportWhenCC.GetBool()) return false;
 
             if (target == null) //拍灯事件
             {
@@ -996,7 +999,7 @@ class ReportDeadBodyPatch
         Main.MadGrenadierBlinding.Clear();
         Divinator.didVote.Clear();
 
-        Concealer.OnReportDeadBody();
+        Camouflager.OnReportDeadBody();
         Psychic.OnReportDeadBody();
         BountyHunter.OnReportDeadBody();
         SerialKiller.OnReportDeadBody();
@@ -1702,7 +1705,7 @@ class FixedUpdatePatch
                 /*if(main.AmDebugger.Value && main.BlockKilling.TryGetValue(target.PlayerId, out var isBlocked)) {
                     Mark = isBlocked ? "(true)" : "(false)";
                 }*/
-                if ((Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Concealer.IsHidding)
+                if ((Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive)
                     RealName = $"<size=0>{RealName}</size> ";
 
                 string DeathReason = seer.Data.IsDead && seer.KnowDeathReason(target) ? $"({Utils.ColorString(Utils.GetRoleColor(CustomRoles.Doctor), Utils.GetVitalText(target.PlayerId))})" : "";
