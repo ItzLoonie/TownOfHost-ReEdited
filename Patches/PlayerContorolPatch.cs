@@ -290,7 +290,7 @@ class CheckMurderPatch
                     return false;
                 case CustomRoles.Virus:
                     Virus.OnCheckMurder(killer, target);
-                    return false;
+                    break;
 
                 //==========船员职业==========//
                 case CustomRoles.Sheriff:

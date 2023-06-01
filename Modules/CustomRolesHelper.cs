@@ -102,6 +102,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Crewpostor => CustomRoles.Crewmate,
                 CustomRoles.Observer => CustomRoles.Crewmate,
                 CustomRoles.Infectious => CustomRoles.Impostor,
+                CustomRoles.Virus => CustomRoles.Virus,
                 CustomRoles.Disperser => CustomRoles.Shapeshifter,
                 CustomRoles.Camouflager => CustomRoles.Shapeshifter,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
@@ -173,6 +174,7 @@ internal static class CustomRolesHelper
             CustomRoles.Reach or
             CustomRoles.Charmed or
             CustomRoles.Infected or
+            CustomRoles.Contagious or
             CustomRoles.Onbound or
             CustomRoles.Bait or
             CustomRoles.Trapper or
@@ -196,7 +198,6 @@ internal static class CustomRolesHelper
             CustomRoles.Sunnyboy or
             CustomRoles.Totocalcio or
             CustomRoles.Infectious or
-            CustomRoles.Virus or
             CustomRoles.Succubus;
     }
     public static bool IsNK(this CustomRoles role) // �Ƿ��������
@@ -217,6 +218,7 @@ internal static class CustomRolesHelper
             CustomRoles.Parasite or
             CustomRoles.NSerialKiller or
             CustomRoles.Provocateur or
+            CustomRoles.Virus or
             CustomRoles.BloodKnight;
     }
     public static bool IsNeutralKilling(this CustomRoles role) //�Ƿ�а������������򵥶�ʤ����������
@@ -342,6 +344,7 @@ internal static class CustomRolesHelper
             CustomRoles.Sunnyboy or
             CustomRoles.BloodKnight or
             CustomRoles.Totocalcio or
+            CustomRoles.Virus or
             CustomRoles.Succubus;
     }
     public static bool CheckAddonConfilct(CustomRoles role, PlayerControl pc)
