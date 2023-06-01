@@ -581,20 +581,23 @@ internal class ChatCommands
             return;
         }
 
-        string[] param = role.Split(' ');
-        if (param.Length == 2 || param.Length == 3)
+        if (isUp)
         {
-            if (!int.TryParse(param[0], out int assignPlayer))
+            string[] param = role.Split(' ');
+            if (param.Length == 2 || param.Length == 3)
             {
-                return;
-            }
+                if (!int.TryParse(param[0], out int assignPlayer))
+                {
+                    return;
+                }
 
-            playerId = (byte)assignPlayer;
-            role = param[1] + (param.Length == 3 ? " " + param[2] : string.Empty);
-        }
-        else
-        {
-            role = param[0];
+                playerId = (byte)assignPlayer;
+                role = param[1] + (param.Length == 3 ? " " + param[2] : string.Empty);
+            }
+            else
+            {
+                role = param[0];
+            }
         }
 
         role = FixRoleNameInput(role).ToLower().Trim().Replace(" ", string.Empty);
