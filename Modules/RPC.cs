@@ -83,6 +83,7 @@ enum CustomRPC
     SyncTotocalcioTargetAndTimes,
     SetSuccubusCharmLimit,
     SetInfectiousBiteLimit,
+    SetVirusInfectLimit,
 
     //SoloKombat
     SyncKBPlayer,
@@ -447,6 +448,9 @@ internal class RPCHandlerPatch
             case CustomRPC.SetInfectiousBiteLimit:
                 Infectious.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetVirusInfectLimit:
+                Virus.ReceiveRPC(reader);
+                break;
         }
     }
 }
@@ -768,6 +772,9 @@ internal static class RPC
                 break;
             case CustomRoles.Infectious:
                 Infectious.Add(targetId);
+                break;
+            case CustomRoles.Virus:
+                Virus.Add(targetId);
                 break;
         }
         HudManager.Instance.SetHudActive(true);

@@ -111,7 +111,13 @@ public class PlayerState
             SubRoles.Remove(CustomRoles.Sidekick);
             SubRoles.Remove(CustomRoles.Charmed);
         }
-
+        if (role == CustomRoles.Contagious)
+        {
+            countTypes = CountTypes.Virus;
+            SubRoles.Remove(CustomRoles.Madmate);
+            SubRoles.Remove(CustomRoles.Sidekick);
+            SubRoles.Remove(CustomRoles.Charmed);
+        }
     }
     public void RemoveSubRole(CustomRoles role)
     {

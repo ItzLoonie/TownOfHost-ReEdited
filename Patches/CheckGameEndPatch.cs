@@ -76,6 +76,11 @@ class GameEndChecker
                         .Where(pc => pc.Is(CustomRoles.Infectious) || pc.Is(CustomRoles.Infected))
                         .Do(pc => CustomWinnerHolder.WinnerIds.Add(pc.PlayerId));
                     break;
+                case CustomWinner.Virus:
+                    Main.AllPlayerControls
+                        .Where(pc => pc.Is(CustomRoles.Virus) || pc.Is(CustomRoles.Contagious))
+                        .Do(pc => CustomWinnerHolder.WinnerIds.Add(pc.PlayerId));
+                    break;
                 case CustomWinner.Jackal:
                     Main.AllPlayerControls
                         .Where(pc => (pc.Is(CustomRoles.Jackal) || pc.Is(CustomRoles.Sidekick)) && !pc.Is(CustomRoles.Lovers) && !pc.Is(CustomRoles.Infected))

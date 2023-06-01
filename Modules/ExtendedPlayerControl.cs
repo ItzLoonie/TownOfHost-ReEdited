@@ -449,6 +449,7 @@ static class ExtendedPlayerControl
             CustomRoles.Totocalcio => Totocalcio.CanUseKillButton(pc),
             CustomRoles.Succubus => Succubus.CanUseKillButton(pc),
             CustomRoles.Infectious => Infectious.CanUseKillButton(pc),
+            CustomRoles.Virus => pc.IsAlive(),
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
     }
@@ -481,6 +482,7 @@ static class ExtendedPlayerControl
             CustomRoles.BloodKnight => BloodKnight.CanVent.GetBool(),
             CustomRoles.Juggernaut => Juggernaut.CanVent.GetBool(),
             CustomRoles.Infectious => Infectious.CanVent.GetBool(),
+            CustomRoles.Virus => Virus.CanVent.GetBool(),
             CustomRoles.HexMaster => true,
             CustomRoles.Wraith => true,
             CustomRoles.Parasite => true,
@@ -647,6 +649,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Infectious:
                 Infectious.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Virus:
+                Virus.SetKillCooldown(player.PlayerId);
                 break;
         }
         if (player.PlayerId == LastImpostor.currentId)

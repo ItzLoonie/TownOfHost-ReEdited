@@ -113,6 +113,7 @@ public class Main : BasePlugin
     public static Dictionary<byte, float> AllPlayerSpeed = new();
     public const float MinSpeed = 0.0001f;
     public static List<byte> CleanerBodies = new();
+    public static List<byte> InfectedBodies = new();
     public static List<byte> BrakarVoteFor = new();
     public static Dictionary<byte, (byte, float)> BitPlayers = new();
     public static Dictionary<byte, float> WarlockTimer = new();
@@ -334,6 +335,7 @@ public class Main : BasePlugin
                 {CustomRoles.Juggernaut, "#A41342"},
                 {CustomRoles.Parasite, "#ff1919"},
                 {CustomRoles.Infectious, "#7B8968"},
+                {CustomRoles.Virus, "#D2B48C"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -365,6 +367,7 @@ public class Main : BasePlugin
                 {CustomRoles.Trapper, "#5a8fd0"},
                 {CustomRoles.Infected, "#7B8968"},
                 {CustomRoles.Onbound, "#BAAAE9"},
+                {CustomRoles.Contagious, "#D2B48C"},
                 //SoloKombat
                 {CustomRoles.KB_Normal, "#f55252"}
             };
@@ -533,6 +536,7 @@ public enum CustomRoles
     Wraith,
     Totocalcio,
     Succubus,
+    Virus,
 
     //SoloKombat
     KB_Normal,
@@ -569,7 +573,8 @@ public enum CustomRoles
     Bait,
     Trapper,
     Infected,
-    Onbound,
+    Contagious,
+    Onbound
 }
 //WinData
 public enum CustomWinner
@@ -608,6 +613,7 @@ public enum CustomWinner
     Witch = CustomRoles.NWitch,
     Juggernaut = CustomRoles.Juggernaut,
     Infectious = CustomRoles.Infectious,
+    Virus = CustomRoles.Virus
 }
 public enum AdditionalWinners
 {
