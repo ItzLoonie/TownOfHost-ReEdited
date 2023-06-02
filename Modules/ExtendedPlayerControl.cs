@@ -633,9 +633,6 @@ static class ExtendedPlayerControl
             case CustomRoles.BloodKnight:
                 BloodKnight.SetKillCooldown(player.PlayerId);
                 break;
-            case CustomRoles.Crewpostor:
-                Main.AllPlayerKillCooldown[player.PlayerId] = 300f;
-                break;
             case CustomRoles.Totocalcio:
                 Totocalcio.SetKillCooldown(player.PlayerId);
                 break;

@@ -103,7 +103,7 @@ class BeginCrewmatePatch
 {
     public static bool Prefix(IntroCutscene __instance, ref Il2CppSystem.Collections.Generic.List<PlayerControl> teamToDisplay)
     {
-        if (PlayerControl.LocalPlayer.Is(CustomRoles.Crewpostor))
+      /*  if (PlayerControl.LocalPlayer.Is(CustomRoles.Crewpostor))
         {
             teamToDisplay = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             teamToDisplay.Add(PlayerControl.LocalPlayer);
@@ -112,7 +112,8 @@ class BeginCrewmatePatch
             __instance.overlayHandle.color = Palette.ImpostorRed;
             return false;
         }
-        else if (PlayerControl.LocalPlayer.Is(CustomRoleTypes.Neutral) && !PlayerControl.LocalPlayer.Is(CustomRoles.Parasite))
+        else */
+        if (PlayerControl.LocalPlayer.Is(CustomRoleTypes.Neutral) && !PlayerControl.LocalPlayer.Is(CustomRoles.Parasite) && !PlayerControl.LocalPlayer.Is(CustomRoles.Crewpostor))
         {
             teamToDisplay = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             teamToDisplay.Add(PlayerControl.LocalPlayer);
@@ -125,7 +126,7 @@ class BeginCrewmatePatch
             __instance.overlayHandle.color = Palette.ImpostorRed;
             return false;
         }
-         else if (PlayerControl.LocalPlayer.Is(CustomRoles.Parasite))
+         else if (PlayerControl.LocalPlayer.Is(CustomRoles.Parasite) || PlayerControl.LocalPlayer.Is(CustomRoles.Crewpostor))
         {
             teamToDisplay = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             teamToDisplay.Add(PlayerControl.LocalPlayer);
@@ -282,7 +283,6 @@ class BeginImpostorPatch
         {
             yourTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             yourTeam.Add(PlayerControl.LocalPlayer);
-            foreach (var pc in Main.AllPlayerControls.Where(x => !x.AmOwner && x.GetCustomRole().IsImpostor())) yourTeam.Add(pc);
             __instance.overlayHandle.color = Palette.ImpostorRed;
             return true;
         }

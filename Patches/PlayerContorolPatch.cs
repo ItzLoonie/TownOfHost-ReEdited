@@ -656,16 +656,20 @@ class MurderPlayerPatch
         target.SetRealKiller(killer, true); //既に追加されてたらスキップ
         Utils.CountAlivePlayers(true);
 
+        Camouflager.isDead(target);
         Utils.TargetDies(__instance, target);
 
         if (Options.LowLoadMode.GetBool())
         {
             __instance.MarkDirtySettings();
             target.MarkDirtySettings();
+            Utils.NotifyRoles(killer);
+            Utils.NotifyRoles(target);
         }
         else
         {
             Utils.SyncAllSettings();
+            Utils.NotifyRoles();
         }
     }
 }
@@ -833,8 +837,8 @@ class ShapeshiftPatch
                 Hacker.OnShapeshift(shapeshifter, shapeshifting, target);
                 break;
             case CustomRoles.Disperser:
-                if (!shapeshifting)
-                    Utils.DispersePlayers();
+                if (shapeshifting)
+                    Disperser.DispersePlayers(shapeshifter);
                 break;
         }
 
@@ -1516,6 +1520,8 @@ class FixedUpdatePatch
                 else if (__instance.Is(CustomRoleTypes.Impostor) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Impostor) && Options.ImpKnowAlliesRole.GetBool()) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoleTypes.Impostor) && PlayerControl.LocalPlayer.Is(CustomRoles.Madmate) && Options.MadmateKnowWhosImp.GetBool()) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Madmate) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Impostor) && Options.ImpKnowWhosMadmate.GetBool()) RoleText.enabled = true;
+                else if (__instance.Is(CustomRoleTypes.Impostor) && PlayerControl.LocalPlayer.Is(CustomRoles.Crewpostor) && Options.AlliesKnowCrewpostor.GetBool()) RoleText.enabled = true;
+                else if (__instance.Is(CustomRoles.Crewpostor) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Impostor) && Options.CrewpostorKnowsAllies.GetBool()) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Madmate) && PlayerControl.LocalPlayer.Is(CustomRoles.Madmate) && Options.MadmateKnowWhosMadmate.GetBool()) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Sidekick) && PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick) && Options.SidekickKnowOtherSidekick.GetBool() && Options.SidekickKnowOtherSidekickRole.GetBool()) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Jackal) && PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick)) RoleText.enabled = true;
