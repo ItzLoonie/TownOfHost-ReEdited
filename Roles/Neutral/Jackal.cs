@@ -1,8 +1,11 @@
 using AmongUs.GameOptions;
 using HarmonyLib;
+using Hazel;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using static TOHE.Options;
+using static TOHE.Translator;
 
 namespace TOHE.Roles.Neutral;
 
@@ -17,6 +20,10 @@ public static class Jackal
     public static OptionItem CanWinBySabotageWhenNoImpAlive;
     private static OptionItem HasImpostorVision;
     private static OptionItem ResetKillCooldownWhenSbGetKilled;
+    public static OptionItem CanRecruitSidekick;
+    public static OptionItem SidekickRecruitLimitOpt;
+
+    public static Dictionary<byte, int> RecruitLimit = new();
 
     public static void SetupCustomOption()
     {
@@ -30,21 +37,54 @@ public static class Jackal
         HasImpostorVision = BooleanOptionItem.Create(Id + 13, "ImpostorVision", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Jackal]);
         JackalCanKillSidekick = BooleanOptionItem.Create(Id + 15, "JackalCanKillSidekick", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Jackal]);
         ResetKillCooldownWhenSbGetKilled = BooleanOptionItem.Create(Id + 16, "ResetKillCooldownWhenPlayerGetKilled", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Jackal]);
+        CanRecruitSidekick = BooleanOptionItem.Create(Id + 17, "JackalCanRecruitSidekick", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Jackal]);
+        SidekickRecruitLimitOpt = IntegerOptionItem.Create(Id + 18, "JackalSidekickRecruitLimit", new(1, 15, 1), 1, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Jackal])
+                .SetValueFormat(OptionFormat.Times);
     }
     public static void Init()
     {
         playerIdList = new();
+        RecruitLimit = new();
+
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        RecruitLimit.TryAdd(playerId, SidekickRecruitLimitOpt.GetInt());
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
     public static bool IsEnable => playerIdList.Count > 0;
+
+    private static void SendRPC(byte playerId)
+    {
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetJackalRecruitLimit, SendOption.Reliable, -1);
+        writer.Write(playerId);
+        writer.Write(RecruitLimit[playerId]);
+        AmongUsClient.Instance.FinishRpcImmediately(writer);
+    }
+
+    public static void ReceiveRPC(MessageReader reader)
+    {
+        byte PlayerId = reader.ReadByte();
+        int Limit = reader.ReadInt32();
+        if (RecruitLimit.ContainsKey(PlayerId))
+            RecruitLimit[PlayerId] = Limit;
+        else
+            RecruitLimit.Add(PlayerId, SidekickRecruitLimitOpt.GetInt());
+    }
+
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
+    public static bool CanRecruit(byte id) => RecruitLimit.TryGetValue(id, out var x) && x > 0;
+    public static void SetKillButtonText(byte plaeryId)
+    {
+        if (CanRecruit(plaeryId))
+            HudManager.Instance.KillButton.OverrideText($"{GetString("GangsterButtonText")}");
+        else
+            HudManager.Instance.KillButton.OverrideText($"{GetString("KillButtonText")}");
+    }
     public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(HasImpostorVision.GetBool());
     public static void CanUseVent(PlayerControl player)
     {
@@ -61,5 +101,43 @@ public static class Jackal
         var killer = target.GetRealKiller();
         if (!ResetKillCooldownWhenSbGetKilled.GetBool() || killer == null) return;
         Main.AllAlivePlayerControls.Where(x => x.PlayerId != killer.PlayerId && playerIdList.Contains(x.PlayerId)).Do(x => x.SetKillCooldown(0));
+    }
+
+    public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
+    {
+        if (RecruitLimit[killer.PlayerId] < 1) return false;
+        if (CanBeSidekick(target))
+        {
+            RecruitLimit[killer.PlayerId]--;
+            SendRPC(killer.PlayerId);
+            target.RpcSetCustomRole(CustomRoles.Sidekick);
+
+            killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jackal), GetString("GangsterSuccessfullyRecruited")));
+            target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jackal), GetString("BeRecruitedByJackal")));
+            Utils.NotifyRoles();
+
+            killer.ResetKillCooldown();
+            killer.SetKillCooldown();
+            killer.RpcGuardAndKill(target);
+            target.RpcGuardAndKill(killer);
+            target.RpcGuardAndKill(target);
+
+            Logger.Info("设置职业:" + target?.Data?.PlayerName + " = " + target.GetCustomRole().ToString() + " + " + CustomRoles.Sidekick.ToString(), "Assign " + CustomRoles.Sidekick.ToString());
+            if (RecruitLimit[killer.PlayerId] < 0)
+                HudManager.Instance.KillButton.OverrideText($"{GetString("KillButtonText")}");
+            Logger.Info($"{killer.GetNameWithRole()} : 剩余{RecruitLimit[killer.PlayerId]}次招募机会", "Jackal");
+            return true;
+        }
+        if (RecruitLimit[killer.PlayerId] < 0)
+            HudManager.Instance.KillButton.OverrideText($"{GetString("KillButtonText")}");
+        //killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jackal), GetString("GangsterRecruitmentFailure")));
+        Logger.Info($"{killer.GetNameWithRole()} : 剩余{RecruitLimit[killer.PlayerId]}次招募机会", "Jackal");
+        return false;
+    }
+    public static string GetRecruitLimit(byte playerId) => Utils.ColorString(CanRecruit(playerId) ? Color.blue : Color.gray, RecruitLimit.TryGetValue(playerId, out var recruitLimit) ? $"({recruitLimit})" : "Invalid");
+
+    public static bool CanBeSidekick(this PlayerControl pc)
+    {
+        return pc != null && !pc.Is(CustomRoles.Sidekick);
     }
 }

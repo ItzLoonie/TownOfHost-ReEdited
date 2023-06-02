@@ -567,6 +567,9 @@ public static class Utils
             case CustomRoles.Virus:
                 ProgressText.Append(Virus.GetInfectLimit());
                 break;
+            case CustomRoles.Jackal:
+                ProgressText.Append(Jackal.GetRecruitLimit(playerId));
+                break;
             default:
                 //タスクテキスト
                 var taskState = Main.PlayerStates?[playerId].GetTaskState();

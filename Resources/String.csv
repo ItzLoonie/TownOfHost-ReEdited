@@ -1140,6 +1140,8 @@
 "CharmedCountMode.Original","原本阵营","Original Team","Первоначальной командой","原本陣營",""
 "JackalCanWinBySabotageWhenNoImpAlive","没有<color=#ff1919>内鬼</color>存活时破坏视作豺狼胜利","When all <color=#ff1919>Impostors</color> are dead, the <color=#00b4eb>Jackal</color> wins by sabotage instead","Саботаж <color=#ff1919>Предателя</color> считается победой <color=#00b4eb>Шакала</color> если все <color=#ff1919>Предатели</color> мертвы","没有<color=#ff1919>内鬼</color>存活时破坏视作豺狼胜利",""
 "ResetKillCooldownWhenPlayerGetKilled","当有人被击杀时立刻重置击杀冷却","Reset kill cooldown when someone is killed","Сбросить откат убийства до 0, когда кого-то убивают (исключение со своим убийством)","当有人被击杀时立刻重置击杀冷却",""
+"JackalCanRecruitSidekick","","Can recruit Sidekick","","",""
+"JackalSidekickRecruitLimit","","Maximum Number Of Recruits","","",""
 "ImpCanBeNecroview","","<color=#ff1919>Impostors</color> can become <color=#663399>Necroview</color>","<color=#ff1919>Предатели</color> могут стать <color=#663399>Некровидящим</color>","",""
 "CrewCanBeNecroview","","<color=#8cffff>Crewmates</color> can become <color=#663399>Necroview</color>","<color=#8cffff>Члены Экипажа</color> могут стать <color=#663399>Некровидящим</color>","",""
 "NeutralCanBeNecroview","","<color=#7f8c8d>Neutrals</color> can become <color=#663399>Necroview</color>","<color=#7f8c8d>Нейтралы</color> могут стать <color=#663399>Некровидящим</color>","",""
@@ -1333,6 +1335,7 @@
 "VirusNoticeTitle","","【 ☠ Infected Body! ☠ 】","","",""
 "VirusNoticeMessage","","The Body your reported was infected by the Virus! You are now part of Team-Virus. Help the Virus win the game.","","",""
 "VirusNoticeMessage2","","The Body your reported was infected by the Virus! Vote the Virus out this meeting or you will die.","","",""
+"BeRecruitedByJackal","","You have been recruited by the Jackal","","",""
 
 "## 信息 / Message"
 "Message.SetToSeconds","信息发送冷却时间为【{0}】秒","Set to 【{0}】 seconds.","Установлен на 【{0}】 секунды","訊息傳送冷卻時間設為【{0}】秒","信息发送冷却时间为【{0}】秒"

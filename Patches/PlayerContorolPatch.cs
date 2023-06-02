@@ -291,6 +291,10 @@ class CheckMurderPatch
                 case CustomRoles.Virus:
                     Virus.OnCheckMurder(killer, target);
                     break;
+                case CustomRoles.Jackal:
+                    if (Jackal.OnCheckMurder(killer, target))
+                        return false;
+                    break;
 
                 //==========船员职业==========//
                 case CustomRoles.Sheriff:
