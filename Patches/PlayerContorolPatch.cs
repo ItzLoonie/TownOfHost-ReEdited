@@ -662,10 +662,13 @@ class MurderPlayerPatch
         {
             __instance.MarkDirtySettings();
             target.MarkDirtySettings();
+            Utils.NotifyRoles(killer);
+            Utils.NotifyRoles(target);
         }
         else
         {
             Utils.SyncAllSettings();
+            Utils.NotifyRoles();
         }
     }
 }
