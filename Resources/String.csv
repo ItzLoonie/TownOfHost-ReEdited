@@ -129,6 +129,7 @@
 "Vindicator","卫道士","Vindicator","Продажный","",""
 "Parasite","寄生蟲","Parasite","Паразит","",""
 "Disperser","分散者","Disperser","Разбрасыватель","",""
+"Inhibitor","","Inhibitor","","",""
 
 "# 船员阵营 / Crewmates"
 "Luckey","幸运儿","Luckey","Удачник","幸運兒","Suertudo"
@@ -161,6 +162,7 @@
 "Mortician","入殓师","Mortician","Гробовщик","殯葬師","入殓师"
 "Mediumshiper","通灵师","Medium","Медиум","通靈師","通灵师"
 "Observer","观察者","Observer","Аудитор","窺視者",""
+"Monarch","","Monarch","","",""
 
 "# 中立阵营 / Neutrals"
 "Jester","小丑","Jester","Шут","小丑","小丑"
@@ -222,6 +224,7 @@
 "Trapper","陷阱师","Sticky","Капкан","設陷者","陷阱师"
 "Infected","感染","Infected","Укушенный","",""
 "Onbound","","Onbound","Непобедим","",""
+"Knighted","","Knighted","","",""
 
 "## 附加职业作为前缀时 / Prefixes for Add-ons"
 
@@ -248,6 +251,7 @@
 "Prefix.Sidekick","跟班","Sidekick ","Союзник ","Sidekick ","Sidekick "
 "Prefix.Reach","持枪","Reach ","Длиннолап ","持枪",""
 "Prefix.Onbound","","Onbound ","Непобедимый","",""
+"Prefix.Knighted","","Knighted ","","",""
 
 "## 附加职业作为前缀时 / Prefixes for Add-ons But With Brackets"
 
@@ -274,6 +278,7 @@
 "PrefixB.Sidekick","跟班","<color=#ffffff>(</color>Sidekick<color=#ffffff>)</color> ","<color=#ffffff>(</color>Союзник<color=#ffffff>)</color> ","Sidekick ","Sidekick "
 "PrefixB.Reach","持枪","<color=#ffffff>(</color>Reach<color=#ffffff>)</color> ","<color=#ffffff>(</color>Длиннолап<color=#ffffff>)</color> ","持枪",""
 "PrefixB.Onbound","","<color=#ffffff>(</color>Onbound<color=#ffffff>)</color> ","<color=#ffffff>(</color>Непобедим<color=#ffffff>)</color> ","",""
+"PrefixB.Knighted","","<color=#ffffff>(</color>Knighted<color=#ffffff>)</color> ","","",""
 
 "BracketAddons","BracketAddons","Add Brackets To Add-ons","Добавить скобки к Атрибутам","BracketAddons","BracketAddons"
 
@@ -332,6 +337,7 @@
 "VindicatorInfo","","Use your extra votes to kill everyone","Используйте свои дополнительные голоса чтобы убить всех","",""
 "ParasiteInfo","","Help the Impostors kill the crew","Помогите Предателям убить Членов Экипажей","",""
 "DisperserInfo","","Teleport everyone to random vents","Телепортируй всех в случайные венты","",""
+"InhibitorInfo","","You cannot kill during sabotages","","",""
 
 "# 船员阵营 / Crewmate descriptions"
 "LuckeyInfo","你擅长治疗内鬼的低血压","Your Killer may Miss the Kill","Убийца может промазать по вам","是生是死，看你是歐還是非","你擅长治疗内鬼的低血压"
@@ -365,6 +371,7 @@
 "MorticianInfo","现在，你可以安心地离开了","Locate dead bodies","Находите трупы","現在，你可以安心的走了","现在，你可以安心地离开了"
 "MediumshiperInfo","若君心存不甘，不妨和我谈谈","Talk with ghosts","Разговаривайте с призраками","若君心存不甘，不妨和我談談","若君心存不甘，不妨和我谈谈"
 "ObserverInfo","亲眼所见，亦非真实","You can see all shield-animations","Вы видите анимации сломанных щитов","他的盾沒了?",""
+"MonarchInfo","","Give your crew extra voting power!","","",""
 
 "# 中立阵营 / Neutral descriptions"
 "ArsonistInfo","乖乖站好！","Douse Everyone and Ignite","Облейте всех игроков, а потом подожгите","燒吧，燒吧，燃燒吧","乖乖站好！"
@@ -487,6 +494,7 @@
 "VindicatorInfoLong","(内鬼阵营):\n卫道士有额外票数像市长一样（票数根据房主设定）","(Impostors):\nAs the Vindicator, you have extra votes like a Mayor.","(Предатель):\nУ Продажного есть дополнительные голоса, прямо как у мэра.","",""
 "ParasiteInfoLong","(内鬼阵营):\n寄生虫不会知道其他内鬼，其他内鬼也不会知道寄生虫","(Team Impostor):\nAs the Parasite, you are an Impostor that does not know the other Impostors.\n\nYou may kill, vent, sabotage, whatever.\nJust know that you are an Impostor.","(Предатель):\nПаразит явялется Предателем, который не знает ктоя явялется Предателем.\n\nОн может убивать, вентоваться, саботажить и делать что угодно.\nПросто знайте, что вы Предатель","",""
 "DisperserInfoLong","","(Impostors):\nDisperser can use Shapeshift to teleport all players to random vents.\nNote: the Disperser itself will not be teleported with shapeshift and players who are in the vent cannot be teleported.","(Предатель):\nРазбрасыватель может с помощью Морфлинга телепортировать всех игроков в случайные вентиляции.\nПримечание: Сам Разбрасыватель не будет телепортирован когда он использует морф и игроки которые находятся в вентиляции не могут быть телепортированы.","",""
+"InhibitorInfoLong","","(Impostors):\nAs the Inhibitor, you can only kill when there is not a critical sabotage active.\n\nIf a critical sabotage is active (eg Lights or Reactor), you cannot kill.","","",""
 
 "# 船员阵营 / Crewmates descriptions"
 "LuckeyInfoLong","(船员阵营):\n幸运儿被击杀时，有概率抵挡这次死亡，具体概率根据房主设定。抵挡生效时凶手会看到幸运儿的身上出现护盾破碎的效果，但幸运儿自己什么都不会知道。","(Crewmates):\nWhen a player attempts to kill the Luckey, there is a probability for the Luckey to evade the kill, and the specific probability is set by the host. When the evasion takes effect, the killer will see the shield-animation on Luckey's body, but Luckey themselves will not know anything.","(Член Экипажа):\nУ Удачника будет возникать определенная вероятность того, что Убийца не сможет убить Удачника, вероятность устанавливается в зависимости от настроек Хоста. Убийца увидит эффект разрушения щита ангела на теле Удачника, но сам Удачник при этом ничего не узнает.","(船員陣營):\n幸運兒被嘗試殺死時，有機率抵擋這次死亡，具體機率依房主設定。抵擋生效時兇手會看到幸運兒身上出現盾牌破碎的效果，但幸運兒自己甚麼都不知道。此外，如果幸運兒被劊子手絞殺，那麼技能將不會生效。","(船员阵营):\n幸运儿被击杀时，有概率抵挡这次死亡，具体概率根据房主设定。抵挡生效时凶手会看到幸运儿的身上出现护盾破碎的效果，但幸运儿自己什么都不会知道。"
@@ -520,6 +528,7 @@
 "MorticianInfoLong","(船员阵营):\n入殓师可以看到指向所有尸体的箭头，入殓师报告尸体可以在会议上得知被害者生前最后一个接触的玩家。请注意：入殓师不会成为胆小鬼。","(Crewmates):\nThe Mortician can see arrows pointing to all dead bodies, and if the Mortician reports a body they will know the last player the victim had contact with. Note: Mortician won't be Oblivious or Seer.","(Член Экипажа):\nГробовщик может видеть стрелки, указывающие на все трупы. На собрании получает информацию, кто был последним игроком, с которым контактировала жертва при жизни.\n ★Пожалуйста, обратите внимание★：Гробовщик не может стать Забывчивым и Провидцем.","(船員陣營):\n殯葬師可以看到指向所有屍體的箭頭，當殯葬師報告屍體時可以在會議上得知被害者生前最後一個接觸的玩家。請注意: 殯葬師不會成為膽小鬼。","(船员阵营):\n入殓师可以看到指向所有尸体的箭头，入殓师报告尸体可以在会议上得知被害者生前最后一个接触的玩家。请注意：入殓师不会成为胆小鬼。"
 "MediumshiperInfoLong","(船员阵营):\n当场上有玩家被击杀，通灵师会收到提示。通灵师报告尸体后可以与被害者建立联系，在本次会议结束前，被害者拥有一次机会回答通灵师的问题，只能回答是或否。请注意：通灵师不会成为胆小鬼。","(Crewmates):\nIf a player is killed, the Medium will receive a reminder. After the Medium reports the body, he can establish contact with the victim. Before the end of the meeting, the victim has one chance to answer the Medium's questions, and can only answer yes or no. Note: Medium won't be Oblivious.","(Член Экипажа):\nМедиум может установить контакт с мертвым игроком, когда любой игрок зарепортит труп. Призрак может один раз ответить Да или Нет на вопрос Медиума, ответ на вопрос увидит только Медиум. \nМертвый игрок может использовать /ms Yes или /ms No. Примечание: Медиум не будет Забывчивым.","(船員陣營):\n當場尚有玩家被殺死，通靈師會收到提示。當通靈師報告屍體後可以與他報告的被害者建立聯繫，在此次會議結束前，被害者擁有一次機會回答通靈師的問題，只能回答是或否。請注意: 通靈師不會成為膽小鬼。","(船员阵营):\n当场上有玩家被击杀，通灵师会收到提示。通灵师报告尸体后可以与被害者建立联系，在本次会议结束前，被害者拥有一次机会回答通灵师的问题，只能回答是或否。请注意：通灵师不会成为胆小鬼。"
 "ObserverInfoLong","(船员阵营):\n观察者可以看到其他玩家的碎盾动画。首次会议召开前观察者的技能不会生效。","(Crewmates):\nThe Observer can see all shield animations caused by other players after the first meeting.","(Член Экипажа):\nАудитор видят сломанные щиты. Навык видения срабатывает с первого собрания.","(船員陣營):\n窺視者可以看到其他玩家的碎盾動畫。首次會議召開前窺視者的技能不會生效。",""
+"MonarchInfoLong","","(Crewmates):\nAs the Monarch, you can knight players to give them an extra vote.\n\nYou cannot knight someone who already have extra votes."
 
 "# 中立阵营 / Neutrals descriptions"
 "ArsonistInfoLong","(中立阵营):\n纵火犯可以通过对玩家点击击杀按钮并跟随其数秒来完成涂油，开始涂油以及涂油成功时会显示护盾破碎的动画作为提示（仅自己可见）。当所有存活玩家都被纵火犯涂油后，纵火犯可以通过跳通风管来点火，并单独获得胜利。\n\n玩家名显示「△」表示涂油中\n玩家名显示「▲」表示已涂油。","(Neutrals):\nThe Arsonist can douse by clicking the kill button on the player and following them for a few seconds. When the dousing starts and it's successful, a shield animation will be displayed as a reminder (only visible to themselves). When the Arsonist has doused all surviving players, the Arsonist can vent to start the fire and win alone.\n\nIf the player name shows 「△」, that means they are being doused;\nif the player name shows 「▲」, it means they have been completely doused.","(нейтральный): поджигатель может закончить смазку, нажав на кнопку убийства игрока и следуя за ним в течение нескольких секунд, начать мазать, а также показать анимацию разбитого щита, когда она будет успешной (только для себя). После того, как все выжившие игроки были смазаны поджигателем, поджигатель мог воспламенить его, перепрыгнув через вентиляционную трубу и одержать победу в одиночку. \ n что n игрок показыва「△」заяв в смазыва \ что n что игрок показыва「▲」что смазыва.","(中立陣營):\n縱火犯可以通過對玩家使用殺人鍵並跟隨數秒來澆油，開始以及結束澆油時會出現盾牌破碎的效果作為提示。當所有存活玩家都被縱火犯澆上油時，縱火犯可以以跳管道的方式來點火，並單獨獲勝。\n\n玩家名字顯示「△」表示澆油中\n顯示「▲」表示已經澆油。","(中立阵营):\n纵火犯可以通过对玩家点击击杀按钮并跟随其数秒来完成涂油，开始涂油以及涂油成功时会显示护盾破碎的动画作为提示（仅自己可见）。当所有存活玩家都被纵火犯涂油后，纵火犯可以通过跳通风管来点火，并单独获得胜利。\n\n玩家名显示「△」表示涂油中\n玩家名显示「▲」表示已涂油。"
@@ -580,6 +589,7 @@
 "CharmedInfoLong","","(Add-ons):\nThe Charmed add-on is obtained by being charmed by the Cultist.\nOnce charmed, you are now on the Cultist's team and no longer on your original team.","(Атрибут):\nЗачарованного можно получить, будучи зачарованным Суккубом.\nПосле зачарования игрок будет состоять в команде Суккуба, а не в своей первоначальной команде.","",""
 "InfectedInfoLong","","(Add-ons):\nThe Infected add-on is obtained by being infected by the Infectious.\nOnce infected, you work for the Infectious and do not win with your original team.","(Атрибут):\nАтрибут Заражённого можно получить, если вас заразил Заразный.\nПосле заразы вы работаете на Заразного и побеждаете с ним.","",""
 "OnboundInfoLong","","(Add-ons):\nWith the Onbound add-on, you cannot be guessed in meetings.","(Атрибут):\nУ Непобедимого невозможно угадать роль во время встречи","",""
+"KnightedInfoLong","","(Add-ons):\nWhen a Monarch knights someone, they get an extra vote.","","",""
 
 "# 其它 / Other long description"
 "GMInfoLong","(房主):\n看我干啥，我只是个开局就死的冤魂，静静地吃瓜而已。","(None):\nThe GM (Game Master) is an observer role.\nTheir presence has no effect on the game, and all players know who the GM is. The GM role will be assigned to the host, who will automatically become a ghost at the start of the game.","(Никто):\nGM (Мастер Игры) — это роль, которая наблюдает за игрой в роле призрака. \nОн не влияет на игру, и все игроки всегда знают кто Мастер Игры. Всегда назначается только хосту лобби и становится призраком в самом начале игры.","(房主):\n看我幹嘛，我只是開始遊戲時就在冥界吃瓜而已。","(房主):\n看我干啥，我只是个开局就死的冤魂，静静地吃瓜而已。"
@@ -1161,7 +1171,7 @@
 "DeathReason.Torched","烧死","Burned","Сожжён","燒死","烧死"
 "DeathReason.Sniped","狙杀","Sniped","Застрелен","狙殺","狙杀"
 "DeathReason.Execution","处决","Executed","Казнен","處刑","处决"
-"DeathReason.Disconnected","断连","DC","Вышел","斷線","断连"
+"DeathReason.Disconnected","断连","Disconnected","Вышел","斷線","断连"
 "DeathReason.Fall","摔死","Fall","Упал","摔死","摔死"
 "DeathReason.Revenge","复仇","Revenge","Месть","復仇","复仇"
 "DeathReason.Eaten","活吞","Eaten","Сьеден","活吞","活吞"
@@ -1222,6 +1232,7 @@
 "WorkaholicAdviceAlive","","It's not recommended to kill or vote [{0}] out. Doing so will help them finish their tasks quicker.","Не рекомендуется убивать или кикать [{0}] из голосования. Это поможет ему быстрее выполнить свои задания.","",""
 "GuessDead","很抱歉，死亡后不能进行猜测","Sorry, but it's impossible to guess roles after your death","Извините, но угадать роль после вашей смерти нельзя","很抱歉，死亡後不能進行猜測","很抱歉，死亡后不能进行猜测"
 "GuessSuperStar","大明星才不会和你赌博，选个别的目标吧？","Super Star can't be guessed, you thought it would be that easy, right?","Супер Звезда не может быть угадана, ты думал что всё так просто, да?","大明星才不會跟你賭博，選個別的目標吧?","大明星才不会和你赌博，选个别的目标吧？"
+"GuessNotifiedBait","大明星才不会和你赌博，选个别的目标吧？","Bait can't be guessed because it was announced, you thought it would be that easy, right?","Супер Звезда не может быть угадана, ты думал что всё так просто, да?","大明星才不會跟你賭博，選個別的目標吧?","大明星才不会和你赌博，选个别的目标吧？"
 "GuessGM","能想出这个也是把你闲的","Guessing the GM is impossible, because they're already dead.... And why would you do that to the poor Host?","Угадать GM невозможно, потому что он уже и так мертв","你會什麼會想要讓一個剛開局就死的人在死一次","能想出这个也是把你闲的"
 "GuessAdtRole","很抱歉，该房设置不允许猜测附加职业","Unfortunately, the Host's settings do not allow you to guess add-ons","К сожалению, настройки Хоста не позволяют угадывать Атрибуты","很抱歉，根據該房設定不允許猜測附加職業","很抱歉，该房设置不允许猜测附加职业"
 "GuessKill","很遗憾，【{0}】\n在赌局中失利了","Player: [{0}] \nwas guessed","Игрок: [{0}] \nбыл угадан","很遺憾的，【{0}】\n在賭局中失利了","很遗憾，【{0}】\n在赌局中失利了"
@@ -1279,7 +1290,6 @@
 "WarlockControlKill","已操纵目标完成击杀","Target died","Цель мертва","已操縱目標完成咒殺","已操纵目标完成击杀"
 "OnCyberStarDead","紧急通知：网红死亡","Warning: Celebrity death","Знаменитость мертва!","緊急通知: 網紅死亡","紧急通知：网红死亡"
 "TeleportedByTransporter","您被传送至：{0}","Swapping places with: {0}","Телепортирован к: {0}","您被傳送至:{0}","您被传送至：{0}"
-"ErrorTeleport","","Teleport failed","Телепортация не удалась","",""
 "LostRoleByEraser","您的职业被<color=#ff1919>抹除者</color>抹除了","You lost your role because of the <color=#ff1919>Eraser</color>","Вы потеряли свою роль из-за <color=#ff1919>Стирачки</color>","您的職業被<color=#ff1919>抹除者</color>抹除了","您的职业被<color=#ff1919>抹除者</color>抹除了"
 "KilledByScavenger","您被清道夫击杀因此传送至地图外","You were killed by the Scavenger and thus teleported off-map","Вы были убиты Уборщиком и поэтому телепортированы за предел карты","您因被清道夫殺死因此傳送至地圖外","您被清道夫击杀因此传送至地图外"
 "SnitchDoneTasks","您已完成全部任务，启动会议以发动技能","Call a meeting to find the impostors","Созовите собрание, чтобы активировать свой навык","您已完成全部任務，召開會議以發動技能","您已完成全部任务，启动会议以发动技能"
@@ -1314,6 +1324,12 @@
 "TeleportedInRndVentByDisperser","","Everyone was teleported to vents","Всех телепортировали к вентам","",""
 "LighterVision","执灯视野大小","<color=#eee5be>Lighter</color> Vision","Дальность <color=#eee5be>Фонарика</color>","",""
 "GuessOnbound","","This player is onbounded, so your guess on them was cancelled.","Этот игрок имеет Атрибут Непобедимого, поэтому вы не можете его угадать","",""
+
+"MonarchKnightCooldown","","Knight Cooldown","","",""
+"MonarchKnightMax","","Maximum Knights","","",""
+"MonarchKnightedPlayer","","You successfully knighted a player!","","",""
+"KnightedByMonarch","","You have been knighted by a Monarch!","","",""
+"MonarchInvalidTarget","","Target cannot be knighted","","",""
 
 "## 信息 / Message"
 "Message.SetToSeconds","信息发送冷却时间为【{0}】秒","Set to 【{0}】 seconds.","Установлен на 【{0}】 секунды","訊息傳送冷卻時間設為【{0}】秒","信息发送冷却时间为【{0}】秒"
@@ -1362,7 +1378,7 @@
 "Message.YTPlanNotice","提示：该房间启用了【创作者素材保护计划】，房主可以指定自己的职业。\n该功能仅允许创作者用于获取视频素材，如遇滥用情况，请退出游戏或举报。\n当前创作者认证：","Note: The [YouTuber Plan] is enabled in this lobby, which means the Host can specify their role in the next game to make it easier to get content. In case the Host abuses this feature, please exit the game or report it.\nCurrent Creator Credentials:","Внимание: в этой комнате включен [режим Ютуб Ролика], владелец может поставить отдельные роли игрокам.\n Эта функция может использоваться только для создания видео роликов, если создатель комнаты нарушает это правило, выйдите или сообщите о нём.\n Текущие настройки:","提示：该房间启用了【创作者素材保护计划】，房主可以指定自己的职业。\n该功能仅允许创作者用于获取视频素材，如遇滥用情况，请退出游戏或举报。\n当前创作者认证：",""
 
 "## 警告 / Warnings"
-"Warning.OverrideExiledPlayer","警告：由于设置内鬼数量为1（船鬼计算为船员），为了避免黑屏错误，将会将驱逐动画显示为平票或跳过（只会影响视觉，不会影响投票结果）。请设置更多的内鬼人数或禁用船鬼以避免该问题。","Warning: Since the number of Impostors is set to 1, in order to avoid black screen, the voting screen will always show as a tied vote or a skip vote (only affects the visual, not the voting results). Please set more number of Impostors.\n\nThis may also appear mid-game if all Impostors but one leave the game.","Предупреждение: Поскольку Предатель остался один (Предатель считается как Член Экипажа), во избежание черного экрана, анимация выбрасывания считается как ничьей или пропущено (только визуально, выбрасывание все ещё происходит)\n Пожалуйста, установите больше предателей или отключите Предателей чтобы избежать этой проблемы.","警告：由于设置内鬼数量为1（船鬼计算为船员），为了避免黑屏错误，将会将驱逐动画显示为平票或跳过（只会影响视觉，不会影响投票结果）。请设置更多的内鬼人数或禁用船鬼以避免该问题。","设置内鬼人数为一个时，放逐动画会显示为平票"
+"Warning.OverrideExiledPlayer","警告：由于设置内鬼数量为1（船鬼计算为船员），为了避免黑屏错误，将会将驱逐动画显示为平票或跳过（只会影响视觉，不会影响投票结果）。请设置更多的内鬼人数或禁用船鬼以避免该问题。","Warning: Since the number of Impostors is set to 1 (CrewPostor are counted as crew members), in order to avoid black screen, the voteing screen will always show as a tied vote or a skip vote (only affects the visual, not the voting results). Please set more number of Impostors or disable CrewPostor to avoid this problem.","Предупреждение: Поскольку Предатель остался один (Предатель считается как Член Экипажа), во избежание черного экрана, анимация выбрасывания считается как ничьей или пропущено (только визуально, выбрасывание все ещё происходит)\n Пожалуйста, установите больше предателей или отключите Предателей чтобы избежать этой проблемы.","警告：由于设置内鬼数量为1（船鬼计算为船员），为了避免黑屏错误，将会将驱逐动画显示为平票或跳过（只会影响视觉，不会影响投票结果）。请设置更多的内鬼人数或禁用船鬼以避免该问题。","设置内鬼人数为一个时，放逐动画会显示为平票"
 "Warning.InvalidRpc","{0} 被踢出，因其 RPC 无效，请确保没有 TOHE 以外的模组。","Kicked {0} because an invalid RPC was received.\nPlease check that no mods other than TOHE installed.","{0} был кикнут так как получен недопустимый RPC. \nУбедитесь что в системе нет других модов кроме TOHE.","{0} 被踢出，因其 RPC 無效，請確保沒有 TOHE 以外的模組。","{0} 被踢出，因其 RPC 无效，请确保没有 TOHE 以外的模组。"
 "Warning.NoModHost","非TOHE房","Mod TOHE not installed on the host","У Хоста Лобби не установлен TOHE","非TOHE房","非TOHE房"
 "Warning.MismatchedVersion","{0}\n安装了其它版本的 {1}","{0}\nhave a different version of {1}","{0} Версия \nне соответствует версии Хоста лобби {1}","{0}\n安裝了其他版本的 {1}","{0}\n安装了其它版本的 {1}"
@@ -1566,6 +1582,7 @@
 "TotocalcioKillButtonText","下注","Follow","СЛЕДОВАТЬ","追隨",""
 "SuccubusKillButtonText","魅惑","Charm","ЗАЧАРОВАТЬ","魅惑",""
 "InfectiousKillButtonText","","Infect","","",""
+"MonarchKillButtonText","","Knight","","",""
 "DisabledBySettings","已在设置被中禁用","Disabled by Settings","Отключено настройкой","已在設定中被禁用","已在设置被中禁用"
 "Disabled","禁用","Disabled","Отключено","禁用","禁用"
 "FailToTrack","无法追踪","Failed To Track","Не Удалось Отследить","無法追蹤","无法追踪"
@@ -1710,7 +1727,7 @@
 "WinnerRoleText.Lovers","恋人","Lovers","Любовники","戀人",""
 "WinnerRoleText.Executioner","处刑人","Executioners","Палачи","暴民",""
 "WinnerRoleText.Arsonist","纵火犯","Arsonists","Поджигатели","縱火犯",""
-"WinnerRoleText.Revolutionist","革命者们","Revolutioners","Революционеры","革命者們",""
+"WinnerRoleText.Revolutionist","革命者们","Revolutionists","Революционеры","革命者們",""
 "WinnerRoleText.Jackal","豺狼","Jackals","Шакалы","豺狼",""
 "WinnerRoleText.Sidekick","","Sidekicks","Союзники","",""
 "WinnerRoleText.God","神","Gods","Дьяволы","神",""
@@ -1731,7 +1748,7 @@
 "WinnerRoleText.SerialKiller","","Serial Killers","Маньяки","",""
 "WinnerRoleText.Witch","","Witchs","Ведьмы","",""
 "WinnerRoleText.Juggernaut","","Juggernauts","Джаггернауты","",""
-"WinnerRoleText.Infectious","","Tnfectiouses","Заражённые","",""
+"WinnerRoleText.Infectious","","Infectiouses","Заражённые","",""
 "WinnerRoleText.Opportunist","投机者","Opportunists","Выжившие","投機主義者",""
 "WinnerRoleText.Lawyer","","Lawyers","Адвокаты","",""
 "WinnerRoleText.FFF","FFF团","Haters","Бессердечники","單身狗",""
