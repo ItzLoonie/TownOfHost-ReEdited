@@ -44,6 +44,7 @@
             {
                 IsActive = false;
                 Camouflage.CheckCamouflage();
+                Utils.NotifyRoles();
             }
         }
     }
