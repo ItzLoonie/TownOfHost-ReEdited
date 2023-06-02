@@ -101,7 +101,7 @@ public static class GuessManager
             return true;
         }
 
-        if (pc.GetCustomRole().IsCrewmate() && !Options.CrewmatesCanGuess.GetBool() && !pc.Is(CustomRoles.NiceGuesser) && !pc.Is(CustomRoles.Guesser))
+        if (pc.GetCustomRole().IsCrewmate() && !Options.CrewmatesCanGuess.GetBool() && !pc.Is(CustomRoles.NiceGuesser) && !pc.Is(CustomRoles.Guesser) && !pc.Is(CustomRoles.Judge))
         {
             if (!isUI) Utils.SendMessage(GetString("GuessNotAllowed"), pc.PlayerId);
             else pc.ShowPopUp(GetString("GuessNotAllowed"));
@@ -168,7 +168,14 @@ public static class GuessManager
                 }
                 if (role == CustomRoles.SuperStar && target.Is(CustomRoles.SuperStar))
                 {
-                    Utils.SendMessage(GetString("GuessSuperStar"), pc.PlayerId);
+                    if (!isUI) Utils.SendMessage(GetString("GuessSuperStar"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessSuperStar"));
+                    return true;
+                }
+                if (role == CustomRoles.Bait && target.Is(CustomRoles.Bait) && Options.BaitNotification.GetBool())
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessNotifiedBait"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessNotifiedBait"));
                     return true;
                 }
                 if (target.Is(CustomRoles.Onbound))
@@ -177,6 +184,7 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("GuessOnbound"));
                     return true;
                 }
+                
                 if (role == CustomRoles.GM || target.Is(CustomRoles.GM))
                 {
                     Utils.SendMessage(GetString("GuessGM"), pc.PlayerId);
@@ -191,15 +199,26 @@ public static class GuessManager
                 if (role.IsAdditionRole())
                 {
                     if (
-                        (pc.Is(CustomRoles.NiceGuesser) && !Options.GGCanGuessAdt.GetBool()) ||
-                        (pc.Is(CustomRoles.EvilGuesser) && !Options.EGCanGuessAdt.GetBool()) ||
-                        (pc.Is(CustomRoles.Guesser) && !Options.GCanGuessAdt.GetBool())
+                        (
+                            (pc.Is(CustomRoles.NiceGuesser) && !Options.GGCanGuessAdt.GetBool()) ||
+                            (pc.Is(CustomRoles.EvilGuesser) && !Options.EGCanGuessAdt.GetBool()) ||
+                            (pc.Is(CustomRoles.Guesser) && !Options.GCanGuessAdt.GetBool()) ||
+                            (
+                                (
+                                    Options.CrewmatesCanGuess.GetBool() ||
+                                    Options.ImpostorsCanGuess.GetBool() ||
+                                    Options.NeutralKillersCanGuess.GetBool() ||
+                                    Options.PassiveNeutralsCanGuess.GetBool()
+                                ) && (!Options.CanGuessAddons.GetBool() && role is not CustomRoles.Infected || role is not CustomRoles.Workhorse || role is not CustomRoles.Madmate || role is not CustomRoles.Charmed || role is not CustomRoles.Egoist)
+                            )
                         )
+                    )
                     {
                         Utils.SendMessage(GetString("GuessAdtRole"), pc.PlayerId);
                         return true;
                     }
                 }
+
                 if (pc.PlayerId == target.PlayerId)
                 {
                     if (!isUI) Utils.SendMessage(GetString("LaughToWhoGuessSelf"), pc.PlayerId, Utils.ColorString(Color.cyan, GetString("MessageFromKPD")));

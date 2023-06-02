@@ -417,6 +417,7 @@ public static class Utils
             case CustomRoles.Totocalcio:
             case CustomRoles.Succubus:
             case CustomRoles.Infectious:
+            case CustomRoles.Monarch:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:
@@ -557,6 +558,9 @@ public static class Utils
                 break;
             case CustomRoles.Infectious:
                 ProgressText.Append(Infectious.GetBiteLimit());
+                break;
+            case CustomRoles.Monarch:
+                ProgressText.Append(Monarch.GetKnightLimit());
                 break;
             default:
                 //タスクテキスト
