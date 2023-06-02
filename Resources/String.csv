@@ -830,6 +830,8 @@
 "CanUseSabotage","可以破坏","Can Sabotage","Может использовать Саботаж","可以破壞","可以破坏"
 "CanKillAllies","可以击杀<color=#ff1919>内鬼</color>","Can Kill <color=#ff1919>Impostors</color>","Может убить <color=#ff1919>Предателей</color>","可以殺死<color=#ff1919>偽裝者</color>","可以击杀<color=#ff1919>内鬼</color>"
 "CanKillSelf","可以击杀自己","Can kill Themself","Может убить себя","可以殺死自己","可以击杀自己"
+"CrewpostorKnowsAllies","","Knows <color=#ff1919>Impostors</color>","","",""
+"AlliesKnowCrewpostor","","Known to <color=#ff1919>Impostors</color>","","",""
 "HasSidekick","HasSidekick","Has <color=#00b4eb>Sidekick</color>","Имеет <color=#00b4eb>Союзника</color>","HasSidekick","HasSidekick"
 "NonNeutralKillingRolesMinPlayer","","Minimum Amount of Non-<color=#7f8c8d>Neutral Killing</color> roles","Минимальное количество Не-<color=#7f8c8d>Нейтральных Убийц</color> ролей","",""
 "NonNeutralKillingRolesMaxPlayer","","Maximum Amount of Non-<color=#7f8c8d>Neutral Killing</color> roles","Максимальное количество Не-<color=#7f8c8d>Нейтральных Убийц</color> ролей","",""
