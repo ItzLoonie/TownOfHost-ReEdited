@@ -263,7 +263,6 @@ public static class Options
     public static OptionItem ImpCanBeTrapper;
     public static OptionItem CrewCanBeTrapper;
     public static OptionItem NeutralCanBeTrapper;
-    public static OptionItem DisperserShapeshiftCooldown;
     public static OptionItem LighterVision;
 
     // public static OptionItem NSerialKillerKillCD;
@@ -755,9 +754,7 @@ public static class Options
             .SetValueFormat(OptionFormat.Votes);
         VindicatorHideVote = BooleanOptionItem.Create(150015, "MayorHideVote", false, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Vindicator]);
         SetupSingleRoleOptions(6050720, TabGroup.ImpostorRoles, CustomRoles.Parasite, 1, zeroOne: false);
-        SetupRoleOptions(170005, TabGroup.ImpostorRoles, CustomRoles.Disperser);
-        DisperserShapeshiftCooldown = FloatOptionItem.Create(170010, "ShapeshiftCooldown", new(1f, 999f, 1f), 15f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Disperser])
-            .SetValueFormat(OptionFormat.Seconds);
+        Disperser.SetupCustomOption();
 
         // Crewmate
         DeadCrewCantSabotage = BooleanOptionItem.Create(900053, "DeadCrewCantSabotage", false, TabGroup.CrewmateRoles, false)
