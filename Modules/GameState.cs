@@ -178,6 +178,7 @@ public class PlayerState
         Dismembered,
         LossOfHead,
         Trialed,
+        Infected,
 
         etc = -1
     }
