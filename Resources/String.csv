@@ -192,7 +192,7 @@
 "Wraith","幻影","Wraith","Дух","",""
 "NSerialKiller","连环杀手","Serial Killer","Маньяк","",""
 "Juggernaut","天启","Juggernaut","Джаггернаут","",""
-"Infectious","感染者","Infectious","Вампир","",""
+"Infectious","感染者","Infectious","Заразный","",""
 
 "# 附加职业 / Add-ons"
 "LastImpostor","绝境者","Last Impostor","Последний Предатель","絕境者","绝境者"
@@ -327,10 +327,10 @@
 "HangmanInfo","就由我，来结束你的生命","I will decide when your life will end","Я решу когда твоя жизнь окончится","我將會結束你的生命","就由我，来结束你的生命"
 "SwooperInfo","感受未知的恐惧吧","Turn invisible temporarily","Становитесь невидимым на какое-то время","一道風掠過，所有人恐懼",""
 "CrewpostorInfo","这是场完美的犯罪","Kill by completing tasks","Убивай, выполняя задания","誰又能知道我是披著船員皮的偽裝者呢?",""
-"WildlingInfoLong","(内鬼阵营):\n野人可以变形但不能跳管，当你杀戮时，你会暂时免疫攻击（跟嗜血骑士一样）","(Impostors):\nAs the Wildling, you can shapeshift but lack the ability to vent.\nWhen you kill, you temporarily become immune to attacks.","(Предатель):\nОдичалый может морфиться, но у вас нет возможности вернуться в свой облик.\nКогда он убивает кого то, он временно становится невосприимчивы к атакам.","",""
-"TricksterInfoLong","(内鬼阵营):\n魔术师跟普通内鬼一样，不过你被视为船员（法官无法杀死你。死神看你是友善的。告密者不能找你等）","(Impostors):\nAs the Trickster, you function as a regular Impostor but with one key difference.\nYou appear crewmate to crewmate roles.\n\nThe Sheriff cannot kill you.\nPsychic does not see you as evil.\nSnitch cannot find you.","(Предатель):\nТрюкач действует как обычный Предатель, но с одним отличием.\nВы для Членов Экипажей кажетесь как роль Член Экипажа.\n\nШериф не сможет вас убить.\nУ Экстрасенса ваш ник не подсвечивается.\nСтукач не сможет вас определить","",""
-"VindicatorInfoLong","(内鬼阵营):\n卫道士有额外票数像市长一样（票数根据房主设定）","(Impostors):\nAs the Vindicator, you have extra votes like a Mayor.","(Предатель):\nУ Продажного есть дополнительные голоса, прямо как у мэра.","",""
-"ParasiteInfoLong","(内鬼阵营):\n寄生虫不会知道其他内鬼，其他内鬼也不会知道寄生虫","(Impostors):\nAs the Parasite, you are an Impostor that does not know the other Impostors.\n\nYou may kill, vent, sabotage, whatever.\nJust know that you are an Impostor.","(Предатель):\nПаразит явялется Предателем, который не знает ктоя явялется Предателем.\n\nОн может убивать, вентоваться, саботажить и делать что угодно.\nПросто знайте, что вы Предатель","",""
+"WildlingInfo","","Kill with strength and disguise","Убивай с силой маскировки","",""
+"TricksterInfo","","Kill and trick the crew","Запутай Членов Экипажа","",""
+"VindicatorInfo","","Use your extra votes to kill everyone","Используйте свои дополнительные голоса чтобы убить всех","",""
+"ParasiteInfo","","Help the Impostors kill the crew","Помогите Предателям убить Членов Экипажей","",""
 "DisperserInfo","","Teleport everyone to random vents","Телепортируй всех в случайные венты","",""
 
 "# 船员阵营 / Crewmate descriptions"
