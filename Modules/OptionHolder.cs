@@ -140,7 +140,6 @@ public static class Options
 
     public static OptionItem DefaultShapeshiftCooldown;
     public static OptionItem DeadImpCantSabotage;
-    public static OptionItem DeadCrewCantSabotage;
     public static OptionItem DeadNeutralCantSabotage;
     public static OptionItem ImpKnowAlliesRole;
     public static OptionItem ImpKnowWhosMadmate;
@@ -759,9 +758,6 @@ public static class Options
         Disperser.SetupCustomOption();
 
         // Crewmate
-        DeadCrewCantSabotage = BooleanOptionItem.Create(900053, "DeadCrewCantSabotage", false, TabGroup.CrewmateRoles, false)
-            .SetGameMode(CustomGameMode.Standard)
-            .SetHeader(true);
         SetupRoleOptions(102255, TabGroup.CrewmateRoles, CustomRoles.NiceGuesser);
         GGCanGuessTime = IntegerOptionItem.Create(102257, "GuesserCanGuessTimes", new(1, 15, 1), 15, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NiceGuesser])
             .SetValueFormat(OptionFormat.Times);
