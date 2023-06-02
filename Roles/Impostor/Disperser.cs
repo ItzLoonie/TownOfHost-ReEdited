@@ -33,8 +33,13 @@ public static class Disperser
 
         foreach (var pc in PlayerControl.AllPlayerControls)
         {
-            if (shapeshifter.PlayerId == pc.PlayerId || pc.Data.IsDead || pc.inVent)
+            if (shapeshifter.PlayerId == pc.PlayerId || pc.Data.IsDead || pc.onLadder || pc.inVent || GameStates.IsMeeting)
+            {
+                if (!pc.Is(CustomRoles.Disperser))
+                    pc.Notify(ColorString(GetRoleColor(CustomRoles.Disperser), string.Format(GetString("ErrorTeleport"), pc.GetRealName())));
+                
                 continue;
+            }
 
             pc.RPCPlayCustomSound("Teleport");
             var vent = vents[rd.Next(0, vents.Count)];
