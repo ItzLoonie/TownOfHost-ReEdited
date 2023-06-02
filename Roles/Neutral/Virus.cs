@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Epic.OnlineServices;
 using Hazel;
 using UnityEngine;
 using static TOHE.Options;
@@ -15,12 +16,14 @@ namespace TOHE.Roles.Neutral
         private static readonly int Id = 6052269;
         private static List<byte> playerIdList = new();
         private static int InfectLimit = new();
+        public static List<byte> InfectedPlayer = new();
 
         private static OptionItem KillCooldown;
         private static OptionItem InfectMax;
         public static OptionItem CanVent;
         public static OptionItem KnowTargetRole;
         public static OptionItem TargetKnowOtherTarget;
+        public static OptionItem KillInfectedPlayerAfterMeeting;
 
         public static void SetupCustomOption()
         {
@@ -32,6 +35,7 @@ namespace TOHE.Roles.Neutral
                 .SetValueFormat(OptionFormat.Times);
             KnowTargetRole = BooleanOptionItem.Create(Id + 13, "VirusKnowTargetRole", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus]);
             TargetKnowOtherTarget = BooleanOptionItem.Create(Id + 14, "VirusTargetKnowOtherTarget", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus]);
+            KillInfectedPlayerAfterMeeting = BooleanOptionItem.Create(Id + 15, "KillInfectedPlayerAfterMeeting", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus]);
         }
 
         public static void Init()
@@ -58,6 +62,15 @@ namespace TOHE.Roles.Neutral
             writer.Write(InfectLimit);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
         }
+
+        private static void SendRPCInfectKill(byte virusId, byte target = 255)
+        {
+            MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.DoSpell, SendOption.Reliable, -1);
+            writer.Write(virusId);
+            writer.Write(target);
+            AmongUsClient.Instance.FinishRpcImmediately(writer);
+        }
+
         public static void ReceiveRPC(MessageReader reader)
         {
             InfectLimit = reader.ReadInt32();
@@ -79,15 +92,70 @@ namespace TOHE.Roles.Neutral
             InfectLimit--;
             SendRPC();
 
-            target.RpcSetCustomRole(CustomRoles.Contagious);
-            target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Virus), GetString("InfectedByVirus")));
-                
-            Utils.NotifyRoles();
+            if (KillInfectedPlayerAfterMeeting.GetBool())
+            {
+                InfectedPlayer.Add(target.PlayerId);
 
-            string msg = string.Format(GetString("VirusNoticeMessage"));
-            Main.VirusNotify.Add(target.PlayerId, msg);
+                Main.VirusNotify.Add(target.PlayerId, GetString("VirusNoticeMessage2"));
+            }
+            else
+            {
+                target.RpcSetCustomRole(CustomRoles.Contagious);
+                target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Virus), GetString("InfectedByVirus")));
+
+                Utils.NotifyRoles();
+
+                Main.VirusNotify.Add(target.PlayerId, GetString("VirusNoticeMessage"));
+            }
 
             Logger.Info("设置职业:" + target?.Data?.PlayerName + " = " + target.GetCustomRole().ToString() + " + " + CustomRoles.Contagious.ToString(), "Assign " + CustomRoles.Contagious.ToString());
+        }
+
+        public static void OnCheckForEndVoting(PlayerState.DeathReason deathReason, params byte[] exileIds)
+        {
+            if (!KillInfectedPlayerAfterMeeting.GetBool())
+            {
+                return;
+            }
+
+            PlayerControl virus =
+                Main.AllAlivePlayerControls.FirstOrDefault(a => a.GetCustomRole() == CustomRoles.Virus);
+            if (virus == null || deathReason != PlayerState.DeathReason.Vote) return;
+
+            foreach (var id in exileIds)
+            {
+                if (InfectedPlayer.Contains(id))
+                    InfectedPlayer.Remove(id);
+            }
+            
+            var infectedIdList = new List<byte>();
+            foreach (var pc in Main.AllAlivePlayerControls)
+            {
+                bool isInfected = InfectedPlayer.Contains(pc.PlayerId);
+                if (!isInfected) continue;
+
+                if (virus.IsAlive())
+                {
+                    if (!Main.AfterMeetingDeathPlayers.ContainsKey(pc.PlayerId))
+                    {
+                        pc.SetRealKiller(virus);
+                        infectedIdList.Add(pc.PlayerId);
+                    }
+                }
+                else
+                {
+                    Main.AfterMeetingDeathPlayers.Remove(pc.PlayerId);
+                }
+            }
+
+            CheckForEndVotingPatch.TryAddAfterMeetingDeathPlayers(PlayerState.DeathReason.Infected, infectedIdList.ToArray());
+            RemoveInfectedPlayer(virus);
+        }
+
+        public static void RemoveInfectedPlayer(PlayerControl virus)
+        {
+            InfectedPlayer.Clear();
+            SendRPCInfectKill(virus.PlayerId);
         }
 
         public static bool KnowRole(PlayerControl player, PlayerControl target)

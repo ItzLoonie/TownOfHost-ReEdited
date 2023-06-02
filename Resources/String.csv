@@ -1119,6 +1119,7 @@
 "VirusInfectMax","","Maximum Number Of Infects","","",""
 "VirusKnowTargetRole","","Know <color=#D2B48C>Infected</color> Player's Role","","",""
 "VirusTargetKnowOtherTarget","","<color=#D2B48C>Infected</color> players know each other","","",""
+"KillInfectedPlayerAfterMeeting","","<color=#D2B48C>Infected</color> player dies after meeting","","",""
 "CharmedCountMode","被魅惑的玩家在人数上视为","<color=#cf6acd>Charmed</color> players count as","<color=#cf6acd>Зачарованные</color> игроки считаются как ","被魅惑的玩家在人數上視為",""
 "CharmedCountMode.None","不计人数","Nothing","Никто","不計人數",""
 "CharmedCountMode.Succubus","<color=#cf6acd>魅魔阵营</color>","<color=#cf6acd>Cultist</color>","<color=#cf6acd>Суккубом</color>","<color=#cf6acd>魅魔陣營</color>",""
@@ -1312,6 +1313,7 @@
 "InfectedByVirus","","You have been infected by the Virus","","",""
 "VirusNoticeTitle","","【 ☠ Infected Body! ☠ 】","","",""
 "VirusNoticeMessage","","The Body your reported was infected by the Virus! You are now part of Team-Virus. Help the Virus win the game.","","",""
+"VirusNoticeMessage2","","The Body your reported was infected by the Virus! Vote the Virus out this meeting or you will die.","","",""
 
 "## 信息 / Message"
 "Message.SetToSeconds","信息发送冷却时间为【{0}】秒","Set to 【{0}】 seconds.","Установлен на 【{0}】 секунды","訊息傳送冷卻時間設為【{0}】秒","信息发送冷却时间为【{0}】秒"
