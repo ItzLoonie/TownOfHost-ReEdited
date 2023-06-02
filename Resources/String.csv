@@ -1140,7 +1140,7 @@
 "CharmedCountMode.Original","原本阵营","Original Team","Первоначальной командой","原本陣營",""
 "JackalCanWinBySabotageWhenNoImpAlive","没有<color=#ff1919>内鬼</color>存活时破坏视作豺狼胜利","When all <color=#ff1919>Impostors</color> are dead, the <color=#00b4eb>Jackal</color> wins by sabotage instead","Саботаж <color=#ff1919>Предателя</color> считается победой <color=#00b4eb>Шакала</color> если все <color=#ff1919>Предатели</color> мертвы","没有<color=#ff1919>内鬼</color>存活时破坏视作豺狼胜利",""
 "ResetKillCooldownWhenPlayerGetKilled","当有人被击杀时立刻重置击杀冷却","Reset kill cooldown when someone is killed","Сбросить откат убийства до 0, когда кого-то убивают (исключение со своим убийством)","当有人被击杀时立刻重置击杀冷却",""
-"JackalCanRecruitSidekick","","Can recruit Sidekick","","",""
+"JackalCanRecruitSidekick","","Can recruit <color=#00b4eb>Sidekick</color>","","",""
 "JackalSidekickRecruitLimit","","Maximum Number Of Recruits","","",""
 "ImpCanBeNecroview","","<color=#ff1919>Impostors</color> can become <color=#663399>Necroview</color>","<color=#ff1919>Предатели</color> могут стать <color=#663399>Некровидящим</color>","",""
 "CrewCanBeNecroview","","<color=#8cffff>Crewmates</color> can become <color=#663399>Necroview</color>","<color=#8cffff>Члены Экипажа</color> могут стать <color=#663399>Некровидящим</color>","",""
