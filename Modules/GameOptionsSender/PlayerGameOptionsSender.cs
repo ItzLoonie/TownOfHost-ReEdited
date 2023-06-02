@@ -91,6 +91,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.SabotageMaster:
             case CustomRoles.Mario:
             case CustomRoles.EngineerTOHE:
+            case CustomRoles.Crewpostor:
             case CustomRoles.Jester:
                 AURoleOptions.EngineerCooldown = 0f;
                 AURoleOptions.EngineerInVentMaxTime = 0f;

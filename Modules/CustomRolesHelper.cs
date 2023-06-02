@@ -99,7 +99,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Bard => CustomRoles.Impostor,
                 CustomRoles.Swooper => CustomRoles.Impostor,
                 CustomRoles.Wraith => CustomRoles.Impostor,
-                CustomRoles.Crewpostor => CustomRoles.Crewmate,
+                CustomRoles.Crewpostor => CustomRoles.Engineer,
                 CustomRoles.Observer => CustomRoles.Crewmate,
                 CustomRoles.Infectious => CustomRoles.Impostor,
                 CustomRoles.Disperser => CustomRoles.Shapeshifter,
@@ -208,6 +208,7 @@ internal static class CustomRolesHelper
             CustomRoles.Infectious or
             CustomRoles.Wraith or
             CustomRoles.Gamer or
+            CustomRoles.Crewpostor or
             CustomRoles.Juggernaut or
             CustomRoles.DarkHide or
             CustomRoles.Poisoner or
@@ -247,6 +248,7 @@ internal static class CustomRolesHelper
     {
         return role is
             CustomRoles.SwordsMan or
+            CustomRoles.Veteran or
             CustomRoles.Sheriff;
     }
     public static bool IsImpostor(this CustomRoles role) // IsImp
@@ -297,7 +299,6 @@ internal static class CustomRolesHelper
             CustomRoles.Hangman or
             CustomRoles.Bard or
             CustomRoles.Swooper or
-            CustomRoles.Crewpostor or
             CustomRoles.Disperser or
             CustomRoles.Camouflager;
     }
@@ -311,6 +312,7 @@ internal static class CustomRolesHelper
             CustomRoles.Opportunist or
             CustomRoles.Mario or
             CustomRoles.HexMaster or
+            CustomRoles.Crewpostor or
             CustomRoles.NWitch or
             CustomRoles.Wraith or
             CustomRoles.Parasite or
@@ -484,6 +486,7 @@ internal static class CustomRolesHelper
            CustomRoles.NSerialKiller => CountTypes.NSerialKiller,
            CustomRoles.Juggernaut => CountTypes.Juggernaut,
            CustomRoles.Infectious => CountTypes.Infectious,
+           CustomRoles.Crewpostor => CountTypes.Impostor,
            _ => role.IsImpostorTeam() ? CountTypes.Impostor : CountTypes.Crew,
        };
 

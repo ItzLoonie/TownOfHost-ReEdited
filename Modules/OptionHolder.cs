@@ -227,6 +227,8 @@ public static class Options
     public static OptionItem ShapeImperiusCurseShapeshiftDuration;
     public static OptionItem ImperiusCurseShapeshiftCooldown;
     public static OptionItem CrewpostorCanKillAllies;
+    public static OptionItem CrewpostorKnowsAllies;
+    public static OptionItem AlliesKnowCrewpostor;
     public static OptionItem ImpCanBeSeer;
     public static OptionItem CrewCanBeSeer;
     public static OptionItem NeutralCanBeSeer;
@@ -988,6 +990,8 @@ public static class Options
         SetupRoleOptions(902622, TabGroup.OtherRoles, CustomRoles.OverKiller);
         SetupRoleOptions(907090, TabGroup.OtherRoles, CustomRoles.Crewpostor);
         CrewpostorCanKillAllies = BooleanOptionItem.Create(907092, "CanKillAllies", true, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Crewpostor]);
+        CrewpostorKnowsAllies = BooleanOptionItem.Create(907093, "CrewpostorKnowsAllies", true, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Crewpostor]);
+        AlliesKnowCrewpostor = BooleanOptionItem.Create(907094, "AlliesKnowCrewpostor", true, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Crewpostor]);
         CrewpostorTasks = OverrideTasksData.Create(9079094, TabGroup.OtherRoles, CustomRoles.Crewpostor);
 
         // 船员

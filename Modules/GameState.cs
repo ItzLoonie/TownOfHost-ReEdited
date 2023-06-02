@@ -312,7 +312,7 @@ public class TaskState
             }
 
             //船鬼要抽奖啦
-            if (player.Is(CustomRoles.Crewpostor))
+      /*      if (player.Is(CustomRoles.Crewpostor))
             {
 
                 List<PlayerControl> list = Main.AllAlivePlayerControls.Where(x => x.PlayerId != player.PlayerId && (Options.CrewpostorCanKillAllies.GetBool() || !x.GetCustomRole().IsImpostorTeam())).ToList();
@@ -329,7 +329,7 @@ public class TaskState
                     player.RpcGuardAndKill();
                     Logger.Info($"船鬼完成任务击杀：{player.GetNameWithRole()} => {target.GetNameWithRole()}", "Crewpostor");
                 }
-            }
+            } */
 
         }
 
