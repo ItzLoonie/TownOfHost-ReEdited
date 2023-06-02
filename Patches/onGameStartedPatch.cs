@@ -60,6 +60,7 @@ internal class ChangeRoleSettings
             Main.KillerOfBoobyTrapBody = new();
             Main.CleanerBodies = new();
             Main.InfectedBodies = new();
+            Main.VirusNotify = new();
 
             Main.LastEnteredVent = new();
             Main.LastEnteredVentLocation = new();

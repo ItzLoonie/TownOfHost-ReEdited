@@ -1310,6 +1310,8 @@
 "LighterVision","执灯视野大小","<color=#eee5be>Lighter</color> Vision","Дальность <color=#eee5be>Фонарика</color>","",""
 "VirusInfectPlayer","","You successfully infected a player","","",""
 "InfectedByVirus","","You have been infected by the Virus","","",""
+"VirusNoticeTitle","","【 ☠ Infected Body! ☠ 】","","",""
+"VirusNoticeMessage","","The Body your reported was infected by the Virus! You are now part of Team-Virus. Help the Virus win the game.","","",""
 
 "## 信息 / Message"
 "Message.SetToSeconds","信息发送冷却时间为【{0}】秒","Set to 【{0}】 seconds.","Установлен на 【{0}】 секунды","訊息傳送冷卻時間設為【{0}】秒","信息发送冷却时间为【{0}】秒"

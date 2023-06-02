@@ -104,6 +104,7 @@ public class Main : BasePlugin
     public static List<byte> BoobyTrapBody = new();
     public static Dictionary<byte, byte> KillerOfBoobyTrapBody = new();
     public static Dictionary<byte, string> DetectiveNotify = new();
+    public static Dictionary<byte, string> VirusNotify = new();
     public static List<byte> OverDeadPlayerList = new();
     public static bool DoBlockNameChange = false;
     public static int updateTime;

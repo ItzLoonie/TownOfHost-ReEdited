@@ -939,11 +939,6 @@ class ReportDeadBodyPatch
                     if (!Main.KillerOfBoobyTrapBody.ContainsKey(__instance.PlayerId)) Main.KillerOfBoobyTrapBody.Add(__instance.PlayerId, killerID);
                     return false;
                 }
-
-                if (Main.InfectedBodies.Contains(target.PlayerId))
-                {
-                    Virus.OnKilledBodyReport(killer, __instance);
-                }
             }
 
             if (Options.SyncButtonMode.GetBool() && target == null)
@@ -1004,6 +999,11 @@ class ReportDeadBodyPatch
                     Main.DetectiveNotify.Add(player.PlayerId, msg);
                 }
             }
+        }
+
+        if (Main.InfectedBodies.Contains(target.PlayerId))
+        {
+            Virus.OnKilledBodyReport(player);
         }
 
         Main.ArsonistTimer.Clear();
