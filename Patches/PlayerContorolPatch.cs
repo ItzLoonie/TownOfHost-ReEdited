@@ -656,6 +656,7 @@ class MurderPlayerPatch
         target.SetRealKiller(killer, true); //既に追加されてたらスキップ
         Utils.CountAlivePlayers(true);
 
+        Camouflager.isDead(target);
         Utils.TargetDies(__instance, target);
 
         if (Options.LowLoadMode.GetBool())
