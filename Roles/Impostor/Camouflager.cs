@@ -36,5 +36,15 @@
             IsActive = false;
             Camouflage.CheckCamouflage();
         }
+        public static void isDead(PlayerControl target)
+        {
+            if (!target.Data.IsDead || GameStates.IsMeeting) return;
+
+            if(target.Is(CustomRoles.Camouflager) && target.Data.IsDead)
+            {
+                IsActive = false;
+                Camouflage.CheckCamouflage();
+            }
+        }
     }
 }
