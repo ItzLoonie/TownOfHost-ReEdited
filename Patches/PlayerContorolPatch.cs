@@ -288,6 +288,9 @@ class CheckMurderPatch
                 case CustomRoles.Infectious:
                     Infectious.OnCheckMurder(killer, target);
                     return false;
+                case CustomRoles.Monarch:
+                    Monarch.OnCheckMurder(killer, target);
+                    return false;
 
                 //==========船员职业==========//
                 case CustomRoles.Sheriff:

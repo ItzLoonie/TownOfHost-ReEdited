@@ -503,6 +503,9 @@ static class ExtendedMeetingHud
                 if (CheckForEndVotingPatch.CheckRole(ps.TargetPlayerId, CustomRoles.Mayor)
                     && ps.TargetPlayerId != ps.VotedFor
                     ) VoteNum += Options.MayorAdditionalVote.GetInt();
+                if (CheckForEndVotingPatch.CheckRole(ps.TargetPlayerId, CustomRoles.Knighted)
+                    && ps.TargetPlayerId != ps.VotedFor
+                    ) VoteNum += 1;
                 if (CheckForEndVotingPatch.CheckRole(ps.TargetPlayerId, CustomRoles.Vindicator)
                     && ps.TargetPlayerId != ps.VotedFor
                     ) VoteNum += Options.VindicatorAdditionalVote.GetInt();
@@ -798,6 +801,7 @@ class MeetingHudStartPatch
                 case CustomRoles.Pelican:
                 case CustomRoles.DarkHide:
                 case CustomRoles.BloodKnight:
+                case CustomRoles.Infectious:
                     sb.Append(Snitch.GetWarningMark(seer, target));
                     break;
                 case CustomRoles.Jackal:
