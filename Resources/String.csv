@@ -1279,6 +1279,7 @@
 "WarlockControlKill","已操纵目标完成击杀","Target died","Цель мертва","已操縱目標完成咒殺","已操纵目标完成击杀"
 "OnCyberStarDead","紧急通知：网红死亡","Warning: Celebrity death","Знаменитость мертва!","緊急通知: 網紅死亡","紧急通知：网红死亡"
 "TeleportedByTransporter","您被传送至：{0}","Swapping places with: {0}","Телепортирован к: {0}","您被傳送至:{0}","您被传送至：{0}"
+"ErrorTeleport","","Teleport failed","Телепортация не удалась","",""
 "LostRoleByEraser","您的职业被<color=#ff1919>抹除者</color>抹除了","You lost your role because of the <color=#ff1919>Eraser</color>","Вы потеряли свою роль из-за <color=#ff1919>Стирачки</color>","您的職業被<color=#ff1919>抹除者</color>抹除了","您的职业被<color=#ff1919>抹除者</color>抹除了"
 "KilledByScavenger","您被清道夫击杀因此传送至地图外","You were killed by the Scavenger and thus teleported off-map","Вы были убиты Уборщиком и поэтому телепортированы за предел карты","您因被清道夫殺死因此傳送至地圖外","您被清道夫击杀因此传送至地图外"
 "SnitchDoneTasks","您已完成全部任务，启动会议以发动技能","Call a meeting to find the impostors","Созовите собрание, чтобы активировать свой навык","您已完成全部任務，召開會議以發動技能","您已完成全部任务，启动会议以发动技能"
