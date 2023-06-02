@@ -78,6 +78,18 @@ class RepairSystemPatch
             return false;
         }
 
+        if (systemType == SystemTypes.Security && amount == 1)
+        {
+            var camerasDisabled = (MapNames)Main.NormalOptions.MapId switch
+            {
+                MapNames.Skeld => Options.DisableSkeldCamera.GetBool(),
+                MapNames.Polus => Options.DisablePolusCamera.GetBool(),
+                MapNames.Airship => Options.DisableAirshipCamera.GetBool(),
+                _ => false,
+            };
+            return !camerasDisabled;
+        }
+
         return true;
     }
     public static void Postfix(ShipStatus __instance)
