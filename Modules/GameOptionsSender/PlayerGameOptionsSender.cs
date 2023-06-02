@@ -91,6 +91,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.SabotageMaster:
             case CustomRoles.Mario:
             case CustomRoles.EngineerTOHE:
+            case CustomRoles.Crewpostor:
             case CustomRoles.Jester:
                 AURoleOptions.EngineerCooldown = 0f;
                 AURoleOptions.EngineerInVentMaxTime = 0f;
@@ -232,8 +233,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 BloodKnight.ApplyGameOptions(opt);
                 break;
             case CustomRoles.Disperser:
-                AURoleOptions.ShapeshifterCooldown = Options.DisperserShapeshiftCooldown.GetFloat();
-                AURoleOptions.ShapeshifterDuration = 1f;
+                Disperser.ApplyGameOptions();
                 break;
         }
 

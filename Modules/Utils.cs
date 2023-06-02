@@ -463,24 +463,6 @@ public static class Utils
 
         return hasTasks;
     }
-    public static void DispersePlayers()
-    {
-        var rd = new System.Random();
-        var vents = UnityEngine.Object.FindObjectsOfType<Vent>();
-
-        new LateTask(() =>
-        {
-            foreach (var pc in PlayerControl.AllPlayerControls)
-            {
-                if (pc == null || pc.Data.IsDead || pc.inVent)
-                    continue;
-                pc.RPCPlayCustomSound("Teleport");
-                var vent = vents[rd.Next(0, vents.Count)];
-                TP(pc.NetTransform, new Vector2(vent.transform.position.x, vent.transform.position.y));
-                pc.Notify(ColorString(GetRoleColor(CustomRoles.Disperser), string.Format(GetString("TeleportedInRndVentByDisperser"), pc.GetRealName())));
-            }
-        }, 1.5f, "Disperser Disperse Players");
-    }
     public static bool CanBeMadmate(this PlayerControl pc)
     {
         return pc != null && pc.GetCustomRole().IsCrewmate() && !pc.Is(CustomRoles.Madmate)
@@ -1263,6 +1245,8 @@ public static class Utils
                         (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoleTypes.Impostor) && Options.ImpKnowAlliesRole.GetBool()) ||
                         (seer.Is(CustomRoles.Madmate) && target.Is(CustomRoleTypes.Impostor) && Options.MadmateKnowWhosImp.GetBool()) ||
                         (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Madmate) && Options.ImpKnowWhosMadmate.GetBool()) ||
+                        (seer.Is(CustomRoles.Crewpostor) && target.Is(CustomRoleTypes.Impostor) && Options.CrewpostorKnowsAllies.GetBool()) ||
+                        (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Crewpostor) && Options.AlliesKnowCrewpostor.GetBool()) ||
                         (seer.Is(CustomRoles.Madmate) && target.Is(CustomRoles.Madmate) && Options.MadmateKnowWhosMadmate.GetBool()) ||
                         (seer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Sidekick) && Options.SidekickKnowOtherSidekick.GetBool() && Options.SidekickKnowOtherSidekickRole.GetBool()) ||
                         (seer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Sidekick)) ||
@@ -1448,7 +1432,7 @@ public static class Utils
 
         FixedUpdatePatch.LoversSuicide(target.PlayerId, onMeeting);
 
-        Jackal.AfterPlayerDiedTask();
+        Jackal.AfterPlayerDiedTask(target);
 
     }
     public static void ChangeInt(ref int ChangeTo, int input, int max)

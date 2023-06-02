@@ -525,6 +525,7 @@ internal class ChatCommands
             "船鬼" => GetString("Crewpostor"),
             "嗜血騎士" or "血骑" or "骑士" or "bk" => GetString("BloodKnight"),
             "賭徒" => GetString("Totocalcio"),
+            "分散机" => GetString("Disperser"),
             "持槍" or "持械" or "手长" => GetString("Reach"),
             _ => text,
         };

@@ -335,6 +335,7 @@ public class Main : BasePlugin
                 {CustomRoles.BloodKnight, "#630000"},
                 {CustomRoles.Juggernaut, "#A41342"},
                 {CustomRoles.Parasite, "#ff1919"},
+                {CustomRoles.Crewpostor, "#ff1919"},
                 {CustomRoles.Infectious, "#7B8968"},
                 {CustomRoles.Virus, "#D2B48C"},
                 // GM
