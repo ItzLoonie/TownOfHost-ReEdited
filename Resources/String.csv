@@ -123,7 +123,7 @@
 "OverKiller","肢解者","Butcher","Мясник","肢解者","SobreAsesino"
 "Hangman","刽子手","Hangman","Вешатель","劊子手","Hangman"
 "Swooper","隐匿者","Swooper","Невидимка","隱身人",""
-"Crewpostor","船鬼","CrewPostor","Двуликий","船鬼",""
+"Crewpostor","船鬼","Crewpostor","Двуликий","船鬼",""
 "Wildling","野人","Wildling","Одичалый","",""
 "Trickster","魔术师","Trickster","Трюкач","",""
 "Vindicator","卫道士","Vindicator","Продажный","",""
@@ -485,7 +485,7 @@
 "WildlingInfoLong","(内鬼阵营):\n野人可以变形但不能跳管，当你杀戮时，你会暂时免疫攻击（跟嗜血骑士一样）","(Impostors):\nAs the Wildling, you can shapeshift but lack the ability to vent.\nWhen you kill, you temporarily become immune to attacks.","(Предатель):\nОдичалый может морфиться, но у вас нет возможности вернуться в свой облик.\nКогда он убивает кого то, он временно становится невосприимчивы к атакам.","",""
 "TricksterInfoLong","(内鬼阵营):\n魔术师跟普通内鬼一样，不过你被视为船员（法官无法杀死你。死神看你是友善的。告密者不能找你等）","(Impostors):\nAs the Trickster, you function as a regular Impostor but with one key difference.\nYou appear crewmate to crewmate roles.\n\nThe Sheriff cannot kill you.\nPsychic does not see you as evil.\nSnitch cannot find you.","(Предатель):\nТрюкач действует как обычный Предатель, но с одним отличием.\nВы для Членов Экипажей кажетесь как роль Член Экипажа.\n\nШериф не сможет вас убить.\nУ Экстрасенса ваш ник не подсвечивается.\nСтукач не сможет вас определить","",""
 "VindicatorInfoLong","(内鬼阵营):\n卫道士有额外票数像市长一样（票数根据房主设定）","(Impostors):\nAs the Vindicator, you have extra votes like a Mayor.","(Предатель):\nУ Продажного есть дополнительные голоса, прямо как у мэра.","",""
-"ParasiteInfoLong","(内鬼阵营):\n寄生虫不会知道其他内鬼，其他内鬼也不会知道寄生虫","(Impostors):\nAs the Parasite, you are an Impostor that does not know the other Impostors.\n\nYou may kill, vent, sabotage, whatever.\nJust know that you are an Impostor.","(Предатель):\nПаразит явялется Предателем, который не знает ктоя явялется Предателем.\n\nОн может убивать, вентоваться, саботажить и делать что угодно.\nПросто знайте, что вы Предатель","",""
+"ParasiteInfoLong","(内鬼阵营):\n寄生虫不会知道其他内鬼，其他内鬼也不会知道寄生虫","(Team Impostor):\nAs the Parasite, you are an Impostor that does not know the other Impostors.\n\nYou may kill, vent, sabotage, whatever.\nJust know that you are an Impostor.","(Предатель):\nПаразит явялется Предателем, который не знает ктоя явялется Предателем.\n\nОн может убивать, вентоваться, саботажить и делать что угодно.\nПросто знайте, что вы Предатель","",""
 "DisperserInfoLong","","(Impostors):\nDisperser can use Shapeshift to teleport all players to random vents.\nNote: the Disperser itself will not be teleported with shapeshift and players who are in the vent cannot be teleported.","(Предатель):\nРазбрасыватель может с помощью Морфлинга телепортировать всех игроков в случайные вентиляции.\nПримечание: Сам Разбрасыватель не будет телепортирован когда он использует морф и игроки которые находятся в вентиляции не могут быть телепортированы.","",""
 
 "# 船员阵营 / Crewmates descriptions"
