@@ -28,7 +28,7 @@ namespace TOHE.Roles.Neutral
             KillCooldown = FloatOptionItem.Create(Id + 10, "VirusKillCooldown", new(0f, 990f, 2.5f), 30f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus])
                 .SetValueFormat(OptionFormat.Seconds);
             CanVent = BooleanOptionItem.Create(Id + 11, "VirusCanVent", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus]);
-            InfectMax = IntegerOptionItem.Create(Id + 12, "VirusInfectMax", new(1, 15, 1), 3, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus])
+            InfectMax = IntegerOptionItem.Create(Id + 12, "VirusInfectMax", new(1, 15, 1), 2, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus])
                 .SetValueFormat(OptionFormat.Times);
             KnowTargetRole = BooleanOptionItem.Create(Id + 13, "VirusKnowTargetRole", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus]);
             TargetKnowOtherTarget = BooleanOptionItem.Create(Id + 14, "VirusTargetKnowOtherTarget", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus]);
@@ -66,37 +66,28 @@ namespace TOHE.Roles.Neutral
         public static void OnCheckMurder(PlayerControl killer, PlayerControl target)
         {
             if (InfectLimit < 1) return;
-
             Main.InfectedBodies.Add(target.PlayerId);
-            
-            return;
         }
 
-        public static void OnKilledBodyReport(PlayerControl killer, PlayerControl target)
+        public static void OnKilledBodyReport(PlayerControl target)
         {
-            if (CanBeInfected(target))
+            if (!CanBeInfected(target))
             {
-                InfectLimit--;
-                SendRPC();
-                target.RpcSetCustomRole(CustomRoles.Contagious);
-
-                killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Virus), GetString("VirusInfectPlayer")));
-                target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Virus), GetString("InfectedByVirus")));
-                Utils.NotifyRoles();
-
-                killer.ResetKillCooldown();
-                killer.SetKillCooldown();
-                killer.RpcGuardAndKill(target);
-                target.RpcGuardAndKill(killer);
-                target.RpcGuardAndKill(target);
-
-                Logger.Info("设置职业:" + target?.Data?.PlayerName + " = " + target.GetCustomRole().ToString() + " + " + CustomRoles.Contagious.ToString(), "Assign " + CustomRoles.Contagious.ToString());
-                Logger.Info($"{killer.GetNameWithRole()} : 剩余{InfectLimit}次魅惑机会", "Virus");
                 return;
             }
 
-            killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Virus), GetString("SuccubusInvalidTarget")));
-            Logger.Info($"{killer.GetNameWithRole()} : 剩余{InfectLimit}次魅惑机会", "Virus");
+            InfectLimit--;
+            SendRPC();
+
+            target.RpcSetCustomRole(CustomRoles.Contagious);
+            target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Virus), GetString("InfectedByVirus")));
+                
+            Utils.NotifyRoles();
+
+            string msg = string.Format(GetString("VirusNoticeMessage"));
+            Main.VirusNotify.Add(target.PlayerId, msg);
+
+            Logger.Info("设置职业:" + target?.Data?.PlayerName + " = " + target.GetCustomRole().ToString() + " + " + CustomRoles.Contagious.ToString(), "Assign " + CustomRoles.Contagious.ToString());
         }
 
         public static bool KnowRole(PlayerControl player, PlayerControl target)
