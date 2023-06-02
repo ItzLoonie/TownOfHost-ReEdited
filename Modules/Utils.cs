@@ -1420,7 +1420,7 @@ public static class Utils
 
         FixedUpdatePatch.LoversSuicide(target.PlayerId, onMeeting);
 
-        Jackal.AfterPlayerDiedTask();
+        Jackal.AfterPlayerDiedTask(target);
 
     }
     public static void ChangeInt(ref int ChangeTo, int input, int max)
