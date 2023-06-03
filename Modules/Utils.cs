@@ -723,14 +723,14 @@ public static class Utils
         foreach (CustomRoles role in Enum.GetValues(typeof(CustomRoles)))
         {
             headCount++;
-            if (role.IsImpostor() && headCount == 0) continue;
-            else if (role.IsCrewmate() && headCount == 1) sb.Append("\n\n● " + GetString("TabGroup.ImpCrewRoles"));
+            if (role.IsImpostor() && headCount == 0) sb.Append("\n\n● " + GetString("TabGroup.ImpostorRoles"));
+            else if (role.IsCrewmate() && headCount == 1) sb.Append("\n\n● " + GetString("TabGroup.CrewmateRoles"));
             else if (role.IsNeutral() && headCount == 2) sb.Append("\n\n● " + GetString("TabGroup.NeutralRoles"));
             else if (role.IsAdditionRole() && headCount == 3) sb.Append("\n\n● " + GetString("TabGroup.Addons"));
             else headCount--;
 
             string mode = role.GetMode() == 1 ? GetString("RoleRateNoColor") : GetString("RoleOnNoColor");
-            if (role.IsEnable()) sb.AppendFormat("\n{0}: {1} x{2}", GetRoleName(role), $"{mode}", role.GetCount());
+            if (role.IsEnable()) sb.AppendFormat("\n{0}:{1} x{2}", GetRoleName(role), $"{mode}", role.GetCount());
         }
         SendMessage(sb.ToString(), PlayerId);
     }
