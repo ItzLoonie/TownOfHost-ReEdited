@@ -120,6 +120,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Medicaler:
             case CustomRoles.Provocateur:
             case CustomRoles.Monarch:
+            case CustomRoles.Counterfeiter:
                 opt.SetVision(false);
                 break;
             case CustomRoles.Zombie:
