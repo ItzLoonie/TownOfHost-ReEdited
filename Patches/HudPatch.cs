@@ -207,6 +207,9 @@ class HudManagerPatch
                     case CustomRoles.Infectious:
                         __instance.KillButton.OverrideText($"{GetString("InfectiousKillButtonText")}");
                         break;
+                    case CustomRoles.Monarch:
+                        __instance.KillButton.OverrideText($"{GetString("MonarchKillButtonText")}");
+                        break;
                 }
 
                 //バウンティハンターのターゲットテキスト

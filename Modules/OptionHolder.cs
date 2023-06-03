@@ -140,7 +140,6 @@ public static class Options
 
     public static OptionItem DefaultShapeshiftCooldown;
     public static OptionItem DeadImpCantSabotage;
-    public static OptionItem DeadCrewCantSabotage;
     public static OptionItem DeadNeutralCantSabotage;
     public static OptionItem ImpKnowAlliesRole;
     public static OptionItem ImpKnowWhosMadmate;
@@ -757,11 +756,15 @@ public static class Options
         VindicatorHideVote = BooleanOptionItem.Create(150015, "MayorHideVote", false, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Vindicator]);
         SetupSingleRoleOptions(6050720, TabGroup.ImpostorRoles, CustomRoles.Parasite, 1, zeroOne: false);
         Disperser.SetupCustomOption();
+        SetupRoleOptions(6050750, TabGroup.ImpostorRoles, CustomRoles.Inhibitor);
+        SetupRoleOptions(907090, TabGroup.ImpostorRoles, CustomRoles.Crewpostor);
+        CrewpostorCanKillAllies = BooleanOptionItem.Create(907092, "CanKillAllies", true, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Crewpostor]);
+        CrewpostorKnowsAllies = BooleanOptionItem.Create(907093, "CrewpostorKnowsAllies", true, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Crewpostor]);
+        AlliesKnowCrewpostor = BooleanOptionItem.Create(907094, "AlliesKnowCrewpostor", true, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Crewpostor]);
+        CrewpostorTasks = OverrideTasksData.Create(9079094, TabGroup.ImpostorRoles, CustomRoles.Crewpostor);
+
 
         // Crewmate
-        DeadCrewCantSabotage = BooleanOptionItem.Create(900053, "DeadCrewCantSabotage", false, TabGroup.CrewmateRoles, false)
-            .SetGameMode(CustomGameMode.Standard)
-            .SetHeader(true);
         SetupRoleOptions(102255, TabGroup.CrewmateRoles, CustomRoles.NiceGuesser);
         GGCanGuessTime = IntegerOptionItem.Create(102257, "GuesserCanGuessTimes", new(1, 15, 1), 15, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NiceGuesser])
             .SetValueFormat(OptionFormat.Times);
@@ -835,6 +838,7 @@ public static class Options
         SetupRoleOptions(120010, TabGroup.CrewmateRoles, CustomRoles.ScientistTOHE);
    //     SetupSingleRoleOptions(6050525, TabGroup.CrewmateRoles, CustomRoles.GuardianAngelTOHE, 1, zeroOne: false);
         Marshall.SetupCustomOption();
+        Monarch.SetupCustomOption();
         // Neutral
         DeadNeutralCantSabotage = BooleanOptionItem.Create(900055, "DeadNeutralCantSabotage", false, TabGroup.NeutralRoles, false)
             .SetGameMode(CustomGameMode.Standard);
@@ -988,11 +992,6 @@ public static class Options
         BallLightning.SetupCustomOption();
         Eraser.SetupCustomOption();
         SetupRoleOptions(902622, TabGroup.OtherRoles, CustomRoles.OverKiller);
-        SetupRoleOptions(907090, TabGroup.OtherRoles, CustomRoles.Crewpostor);
-        CrewpostorCanKillAllies = BooleanOptionItem.Create(907092, "CanKillAllies", true, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Crewpostor]);
-        CrewpostorKnowsAllies = BooleanOptionItem.Create(907093, "CrewpostorKnowsAllies", true, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Crewpostor]);
-        AlliesKnowCrewpostor = BooleanOptionItem.Create(907094, "AlliesKnowCrewpostor", true, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Crewpostor]);
-        CrewpostorTasks = OverrideTasksData.Create(9079094, TabGroup.OtherRoles, CustomRoles.Crewpostor);
 
         // 船员
         TextOptionItem.Create(909092, "OtherRoles.CrewmateRoles", TabGroup.OtherRoles)

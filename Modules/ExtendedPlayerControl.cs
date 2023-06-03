@@ -421,6 +421,7 @@ static class ExtendedPlayerControl
             CustomRoles.FireWorks => FireWorks.CanUseKillButton(pc),
             CustomRoles.Mafia => Utils.CanMafiaKill(),
             CustomRoles.Mare => Utils.IsActive(SystemTypes.Electrical),
+            CustomRoles.Inhibitor => !Utils.IsActive(SystemTypes.Electrical) && !Utils.IsActive(SystemTypes.Laboratory) && !Utils.IsActive(SystemTypes.Comms) && !Utils.IsActive(SystemTypes.LifeSupp) && !Utils.IsActive(SystemTypes.Reactor),
             CustomRoles.Sniper => Sniper.CanUseKillButton(pc),
             CustomRoles.Sheriff => Sheriff.CanUseKillButton(pc.PlayerId),
             CustomRoles.Pelican => pc.IsAlive(),
@@ -449,6 +450,7 @@ static class ExtendedPlayerControl
             CustomRoles.Totocalcio => Totocalcio.CanUseKillButton(pc),
             CustomRoles.Succubus => Succubus.CanUseKillButton(pc),
             CustomRoles.Infectious => Infectious.CanUseKillButton(pc),
+            CustomRoles.Monarch => Monarch.CanUseKillButton(pc),
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
     }
@@ -644,6 +646,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Infectious:
                 Infectious.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Monarch:
+                Monarch.SetKillCooldown(player.PlayerId);
                 break;
         }
         if (player.PlayerId == LastImpostor.currentId)
