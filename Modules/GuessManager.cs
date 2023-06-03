@@ -196,7 +196,14 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("EGGuessSnitchTaskDone"));
                     return true;
                 }
-                if (role.IsAdditionRole())
+                 if (role.IsAdditionRole() && !Options.CanGuessAddons.GetBool() && Options.GuesserMode.GetBool())
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessAdtRole"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessAdtRole"));
+                    return true;
+
+                }
+           /*     if (role.IsAdditionRole())
                 {
                     if (
                         (
@@ -217,7 +224,7 @@ public static class GuessManager
                         Utils.SendMessage(GetString("GuessAdtRole"), pc.PlayerId);
                         return true;
                     }
-                }
+                } */
 
                 if (pc.PlayerId == target.PlayerId)
                 {
