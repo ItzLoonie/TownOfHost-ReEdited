@@ -67,6 +67,7 @@ class EndGamePatch
         BountyHunter.ChangeTimer = new();
         Main.isDoused = new Dictionary<(byte, byte), bool>();
         Main.isDraw = new Dictionary<(byte, byte), bool>();
+        Main.isRevealed = new Dictionary<(byte, byte), bool>();
 
         Main.VisibleTasksCount = false;
         if (AmongUsClient.Instance.AmHost)

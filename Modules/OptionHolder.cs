@@ -838,6 +838,7 @@ public static class Options
    //     SetupSingleRoleOptions(6050525, TabGroup.CrewmateRoles, CustomRoles.GuardianAngelTOHE, 1, zeroOne: false);
         Marshall.SetupCustomOption();
         Monarch.SetupCustomOption();
+        Farseer.SetupCustomOption();
 
         // Neutral
         SetupRoleOptions(50500, TabGroup.NeutralRoles, CustomRoles.Arsonist);

@@ -84,6 +84,8 @@ enum CustomRPC
     SetSuccubusCharmLimit,
     SetInfectiousBiteLimit,
     SetMonarchKnightLimit,
+    SetRevealedPlayer,
+    SetCurrentRevealTarget,
 
     //SoloKombat
     SyncKBPlayer,
@@ -277,6 +279,12 @@ internal class RPCHandlerPatch
                 byte DrawId = reader.ReadByte();
                 bool drawed = reader.ReadBoolean();
                 Main.isDraw[(RevolutionistId, DrawId)] = drawed;
+                break;
+            case CustomRPC.SetRevealedPlayer:
+                byte FarseerId = reader.ReadByte();
+                byte RevealId = reader.ReadByte();
+                bool revealed = reader.ReadBoolean();
+                Main.isDraw[(FarseerId, RevealId)] = revealed;
                 break;
             case CustomRPC.SetNameColorData:
                 NameColorManager.ReceiveRPC(reader);
@@ -848,6 +856,20 @@ internal static class RPC
             AmongUsClient.Instance.FinishRpcImmediately(writer);
         }
     }
+    public static void SetCurrentRevealTarget(byte arsonistId, byte targetId)
+    {
+        if (PlayerControl.LocalPlayer.PlayerId == arsonistId)
+        {
+            Main.currentDrawTarget = targetId;
+        }
+        else
+        {
+            MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetCurrentRevealTarget, Hazel.SendOption.Reliable, -1);
+            writer.Write(arsonistId);
+            writer.Write(targetId);
+            AmongUsClient.Instance.FinishRpcImmediately(writer);
+        }
+    }
     public static void SendRPCCursedWolfSpellCount(byte playerId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetCursedWolfSpellCount, SendOption.Reliable, -1);
@@ -857,6 +879,7 @@ internal static class RPC
     }
     public static void ResetCurrentDousingTarget(byte arsonistId) => SetCurrentDousingTarget(arsonistId, 255);
     public static void ResetCurrentDrawTarget(byte arsonistId) => SetCurrentDrawTarget(arsonistId, 255);
+    public static void ResetCurrentRevealTarget(byte arsonistId) => SetCurrentRevealTarget(arsonistId, 255);
     public static void SetRealKiller(byte targetId, byte killerId)
     {
         var state = Main.PlayerStates[targetId];

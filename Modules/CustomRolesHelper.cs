@@ -142,6 +142,7 @@ internal static class CustomRolesHelper
             CustomRoles.Totocalcio => RoleTypes.Impostor,
             CustomRoles.Succubus => RoleTypes.Impostor,
             CustomRoles.Infectious => RoleTypes.Impostor,
+            CustomRoles.Farseer => RoleTypes.Impostor,
             _ => RoleTypes.GuardianAngel
         };
     }

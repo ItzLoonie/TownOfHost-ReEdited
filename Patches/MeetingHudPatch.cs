@@ -8,6 +8,8 @@ using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
 using static TOHE.Translator;
+using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.ParticleSystem.PlaybackState;
 
 namespace TOHE;
 
@@ -681,6 +683,7 @@ class MeetingHudStartPatch
                 (Totocalcio.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (Succubus.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (Infectious.KnowRole(PlayerControl.LocalPlayer, pc)) ||
+                PlayerControl.LocalPlayer.IsRevealedPlayer(pc) ||
                 PlayerControl.LocalPlayer.Is(CustomRoles.God) ||
                 PlayerControl.LocalPlayer.Is(CustomRoles.GM) ||
                 Main.GodMode.Value;
@@ -816,6 +819,10 @@ class MeetingHudStartPatch
                 case CustomRoles.Revolutionist:
                     if (seer.IsDrawPlayer(target)) //seerがtargetに既にオイルを塗っている(完了)
                         sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Revolutionist), "●"));
+                    break;
+                case CustomRoles.Farseer:
+                    //if (seer.IsRevealedPlayer(target)) //seerがtargetに既にオイルを塗っている(完了)
+                    //    sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Farseer), "●"));
                     break;
                 case CustomRoles.Psychic:
                     if (target.IsRedForPsy(seer) && !seer.Data.IsDead)

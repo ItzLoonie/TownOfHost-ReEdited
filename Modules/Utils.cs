@@ -418,6 +418,7 @@ public static class Utils
             case CustomRoles.Succubus:
             case CustomRoles.Infectious:
             case CustomRoles.Monarch:
+            case CustomRoles.Farseer:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:
@@ -1224,6 +1225,20 @@ public static class Utils
                         TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Revolutionist)}>○</color>");
                     }
                 }
+                if (seer.Is(CustomRoles.Farseer))//seerがアーソニストの時
+                {
+                    if (seer.IsRevealedPlayer(target)) //seerがtargetに既にオイルを塗っている(完了)
+                    {
+                        //Utils.NotifyRoles();
+                    }
+                    if (
+                        Main.FarseerTimer.TryGetValue(seer.PlayerId, out var ar_kvp) && //seerがオイルを塗っている途中(現在進行)
+                        ar_kvp.Item1 == target //オイルを塗っている対象がtarget
+                    )
+                    {
+                        TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Farseer)}>○</color>");
+                    }
+                }
                 if (seer.Is(CustomRoles.Puppeteer) &&
                 Main.PuppeteerList.ContainsValue(seer.PlayerId) &&
                 Main.PuppeteerList.ContainsKey(target.PlayerId))
@@ -1250,6 +1265,7 @@ public static class Utils
                         (Totocalcio.KnowRole(seer, target)) ||
                         (Succubus.KnowRole(seer, target)) ||
                         (Infectious.KnowRole(seer, target)) ||
+                        (seer.IsRevealedPlayer(target)) ||
                         (seer.Is(CustomRoles.God)) ||
                         (target.Is(CustomRoles.GM))
                         ? $"<size={fontSize}>{target.GetDisplayRoleName(seer.PlayerId != target.PlayerId && !seer.Data.IsDead)}{GetProgressText(target)}</size>\r\n" : "";

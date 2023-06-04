@@ -125,8 +125,10 @@ public class Main : BasePlugin
     public static Dictionary<byte, int> CapitalismAssignTask = new();
     public static Dictionary<(byte, byte), bool> isDoused = new();
     public static Dictionary<(byte, byte), bool> isDraw = new();
+    public static Dictionary<(byte, byte), bool> isRevealed = new();
     public static Dictionary<byte, (PlayerControl, float)> ArsonistTimer = new();
     public static Dictionary<byte, (PlayerControl, float)> RevolutionistTimer = new();
+    public static Dictionary<byte, (PlayerControl, float)> FarseerTimer = new();
     public static Dictionary<byte, long> RevolutionistStart = new();
     public static Dictionary<byte, long> RevolutionistLastTime = new();
     public static Dictionary<byte, int> RevolutionistCountdown = new();
@@ -336,6 +338,7 @@ public class Main : BasePlugin
                 {CustomRoles.Parasite, "#ff1919"},
                 {CustomRoles.Crewpostor, "#ff1919"},
                 {CustomRoles.Infectious, "#7B8968"},
+                {CustomRoles.Farseer, "#4682B4"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -539,6 +542,7 @@ public enum CustomRoles
     Wraith,
     Totocalcio,
     Succubus,
+    Farseer,
 
     //SoloKombat
     KB_Normal,

@@ -3,6 +3,7 @@ using Hazel;
 using Il2CppSystem.Linq;
 using InnerNet;
 using System.Linq;
+using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using Mathf = UnityEngine.Mathf;
@@ -236,6 +237,10 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
             case CustomRoles.Disperser:
                 Disperser.ApplyGameOptions();
+                break;
+            case CustomRoles.Farseer:
+                opt.SetVision(false);
+                opt.SetFloat(FloatOptionNames.CrewLightMod, Farseer.Vision.GetFloat());
                 break;
         }
 
