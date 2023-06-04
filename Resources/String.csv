@@ -1310,7 +1310,6 @@
 "TeleportedInRndVentByDisperser","","Everyone was teleported to vents","Всех телепортировали к вентам","",""
 "LighterVision","执灯视野大小","<color=#eee5be>Lighter</color> Vision","Дальность <color=#eee5be>Фонарика</color>","",""
 "VirusInfectPlayer","","You successfully infected a player","","",""
-"InfectedByVirus","","You have been infected by the Virus","","",""
 "VirusNoticeTitle","","【 ☠ Infected Body! ☠ 】","","",""
 "VirusNoticeMessage","","The Body your reported was infected by the Virus! You are now part of Team-Virus. Help the Virus win the game.","","",""
 "VirusNoticeMessage2","","The Body your reported was infected by the Virus! Vote the Virus out this meeting or you will die.","","",""
