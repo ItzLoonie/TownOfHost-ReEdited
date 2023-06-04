@@ -1170,6 +1170,7 @@
 "DeathReason.Dismembered","肢解","Dismembered","Расчленен","肢解","肢解"
 "DeathReason.LossOfHead","绞杀","Strangled","Задушен","絞殺","绞杀"
 "DeathReason.Trialed","审判","Judged","Засужен","審判","审判"
+"DeathReason.Infected","","Infected","","",""
 "DeathReason.etc","其它","Other","Другое","其他","其它"
 "Alive","存活","Alive","Выжил","存活","存活"
 "Win","胜利"," Wins!"," Победили","勝利","胜利"
