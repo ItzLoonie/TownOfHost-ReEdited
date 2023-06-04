@@ -245,7 +245,7 @@ class CheckMurderPatch
                     }
                     return false;
                 case CustomRoles.Farseer:
-                    Farseer.SetCooldown(killer.PlayerId);
+                    killer.SetKillCooldown(Farseer.FarseerRevealTime.GetFloat());
                     if (!Main.isRevealed[(killer.PlayerId, target.PlayerId)] && !Main.FarseerTimer.ContainsKey(killer.PlayerId))
                     {
                         Main.FarseerTimer.TryAdd(killer.PlayerId, (target, 0f));
