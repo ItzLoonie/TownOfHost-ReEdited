@@ -417,10 +417,10 @@ internal static class CustomRolesHelper
             _ => role.IsImpostor() ? RoleTypes.Impostor : RoleTypes.Crewmate,
         };
     public static bool IsDesyncRole(this CustomRoles role) => role.GetDYRole() != RoleTypes.GuardianAngel;
-    public static bool IsCrewmate(this CustomRoles role) => !role.IsImpostorTeam() && !role.IsNeutral();
     public static bool IsImpostorTeam(this CustomRoles role) => role.IsImpostor() || role == CustomRoles.Madmate;
-    public static bool IsNNK(this CustomRoles role) => role.IsNeutral() && !role.IsNK(); // �Ƿ��޵�����
-    public static bool IsVanilla(this CustomRoles role) // �Ƿ�ԭ��ְҵ
+    public static bool IsCrewmate(this CustomRoles role) => !role.IsImpostorTeam() && !role.IsNeutral();
+    public static bool IsNNK(this CustomRoles role) => role.IsNeutral() && !role.IsNK();
+    public static bool IsVanilla(this CustomRoles role)
     {
         return role is
             CustomRoles.Crewmate or
