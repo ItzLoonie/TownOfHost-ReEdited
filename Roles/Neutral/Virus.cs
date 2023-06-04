@@ -8,6 +8,7 @@ using Hazel;
 using UnityEngine;
 using static TOHE.Options;
 using static TOHE.Translator;
+using static UnityEngine.GraphicsBuffer;
 
 namespace TOHE.Roles.Neutral
 {
@@ -121,12 +122,12 @@ namespace TOHE.Roles.Neutral
                 Main.AllAlivePlayerControls.FirstOrDefault(a => a.GetCustomRole() == CustomRoles.Virus);
             if (virus == null || deathReason != PlayerState.DeathReason.Vote) return;
 
-            foreach (var id in exileIds)
+            if (exileIds.Contains(virus.PlayerId)) 
             {
-                if (InfectedPlayer.Contains(id))
-                    InfectedPlayer.Remove(id);
-            }
-            
+                InfectedPlayer.Clear();
+                return;
+            } 
+
             var infectedIdList = new List<byte>();
             foreach (var pc in Main.AllAlivePlayerControls)
             {
