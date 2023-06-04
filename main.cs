@@ -368,6 +368,7 @@ public class Main : BasePlugin
                 {CustomRoles.Infected, "#7B8968"},
                 {CustomRoles.Onbound, "#BAAAE9"},
                 {CustomRoles.Knighted, "#FFA500"},
+                {CustomRoles.Unreportable, "#FF6347"},
                 //SoloKombat
                 {CustomRoles.KB_Normal, "#f55252"}
             };
@@ -577,6 +578,7 @@ public enum CustomRoles
     Infected,
     Onbound,
     Knighted,
+    Unreportable
 }
 //WinData
 public enum CustomWinner

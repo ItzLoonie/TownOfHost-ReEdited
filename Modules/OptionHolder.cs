@@ -251,6 +251,9 @@ public static class Options
     public static OptionItem ImpCanBeOnbound;
     public static OptionItem CrewCanBeOnbound;
     public static OptionItem NeutralCanBeOnbound;
+    public static OptionItem ImpCanBeUnreportable;
+    public static OptionItem CrewCanBeUnreportable;
+    public static OptionItem NeutralCanBeUnreportable;
     public static OptionItem ControlCooldown;
     public static OptionItem JesterVision;
    // public static OptionItem LawyerVision;
@@ -968,6 +971,10 @@ public static class Options
         SetupAdtRoleOptions(6051660, CustomRoles.TicketsStealer, canSetNum: true, tab: TabGroup.Addons);
         TicketsPerKill = FloatOptionItem.Create(6051666, "TicketsPerKill", new(0.1f, 10f, 0.1f), 0.5f, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.TicketsStealer]);
         SetupAdtRoleOptions(6051677, CustomRoles.Mimic, canSetNum: true, tab: TabGroup.Addons);
+        SetupAdtRoleOptions(6051680, CustomRoles.Unreportable, canSetNum: true);
+        ImpCanBeUnreportable = BooleanOptionItem.Create(6051681, "ImpCanBeUnreportable", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Unreportable]);
+        CrewCanBeUnreportable = BooleanOptionItem.Create(6051682, "CrewCanBeUnreportable", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Unreportable]);
+        NeutralCanBeUnreportable = BooleanOptionItem.Create(6051683, "NeutralCanBeUnreportable", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Unreportable]);
 
         // 乐子职业
 
