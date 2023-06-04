@@ -47,7 +47,7 @@ public class GameStartManagerPatch
             cancelLabel.text = GetString("Cancel");
             cancelButton.transform.localScale = new(0.4f, 0.4f, 1f);
             cancelButton.color = Color.red;
-            cancelButton.transform.localPosition = new(0f, -0.52f, 0f); //new(0f, 0.1f, 0f);
+            cancelButton.transform.localPosition = new(0f, -0.36f, 0f); //new(0f, 0.1f, 0f);
             var buttonComponent = cancelButton.GetComponent<PassiveButton>();
             buttonComponent.OnClick = new();
             buttonComponent.OnClick.AddListener((Action)(() => __instance.ResetStartState()));

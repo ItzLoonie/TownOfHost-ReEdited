@@ -50,7 +50,14 @@ class RepairSystemPatch
         if (Options.DisableSabotage.GetBool() && systemType == SystemTypes.Sabotage) return false;
 
         //蠢蛋无法修复破坏
-        if (player.Is(CustomRoles.Fool) && (systemType is SystemTypes.Sabotage or SystemTypes.Comms or SystemTypes.Electrical or SystemTypes.Reactor)) return false;
+        if (player.Is(CustomRoles.Fool) && 
+            (systemType is SystemTypes.Sabotage or
+            SystemTypes.Reactor or
+            SystemTypes.LifeSupp or
+            SystemTypes.Laboratory or
+            SystemTypes.Comms or
+            SystemTypes.Electrical))
+        { return false; }
 
         //SabotageMaster
         if (player.Is(CustomRoles.SabotageMaster))
