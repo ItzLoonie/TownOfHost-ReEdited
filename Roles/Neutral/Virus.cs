@@ -101,7 +101,7 @@ namespace TOHE.Roles.Neutral
             else
             {
                 target.RpcSetCustomRole(CustomRoles.Contagious);
-                target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Virus), GetString("InfectedByVirus")));
+                //target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Virus), GetString("InfectedByVirus")));
 
                 Utils.NotifyRoles();
 
