@@ -15,7 +15,6 @@ namespace TOHE.Roles.Crewmate
 
         public static OptionItem FarseerCooldown;
         public static OptionItem FarseerRevealTime;
-
         public static OptionItem Vision; 
 
         public static void SetupCustomOption()
@@ -25,7 +24,7 @@ namespace TOHE.Roles.Crewmate
                 .SetValueFormat(OptionFormat.Seconds);
             FarseerRevealTime = FloatOptionItem.Create(Id + 11, "FarseerRevealTime", new(0f, 60f, 1f), 15f, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Farseer])
                 .SetValueFormat(OptionFormat.Seconds);
-            Vision = FloatOptionItem.Create(Id + 12, "FarseerVision", new(0f, 5f, 0.05f), 0.6f, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Farseer])
+            Vision = FloatOptionItem.Create(Id + 12, "FarseerVision", new(0f, 5f, 0.05f), 0.25f, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Farseer])
                 .SetValueFormat(OptionFormat.Multiplier);
 
         }

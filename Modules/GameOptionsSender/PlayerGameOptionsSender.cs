@@ -241,6 +241,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Farseer:
                 opt.SetVision(false);
                 opt.SetFloat(FloatOptionNames.CrewLightMod, Farseer.Vision.GetFloat());
+                opt.SetFloat(FloatOptionNames.ImpostorLightMod, Farseer.Vision.GetFloat());
                 break;
         }
 
