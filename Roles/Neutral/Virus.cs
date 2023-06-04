@@ -169,7 +169,7 @@ namespace TOHE.Roles.Neutral
 
         public static bool CanBeInfected(this PlayerControl pc)
         {
-            return true;
+            return true && !pc.Is(CustomRoles.Virus) && !pc.Is(CustomRoles.Contagious);
         }
     }
 }
