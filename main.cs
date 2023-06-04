@@ -336,7 +336,7 @@ public class Main : BasePlugin
                 {CustomRoles.Juggernaut, "#A41342"},
                 {CustomRoles.Parasite, "#ff1919"},
                 {CustomRoles.Infectious, "#7B8968"},
-                {CustomRoles.Virus, "#D2B48C"},
+                {CustomRoles.Virus, "#2E8B57"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
