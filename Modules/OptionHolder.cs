@@ -957,6 +957,10 @@ public static class Options
         ImpCanBeOnbound = BooleanOptionItem.Create(6050612, "ImpCanBeOnbound", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Onbound]);
         CrewCanBeOnbound = BooleanOptionItem.Create(6050608, "CrewCanBeOnbound", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Onbound]);
         NeutralCanBeOnbound = BooleanOptionItem.Create(6050609, "NeutralCanBeOnbound", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Onbound]);
+        SetupAdtRoleOptions(6050610, CustomRoles.Unreportable, canSetNum: true);
+        ImpCanBeUnreportable = BooleanOptionItem.Create(6050611, "ImpCanBeUnreportable", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Unreportable]);
+        CrewCanBeUnreportable = BooleanOptionItem.Create(6050612, "CrewCanBeUnreportable", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Unreportable]);
+        NeutralCanBeUnreportable = BooleanOptionItem.Create(6050613, "NeutralCanBeUnreportable", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Unreportable]);
         SetupAdtRoleOptions(6050390, CustomRoles.Madmate, canSetNum: true, canSetChance: false);
         MadmateSpawnMode = StringOptionItem.Create(6060444, "MadmateSpawnMode", madmateSpawnMode, 0, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Madmate]);
         MadmateCountMode = StringOptionItem.Create(6060445, "MadmateCountMode", madmateCountMode, 0, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Madmate]);
@@ -970,11 +974,7 @@ public static class Options
         LastImpostor.SetupCustomOption();
         SetupAdtRoleOptions(6051660, CustomRoles.TicketsStealer, canSetNum: true, tab: TabGroup.Addons);
         TicketsPerKill = FloatOptionItem.Create(6051666, "TicketsPerKill", new(0.1f, 10f, 0.1f), 0.5f, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.TicketsStealer]);
-        SetupAdtRoleOptions(6051677, CustomRoles.Mimic, canSetNum: true, tab: TabGroup.Addons);
-        SetupAdtRoleOptions(6051680, CustomRoles.Unreportable, canSetNum: true);
-        ImpCanBeUnreportable = BooleanOptionItem.Create(6051681, "ImpCanBeUnreportable", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Unreportable]);
-        CrewCanBeUnreportable = BooleanOptionItem.Create(6051682, "CrewCanBeUnreportable", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Unreportable]);
-        NeutralCanBeUnreportable = BooleanOptionItem.Create(6051683, "NeutralCanBeUnreportable", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Unreportable]);
+        SetupAdtRoleOptions(6051677, CustomRoles.Mimic, canSetNum: true, tab: TabGroup.Addons);        
 
         // 乐子职业
 
