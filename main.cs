@@ -296,7 +296,7 @@ public class Main : BasePlugin
                 {CustomRoles.TimeManager, "#6495ed"},
                 {CustomRoles.Veteran, "#a77738"},
                 {CustomRoles.Bodyguard, "#185abd"},
-                {CustomRoles.Counterfeiter, "#e0e0e0"},
+                {CustomRoles.Counterfeiter, "#BE29EC"},
                 {CustomRoles.Grenadier, "#3c4a16"},
                 {CustomRoles.Medicaler, "#00a4ff"},
                 {CustomRoles.Divinator, "#882c83"},
@@ -306,6 +306,7 @@ public class Main : BasePlugin
                 {CustomRoles.Mediumshiper, "#a200ff"},
                 {CustomRoles.Observer, "#a8e0fa"},
                 {CustomRoles.Monarch, "#FFA500"},
+                {CustomRoles.Cloaker, "#32CD32"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Jester, "#ec62a5"},
@@ -341,7 +342,7 @@ public class Main : BasePlugin
                 {CustomRoles.Crewpostor, "#ff1919"},
                 {CustomRoles.Infectious, "#7B8968"},
                 {CustomRoles.Virus, "#2E8B57"},
-                {CustomRoles.Farseer, "#4682B4"},
+                {CustomRoles.Farseer, "#BA55D3"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -515,6 +516,7 @@ public enum CustomRoles
     Mediumshiper,
     Observer,
     Monarch,
+    Cloaker,
     //Neutral
     Arsonist,
     HexMaster,

@@ -22,6 +22,7 @@ namespace TOHE.Roles.Neutral
         private static OptionItem KillCooldown;
         private static OptionItem InfectMax;
         public static OptionItem CanVent;
+        public static OptionItem ImpostorVision;
         public static OptionItem KnowTargetRole;
         public static OptionItem TargetKnowOtherTarget;
         public static OptionItem KillInfectedPlayerAfterMeeting;
@@ -32,6 +33,7 @@ namespace TOHE.Roles.Neutral
             KillCooldown = FloatOptionItem.Create(Id + 10, "VirusKillCooldown", new(0f, 990f, 2.5f), 30f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus])
                 .SetValueFormat(OptionFormat.Seconds);
             CanVent = BooleanOptionItem.Create(Id + 11, "VirusCanVent", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus]);
+            ImpostorVision = BooleanOptionItem.Create(Id + 16, "ImpostorVision", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus]);
             InfectMax = IntegerOptionItem.Create(Id + 12, "VirusInfectMax", new(1, 15, 1), 2, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus])
                 .SetValueFormat(OptionFormat.Times);
             KnowTargetRole = BooleanOptionItem.Create(Id + 13, "VirusKnowTargetRole", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus]);

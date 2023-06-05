@@ -13,6 +13,8 @@ public static class Wildling
     public static List<byte> playerIdList = new();
 
     private static OptionItem ProtectDuration;
+    public static OptionItem ShapeshiftCD;
+    public static OptionItem ShapeshiftDur;
 
     private static Dictionary<byte, long> TimeStamp = new();
 
@@ -20,6 +22,10 @@ public static class Wildling
     {
         SetupSingleRoleOptions(Id, TabGroup.ImpostorRoles, CustomRoles.Wildling, 1, zeroOne: false);
         ProtectDuration = FloatOptionItem.Create(Id + 14, "BKProtectDuration", new(1f, 999f, 1f), 15f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Wildling])
+            .SetValueFormat(OptionFormat.Seconds);
+        ShapeshiftCD = FloatOptionItem.Create(Id + 15, "ShapeshiftCooldown", new(1f, 999f, 1f), 10f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Wildling])
+            .SetValueFormat(OptionFormat.Seconds);
+        ShapeshiftDur = FloatOptionItem.Create(Id + 16, "ShapeshiftDuration", new(1f, 999f, 1f), 25f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Wildling])
             .SetValueFormat(OptionFormat.Seconds);
     }
     public static void Init()
