@@ -757,7 +757,6 @@ public static class Options
             .SetValueFormat(OptionFormat.Votes);
         VindicatorHideVote = BooleanOptionItem.Create(150015, "MayorHideVote", false, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Vindicator]);
         SetupSingleRoleOptions(6050720, TabGroup.ImpostorRoles, CustomRoles.Parasite, 1, zeroOne: false);
-        Disperser.SetupCustomOption();
         SetupRoleOptions(6050750, TabGroup.ImpostorRoles, CustomRoles.Inhibitor);
         SetupRoleOptions(907090, TabGroup.ImpostorRoles, CustomRoles.Crewpostor);
         CrewpostorCanKillAllies = BooleanOptionItem.Create(907092, "CanKillAllies", true, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Crewpostor]);
@@ -999,6 +998,7 @@ public static class Options
         BallLightning.SetupCustomOption();
         Eraser.SetupCustomOption();
         SetupRoleOptions(902622, TabGroup.OtherRoles, CustomRoles.OverKiller);
+        Disperser.SetupCustomOption();
 
         // 船员
         TextOptionItem.Create(909092, "OtherRoles.CrewmateRoles", TabGroup.OtherRoles)

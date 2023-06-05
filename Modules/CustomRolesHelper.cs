@@ -104,7 +104,6 @@ internal static class CustomRolesHelper
                 CustomRoles.Observer => CustomRoles.Crewmate,
                 CustomRoles.Infectious => CustomRoles.Impostor,
                 CustomRoles.Virus => CustomRoles.Virus,
-                CustomRoles.Cloaker => CustomRoles.Engineer,
                 CustomRoles.Disperser => CustomRoles.Shapeshifter,
                 CustomRoles.Camouflager => CustomRoles.Shapeshifter,
                 CustomRoles.Monarch => CustomRoles.Impostor,
@@ -356,6 +355,12 @@ internal static class CustomRolesHelper
             CustomRoles.Virus or
             CustomRoles.Succubus;
     }
+    public static bool IsMadmate(this CustomRoles role)
+    {
+        return role is
+        CustomRoles.Crewpostor or
+        CustomRoles.Parasite;
+    }
     public static bool IsNotKnightable(this CustomRoles role)
     {
         return role is
@@ -445,6 +450,7 @@ internal static class CustomRolesHelper
         CustomRoleTypes type = CustomRoleTypes.Crewmate;
         if (role.IsImpostor()) type = CustomRoleTypes.Impostor;
         if (role.IsNeutral()) type = CustomRoleTypes.Neutral;
+        if (role.IsMadmate()) type = CustomRoleTypes.Madmate;
         if (role.IsAdditionRole()) type = CustomRoleTypes.Addon;
         return type;
     }
@@ -522,6 +528,7 @@ public enum CustomRoleTypes
     Crewmate,
     Impostor,
     Neutral,
+    Madmate,
     Addon
 }
 public enum CountTypes
