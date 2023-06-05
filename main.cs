@@ -367,7 +367,7 @@ public class Main : BasePlugin
                 {CustomRoles.Bait, "#00f7ff"},
                 {CustomRoles.Trapper, "#5a8fd0"},
                 {CustomRoles.Infected, "#7B8968"},
-                {CustomRoles.Contagious, "#D2B48C"},
+                {CustomRoles.Contagious, "#2E8B57"},
                 //SoloKombat
                 {CustomRoles.KB_Normal, "#f55252"}
             };
