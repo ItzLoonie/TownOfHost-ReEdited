@@ -2,6 +2,7 @@ using HarmonyLib;
 using Il2CppSystem.Text;
 using System.Collections.Generic;
 using System.Linq;
+using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
@@ -178,6 +179,9 @@ class HudManagerPatch
                         break;
                     case CustomRoles.Swooper:
                         __instance.ImpostorVentButton.OverrideText($"{GetString(Swooper.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "SwooperRevertVentButtonText" : "SwooperVentButtonText")}");
+                        break;
+                    case CustomRoles.Cloaker:
+                        __instance.AbilityButton.OverrideText($"{GetString(Cloaker.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "CloakerRevertVentButtonText" : "CloakerVentButtonText")}");
                         break;
                     case CustomRoles.Wraith:
                         __instance.ImpostorVentButton.OverrideText($"{GetString(Wraith.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "WraithRevertVentButtonText" : "WraithVentButtonText")}");
