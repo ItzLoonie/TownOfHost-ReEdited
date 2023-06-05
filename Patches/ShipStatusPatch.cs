@@ -50,7 +50,14 @@ class RepairSystemPatch
         if (Options.DisableSabotage.GetBool() && systemType == SystemTypes.Sabotage) return false;
 
         //蠢蛋无法修复破坏
-        if (player.Is(CustomRoles.Fool) && (systemType is SystemTypes.Sabotage or SystemTypes.Comms or SystemTypes.Electrical or SystemTypes.Reactor)) return false;
+        if (player.Is(CustomRoles.Fool) && 
+            (systemType is SystemTypes.Sabotage or
+            SystemTypes.Reactor or
+            SystemTypes.LifeSupp or
+            SystemTypes.Laboratory or
+            SystemTypes.Comms or
+            SystemTypes.Electrical))
+        { return false; }
 
         //SabotageMaster
         if (player.Is(CustomRoles.SabotageMaster))
@@ -71,11 +78,21 @@ class RepairSystemPatch
         if (systemType == SystemTypes.Sabotage && AmongUsClient.Instance.NetworkMode != NetworkModes.FreePlay)
         {
             if (player.Is(CustomRoleTypes.Impostor) && !player.Is(CustomRoles.Minimalism) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
-            if (player.Is(CustomRoleTypes.Crewmate) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
-            if (player.Is(CustomRoleTypes.Neutral) && !player.Is(CustomRoles.Jackal) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
             if (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) return true;
             if (player.Is(CustomRoles.Parasite) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
             return false;
+        }
+
+        if (systemType == SystemTypes.Security && amount == 1)
+        {
+            var camerasDisabled = (MapNames)Main.NormalOptions.MapId switch
+            {
+                MapNames.Skeld => Options.DisableSkeldCamera.GetBool(),
+                MapNames.Polus => Options.DisablePolusCamera.GetBool(),
+                MapNames.Airship => Options.DisableAirshipCamera.GetBool(),
+                _ => false,
+            };
+            return !camerasDisabled;
         }
 
         return true;

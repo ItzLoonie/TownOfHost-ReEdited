@@ -303,6 +303,7 @@ public class Main : BasePlugin
                 {CustomRoles.Mortician, "#333c49"},
                 {CustomRoles.Mediumshiper, "#a200ff"},
                 {CustomRoles.Observer, "#a8e0fa"},
+                {CustomRoles.Monarch, "#FFA500"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Jester, "#ec62a5"},
@@ -335,6 +336,7 @@ public class Main : BasePlugin
                 {CustomRoles.BloodKnight, "#630000"},
                 {CustomRoles.Juggernaut, "#A41342"},
                 {CustomRoles.Parasite, "#ff1919"},
+                {CustomRoles.Crewpostor, "#ff1919"},
                 {CustomRoles.Infectious, "#7B8968"},
                 {CustomRoles.Virus, "#2E8B57"},
                 // GM
@@ -367,6 +369,8 @@ public class Main : BasePlugin
                 {CustomRoles.Bait, "#00f7ff"},
                 {CustomRoles.Trapper, "#5a8fd0"},
                 {CustomRoles.Infected, "#7B8968"},
+                {CustomRoles.Onbound, "#BAAAE9"},
+                {CustomRoles.Knighted, "#FFA500"},
                 {CustomRoles.Contagious, "#2E8B57"},
                 //SoloKombat
                 {CustomRoles.KB_Normal, "#f55252"}
@@ -419,11 +423,8 @@ public enum CustomRoles
     Impostor,
     Shapeshifter,
     // Vanilla Remakes
-    EngineerTOHE,
-    ScientistTOHE,
-    GuardianAngelTOHE,
-    ShapeshifterTOHE,
     ImpostorTOHE,
+    ShapeshifterTOHE,
     //Impostor
     BountyHunter,
     FireWorks,
@@ -444,6 +445,7 @@ public enum CustomRoles
     Miner,
     Escapee,
     Mare,
+    Inhibitor,
     Puppeteer,
     TimeThief,
     EvilTracker,
@@ -460,7 +462,6 @@ public enum CustomRoles
     CursedWolf,
     ImperiusCurse,
     QuickShooter,
-    Concealer,
     Eraser,
     OverKiller,
     Hangman,
@@ -469,10 +470,15 @@ public enum CustomRoles
     Swooper,
     Crewpostor,
     Disperser,
+    Camouflager,
     //Crewmate(Vanilla)
     Engineer,
     GuardianAngel,
     Scientist,
+    // Vanilla Remakes
+    EngineerTOHE,
+    GuardianAngelTOHE,
+    ScientistTOHE,
     //Crewmate
     Luckey,
     Needy,
@@ -504,6 +510,7 @@ public enum CustomRoles
     Mortician,
     Mediumshiper,
     Observer,
+    Monarch,
     //Neutral
     Arsonist,
     HexMaster,
@@ -573,6 +580,8 @@ public enum CustomRoles
     Bait,
     Trapper,
     Infected,
+    Onbound,
+    Knighted,
     Contagious
 }
 //WinData

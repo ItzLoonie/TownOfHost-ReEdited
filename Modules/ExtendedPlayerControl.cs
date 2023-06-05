@@ -421,6 +421,7 @@ static class ExtendedPlayerControl
             CustomRoles.FireWorks => FireWorks.CanUseKillButton(pc),
             CustomRoles.Mafia => Utils.CanMafiaKill(),
             CustomRoles.Mare => Utils.IsActive(SystemTypes.Electrical),
+            CustomRoles.Inhibitor => !Utils.IsActive(SystemTypes.Electrical) && !Utils.IsActive(SystemTypes.Laboratory) && !Utils.IsActive(SystemTypes.Comms) && !Utils.IsActive(SystemTypes.LifeSupp) && !Utils.IsActive(SystemTypes.Reactor),
             CustomRoles.Sniper => Sniper.CanUseKillButton(pc),
             CustomRoles.Sheriff => Sheriff.CanUseKillButton(pc.PlayerId),
             CustomRoles.Pelican => pc.IsAlive(),
@@ -449,6 +450,7 @@ static class ExtendedPlayerControl
             CustomRoles.Totocalcio => Totocalcio.CanUseKillButton(pc),
             CustomRoles.Succubus => Succubus.CanUseKillButton(pc),
             CustomRoles.Infectious => Infectious.CanUseKillButton(pc),
+            CustomRoles.Monarch => Monarch.CanUseKillButton(pc),
             CustomRoles.Virus => pc.IsAlive(),
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
@@ -635,9 +637,6 @@ static class ExtendedPlayerControl
             case CustomRoles.BloodKnight:
                 BloodKnight.SetKillCooldown(player.PlayerId);
                 break;
-            case CustomRoles.Crewpostor:
-                Main.AllPlayerKillCooldown[player.PlayerId] = 300f;
-                break;
             case CustomRoles.Totocalcio:
                 Totocalcio.SetKillCooldown(player.PlayerId);
                 break;
@@ -649,6 +648,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Infectious:
                 Infectious.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Monarch:
+                Monarch.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.Virus:
                 Virus.SetKillCooldown(player.PlayerId);
@@ -751,6 +753,7 @@ static class ExtendedPlayerControl
         return rangePlayers;
     }
     public static bool IsNeutralKiller(this PlayerControl player) => player.GetCustomRole().IsNK();
+    public static bool IsNonNeutralKiller(this PlayerControl player) => player.GetCustomRole().IsNonNK();
     public static bool KnowDeathReason(this PlayerControl seer, PlayerControl target)
         => (seer.Is(CustomRoles.Doctor)
         || (seer.Data.IsDead && Options.GhostCanSeeDeathReason.GetBool()))

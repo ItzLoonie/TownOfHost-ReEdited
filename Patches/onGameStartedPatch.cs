@@ -194,7 +194,7 @@ internal class ChangeRoleSettings
             Greedier.Init();
             Collector.Init();
             QuickShooter.Init();
-            Concealer.Init();
+            Camouflager.Init();
             Divinator.Init();
             Eraser.Init();
             Assassin.Init();
@@ -212,6 +212,7 @@ internal class ChangeRoleSettings
             Totocalcio.Init();
             Succubus.Init();
             Infectious.Init();
+            Monarch.Init();
             Virus.Init();
 
             SoloKombatManager.Init();
@@ -277,8 +278,6 @@ internal class SelectRolesPatch
             foreach (var kv in RoleResult.Where(x => x.Value.IsDesyncRole()))
                 AssignDesyncRole(kv.Value, kv.Key, senders, rolesMap, BaseRole: kv.Value.GetDYRole());
 
-            foreach (var cp in RoleResult.Where(x => x.Value == CustomRoles.Crewpostor))
-                AssignDesyncRole(cp.Value, cp.Key, senders, rolesMap, BaseRole: RoleTypes.Crewmate, hostBaseRole: RoleTypes.Impostor);
 
             MakeDesyncSender(senders, rolesMap);
 
@@ -301,11 +300,6 @@ internal class SelectRolesPatch
             foreach (var sd in RpcSetRoleReplacer.StoragedData)
             {
                 var kp = RoleResult.Where(x => x.Key.PlayerId == sd.Item1.PlayerId).FirstOrDefault();
-                if (kp.Value.IsDesyncRole() || kp.Value == CustomRoles.Crewpostor)
-                {
-                    Logger.Warn($"反向原版职业 => {sd.Item1.GetRealName()}: {sd.Item2}", "Override Role Select");
-                    continue;
-                }
                 newList.Add((sd.Item1, kp.Value.GetRoleTypes()));
                 if (sd.Item2 == kp.Value.GetRoleTypes())
                     Logger.Warn($"注册原版职业 => {sd.Item1.GetRealName()}: {sd.Item2}", "Override Role Select");
@@ -512,9 +506,6 @@ internal class SelectRolesPatch
                     case CustomRoles.CursedWolf:
                         Main.CursedWolfSpellCount[pc.PlayerId] = Options.GuardSpellTimes.GetInt();
                         break;
-                    case CustomRoles.Concealer:
-                        Concealer.Add(pc.PlayerId);
-                        break;
                     case CustomRoles.Eraser:
                         Eraser.Add(pc.PlayerId);
                         break;
@@ -565,6 +556,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Infectious:
                         Infectious.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Monarch:
+                        Monarch.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Virus:
                         Virus.Add(pc.PlayerId);

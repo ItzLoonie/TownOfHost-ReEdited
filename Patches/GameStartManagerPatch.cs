@@ -5,7 +5,9 @@ using InnerNet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using Object = UnityEngine.Object;
 using static TOHE.Translator;
 
 namespace TOHE;
@@ -21,6 +23,7 @@ public static class GameStartManagerUpdatePatch
 //タイマーとコード隠し
 public class GameStartManagerPatch
 {
+    private static SpriteRenderer cancelButton;
     private static float timer = 600f;
     [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Start))]
     public class GameStartManagerStartPatch
@@ -36,6 +39,19 @@ public class GameStartManagerPatch
             HideName.text = ColorUtility.TryParseHtmlString(Main.HideColor.Value, out _)
                     ? $"<color={Main.HideColor.Value}>{Main.HideName.Value}</color>"
                     : $"<color={Main.ModColor}>{Main.HideName.Value}</color>";
+
+            cancelButton = Object.Instantiate(__instance.StartButton, __instance.transform);
+            cancelButton.name = "CancelButton";
+            var cancelLabel = cancelButton.GetComponentInChildren<TextMeshPro>();
+            Object.Destroy(cancelLabel.GetComponent<TextTranslatorTMP>());
+            cancelLabel.text = GetString("Cancel");
+            cancelButton.transform.localScale = new(0.4f, 0.4f, 1f);
+            cancelButton.color = Color.red;
+            cancelButton.transform.localPosition = new(0f, -0.36f, 0f); //new(0f, 0.1f, 0f);
+            var buttonComponent = cancelButton.GetComponent<PassiveButton>();
+            buttonComponent.OnClick = new();
+            buttonComponent.OnClick.AddListener((Action)(() => __instance.ResetStartState()));
+            cancelButton.gameObject.SetActive(false);
 
             if (!AmongUsClient.Instance.AmHost) return;
 
@@ -117,6 +133,7 @@ public class GameStartManagerPatch
                     __instance.StartButton.gameObject.SetActive(false);
                     warningMessage = Utils.ColorString(Color.red, string.Format(GetString("Warning.MismatchedVersion"), String.Join(" ", mismatchedPlayerNameList), $"<color={Main.ModColor}>{Main.ModName}</color>"));
                 }
+                cancelButton.gameObject.SetActive(__instance.startState == GameStartManager.StartingStates.Countdown);
             }
             else
             {

@@ -91,6 +91,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.SabotageMaster:
             case CustomRoles.Mario:
             case CustomRoles.EngineerTOHE:
+            case CustomRoles.Crewpostor:
             case CustomRoles.Jester:
                 AURoleOptions.EngineerCooldown = 0f;
                 AURoleOptions.EngineerInVentMaxTime = 0f;
@@ -118,6 +119,8 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Revolutionist:
             case CustomRoles.Medicaler:
             case CustomRoles.Provocateur:
+            case CustomRoles.Monarch:
+            case CustomRoles.Counterfeiter:
                 opt.SetVision(false);
                 break;
             case CustomRoles.Zombie:
@@ -172,11 +175,11 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
              case CustomRoles.NWitch:
                 opt.SetVision(true);
-                Main.NormalOptions.KillCooldown = Options.ControlCooldown.GetFloat();
+         //       Main.NormalOptions.KillCooldown = Options.ControlCooldown.GetFloat();
                 break;
             case CustomRoles.NSerialKiller:
                 opt.SetVision(Options.NSerialKillerHasImpostorVision.GetBool());
-                Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
+            //    Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
                 break;
             case CustomRoles.Juggernaut:
                 opt.SetVision(Juggernaut.HasImpostorVision.GetBool());
@@ -191,7 +194,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.HexMaster:
             case CustomRoles.Parasite:
                 opt.SetVision(true);
-                Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
+           //     Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
                 break;
             
             case CustomRoles.Gamer:
@@ -212,8 +215,8 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.QuickShooter:
                 AURoleOptions.ShapeshifterCooldown = QuickShooter.ShapeshiftCooldown.GetFloat();
                 break;
-            case CustomRoles.Concealer:
-                Concealer.ApplyGameOptions();
+            case CustomRoles.Camouflager:
+                Camouflager.ApplyGameOptions();
                 break;
             case CustomRoles.Assassin:
                 Assassin.ApplyGameOptions();
@@ -232,8 +235,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 BloodKnight.ApplyGameOptions(opt);
                 break;
             case CustomRoles.Disperser:
-                AURoleOptions.ShapeshifterCooldown = Options.DisperserShapeshiftCooldown.GetFloat();
-                AURoleOptions.ShapeshifterDuration = 1f;
+                Disperser.ApplyGameOptions();
                 break;
         }
 

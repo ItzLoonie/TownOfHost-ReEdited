@@ -46,7 +46,7 @@ class GameEndChecker
             //カモフラージュ強制解除
             Main.AllPlayerControls.Do(pc => Camouflage.RpcSetSkin(pc, ForceRevert: true, RevertToDefault: true));
 
-            if (reason == GameOverReason.ImpostorBySabotage && Jackal.CanWinBySabotageWhenNoImpAlive.GetBool() && !Main.AllAlivePlayerControls.Any(x => x.GetCustomRole().IsImpostorTeam()))
+            if (reason == GameOverReason.ImpostorBySabotage && CustomRoles.Jackal.RoleExist() && Jackal.CanWinBySabotageWhenNoImpAlive.GetBool() && !Main.AllAlivePlayerControls.Any(x => x.GetCustomRole().IsImpostorTeam()))
             {
                 reason = GameOverReason.ImpostorByKill;
                 CustomWinnerHolder.WinnerIds.Clear();
@@ -405,6 +405,7 @@ class GameEndChecker
                 reason = GameOverReason.ImpostorByKill;
                 CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Impostor);
                 CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Parasite);
+                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Crewpostor);
             }
             else if (Imp == 0 && Pel == 0 && Gam == 0 && Vamp == 0 && Wraith == 0 && Juggy == 0 && SK == 0 && Hex == 0 && BK == 0 && Pois == 0 && Virus == 0 && CM == 0 && Crew <= Jackal) //豺狼胜利
             {
