@@ -227,6 +227,7 @@
 "Infected","感染","Infected","Укушенный","",""
 "Onbound","","Onbound","Непобедим","",""
 "Knighted","","Knighted","","",""
+"Unreportable","","Disregarded","","",""
 
 "## 附加职业作为前缀时 / Prefixes for Add-ons"
 
@@ -254,6 +255,7 @@
 "Prefix.Reach","持枪","Reach ","Длиннолап ","持枪",""
 "Prefix.Onbound","","Onbound ","Непобедимый","",""
 "Prefix.Knighted","","Knighted ","","",""
+"Prefix.Unreportable","","Disregarded "," ","",""
 
 "## 附加职业作为前缀时 / Prefixes for Add-ons But With Brackets"
 
@@ -281,6 +283,7 @@
 "PrefixB.Reach","持枪","<color=#ffffff>(</color>Reach<color=#ffffff>)</color> ","<color=#ffffff>(</color>Длиннолап<color=#ffffff>)</color> ","持枪",""
 "PrefixB.Onbound","","<color=#ffffff>(</color>Onbound<color=#ffffff>)</color> ","<color=#ffffff>(</color>Непобедим<color=#ffffff>)</color> ","",""
 "PrefixB.Knighted","","<color=#ffffff>(</color>Knighted<color=#ffffff>)</color> ","","",""
+"PrefixB.Unreportable","","<color=#ffffff>(</color>Disregarded<color=#ffffff>)</color> ","","",""
 
 "BracketAddons","BracketAddons","Add Brackets To Add-ons","Добавить скобки к Атрибутам","BracketAddons","BracketAddons"
 
@@ -435,6 +438,7 @@
 "BaitInfo","好消息，杀了我可以吃席","Your Killer self-reports your body","Убийца моментально саморепнет ваше тело","犧牲小我，完成大我","好消息，杀了我可以吃席"
 "TrapperInfo","大奖小奖，能记住就是好奖","Freeze your killer for a few seconds","Замораживаете своего убийцу на несколько секунд","誘捕你的敵人","大奖小奖，能记住就是好奖"
 "OnboundInfo","","You can't be guessed","Тебя нельзя угадать","",""
+"UnreportableInfo","","Your body can't be reported","","",""
 
 "# 其它 / Other descriptions"
 "GMInfo","开局死的冤魂隔岸观火","Spectate the Chaos!","Вы Мастер Игры, наслаждайтесь хаосом!","當吃瓜群眾在一旁看戲吧","开局死的冤魂隔岸观火"
@@ -596,6 +600,7 @@
 "InfectedInfoLong","","(Add-ons):\nThe Infected add-on is obtained by being infected by the Infectious.\nOnce infected, you work for the Infectious and do not win with your original team.","(Атрибут):\nАтрибут Заражённого можно получить, если вас заразил Заразный.\nПосле заразы вы работаете на Заразного и побеждаете с ним.","",""
 "OnboundInfoLong","","(Add-ons):\nWith the Onbound add-on, you cannot be guessed in meetings.","(Атрибут):\nУ Непобедимого невозможно угадать роль во время встречи","",""
 "KnightedInfoLong","","(Add-ons):\nWhen a Monarch knights someone, they get an extra vote.","","",""
+"UnreportableInfoLong","","(Add-ons):\nWith the Disregarded add-on, your corpse cannot be reported.","","",""
 
 "# 其它 / Other long description"
 "GMInfoLong","(房主):\n看我干啥，我只是个开局就死的冤魂，静静地吃瓜而已。","(None):\nThe GM (Game Master) is an observer role.\nTheir presence has no effect on the game, and all players know who the GM is. The GM role will be assigned to the host, who will automatically become a ghost at the start of the game.","(Никто):\nGM (Мастер Игры) — это роль, которая наблюдает за игрой в роле призрака. \nОн не влияет на игру, и все игроки всегда знают кто Мастер Игры. Всегда назначается только хосту лобби и становится призраком в самом начале игры.","(房主):\n看我幹嘛，我只是開始遊戲時就在冥界吃瓜而已。","(房主):\n看我干啥，我只是个开局就死的冤魂，静静地吃瓜而已。"
@@ -1165,7 +1170,9 @@
 "ImpCanBeOnbound","","<color=#ff1919>Impostors</color> can become <color=#baaae9>Onbound</color>","<color=#ff1919>Предатели</color> могут стать <color=#baaae9>Непобедимым</color>","",""
 "CrewCanBeOnbound","","<color=#8cffff>Crewmates</color> can become <color=#baaae9>Onbound</color>","<color=#8cffff>Члены Экипажа</color> могут стать <color=#baaae9>Непобедимым</color>","",""
 "NeutralCanBeOnbound","","<color=#7f8c8d>Neutrals</color> can become <color=#baaae9>Onbound</color>","<color=#7f8c8d>Нейтралы</color> могут стать <color=#baaae9>Непобедимым</color>","",""
-
+"ImpCanBeUnreportable","","<color=#ff1919>Impostors</color> can become <color=#FF6347>Disregarded</color>","","",""
+"CrewCanBeUnreportable","","<color=#8cffff>Crewmates</color> can become <color=#FF6347>Disregarded</color>","","",""
+"NeutralCanBeUnreportable","","<color=#7f8c8d>Neutrals</color> can become <color=#FF6347>Disregarded</color>","","",""
 
 
 "## 死因 / Death Reasons"

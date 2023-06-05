@@ -961,6 +961,8 @@ class ReportDeadBodyPatch
                     if (!Main.KillerOfBoobyTrapBody.ContainsKey(__instance.PlayerId)) Main.KillerOfBoobyTrapBody.Add(__instance.PlayerId, killerID);
                     return false;
                 }
+
+                if (target.Object.Is(CustomRoles.Unreportable)) return false; 
             }
 
             if (Options.SyncButtonMode.GetBool() && target == null)
