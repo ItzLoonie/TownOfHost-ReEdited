@@ -85,10 +85,7 @@ namespace TOHE.Roles.Neutral
 
         public static void OnKilledBodyReport(PlayerControl target)
         {
-            if (!CanBeInfected(target))
-            {
-                return;
-            }
+            if (!CanBeInfected(target)) return;
 
             InfectLimit--;
             SendRPC();
@@ -113,10 +110,7 @@ namespace TOHE.Roles.Neutral
 
         public static void OnCheckForEndVoting(PlayerState.DeathReason deathReason, params byte[] exileIds)
         {
-            if (!KillInfectedPlayerAfterMeeting.GetBool())
-            {
-                return;
-            }
+            if (!KillInfectedPlayerAfterMeeting.GetBool()) return;
 
             PlayerControl virus =
                 Main.AllAlivePlayerControls.FirstOrDefault(a => a.GetCustomRole() == CustomRoles.Virus);
