@@ -1030,6 +1030,7 @@ class ReportDeadBodyPatch
         Main.ArsonistTimer.Clear();
         Main.FarseerTimer.Clear();
         Main.PuppeteerList.Clear();
+        Main.TaglockedList.Clear();
         Main.LastVotedPlayerInfo = null;
         Main.GuesserGuessed.Clear();
         Main.VeteranInProtect.Clear();

@@ -103,17 +103,12 @@ class BeginCrewmatePatch
 {
     public static bool Prefix(IntroCutscene __instance, ref Il2CppSystem.Collections.Generic.List<PlayerControl> teamToDisplay)
     {
-      /*  if (PlayerControl.LocalPlayer.Is(CustomRoles.Crewpostor))
+        if (PlayerControl.LocalPlayer.Is(CustomRoleTypes.Neutral) && !PlayerControl.LocalPlayer.Is(CustomRoles.Parasite))
         {
             teamToDisplay = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             teamToDisplay.Add(PlayerControl.LocalPlayer);
-            foreach (var pc in Main.AllPlayerControls.Where(x => !x.AmOwner && x.GetCustomRole().IsImpostor())) teamToDisplay.Add(pc);
-            __instance.BeginImpostor(teamToDisplay);
-            __instance.overlayHandle.color = Palette.ImpostorRed;
-            return false;
         }
-        else */
-        if (PlayerControl.LocalPlayer.Is(CustomRoleTypes.Neutral) && !PlayerControl.LocalPlayer.Is(CustomRoles.Parasite) && !PlayerControl.LocalPlayer.Is(CustomRoles.Crewpostor))
+        if (PlayerControl.LocalPlayer.Is(CustomRoleTypes.Neutral) && !PlayerControl.LocalPlayer.Is(CustomRoles.Crewpostor))
         {
             teamToDisplay = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             teamToDisplay.Add(PlayerControl.LocalPlayer);
@@ -126,7 +121,15 @@ class BeginCrewmatePatch
             __instance.overlayHandle.color = Palette.ImpostorRed;
             return false;
         }
-         else if (PlayerControl.LocalPlayer.Is(CustomRoles.Parasite) || PlayerControl.LocalPlayer.Is(CustomRoles.Crewpostor))
+         else if (PlayerControl.LocalPlayer.Is(CustomRoles.Crewpostor))
+        {
+            teamToDisplay = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
+            teamToDisplay.Add(PlayerControl.LocalPlayer);
+            __instance.BeginImpostor(teamToDisplay);
+            __instance.overlayHandle.color = Palette.ImpostorRed;
+            return false;
+        }
+         else if (PlayerControl.LocalPlayer.Is(CustomRoleTypes.Madmate))
         {
             teamToDisplay = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             teamToDisplay.Add(PlayerControl.LocalPlayer);
@@ -206,7 +209,7 @@ class BeginCrewmatePatch
 
         if (PlayerControl.LocalPlayer.Is(CustomRoles.Madmate))
         {
-            __instance.TeamTitle.text = GetString("TeamImpostor");
+            __instance.TeamTitle.text = GetString("TeamMadmate");
             __instance.TeamTitle.color = __instance.BackgroundBar.material.color = new Color32(255, 25, 25, byte.MaxValue);
             PlayerControl.LocalPlayer.Data.Role.IntroSound = GetIntroSound(RoleTypes.Impostor);
                 __instance.ImpostorText.gameObject.SetActive(true);
@@ -215,7 +218,16 @@ class BeginCrewmatePatch
 
         if (PlayerControl.LocalPlayer.Is(CustomRoles.Parasite))
         {
-            __instance.TeamTitle.text = GetString("TeamImpostor");
+            __instance.TeamTitle.text = GetString("TeamMadmate");
+            __instance.TeamTitle.color = __instance.BackgroundBar.material.color = new Color32(255, 25, 25, byte.MaxValue);
+            PlayerControl.LocalPlayer.Data.Role.IntroSound = GetIntroSound(RoleTypes.Impostor);
+                __instance.ImpostorText.gameObject.SetActive(true);
+                __instance.ImpostorText.text = GetString("SubText.Madmate");
+        }
+
+        if (PlayerControl.LocalPlayer.Is(CustomRoles.Crewpostor))
+        {
+            __instance.TeamTitle.text = GetString("TeamMadmate");
             __instance.TeamTitle.color = __instance.BackgroundBar.material.color = new Color32(255, 25, 25, byte.MaxValue);
             PlayerControl.LocalPlayer.Data.Role.IntroSound = GetIntroSound(RoleTypes.Impostor);
                 __instance.ImpostorText.gameObject.SetActive(true);
@@ -294,6 +306,13 @@ class BeginImpostorPatch
             return true;
         }
         else if (PlayerControl.LocalPlayer.Is(CustomRoles.Parasite))
+        {
+            yourTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
+            yourTeam.Add(PlayerControl.LocalPlayer);
+            __instance.overlayHandle.color = Palette.ImpostorRed;
+            return true;
+        }
+        else if (PlayerControl.LocalPlayer.Is(CustomRoles.Crewpostor))
         {
             yourTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             yourTeam.Add(PlayerControl.LocalPlayer);
