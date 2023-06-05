@@ -1391,6 +1391,7 @@ public static class Utils
         Swooper.AfterMeetingTasks();
         Wraith.AfterMeetingTasks();
         Eraser.AfterMeetingTasks();
+        Cloaker.AfterMeetingTasks();
         BountyHunter.AfterMeetingTasks();
         EvilTracker.AfterMeetingTasks();
         SerialKiller.AfterMeetingTasks();

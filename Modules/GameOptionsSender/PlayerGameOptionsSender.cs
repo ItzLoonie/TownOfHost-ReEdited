@@ -121,8 +121,12 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Medicaler:
             case CustomRoles.Provocateur:
             case CustomRoles.Monarch:
+      //      case CustomRoles.Farseer:
             case CustomRoles.Counterfeiter:
                 opt.SetVision(false);
+                break;
+            case CustomRoles.Virus:
+                opt.SetVision(Virus.ImpostorVision.GetBool());
                 break;
             case CustomRoles.Zombie:
                 opt.SetFloat(FloatOptionNames.ImpostorLightMod, 0.2f);
@@ -152,9 +156,12 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 EvilTracker.ApplyGameOptions(player.PlayerId);
                 break;
             case CustomRoles.ShapeshifterTOHE:
-            case CustomRoles.Wildling:
             AURoleOptions.ShapeshifterCooldown = Options.ShapeshiftCD.GetFloat();
             AURoleOptions.ShapeshifterDuration = Options.ShapeshiftDur.GetFloat();
+            break;
+            case CustomRoles.Wildling:
+            AURoleOptions.ShapeshifterCooldown = Wildling.ShapeshiftCD.GetFloat();
+            AURoleOptions.ShapeshifterDuration = Wildling.ShapeshiftDur.GetFloat();
             break;
             case CustomRoles.Jackal:
        //     case CustomRoles.Sidekick:

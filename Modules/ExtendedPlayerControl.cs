@@ -465,7 +465,7 @@ static class ExtendedPlayerControl
             CustomRoles.Minimalism or
             CustomRoles.Sheriff or
             CustomRoles.Innocent or
-            CustomRoles.SwordsMan or
+        //    CustomRoles.SwordsMan or
             CustomRoles.FFF or
             CustomRoles.Medicaler or
             CustomRoles.NWitch or
@@ -486,6 +486,7 @@ static class ExtendedPlayerControl
             CustomRoles.Juggernaut => Juggernaut.CanVent.GetBool(),
             CustomRoles.Infectious => Infectious.CanVent.GetBool(),
             CustomRoles.Virus => Virus.CanVent.GetBool(),
+            CustomRoles.SwordsMan => SwordsMan.CanVent.GetBool(),
             CustomRoles.HexMaster => true,
             CustomRoles.Wraith => true,
             CustomRoles.Parasite => true,

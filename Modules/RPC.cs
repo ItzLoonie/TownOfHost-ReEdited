@@ -79,6 +79,7 @@ enum CustomRPC
     MafiaRevenge,
     SetSwooperTimer,
     SetWraithTimer,
+    SetCloakerTimer,
     SetBKTimer,
     SyncTotocalcioTargetAndTimes,
     SetSuccubusCharmLimit,
@@ -442,6 +443,9 @@ internal class RPCHandlerPatch
             case CustomRPC.SetSwooperTimer:
                 Swooper.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetCloakerTimer:
+                Cloaker.ReceiveRPC(reader);
+                break;
             case CustomRPC.SetWraithTimer:
                 Wraith.ReceiveRPC(reader);
                 break;
@@ -769,6 +773,9 @@ internal static class RPC
                 break;
             case CustomRoles.Swooper:
                 Swooper.Add(targetId);
+                break;
+            case CustomRoles.Cloaker:
+                Cloaker.Add(targetId);
                 break;
             case CustomRoles.Wraith:
                 Wraith.Add(targetId);

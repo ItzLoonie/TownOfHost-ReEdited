@@ -104,6 +104,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Observer => CustomRoles.Crewmate,
                 CustomRoles.Infectious => CustomRoles.Impostor,
                 CustomRoles.Virus => CustomRoles.Virus,
+                CustomRoles.Cloaker => CustomRoles.Engineer,
                 CustomRoles.Disperser => CustomRoles.Shapeshifter,
                 CustomRoles.Camouflager => CustomRoles.Shapeshifter,
                 CustomRoles.Monarch => CustomRoles.Impostor,
