@@ -895,6 +895,7 @@ public static class Options
     //        .SetColor(Color.green);
         Juggernaut.SetupCustomOption();
         Infectious.SetupCustomOption();
+        Virus.SetupCustomOption();
 
         // Add-Ons
         AddBracketsToAddons = BooleanOptionItem.Create(6050512, "BracketAddons", false, TabGroup.Addons, false)
