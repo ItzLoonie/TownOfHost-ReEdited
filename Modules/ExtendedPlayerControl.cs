@@ -451,6 +451,7 @@ static class ExtendedPlayerControl
             CustomRoles.Succubus => Succubus.CanUseKillButton(pc),
             CustomRoles.Infectious => Infectious.CanUseKillButton(pc),
             CustomRoles.Monarch => Monarch.CanUseKillButton(pc),
+            CustomRoles.Virus => pc.IsAlive(),
             CustomRoles.Farseer => pc.IsAlive(),
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
@@ -484,6 +485,7 @@ static class ExtendedPlayerControl
             CustomRoles.BloodKnight => BloodKnight.CanVent.GetBool(),
             CustomRoles.Juggernaut => Juggernaut.CanVent.GetBool(),
             CustomRoles.Infectious => Infectious.CanVent.GetBool(),
+            CustomRoles.Virus => Virus.CanVent.GetBool(),
             CustomRoles.HexMaster => true,
             CustomRoles.Wraith => true,
             CustomRoles.Parasite => true,
@@ -664,6 +666,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Monarch:
                 Monarch.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Virus:
+                Virus.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.Farseer:
                 Farseer.SetCooldown(player.PlayerId);

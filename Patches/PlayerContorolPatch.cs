@@ -324,6 +324,12 @@ class CheckMurderPatch
         if (!killer.RpcCheckAndMurder(target, true))
             return false;
 
+        // Don't infect when Shielded
+        if (killer.Is(CustomRoles.Virus))
+        {
+            Virus.OnCheckMurder(killer, target);
+        }
+
         // 清道夫清理尸体
         if (killer.Is(CustomRoles.Scavenger))
         {
@@ -1015,6 +1021,8 @@ class ReportDeadBodyPatch
                     Main.DetectiveNotify.Add(player.PlayerId, msg);
                 }
             }
+
+            if (Main.InfectedBodies.Contains(target.PlayerId)) Virus.OnKilledBodyReport(player);
         }
 
         Main.ArsonistTimer.Clear();
@@ -1545,6 +1553,7 @@ class FixedUpdatePatch
                 else if (Totocalcio.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (Succubus.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (Infectious.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
+                else if (Virus.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (PlayerControl.LocalPlayer.IsRevealedPlayer(__instance)) RoleText.enabled = true;
                 else if (PlayerControl.LocalPlayer.Is(CustomRoles.God)) RoleText.enabled = true;
                 else if (PlayerControl.LocalPlayer.Is(CustomRoles.GM)) RoleText.enabled = true;

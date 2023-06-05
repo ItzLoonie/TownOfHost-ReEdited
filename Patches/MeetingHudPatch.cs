@@ -436,6 +436,7 @@ class CheckForEndVotingPatch
     {
         Witch.OnCheckForEndVoting(deathReason, playerIds);
         HexMaster.OnCheckForEndVoting(deathReason, playerIds);
+        Virus.OnCheckForEndVoting(deathReason, playerIds);
         foreach (var playerId in playerIds)
         {
             //Loversの後追い
@@ -602,6 +603,7 @@ class MeetingHudStartPatch
                 if (!Options.NeutralKnowCyberStarDead.GetBool() && pc.GetCustomRole().IsNeutral()) continue;
                 AddMsg(string.Format(GetString("CyberStarDead"), Main.AllPlayerNames[csId]), pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.CyberStar), GetString("CyberStarNewsTitle")));
             }
+
             //侦探报告线索
             if (Main.DetectiveNotify.ContainsKey(pc.PlayerId))
                 AddMsg(Main.DetectiveNotify[pc.PlayerId], pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Detective), GetString("DetectiveNoticeTitle")));
@@ -617,6 +619,8 @@ class MeetingHudStartPatch
             //通灵师的提示（目标）
             if (Mediumshiper.ContactPlayer.ContainsKey(pc.PlayerId))
                 AddMsg(string.Format(GetString("MediumshipNotifyTarget"), Main.AllPlayerNames[Mediumshiper.ContactPlayer[pc.PlayerId]]), pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Mediumshiper), GetString("MediumshipTitle")));
+            if (Main.VirusNotify.ContainsKey(pc.PlayerId))
+                AddMsg(Main.VirusNotify[pc.PlayerId], pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Virus), GetString("VirusNoticeTitle")));
         }
         //宝箱怪的消息（合并）
         if (MimicMsg != "")
@@ -633,6 +637,7 @@ class MeetingHudStartPatch
 
         Main.CyberStarDead.Clear();
         Main.DetectiveNotify.Clear();
+        Main.VirusNotify.Clear();
         Mortician.msgToSend.Clear();
     }
     public static void Prefix(MeetingHud __instance)
@@ -683,6 +688,7 @@ class MeetingHudStartPatch
                 (Totocalcio.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (Succubus.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (Infectious.KnowRole(PlayerControl.LocalPlayer, pc)) ||
+                (Virus.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 PlayerControl.LocalPlayer.IsRevealedPlayer(pc) ||
                 PlayerControl.LocalPlayer.Is(CustomRoles.God) ||
                 PlayerControl.LocalPlayer.Is(CustomRoles.GM) ||

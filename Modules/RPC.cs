@@ -84,6 +84,7 @@ enum CustomRPC
     SetSuccubusCharmLimit,
     SetInfectiousBiteLimit,
     SetMonarchKnightLimit,
+    SetVirusInfectLimit,
     SetRevealedPlayer,
     SetCurrentRevealTarget,
 
@@ -459,6 +460,9 @@ internal class RPCHandlerPatch
             case CustomRPC.SetMonarchKnightLimit:
                 Monarch.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetVirusInfectLimit:
+                Virus.ReceiveRPC(reader);
+                break;
         }
     }
 }
@@ -783,6 +787,9 @@ internal static class RPC
                 break;
             case CustomRoles.Monarch:
                 Monarch.Add(targetId);
+                break;
+            case CustomRoles.Virus:
+                Virus.Add(targetId);
                 break;
         }
         HudManager.Instance.SetHudActive(true);
