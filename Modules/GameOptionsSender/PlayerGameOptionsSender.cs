@@ -91,6 +91,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.SabotageMaster:
             case CustomRoles.Mario:
             case CustomRoles.EngineerTOHE:
+            case CustomRoles.Crewpostor:
             case CustomRoles.Jester:
                 AURoleOptions.EngineerCooldown = 0f;
                 AURoleOptions.EngineerInVentMaxTime = 0f;
@@ -118,6 +119,8 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Revolutionist:
             case CustomRoles.Medicaler:
             case CustomRoles.Provocateur:
+            case CustomRoles.Monarch:
+            case CustomRoles.Counterfeiter:
                 opt.SetVision(false);
                 break;
             case CustomRoles.Zombie:
@@ -172,22 +175,26 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
              case CustomRoles.NWitch:
                 opt.SetVision(true);
-                Main.NormalOptions.KillCooldown = Options.ControlCooldown.GetFloat();
+         //       Main.NormalOptions.KillCooldown = Options.ControlCooldown.GetFloat();
                 break;
             case CustomRoles.NSerialKiller:
                 opt.SetVision(Options.NSerialKillerHasImpostorVision.GetBool());
-                Main.NormalOptions.KillCooldown = Options.NSerialKillerKillCD.GetFloat();
+            //    Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
                 break;
             case CustomRoles.Juggernaut:
                 opt.SetVision(Juggernaut.HasImpostorVision.GetBool());
+                break;
+            case CustomRoles.Infectious:
+                opt.SetVision(Infectious.HasImpostorVision.GetBool());
                 break;
             case CustomRoles.Lawyer:
              //   Main.NormalOptions.CrewLightMod = Lawyer.LawyerVision.GetFloat();
             break;
             case CustomRoles.Wraith:
             case CustomRoles.HexMaster:
+            case CustomRoles.Parasite:
                 opt.SetVision(true);
-                Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
+           //     Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
                 break;
             
             case CustomRoles.Gamer:
@@ -208,8 +215,8 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.QuickShooter:
                 AURoleOptions.ShapeshifterCooldown = QuickShooter.ShapeshiftCooldown.GetFloat();
                 break;
-            case CustomRoles.Concealer:
-                Concealer.ApplyGameOptions();
+            case CustomRoles.Camouflager:
+                Camouflager.ApplyGameOptions();
                 break;
             case CustomRoles.Assassin:
                 Assassin.ApplyGameOptions();
@@ -226,6 +233,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
             case CustomRoles.BloodKnight:
                 BloodKnight.ApplyGameOptions(opt);
+                break;
+            case CustomRoles.Disperser:
+                Disperser.ApplyGameOptions();
                 break;
         }
 
@@ -264,8 +274,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                     Main.AllPlayerSpeed[player.PlayerId] = Options.FlashmanSpeed.GetFloat();
                     break;
                 case CustomRoles.Lighter:
-                    opt.SetFloat(FloatOptionNames.CrewLightMod, 12f);
-                    opt.SetFloat(FloatOptionNames.ImpostorLightMod, 12f);
+                    opt.SetVision(false);
+                    opt.SetFloat(FloatOptionNames.CrewLightMod, Options.LighterVision.GetFloat());
+                    opt.SetFloat(FloatOptionNames.ImpostorLightMod, Options.LighterVision.GetFloat());
                     break;
                 case CustomRoles.Bewilder:
                     opt.SetVision(false);
@@ -274,6 +285,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                     break;
                 case CustomRoles.Reach:
                     opt.SetInt(Int32OptionNames.KillDistance, 2);
+                    break;
+                case CustomRoles.Madmate:
+                    opt.SetVision(Options.MadmateHasImpostorVision.GetBool());
                     break;
             }
         }

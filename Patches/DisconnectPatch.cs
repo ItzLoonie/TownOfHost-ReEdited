@@ -46,6 +46,18 @@ internal class ShowDisconnectPopupPatch
                     case DisconnectReasons.IncorrectVersion:
                         __instance.SetText(GetString("DCNotify.IncorrectVersion"));
                         break;
+                    case DisconnectReasons.LobbyInactivity:
+                        __instance.SetText(GetString("DCNotify.Inactivity"));
+                        break;
+                    case DisconnectReasons.NotAuthorized:
+                        __instance.SetText(GetString("DCNotify.Auth"));
+                        break;
+                    case DisconnectReasons.DuplicateConnectionDetected:
+                        __instance.SetText(GetString("DCNotify.DupeLogin"));
+                        break;
+                    case DisconnectReasons.InvalidGameOptions:
+                        __instance.SetText(GetString("DCNotify.InvalidSettings"));
+                        break;
                     case DisconnectReasons.Error:
                         //if (StringReason.Contains("Couldn't find self")) __instance.SetText(GetString("DCNotify.DCFromServer"));
                         if (StringReason.Contains("Failed to send message")) __instance.SetText(GetString("DCNotify.DCFromServer"));

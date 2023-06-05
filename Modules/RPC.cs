@@ -82,6 +82,8 @@ enum CustomRPC
     SetBKTimer,
     SyncTotocalcioTargetAndTimes,
     SetSuccubusCharmLimit,
+    SetInfectiousBiteLimit,
+    SetMonarchKnightLimit,
 
     //SoloKombat
     SyncKBPlayer,
@@ -386,9 +388,6 @@ internal class RPCHandlerPatch
             case CustomRPC.SetMarkedPlayer:
                 Assassin.ReceiveRPC(reader);
                 break;
-            case CustomRPC.SetConcealerTimer:
-                Concealer.ReceiveRPC(reader);
-                break;
             case CustomRPC.SetMedicalerProtectList:
                 Medicaler.ReceiveRPCForProtectList(reader);
                 break;
@@ -445,6 +444,12 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetSuccubusCharmLimit:
                 Succubus.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetInfectiousBiteLimit:
+                Infectious.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetMonarchKnightLimit:
+                Monarch.ReceiveRPC(reader);
                 break;
         }
     }
@@ -717,9 +722,6 @@ internal static class RPC
             case CustomRoles.CursedWolf:
                 Main.CursedWolfSpellCount[targetId] = Options.GuardSpellTimes.GetInt();
                 break;
-            case CustomRoles.Concealer:
-                Concealer.Add(targetId);
-                break;
             case CustomRoles.Eraser:
                 Eraser.Add(targetId);
                 break;
@@ -767,6 +769,12 @@ internal static class RPC
                 break;
             case CustomRoles.Succubus:
                 Succubus.Add(targetId);
+                break;
+            case CustomRoles.Infectious:
+                Infectious.Add(targetId);
+                break;
+            case CustomRoles.Monarch:
+                Monarch.Add(targetId);
                 break;
         }
         HudManager.Instance.SetHudActive(true);

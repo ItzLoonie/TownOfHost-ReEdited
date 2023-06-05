@@ -110,43 +110,13 @@ public class ModUpdater
                     if (c != m) break;
                 }
             }
-            if (downloadUrl == null || downloadUrl == "") downloadUrl = info[3];
-
-            url = UrlSetId(UrlSetInfo(URL_2018k)) + "&data=remark|notice|md5|visit";
-            string[] data = Get(url).Split("|");
-            string[] notices = data[1].Split("\n&&\n");
-            if (CultureInfo.CurrentCulture.Name.StartsWith("zh")) notice = notices[0];
-            else notice = notices[1];
-            md5 = data[2];
-            visit = int.TryParse(data[3], out int x) ? x : 0;
-            visit += 26820 + 99280; //旧版本数据
-            var create = 1;
-            if (int.TryParse(data[0], out int ct) && ct < 1000) create = ct;
-            if (create > Main.PluginCreate)
-            {
-                hasUpdate = true;
-                forceUpdate = false;
-            }
+            
 
 #if DEBUG
             if (!hasUpdate && Main.PluginVersion == info[4] && !onlyInfo) hasUpdate = true;
 #endif
 
-            if (!Main.AlreadyShowMsgBox || create == 0)
-            {
-                Main.AlreadyShowMsgBox = true;
-                ShowPopup(notice, create == 0 ? StringNames.ExitGame : StringNames.Okay, true, create == 0);
-            }
-
-            Logger.Info("hasupdate: " + info[0], "2018k");
-            Logger.Info("forceupdate: " + info[1], "2018k");
-            Logger.Info("downloadUrl: " + info[3], "2018k");
-            Logger.Info("latestVersionl: " + info[4], "2018k");
-            Logger.Info("remark: " + data[0], "2018k");
-            Logger.Info("notice: " + notice, "2018k");
-            Logger.Info("MD5: " + data[2], "2018k");
-            Logger.Info("Visit: " + data[3], "2018k");
-
+            
             if (downloadUrl == null || downloadUrl == "")
             {
                 Logger.Error("获取下载地址失败", "CheckRelease");

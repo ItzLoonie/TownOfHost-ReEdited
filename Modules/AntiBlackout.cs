@@ -18,7 +18,7 @@ public static class AntiBlackout
     ///<summary>
     ///インポスターが一人しか存在しない設定かどうか
     ///</summary>
-    public static bool IsSingleImpostor => (Main.RealOptionsData != null ? Main.RealOptionsData.GetInt(Int32OptionNames.NumImpostors) : Main.NormalOptions.NumImpostors) - Main.AllPlayerControls.Count(x => GameStates.IsInGame && x.Is(CustomRoles.Crewpostor)) <= 1;
+    public static bool IsSingleImpostor => (Main.RealOptionsData != null ? Main.RealOptionsData.GetInt(Int32OptionNames.NumImpostors) : Main.NormalOptions.NumImpostors) <= 1;
     ///<summary>
     ///AntiBlackout内の処理が必要であるかどうか
     ///</summary>

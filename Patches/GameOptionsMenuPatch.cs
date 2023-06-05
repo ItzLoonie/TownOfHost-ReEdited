@@ -161,12 +161,13 @@ public class GameOptionsMenuUpdatePatch
             {
                 TabGroup.SystemSettings => Main.ModColor,
                 TabGroup.GameSettings => "#59ef83",
+                TabGroup.TaskSettings => "#EF59AF",
                 TabGroup.ImpostorRoles => "#f74631",
                 TabGroup.CrewmateRoles => "#8cffff",
-                TabGroup.NeutralRoles => "#ffab1b",
+                TabGroup.NeutralRoles => "#7f8c8d",
                 TabGroup.Addons => "#ff9ace",
                 TabGroup.OtherRoles => "#76b8e0",
-                TabGroup.ExclusiveRoles => "#ffff00",
+          //      TabGroup.CovenRoles => "#8e44ad",
                 _ => "#ffffff",
             };
             if (__instance.transform.parent.parent.name != tab + "Tab") continue;

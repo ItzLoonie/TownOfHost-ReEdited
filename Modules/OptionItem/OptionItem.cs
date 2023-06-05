@@ -260,12 +260,12 @@ public enum TabGroup
 {
     SystemSettings,
     GameSettings,
+    TaskSettings,
     ImpostorRoles,
     CrewmateRoles,
     NeutralRoles,
     Addons,
-    OtherRoles,
-    ExclusiveRoles
+    OtherRoles
 }
 public enum OptionFormat
 {

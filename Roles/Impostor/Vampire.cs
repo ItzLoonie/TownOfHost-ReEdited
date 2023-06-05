@@ -74,8 +74,8 @@ public static class Vampire
 
         foreach (var targetId in targetList)
         {
-            var bittenVampire = BittenPlayers[targetId];
-            if (bittenVampire.KillTimer >= KillDelay)
+            var bitten = BittenPlayers[targetId];
+            if (bitten.KillTimer >= KillDelay)
             {
                 var target = Utils.GetPlayerById(targetId);
                 KillBitten(vampire, target);
@@ -83,8 +83,8 @@ public static class Vampire
             }
             else
             {
-                bittenVampire.KillTimer += Time.fixedDeltaTime;
-                BittenPlayers[targetId] = bittenVampire;
+                bitten.KillTimer += Time.fixedDeltaTime;
+                BittenPlayers[targetId] = bitten;
             }
         }
     }

@@ -71,10 +71,21 @@ class RepairSystemPatch
         if (systemType == SystemTypes.Sabotage && AmongUsClient.Instance.NetworkMode != NetworkModes.FreePlay)
         {
             if (player.Is(CustomRoleTypes.Impostor) && !player.Is(CustomRoles.Minimalism) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
-            if (player.Is(CustomRoleTypes.Crewmate) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
-            if (player.Is(CustomRoleTypes.Neutral) && !player.Is(CustomRoles.Jackal) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
             if (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) return true;
+            if (player.Is(CustomRoles.Parasite) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
             return false;
+        }
+
+        if (systemType == SystemTypes.Security && amount == 1)
+        {
+            var camerasDisabled = (MapNames)Main.NormalOptions.MapId switch
+            {
+                MapNames.Skeld => Options.DisableSkeldCamera.GetBool(),
+                MapNames.Polus => Options.DisablePolusCamera.GetBool(),
+                MapNames.Airship => Options.DisableAirshipCamera.GetBool(),
+                _ => false,
+            };
+            return !camerasDisabled;
         }
 
         return true;

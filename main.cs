@@ -275,7 +275,7 @@ public class Main : BasePlugin
                 {CustomRoles.Needy, "#a4dffe"},
                 {CustomRoles.SabotageMaster, "#3333ff"},
                 {CustomRoles.Snitch, "#b8fb4f"},
-                {CustomRoles.Marshall, "#1E90FF"},
+                {CustomRoles.Marshall, "#5573aa"},
                 {CustomRoles.Mayor, "#204d42"},
                 {CustomRoles.Paranoia, "#c993f5"},
                 {CustomRoles.Psychic, "#6F698C"},
@@ -301,6 +301,7 @@ public class Main : BasePlugin
                 {CustomRoles.Mortician, "#333c49"},
                 {CustomRoles.Mediumshiper, "#a200ff"},
                 {CustomRoles.Observer, "#a8e0fa"},
+                {CustomRoles.Monarch, "#FFA500"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Jester, "#ec62a5"},
@@ -332,6 +333,9 @@ public class Main : BasePlugin
                 {CustomRoles.NSerialKiller, "#233fcc"},
                 {CustomRoles.BloodKnight, "#630000"},
                 {CustomRoles.Juggernaut, "#A41342"},
+                {CustomRoles.Parasite, "#ff1919"},
+                {CustomRoles.Crewpostor, "#ff1919"},
+                {CustomRoles.Infectious, "#7B8968"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -349,18 +353,21 @@ public class Main : BasePlugin
                 {CustomRoles.Bewilder, "#c894f5"},
                 {CustomRoles.Workhorse, "#00ffff"},
                 {CustomRoles.Fool, "#e6e7ff"},
-                {CustomRoles.Avanger, "#ffab1b"},
+                {CustomRoles.Avanger, "#ffab1c"},
                 {CustomRoles.Youtuber, "#fb749b"},
                 {CustomRoles.Egoist, "#5600ff"},
                 {CustomRoles.TicketsStealer, "#ff1919"},
                 {CustomRoles.DualPersonality, "#3a648f"},
                 {CustomRoles.Mimic, "#ff1919"},
-                {CustomRoles.Guesser, "#FFFF00"},
+                {CustomRoles.Guesser, "#ffb347"},
                 {CustomRoles.Necroview, "#663399"},
                 {CustomRoles.Reach, "#74ba43"},
                 {CustomRoles.Charmed, "#cf6acd"},
                 {CustomRoles.Bait, "#00f7ff"},
                 {CustomRoles.Trapper, "#5a8fd0"},
+                {CustomRoles.Infected, "#7B8968"},
+                {CustomRoles.Onbound, "#BAAAE9"},
+                {CustomRoles.Knighted, "#FFA500"},
                 //SoloKombat
                 {CustomRoles.KB_Normal, "#f55252"}
             };
@@ -412,9 +419,7 @@ public enum CustomRoles
     Impostor,
     Shapeshifter,
     // Vanilla Remakes
-    EngineerTOHE,
-    ScientistTOHE,
-    GuardianAngelTOHE,
+    ImpostorTOHE,
     ShapeshifterTOHE,
     //Impostor
     BountyHunter,
@@ -436,6 +441,7 @@ public enum CustomRoles
     Miner,
     Escapee,
     Mare,
+    Inhibitor,
     Puppeteer,
     TimeThief,
     EvilTracker,
@@ -452,7 +458,6 @@ public enum CustomRoles
     CursedWolf,
     ImperiusCurse,
     QuickShooter,
-    Concealer,
     Eraser,
     OverKiller,
     Hangman,
@@ -460,10 +465,16 @@ public enum CustomRoles
     Trickster,
     Swooper,
     Crewpostor,
+    Disperser,
+    Camouflager,
     //Crewmate(Vanilla)
     Engineer,
     GuardianAngel,
     Scientist,
+    // Vanilla Remakes
+    EngineerTOHE,
+    GuardianAngelTOHE,
+    ScientistTOHE,
     //Crewmate
     Luckey,
     Needy,
@@ -495,6 +506,7 @@ public enum CustomRoles
     Mortician,
     Mediumshiper,
     Observer,
+    Monarch,
     //Neutral
     Arsonist,
     HexMaster,
@@ -513,6 +525,8 @@ public enum CustomRoles
     Revolutionist,
     NSerialKiller,
     Juggernaut,
+    Parasite,
+    Infectious,
     FFF,
     Konan,
     Gamer,
@@ -560,6 +574,9 @@ public enum CustomRoles
     Charmed,
     Bait,
     Trapper,
+    Infected,
+    Onbound,
+    Knighted,
 }
 //WinData
 public enum CustomWinner
@@ -597,6 +614,7 @@ public enum CustomWinner
     SerialKiller = CustomRoles.NSerialKiller,
     Witch = CustomRoles.NWitch,
     Juggernaut = CustomRoles.Juggernaut,
+    Infectious = CustomRoles.Infectious,
 }
 public enum AdditionalWinners
 {

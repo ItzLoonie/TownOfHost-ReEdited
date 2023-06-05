@@ -154,8 +154,8 @@ class HudManagerPatch
                     case CustomRoles.Provocateur:
                         __instance.KillButton.OverrideText($"{GetString("ProvocateurButtonText")}");
                         break;
-                    case CustomRoles.Concealer:
-                        __instance.AbilityButton.OverrideText($"{GetString("ConcealerShapeshiftText")}");
+                    case CustomRoles.Camouflager:
+                        __instance.AbilityButton.OverrideText($"{GetString("CamouflagerShapeshiftText")}");
                         break;
                     case CustomRoles.OverKiller:
                         __instance.KillButton.OverrideText($"{GetString("OverKillerButtonText")}");
@@ -203,6 +203,12 @@ class HudManagerPatch
                         break;
                     case CustomRoles.Succubus:
                         __instance.KillButton.OverrideText($"{GetString("SuccubusKillButtonText")}");
+                        break;
+                    case CustomRoles.Infectious:
+                        __instance.KillButton.OverrideText($"{GetString("InfectiousKillButtonText")}");
+                        break;
+                    case CustomRoles.Monarch:
+                        __instance.KillButton.OverrideText($"{GetString("MonarchKillButtonText")}");
                         break;
                 }
 
@@ -397,6 +403,9 @@ class SetHudActivePatch
                 __instance.AbilityButton.ToggleVisible(false);
                 __instance.ReportButton.ToggleVisible(false);
                 break;
+            case CustomRoles.Parasite:
+                __instance.SabotageButton.ToggleVisible(true);
+                break;
             case CustomRoles.Jackal:
                 //      case CustomRoles.Sidekick:
                 Jackal.SetHudActive(__instance, isActive);
@@ -444,7 +453,7 @@ class MapBehaviourShowPatch
         if (opts.Mode is MapOptions.Modes.Normal or MapOptions.Modes.Sabotage)
         {
             var player = PlayerControl.LocalPlayer;
-            if (player.Is(CustomRoleTypes.Impostor) || (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()))
+            if (player.Is(CustomRoleTypes.Impostor) || (player.Is(CustomRoles.Parasite)) || (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()))
                 opts.Mode = MapOptions.Modes.Sabotage;
             else
                 opts.Mode = MapOptions.Modes.Normal;
