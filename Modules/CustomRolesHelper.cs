@@ -144,6 +144,7 @@ internal static class CustomRolesHelper
             CustomRoles.Succubus => RoleTypes.Impostor,
             CustomRoles.Infectious => RoleTypes.Impostor,
             CustomRoles.Virus => RoleTypes.Impostor,
+            CustomRoles.Farseer => RoleTypes.Impostor,
             _ => RoleTypes.GuardianAngel
         };
     }

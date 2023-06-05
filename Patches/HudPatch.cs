@@ -102,6 +102,9 @@ class HudManagerPatch
                         __instance.KillButton.OverrideText($"{GetString("RevolutionistDrawButtonText")}");
                         __instance.AbilityButton.buttonLabelText.text = GetString("RevolutionistVetnButtonText");
                         break;
+                    case CustomRoles.Farseer:
+                        __instance.KillButton.OverrideText($"{GetString("FarseerKillButtonText")}");
+                        break;
                     case CustomRoles.Puppeteer:
                         __instance.KillButton.OverrideText($"{GetString("PuppeteerOperateButtonText")}");
                         break;
@@ -393,6 +396,7 @@ class SetHudActivePatch
             case CustomRoles.Gamer:
             case CustomRoles.DarkHide:
             case CustomRoles.Provocateur:
+            case CustomRoles.Farseer:
                 __instance.SabotageButton.ToggleVisible(false);
                 __instance.AbilityButton.ToggleVisible(false);
                 __instance.ImpostorVentButton.ToggleVisible(false);

@@ -452,6 +452,7 @@ static class ExtendedPlayerControl
             CustomRoles.Infectious => Infectious.CanUseKillButton(pc),
             CustomRoles.Monarch => Monarch.CanUseKillButton(pc),
             CustomRoles.Virus => pc.IsAlive(),
+            CustomRoles.Farseer => pc.IsAlive(),
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
     }
@@ -510,6 +511,12 @@ static class ExtendedPlayerControl
         Main.isDraw.TryGetValue((arsonist.PlayerId, target.PlayerId), out bool isDraw);
         return isDraw;
     }
+    public static bool IsRevealedPlayer(this PlayerControl player, PlayerControl target)
+    {
+        if (player == null || target == null || Main.isRevealed == null) return false;
+        Main.isRevealed.TryGetValue((player.PlayerId, target.PlayerId), out bool isDoused);
+        return isDoused;
+    }
     public static void RpcSetDousedPlayer(this PlayerControl player, PlayerControl target, bool isDoused)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetDousedPlayer, SendOption.Reliable, -1);//RPCによる同期
@@ -521,6 +528,14 @@ static class ExtendedPlayerControl
     public static void RpcSetDrawPlayer(this PlayerControl player, PlayerControl target, bool isDoused)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetDrawPlayer, SendOption.Reliable, -1);//RPCによる同期
+        writer.Write(player.PlayerId);
+        writer.Write(target.PlayerId);
+        writer.Write(isDoused);
+        AmongUsClient.Instance.FinishRpcImmediately(writer);
+    }
+    public static void RpcSetRevealtPlayer(this PlayerControl player, PlayerControl target, bool isDoused)
+    {
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetRevealedPlayer, SendOption.Reliable, -1);//RPCによる同期
         writer.Write(player.PlayerId);
         writer.Write(target.PlayerId);
         writer.Write(isDoused);
@@ -654,6 +669,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Virus:
                 Virus.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Farseer:
+                Farseer.SetCooldown(player.PlayerId);
                 break;
         }
         if (player.PlayerId == LastImpostor.currentId)
