@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
@@ -7,7 +7,7 @@
     <Description>Town Of Host Edited</Description>
     <Authors>KARPED1EM</Authors>
     <langVersion>latest</langVersion>
-	<AmongUs>C:\Users\popul\Downloads\TownOfHostEdited-2.3.0\Among Us</AmongUs>
+	<AmongUs>D:\Spiele\TownOfHost-TOHE - Test</AmongUs>
   </PropertyGroup>
 
   <ItemGroup>
