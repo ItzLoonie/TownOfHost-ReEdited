@@ -1546,7 +1546,7 @@
 "WitchSpellButtonText","诅咒","Spell","ЗАКЛИНАТЬ","詛咒","诅咒"
 "VampireBiteButtonText","吸血","Bite","УКУСИТЬ","吸血","吸血"
 "MinerTeleButtonText","传送","TP back","ОТПРАВИТЬСЯ","傳送","传送"
-"ArsonistDouseButtonText","涂油","Douse","ОБЛИТЬ","澆油","涂油">
+"ArsonistDouseButtonText","涂油","Douse","ОБЛИТЬ","澆油","涂油"
 "PuppeteerOperateButtonText","操控","Manipulate","УПРАВЛЯТЬ","操控","操控"
 "WitchControlButtonText","","Control","КОНТРОЛИРОВАТЬ","",""
 "BountyHunterChangeButtonText","变更","Swap","ДО СМЕНЫ","變更","变更"
@@ -1588,7 +1588,7 @@
 "SuccubusKillButtonText","魅惑","Charm","ЗАЧАРОВАТЬ","魅惑",""
 "InfectiousKillButtonText","","Infect","","",""
 "MonarchKillButtonText","","Knight","","",""
-"FarseerKillButtonText","","Reveal","","","">
+"FarseerKillButtonText","","Reveal","","",""
 "DisabledBySettings","已在设置被中禁用","Disabled by Settings","Отключено настройкой","已在設定中被禁用","已在设置被中禁用"
 "Disabled","禁用","Disabled","Отключено","禁用","禁用"
 "FailToTrack","无法追踪","Failed To Track","Не Удалось Отследить","無法追蹤","无法追踪"

@@ -1227,10 +1227,6 @@ public static class Utils
                 }
                 if (seer.Is(CustomRoles.Farseer))//seerがアーソニストの時
                 {
-                    if (seer.IsRevealedPlayer(target)) //seerがtargetに既にオイルを塗っている(完了)
-                    {
-                        //Utils.NotifyRoles();
-                    }
                     if (
                         Main.FarseerTimer.TryGetValue(seer.PlayerId, out var ar_kvp) && //seerがオイルを塗っている途中(現在進行)
                         ar_kvp.Item1 == target //オイルを塗っている対象がtarget

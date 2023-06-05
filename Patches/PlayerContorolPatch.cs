@@ -1700,11 +1700,7 @@ class FixedUpdatePatch
                 }
                 if (seer.Is(CustomRoles.Farseer))
                 {
-                    if (seer.IsRevealedPlayer(target))
-                    {
-                        //Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Farseer)}>●</color>");
-                    }
-                    else if (
+                    if (
                         Main.currentDrawTarget != byte.MaxValue &&
                         Main.currentDrawTarget == target.PlayerId
                     )

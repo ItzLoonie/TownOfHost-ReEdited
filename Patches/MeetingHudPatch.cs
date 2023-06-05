@@ -820,10 +820,6 @@ class MeetingHudStartPatch
                     if (seer.IsDrawPlayer(target)) //seerがtargetに既にオイルを塗っている(完了)
                         sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Revolutionist), "●"));
                     break;
-                case CustomRoles.Farseer:
-                    //if (seer.IsRevealedPlayer(target)) //seerがtargetに既にオイルを塗っている(完了)
-                    //    sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Farseer), "●"));
-                    break;
                 case CustomRoles.Psychic:
                     if (target.IsRedForPsy(seer) && !seer.Data.IsDead)
                         pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Impostor), pva.NameText.text);
