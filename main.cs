@@ -169,6 +169,7 @@ public class Main : BasePlugin
     public static int MadmateNum = 0;
     public static int BardCreations = 0;
     public static Dictionary<byte, byte> Provoked = new();
+    public static Dictionary<byte, int> DovesOfNeaceNumOfUsed = new();
 
     public static Dictionary<byte, CustomRoles> DevRole = new();
 
@@ -296,6 +297,7 @@ public class Main : BasePlugin
                 {CustomRoles.Mortician, "#333c49"},
                 {CustomRoles.Mediumshiper, "#a200ff"},
                 {CustomRoles.Observer, "#a8e0fa"},
+                {CustomRoles.DovesOfNeace, "#FFFFFF"},
                 {CustomRoles.Monarch, "#FFA500"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
@@ -517,6 +519,7 @@ public enum CustomRoles
     Mortician,
     Mediumshiper,
     Observer,
+    DovesOfNeace,
     Monarch,
     //Neutral
     Arsonist,

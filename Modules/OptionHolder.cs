@@ -262,6 +262,8 @@ public static class Options
     public static OptionItem CrewCanBeTrapper;
     public static OptionItem NeutralCanBeTrapper;
     public static OptionItem LighterVision;
+    public static OptionItem DovesOfNeaceCooldown;
+    public static OptionItem DovesOfNeaceMaxOfUseage;
 
     // public static OptionItem NSerialKillerKillCD;
     public static OptionItem NSerialKillerHasImpostorVision;
@@ -829,6 +831,11 @@ public static class Options
         Judge.SetupCustomOption();
         Mortician.SetupCustomOption();
         Mediumshiper.SetupCustomOption();
+        SetupRoleOptions(8948971, TabGroup.CrewmateRoles, CustomRoles.DovesOfNeace);
+        DovesOfNeaceCooldown = FloatOptionItem.Create(165647, "DovesOfNeaceCooldown", new(1f, 180f, 1f), 30f, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.DovesOfNeace])
+            .SetValueFormat(OptionFormat.Seconds);
+        DovesOfNeaceMaxOfUseage = IntegerOptionItem.Create(151574, "DovesOfNeaceMaxOfUseage", new(1, 999, 1), 3, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.DovesOfNeace])
+            .SetValueFormat(OptionFormat.Times);
         SetupRoleOptions(8021618, TabGroup.CrewmateRoles, CustomRoles.Observer);
         SetupRoleOptions(120005, TabGroup.CrewmateRoles, CustomRoles.EngineerTOHE);
         SetupRoleOptions(120010, TabGroup.CrewmateRoles, CustomRoles.ScientistTOHE);

@@ -787,6 +787,9 @@ internal static class RPC
             case CustomRoles.Succubus:
                 Succubus.Add(targetId);
                 break;
+            case CustomRoles.DovesOfNeace:
+                Main.DovesOfNeaceNumOfUsed.Add(targetId, Options.DovesOfNeaceMaxOfUseage.GetInt());
+                break;
             case CustomRoles.Infectious:
                 Infectious.Add(targetId);
                 break;

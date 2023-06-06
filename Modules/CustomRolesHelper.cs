@@ -102,6 +102,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Wraith => CustomRoles.Impostor,
                 CustomRoles.Crewpostor => CustomRoles.Engineer,
                 CustomRoles.Observer => CustomRoles.Crewmate,
+                CustomRoles.DovesOfNeace => CustomRoles.Engineer,
                 CustomRoles.Infectious => CustomRoles.Impostor,
                 CustomRoles.Virus => CustomRoles.Virus,
                 CustomRoles.Disperser => CustomRoles.Shapeshifter,
