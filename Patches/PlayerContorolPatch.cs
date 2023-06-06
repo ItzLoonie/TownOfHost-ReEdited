@@ -309,6 +309,10 @@ class CheckMurderPatch
                 case CustomRoles.Monarch:
                     Monarch.OnCheckMurder(killer, target);
                     return false;
+                case CustomRoles.Jackal:
+                    if (Jackal.OnCheckMurder(killer, target))
+                        return false;
+                    break;
 
                 //==========船员职业==========//
                 case CustomRoles.Sheriff:

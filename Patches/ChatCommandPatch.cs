@@ -180,7 +180,7 @@ internal class ChatCommands
                     canceled = true;
                     subArgs = text.Remove(0, 3);
                     if (!PlayerControl.LocalPlayer.FriendCode.GetEditedDevUser().IsUp) break;
-                    
+
                     if (!GameStates.IsLobby)
                     {
                         Utils.SendMessage(GetString("Message.OnlyCanUseInLobby"));
@@ -584,6 +584,7 @@ internal class ChatCommands
             Utils.ShowActiveRoles(playerId);
             return;
         }
+
         role = FixRoleNameInput(role).ToLower().Trim().Replace(" ", string.Empty);
 
         foreach (CustomRoles rl in Enum.GetValues(typeof(CustomRoles)))
