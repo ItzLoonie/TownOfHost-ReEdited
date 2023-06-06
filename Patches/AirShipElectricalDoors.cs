@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TOHE;
 
-public class AirShipElectricalDoors
+public class AirshipElectricalDoors
 {
     private static ElectricalDoors Instance
         => ShipStatus.Instance.Systems[SystemTypes.Decontamination].Cast<ElectricalDoors>();
@@ -46,7 +46,7 @@ class ElectricalDoorsInitializePatch
         if (!GameStates.IsInGame) return;
         var closedoors = "";
         bool isFirst = true;
-        foreach (var num in AirShipElectricalDoors.GetClosedDoors())
+        foreach (var num in AirshipElectricalDoors.GetClosedDoors())
         {
             if (isFirst)
             {
