@@ -192,42 +192,37 @@ static class ExtendedPlayerControl
     public static void SetKillCooldown(this PlayerControl player, float time = -1f)
     {
         if (player == null) return;
-        CustomRoles role = player.GetCustomRole();
         if (!player.CanUseKillButton()) return;
-        if (time >= 0f)
-        {
-            Main.AllPlayerKillCooldown[player.PlayerId] = time * 2;
-        }
-        else
-        {
-            Main.AllPlayerKillCooldown[player.PlayerId] *= 2;
-        }
+        if (time >= 0f) Main.AllPlayerKillCooldown[player.PlayerId] = time * 2;
+        else Main.AllPlayerKillCooldown[player.PlayerId] *= 2;
         player.SyncSettings();
         player.RpcGuardAndKill();
         player.ResetKillCooldown();
     }
-    public static void SetKillCooldownV2(this PlayerControl player, float time = -1f, PlayerControl target = null)
+    public static void SetKillCooldownV2(this PlayerControl player, float time = -1f, PlayerControl target = null, bool forceAnime = false)
     {
         if (player == null) return;
         if (!player.CanUseKillButton()) return;
-        if (time >= 0f)
+        if (target == null) target = player;
+        if (time >= 0f) Main.AllPlayerKillCooldown[player.PlayerId] = time * 2;
+        else Main.AllPlayerKillCooldown[player.PlayerId] *= 2;
+        if (forceAnime || !player.IsModClient())
         {
-            Main.AllPlayerKillCooldown[player.PlayerId] = time * 2;
+            player.SyncSettings();
+            player.RpcGuardAndKill(target, 11);
         }
         else
         {
-            Main.AllPlayerKillCooldown[player.PlayerId] *= 2;
+            time = Main.AllPlayerKillCooldown[player.PlayerId] / 2;
+            if (player.AmOwner) PlayerControl.LocalPlayer.SetKillTimer(time);
+            else
+            {
+                MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetKillTimer, SendOption.Reliable, player.GetClientId());
+                writer.Write(time);
+                AmongUsClient.Instance.FinishRpcImmediately(writer);
+            }
+            Main.AllPlayerControls.Where(x => x.Is(CustomRoles.Observer) && target.PlayerId != x.PlayerId).Do(x => x.RpcGuardAndKill(target, 11, true));
         }
-        player.SyncSettings();
-        if (player.AmOwner)
-            PlayerControl.LocalPlayer.SetKillTimer(time);
-        else if (player.IsModClient())
-        {
-            MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetKillTimer, SendOption.Reliable, player.GetClientId());
-            writer.Write(time);
-            AmongUsClient.Instance.FinishRpcImmediately(writer);
-        }
-        else player.RpcGuardAndKill(target, 11);
         player.ResetKillCooldown();
     }
     public static void RpcSpecificMurderPlayer(this PlayerControl killer, PlayerControl target = null)
@@ -421,6 +416,7 @@ static class ExtendedPlayerControl
             CustomRoles.FireWorks => FireWorks.CanUseKillButton(pc),
             CustomRoles.Mafia => Utils.CanMafiaKill(),
             CustomRoles.Mare => Utils.IsActive(SystemTypes.Electrical),
+            CustomRoles.Inhibitor => !Utils.IsActive(SystemTypes.Electrical) && !Utils.IsActive(SystemTypes.Laboratory) && !Utils.IsActive(SystemTypes.Comms) && !Utils.IsActive(SystemTypes.LifeSupp) && !Utils.IsActive(SystemTypes.Reactor),
             CustomRoles.Sniper => Sniper.CanUseKillButton(pc),
             CustomRoles.Sheriff => Sheriff.CanUseKillButton(pc.PlayerId),
             CustomRoles.Pelican => pc.IsAlive(),
@@ -448,7 +444,11 @@ static class ExtendedPlayerControl
             CustomRoles.Crewpostor => false,
             CustomRoles.Totocalcio => Totocalcio.CanUseKillButton(pc),
             CustomRoles.Succubus => Succubus.CanUseKillButton(pc),
-            CustomRoles.NVampire => NVampire.CanUseKillButton(pc),
+            CustomRoles.Warlock => !Main.isCurseAndKill.TryGetValue(pc.PlayerId, out bool wcs) || !wcs,
+            CustomRoles.Infectious => Infectious.CanUseKillButton(pc),
+            CustomRoles.Monarch => Monarch.CanUseKillButton(pc),
+            CustomRoles.Virus => pc.IsAlive(),
+            CustomRoles.Farseer => pc.IsAlive(),
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
     }
@@ -461,7 +461,7 @@ static class ExtendedPlayerControl
             CustomRoles.Minimalism or
             CustomRoles.Sheriff or
             CustomRoles.Innocent or
-            CustomRoles.SwordsMan or
+        //    CustomRoles.SwordsMan or
             CustomRoles.FFF or
             CustomRoles.Medicaler or
             CustomRoles.NWitch or
@@ -480,7 +480,9 @@ static class ExtendedPlayerControl
             CustomRoles.Gamer => Gamer.CanVent.GetBool(),
             CustomRoles.BloodKnight => BloodKnight.CanVent.GetBool(),
             CustomRoles.Juggernaut => Juggernaut.CanVent.GetBool(),
-            CustomRoles.NVampire => NVampire.CanVent.GetBool(),
+            CustomRoles.Infectious => Infectious.CanVent.GetBool(),
+            CustomRoles.Virus => Virus.CanVent.GetBool(),
+            CustomRoles.SwordsMan => SwordsMan.CanVent.GetBool(),
             CustomRoles.HexMaster => true,
             CustomRoles.Wraith => true,
             CustomRoles.Parasite => true,
@@ -506,6 +508,12 @@ static class ExtendedPlayerControl
         Main.isDraw.TryGetValue((arsonist.PlayerId, target.PlayerId), out bool isDraw);
         return isDraw;
     }
+    public static bool IsRevealedPlayer(this PlayerControl player, PlayerControl target)
+    {
+        if (player == null || target == null || Main.isRevealed == null) return false;
+        Main.isRevealed.TryGetValue((player.PlayerId, target.PlayerId), out bool isDoused);
+        return isDoused;
+    }
     public static void RpcSetDousedPlayer(this PlayerControl player, PlayerControl target, bool isDoused)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetDousedPlayer, SendOption.Reliable, -1);//RPCによる同期
@@ -517,6 +525,14 @@ static class ExtendedPlayerControl
     public static void RpcSetDrawPlayer(this PlayerControl player, PlayerControl target, bool isDoused)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetDrawPlayer, SendOption.Reliable, -1);//RPCによる同期
+        writer.Write(player.PlayerId);
+        writer.Write(target.PlayerId);
+        writer.Write(isDoused);
+        AmongUsClient.Instance.FinishRpcImmediately(writer);
+    }
+    public static void RpcSetRevealtPlayer(this PlayerControl player, PlayerControl target, bool isDoused)
+    {
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetRevealedPlayer, SendOption.Reliable, -1);//RPCによる同期
         writer.Write(player.PlayerId);
         writer.Write(target.PlayerId);
         writer.Write(isDoused);
@@ -633,9 +649,6 @@ static class ExtendedPlayerControl
             case CustomRoles.BloodKnight:
                 BloodKnight.SetKillCooldown(player.PlayerId);
                 break;
-            case CustomRoles.Crewpostor:
-                Main.AllPlayerKillCooldown[player.PlayerId] = 300f;
-                break;
             case CustomRoles.Totocalcio:
                 Totocalcio.SetKillCooldown(player.PlayerId);
                 break;
@@ -645,8 +658,17 @@ static class ExtendedPlayerControl
             case CustomRoles.Succubus:
                 Succubus.SetKillCooldown(player.PlayerId);
                 break;
-            case CustomRoles.NVampire:
-                NVampire.SetKillCooldown(player.PlayerId);
+            case CustomRoles.Infectious:
+                Infectious.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Monarch:
+                Monarch.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Virus:
+                Virus.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Farseer:
+                Farseer.SetCooldown(player.PlayerId);
                 break;
         }
         if (player.PlayerId == LastImpostor.currentId)
@@ -746,6 +768,7 @@ static class ExtendedPlayerControl
         return rangePlayers;
     }
     public static bool IsNeutralKiller(this PlayerControl player) => player.GetCustomRole().IsNK();
+    public static bool IsNonNeutralKiller(this PlayerControl player) => player.GetCustomRole().IsNonNK();
     public static bool KnowDeathReason(this PlayerControl seer, PlayerControl target)
         => (seer.Is(CustomRoles.Doctor)
         || (seer.Data.IsDead && Options.GhostCanSeeDeathReason.GetBool()))

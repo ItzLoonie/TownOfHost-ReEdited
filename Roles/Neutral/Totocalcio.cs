@@ -2,6 +2,7 @@ using Hazel;
 using Il2CppSystem;
 using System.Collections.Generic;
 using System.Linq;
+using TOHE.Modules;
 using UnityEngine;
 using static TOHE.Options;
 using static TOHE.Translator;
@@ -104,11 +105,12 @@ public static class Totocalcio
         SendRPC(killer.PlayerId);
 
         killer.ResetKillCooldown();
-        killer.SetKillCooldown();
+        killer.SetKillCooldownV2();
+        killer.RPCPlayCustomSound("Bet");
 
-        killer.Notify(Translator.GetString("TotocalcioBetPlayer"));
+        killer.Notify(GetString("TotocalcioBetPlayer"));
         if (BetTargetKnowTotocalcio.GetBool())
-            target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Totocalcio), Translator.GetString("TotocalcioBetOnYou")));
+            target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Totocalcio), GetString("TotocalcioBetOnYou")));
 
         Logger.Info($"赌徒下注：{killer.GetNameWithRole()} => {target.GetNameWithRole()}", "Totocalcio");
         return false;

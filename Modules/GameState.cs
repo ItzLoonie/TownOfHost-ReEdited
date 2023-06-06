@@ -76,7 +76,8 @@ public class PlayerState
             };
             SubRoles.Remove(CustomRoles.Charmed);
             SubRoles.Remove(CustomRoles.Sidekick);
-            SubRoles.Remove(CustomRoles.Bitten);
+            SubRoles.Remove(CustomRoles.Infected);
+            SubRoles.Remove(CustomRoles.Contagious);
         }
         if (role == CustomRoles.Charmed)
         {
@@ -89,7 +90,8 @@ public class PlayerState
             };
             SubRoles.Remove(CustomRoles.Madmate);
             SubRoles.Remove(CustomRoles.Sidekick);
-            SubRoles.Remove(CustomRoles.Bitten);
+            SubRoles.Remove(CustomRoles.Infected);
+            SubRoles.Remove(CustomRoles.Contagious);
         }
         if (role == CustomRoles.Sidekick)
         {
@@ -102,16 +104,25 @@ public class PlayerState
             };
             SubRoles.Remove(CustomRoles.Madmate);
             SubRoles.Remove(CustomRoles.Charmed);
-            SubRoles.Remove(CustomRoles.Bitten);
+            SubRoles.Remove(CustomRoles.Infected);
+            SubRoles.Remove(CustomRoles.Contagious);
         }
-        if (role == CustomRoles.Bitten)
+        if (role == CustomRoles.Infected)
         {
-            countTypes = CountTypes.NVampire;
+            countTypes = CountTypes.Infectious;
             SubRoles.Remove(CustomRoles.Madmate);
             SubRoles.Remove(CustomRoles.Sidekick);
             SubRoles.Remove(CustomRoles.Charmed);
+            SubRoles.Remove(CustomRoles.Contagious);
         }
-
+        if (role == CustomRoles.Contagious)
+        {
+            countTypes = CountTypes.Virus;
+            SubRoles.Remove(CustomRoles.Madmate);
+            SubRoles.Remove(CustomRoles.Sidekick);
+            SubRoles.Remove(CustomRoles.Charmed);
+            SubRoles.Remove(CustomRoles.Infected);
+        }
     }
     public void RemoveSubRole(CustomRoles role)
     {
@@ -167,6 +178,7 @@ public class PlayerState
         Dismembered,
         LossOfHead,
         Trialed,
+        Infected,
 
         etc = -1
     }
@@ -274,7 +286,7 @@ public class TaskState
                 Logger.Info("传送师触发传送:" + player.GetNameWithRole(), "Transporter");
                 var rd = IRandom.Instance;
                 List<PlayerControl> AllAlivePlayer = new();
-                foreach (var pc in Main.AllAlivePlayerControls.Where(x => !Pelican.IsEaten(x.PlayerId) && !x.inVent)) AllAlivePlayer.Add(pc);
+                foreach (var pc in Main.AllAlivePlayerControls.Where(x => !Pelican.IsEaten(x.PlayerId) && !x.inVent && !x.onLadder)) AllAlivePlayer.Add(pc);
                 if (AllAlivePlayer.Count >= 2)
                 {
                     var tar1 = AllAlivePlayer[rd.Next(0, AllAlivePlayer.Count)];
@@ -287,6 +299,10 @@ public class TaskState
                     tar2.RPCPlayCustomSound("Teleport");
                     tar1.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Transporter), string.Format(Translator.GetString("TeleportedByTransporter"), tar2.GetRealName())));
                     tar2.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Transporter), string.Format(Translator.GetString("TeleportedByTransporter"), tar1.GetRealName())));
+                }
+                else if (player.Is(CustomRoles.Transporter))
+                {
+                    player.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Impostor), string.Format(Translator.GetString("ErrorTeleport"), player.GetRealName())));
                 }
             }
 
@@ -329,7 +345,7 @@ public class TaskState
                     player.RpcGuardAndKill();
                     Logger.Info($"船鬼完成任务击杀：{player.GetNameWithRole()} => {target.GetNameWithRole()}", "Crewpostor");
                 }
-            }
+            } 
 
         }
 

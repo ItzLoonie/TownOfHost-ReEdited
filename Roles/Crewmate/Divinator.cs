@@ -76,7 +76,9 @@ public static class Divinator
                 CustomRoles.Counterfeiter or
                 CustomRoles.God or
                 CustomRoles.Judge or
-                CustomRoles.Observer
+                CustomRoles.Observer or
+                CustomRoles.DovesOfNeace or
+                CustomRoles.Virus
                 => "HideMsg",
 
                 CustomRoles.Miner or
@@ -92,7 +94,8 @@ public static class Divinator
             //    CustomRoles.Sidekick or
                 CustomRoles.Mario or
                 CustomRoles.Cleaner or
-                CustomRoles.Crewpostor
+                CustomRoles.Crewpostor or
+                CustomRoles.Disperser
                 => "Honest",
 
                 CustomRoles.SerialKiller or
@@ -129,7 +132,8 @@ public static class Divinator
                 CustomRoles.Terrorist or
                 CustomRoles.Revolutionist or
                 CustomRoles.Gamer or
-                CustomRoles.Eraser
+                CustomRoles.Eraser or
+                CustomRoles.Farseer
                 => "Blockbuster",
 
                 CustomRoles.Warlock or
@@ -189,7 +193,7 @@ public static class Divinator
                 => "Disturbed",
 
                 CustomRoles.Glitch or
-                CustomRoles.Concealer or
+                CustomRoles.Camouflager or
                 CustomRoles.Wraith or
                 CustomRoles.Swooper
                 => "Glitch",

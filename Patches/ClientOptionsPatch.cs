@@ -9,9 +9,12 @@ public static class OptionsMenuBehaviourStartPatch
 {
     private static ClientOptionItem UnlockFPS;
     private static ClientOptionItem AutoStart;
-    private static ClientOptionItem SwitchVanilla;
     private static ClientOptionItem ForceOwnLanguage;
     private static ClientOptionItem ForceOwnLanguageRoleName;
+    private static ClientOptionItem EnableCustomButton;
+    private static ClientOptionItem EnableCustomSoundEffect;
+    private static ClientOptionItem SwitchVanilla;
+    private static ClientOptionItem FastBoot;
     //private static ClientOptionItem VersionCheat;
     //private static ClientOptionItem GodMode;
 
@@ -48,6 +51,22 @@ public static class OptionsMenuBehaviourStartPatch
                 }
             }
         }
+        if (ForceOwnLanguage == null || ForceOwnLanguage.ToggleButton == null)
+        {
+            ForceOwnLanguage = ClientOptionItem.Create("ForceOwnLanguage", Main.ForceOwnLanguage, __instance);
+        }
+        if (ForceOwnLanguageRoleName == null || ForceOwnLanguageRoleName.ToggleButton == null)
+        {
+            ForceOwnLanguageRoleName = ClientOptionItem.Create("ForceOwnLanguageRoleName", Main.ForceOwnLanguageRoleName, __instance);
+        }
+        if (EnableCustomButton == null || EnableCustomButton.ToggleButton == null)
+        {
+            EnableCustomButton = ClientOptionItem.Create("EnableCustomButton", Main.EnableCustomButton, __instance);
+        }
+        if (EnableCustomSoundEffect == null || EnableCustomSoundEffect.ToggleButton == null)
+        {
+            EnableCustomSoundEffect = ClientOptionItem.Create("EnableCustomSoundEffect", Main.EnableCustomSoundEffect, __instance);
+        }
         if (SwitchVanilla == null || SwitchVanilla.ToggleButton == null)
         {
             SwitchVanilla = ClientOptionItem.Create("SwitchVanilla", Main.SwitchVanilla, __instance, SwitchVanillaButtonToggle);
@@ -57,22 +76,18 @@ public static class OptionsMenuBehaviourStartPatch
                 Main.Instance.Unload();
             }
         }
-        if (ForceOwnLanguage == null || ForceOwnLanguage.ToggleButton == null)
+        if (FastBoot == null || FastBoot.ToggleButton == null)
         {
-            ForceOwnLanguage = ClientOptionItem.Create("ForceOwnLanguage", Main.ForceOwnLanguage, __instance);
+            FastBoot = ClientOptionItem.Create("FastBoot", Main.FastBoot, __instance);
         }
-        if (ForceOwnLanguageRoleName == null || ForceOwnLanguageRoleName.ToggleButton == null)
-        {
-            ForceOwnLanguageRoleName = ClientOptionItem.Create("ForceOwnLanguageRoleName", Main.ForceOwnLanguageRoleName, __instance);
-        }
-/*        if ((VersionCheat == null || VersionCheat.ToggleButton == null) && DebugModeManager.AmDebugger)
-        {
-            VersionCheat = ClientOptionItem.Create("VersionCheat", Main.VersionCheat, __instance);
-        }
-        if ((GodMode == null || GodMode.ToggleButton == null) && DebugModeManager.AmDebugger)
-        {
-            GodMode = ClientOptionItem.Create("GodMode", Main.GodMode, __instance);
-        } */
+        /*        if ((VersionCheat == null || VersionCheat.ToggleButton == null) && DebugModeManager.AmDebugger)
+                {
+                    VersionCheat = ClientOptionItem.Create("VersionCheat", Main.VersionCheat, __instance);
+                }
+                if ((GodMode == null || GodMode.ToggleButton == null) && DebugModeManager.AmDebugger)
+                {
+                    GodMode = ClientOptionItem.Create("GodMode", Main.GodMode, __instance);
+                } */
     }
 }
 

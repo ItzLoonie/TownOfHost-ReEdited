@@ -221,10 +221,15 @@ public static class Utils
 
         //実行
         Main.PlayerStates[player.PlayerId].IsBlackOut = true; //ブラックアウト
-        if (player.PlayerId == 0)
+        if (player.AmOwner)
         {
-            FlashColor(new(1f, 0f, 0f, 0.5f));
+            FlashColor(new(1f, 0f, 0f, 0.3f));
             if (Constants.ShouldPlaySfx()) RPC.PlaySound(player.PlayerId, Sounds.KillSound);
+        }
+        else if (player.IsModClient())
+        {
+            MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.KillFlash, SendOption.Reliable, player.GetClientId());
+            AmongUsClient.Instance.FinishRpcImmediately(writer);
         }
         else if (!ReactorCheck) player.ReactorFlash(0f); //リアクターフラッシュ
         player.MarkDirtySettings();
@@ -306,12 +311,12 @@ public static class Utils
             {
                 if (Options.ImpEgoistVisibalToAllies.GetBool())
                 {
-            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers and not CustomRoles.Bitten))
+            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers and not CustomRoles.Infected and not CustomRoles.Contagious))
                 RoleText = ColorString(GetRoleColor(subRole), GetString("PrefixB." + subRole.ToString())) + RoleText;
                 }
                 if (!Options.ImpEgoistVisibalToAllies.GetBool())
                 {
-            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers and not CustomRoles.Bitten))
+            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers and not CustomRoles.Infected and not CustomRoles.Contagious))
                 RoleText = ColorString(GetRoleColor(subRole), GetString("PrefixB." + subRole.ToString())) + RoleText;
                 }
             }
@@ -319,12 +324,12 @@ public static class Utils
             {
                 if (Options.ImpEgoistVisibalToAllies.GetBool())
                 {
-            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers and not CustomRoles.Bitten))
+            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers and not CustomRoles.Infected and not CustomRoles.Contagious))
                 RoleText = ColorString(GetRoleColor(subRole), GetString("Prefix." + subRole.ToString())) + RoleText;
                 }
                     if (!Options.ImpEgoistVisibalToAllies.GetBool())
                 {
-            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers and not CustomRoles.Bitten))
+            foreach (var subRole in targetSubRoles.Where(x => x is not CustomRoles.LastImpostor and not CustomRoles.Madmate and not CustomRoles.Charmed and not CustomRoles.Lovers and not CustomRoles.Infected and not CustomRoles.Contagious))
                 RoleText = ColorString(GetRoleColor(subRole), GetString("Prefix." + subRole.ToString())) + RoleText;
                 }
             }
@@ -340,12 +345,16 @@ public static class Utils
             RoleColor = GetRoleColor(CustomRoles.Charmed);
             RoleText = GetRoleString("Charmed-") + RoleText;
         }
-        if (targetSubRoles.Contains(CustomRoles.Bitten) && (self || pure || seerMainRole == CustomRoles.NVampire || (NVampire.TargetKnowOtherTarget.GetBool() && seerSubRoles.Contains(CustomRoles.Bitten))))
+        if (targetSubRoles.Contains(CustomRoles.Infected) && (self || pure || seerMainRole == CustomRoles.Infectious || (Infectious.TargetKnowOtherTarget.GetBool() && seerSubRoles.Contains(CustomRoles.Infected))))
         {
-            RoleColor = GetRoleColor(CustomRoles.Bitten);
-            RoleText = GetRoleString("Bitten-") + RoleText;
+            RoleColor = GetRoleColor(CustomRoles.Infected);
+            RoleText = GetRoleString("Infected-") + RoleText;
         }
-        
+        if (targetSubRoles.Contains(CustomRoles.Contagious) && (self || pure || seerMainRole == CustomRoles.Virus || (Virus.TargetKnowOtherTarget.GetBool() && seerSubRoles.Contains(CustomRoles.Contagious))))
+        {
+            RoleColor = GetRoleColor(CustomRoles.Contagious);
+            RoleText = GetRoleString("Contagious-") + RoleText;
+        }
 
         return (RoleText, RoleColor);
     }
@@ -413,10 +422,13 @@ public static class Utils
             case CustomRoles.Provocateur:
             case CustomRoles.Medicaler:
             case CustomRoles.BloodKnight:
-            case CustomRoles.Concealer:
+            case CustomRoles.Camouflager:
             case CustomRoles.Totocalcio:
             case CustomRoles.Succubus:
-            case CustomRoles.NVampire:
+            case CustomRoles.Infectious:
+            case CustomRoles.Monarch:
+            case CustomRoles.Virus:
+            case CustomRoles.Farseer:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:
@@ -449,31 +461,14 @@ public static class Utils
                 case CustomRoles.Lovers:
                 case CustomRoles.Sidekick:
                 case CustomRoles.Egoist:
-                case CustomRoles.Bitten:
+                case CustomRoles.Infected:
+                case CustomRoles.Contagious:
                     //ラバーズはタスクを勝利用にカウントしない
                     hasTasks &= !ForRecompute;
                     break;
             }
 
         return hasTasks;
-    }
-    public static void DispersePlayers()
-    {
-        var rd = new System.Random();
-        var vents = UnityEngine.Object.FindObjectsOfType<Vent>();
-
-        new LateTask(() =>
-        {
-            foreach (var pc in PlayerControl.AllPlayerControls)
-            {
-                if (pc == null || pc.Data.IsDead || pc.inVent)
-                    continue;
-                pc.RPCPlayCustomSound("Teleport");
-                var vent = vents[rd.Next(0, vents.Count)];
-                TP(pc.NetTransform, new Vector2(vent.transform.position.x, vent.transform.position.y));
-                pc.Notify(ColorString(GetRoleColor(CustomRoles.Disperser), string.Format(GetString("TeleportedInRndVentByDisperser"), pc.GetRealName())));
-            }
-        }, 1.5f, "Disperser Disperse Players");
     }
     public static bool CanBeMadmate(this PlayerControl pc)
     {
@@ -498,8 +493,8 @@ public static class Utils
         if (taskState.hasTasks)
         {
             if (IsActive(SystemTypes.Comms)) Comms = true;
-            if (Concealer.IsHidding) Comms = true;
-           // if (PlayerControl.LocalPlayer.myTasks.ToArray().Any(x => x.TaskType == TaskTypes.FixComms)) Comms = true;
+            if (Camouflager.IsActive) Comms = true;
+            //if (PlayerControl.LocalPlayer.myTasks.ToArray().Any(x => x.TaskType == TaskTypes.FixComms)) Comms = true;
         }
         return GetProgressText(pc.PlayerId, Comms);
     }
@@ -573,8 +568,14 @@ public static class Utils
             case CustomRoles.Succubus:
                 ProgressText.Append(Succubus.GetCharmLimit());
                 break;
-            case CustomRoles.NVampire:
-                ProgressText.Append(NVampire.GetBiteLimit());
+            case CustomRoles.Infectious:
+                ProgressText.Append(Infectious.GetBiteLimit());
+                break;
+            case CustomRoles.Monarch:
+                ProgressText.Append(Monarch.GetKnightLimit());
+                break;
+            case CustomRoles.Virus:
+                ProgressText.Append(Virus.GetInfectLimit());
                 break;
             default:
                 //タスクテキスト
@@ -737,14 +738,14 @@ public static class Utils
         foreach (CustomRoles role in Enum.GetValues(typeof(CustomRoles)))
         {
             headCount++;
-            if (role.IsImpostor() && headCount == 0) continue;
-            else if (role.IsCrewmate() && headCount == 1) sb.Append("\n\n● " + GetString("TabGroup.ImpCrewRoles"));
+            if (role.IsImpostor() && headCount == 0) sb.Append("\n\n● " + GetString("TabGroup.ImpostorRoles"));
+            else if (role.IsCrewmate() && headCount == 1) sb.Append("\n\n● " + GetString("TabGroup.CrewmateRoles"));
             else if (role.IsNeutral() && headCount == 2) sb.Append("\n\n● " + GetString("TabGroup.NeutralRoles"));
             else if (role.IsAdditionRole() && headCount == 3) sb.Append("\n\n● " + GetString("TabGroup.Addons"));
             else headCount--;
 
             string mode = role.GetMode() == 1 ? GetString("RoleRateNoColor") : GetString("RoleOnNoColor");
-            if (role.IsEnable()) sb.AppendFormat("\n{0}: {1} x{2}", GetRoleName(role), $"{mode}", role.GetCount());
+            if (role.IsEnable()) sb.AppendFormat("\n{0}:{1} x{2}", GetRoleName(role), $"{mode}", role.GetCount());
         }
         SendMessage(sb.ToString(), PlayerId);
     }
@@ -839,7 +840,7 @@ public static class Utils
         {
             if (role is CustomRoles.NotAssigned or
                         CustomRoles.LastImpostor) continue;
-            if (summary && role is CustomRoles.Madmate or CustomRoles.Charmed or CustomRoles.Bitten) continue;
+            if (summary && role is CustomRoles.Madmate or CustomRoles.Charmed or CustomRoles.Infected or CustomRoles.Contagious) continue;
 
             var RoleText = disableColor ? GetRoleName(role) : ColorString(GetRoleColor(role), GetRoleName(role));
             sb.Append($"{ColorString(Color.white, " + ")}{RoleText}");
@@ -1154,7 +1155,7 @@ public static class Utils
             }
             else SelfName = SelfRoleName + "\r\n" + SelfName;
             SelfName += SelfSuffix.ToString() == "" ? "" : "\r\n " + SelfSuffix.ToString();
-            if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Concealer.IsHidding) && !CamouflageIsForMeeting)
+            if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive) && !CamouflageIsForMeeting)
                 SelfName = SelfRoleName;
             if (!isForMeeting) SelfName += "\r\n";
 
@@ -1238,6 +1239,16 @@ public static class Utils
                         TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Revolutionist)}>○</color>");
                     }
                 }
+                if (seer.Is(CustomRoles.Farseer))//seerがアーソニストの時
+                {
+                    if (
+                        Main.FarseerTimer.TryGetValue(seer.PlayerId, out var ar_kvp) && //seerがオイルを塗っている途中(現在進行)
+                        ar_kvp.Item1 == target //オイルを塗っている対象がtarget
+                    )
+                    {
+                        TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Farseer)}>○</color>");
+                    }
+                }
                 if (seer.Is(CustomRoles.Puppeteer) &&
                 Main.PuppeteerList.ContainsValue(seer.PlayerId) &&
                 Main.PuppeteerList.ContainsKey(target.PlayerId))
@@ -1254,6 +1265,8 @@ public static class Utils
                         (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoleTypes.Impostor) && Options.ImpKnowAlliesRole.GetBool()) ||
                         (seer.Is(CustomRoles.Madmate) && target.Is(CustomRoleTypes.Impostor) && Options.MadmateKnowWhosImp.GetBool()) ||
                         (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Madmate) && Options.ImpKnowWhosMadmate.GetBool()) ||
+                        (seer.Is(CustomRoles.Crewpostor) && target.Is(CustomRoleTypes.Impostor) && Options.CrewpostorKnowsAllies.GetBool()) ||
+                        (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Crewpostor) && Options.AlliesKnowCrewpostor.GetBool()) ||
                         (seer.Is(CustomRoles.Madmate) && target.Is(CustomRoles.Madmate) && Options.MadmateKnowWhosMadmate.GetBool()) ||
                         (seer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Sidekick) && Options.SidekickKnowOtherSidekick.GetBool() && Options.SidekickKnowOtherSidekickRole.GetBool()) ||
                         (seer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Sidekick)) ||
@@ -1261,7 +1274,9 @@ public static class Utils
                         (target.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) ||
                         (Totocalcio.KnowRole(seer, target)) ||
                         (Succubus.KnowRole(seer, target)) ||
-                        (NVampire.KnowRole(seer, target)) ||
+                        (Infectious.KnowRole(seer, target)) ||
+                        (Virus.KnowRole(seer, target)) ||
+                        (seer.IsRevealedPlayer(target)) ||
                         (seer.Is(CustomRoles.God)) ||
                         (target.Is(CustomRoles.GM))
                         ? $"<size={fontSize}>{target.GetDisplayRoleName(seer.PlayerId != target.PlayerId && !seer.Data.IsDead)}{GetProgressText(target)}</size>\r\n" : "";
@@ -1315,7 +1330,7 @@ public static class Utils
                         {
                             TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
                         }
-                        if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.PassiveNeutralsCanGuess.GetBool() && !seer.GetCustomRole().IsNK() && seer.GetCustomRole().IsNeutral())
+                        if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.PassiveNeutralsCanGuess.GetBool() && seer.GetCustomRole().IsNK() && seer.GetCustomRole().IsNeutral())
                         {
                             TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
                         }
@@ -1352,7 +1367,7 @@ public static class Utils
                 if (seer.KnowDeathReason(target))
                     TargetDeathReason = $"({ColorString(GetRoleColor(CustomRoles.Doctor), GetVitalText(target.PlayerId))})";
 
-                if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Concealer.IsHidding) && !CamouflageIsForMeeting)
+                if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive) && !CamouflageIsForMeeting)
                     TargetPlayerName = $"<size=0%>{TargetPlayerName}</size>";
 
                 //全てのテキストを合成します。
@@ -1438,7 +1453,7 @@ public static class Utils
 
         FixedUpdatePatch.LoversSuicide(target.PlayerId, onMeeting);
 
-        Jackal.AfterPlayerDiedTask();
+        Jackal.AfterPlayerDiedTask(target);
 
     }
     public static void ChangeInt(ref int ChangeTo, int input, int max)
@@ -1495,9 +1510,11 @@ public static class Utils
         if (!Directory.Exists(f)) Directory.CreateDirectory(f);
         FileInfo file = new(@$"{Environment.CurrentDirectory}/BepInEx/LogOutput.log");
         file.CopyTo(@filename);
-        System.Diagnostics.Process.Start(@f);
         if (PlayerControl.LocalPlayer != null)
             HudManager.Instance?.Chat?.AddChat(PlayerControl.LocalPlayer, string.Format(GetString("Message.DumpfileSaved"), $"TOHE - v{Main.PluginVersion}-{t}.log"));
+        System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo("Explorer.exe")
+        { Arguments = "/e,/select," + @filename.Replace("/", "\\") };
+        System.Diagnostics.Process.Start(psi);
     }
     public static (int, int) GetDousedPlayerCount(byte playerId)
     {
@@ -1573,33 +1590,49 @@ public static class Utils
         var obj = hud.transform.FindChild("FlashColor_FullScreen")?.gameObject;
         if (obj == null)
         {
-            obj = GameObject.Instantiate(hud.FullScreen.gameObject, hud.transform);
+            obj = UnityEngine.Object.Instantiate(hud.FullScreen.gameObject, hud.transform);
             obj.name = "FlashColor_FullScreen";
         }
         hud.StartCoroutine(Effects.Lerp(duration, new Action<float>((t) =>
         {
             obj.SetActive(t != 1f);
-            obj.GetComponent<SpriteRenderer>().color = new(color.r, color.g, color.b, Mathf.Clamp01((-2f * Mathf.Abs(t - 0.5f) + 1) * color.a)); //アルファ値を0→目標→0に変化させる
+            obj.GetComponent<SpriteRenderer>().color = new(color.r, color.g, color.b, Mathf.Clamp01((-2f * Mathf.Abs(t - 0.5f) + 1) * color.a / 2)); //アルファ値を0→目標→0に変化させる
         })));
     }
 
+    public static Dictionary<string, Sprite> CachedSprites = new();
     public static Sprite LoadSprite(string path, float pixelsPerUnit = 1f)
     {
-        Sprite sprite = null;
+        try
+        {
+            if (CachedSprites.TryGetValue(path + pixelsPerUnit, out var sprite)) return sprite;
+            Texture2D texture = LoadTextureFromResources(path);
+            sprite = Sprite.Create(texture, new(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), pixelsPerUnit);
+            sprite.hideFlags |= HideFlags.HideAndDontSave | HideFlags.DontSaveInEditor;
+            return CachedSprites[path + pixelsPerUnit] = sprite;
+        }
+        catch
+        {
+            Logger.Error($"读入Texture失败：{path}", "LoadImage");
+        }
+        return null;
+    }
+    public static Texture2D LoadTextureFromResources(string path)
+    {
         try
         {
             var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path);
             var texture = new Texture2D(1, 1, TextureFormat.ARGB32, false);
             using MemoryStream ms = new();
             stream.CopyTo(ms);
-            ImageConversion.LoadImage(texture, ms.ToArray());
-            sprite = Sprite.Create(texture, new(0, 0, texture.width, texture.height), new(0.5f, 0.5f), pixelsPerUnit);
+            ImageConversion.LoadImage(texture, ms.ToArray(), false);
+            return texture;
         }
         catch
         {
-            Logger.Error($"\"{path}\"の読み込みに失敗しました。", "LoadImage");
+            Logger.Error($"读入Texture失败：{path}", "LoadImage");
         }
-        return sprite;
+        return null;
     }
     public static string ColorString(Color32 color, string str) => $"<color=#{color.r:x2}{color.g:x2}{color.b:x2}{color.a:x2}>{str}</color>";
     /// <summary>
