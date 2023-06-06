@@ -88,6 +88,7 @@ enum CustomRPC
     SetVirusInfectLimit,
     SetRevealedPlayer,
     SetCurrentRevealTarget,
+    SyncPuppeteerList,
 
     //SoloKombat
     SyncKBPlayer,
@@ -468,6 +469,12 @@ internal class RPCHandlerPatch
             case CustomRPC.KillFlash:
                 Utils.FlashColor(new(1f, 0f, 0f, 0.3f));
                 if (Constants.ShouldPlaySfx()) RPC.PlaySound(PlayerControl.LocalPlayer.PlayerId, Sounds.KillSound);
+                break;
+            case CustomRPC.SyncPuppeteerList:
+                int pcount = reader.ReadInt32();
+                Main.PuppeteerList = new();
+                for (int i = 0; i < pcount; i++)
+                    Main.PuppeteerList.Add(reader.ReadByte(), reader.ReadByte());
                 break;
         }
     }
@@ -891,6 +898,13 @@ internal static class RPC
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetCursedWolfSpellCount, SendOption.Reliable, -1);
         writer.Write(playerId);
         writer.Write(Main.CursedWolfSpellCount[playerId]);
+        AmongUsClient.Instance.FinishRpcImmediately(writer);
+    }
+    public static void RpcSyncPuppeteerList()
+    {
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SyncPuppeteerList, SendOption.Reliable, -1);
+        writer.Write(Main.PuppeteerList.Count);
+        Main.PuppeteerList.Do(p => { writer.Write(p.Key); writer.Write(p.Value); });
         AmongUsClient.Instance.FinishRpcImmediately(writer);
     }
     public static void ResetCurrentDousingTarget(byte arsonistId) => SetCurrentDousingTarget(arsonistId, 255);
