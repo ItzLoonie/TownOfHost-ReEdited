@@ -8,6 +8,7 @@ using Hazel;
 using UnityEngine;
 using static TOHE.Options;
 using static TOHE.Translator;
+using static UnityEngine.GraphicsBuffer;
 
 namespace TOHE.Roles.Neutral
 {
@@ -21,6 +22,7 @@ namespace TOHE.Roles.Neutral
         private static OptionItem KillCooldown;
         private static OptionItem InfectMax;
         public static OptionItem CanVent;
+        public static OptionItem ImpostorVision;
         public static OptionItem KnowTargetRole;
         public static OptionItem TargetKnowOtherTarget;
         public static OptionItem KillInfectedPlayerAfterMeeting;
@@ -31,6 +33,7 @@ namespace TOHE.Roles.Neutral
             KillCooldown = FloatOptionItem.Create(Id + 10, "VirusKillCooldown", new(0f, 990f, 2.5f), 30f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus])
                 .SetValueFormat(OptionFormat.Seconds);
             CanVent = BooleanOptionItem.Create(Id + 11, "VirusCanVent", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus]);
+            ImpostorVision = BooleanOptionItem.Create(Id + 16, "ImpostorVision", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus]);
             InfectMax = IntegerOptionItem.Create(Id + 12, "VirusInfectMax", new(1, 15, 1), 2, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus])
                 .SetValueFormat(OptionFormat.Times);
             KnowTargetRole = BooleanOptionItem.Create(Id + 13, "VirusKnowTargetRole", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus]);
@@ -84,10 +87,7 @@ namespace TOHE.Roles.Neutral
 
         public static void OnKilledBodyReport(PlayerControl target)
         {
-            if (!CanBeInfected(target))
-            {
-                return;
-            }
+            if (!CanBeInfected(target)) return;
 
             InfectLimit--;
             SendRPC();
@@ -101,7 +101,6 @@ namespace TOHE.Roles.Neutral
             else
             {
                 target.RpcSetCustomRole(CustomRoles.Contagious);
-                target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Virus), GetString("InfectedByVirus")));
 
                 Utils.NotifyRoles();
 
@@ -113,21 +112,18 @@ namespace TOHE.Roles.Neutral
 
         public static void OnCheckForEndVoting(PlayerState.DeathReason deathReason, params byte[] exileIds)
         {
-            if (!KillInfectedPlayerAfterMeeting.GetBool())
-            {
-                return;
-            }
+            if (!KillInfectedPlayerAfterMeeting.GetBool()) return;
 
             PlayerControl virus =
                 Main.AllAlivePlayerControls.FirstOrDefault(a => a.GetCustomRole() == CustomRoles.Virus);
             if (virus == null || deathReason != PlayerState.DeathReason.Vote) return;
 
-            foreach (var id in exileIds)
+            if (exileIds.Contains(virus.PlayerId)) 
             {
-                if (InfectedPlayer.Contains(id))
-                    InfectedPlayer.Remove(id);
-            }
-            
+                InfectedPlayer.Clear();
+                return;
+            } 
+
             var infectedIdList = new List<byte>();
             foreach (var pc in Main.AllAlivePlayerControls)
             {
@@ -169,7 +165,7 @@ namespace TOHE.Roles.Neutral
 
         public static bool CanBeInfected(this PlayerControl pc)
         {
-            return true;
+            return true && !pc.Is(CustomRoles.Virus) && !pc.Is(CustomRoles.Contagious);
         }
     }
 }

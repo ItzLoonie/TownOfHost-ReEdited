@@ -135,6 +135,6 @@ public static class Poisoner
     }
     public static void SetKillButtonText()
     {
-        HudManager.Instance.KillButton.OverrideText($"{GetString("PoisonerPoisonButtonText")}");
+        HudManager.Instance.KillButton.OverrideText(GetString("PoisonerPoisonButtonText"));
     }
 }

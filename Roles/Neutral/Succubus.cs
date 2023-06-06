@@ -17,7 +17,6 @@ public static class Succubus
     public static OptionItem KnowTargetRole;
     public static OptionItem TargetKnowOtherTarget;
     public static OptionItem CharmedCountMode;
-    public static OptionItem CanCharmNeutral;
 
     public static readonly string[] charmedCountMode =
     {
@@ -30,17 +29,16 @@ public static class Succubus
 
     public static void SetupCustomOption()
     {
-        SetupSingleRoleOptions(Id, TabGroup.OtherRoles, CustomRoles.Succubus, 1, zeroOne: false);
-        CharmCooldown = FloatOptionItem.Create(Id + 10, "SuccubusCharmCooldown", new(0f, 990f, 2.5f), 30f, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Succubus])
+        SetupSingleRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.Succubus, 1, zeroOne: false);
+        CharmCooldown = FloatOptionItem.Create(Id + 10, "SuccubusCharmCooldown", new(0f, 990f, 2.5f), 30f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Succubus])
             .SetValueFormat(OptionFormat.Seconds);
-        CharmCooldownIncrese = FloatOptionItem.Create(Id + 11, "SuccubusCharmCooldownIncrese", new(0f, 180f, 2.5f), 10f, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Succubus])
+        CharmCooldownIncrese = FloatOptionItem.Create(Id + 11, "SuccubusCharmCooldownIncrese", new(0f, 180f, 2.5f), 10f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Succubus])
             .SetValueFormat(OptionFormat.Seconds);
-        CharmMax = IntegerOptionItem.Create(Id + 12, "SuccubusCharmMax", new(1, 15, 1), 15, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Succubus])
+        CharmMax = IntegerOptionItem.Create(Id + 12, "SuccubusCharmMax", new(1, 15, 1), 15, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Succubus])
             .SetValueFormat(OptionFormat.Times);
         KnowTargetRole = BooleanOptionItem.Create(Id + 13, "SuccubusKnowTargetRole", true, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Succubus]);
         TargetKnowOtherTarget = BooleanOptionItem.Create(Id + 14, "SuccubusTargetKnowOtherTarget", true, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Succubus]);
         CharmedCountMode = StringOptionItem.Create(Id + 15, "CharmedCountMode", charmedCountMode, 0, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Succubus]);
-        CanCharmNeutral = BooleanOptionItem.Create(Id + 16, "SuccubusCanCharmNeutral", false, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Succubus]);
     }
     public static void Init()
     {
@@ -107,20 +105,6 @@ public static class Succubus
     public static string GetCharmLimit() => Utils.ColorString(CharmLimit >= 1 ? Utils.GetRoleColor(CustomRoles.Succubus) : Color.gray, $"({CharmLimit})");
     public static bool CanBeCharmed(this PlayerControl pc)
     {
-        if (pc == null)
-        {
-            return false;
-        }
-
-        bool roleCheck = pc.GetCustomRole().IsCrewmate() || pc.GetCustomRole().IsImpostor();
-        if (CanCharmNeutral.GetBool())
-        {
-            roleCheck = roleCheck || pc.GetCustomRole().IsNeutral() || pc.GetCustomRole().IsNeutralKilling();
-        }
-
-        return roleCheck && !pc.Is(CustomRoles.Charmed)
-        && !(
-            false
-            );
+        return pc != null && (pc.GetCustomRole().IsCrewmate() || pc.GetCustomRole().IsImpostor()) && !pc.Is(CustomRoles.Charmed);
     }
 }

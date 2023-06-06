@@ -77,6 +77,7 @@ public static class Divinator
                 CustomRoles.God or
                 CustomRoles.Judge or
                 CustomRoles.Observer or
+                CustomRoles.DovesOfNeace or
                 CustomRoles.Virus
                 => "HideMsg",
 
@@ -131,7 +132,8 @@ public static class Divinator
                 CustomRoles.Terrorist or
                 CustomRoles.Revolutionist or
                 CustomRoles.Gamer or
-                CustomRoles.Eraser
+                CustomRoles.Eraser or
+                CustomRoles.Farseer
                 => "Blockbuster",
 
                 CustomRoles.Warlock or

@@ -47,7 +47,7 @@ public class GameStartManagerPatch
             cancelLabel.text = GetString("Cancel");
             cancelButton.transform.localScale = new(0.4f, 0.4f, 1f);
             cancelButton.color = Color.red;
-            cancelButton.transform.localPosition = new(0f, -0.52f, 0f); //new(0f, 0.1f, 0f);
+            cancelButton.transform.localPosition = new(0f, -0.36f, 0f); //new(0f, 0.1f, 0f);
             var buttonComponent = cancelButton.GetComponent<PassiveButton>();
             buttonComponent.OnClick = new();
             buttonComponent.OnClick.AddListener((Action)(() => __instance.ResetStartState()));
@@ -131,7 +131,7 @@ public class GameStartManagerPatch
                 if (!canStartGame)
                 {
                     __instance.StartButton.gameObject.SetActive(false);
-                    warningMessage = Utils.ColorString(Color.red, string.Format(GetString("Warning.MismatchedVersion"), String.Join(" ", mismatchedPlayerNameList), $"<color={Main.ModColor}>{Main.ModName}</color>"));
+                    warningMessage = Utils.ColorString(Color.red, string.Format(GetString("Warning.MismatchedVersion"), string.Join(" ", mismatchedPlayerNameList), $"<color={Main.ModColor}>{Main.ModName}</color>"));
                 }
                 cancelButton.gameObject.SetActive(__instance.startState == GameStartManager.StartingStates.Countdown);
             }
@@ -160,8 +160,6 @@ public class GameStartManagerPatch
             else
             {
                 __instance.GameStartText.transform.localPosition = __instance.StartButton.transform.localPosition;
-                if (!GameStates.IsCountDown)
-                    __instance.GameStartText.text = "";
             }
 
             // Lobby timer

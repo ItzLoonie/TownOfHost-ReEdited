@@ -101,7 +101,7 @@ internal class ChatCommands
                     subArgs = args.Length < 2 ? "" : args[1];
                     Utils.SendMessage(string.Format(GetString("Message.SetLevel"), subArgs), PlayerControl.LocalPlayer.PlayerId);
                     int.TryParse(subArgs, out int input);
-                    if (input is < 1 or > 100)
+                    if (input is < 1 or > 999)
                     {
                         Utils.SendMessage(GetString("Message.AllowLevelRange"), PlayerControl.LocalPlayer.PlayerId);
                         break;
@@ -329,11 +329,13 @@ internal class ChatCommands
                     Utils.SendMessage(msgText, PlayerControl.LocalPlayer.PlayerId);
                     break;
 
+                /*
                 case "/qq":
                     canceled = true;
                     if (Main.newLobby) Cloud.ShareLobby(true);
                     else Utils.SendMessage("很抱歉，每个房间车队姬只会发一次", PlayerControl.LocalPlayer.PlayerId);
                     break;
+                */
 
                 case "/changerole":
                     if (!DebugModeManager.AmDebugger) break;
@@ -526,6 +528,7 @@ internal class ChatCommands
             "嗜血騎士" or "血骑" or "骑士" or "bk" => GetString("BloodKnight"),
             "賭徒" => GetString("Totocalcio"),
             "分散机" => GetString("Disperser"),
+            "和平之鸽" or "和平之鴿" or "和平的鸽子" or "和平" => GetString("DovesOfNeace"),
             "持槍" or "持械" or "手长" => GetString("Reach"),
             _ => text,
         };

@@ -221,10 +221,15 @@ public static class Utils
 
         //実行
         Main.PlayerStates[player.PlayerId].IsBlackOut = true; //ブラックアウト
-        if (player.PlayerId == 0)
+        if (player.AmOwner)
         {
-            FlashColor(new(1f, 0f, 0f, 0.5f));
+            FlashColor(new(1f, 0f, 0f, 0.3f));
             if (Constants.ShouldPlaySfx()) RPC.PlaySound(player.PlayerId, Sounds.KillSound);
+        }
+        else if (player.IsModClient())
+        {
+            MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.KillFlash, SendOption.Reliable, player.GetClientId());
+            AmongUsClient.Instance.FinishRpcImmediately(writer);
         }
         else if (!ReactorCheck) player.ReactorFlash(0f); //リアクターフラッシュ
         player.MarkDirtySettings();
@@ -421,7 +426,9 @@ public static class Utils
             case CustomRoles.Totocalcio:
             case CustomRoles.Succubus:
             case CustomRoles.Infectious:
+            case CustomRoles.Monarch:
             case CustomRoles.Virus:
+            case CustomRoles.Farseer:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:
@@ -563,6 +570,9 @@ public static class Utils
                 break;
             case CustomRoles.Infectious:
                 ProgressText.Append(Infectious.GetBiteLimit());
+                break;
+            case CustomRoles.Monarch:
+                ProgressText.Append(Monarch.GetKnightLimit());
                 break;
             case CustomRoles.Virus:
                 ProgressText.Append(Virus.GetInfectLimit());
@@ -731,14 +741,14 @@ public static class Utils
         foreach (CustomRoles role in Enum.GetValues(typeof(CustomRoles)))
         {
             headCount++;
-            if (role.IsImpostor() && headCount == 0) continue;
-            else if (role.IsCrewmate() && headCount == 1) sb.Append("\n\n● " + GetString("TabGroup.ImpCrewRoles"));
+            if (role.IsImpostor() && headCount == 0) sb.Append("\n\n● " + GetString("TabGroup.ImpostorRoles"));
+            else if (role.IsCrewmate() && headCount == 1) sb.Append("\n\n● " + GetString("TabGroup.CrewmateRoles"));
             else if (role.IsNeutral() && headCount == 2) sb.Append("\n\n● " + GetString("TabGroup.NeutralRoles"));
             else if (role.IsAdditionRole() && headCount == 3) sb.Append("\n\n● " + GetString("TabGroup.Addons"));
             else headCount--;
 
             string mode = role.GetMode() == 1 ? GetString("RoleRateNoColor") : GetString("RoleOnNoColor");
-            if (role.IsEnable()) sb.AppendFormat("\n{0}: {1} x{2}", GetRoleName(role), $"{mode}", role.GetCount());
+            if (role.IsEnable()) sb.AppendFormat("\n{0}:{1} x{2}", GetRoleName(role), $"{mode}", role.GetCount());
         }
         SendMessage(sb.ToString(), PlayerId);
     }
@@ -1232,6 +1242,16 @@ public static class Utils
                         TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Revolutionist)}>○</color>");
                     }
                 }
+                if (seer.Is(CustomRoles.Farseer))//seerがアーソニストの時
+                {
+                    if (
+                        Main.FarseerTimer.TryGetValue(seer.PlayerId, out var ar_kvp) && //seerがオイルを塗っている途中(現在進行)
+                        ar_kvp.Item1 == target //オイルを塗っている対象がtarget
+                    )
+                    {
+                        TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Farseer)}>○</color>");
+                    }
+                }
                 if (seer.Is(CustomRoles.Puppeteer) &&
                 Main.PuppeteerList.ContainsValue(seer.PlayerId) &&
                 Main.PuppeteerList.ContainsKey(target.PlayerId))
@@ -1259,6 +1279,7 @@ public static class Utils
                         (Succubus.KnowRole(seer, target)) ||
                         (Infectious.KnowRole(seer, target)) ||
                         (Virus.KnowRole(seer, target)) ||
+                        (seer.IsRevealedPlayer(target)) ||
                         (seer.Is(CustomRoles.God)) ||
                         (target.Is(CustomRoles.GM))
                         ? $"<size={fontSize}>{target.GetDisplayRoleName(seer.PlayerId != target.PlayerId && !seer.Data.IsDead)}{GetProgressText(target)}</size>\r\n" : "";
@@ -1312,10 +1333,10 @@ public static class Utils
                         {
                             TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
                         }
-                  //      if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.PassiveNeutralsCanGuess.GetBool() && !seer.GetCustomRole().IsNK() && seer.GetCustomRole().IsNeutral())
-                   //     {
-                  //          TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
-                  //      }
+                        if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.PassiveNeutralsCanGuess.GetBool() && seer.GetCustomRole().IsNK() && seer.GetCustomRole().IsNeutral())
+                        {
+                            TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
+                        }
                     }
                 //ターゲットのプレイヤー名の色を書き換えます。
                 TargetPlayerName = TargetPlayerName.ApplyNameColorData(seer, target, isForMeeting);
@@ -1492,9 +1513,11 @@ public static class Utils
         if (!Directory.Exists(f)) Directory.CreateDirectory(f);
         FileInfo file = new(@$"{Environment.CurrentDirectory}/BepInEx/LogOutput.log");
         file.CopyTo(@filename);
-        System.Diagnostics.Process.Start(@f);
         if (PlayerControl.LocalPlayer != null)
             HudManager.Instance?.Chat?.AddChat(PlayerControl.LocalPlayer, string.Format(GetString("Message.DumpfileSaved"), $"TOHE - v{Main.PluginVersion}-{t}.log"));
+        System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo("Explorer.exe")
+        { Arguments = "/e,/select," + @filename.Replace("/", "\\") };
+        System.Diagnostics.Process.Start(psi);
     }
     public static (int, int) GetDousedPlayerCount(byte playerId)
     {
@@ -1570,33 +1593,49 @@ public static class Utils
         var obj = hud.transform.FindChild("FlashColor_FullScreen")?.gameObject;
         if (obj == null)
         {
-            obj = GameObject.Instantiate(hud.FullScreen.gameObject, hud.transform);
+            obj = UnityEngine.Object.Instantiate(hud.FullScreen.gameObject, hud.transform);
             obj.name = "FlashColor_FullScreen";
         }
         hud.StartCoroutine(Effects.Lerp(duration, new Action<float>((t) =>
         {
             obj.SetActive(t != 1f);
-            obj.GetComponent<SpriteRenderer>().color = new(color.r, color.g, color.b, Mathf.Clamp01((-2f * Mathf.Abs(t - 0.5f) + 1) * color.a)); //アルファ値を0→目標→0に変化させる
+            obj.GetComponent<SpriteRenderer>().color = new(color.r, color.g, color.b, Mathf.Clamp01((-2f * Mathf.Abs(t - 0.5f) + 1) * color.a / 2)); //アルファ値を0→目標→0に変化させる
         })));
     }
 
+    public static Dictionary<string, Sprite> CachedSprites = new();
     public static Sprite LoadSprite(string path, float pixelsPerUnit = 1f)
     {
-        Sprite sprite = null;
+        try
+        {
+            if (CachedSprites.TryGetValue(path + pixelsPerUnit, out var sprite)) return sprite;
+            Texture2D texture = LoadTextureFromResources(path);
+            sprite = Sprite.Create(texture, new(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), pixelsPerUnit);
+            sprite.hideFlags |= HideFlags.HideAndDontSave | HideFlags.DontSaveInEditor;
+            return CachedSprites[path + pixelsPerUnit] = sprite;
+        }
+        catch
+        {
+            Logger.Error($"读入Texture失败：{path}", "LoadImage");
+        }
+        return null;
+    }
+    public static Texture2D LoadTextureFromResources(string path)
+    {
         try
         {
             var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path);
             var texture = new Texture2D(1, 1, TextureFormat.ARGB32, false);
             using MemoryStream ms = new();
             stream.CopyTo(ms);
-            ImageConversion.LoadImage(texture, ms.ToArray());
-            sprite = Sprite.Create(texture, new(0, 0, texture.width, texture.height), new(0.5f, 0.5f), pixelsPerUnit);
+            ImageConversion.LoadImage(texture, ms.ToArray(), false);
+            return texture;
         }
         catch
         {
-            Logger.Error($"\"{path}\"の読み込みに失敗しました。", "LoadImage");
+            Logger.Error($"读入Texture失败：{path}", "LoadImage");
         }
-        return sprite;
+        return null;
     }
     public static string ColorString(Color32 color, string str) => $"<color=#{color.r:x2}{color.g:x2}{color.b:x2}{color.a:x2}>{str}</color>";
     /// <summary>

@@ -54,14 +54,17 @@ public class Main : BasePlugin
     //Client Options
     public static ConfigEntry<string> HideName { get; private set; }
     public static ConfigEntry<string> HideColor { get; private set; }
+    public static ConfigEntry<int> MessageWait { get; private set; }
     public static ConfigEntry<bool> UnlockFPS { get; private set; }
     public static ConfigEntry<bool> AutoStart { get; private set; }
     public static ConfigEntry<bool> ForceOwnLanguage { get; private set; }
     public static ConfigEntry<bool> ForceOwnLanguageRoleName { get; private set; }
+    public static ConfigEntry<bool> EnableCustomButton { get; private set; }
+    public static ConfigEntry<bool> EnableCustomSoundEffect { get; private set; }
     public static ConfigEntry<bool> SwitchVanilla { get; private set; }
+    public static ConfigEntry<bool> FastBoot { get; private set; }
     public static ConfigEntry<bool> VersionCheat { get; private set; }
     public static ConfigEntry<bool> GodMode { get; private set; }
-    public static ConfigEntry<int> MessageWait { get; private set; }
 
     public static Dictionary<byte, PlayerVersion> playerVersion = new();
     //Preset Name Options
@@ -127,8 +130,10 @@ public class Main : BasePlugin
     public static Dictionary<byte, int> CapitalismAssignTask = new();
     public static Dictionary<(byte, byte), bool> isDoused = new();
     public static Dictionary<(byte, byte), bool> isDraw = new();
+    public static Dictionary<(byte, byte), bool> isRevealed = new();
     public static Dictionary<byte, (PlayerControl, float)> ArsonistTimer = new();
     public static Dictionary<byte, (PlayerControl, float)> RevolutionistTimer = new();
+    public static Dictionary<byte, (PlayerControl, float)> FarseerTimer = new();
     public static Dictionary<byte, long> RevolutionistStart = new();
     public static Dictionary<byte, long> RevolutionistLastTime = new();
     public static Dictionary<byte, int> RevolutionistCountdown = new();
@@ -166,6 +171,7 @@ public class Main : BasePlugin
     public static int MadmateNum = 0;
     public static int BardCreations = 0;
     public static Dictionary<byte, byte> Provoked = new();
+    public static Dictionary<byte, int> DovesOfNeaceNumOfUsed = new();
 
     public static Dictionary<byte, CustomRoles> DevRole = new();
 
@@ -192,14 +198,18 @@ public class Main : BasePlugin
         //Client Options
         HideName = Config.Bind("Client Options", "Hide Game Code Name", "TOHE");
         HideColor = Config.Bind("Client Options", "Hide Game Code Color", $"{ModColor}");
+        DebugKeyInput = Config.Bind("Authentication", "Debug Key", "");
         AutoStart = Config.Bind("Client Options", "AutoStart", false);
         UnlockFPS = Config.Bind("Client Options", "UnlockFPS", false);
-        SwitchVanilla = Config.Bind("Client Options", "SwitchVanilla", false);
-        VersionCheat = Config.Bind("Client Options", "VersionCheat", false);
-        GodMode = Config.Bind("Client Options", "GodMode", false);
+        AutoStart = Config.Bind("Client Options", "AutoStart", false);
         ForceOwnLanguage = Config.Bind("Client Options", "ForceOwnLanguage", false);
         ForceOwnLanguageRoleName = Config.Bind("Client Options", "ForceOwnLanguageRoleName", false);
-        DebugKeyInput = Config.Bind("Authentication", "Debug Key", "");
+        EnableCustomButton = Config.Bind("Client Options", "EnableCustomButton", true);
+        EnableCustomSoundEffect = Config.Bind("Client Options", "EnableCustomSoundEffect", true);
+        SwitchVanilla = Config.Bind("Client Options", "SwitchVanilla", false);
+        FastBoot = Config.Bind("Client Options", "FastBoot", true);
+        VersionCheat = Config.Bind("Client Options", "VersionCheat", false);
+        GodMode = Config.Bind("Client Options", "GodMode", false);
 
         Logger = BepInEx.Logging.Logger.CreateLogSource("TOHE");
         TOHE.Logger.Enable();
@@ -246,17 +256,6 @@ public class Main : BasePlugin
         LastKillCooldown = Config.Bind("Other", "LastKillCooldown", (float)30);
         LastShapeshifterCooldown = Config.Bind("Other", "LastShapeshifterCooldown", (float)30);
 
-        CustomWinnerHolder.Reset();
-        ServerAddManager.Init();
-        Translator.Init();
-        BanManager.Init();
-        TemplateManager.Init();
-        SpamManager.Init();
-        DevManager.Init();
-        Cloud.Init();
-
-        IRandom.SetInstance(new NetRandomWrapper());
-
         hasArgumentException = false;
         ExceptionMessage = "";
         try
@@ -294,7 +293,7 @@ public class Main : BasePlugin
                 {CustomRoles.TimeManager, "#6495ed"},
                 {CustomRoles.Veteran, "#a77738"},
                 {CustomRoles.Bodyguard, "#185abd"},
-                {CustomRoles.Counterfeiter, "#e0e0e0"},
+                {CustomRoles.Counterfeiter, "#BE29EC"},
                 {CustomRoles.Grenadier, "#3c4a16"},
                 {CustomRoles.Medicaler, "#00a4ff"},
                 {CustomRoles.Divinator, "#882c83"},
@@ -303,6 +302,8 @@ public class Main : BasePlugin
                 {CustomRoles.Mortician, "#333c49"},
                 {CustomRoles.Mediumshiper, "#a200ff"},
                 {CustomRoles.Observer, "#a8e0fa"},
+                {CustomRoles.DovesOfNeace, "#FFFFFF"},
+                {CustomRoles.Monarch, "#FFA500"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Jester, "#ec62a5"},
@@ -328,7 +329,7 @@ public class Main : BasePlugin
                 {CustomRoles.Poisoner, "#ed2f91"},
                 {CustomRoles.NWitch, "#BF5FFF"},
                 {CustomRoles.Totocalcio, "#ff9409"},
-                {CustomRoles.Succubus, "#cf6acd"},
+                {CustomRoles.Succubus, "#ff00ff"},
                 {CustomRoles.HexMaster, "#ff00ff"},
                 {CustomRoles.Wraith, "#4B0082"},
                 {CustomRoles.NSerialKiller, "#233fcc"},
@@ -337,7 +338,8 @@ public class Main : BasePlugin
                 {CustomRoles.Parasite, "#ff1919"},
                 {CustomRoles.Crewpostor, "#ff1919"},
                 {CustomRoles.Infectious, "#7B8968"},
-                {CustomRoles.Virus, "#D2B48C"},
+                {CustomRoles.Virus, "#2E8B57"},
+                {CustomRoles.Farseer, "#BA55D3"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -364,12 +366,14 @@ public class Main : BasePlugin
                 {CustomRoles.Guesser, "#ffb347"},
                 {CustomRoles.Necroview, "#663399"},
                 {CustomRoles.Reach, "#74ba43"},
-                {CustomRoles.Charmed, "#cf6acd"},
+                {CustomRoles.Charmed, "#ff00ff"},
                 {CustomRoles.Bait, "#00f7ff"},
                 {CustomRoles.Trapper, "#5a8fd0"},
                 {CustomRoles.Infected, "#7B8968"},
                 {CustomRoles.Onbound, "#BAAAE9"},
-                {CustomRoles.Contagious, "#D2B48C"},
+                {CustomRoles.Knighted, "#FFA500"},
+                {CustomRoles.Contagious, "#2E8B57"},
+                {CustomRoles.Unreportable, "#FF6347"},
                 //SoloKombat
                 {CustomRoles.KB_Normal, "#f55252"}
             };
@@ -393,6 +397,18 @@ public class Main : BasePlugin
             ExceptionMessage = ex.Message;
             ExceptionMessageIsShown = false;
         }
+
+        CustomWinnerHolder.Reset();
+        ServerAddManager.Init();
+        Translator.Init();
+        BanManager.Init();
+        TemplateManager.Init();
+        SpamManager.Init();
+        DevManager.Init();
+        Cloud.Init();
+
+        IRandom.SetInstance(new NetRandomWrapper());
+
         TOHE.Logger.Info($"{Application.version}", "AmongUs Version");
 
         var handler = TOHE.Logger.Handler("GitVersion");
@@ -421,11 +437,8 @@ public enum CustomRoles
     Impostor,
     Shapeshifter,
     // Vanilla Remakes
-    EngineerTOHE,
-    ScientistTOHE,
-    GuardianAngelTOHE,
-    ShapeshifterTOHE,
     ImpostorTOHE,
+    ShapeshifterTOHE,
     //Impostor
     BountyHunter,
     FireWorks,
@@ -446,6 +459,7 @@ public enum CustomRoles
     Miner,
     Escapee,
     Mare,
+    Inhibitor,
     Puppeteer,
     TimeThief,
     EvilTracker,
@@ -475,6 +489,10 @@ public enum CustomRoles
     Engineer,
     GuardianAngel,
     Scientist,
+    // Vanilla Remakes
+    EngineerTOHE,
+    GuardianAngelTOHE,
+    ScientistTOHE,
     //Crewmate
     Luckey,
     Needy,
@@ -506,6 +524,8 @@ public enum CustomRoles
     Mortician,
     Mediumshiper,
     Observer,
+    DovesOfNeace,
+    Monarch,
     //Neutral
     Arsonist,
     HexMaster,
@@ -539,6 +559,7 @@ public enum CustomRoles
     Totocalcio,
     Succubus,
     Virus,
+    Farseer,
 
     //SoloKombat
     KB_Normal,
@@ -575,8 +596,10 @@ public enum CustomRoles
     Bait,
     Trapper,
     Infected,
+    Onbound,
+    Knighted,
     Contagious,
-    Onbound
+    Unreportable
 }
 //WinData
 public enum CustomWinner

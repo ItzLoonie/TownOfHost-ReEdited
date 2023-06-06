@@ -55,19 +55,17 @@ public static class Gangster
     {
         byte PlayerId = reader.ReadByte();
         int Limit = reader.ReadInt32();
-        if (RecruitLimit.ContainsKey(PlayerId))
-            RecruitLimit[PlayerId] = Limit;
-        else
-            RecruitLimit.Add(PlayerId, RecruitLimitOpt.GetInt());
+        RecruitLimit.TryAdd(PlayerId, Limit);
+        RecruitLimit[PlayerId] = Limit;
     }
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = CanRecruit(id) ? KillCooldown.GetFloat() : Options.DefaultKillCooldown;
     public static bool CanRecruit(byte id) => RecruitLimit.TryGetValue(id, out var x) && x > 0;
     public static void SetKillButtonText(byte plaeryId)
     {
         if (CanRecruit(plaeryId))
-            HudManager.Instance.KillButton.OverrideText($"{GetString("GangsterButtonText")}");
+            HudManager.Instance.KillButton.OverrideText(GetString("GangsterButtonText"));
         else
-            HudManager.Instance.KillButton.OverrideText($"{GetString("KillButtonText")}");
+            HudManager.Instance.KillButton.OverrideText(GetString("KillButtonText"));
     }
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
     {
