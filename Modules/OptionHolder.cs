@@ -66,7 +66,7 @@ public static class Options
     public static bool IsActiveSkeld => AddedTheSkeld.GetBool() || Main.NormalOptions.MapId == 0;
     public static bool IsActiveMiraHQ => AddedMiraHQ.GetBool() || Main.NormalOptions.MapId == 1;
     public static bool IsActivePolus => AddedPolus.GetBool() || Main.NormalOptions.MapId == 2;
-    public static bool IsActiveAirship => AddedTheAirShip.GetBool() || Main.NormalOptions.MapId == 4;
+    public static bool IsActiveAirship => AddedTheAirship.GetBool() || Main.NormalOptions.MapId == 4;
 
     // 役職数・確率
     public static Dictionary<CustomRoles, int> roleCounts;
@@ -373,11 +373,11 @@ public static class Options
     public static OptionItem AddedTheSkeld;
     public static OptionItem AddedMiraHQ;
     public static OptionItem AddedPolus;
-    public static OptionItem AddedTheAirShip;
+    public static OptionItem AddedTheAirship;
     public static OptionItem AddedDleks;
     public static OptionItem RandomSpawn;
     public static OptionItem AirshipAdditionalSpawn;
-    public static OptionItem AirShipVariableElectrical;
+    public static OptionItem AirshipVariableElectrical;
     public static OptionItem DisableAirshipMovingPlatform;
 
     // Sabotage
@@ -972,6 +972,7 @@ public static class Options
         ImpCanBeUnreportable = BooleanOptionItem.Create(6050615, "ImpCanBeUnreportable", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Unreportable]);
         CrewCanBeUnreportable = BooleanOptionItem.Create(6050614, "CrewCanBeUnreportable", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Unreportable]);
         NeutralCanBeUnreportable = BooleanOptionItem.Create(6050613, "NeutralCanBeUnreportable", true, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Unreportable]);
+        SetupAdtRoleOptions(6050900, CustomRoles.Rogue, canSetNum: true);
         SetupAdtRoleOptions(6050390, CustomRoles.Madmate, canSetNum: true, canSetChance: false);
         MadmateSpawnMode = StringOptionItem.Create(6060444, "MadmateSpawnMode", madmateSpawnMode, 0, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Madmate]);
         MadmateCountMode = StringOptionItem.Create(6060445, "MadmateCountMode", madmateCountMode, 0, TabGroup.Addons, false).SetParent(CustomRoleSpawnChances[CustomRoles.Madmate]);
@@ -1216,7 +1217,7 @@ public static class Options
         AddedTheSkeld = BooleanOptionItem.Create(100401, "AddedTheSkeld", false, TabGroup.GameSettings, false).SetParent(RandomMapsMode);
         AddedMiraHQ = BooleanOptionItem.Create(100402, "AddedMIRAHQ", false, TabGroup.GameSettings, false).SetParent(RandomMapsMode);
         AddedPolus = BooleanOptionItem.Create(100403, "AddedPolus", false, TabGroup.GameSettings, false).SetParent(RandomMapsMode);
-        AddedTheAirShip = BooleanOptionItem.Create(100404, "AddedTheAirShip", false, TabGroup.GameSettings, false).SetParent(RandomMapsMode);
+        AddedTheAirship = BooleanOptionItem.Create(100404, "AddedTheAirship", false, TabGroup.GameSettings, false).SetParent(RandomMapsMode);
         // MapDleks = CustomOption.Create(100405, Color.white, "AddedDleks", false, RandomMapMode);
 
         // Random Spawn
@@ -1226,8 +1227,8 @@ public static class Options
         AirshipAdditionalSpawn = BooleanOptionItem.Create(101301, "AirshipAdditionalSpawn", false, TabGroup.GameSettings, false).SetParent(RandomSpawn)
             .SetGameMode(CustomGameMode.Standard);
 
-        // AirShip Variable Electrical
-        AirShipVariableElectrical = BooleanOptionItem.Create(101600, "AirShipVariableElectrical", false, TabGroup.GameSettings, false)
+        // Airship Variable Electrical
+        AirshipVariableElectrical = BooleanOptionItem.Create(101600, "AirshipVariableElectrical", false, TabGroup.GameSettings, false)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(19, 188, 233, byte.MaxValue));
         //Disable Airship Moving Platform
