@@ -63,9 +63,9 @@ public static class Gangster
     public static void SetKillButtonText(byte plaeryId)
     {
         if (CanRecruit(plaeryId))
-            HudManager.Instance.KillButton.OverrideText($"{GetString("GangsterButtonText")}");
+            HudManager.Instance.KillButton.OverrideText(GetString("GangsterButtonText"));
         else
-            HudManager.Instance.KillButton.OverrideText($"{GetString("KillButtonText")}");
+            HudManager.Instance.KillButton.OverrideText(GetString("KillButtonText"));
     }
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
     {
