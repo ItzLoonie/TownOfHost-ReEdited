@@ -1920,20 +1920,12 @@ class EnterVentPatch
 
         if (pc.Is(CustomRoles.Veteran))
         {
-            if (Main.VeteranNumOfUsed[pc.PlayerId] < 1)
-            {
-                pc?.MyPhysics?.RpcBootFromVent(__instance.Id);
-                pc.Notify(GetString("VeteranMaxUsage"));
-            }
-            else
-            {
-                Main.VeteranInProtect.Remove(pc.PlayerId);
-                Main.VeteranInProtect.Add(pc.PlayerId, Utils.GetTimeStamp(DateTime.Now));
-                Main.VeteranNumOfUsed[pc.PlayerId]--;
-                if (!pc.IsModClient()) pc.RpcGuardAndKill(pc);
-                pc.RPCPlayCustomSound("Gunload");
-                pc.Notify(GetString("VeteranOnGuard"), Options.VeteranSkillDuration.GetFloat());
-            }
+            Main.VeteranInProtect.Remove(pc.PlayerId);
+            Main.VeteranInProtect.Add(pc.PlayerId, Utils.GetTimeStamp());
+            Main.VeteranNumOfUsed[pc.PlayerId]--;
+            if (!pc.IsModClient()) pc.RpcGuardAndKill(pc);
+            pc.RPCPlayCustomSound("Gunload");
+            pc.Notify(GetString("VeteranOnGuard"), Options.VeteranSkillDuration.GetFloat());
         }
         if (pc.Is(CustomRoles.Grenadier))
         {
@@ -2046,6 +2038,9 @@ class CoEnterVentPatch
 
         if (__instance.myPlayer.Is(CustomRoles.Wraith))
             Wraith.OnCoEnterVent(__instance, id);
+
+        if (__instance.myPlayer.Is(CustomRoles.DovesOfNeace)) __instance.myPlayer.Notify(GetString("DovesOfNeaceMaxUsage"));
+        if (__instance.myPlayer.Is(CustomRoles.Veteran)) __instance.myPlayer.Notify(GetString("VeteranMaxUsage"));
 
         return true;
     }
