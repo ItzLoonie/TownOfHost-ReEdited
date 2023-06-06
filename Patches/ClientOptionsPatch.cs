@@ -11,11 +11,12 @@ public static class OptionsMenuBehaviourStartPatch
     private static ClientOptionItem AutoStart;
     private static ClientOptionItem ForceOwnLanguage;
     private static ClientOptionItem ForceOwnLanguageRoleName;
-    //private static ClientOptionItem VersionCheat;
-    //private static ClientOptionItem GodMode;
     private static ClientOptionItem EnableCustomButton;
     private static ClientOptionItem EnableCustomSoundEffect;
     private static ClientOptionItem SwitchVanilla;
+    private static ClientOptionItem FastBoot;
+    //private static ClientOptionItem VersionCheat;
+    //private static ClientOptionItem GodMode;
 
     public static void Postfix(OptionsMenuBehaviour __instance)
     {
@@ -75,14 +76,18 @@ public static class OptionsMenuBehaviourStartPatch
                 Main.Instance.Unload();
             }
         }
-/*        if ((VersionCheat == null || VersionCheat.ToggleButton == null) && DebugModeManager.AmDebugger)
+        if (FastBoot == null || FastBoot.ToggleButton == null)
         {
-            VersionCheat = ClientOptionItem.Create("VersionCheat", Main.VersionCheat, __instance);
+            FastBoot = ClientOptionItem.Create("FastBoot", Main.FastBoot, __instance);
         }
-        if ((GodMode == null || GodMode.ToggleButton == null) && DebugModeManager.AmDebugger)
-        {
-            GodMode = ClientOptionItem.Create("GodMode", Main.GodMode, __instance);
-        } */
+        /*        if ((VersionCheat == null || VersionCheat.ToggleButton == null) && DebugModeManager.AmDebugger)
+                {
+                    VersionCheat = ClientOptionItem.Create("VersionCheat", Main.VersionCheat, __instance);
+                }
+                if ((GodMode == null || GodMode.ToggleButton == null) && DebugModeManager.AmDebugger)
+                {
+                    GodMode = ClientOptionItem.Create("GodMode", Main.GodMode, __instance);
+                } */
     }
 }
 

@@ -51,7 +51,7 @@ internal class VersionShowerStartPatch
 
     private static void Postfix(VersionShower __instance)
     {
-        Main.credentialsText = $"\r\n<color={Main.ModColor}>{Main.ModName}</color> v{Main.PluginVersion}_8 dev 2";
+        Main.credentialsText = $"\r\n<color={Main.ModColor}>{Main.ModName}</color> v{Main.PluginVersion}_8 dev 3";
     //    Main.credentialsText = $"\r\n<color=#de56fd>TOHE SolarLoonieEdit</color> v{Main.PluginVersion}";
         if (Main.IsAprilFools) Main.credentialsText = $"\r\n<color=#00bfff>Town Of Host</color> v11.45.14";
 #if DEBUG
@@ -152,12 +152,15 @@ internal class TitleLogoPatch
             return;
         }
 
-        LoadingHint = new GameObject("LoadingHint");
-        LoadingHint.transform.position = Vector3.down;
-        var LoadingHintText = LoadingHint.AddComponent<TextMeshPro>();
-        LoadingHintText.text = GetString("Loading");
-        LoadingHintText.alignment = TextAlignmentOptions.Center;
-        LoadingHintText.fontSize = 3f;
+        if (!Main.FastBoot.Value)
+        {
+            LoadingHint = new GameObject("LoadingHint");
+            LoadingHint.transform.position = Vector3.down;
+            var LoadingHintText = LoadingHint.AddComponent<TextMeshPro>();
+            LoadingHintText.text = GetString("Loading");
+            LoadingHintText.alignment = TextAlignmentOptions.Center;
+            LoadingHintText.fontSize = 3f;
+        }
 
         if ((amongUsLogo = GameObject.Find("bannerLogo_AmongUs")) != null)
         {
