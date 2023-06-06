@@ -686,6 +686,8 @@ class MeetingHudStartPatch
                 (pc.Is(CustomRoles.Sidekick) && PlayerControl.LocalPlayer.Is(CustomRoles.Jackal)) ||
                 (pc.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) ||
                 (Totocalcio.KnowRole(PlayerControl.LocalPlayer, pc)) ||
+                (Lawyer.KnowRole(PlayerControl.LocalPlayer, pc)) ||
+                (Executioner.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (Succubus.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (Infectious.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (Virus.KnowRole(PlayerControl.LocalPlayer, pc)) ||
@@ -801,7 +803,7 @@ class MeetingHudStartPatch
                     sb.Append(Executioner.TargetMark(seer, target));
                     break;
                 case CustomRoles.Lawyer:
-                    sb.Append(Lawyer.TargetMark(seer, target));
+                 //   sb.Append(Lawyer.TargetMark(seer, target));
                     break;
              //   case CustomRoles.Jackal:
              //   case CustomRoles.Sidekick:
@@ -905,6 +907,7 @@ class MeetingHudStartPatch
 
             //赌徒提示
             sb.Append(Totocalcio.TargetMark(seer, target));
+            sb.Append(Lawyer.LawyerMark(seer, target));
 
             //会議画面ではインポスター自身の名前にSnitchマークはつけません。
 

@@ -78,6 +78,7 @@ public class PlayerState
             SubRoles.Remove(CustomRoles.Sidekick);
             SubRoles.Remove(CustomRoles.Infected);
             SubRoles.Remove(CustomRoles.Contagious);
+            SubRoles.Remove(CustomRoles.Rogue);
         }
         if (role == CustomRoles.Charmed)
         {
@@ -92,6 +93,7 @@ public class PlayerState
             SubRoles.Remove(CustomRoles.Sidekick);
             SubRoles.Remove(CustomRoles.Infected);
             SubRoles.Remove(CustomRoles.Contagious);
+            SubRoles.Remove(CustomRoles.Rogue);
         }
         if (role == CustomRoles.Sidekick)
         {
@@ -106,6 +108,7 @@ public class PlayerState
             SubRoles.Remove(CustomRoles.Charmed);
             SubRoles.Remove(CustomRoles.Infected);
             SubRoles.Remove(CustomRoles.Contagious);
+            SubRoles.Remove(CustomRoles.Rogue);
         }
         if (role == CustomRoles.Infected)
         {
@@ -113,6 +116,7 @@ public class PlayerState
             SubRoles.Remove(CustomRoles.Madmate);
             SubRoles.Remove(CustomRoles.Sidekick);
             SubRoles.Remove(CustomRoles.Charmed);
+            SubRoles.Remove(CustomRoles.Rogue);
             SubRoles.Remove(CustomRoles.Contagious);
         }
         if (role == CustomRoles.Contagious)
@@ -120,8 +124,18 @@ public class PlayerState
             countTypes = CountTypes.Virus;
             SubRoles.Remove(CustomRoles.Madmate);
             SubRoles.Remove(CustomRoles.Sidekick);
+            SubRoles.Remove(CustomRoles.Rogue);
             SubRoles.Remove(CustomRoles.Charmed);
             SubRoles.Remove(CustomRoles.Infected);
+        }
+        if (role == CustomRoles.Rogue)
+        {
+            countTypes = CountTypes.Rogue;
+            SubRoles.Remove(CustomRoles.Madmate);
+            SubRoles.Remove(CustomRoles.Sidekick);
+            SubRoles.Remove(CustomRoles.Charmed);
+            SubRoles.Remove(CustomRoles.Infected);
+            SubRoles.Remove(CustomRoles.Contagious);
         }
     }
     public void RemoveSubRole(CustomRoles role)

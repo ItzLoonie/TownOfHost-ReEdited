@@ -101,11 +101,11 @@ class HudManagerPatch
                         break;
                     case CustomRoles.Arsonist:
                         __instance.KillButton.OverrideText(GetString("ArsonistDouseButtonText"));
-                        __instance.AbilityButton.buttonLabelText.text = GetString("ArsonistVetnButtonText");
+                        __instance.ImpostorVentButton.buttonLabelText.text = GetString("ArsonistVetnButtonText");
                         break;
                     case CustomRoles.Revolutionist:
                         __instance.KillButton.OverrideText(GetString("RevolutionistDrawButtonText"));
-                        __instance.AbilityButton.buttonLabelText.text = GetString("RevolutionistVetnButtonText");
+                        __instance.ImpostorVentButton.buttonLabelText.text = GetString("RevolutionistVetnButtonText");
                         break;
                     case CustomRoles.Farseer:
                         __instance.KillButton.OverrideText(GetString("FarseerKillButtonText"));

@@ -234,12 +234,12 @@ public class GameStartRandomMap
             MIRAHQ     = 1
             Polus      = 2
             Dleks      = 3
-            TheAirShip = 4*/
+            TheAirship = 4*/
             if (Options.AddedTheSkeld.GetBool()) RandomMaps.Add(0);
             if (Options.AddedMiraHQ.GetBool()) RandomMaps.Add(1);
             if (Options.AddedPolus.GetBool()) RandomMaps.Add(2);
             // if (Options.AddedDleks.GetBool()) RandomMaps.Add(3);
-            if (Options.AddedTheAirShip.GetBool()) RandomMaps.Add(4);
+            if (Options.AddedTheAirship.GetBool()) RandomMaps.Add(4);
 
             if (RandomMaps.Count <= 0) return true;
             var MapsId = RandomMaps[rand.Next(RandomMaps.Count)];
