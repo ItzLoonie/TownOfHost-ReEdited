@@ -17,6 +17,8 @@ public static class Lawyer
     private static OptionItem CanTargetCrewmate;
     public static OptionItem ChangeRolesAfterTargetKilled;
     public static OptionItem LawyerVision;
+    public static OptionItem KnowTargetRole;
+    public static OptionItem TargetKnowsLawyer;
 
 
     /// <summary>
@@ -43,6 +45,8 @@ public static class Lawyer
         CanTargetImpostor = BooleanOptionItem.Create(Id + 10, "LawyerCanTargetImpostor", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Lawyer]);
         CanTargetNeutralKiller = BooleanOptionItem.Create(Id + 12, "LawyerCanTargetNeutralKiller", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Lawyer]);
         CanTargetCrewmate = BooleanOptionItem.Create(Id + 13, "LawyerCanTargetCrewmate", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Lawyer]);
+        KnowTargetRole = BooleanOptionItem.Create(Id + 15, "KnowTargetRole", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Lawyer]);
+        TargetKnowsLawyer = BooleanOptionItem.Create(Id + 16, "TargetKnowsLawyer", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Lawyer]);
         ChangeRolesAfterTargetKilled = StringOptionItem.Create(Id + 11, "LawyerChangeRolesAfterTargetKilled", ChangeRoles, 1, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Lawyer]);
     }
     public static void Init()
@@ -122,6 +126,23 @@ public static class Lawyer
         SendRPC(Lawyer);
         Utils.NotifyRoles();
     }
+    public static bool KnowRole(PlayerControl player, PlayerControl target)
+    {
+        if (!KnowTargetRole.GetBool()) return false;
+        return player.Is(CustomRoles.Lawyer) && Target.TryGetValue(player.PlayerId, out var tar) && tar == target.PlayerId;
+    }
+    public static string LawyerMark(PlayerControl seer, PlayerControl target)
+    {
+        if (!seer.Is(CustomRoles.Lawyer))
+        {
+            if (!TargetKnowsLawyer.GetBool()) return "";
+            return (Target.TryGetValue(target.PlayerId, out var x) && seer.PlayerId == x) ?
+                Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lawyer), "♦") : "";
+        }
+        var GetValue = Target.TryGetValue(seer.PlayerId, out var targetId);
+        return GetValue && targetId == target.PlayerId ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lawyer), "♦") : "";
+    }
+
     public static void ChangeRole(PlayerControl lawyer)
     {
         lawyer.RpcSetCustomRole(CRoleChangeRoles[ChangeRolesAfterTargetKilled.GetValue()]);

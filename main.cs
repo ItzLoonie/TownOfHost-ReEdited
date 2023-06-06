@@ -302,7 +302,7 @@ public class Main : BasePlugin
                 {CustomRoles.Mortician, "#333c49"},
                 {CustomRoles.Mediumshiper, "#a200ff"},
                 {CustomRoles.Observer, "#a8e0fa"},
-                {CustomRoles.DovesOfNeace, "#FFFFFF"},
+                {CustomRoles.DovesOfNeace, "#007FFF"},
                 {CustomRoles.Monarch, "#FFA500"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
@@ -329,7 +329,7 @@ public class Main : BasePlugin
                 {CustomRoles.Poisoner, "#ed2f91"},
                 {CustomRoles.NWitch, "#BF5FFF"},
                 {CustomRoles.Totocalcio, "#ff9409"},
-                {CustomRoles.Succubus, "#ff00ff"},
+                {CustomRoles.Succubus, "#cf6acd"},
                 {CustomRoles.HexMaster, "#ff00ff"},
                 {CustomRoles.Wraith, "#4B0082"},
                 {CustomRoles.NSerialKiller, "#233fcc"},
@@ -366,7 +366,7 @@ public class Main : BasePlugin
                 {CustomRoles.Guesser, "#ffb347"},
                 {CustomRoles.Necroview, "#663399"},
                 {CustomRoles.Reach, "#74ba43"},
-                {CustomRoles.Charmed, "#ff00ff"},
+                {CustomRoles.Charmed, "#cf6acd"},
                 {CustomRoles.Bait, "#00f7ff"},
                 {CustomRoles.Trapper, "#5a8fd0"},
                 {CustomRoles.Infected, "#7B8968"},
@@ -374,6 +374,7 @@ public class Main : BasePlugin
                 {CustomRoles.Knighted, "#FFA500"},
                 {CustomRoles.Contagious, "#2E8B57"},
                 {CustomRoles.Unreportable, "#FF6347"},
+                {CustomRoles.Rogue, "#696969"},
                 //SoloKombat
                 {CustomRoles.KB_Normal, "#f55252"}
             };
@@ -599,7 +600,8 @@ public enum CustomRoles
     Onbound,
     Knighted,
     Contagious,
-    Unreportable
+    Unreportable,
+    Rogue,
 }
 //WinData
 public enum CustomWinner
@@ -638,7 +640,8 @@ public enum CustomWinner
     Witch = CustomRoles.NWitch,
     Juggernaut = CustomRoles.Juggernaut,
     Infectious = CustomRoles.Infectious,
-    Virus = CustomRoles.Virus
+    Virus = CustomRoles.Virus,
+    Rogue = CustomRoles.Rogue
 }
 public enum AdditionalWinners
 {
