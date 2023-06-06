@@ -438,7 +438,7 @@ class VentButtonDoClickPatch
 {
     public static bool Prefix(VentButton __instance)
     {
-            var pc = PlayerControl.LocalPlayer;
+        var pc = PlayerControl.LocalPlayer;
         {
         if (!pc.Is(CustomRoles.Swooper) || !pc.Is(CustomRoles.Wraith) || pc.inVent || __instance.currentTarget == null || !pc.CanMove || !__instance.isActiveAndEnabled) return true;
         pc?.MyPhysics?.RpcEnterVent(__instance.currentTarget.Id);
