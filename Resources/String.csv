@@ -162,7 +162,7 @@
 "Judge","法官","Judge","Судья","法官","法官"
 "Mortician","入殓师","Mortician","Гробовщик","殯葬師","入殓师"
 "Mediumshiper","通灵师","Medium","Медиум","通靈師","通灵师"
-"DovesOfNeace","和平之鸽","Dove of Peace","Пацифист","和平之鴿",""
+"DovesOfNeace","和平之鸽","Pacifist","Пацифист","和平之鴿",""
 "Observer","观察者","Observer","Аудитор","窺視者",""
 "Monarch","","Monarch","","",""
 "Farseer","","Farseer","","",""
@@ -231,6 +231,7 @@
 "Knighted","","Knighted","","",""
 "Unreportable","","Disregarded","","",""
 "Contagious","","Contagious","","",""
+"Rogue","","Rogue","","",""
 
 "## 附加职业作为前缀时 / Prefixes for Add-ons"
 
@@ -259,6 +260,7 @@
 "Prefix.Onbound","","Onbound ","Непобедимый","",""
 "Prefix.Knighted","","Knighted ","","",""
 "Prefix.Unreportable","","Disregarded "," ","",""
+"Prefix.Rogue","","Rogue ","","",""
 
 "## 附加职业作为前缀时 / Prefixes for Add-ons But With Brackets"
 
@@ -287,6 +289,7 @@
 "PrefixB.Onbound","","<color=#ffffff>(</color>Onbound<color=#ffffff>)</color> ","<color=#ffffff>(</color>Непобедим<color=#ffffff>)</color> ","",""
 "PrefixB.Knighted","","<color=#ffffff>(</color>Knighted<color=#ffffff>)</color> ","","",""
 "PrefixB.Unreportable","","<color=#ffffff>(</color>Disregarded<color=#ffffff>)</color> ","","",""
+"PrefixB.Rogue","","<color=#ffffff>(</color>Rogue<color=#ffffff>)</color> ","","",""
 
 "BracketAddons","BracketAddons","Add Brackets To Add-ons","Добавить скобки к Атрибутам","BracketAddons","BracketAddons"
 
@@ -379,7 +382,7 @@
 "MorticianInfo","现在，你可以安心地离开了","Locate dead bodies","Находите трупы","現在，你可以安心的走了","现在，你可以安心地离开了"
 "MediumshiperInfo","若君心存不甘，不妨和我谈谈","Talk with ghosts","Разговаривайте с призраками","若君心存不甘，不妨和我談談","若君心存不甘，不妨和我谈谈"
 "ObserverInfo","亲眼所见，亦非真实","You can see all shield-animations","Вы видите анимации сломанных щитов","他的盾沒了?",""
-"DovesOfNeaceInfo","何必打打杀杀呢？","Vent to Reset Everyone's Kill CD","А зачем убивать?","何必打打殺殺呢?",""
+"DovesOfNeaceInfo","何必打打杀杀呢？","Vent to reset kill cooldowns","А зачем убивать?","何必打打殺殺呢?",""
 "MonarchInfo","","Give your crew extra voting power!","","",""
 "FarseerInfo","","Reveal roles of other players","","",""
 
@@ -443,6 +446,7 @@
 "TrapperInfo","大奖小奖，能记住就是好奖","Freeze your killer for a few seconds","Замораживаете своего убийцу на несколько секунд","誘捕你的敵人","大奖小奖，能记住就是好奖"
 "OnboundInfo","","You can't be guessed","Тебя нельзя угадать","",""
 "UnreportableInfo","","Your body can't be reported","","",""
+"RogueInfo","","Work against your team and win alone","","",""
 
 "# 其它 / Other descriptions"
 "GMInfo","开局死的冤魂隔岸观火","Spectate the Chaos!","Вы Мастер Игры, наслаждайтесь хаосом!","當吃瓜群眾在一旁看戲吧","开局死的冤魂隔岸观火"
@@ -541,7 +545,7 @@
 "MediumshiperInfoLong","(船员阵营):\n当场上有玩家被击杀，通灵师会收到提示。每次会议召开时通灵师会与被报告的尸体建立联系（只有被报告的尸体而不是被发现的所有尸体），在本次会议结束前，被害者拥有一次机会回答通灵师的问题，只能回答是或否。请注意：通灵师不会成为胆小鬼。","(Crewmates):\nThe Medium can establish contact with a dead player after their dead body is reported. The player who reports doesn't have to be the Medium. The dead player can answer once with a YES or a NO to the Medium's question which only the Medium will see (the dead player can use /ms yes or /ms no). Note: Medium won't be Oblivious.","(Член Экипажа):\nМедиум может установить контакт с мертвым игроком, зарепортив его труп. Он может один раз ответить Да или НЕТ на вопрос Медиума, ответ на вопрос увидит только Медиум. \nМертвый игрок может использовать /ms Yes или /ms No. Примечание: Медиум не будет Забывчивым.","(船員陣營):\n當場上有玩家被殺死，通靈師會收到提示。當每次報告屍體時通靈師可以與被報告的屍體建立聯繫(只有被報告的而不是全部被害者)，在此次會議結束前，被害者擁有一次機會回答通靈師的問題，只能回答是或否。請注意: 通靈師不會成為膽小鬼。","(船员阵营):\n当场上有玩家被击杀，通灵师会收到提示。通灵师报告尸体后可以与被害者建立联系，在本次会议结束前，被害者拥有一次机会回答通灵师的问题，只能回答是或否。请注意：通灵师不会成为胆小鬼。"
 "ObserverInfoLong","(船员阵营):\n观察者可以看到其他玩家的碎盾动画。首次会议召开前观察者的技能不会生效。","(Crewmates):\nThe Observer can see all shield animations caused by other players after the first meeting.","(Член Экипажа):\nАудитор видят сломанные щиты. Навык видения срабатывает с первого собрания.","(船員陣營):\n窺視者可以看到其他玩家的碎盾動畫。首次會議召開前窺視者的技能不會生效。",""
 "MonarchInfoLong","","(Crewmates):\nAs the Monarch, you can knight players to give them an extra vote.\n\nYou cannot knight someone who already have extra votes."
-"DovesOfNeaceInfoLong","(船员阵营):\n当和平之鸽可以通过使用通风管道进行歌颂，在场所有拥有击杀键的玩家的击杀/技能冷却时间会被重置。当和平之鸽成为叛徒时歌颂只对船员生效。","(Crewmates):\nWhen the Dove of Peace vents, they will reset the kill cooldown for every player with a kill button. When they become a Madmate, this ability will only work on Crewmates.","(Член Экипажа):\nКогда Пацифист использует вентиляцию, время перезарядки убийства/навыков всех игроков с кнопкой убийства будет сброшено. Когда Пацифист становится предателем, навык действует только на Членов Экипажа.",""(船員陣營):\n和平之鴿可以通過進入通風管來進行歌頌，",""
+"DovesOfNeaceInfoLong","(船员阵营):\n当和平之鸽可以通过使用通风管道进行歌颂，在场所有拥有击杀键的玩家的击杀/技能冷却时间会被重置。当和平之鸽成为叛徒时歌颂只对船员生效。","(Crewmates):\nWhen the Pacifist vents, they will reset the kill cooldown for every player with a kill button. When they become a Madmate, this ability will only work on Crewmates.","(Член Экипажа):\nКогда Пацифист использует вентиляцию, время перезарядки убийства/навыков всех игроков с кнопкой убийства будет сброшено. Когда Пацифист становится предателем, навык действует только на Членов Экипажа.",""(船員陣營):\n和平之鴿可以通過進入通風管來進行歌頌，",""
 "FarseerInfoLong","","(Crewmates):\n.As a Farseer you have very limited vision but you can use your kill button to reveal the role of a nearby player. Use the kill button to start the reveal, a 「○」 will be displayed next to the reveal target. Stay near the target for a defined time to reveal his role, if you move too far away from the target the reveal will be aborted."
 
 "# 中立阵营 / Neutrals descriptions"
@@ -606,7 +610,8 @@
 "OnboundInfoLong","","(Add-ons):\nWith the Onbound add-on, you cannot be guessed in meetings.","(Атрибут):\nУ Непобедимого невозможно угадать роль во время встречи","",""
 "KnightedInfoLong","","(Add-ons):\nWhen a Monarch knights someone, they get an extra vote.","","",""
 "UnreportableInfoLong","","(Add-ons):\nWith the Disregarded add-on, your corpse cannot be reported.","","",""
-"ContagiousInfoLong","","(Add-ons):\nWhen the Virus infects you, you become contagious.\nContagious players are on the Virus team.","","",""
+"ContagiousInfoLong","","(Add-ons):\nWhen the Virus infects you, you become contagious.\nContagious players are on the Virus team.\n\nWhether or not you die after a meeting depends on the settings for the Virus.","","",""
+"RogueInfoLong","","(Add-ons):\nThe Rogue is only assigned to Impostors.\nWhen an Impostor is Rogue, they work against the Impostors and win alone.\nRogue Impostors cannot win with the other Impostors.","","",""
 
 "# 其它 / Other long description"
 "GMInfoLong","(房主):\n看我干啥，我只是个开局就死的冤魂，静静地吃瓜而已。","(None):\nThe GM (Game Master) is an observer role.\nTheir presence has no effect on the game, and all players know who the GM is. The GM role will be assigned to the host, who will automatically become a ghost at the start of the game.","(Никто):\nGM (Мастер Игры) — это роль, которая наблюдает за игрой в роле призрака. \nОн не влияет на игру, и все игроки всегда знают кто Мастер Игры. Всегда назначается только хосту лобби и становится призраком в самом начале игры.","(房主):\n看我幹嘛，我只是開始遊戲時就在冥界吃瓜而已。","(房主):\n看我干啥，我只是个开局就死的冤魂，静静地吃瓜而已。"
@@ -628,7 +633,7 @@
 "AddedTheSkeld","添加骷髅舰地图","Include The Skeld","Добавить The Skeld","將The Skeld列入選項","添加骷髅舰地图"
 "AddedMIRAHQ","添加米拉总部地图","Include MIRA HQ","Добавить MIRA HQ","將MIRA HQ列入選項","添加米拉总部地图"
 "AddedPolus","添加波鲁斯地图","Include Polus","Добавить Polus","將Polus列入選項","添加波鲁斯地图"
-"AddedTheAirShip","添加飞艇地图","Include AirShip","Добавить The Airship","將The Airship列入選項","添加飞艇地图"
+"AddedTheAirship","添加飞艇地图","Include Airship","Добавить The Airship","將The Airship列入選項","添加飞艇地图"
 "AllAliveMeeting","全员存活时的会议设定","Meeting When No One is Dead","Все живые на собрании","全員存活時的會議設定","全员存活时的会议设定"
 "AllAliveMeetingTime","全员存活时的会议时间","Meeting Time When No One is Dead","Время когда все живы на собрании","全員存活的會議時間","全员存活时的会议时间"
 "AdditionalEmergencyCooldown","附加紧急会议冷却时间","Additional Emergency Cooldown","Дополнительный откат Собраний","附加緊急會議冷卻時間","附加紧急会议冷却时间"
@@ -803,7 +808,7 @@
 "RoleAssigningAlgorithm.Xorshift","Xorshift","Xorshift","Xorshift","Xorshift","Xorshift"
 "RoleAssigningAlgorithm.MersenneTwister","Twister","MersenneTwister","MersenneTwister","Twister","Twister"
 "DisableAirshipMovingPlatform","","Disable Moving Platform(Airship)","Отключить движущуюся платформу (Airship)","",""
-"AirShipVariableElectrical","电气室门随机关闭（飞艇地图）","Variable Electrical (AirShip)","Двери в Электрощитовой меняются случайно (Airship)","電氣室門隨機關閉(The Airship)","电气室门随机关闭（飞艇地图）"
+"AirshipVariableElectrical","电气室门随机关闭（飞艇地图）","Variable Electrical (Airship)","Двери в Электрощитовой меняются случайно (Airship)","電氣室門隨機關閉(The Airship)","电气室门随机关闭（飞艇地图）"
 "ApplyDenyNameList","踢出使用违规昵称的玩家","Apply DenyName List","Применить файл запрещённых имён (DenyName)","踢出使用違規暱稱的玩家","踢出使用违规昵称的玩家"
 "KickPlayerFriendCodeNotExist","踢出没有登录的玩家","Kick players who are not logged in","Кикнуть игроков у которых нет Кода Друга","踢出沒有登入的玩家","踢出没有登录的玩家"
 "ApplyBanList","踢出被封禁的玩家","Apply BanList","Применить файл с забаненными игроками (BanList)","踢出被封禁的玩家","踢出被封禁的玩家"
@@ -1148,6 +1153,8 @@
 "SuccubusKnowTargetRole","可以知道魅惑目标的职业","Know <color=#cf6acd>Charmed</color> Player's Role","Знает роли <color=#cf6acd>Зачарованных</color>","可以知道魅惑目標的職業",""
 "SuccubusTargetKnowOtherTarget","被魅惑的玩家可以互认","<color=#cf6acd>Charmed</color> players know each other","<color=#cf6acd>Зачарованные</color> игроки могут знать друг друга","被魅惑的玩家可以互認",""
 "InfectiousBiteCooldown","","Infect Cooldown","","",""
+"KnowTargetRole","","Knows role of target","","",""
+"TargetKnowsLawyer","","Target knows their <color=#008080>Lawyer</color>","","",""
 "InfectiousBiteCooldownIncrese","","Infect Cooldown Increase Per Use","","",""
 "InfectiousBiteMax","","Maximum Infections","","",""
 "InfectiousKnowTargetRole","","Know <color=#7B8968>infected</color> player's role","","",""
@@ -1803,3 +1810,4 @@
 "WinnerRoleText.Provocateur","自爆卡车","Provocateurs","Провокаторы","神風特攻隊",""
 "WinnerRoleText.Sunnyboy","阳光开朗大男孩","Sunnyboys","Солнечные Мальчики","陽光開朗大男孩",""
 "WinnerRoleText.Totocalcio","赌徒","Followers","Последователи","追隨者",""
+"WinnerRoleText.Rogue","","Rogue Impostors","","",""
