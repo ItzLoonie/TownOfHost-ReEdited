@@ -46,8 +46,8 @@ internal class PingTrackerUpdatePatch
 internal class VersionShowerStartPatch
 {
     public static GameObject OVersionShower;
-    private static TMPro.TextMeshPro SpecialEventText;
-    private static TMPro.TextMeshPro VisitText;
+    private static TextMeshPro SpecialEventText;
+    private static TextMeshPro VisitText;
 
     private static void Postfix(VersionShower __instance)
     {
