@@ -2,7 +2,7 @@ using HarmonyLib;
 
 namespace TOHE;
 
-//参考元:https://github.com/yukieiji/ExtremeRoles/blob/master/ExtremeRoles/Patches/AirShipStatusPatch.cs
+//参考元:https://github.com/yukieiji/ExtremeRoles/blob/master/ExtremeRoles/Patches/AirshipStatusPatch.cs
 [HarmonyPatch(typeof(AirshipStatus), nameof(AirshipStatus.PrespawnStep))]
 public static class AirshipStatusPrespawnStepPatch
 {

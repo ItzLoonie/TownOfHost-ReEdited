@@ -2,6 +2,7 @@ using Hazel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TOHE.Modules;
 using static TOHE.Options;
 using static TOHE.Translator;
 
@@ -142,8 +143,8 @@ public static class Witch
         {
             SpelledPlayer[killer.PlayerId].Add(target.PlayerId);
             SendRPC(true, killer.PlayerId, target.PlayerId);
-            //キルクールの適正化
-            killer.SetKillCooldown();
+            killer.SetKillCooldownV2();
+            killer.RPCPlayCustomSound("Curse");
         }
     }
     public static void RemoveSpelledPlayer()
@@ -219,11 +220,11 @@ public static class Witch
         var str = new StringBuilder();
         if (hud)
         {
-            str.Append(GetString("WitchCurrentMode"));
+            str.Append($"{GetString("WitchCurrentMode")}: ");
         }
         else
         {
-            str.Append($"{GetString("Mode")}:");
+            str.Append($"{GetString("Mode")}: ");
         }
         if (NowSwitchTrigger == SwitchTrigger.DoubleTrigger)
         {
@@ -239,11 +240,11 @@ public static class Witch
     {
         if (IsSpellMode(PlayerControl.LocalPlayer.PlayerId) && NowSwitchTrigger != SwitchTrigger.DoubleTrigger)
         {
-            hud.KillButton.OverrideText($"{GetString("WitchSpellButtonText")}");
+            hud.KillButton.OverrideText(GetString("WitchSpellButtonText"));
         }
         else
         {
-            hud.KillButton.OverrideText($"{GetString("KillButtonText")}");
+            hud.KillButton.OverrideText(GetString("KillButtonText"));
         }
     }
 

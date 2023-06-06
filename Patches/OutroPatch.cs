@@ -67,6 +67,7 @@ class EndGamePatch
         BountyHunter.ChangeTimer = new();
         Main.isDoused = new Dictionary<(byte, byte), bool>();
         Main.isDraw = new Dictionary<(byte, byte), bool>();
+        Main.isRevealed = new Dictionary<(byte, byte), bool>();
 
         Main.VisibleTasksCount = false;
         if (AmongUsClient.Instance.AmHost)
@@ -141,6 +142,10 @@ class SetEverythingUpPatch
             case CustomWinner.Impostor:
                 CustomWinnerColor = Utils.GetRoleColorCode(CustomRoles.Impostor);
                 __instance.BackgroundBar.material.color = Utils.GetRoleColor(CustomRoles.Impostor);
+                break;
+            case CustomWinner.Rogue:
+                CustomWinnerColor = Utils.GetRoleColorCode(CustomRoles.Rogue);
+                __instance.BackgroundBar.material.color = Utils.GetRoleColor(CustomRoles.Rogue);
                 break;
             case CustomWinner.Egoist:
                 CustomWinnerColor = Utils.GetRoleColorCode(CustomRoles.Egoist);

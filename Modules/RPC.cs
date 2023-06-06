@@ -50,6 +50,7 @@ enum CustomRPC
     SyncAllPlayerNames,
     SyncNameNotify,
     ShowPopUp,
+    KillFlash,
 
     //Roles
     SetDrawPlayer,
@@ -84,6 +85,12 @@ enum CustomRPC
     SetSuccubusCharmLimit,
     SetInfectiousBiteLimit,
     SetMonarchKnightLimit,
+    SetVirusInfectLimit,
+    SetRevealedPlayer,
+    SetCurrentRevealTarget,
+    SyncPuppeteerList,
+    SyncCurseAndKill,
+    SetJackalRecruitLimit,
 
     //SoloKombat
     SyncKBPlayer,
@@ -278,6 +285,12 @@ internal class RPCHandlerPatch
                 bool drawed = reader.ReadBoolean();
                 Main.isDraw[(RevolutionistId, DrawId)] = drawed;
                 break;
+            case CustomRPC.SetRevealedPlayer:
+                byte FarseerId = reader.ReadByte();
+                byte RevealId = reader.ReadByte();
+                bool revealed = reader.ReadBoolean();
+                Main.isDraw[(FarseerId, RevealId)] = revealed;
+                break;
             case CustomRPC.SetNameColorData:
                 NameColorManager.ReceiveRPC(reader);
                 break;
@@ -349,6 +362,9 @@ internal class RPCHandlerPatch
             case CustomRPC.SetGangsterRecruitLimit:
                 Gangster.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetJackalRecruitLimit:
+                Jackal.ReceiveRPC(reader);
+                break;
             case CustomRPC.PlayCustomSound:
                 CustomSoundsManager.ReceiveRPC(reader);
                 break;
@@ -398,7 +414,8 @@ internal class RPCHandlerPatch
                 Psychic.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetKillTimer:
-                PlayerControl.LocalPlayer.SetKillTimer(reader.ReadSingle());
+                float time = reader.ReadSingle();
+                PlayerControl.LocalPlayer.SetKillTimer(time);
                 break;
             case CustomRPC.SyncKBPlayer:
                 SoloKombatManager.ReceiveRPCSyncKBPlayer(reader);
@@ -450,6 +467,25 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetMonarchKnightLimit:
                 Monarch.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetVirusInfectLimit:
+                Virus.ReceiveRPC(reader);
+                break;
+            case CustomRPC.KillFlash:
+                Utils.FlashColor(new(1f, 0f, 0f, 0.3f));
+                if (Constants.ShouldPlaySfx()) RPC.PlaySound(PlayerControl.LocalPlayer.PlayerId, Sounds.KillSound);
+                break;
+            case CustomRPC.SyncPuppeteerList:
+                int pcount = reader.ReadInt32();
+                Main.PuppeteerList = new();
+                for (int i = 0; i < pcount; i++)
+                    Main.PuppeteerList.Add(reader.ReadByte(), reader.ReadByte());
+                break;
+            case CustomRPC.SyncCurseAndKill:
+                int ccount = reader.ReadInt32();
+                Main.isCurseAndKill = new();
+                for (int i = 0; i < ccount; i++)
+                    Main.isCurseAndKill.Add(reader.ReadByte(), reader.ReadBoolean());
                 break;
         }
     }
@@ -770,11 +806,17 @@ internal static class RPC
             case CustomRoles.Succubus:
                 Succubus.Add(targetId);
                 break;
+            case CustomRoles.DovesOfNeace:
+                Main.DovesOfNeaceNumOfUsed.Add(targetId, Options.DovesOfNeaceMaxOfUseage.GetInt());
+                break;
             case CustomRoles.Infectious:
                 Infectious.Add(targetId);
                 break;
             case CustomRoles.Monarch:
                 Monarch.Add(targetId);
+                break;
+            case CustomRoles.Virus:
+                Virus.Add(targetId);
                 break;
         }
         HudManager.Instance.SetHudActive(true);
@@ -848,6 +890,20 @@ internal static class RPC
             AmongUsClient.Instance.FinishRpcImmediately(writer);
         }
     }
+    public static void SetCurrentRevealTarget(byte arsonistId, byte targetId)
+    {
+        if (PlayerControl.LocalPlayer.PlayerId == arsonistId)
+        {
+            Main.currentDrawTarget = targetId;
+        }
+        else
+        {
+            MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetCurrentRevealTarget, Hazel.SendOption.Reliable, -1);
+            writer.Write(arsonistId);
+            writer.Write(targetId);
+            AmongUsClient.Instance.FinishRpcImmediately(writer);
+        }
+    }
     public static void SendRPCCursedWolfSpellCount(byte playerId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetCursedWolfSpellCount, SendOption.Reliable, -1);
@@ -855,8 +911,23 @@ internal static class RPC
         writer.Write(Main.CursedWolfSpellCount[playerId]);
         AmongUsClient.Instance.FinishRpcImmediately(writer);
     }
+    public static void RpcSyncPuppeteerList()
+    {
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SyncPuppeteerList, SendOption.Reliable, -1);
+        writer.Write(Main.PuppeteerList.Count);
+        Main.PuppeteerList.Do(p => { writer.Write(p.Key); writer.Write(p.Value); });
+        AmongUsClient.Instance.FinishRpcImmediately(writer);
+    }
+    public static void RpcSyncCurseAndKill()
+    {
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SyncPuppeteerList, SendOption.Reliable, -1);
+        writer.Write(Main.isCurseAndKill.Count);
+        Main.isCurseAndKill.Do(p => { writer.Write(p.Key); writer.Write(p.Value); });
+        AmongUsClient.Instance.FinishRpcImmediately(writer);
+    }
     public static void ResetCurrentDousingTarget(byte arsonistId) => SetCurrentDousingTarget(arsonistId, 255);
     public static void ResetCurrentDrawTarget(byte arsonistId) => SetCurrentDrawTarget(arsonistId, 255);
+    public static void ResetCurrentRevealTarget(byte arsonistId) => SetCurrentRevealTarget(arsonistId, 255);
     public static void SetRealKiller(byte targetId, byte killerId)
     {
         var state = Main.PlayerStates[targetId];

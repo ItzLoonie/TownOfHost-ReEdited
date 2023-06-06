@@ -14,6 +14,7 @@ public static class Executioner
 
     private static OptionItem CanTargetImpostor;
     private static OptionItem CanTargetNeutralKiller;
+    public static OptionItem KnowTargetRole;
     public static OptionItem ChangeRolesAfterTargetKilled;
 
 
@@ -38,6 +39,7 @@ public static class Executioner
         SetupRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.Executioner);
         CanTargetImpostor = BooleanOptionItem.Create(Id + 10, "ExecutionerCanTargetImpostor", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Executioner]);
         CanTargetNeutralKiller = BooleanOptionItem.Create(Id + 12, "ExecutionerCanTargetNeutralKiller", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Executioner]);
+        KnowTargetRole = BooleanOptionItem.Create(Id + 13, "KnowTargetRole", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Executioner]);
         ChangeRolesAfterTargetKilled = StringOptionItem.Create(Id + 11, "ExecutionerChangeRolesAfterTargetKilled", ChangeRoles, 1, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Executioner]);
     }
     public static void Init()
@@ -128,6 +130,12 @@ public static class Executioner
         text = string.Format(text, Utils.ColorString(Utils.GetRoleColor(CRoleChangeRoles[ChangeRolesAfterTargetKilled.GetValue()]), Translator.GetString(CRoleChangeRoles[ChangeRolesAfterTargetKilled.GetValue()].ToString())));
         executioner.Notify(text);
     }
+        public static bool KnowRole(PlayerControl player, PlayerControl target)
+    {
+        if (!KnowTargetRole.GetBool()) return false;
+        return player.Is(CustomRoles.Executioner) && Target.TryGetValue(player.PlayerId, out var tar) && tar == target.PlayerId;
+    }
+
     public static string TargetMark(PlayerControl seer, PlayerControl target)
     {
         if (!seer.Is(CustomRoles.Executioner)) return ""; //エクスキューショナー以外処理しない

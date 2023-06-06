@@ -47,7 +47,7 @@ public class GameStartManagerPatch
             cancelLabel.text = GetString("Cancel");
             cancelButton.transform.localScale = new(0.4f, 0.4f, 1f);
             cancelButton.color = Color.red;
-            cancelButton.transform.localPosition = new(0f, -0.52f, 0f); //new(0f, 0.1f, 0f);
+            cancelButton.transform.localPosition = new(0f, -0.36f, 0f); //new(0f, 0.1f, 0f);
             var buttonComponent = cancelButton.GetComponent<PassiveButton>();
             buttonComponent.OnClick = new();
             buttonComponent.OnClick.AddListener((Action)(() => __instance.ResetStartState()));
@@ -131,7 +131,7 @@ public class GameStartManagerPatch
                 if (!canStartGame)
                 {
                     __instance.StartButton.gameObject.SetActive(false);
-                    warningMessage = Utils.ColorString(Color.red, string.Format(GetString("Warning.MismatchedVersion"), String.Join(" ", mismatchedPlayerNameList), $"<color={Main.ModColor}>{Main.ModName}</color>"));
+                    warningMessage = Utils.ColorString(Color.red, string.Format(GetString("Warning.MismatchedVersion"), string.Join(" ", mismatchedPlayerNameList), $"<color={Main.ModColor}>{Main.ModName}</color>"));
                 }
                 cancelButton.gameObject.SetActive(__instance.startState == GameStartManager.StartingStates.Countdown);
             }
@@ -160,8 +160,6 @@ public class GameStartManagerPatch
             else
             {
                 __instance.GameStartText.transform.localPosition = __instance.StartButton.transform.localPosition;
-                if (!GameStates.IsCountDown)
-                    __instance.GameStartText.text = "";
             }
 
             // Lobby timer
@@ -236,12 +234,12 @@ public class GameStartRandomMap
             MIRAHQ     = 1
             Polus      = 2
             Dleks      = 3
-            TheAirShip = 4*/
+            TheAirship = 4*/
             if (Options.AddedTheSkeld.GetBool()) RandomMaps.Add(0);
             if (Options.AddedMiraHQ.GetBool()) RandomMaps.Add(1);
             if (Options.AddedPolus.GetBool()) RandomMaps.Add(2);
             // if (Options.AddedDleks.GetBool()) RandomMaps.Add(3);
-            if (Options.AddedTheAirShip.GetBool()) RandomMaps.Add(4);
+            if (Options.AddedTheAirship.GetBool()) RandomMaps.Add(4);
 
             if (RandomMaps.Count <= 0) return true;
             var MapsId = RandomMaps[rand.Next(RandomMaps.Count)];
