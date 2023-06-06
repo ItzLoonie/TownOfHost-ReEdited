@@ -1923,7 +1923,8 @@ class EnterVentPatch
                 Main.VeteranInProtect.Remove(pc.PlayerId);
                 Main.VeteranInProtect.Add(pc.PlayerId, Utils.GetTimeStamp(DateTime.Now));
                 Main.VeteranNumOfUsed[pc.PlayerId]--;
-                pc.RpcGuardAndKill(pc);
+                if (!pc.IsModClient()) pc.RpcGuardAndKill(pc);
+                pc.RPCPlayCustomSound("Gunload");
                 pc.Notify(GetString("VeteranOnGuard"), Options.VeteranSkillDuration.GetFloat());
             }
         }
