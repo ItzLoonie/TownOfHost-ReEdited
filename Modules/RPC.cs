@@ -408,7 +408,8 @@ internal class RPCHandlerPatch
                 Psychic.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetKillTimer:
-                PlayerControl.LocalPlayer.SetKillTimer(reader.ReadSingle());
+                float time = reader.ReadSingle();
+                PlayerControl.LocalPlayer.SetKillTimer(time);
                 break;
             case CustomRPC.SyncKBPlayer:
                 SoloKombatManager.ReceiveRPCSyncKBPlayer(reader);
