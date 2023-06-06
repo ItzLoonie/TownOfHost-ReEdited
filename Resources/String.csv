@@ -165,7 +165,7 @@
 "DovesOfNeace","和平之鸽","Pacifist","Пацифист","和平之鴿",""
 "Observer","观察者","Observer","Аудитор","窺視者",""
 "Monarch","","Monarch","","",""
-"Farseer","","Farseer","","",""
+"Farseer","","Overseer","","",""
 
 "# 中立阵营 / Neutrals"
 "Jester","小丑","Jester","Шут","小丑","小丑"
@@ -544,9 +544,9 @@
 "MorticianInfoLong","(船员阵营):\n入殓师可以看到指向所有尸体的箭头，入殓师报告尸体可以在会议上得知被害者生前最后一个接触的玩家。请注意：入殓师不会成为胆小鬼或灵媒。","(Crewmates):\nThe Mortician can see arrows pointing to all dead bodies, and if the Mortician reports a body they will know the last player the victim had contact with. Note: Mortician won't be Oblivious or Seer.","(Член Экипажа):\nГробовщик может видеть стрелки, указывающие на все трупы. На собрании получает информацию, кто был последним игроком, с которым контактировала жертва при жизни.\n ★Пожалуйста, обратите внимание★：Гробовщик не может стать Забывчивым и Провидцем.","(船員陣營):\n殯葬師可以看到指向所有屍體的箭頭，當殯葬師報告屍體時可以在會議上得知被害者生前最後一個接觸的玩家。請注意: 殯葬師不會成為膽小鬼。","(船员阵营):\n入殓师可以看到指向所有尸体的箭头，入殓师报告尸体可以在会议上得知被害者生前最后一个接触的玩家。请注意：入殓师不会成为胆小鬼。"
 "MediumshiperInfoLong","(船员阵营):\n当场上有玩家被击杀，通灵师会收到提示。每次会议召开时通灵师会与被报告的尸体建立联系（只有被报告的尸体而不是被发现的所有尸体），在本次会议结束前，被害者拥有一次机会回答通灵师的问题，只能回答是或否。请注意：通灵师不会成为胆小鬼。","(Crewmates):\nThe Medium can establish contact with a dead player after their dead body is reported. The player who reports doesn't have to be the Medium. The dead player can answer once with a YES or a NO to the Medium's question which only the Medium will see (the dead player can use /ms yes or /ms no). Note: Medium won't be Oblivious.","(Член Экипажа):\nМедиум может установить контакт с мертвым игроком, зарепортив его труп. Он может один раз ответить Да или НЕТ на вопрос Медиума, ответ на вопрос увидит только Медиум. \nМертвый игрок может использовать /ms Yes или /ms No. Примечание: Медиум не будет Забывчивым.","(船員陣營):\n當場上有玩家被殺死，通靈師會收到提示。當每次報告屍體時通靈師可以與被報告的屍體建立聯繫(只有被報告的而不是全部被害者)，在此次會議結束前，被害者擁有一次機會回答通靈師的問題，只能回答是或否。請注意: 通靈師不會成為膽小鬼。","(船员阵营):\n当场上有玩家被击杀，通灵师会收到提示。通灵师报告尸体后可以与被害者建立联系，在本次会议结束前，被害者拥有一次机会回答通灵师的问题，只能回答是或否。请注意：通灵师不会成为胆小鬼。"
 "ObserverInfoLong","(船员阵营):\n观察者可以看到其他玩家的碎盾动画。首次会议召开前观察者的技能不会生效。","(Crewmates):\nThe Observer can see all shield animations caused by other players after the first meeting.","(Член Экипажа):\nАудитор видят сломанные щиты. Навык видения срабатывает с первого собрания.","(船員陣營):\n窺視者可以看到其他玩家的碎盾動畫。首次會議召開前窺視者的技能不會生效。",""
-"MonarchInfoLong","","(Crewmates):\nAs the Monarch, you can knight players to give them an extra vote.\n\nYou cannot knight someone who already have extra votes."
+"MonarchInfoLong","","(Crewmates):\nAs the Monarch, you can knight players to give them an extra vote.\n\nYou cannot knight people who already have extra votes."
 "DovesOfNeaceInfoLong","(船员阵营):\n当和平之鸽可以通过使用通风管道进行歌颂，在场所有拥有击杀键的玩家的击杀/技能冷却时间会被重置。当和平之鸽成为叛徒时歌颂只对船员生效。","(Crewmates):\nWhen the Pacifist vents, they will reset the kill cooldown for every player with a kill button. When they become a Madmate, this ability will only work on Crewmates.","(Член Экипажа):\nКогда Пацифист использует вентиляцию, время перезарядки убийства/навыков всех игроков с кнопкой убийства будет сброшено. Когда Пацифист становится предателем, навык действует только на Членов Экипажа.",""(船員陣營):\n和平之鴿可以通過進入通風管來進行歌頌，",""
-"FarseerInfoLong","","(Crewmates):\n.As a Farseer you have very limited vision but you can use your kill button to reveal the role of a nearby player. Use the kill button to start the reveal, a 「○」 will be displayed next to the reveal target. Stay near the target for a defined time to reveal his role, if you move too far away from the target the reveal will be aborted."
+"FarseerInfoLong","","(Crewmates):\nAs a Overseer you have very limited vision but you can use your kill button to reveal the role of a nearby player. Use the kill button to start the reveal, a 「○」 will be displayed next to the reveal target. Stay near the target for a defined time to reveal his role, if you move too far away from the target the reveal will be aborted."
 
 "# 中立阵营 / Neutrals descriptions"
 "ArsonistInfoLong","(中立阵营):\n纵火犯可以通过对玩家点击击杀按钮并跟随其数秒来完成涂油，开始涂油以及涂油成功时会显示护盾破碎的动画作为提示（仅自己可见）。当所有存活玩家都被纵火犯涂油后，纵火犯可以通过跳通风管来点火，并单独获得胜利。\n\n玩家名显示「△」表示涂油中\n玩家名显示「▲」表示已涂油。","(Neutrals):\nThe Arsonist can douse by clicking the kill button on the player and following them for a few seconds. When the dousing starts and it's successful, a shield animation will be displayed as a reminder (only visible to themselves). When the Arsonist has doused all surviving players, the Arsonist can vent to start the fire and win alone.\n\nIf the player name shows 「△」, that means they are being doused;\nif the player name shows 「▲」, it means they have been completely doused.","(нейтральный): поджигатель может закончить смазку, нажав на кнопку убийства игрока и следуя за ним в течение нескольких секунд, начать мазать, а также показать анимацию разбитого щита, когда она будет успешной (только для себя). После того, как все выжившие игроки были смазаны поджигателем, поджигатель мог воспламенить его, перепрыгнув через вентиляционную трубу и одержать победу в одиночку. \ n что n игрок показыва「△」заяв в смазыва \ что n что игрок показыва「▲」что смазыва.","(中立陣營):\n縱火犯可以通過對玩家使用殺人鍵並跟隨數秒來澆油，開始以及結束澆油時會出現盾牌破碎的效果作為提示。當所有存活玩家都被縱火犯澆上油時，縱火犯可以以跳管道的方式來點火，並單獨獲勝。\n\n玩家名字顯示「△」表示澆油中\n顯示「▲」表示已經澆油。","(中立阵营):\n纵火犯可以通过对玩家点击击杀按钮并跟随其数秒来完成涂油，开始涂油以及涂油成功时会显示护盾破碎的动画作为提示（仅自己可见）。当所有存活玩家都被纵火犯涂油后，纵火犯可以通过跳通风管来点火，并单独获得胜利。\n\n玩家名显示「△」表示涂油中\n玩家名显示「▲」表示已涂油。"
@@ -928,6 +928,7 @@
 "SheriffCanKillSidekick","","Can Kill <color=#00b4eb>Sidekicks</color>","Может убить <color=#00b4eb>Союзников</color>","",""
 "SheriffCanKillLovers","","Can Kill <color=#ff9ace>Lovers</color>","Может убить <color=#ff9ace>Любовников</color>","",""
 "SheriffCanKillBitten","","Can Kill <color=#7B8968>Bitten</color> players","","",""
+"SheriffCanKillMadmate","","Can Kill <color=#ff1919>Madmates</color>","","",""
 "SheriffSetMadCanKill","单独设定<color=#ff1919>背叛的警长</color>可执法的目标（默认全开）","Specifically set teams that the <color=#ff1919>Mad</color> <color=#f8cd46>Sheriff</color> can kill","Настроить кого <color=#ff1919>Безумный</color> <color=#f8cd46>Шериф</color> может убивать","單獨設定<color=#ff1919>背叛的警長</color>可以執法的目標(預設全開)","单独设定<color=#ff1919>背叛的警长</color>可执法的目标（默认全开）"
 "SheriffMadCanKillImp","背叛后可以执法<color=#ff1919>内鬼阵营</color>","Can kill <color=#ff1919>Impostors</color>","Может убивать <color=#ff1919>Предателей</color>","背叛後可以執法<color=#ff1919>偽裝者陣營</color>","背叛后可以执法<color=#ff1919>内鬼阵营</color>"
 "SheriffMadCanKillNeutral","背叛后可以执法<color=#7f8c8d>中立阵营</color>","Can kill <color=#7f8c8d>Neutrals</color>","Может убивать <color=#7f8c8d>Нейтралов</color>","背叛後可以執法<color=#7f8c8d>中立陣營</color>","背叛后可以执法<color=#7f8c8d>中立阵营</color>"
@@ -1380,7 +1381,7 @@
 "VirusNoticeMessage2","","The body your reported was infected by the Virus! Vote the Virus out this meeting or you will die.","","",""
 "FarseerRevealCooldown","","<color=#BA55D3>Reveal</color> Cooldown","","",""
 "FarseerRevealTime","","<color=#BA55D3>Reveal</color> Time","","",""
-"FarseerVision","","<color=#BA55D3>Farseer</color> Vision","","",""
+"FarseerVision","","<color=#BA55D3>Overseer</color> Vision","","",""
 
 "## 信息 / Message"
 "Message.SetToSeconds","信息发送冷却时间为【{0}】秒","Set to 【{0}】 seconds.","Установлен на 【{0}】 секунды","訊息傳送冷卻時間設為【{0}】秒","信息发送冷却时间为【{0}】秒"
