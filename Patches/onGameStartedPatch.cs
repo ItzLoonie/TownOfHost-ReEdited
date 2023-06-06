@@ -41,11 +41,13 @@ internal class ChangeRoleSettings
             Main.AssassinTimer = new();
             Main.isDoused = new();
             Main.isDraw = new();
+            Main.isRevealed = new();
             Main.ArsonistTimer = new();
             Main.RevolutionistTimer = new();
             Main.RevolutionistStart = new();
             Main.RevolutionistLastTime = new();
             Main.RevolutionistCountdown = new();
+            Main.FarseerTimer = new();
             Main.CursedPlayers = new();
             Main.MafiaRevenged = new();
             Main.isCurseAndKill = new();
@@ -59,6 +61,8 @@ internal class ChangeRoleSettings
             Main.BoobyTrapBody = new();
             Main.KillerOfBoobyTrapBody = new();
             Main.CleanerBodies = new();
+            Main.InfectedBodies = new();
+            Main.VirusNotify = new();
 
             Main.LastEnteredVent = new();
             Main.LastEnteredVentLocation = new();
@@ -87,6 +91,7 @@ internal class ChangeRoleSettings
             Main.FirstDied = byte.MaxValue;
             Main.MadmateNum = 0;
             Main.BardCreations = 0;
+            Main.DovesOfNeaceNumOfUsed = new();
 
             ReportDeadBodyPatch.CanReport = new();
 
@@ -211,6 +216,7 @@ internal class ChangeRoleSettings
             Succubus.Init();
             Infectious.Init();
             Monarch.Init();
+            Virus.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
@@ -427,6 +433,10 @@ internal class SelectRolesPatch
                         foreach (var ar in Main.AllPlayerControls)
                             Main.isDraw.Add((pc.PlayerId, ar.PlayerId), false);
                         break;
+                    case CustomRoles.Farseer:
+                        foreach (var ar in Main.AllPlayerControls)
+                            Main.isRevealed.Add((pc.PlayerId, ar.PlayerId), false);
+                        break;
                     case CustomRoles.Executioner:
                         Executioner.Add(pc.PlayerId);
                         break;
@@ -551,11 +561,17 @@ internal class SelectRolesPatch
                     case CustomRoles.Succubus:
                         Succubus.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.DovesOfNeace:
+                        Main.DovesOfNeaceNumOfUsed.Add(pc.PlayerId, Options.DovesOfNeaceMaxOfUseage.GetInt());
+                        break;
                     case CustomRoles.Infectious:
                         Infectious.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Monarch:
                         Monarch.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Virus:
+                        Virus.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Wildling:
                         Wildling.Add(pc.PlayerId);
@@ -611,7 +627,7 @@ internal class SelectRolesPatch
             }
 
             // ResetCamが必要なプレイヤーのリストにクラス化が済んでいない役職のプレイヤーを追加
-            Main.ResetCamPlayerList.AddRange(Main.AllPlayerControls.Where(p => p.GetCustomRole() is CustomRoles.Arsonist or CustomRoles.NWitch or CustomRoles.Revolutionist or CustomRoles.KB_Normal).Select(p => p.PlayerId));
+            Main.ResetCamPlayerList.AddRange(Main.AllPlayerControls.Where(p => p.GetCustomRole() is CustomRoles.Arsonist or CustomRoles.NWitch or CustomRoles.Revolutionist or CustomRoles.Farseer or CustomRoles.KB_Normal).Select(p => p.PlayerId));
             Utils.CountAlivePlayers(true);
             Utils.SyncAllSettings();
             SetColorPatch.IsAntiGlitchDisabled = false;

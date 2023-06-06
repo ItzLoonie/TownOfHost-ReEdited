@@ -10,10 +10,12 @@ public static class SwordsMan
     public static List<byte> playerIdList = new();
     //public static bool isKilled = false;
     public static List<byte> killed = new();
+    public static OptionItem CanVent;
 
     public static void SetupCustomOption()
     {
         Options.SetupRoleOptions(Id, TabGroup.CrewmateRoles, CustomRoles.SwordsMan);
+        CanVent = BooleanOptionItem.Create(Id + 11, "CanVent", false, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.SwordsMan]);
     }
     public static void Init()
     {
