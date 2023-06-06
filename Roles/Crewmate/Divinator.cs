@@ -77,6 +77,7 @@ public static class Divinator
                 CustomRoles.God or
                 CustomRoles.Judge or
                 CustomRoles.Observer or
+                CustomRoles.DovesOfNeace or
                 CustomRoles.Virus
                 => "HideMsg",
 
