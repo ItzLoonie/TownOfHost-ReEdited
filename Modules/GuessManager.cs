@@ -166,7 +166,7 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("EGGuessMax"));
                     return true;
                 }
-                if (role == CustomRoles.SuperStar && target.Is(CustomRoles.SuperStar))
+                if (role == CustomRoles.SuperStar || target.Is(CustomRoles.SuperStar))
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessSuperStar"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessSuperStar"));
