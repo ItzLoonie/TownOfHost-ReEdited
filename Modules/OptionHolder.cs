@@ -103,8 +103,8 @@ public static class Options
     public static OptionItem DisableTaskWin;
 
     public static OptionItem KillFlashDuration;
-    public static OptionItem ShareLobby;
-    public static OptionItem ShareLobbyMinPlayer;
+    //public static OptionItem ShareLobby;
+    //public static OptionItem ShareLobbyMinPlayer;
     public static OptionItem DisableVanillaRoles;
     public static OptionItem DisableHiddenRoles;
     public static OptionItem CEMode;

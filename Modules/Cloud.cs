@@ -11,9 +11,9 @@ namespace TOHE;
 internal class Cloud
 {
     private static string IP;
-    private static int LOBBY_PORT = 0;
+    //private static int LOBBY_PORT = 0;
     private static int EAC_PORT = 0;
-    private static Socket ClientSocket;
+    //private static Socket ClientSocket;
     private static Socket EacClientSocket;
     private static long LastRepotTimeStamp = 0;
     public static void Init()
@@ -23,7 +23,7 @@ internal class Cloud
             var content = GetResourcesTxt("TOHE.Resources.Config.Port.txt");
             string[] ar = content.Split('|');
             IP = ar[0];
-            LOBBY_PORT = int.Parse(ar[1]);
+            //LOBBY_PORT = int.Parse(ar[1]);
             EAC_PORT = int.Parse(ar[2]);
         }
         catch (Exception e)
@@ -38,7 +38,7 @@ internal class Cloud
         using StreamReader reader = new(stream, Encoding.UTF8);
         return reader.ReadToEnd();
     }
-    public static bool ShareLobby(bool command = false)
+    /*public static bool ShareLobby(bool command = false)
     {
         try
         {
@@ -70,7 +70,7 @@ internal class Cloud
             throw;
         }
         return true;
-    }
+    }*/
 
     private static bool connecting = false;
     public static void StartConnect()
