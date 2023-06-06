@@ -29,12 +29,7 @@ public static class Options
     {
         Logger.Info("Options.Load Start", "Options");
         taskOptionsLoad = Task.Run(Load);
-    }
-    [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start)), HarmonyPostfix]
-    public static void WaitOptionsLoad()
-    {
-        taskOptionsLoad.Wait();
-        Logger.Info("Options.Load End", "Options");
+        Task doneTask = taskOptionsLoad.ContinueWith(t => { Logger.Info("Options.Load End", "Options"); });
     }
     // オプションId
     public const int PresetId = 0;
