@@ -107,20 +107,7 @@ public static class Succubus
     public static string GetCharmLimit() => Utils.ColorString(CharmLimit >= 1 ? Utils.GetRoleColor(CustomRoles.Succubus) : Color.gray, $"({CharmLimit})");
     public static bool CanBeCharmed(this PlayerControl pc)
     {
-        if (pc == null)
-        {
-            return false;
-        }
-
-        bool roleCheck = pc.GetCustomRole().IsCrewmate() || pc.GetCustomRole().IsImpostor();
-        if (CanCharmNeutral.GetBool())
-        {
-            roleCheck = roleCheck || pc.GetCustomRole().IsNeutral() || pc.GetCustomRole().IsNeutralKilling();
-        }
-
-        return roleCheck && !pc.Is(CustomRoles.Charmed)
-        && !(
-            false
-            );
+        return pc != null && (pc.GetCustomRole().IsCrewmate() || pc.GetCustomRole().IsImpostor() || 
+            (CanCharmNeutral.GetBool() && (pc.GetCustomRole().IsNeutral() || pc.GetCustomRole().IsNeutralKilling()))) && !pc.Is(CustomRoles.Charmed);
     }
 }
