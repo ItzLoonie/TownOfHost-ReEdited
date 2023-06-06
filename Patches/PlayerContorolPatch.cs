@@ -842,7 +842,18 @@ class ShapeshiftPatch
                 Assassin.OnShapeshift(shapeshifter, shapeshifting);
                 break;
             case CustomRoles.ImperiusCurse:
-                ImperiusCurse.OnShapeshift(shapeshifter, target, shapeshifting);
+                if (shapeshifting)
+                {
+                    new LateTask(() =>
+                    {
+                        if (!(!GameStates.IsInTask || !shapeshifter.IsAlive() || !target.IsAlive() || shapeshifter.inVent || target.inVent))
+                        {
+                            var originPs = target.GetTruePosition();
+                            Utils.TP(target.NetTransform, shapeshifter.GetTruePosition());
+                            Utils.TP(shapeshifter.NetTransform, originPs);
+                        }
+                    }, 1.5f, "ImperiusCurse TP");
+                }
                 break;
             case CustomRoles.QuickShooter:
                 QuickShooter.OnShapeshift(shapeshifter, shapeshifting);

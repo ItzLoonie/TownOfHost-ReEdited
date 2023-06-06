@@ -204,7 +204,6 @@ internal static class CustomRolesHelper
             CustomRoles.Collector or
             CustomRoles.Sunnyboy or
             CustomRoles.Totocalcio or
-            CustomRoles.Infectious or
             CustomRoles.Succubus;
     }
     public static bool IsNK(this CustomRoles role) // �Ƿ��������

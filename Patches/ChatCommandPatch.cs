@@ -585,25 +585,6 @@ internal class ChatCommands
             return;
         }
 
-        if (isUp)
-        {
-            string[] param = role.Split(' ');
-            if (param.Length == 2 || param.Length == 3)
-            {
-                if (!int.TryParse(param[0], out int assignPlayer))
-                {
-                    return;
-                }
-
-                playerId = (byte)assignPlayer;
-                role = param[1] + (param.Length == 3 ? " " + param[2] : string.Empty);
-            }
-            else
-            {
-                role = param[0];
-            }
-        }
-
         role = FixRoleNameInput(role).ToLower().Trim().Replace(" ", string.Empty);
 
         foreach (CustomRoles rl in Enum.GetValues(typeof(CustomRoles)))
@@ -625,7 +606,7 @@ internal class ChatCommands
                     }
                     if (devMark == "▲")
                     {
-                        byte pid = playerId == 255 ? (byte)0 : (byte)playerId;
+                        byte pid = playerId == 255 ? (byte)0 : playerId;
                         Main.DevRole.Remove(pid);
                         Main.DevRole.Add(pid, rl);
                     }
