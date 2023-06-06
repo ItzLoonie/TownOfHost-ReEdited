@@ -50,6 +50,7 @@ enum CustomRPC
     SyncAllPlayerNames,
     SyncNameNotify,
     ShowPopUp,
+    KillFlash,
 
     //Roles
     SetDrawPlayer,
@@ -462,6 +463,10 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetVirusInfectLimit:
                 Virus.ReceiveRPC(reader);
+                break;
+            case CustomRPC.KillFlash:
+                Utils.FlashColor(new(1f, 0f, 0f, 0.3f));
+                if (Constants.ShouldPlaySfx()) RPC.PlaySound(PlayerControl.LocalPlayer.PlayerId, Sounds.KillSound);
                 break;
         }
     }
