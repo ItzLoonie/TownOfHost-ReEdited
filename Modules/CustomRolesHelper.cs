@@ -413,6 +413,7 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Egoist && pc.Is(CustomRoles.Sidekick) || pc.Is(CustomRoles.Madmate)) return false;
         if (role is CustomRoles.Sidekick && pc.Is(CustomRoles.Jackal)) return false;
         if (role is CustomRoles.Bait && pc.Is(CustomRoles.GuardianAngelTOHE)) return false;
+        if (role is CustomRoles.DualPersonality && pc.Is(CustomRoles.Dictator)) return false;
         if (role is CustomRoles.Trapper && pc.Is(CustomRoles.GuardianAngelTOHE)) return false;      
         if (role is CustomRoles.Reach && !pc.CanUseKillButton()) return false;
         if (role is CustomRoles.Watcher && ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeWatcher.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeWatcher.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeWatcher.GetBool()))) return false;
