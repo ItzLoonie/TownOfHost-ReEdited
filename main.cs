@@ -486,6 +486,7 @@ public enum CustomRoles
     Crewpostor,
     Disperser,
     Camouflager,
+    SkinEater,
     //Crewmate(Vanilla)
     Engineer,
     GuardianAngel,

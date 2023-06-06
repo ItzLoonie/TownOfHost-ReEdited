@@ -767,7 +767,7 @@ public static class Options
         CrewpostorKnowsAllies = BooleanOptionItem.Create(907093, "CrewpostorKnowsAllies", true, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Crewpostor]);
         AlliesKnowCrewpostor = BooleanOptionItem.Create(907094, "AlliesKnowCrewpostor", true, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Crewpostor]);
         CrewpostorTasks = OverrideTasksData.Create(9079094, TabGroup.ImpostorRoles, CustomRoles.Crewpostor);
-
+        SkinEater.SetupCustomOption();
 
         // Crewmate
         SetupRoleOptions(102255, TabGroup.CrewmateRoles, CustomRoles.NiceGuesser);

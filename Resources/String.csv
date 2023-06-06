@@ -131,6 +131,7 @@
 "Parasite","寄生蟲","Parasite","Паразит","",""
 "Disperser","分散者","Disperser","Разбрасыватель","",""
 "Inhibitor","","Inhibitor","","",""
+"SkinEater","","Devourer","","",""
 
 "# 船员阵营 / Crewmates"
 "Luckey","幸运儿","Luckey","Удачник","幸運兒","Suertudo"
@@ -349,6 +350,7 @@
 "ParasiteInfo","","Help the Impostors kill the crew","Помогите Предателям убить Членов Экипажей","",""
 "DisperserInfo","","Teleport everyone to random vents","Телепортируй всех в случайные венты","",""
 "InhibitorInfo","","You cannot kill during sabotages","","",""
+"SkinEaterInfo","","Devour their skins","","",""
 
 "# 船员阵营 / Crewmate descriptions"
 "LuckeyInfo","你擅长治疗内鬼的低血压","Your Killer may Miss the Kill","Убийца может промазать по вам","是生是死，看你是歐還是非","你擅长治疗内鬼的低血压"
@@ -511,6 +513,7 @@
 "ParasiteInfoLong","(内鬼阵营):\n寄生虫不会知道其他内鬼，其他内鬼也不会知道寄生虫","(Team Impostor):\nAs the Parasite, you are an Impostor that does not know the other Impostors.\n\nYou may kill, vent, sabotage, whatever.\nJust know that you are an Impostor.","(Предатель):\nПаразит явялется Предателем, который не знает ктоя явялется Предателем.\n\nОн может убивать, вентоваться, саботажить и делать что угодно.\nПросто знайте, что вы Предатель","",""
 "DisperserInfoLong","","(Impostors):\nDisperser can use Shapeshift to teleport all players to random vents.\nNote: the Disperser itself will not be teleported with shapeshift and players who are in the vent cannot be teleported.","(Предатель):\nРазбрасыватель может с помощью Морфлинга телепортировать всех игроков в случайные вентиляции.\nПримечание: Сам Разбрасыватель не будет телепортирован когда он использует морф и игроки которые находятся в вентиляции не могут быть телепортированы.","",""
 "InhibitorInfoLong","","(Impostors):\nAs the Inhibitor, you can only kill when there is not a critical sabotage active.\n\nIf a critical sabotage is active (eg Lights or Reactor), you cannot kill.","","",""
+"SkinEaterInfoLong","","(Impostors):\nAs a Devourer, you use your shapeshift to permanently change the appearance of the target of the shapeshift. Additionally, for each player's appearance changed, your kill cooldown is reduced by a defined number of seconds.","","",""
 
 "# 船员阵营 / Crewmates descriptions"
 "LuckeyInfoLong","(船员阵营):\n幸运儿被击杀时，有概率抵挡这次死亡，具体概率根据房主设定。抵挡生效时凶手会看到幸运儿的身上出现护盾破碎的效果，但幸运儿自己什么都不会知道。","(Crewmates):\nWhen a player attempts to kill the Luckey, there is a probability for the Luckey to evade the kill, and the specific probability is set by the host. When the evasion takes effect, the killer will see the shield-animation on Luckey's body, but Luckey themselves will not know anything.","(Член Экипажа):\nУ Удачника будет возникать определенная вероятность того, что Убийца не сможет убить Удачника, вероятность устанавливается в зависимости от настроек Хоста. Убийца увидит эффект разрушения щита ангела на теле Удачника, но сам Удачник при этом ничего не узнает.","(船員陣營):\n幸運兒被嘗試殺死時，有機率抵擋這次死亡，具體機率依房主設定。抵擋生效時兇手會看到幸運兒身上出現盾牌破碎的效果，但幸運兒自己甚麼都不知道。此外，如果幸運兒被劊子手絞殺，那麼技能將不會生效。","(船员阵营):\n幸运儿被击杀时，有概率抵挡这次死亡，具体概率根据房主设定。抵挡生效时凶手会看到幸运儿的身上出现护盾破碎的效果，但幸运儿自己什么都不会知道。"
@@ -1369,6 +1372,7 @@
 "DovesOfNeaceOnGuard","技能已生效，剩余{0}次","Ability used, {0} uses remain","Навык активирован, осталось ещё {0} ","和平技能已生效，剩餘{0}次",""
 "DovesOfNeaceMaxUsage","已达到技能使用次数上限","Ability use limit reached","Вы использовали все свои способности","已達到技能使用次數上限",""
 "DovesOfNeaceSkillNotify","和平之鸽重置了您的击杀/技能冷却","Dove of Peace Reset your kill CD","Пацифист сбросил ваш откат убийства / способности","和平之鴿重置了您的殺人/技能冷卻",""
+"SkinEaterCosumeSkin","","Your skin got devoured","","",""
 
 "MonarchKnightCooldown","","Knight Cooldown","","",""
 "MonarchKnightMax","","Maximum Knights","","",""

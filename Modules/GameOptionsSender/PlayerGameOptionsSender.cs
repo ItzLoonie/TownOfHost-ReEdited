@@ -260,6 +260,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 opt.SetFloat(FloatOptionNames.CrewLightMod, Farseer.Vision.GetFloat());
                 opt.SetFloat(FloatOptionNames.ImpostorLightMod, Farseer.Vision.GetFloat());
                 break;
+            case CustomRoles.SkinEater:
+                SkinEater.ApplyGameOptions();
+                break;
         }
 
         // Ϊ�Ի��ߵ�����

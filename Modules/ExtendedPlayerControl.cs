@@ -670,6 +670,9 @@ static class ExtendedPlayerControl
             case CustomRoles.Farseer:
                 Farseer.SetCooldown(player.PlayerId);
                 break;
+            case CustomRoles.SkinEater:
+                SkinEater.SetKillCooldown(player.PlayerId);
+                break;
         }
         if (player.PlayerId == LastImpostor.currentId)
             LastImpostor.SetKillCooldown();
