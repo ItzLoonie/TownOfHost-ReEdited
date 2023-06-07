@@ -527,7 +527,7 @@ public static class Options
     public static OptionItem TicketsPerKill;
     public static OptionItem ImpCanBeDualPersonality;
     public static OptionItem CrewCanBeDualPersonality;
-    public static OptionItem SidekickCountMode;
+    //public static OptionItem SidekickCountMode;
 
     public static readonly string[] suffixModes =
     {

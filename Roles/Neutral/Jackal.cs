@@ -22,6 +22,7 @@ public static class Jackal
     private static OptionItem ResetKillCooldownWhenSbGetKilled;
     public static OptionItem CanRecruitSidekick;
     public static OptionItem SidekickRecruitLimitOpt;
+    public static OptionItem SidekickCountMode;
     public static Dictionary<byte, int> RecruitLimit = new();
 
     public static void SetupCustomOption()
@@ -43,7 +44,7 @@ public static class Jackal
         SidekickKnowOtherSidekick = BooleanOptionItem.Create(6050585, "SidekickKnowOtherSidekick", false, TabGroup.NeutralRoles, false).SetParent(CanRecruitSidekick);
         SidekickKnowOtherSidekickRole = BooleanOptionItem.Create(6050590, "SidekickKnowOtherSidekickRole", false, TabGroup.NeutralRoles, false).SetParent(SidekickKnowOtherSidekick);
         SidekickCanKillSidekick = BooleanOptionItem.Create(6050600, "SidekickCanKillSidekick", false, TabGroup.NeutralRoles, false).SetParent(SidekickKnowOtherSidekick);
-        SidekickCountMode = StringOptionItem.Create(6050595, "SidekickCountMode", sidekickCountMode, 0, TabGroup.OtherRoles, false).SetParent(CanRecruitSidekick);
+        SidekickCountMode = StringOptionItem.Create(6050595, "SidekickCountMode", sidekickCountMode, 0, TabGroup.NeutralRoles, false).SetParent(CanRecruitSidekick);
     }
     public static void Init()
     {
