@@ -67,13 +67,13 @@ namespace TOHE.Roles.Impostor
         {
             if (!pc.IsAlive() || Pelican.IsEaten(pc.PlayerId)) return;
 
-            if (!Camouflage.IsCamouflage)
-            {
-                SetConsumedSkin(target);
-            }
-
             if (!PlayerSkinsCosumed[pc.PlayerId].Contains(target.PlayerId))
             {
+                if (!Camouflage.IsCamouflage)
+                {
+                    SetConsumedSkin(target);
+                }
+
                 PlayerSkinsCosumed[pc.PlayerId].Add(target.PlayerId);
                 Camouflage.PlayerSkins[target.PlayerId] = CosumedOutfit;
 
