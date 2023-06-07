@@ -578,6 +578,7 @@ public static class Utils
                 ProgressText.Append(Virus.GetInfectLimit());
                 break;
             case CustomRoles.Jackal:
+                if (Jackal.CanRecruitSidekick.GetBool())
                 ProgressText.Append(Jackal.GetRecruitLimit(playerId));
                 break;
             default:
