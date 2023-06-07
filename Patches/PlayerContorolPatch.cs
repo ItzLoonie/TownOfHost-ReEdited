@@ -677,6 +677,7 @@ class MurderPlayerPatch
             Lawyer.ChangeRoleByTarget(target);
         Hacker.AddDeadBody(target);
         Mortician.OnPlayerDead(target);
+        Bloodhound.OnPlayerDead(target);
 
         Utils.AfterPlayerDeathTasks(target);
 
@@ -972,7 +973,15 @@ class ReportDeadBodyPatch
                     return false;
                 }
 
-                if (target.Object.Is(CustomRoles.Unreportable)) return false; 
+                if (target.Object.Is(CustomRoles.Unreportable)) return false;
+
+                if (Bloodhound.UnreportablePlayers.Contains(target.PlayerId)) return false;
+
+                if (killer != null && __instance.Is(CustomRoles.Bloodhound))
+                {
+                    Bloodhound.OnReportDeadBody(__instance, target, killer);
+                    return false;
+                }
             }
 
             if (Options.SyncButtonMode.GetBool() && target == null)
@@ -1047,6 +1056,7 @@ class ReportDeadBodyPatch
         Main.GrenadierBlinding.Clear();
         Main.MadGrenadierBlinding.Clear();
         Divinator.didVote.Clear();
+        Bloodhound.Clear();
 
         Camouflager.OnReportDeadBody();
         Psychic.OnReportDeadBody();
@@ -1066,7 +1076,7 @@ class ReportDeadBodyPatch
 
         Mortician.OnReportDeadBody(player, target);
         Mediumshiper.OnReportDeadBody(target);
-
+        
         foreach (var x in Main.RevolutionistStart)
         {
             var tar = Utils.GetPlayerById(x.Key);
