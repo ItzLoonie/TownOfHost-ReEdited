@@ -189,7 +189,7 @@ internal static class CustomRolesHelper
             CustomRoles.Rogue or
             CustomRoles.Unreportable;
     }
-    public static bool IsNonNK(this CustomRoles role)
+    public static bool IsNonNK(this CustomRoles role) // ROLE ASSIGNING, NOT NEUTRAL TYPE
     {
         return role is
             CustomRoles.Jester or
@@ -202,7 +202,12 @@ internal static class CustomRolesHelper
             CustomRoles.God or
             CustomRoles.Innocent or
             CustomRoles.Revolutionist or
+            CustomRoles.DarkHide or
+            CustomRoles.Provocateur or
+            CustomRoles.Gamer or
+            CustomRoles.FFF or
             CustomRoles.Workaholic or
+            CustomRoles.Pelican or
             CustomRoles.Collector or
             CustomRoles.Sunnyboy or
             CustomRoles.Totocalcio or
@@ -213,22 +218,48 @@ internal static class CustomRolesHelper
         return role is
             CustomRoles.Jackal or
         //    CustomRoles.Sidekick or
-            CustomRoles.Pelican or
             CustomRoles.NWitch or
-            CustomRoles.FFF or
             CustomRoles.HexMaster or
             CustomRoles.Infectious or
             CustomRoles.Wraith or
-            CustomRoles.Gamer or
             CustomRoles.Crewpostor or
             CustomRoles.Juggernaut or
-            CustomRoles.DarkHide or
             CustomRoles.Poisoner or
             CustomRoles.Parasite or
             CustomRoles.NSerialKiller or
-            CustomRoles.Provocateur or
             CustomRoles.Virus or
             CustomRoles.BloodKnight;
+    }
+    public static bool IsNE(this CustomRoles role) // �Ƿ�����
+    {
+        return role is
+            CustomRoles.Jester or
+            CustomRoles.Gamer or
+            CustomRoles.DarkHide or
+            CustomRoles.Pelican or
+            CustomRoles.Arsonist or
+            CustomRoles.Executioner or
+            CustomRoles.Innocent;
+    }
+    public static bool IsNB(this CustomRoles role) // �Ƿ�����
+    {
+        return role is
+            CustomRoles.Opportunist or
+            CustomRoles.Lawyer or
+            CustomRoles.God or
+            CustomRoles.Sunnyboy or
+            CustomRoles.Totocalcio;
+    }
+    public static bool IsNC(this CustomRoles role) // �Ƿ�����
+    {
+        return role is
+            CustomRoles.Mario or
+            CustomRoles.Terrorist or
+            CustomRoles.Revolutionist or
+            CustomRoles.FFF or
+            CustomRoles.Workaholic or
+            CustomRoles.Collector or
+            CustomRoles.Provocateur;
     }
     public static bool IsNeutralKilling(this CustomRoles role) //�Ƿ�а������������򵥶�ʤ����������
     {
@@ -415,6 +446,7 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Egoist && pc.Is(CustomRoles.Sidekick) || pc.Is(CustomRoles.Madmate)) return false;
         if (role is CustomRoles.Sidekick && pc.Is(CustomRoles.Jackal)) return false;
         if (role is CustomRoles.Bait && pc.Is(CustomRoles.GuardianAngelTOHE)) return false;
+        if (role is CustomRoles.DualPersonality && pc.Is(CustomRoles.Dictator)) return false;
         if (role is CustomRoles.Trapper && pc.Is(CustomRoles.GuardianAngelTOHE)) return false;      
         if (role is CustomRoles.Reach && !pc.CanUseKillButton()) return false;
         if (role is CustomRoles.Watcher && ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeWatcher.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeWatcher.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeWatcher.GetBool()))) return false;
@@ -458,7 +490,7 @@ internal static class CustomRolesHelper
         CustomRoleTypes type = CustomRoleTypes.Crewmate;
         if (role.IsImpostor()) type = CustomRoleTypes.Impostor;
         if (role.IsNeutral()) type = CustomRoleTypes.Neutral;
-        if (role.IsMadmate()) type = CustomRoleTypes.Madmate;
+      //  if (role.IsMadmate()) type = CustomRoleTypes.Madmate;
         if (role.IsAdditionRole()) type = CustomRoleTypes.Addon;
         return type;
     }
@@ -536,7 +568,6 @@ public enum CustomRoleTypes
     Crewmate,
     Impostor,
     Neutral,
-    Madmate,
     Addon
 }
 public enum CountTypes

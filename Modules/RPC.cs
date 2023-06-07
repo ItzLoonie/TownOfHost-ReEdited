@@ -89,7 +89,7 @@ enum CustomRPC
     SetRevealedPlayer,
     SetCurrentRevealTarget,
     SyncPuppeteerList,
-    SyncCurseAndKill,
+    SetJackalRecruitLimit,
 
     //SoloKombat
     SyncKBPlayer,
@@ -361,6 +361,9 @@ internal class RPCHandlerPatch
             case CustomRPC.SetGangsterRecruitLimit:
                 Gangster.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetJackalRecruitLimit:
+                Jackal.ReceiveRPC(reader);
+                break;
             case CustomRPC.PlayCustomSound:
                 CustomSoundsManager.ReceiveRPC(reader);
                 break;
@@ -477,12 +480,12 @@ internal class RPCHandlerPatch
                 for (int i = 0; i < pcount; i++)
                     Main.PuppeteerList.Add(reader.ReadByte(), reader.ReadByte());
                 break;
-            case CustomRPC.SyncCurseAndKill:
+            /*case CustomRPC.SyncCurseAndKill:
                 int ccount = reader.ReadInt32();
                 Main.isCurseAndKill = new();
                 for (int i = 0; i < ccount; i++)
                     Main.isCurseAndKill.Add(reader.ReadByte(), reader.ReadBoolean());
-                break;
+                break;*/
         }
     }
 }

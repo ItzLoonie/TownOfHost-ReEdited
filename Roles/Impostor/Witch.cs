@@ -143,7 +143,7 @@ public static class Witch
         {
             SpelledPlayer[killer.PlayerId].Add(target.PlayerId);
             SendRPC(true, killer.PlayerId, target.PlayerId);
-            killer.SetKillCooldownV2();
+            killer.SetKillCooldown();
             killer.RPCPlayCustomSound("Curse");
         }
     }

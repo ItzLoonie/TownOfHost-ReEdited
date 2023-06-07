@@ -97,7 +97,7 @@ public class PlayerState
         }
         if (role == CustomRoles.Sidekick)
         {
-            countTypes = Options.SidekickCountMode.GetInt() switch
+            countTypes = Jackal.SidekickCountMode.GetInt() switch
             {
                 0 => CountTypes.Jackal,
                 1 => CountTypes.OutOfGame,
