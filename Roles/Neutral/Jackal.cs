@@ -41,7 +41,7 @@ public static class Jackal
         SidekickRecruitLimitOpt = IntegerOptionItem.Create(Id + 18, "JackalSidekickRecruitLimit", new(0, 15, 1), 0, TabGroup.NeutralRoles, false).SetParent(CanRecruitSidekick)
                 .SetValueFormat(OptionFormat.Times);
         SidekickCanKillJackal = BooleanOptionItem.Create(6050520, "SidekickCanKillJackal", false, TabGroup.NeutralRoles, false).SetParent(CanRecruitSidekick);
-        SidekickKnowOtherSidekick = BooleanOptionItem.Create(6050585, "SidekickKnowOtherSidekick", false, TabGroup.NeutralRoles, false).SetParent(CanRecruitSidekick1);
+        SidekickKnowOtherSidekick = BooleanOptionItem.Create(6050585, "SidekickKnowOtherSidekick", false, TabGroup.NeutralRoles, false).SetParent(CanRecruitSidekick);
         SidekickKnowOtherSidekickRole = BooleanOptionItem.Create(6050590, "SidekickKnowOtherSidekickRole", false, TabGroup.NeutralRoles, false).SetParent(SidekickKnowOtherSidekick);
         SidekickCanKillSidekick = BooleanOptionItem.Create(6050600, "SidekickCanKillSidekick", false, TabGroup.NeutralRoles, false).SetParent(SidekickKnowOtherSidekick);
         SidekickCountMode = StringOptionItem.Create(6050595, "SidekickCountMode", sidekickCountMode, 0, TabGroup.NeutralRoles, false).SetParent(CanRecruitSidekick);
