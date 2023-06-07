@@ -78,12 +78,12 @@ namespace TOHE.Roles.Impostor
                 Camouflage.PlayerSkins[target.PlayerId] = CosumedOutfit;
 
                 target.Notify(ColorString(GetRoleColor(CustomRoles.SkinEater), string.Format(GetString("SkinEaterCosumeSkin"), target.GetRealName())));
+
+                float cdReduction = ReduceKillCooldown.GetFloat() * PlayerSkinsCosumed[pc.PlayerId].Count;
+                float cd = DefaultKillCooldown.GetFloat() - cdReduction;
+
+                NowCooldown[pc.PlayerId] = cd < MinKillCooldown.GetFloat() ? MinKillCooldown.GetFloat() : cd;
             }
-
-            float cdReduction = ReduceKillCooldown.GetFloat() * PlayerSkinsCosumed[pc.PlayerId].Count;
-            float cd = DefaultKillCooldown.GetFloat() - cdReduction;
-
-            NowCooldown[pc.PlayerId] = cd < MinKillCooldown.GetFloat() ? MinKillCooldown.GetFloat() : cd;
         }
 
         private static void SetConsumedSkin(PlayerControl target)
