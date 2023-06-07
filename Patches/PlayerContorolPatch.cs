@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -1148,20 +1149,45 @@ class FixedUpdatePatch
                 __instance.ReportDeadBody(info);
             }
 
-            //踢出低等级的人
-            if (!lowLoad && GameStates.IsLobby && !player.AmOwner && Options.KickLowLevelPlayer.GetInt() != 0 && (
-                (player.Data.PlayerLevel != 0 && player.Data.PlayerLevel < Options.KickLowLevelPlayer.GetInt()) ||
-                player.Data.FriendCode == ""
-                ))
+            string AllowlistFilePath = @"./TOHE_DATA/Allowlist.txt";
+
+
+            if (!lowLoad && GameStates.IsLobby && !player.AmOwner && Options.KickLowLevelPlayer.GetInt() != 0)
             {
-                LevelKickBufferTime--;
-                if (LevelKickBufferTime <= 0)
+                bool isAllowlisted = false;
+
+                // Check if the allowlist option is enabled
+                if (Options.AllowAllowlist.GetBool() && File.Exists(AllowlistFilePath))
                 {
-                    LevelKickBufferTime = 20;
-                    AmongUsClient.Instance.KickPlayer(player.GetClientId(), false);
-                    string msg = string.Format(GetString("KickBecauseLowLevel"), player.GetRealName().RemoveHtmlTags());
-                    Logger.SendInGame(msg);
-                    Logger.Info(msg, "LowLevel Kick");
+                    string[] lines = File.ReadAllLines(AllowlistFilePath);
+                    foreach (string line in lines)
+                    {
+                        if (line.Trim() == player.Data.FriendCode)
+                        {
+                            isAllowlisted = true;
+                            break;
+                        }
+                    }
+                }
+
+                bool shouldKick = true;
+
+                if (isAllowlisted || player.Data.PlayerLevel >= Options.KickLowLevelPlayer.GetInt())
+                {
+                    shouldKick = false;
+                }
+
+                if (shouldKick)
+                {
+                    LevelKickBufferTime--;
+                    if (LevelKickBufferTime <= 0)
+                    {
+                        LevelKickBufferTime = 20;
+                        AmongUsClient.Instance.KickPlayer(player.GetClientId(), false);
+                        string msg = string.Format(GetString("KickBecauseLowLevel"), player.GetRealName().RemoveHtmlTags());
+                        Logger.SendInGame(msg);
+                        Logger.Info(msg, "LowLevel Kick");
+                    }
                 }
             }
 
