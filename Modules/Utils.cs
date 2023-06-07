@@ -656,42 +656,9 @@ public static class Utils
             sb.Clear().Append(text.RemoveHtmlTags());
         }
 
-        sb.Append("\n\n ★ " + GetString("TabGroup.TaskSettings"));
-        foreach (var opt in OptionItem.AllOptions.Where(x => x.GetBool() && x.Parent == null && x.Tab is TabGroup.TaskSettings && !x.IsHiddenOn(Options.CurrentGameMode) && x.GetBool()))
-        {
-            sb.Append($"\n{opt.GetName(true)}: {opt.GetString()} \n");
-            ShowEnabledChildrenSettings(opt, ref sb);
-            var text = sb.ToString();
-            sb.Clear().Append(text.RemoveHtmlTags());
-        }
         SendMessage(sb.ToString(), PlayerId);
     }
-
-    public static void ShowTSettings(byte PlayerId = byte.MaxValue)
-    {
-        if (Options.HideGameSettings.GetBool() && PlayerId != byte.MaxValue)
-        {
-            SendMessage(GetString("Message.HideGameSettings"), PlayerId);
-            return;
-        }
-        if (Options.DIYGameSettings.GetBool())
-        {
-            SendMessage(GetString("Message.NowOverrideText"), PlayerId);
-            return;
-        }
-
-        var sb = new StringBuilder();
-        sb.Append("★ " + GetString("TabGroup.TaskSettings"));
-        foreach (var opt in OptionItem.AllOptions.Where(x => x.GetBool() && x.Parent == null && x.Tab is TabGroup.TaskSettings && !x.IsHiddenOn(Options.CurrentGameMode) && x.GetBool()))
-        {
-            sb.Append($"\n{opt.GetName(true)}: {opt.GetString()} \n");
-            ShowEnabledChildrenSettings(opt, ref sb);
-            var text = sb.ToString();
-            sb.Clear().Append(text.RemoveHtmlTags());
-        }
-        SendMessage(sb.ToString(), PlayerId);
-    }
-
+    
     public static void ShowAllActiveSettings(byte PlayerId = byte.MaxValue)
     {
         var mapId = Main.NormalOptions.MapId;
@@ -730,30 +697,6 @@ public static class Utils
 
         SendMessage(sb.ToString(), PlayerId);
     }
-    public static void ShowAllTSettings(byte PlayerId = byte.MaxValue)
-    {
-        if (Options.HideGameSettings.GetBool() && PlayerId != byte.MaxValue)
-        {
-            SendMessage(GetString("Message.HideGameSettings"), PlayerId);
-            return;
-        }
-        if (Options.DIYGameSettings.GetBool())
-        {
-            SendMessage(GetString("Message.NowOverrideText"), PlayerId);
-            return;
-        }
-
-        var sb = new StringBuilder();
-        sb.Append("★ " + GetString("TabGroup.TaskSettings"));
-        foreach (var opt in OptionItem.AllOptions.Where(x => x.GetBool() && x.Parent == null && x.Tab is TabGroup.TaskSettings && !x.IsHiddenOn(Options.CurrentGameMode) && x.GetBool()))
-        {
-            sb.Append($"\n{opt.GetName(true)}: {opt.GetString()} \n");
-            ShowChildrenSettings(opt, ref sb);
-            var text = sb.ToString();
-            sb.Clear().Append(text.RemoveHtmlTags());
-        }
-        SendMessage(sb.ToString(), PlayerId);
-    }
     public static void CopyCurrentSettings()
     {
         var sb = new StringBuilder();
@@ -783,44 +726,8 @@ public static class Utils
             var text = sb.ToString();
             sb.Clear().Append(text.RemoveHtmlTags());
         }
-
-        sb.Append($"━━━━━━━━━━━━【{GetString("TaskSettings")}】━━━━━━━━━━━━");
-        foreach (var opt in OptionItem.AllOptions.Where(x => x.GetBool() && x.Parent == null && x.Id >= 80000 && !x.IsHiddenOn(Options.CurrentGameMode)))
-        {
-            if (opt.Name == "TaskSettings")
-                sb.Append($"\n【{opt.GetName(true)}: {opt.GetString()}】\n");
-            else
-                sb.Append($"\n【{opt.GetName(true)}】\n");
-            ShowEnabledChildrenSettings(opt, ref sb);
-            var text = sb.ToString();
-            sb.Clear().Append(text.RemoveHtmlTags());
-        }
         sb.Append($"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         ClipboardHelper.PutClipboardString(sb.ToString());
-    }
-    public static void ShowTaskSettings(byte PlayerId = byte.MaxValue)
-    {
-        if (Options.HideGameSettings.GetBool() && PlayerId != byte.MaxValue)
-        {
-            SendMessage(GetString("Message.HideGameSettings"), PlayerId);
-            return;
-        }
-        if (Options.DIYGameSettings.GetBool())
-        {
-            SendMessage(GetString("Message.NowOverrideText"), PlayerId);
-            return;
-        }
-
-        var sb = new StringBuilder();
-        sb.Append("\n\n ★ " + GetString("TabGroup.TaskSettings"));
-        foreach (var opt in OptionItem.AllOptions.Where(x => x.GetBool() && x.Parent == null && x.Tab is TabGroup.TaskSettings && !x.IsHiddenOn(Options.CurrentGameMode) && x.GetBool()))
-        {
-            sb.Append($"\n{opt.GetName(true)}: {opt.GetString()} \n");
-            ShowEnabledChildrenSettings(opt, ref sb);
-            var text = sb.ToString();
-            sb.Clear().Append(text.RemoveHtmlTags());
-        }
-        SendMessage(sb.ToString(), PlayerId);
     }
     public static void ShowActiveRoles(byte PlayerId = byte.MaxValue)
     {
@@ -871,20 +778,6 @@ public static class Utils
             sb.Append($"{opt.Value.GetName(true)}: {opt.Value.GetString()}\n");
             if (opt.Value.GetBool()) ShowChildrenSettings(opt.Value, ref sb, deep + 1);
         }
-    }
-
-
-    private static void ShowEnabledChildrenSettings(OptionItem parentOption, ref StringBuilder sb)
-    {
-        foreach (var childOption in parentOption.GetChildren().Where(x => x.GetBool()))
-        {
-            sb.Append($"{childOption.GetName(true)}: {GetSettingStatus(childOption)}\n");
-            ShowEnabledChildrenSettings(childOption, ref sb);
-        }
-    }
-    private static string GetSettingStatus(OptionItem option)
-    {
-        return option.GetBool() ? "ON" : "OFF";
     }
     public static void ShowLastRoles(byte PlayerId = byte.MaxValue)
     {

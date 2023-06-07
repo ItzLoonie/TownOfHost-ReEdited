@@ -139,10 +139,6 @@ public abstract class OptionItem
         parent.SetChild(i);
     });
     public OptionItem SetChild(OptionItem child) => Do(i => i.Children.Add(child));
-    public List<OptionItem> GetChildren()
-    {
-        return OptionItem.AllOptions.Where(x => x.Parent == this).ToList();
-    }
     public OptionItem RegisterUpdateValueEvent(EventHandler<UpdateValueEventArgs> handler)
         => Do(i => UpdateValueEvent += handler);
 
