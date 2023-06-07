@@ -110,7 +110,7 @@ public static class Jackal
 
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
     {
-        if (RecruitLimit[killer.PlayerId] < 1) return false;
+        if (!CanRecruitSidekick.GetBool() || RecruitLimit[killer.PlayerId] < 1) return false;
         if (CanBeSidekick(target))
         {
             RecruitLimit[killer.PlayerId]--;
