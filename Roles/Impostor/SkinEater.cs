@@ -73,6 +73,7 @@ namespace TOHE.Roles.Impostor
             if (!PlayerSkinsCosumed[pc.PlayerId].Contains(target.PlayerId))
             {
                 PlayerSkinsCosumed[pc.PlayerId].Add(target.PlayerId);
+                Camouflage.PlayerSkins[pc.PlayerId] = CosumedOutfit;
             }
 
             float cdReduction = ReduceKillCooldown.GetFloat() * PlayerSkinsCosumed[pc.PlayerId].Count;
