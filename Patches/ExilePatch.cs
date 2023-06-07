@@ -110,7 +110,7 @@ class ExileControllerWrapUpPatch
             {
                 Main.CursedPlayers[pc.PlayerId] = null;
                 Main.isCurseAndKill[pc.PlayerId] = false;
-                RPC.RpcSyncCurseAndKill();
+                //RPC.RpcSyncCurseAndKill();
             }
             if (pc.GetCustomRole() is
                 CustomRoles.Paranoia or

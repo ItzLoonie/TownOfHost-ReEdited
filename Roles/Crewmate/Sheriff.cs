@@ -121,7 +121,7 @@ public static class Sheriff
         ShotLimit[killer.PlayerId]--;
         Logger.Info($"{killer.GetNameWithRole()} : 残り{ShotLimit[killer.PlayerId]}発", "Sheriff");
         SendRPC(killer.PlayerId);
-        if (!killer.Is(CustomRoles.Madmate) ?
+        if ((!killer.Is(CustomRoles.Madmate) && !killer.Is(CustomRoles.Sidekick) && !killer.Is(CustomRoles.Charmed) && !killer.Is(CustomRoles.Infected) && !killer.Is(CustomRoles.Contagious)) ?
             target.CanBeKilledBySheriff() :
             (!SetMadCanKill.GetBool() ||
             (target.GetCustomRole().IsCrewmate() && MadCanKillCrew.GetBool()) ||

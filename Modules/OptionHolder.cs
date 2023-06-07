@@ -529,7 +529,7 @@ public static class Options
     public static OptionItem TicketsPerKill;
     public static OptionItem ImpCanBeDualPersonality;
     public static OptionItem CrewCanBeDualPersonality;
-    public static OptionItem SidekickCountMode;
+    //public static OptionItem SidekickCountMode;
 
     public static readonly string[] suffixModes =
     {
@@ -717,7 +717,6 @@ public static class Options
         EGTryHideMsg = BooleanOptionItem.Create(901071, "GuesserTryHideMsg", true, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.EvilGuesser])
         .SetColor(Color.green);
-        SetupRoleOptions(901595, TabGroup.ImpostorRoles, CustomRoles.Escapee);
         Greedier.SetupCustomOption(); //TOH_Y
         Hangman.SetupCustomOption();
         SetupRoleOptions(6050750, TabGroup.ImpostorRoles, CustomRoles.Inhibitor);
@@ -744,6 +743,10 @@ public static class Options
         EvilTracker.SetupCustomOption();
         FireWorks.SetupCustomOption();
         Gangster.SetupCustomOption();
+        SetupRoleOptions(1600, TabGroup.ImpostorRoles, CustomRoles.Mafia);
+        MafiaCanKillNum = IntegerOptionItem.Create(901615, "MafiaCanKillNum", new(0, 15, 1), 1, TabGroup.ImpostorRoles, false)
+        .SetParent(CustomRoleSpawnChances[CustomRoles.Mafia])
+            .SetValueFormat(OptionFormat.Players);
         SetupRoleOptions(150005, TabGroup.ImpostorRoles, CustomRoles.Vindicator);
         VindicatorAdditionalVote = IntegerOptionItem.Create(150010, "MayorAdditionalVote", new(1, 99, 1), 3, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Vindicator])
@@ -751,13 +754,10 @@ public static class Options
         VindicatorHideVote = BooleanOptionItem.Create(150015, "MayorHideVote", false, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Vindicator]);
         TimeThief.SetupCustomOption();
-        SetupRoleOptions(1600, TabGroup.ImpostorRoles, CustomRoles.Mafia);
-        MafiaCanKillNum = IntegerOptionItem.Create(901615, "MafiaCanKillNum", new(0, 15, 1), 1, TabGroup.ImpostorRoles, false)
-        .SetParent(CustomRoleSpawnChances[CustomRoles.Mafia])
-            .SetValueFormat(OptionFormat.Players);
         TextOptionItem.Create(909090_2, "RoleType.ImpConcealing", TabGroup.ImpostorRoles) //CONCEALING
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 25, 25, byte.MaxValue));//CONCEALING
+        SetupRoleOptions(901595, TabGroup.ImpostorRoles, CustomRoles.Escapee);
         SetupRoleOptions(902422, TabGroup.ImpostorRoles, CustomRoles.ImperiusCurse);
         ShapeImperiusCurseShapeshiftDuration = FloatOptionItem.Create(902433, "ShapeshiftDuration", new(2.5f, 999f, 2.5f), 300, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.ImperiusCurse])
@@ -931,6 +931,7 @@ public static class Options
         Totocalcio.SetupCustomOption();
         Lawyer.SetupCustomOption();
         SetupRoleOptions(50100, TabGroup.NeutralRoles, CustomRoles.Opportunist);
+        Pursuer.SetupCustomOption();
 
         TextOptionItem.Create(909094_1, "RoleType.NeutralEvil", TabGroup.NeutralRoles)
             .SetGameMode(CustomGameMode.Standard)
@@ -1028,14 +1029,6 @@ public static class Options
         .SetParent(CustomRoleSpawnChances[CustomRoles.Bait]);
         BaitNotification = BooleanOptionItem.Create(20009, "BaitNotification", false, TabGroup.Addons, false)
         .SetParent(CustomRoleSpawnChances[CustomRoles.Bait]);
-
-        SetupAdtRoleOptions(6050350, CustomRoles.Seer, canSetNum: true);
-        ImpCanBeSeer = BooleanOptionItem.Create(6050353, "ImpCanBeSeer", true, TabGroup.Addons, false)
-        .SetParent(CustomRoleSpawnChances[CustomRoles.Seer]);
-        CrewCanBeSeer = BooleanOptionItem.Create(6050354, "CrewCanBeSeer", true, TabGroup.Addons, false)
-        .SetParent(CustomRoleSpawnChances[CustomRoles.Seer]);
-        NeutralCanBeSeer = BooleanOptionItem.Create(6050355, "NeutralCanBeSeer", true, TabGroup.Addons, false)
-        .SetParent(CustomRoleSpawnChances[CustomRoles.Seer]);
         SetupAdtRoleOptions(20800, CustomRoles.Trapper, canSetNum: true);
         ImpCanBeTrapper = BooleanOptionItem.Create(20803, "ImpCanBeTrapper", true, TabGroup.Addons, false)
         .SetParent(CustomRoleSpawnChances[CustomRoles.Trapper]);
@@ -1046,6 +1039,14 @@ public static class Options
         TrapperBlockMoveTime = FloatOptionItem.Create(20810, "TrapperBlockMoveTime", new(1f, 180f, 1f), 5f, TabGroup.Addons, false)
         .SetParent(CustomRoleSpawnChances[CustomRoles.Trapper])
             .SetValueFormat(OptionFormat.Seconds);
+
+        SetupAdtRoleOptions(6050350, CustomRoles.Seer, canSetNum: true);
+        ImpCanBeSeer = BooleanOptionItem.Create(6050353, "ImpCanBeSeer", true, TabGroup.Addons, false)
+        .SetParent(CustomRoleSpawnChances[CustomRoles.Seer]);
+        CrewCanBeSeer = BooleanOptionItem.Create(6050354, "CrewCanBeSeer", true, TabGroup.Addons, false)
+        .SetParent(CustomRoleSpawnChances[CustomRoles.Seer]);
+        NeutralCanBeSeer = BooleanOptionItem.Create(6050355, "NeutralCanBeSeer", true, TabGroup.Addons, false)
+        .SetParent(CustomRoleSpawnChances[CustomRoles.Seer]);
         SetupAdtRoleOptions(6050340, CustomRoles.Lighter, canSetNum: true);
         LighterVision = FloatOptionItem.Create(6050345, "LighterVision", new(0.5f, 5f, 0.25f), 1.25f, TabGroup.Addons, false)
         .SetParent(CustomRoleSpawnChances[CustomRoles.Lighter])

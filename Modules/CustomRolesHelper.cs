@@ -127,6 +127,7 @@ internal static class CustomRolesHelper
             CustomRoles.Innocent => RoleTypes.Impostor,
             CustomRoles.Pelican => RoleTypes.Impostor,
             CustomRoles.Counterfeiter => RoleTypes.Impostor,
+            CustomRoles.Pursuer => RoleTypes.Impostor,
             CustomRoles.Revolutionist => RoleTypes.Impostor,
             CustomRoles.FFF => RoleTypes.Impostor,
             CustomRoles.Medicaler => RoleTypes.Impostor,
@@ -200,6 +201,7 @@ internal static class CustomRolesHelper
             CustomRoles.Lawyer or
             CustomRoles.God or
             CustomRoles.Innocent or
+            CustomRoles.Pursuer or
             CustomRoles.Revolutionist or
             CustomRoles.DarkHide or
             CustomRoles.Provocateur or
@@ -246,6 +248,7 @@ internal static class CustomRolesHelper
             CustomRoles.Opportunist or
             CustomRoles.Lawyer or
             CustomRoles.God or
+            CustomRoles.Pursuer or
             CustomRoles.Sunnyboy or
             CustomRoles.Totocalcio;
     }
@@ -371,6 +374,7 @@ internal static class CustomRolesHelper
             CustomRoles.Jackal or
             CustomRoles.God or
             CustomRoles.Innocent or
+            CustomRoles.Pursuer or
         //    CustomRoles.Sidekick or
             CustomRoles.Poisoner or
             CustomRoles.NSerialKiller or
@@ -456,6 +460,10 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Unreportable && ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeUnreportable.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeUnreportable.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeUnreportable.GetBool()))) return false;
         if (role is CustomRoles.Rogue && (!pc.GetCustomRole().IsImpostor())) return false;
         if (role is CustomRoles.Flashman && pc.Is(CustomRoles.Swooper)) return false;
+        if (role is CustomRoles.Lovers && pc.Is(CustomRoles.Dictator)) return false;
+        if (role is CustomRoles.Lovers && pc.Is(CustomRoles.Innocent)) return false;
+        if (role is CustomRoles.Lovers && pc.Is(CustomRoles.Provocateur)) return false;
+        if (role is CustomRoles.Brakar && pc.Is(CustomRoles.Dictator)) return false;
         return true;
     }
     public static RoleTypes GetRoleTypes(this CustomRoles role)

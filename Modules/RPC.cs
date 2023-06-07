@@ -59,6 +59,7 @@ enum CustomRPC
     SetPelicanEtenNum,
     SwordsManKill,
     SetCounterfeiterSellLimit,
+    SetPursuerSellLimit,
     SetMedicalerProtectLimit,
     SetGangsterRecruitLimit,
     SetGhostPlayer,
@@ -89,7 +90,6 @@ enum CustomRPC
     SetRevealedPlayer,
     SetCurrentRevealTarget,
     SyncPuppeteerList,
-    SyncCurseAndKill,
     SetJackalRecruitLimit,
 
     //SoloKombat
@@ -356,6 +356,9 @@ internal class RPCHandlerPatch
             case CustomRPC.SetCounterfeiterSellLimit:
                 Counterfeiter.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetPursuerSellLimit:
+                Pursuer.ReceiveRPC(reader);
+                break;
             case CustomRPC.SetMedicalerProtectLimit:
                 Medicaler.ReceiveRPC(reader);
                 break;
@@ -481,12 +484,12 @@ internal class RPCHandlerPatch
                 for (int i = 0; i < pcount; i++)
                     Main.PuppeteerList.Add(reader.ReadByte(), reader.ReadByte());
                 break;
-            case CustomRPC.SyncCurseAndKill:
+            /*case CustomRPC.SyncCurseAndKill:
                 int ccount = reader.ReadInt32();
                 Main.isCurseAndKill = new();
                 for (int i = 0; i < ccount; i++)
                     Main.isCurseAndKill.Add(reader.ReadByte(), reader.ReadBoolean());
-                break;
+                break;*/
         }
     }
 }
@@ -730,6 +733,9 @@ internal static class RPC
                 break;
             case CustomRoles.Counterfeiter:
                 Counterfeiter.Add(targetId);
+                break;
+            case CustomRoles.Pursuer:
+                Pursuer.Add(targetId);
                 break;
             case CustomRoles.Gangster:
                 Gangster.Add(targetId);
