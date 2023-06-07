@@ -60,11 +60,8 @@ internal class VersionShowerStartPatch
 #endif
 
 #if RELEASE
-        string additionalCredentials = GetString("TextBelowVersionText");
-        if (additionalCredentials != null && additionalCredentials != "*TextBelowVersionText")
-        {
-            Main.credentialsText += $"\n{additionalCredentials}";
-        }
+
+        Main.credentialsText += $"\r\n<color=#a54aff>Continued by </color><color=#ff3b6f>Loonie</color>";
 #endif
         var credentials = Object.Instantiate(__instance.text);
         credentials.text = Main.credentialsText;

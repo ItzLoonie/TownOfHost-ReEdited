@@ -163,12 +163,12 @@ internal class ChatCommands
                 case "/up":
                     canceled = true;
                     subArgs = text.Remove(0, 3);
-                    if (!PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsUp) break;
+           /*         if (!PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsUp) break;
                     if (!Options.EnableUpMode.GetBool())
                     {
                         Utils.SendMessage(string.Format(GetString("Message.YTPlanDisabled"), GetString("EnableYTPlan")));
                         break;
-                    }
+                    }*/
                     if (!GameStates.IsLobby)
                     {
                         Utils.SendMessage(GetString("Message.OnlyCanUseInLobby"));
@@ -218,11 +218,37 @@ internal class ChatCommands
                         Utils.SendMessage((PlayerControl.LocalPlayer.FriendCode.GetDevUser().HasTag() ? "\n" : string.Empty) + GetString("Message.CanNotUseInLobby"), PlayerControl.LocalPlayer.PlayerId);
                     break;
 
+
                 case "/t":
                 case "/template":
                     canceled = true;
-                    if (args.Length > 1) TemplateManager.SendTemplate(args[1]);
-                    else HudManager.Instance.Chat.AddChat(PlayerControl.LocalPlayer, (PlayerControl.LocalPlayer.FriendCode.GetDevUser().HasTag() ? "\n" : string.Empty) + $"{GetString("ForExample")}:\n{args[0]} test");
+                    if (args.Length > 1 && (args[1] == "a" || args[1] == "all"))
+                    {
+                        Utils.ShowAllTSettings();
+                    }
+                    else if (args.Length > 1)
+                    {
+                        TemplateManager.SendTemplate(args[1]);
+                    }
+                    else
+                    {
+                        Utils.ShowTSettings();
+                    }
+                    break;
+                case "/task":
+                case "/tasks":
+                    canceled = true;
+                    subArgs = args.Length < 2 ? "" : args[1];
+                    switch (subArgs)
+                    {
+                        case "a":
+                        case "all":
+                            Utils.ShowAllTSettings();
+                            break;
+                        default:
+                            Utils.ShowTSettings();
+                            break;
+                    }
                     break;
 
                 case "/mw":
@@ -703,8 +729,32 @@ internal class ChatCommands
 
             case "/t":
             case "/template":
-                if (args.Length > 1) TemplateManager.SendTemplate(args[1], player.PlayerId);
-                else Utils.SendMessage($"{GetString("ForExample")}:\n{args[0]} test", player.PlayerId);
+                if (args.Length > 1 && (args[1] == "a" || args[1] == "all"))
+                {
+                    Utils.ShowAllTSettings(player.PlayerId);
+                }
+                else if (args.Length > 1)
+                {
+                    TemplateManager.SendTemplate(args[1], player.PlayerId);
+                }
+                else
+                {
+                    Utils.ShowTSettings(player.PlayerId);
+                }
+                break;
+            case "/task":
+            case "/tasks":
+                subArgs = args.Length < 2 ? "" : args[1];
+                switch (subArgs)
+                {
+                    case "a":
+                    case "all":
+                        Utils.ShowAllTSettings(player.PlayerId);
+                        break;
+                    default:
+                        Utils.ShowTSettings(player.PlayerId);
+                        break;
+                }
                 break;
 
             case "/colour":
