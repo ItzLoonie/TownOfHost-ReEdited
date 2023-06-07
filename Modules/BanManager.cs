@@ -14,6 +14,7 @@ public static class BanManager
 {
     private static readonly string DENY_NAME_LIST_PATH = @"./TOHE_DATA/DenyName.txt";
     private static readonly string BAN_LIST_PATH = @"./TOHE_DATA/BanList.txt";
+    private static readonly string MODERATOR_LIST_PATH = @"./TOHE_DATA/Moderators.txt";
     private static List<string> EACList = new();
     public static void Init()
     {
@@ -32,7 +33,12 @@ public static class BanManager
                 File.Create(DENY_NAME_LIST_PATH).Close();
                 File.WriteAllText(DENY_NAME_LIST_PATH, GetResourcesTxt("TOHE.Resources.Config.DenyName.txt"));
             }
-
+            if (!File.Exists(MODERATOR_LIST_PATH))
+                            {
+                Logger.Warn("Creating a new Moderators.txt file", "BanManager");
+                File.Create(MODERATOR_LIST_PATH).Close();
+                File.WriteAllText(MODERATOR_LIST_PATH, GetResourcesTxt("TOHE.Resources.Config.Moderators.txt"));
+                            }
             //读取EAC名单
             var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("TOHE.Resources.Config.EACList.txt");
             stream.Position = 0;
