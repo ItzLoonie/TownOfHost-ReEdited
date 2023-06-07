@@ -527,6 +527,7 @@ public enum CustomRoles
     Observer,
     DovesOfNeace,
     Monarch,
+    Farseer,
     //Neutral
     Arsonist,
     HexMaster,
@@ -560,7 +561,6 @@ public enum CustomRoles
     Totocalcio,
     Succubus,
     Virus,
-    Farseer,
 
     //SoloKombat
     KB_Normal,
