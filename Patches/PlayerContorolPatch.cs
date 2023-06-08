@@ -348,13 +348,12 @@ class CheckMurderPatch
         // 清道夫清理尸体
         if (killer.Is(CustomRoles.Scavenger))
         {
-            Utils.TP(killer.NetTransform, target.GetTruePosition());
-            RPC.PlaySoundRPC(killer.PlayerId, Sounds.KillSound);
             Utils.TP(target.NetTransform, Pelican.GetBlackRoomPS());
             target.SetRealKiller(killer);
             Main.PlayerStates[target.PlayerId].SetDead();
             target.RpcMurderPlayerV3(target);
-            killer.SetKillCooldownV2();
+            killer.SetKillCooldown();
+            RPC.PlaySoundRPC(killer.PlayerId, Sounds.KillSound);
             NameNotifyManager.Notify(target, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Scavenger), GetString("KilledByScavenger")));
             return false;
         }
