@@ -59,6 +59,7 @@ enum CustomRPC
     SetPelicanEtenNum,
     SwordsManKill,
     SetCounterfeiterSellLimit,
+    SetPursuerSellLimit,
     SetMedicalerProtectLimit,
     SetGangsterRecruitLimit,
     SetGhostPlayer,
@@ -354,6 +355,9 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetCounterfeiterSellLimit:
                 Counterfeiter.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetPursuerSellLimit:
+                Pursuer.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetMedicalerProtectLimit:
                 Medicaler.ReceiveRPC(reader);
@@ -729,6 +733,9 @@ internal static class RPC
                 break;
             case CustomRoles.Counterfeiter:
                 Counterfeiter.Add(targetId);
+                break;
+            case CustomRoles.Pursuer:
+                Pursuer.Add(targetId);
                 break;
             case CustomRoles.Gangster:
                 Gangster.Add(targetId);

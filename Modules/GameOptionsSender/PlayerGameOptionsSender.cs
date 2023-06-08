@@ -182,6 +182,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 AURoleOptions.EngineerInVentMaxTime = 1;
                 break;
             case CustomRoles.FFF:
+            case CustomRoles.Pursuer:
                 opt.SetVision(true);
                 break;
              case CustomRoles.NWitch:
