@@ -536,7 +536,8 @@ class CheckMurderPatch
         if (Main.ShieldPlayer != byte.MaxValue && Main.ShieldPlayer == target.PlayerId && Utils.IsAllAlive)
         {
             Main.ShieldPlayer = byte.MaxValue;
-            killer.SetKillCooldownV2(target: target, forceAnime: true);
+            killer.SetKillCooldown();
+            killer.RpcGuardAndKill(target);
             target.RpcGuardAndKill();
             return false;
         }
