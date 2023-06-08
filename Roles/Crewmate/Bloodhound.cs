@@ -34,6 +34,7 @@
         public static void Add(byte playerId)
         {
             playerIdList.Add(playerId);
+            BloodhoundTargets.Add(playerId, new List<byte>());
 
         }
         public static bool IsEnable => playerIdList.Count > 0;
@@ -76,9 +77,9 @@
                 {
                     TargetArrow.Remove(bloodhound.Key, target);
                 }
-            }
 
-            BloodhoundTargets.Clear();
+                BloodhoundTargets[bloodhound.Key].Clear();
+            }
         }
 
         public static void OnPlayerDead(PlayerControl target)
@@ -96,11 +97,6 @@
 
         public static void OnReportDeadBody(PlayerControl pc, GameData.PlayerInfo target, PlayerControl killer)
         {
-            if (!BloodhoundTargets.ContainsKey(pc.PlayerId))
-            {
-                BloodhoundTargets.Add(pc.PlayerId, new List<byte>());
-            }
-
             if (BloodhoundTargets[pc.PlayerId].Contains(killer.PlayerId))
             {
                 return;
