@@ -264,9 +264,9 @@ class CheckMurderPatch
                 case CustomRoles.Pelican:
                     if (Pelican.CanEat(killer, target.PlayerId))
                     {
-                        Utils.TP(killer.NetTransform, target.GetTruePosition());
                         Pelican.EatPlayer(killer, target);
-                        killer.SetKillCooldownV2();
+                        killer.RpcGuardAndKill(killer);
+                        killer.SetKillCooldown();
                         killer.RPCPlayCustomSound("Eat");
                         target.RPCPlayCustomSound("Eat");
                     }
@@ -1974,7 +1974,7 @@ class EnterVentPatch
                 {
                      x.RPCPlayCustomSound("Dove");
                      x.ResetKillCooldown();
-                     x.SetKillCooldownV2();
+                     x.SetKillCooldown();
                      x.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.DovesOfNeace), GetString("DovesOfNeaceSkillNotify")));
                 });
                 pc.RPCPlayCustomSound("Dove");
