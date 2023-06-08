@@ -78,7 +78,7 @@ public static class Counterfeiter
         clientList[pc.PlayerId].Add(target.PlayerId);
         pc.RpcGuardAndKill(pc);
         notActiveList.Add(pc.PlayerId);
-        pc.SetKillCooldownV2();
+        pc.SetKillCooldown();
         pc.RPCPlayCustomSound("Bet");
         Utils.NotifyRoles(pc);
         Logger.Info($"赝品商 {pc.GetRealName()} 将赝品卖给了 {target.GetRealName()}", "Counterfeiter");
