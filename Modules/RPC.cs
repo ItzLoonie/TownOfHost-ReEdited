@@ -904,13 +904,6 @@ internal static class RPC
         writer.Write(Main.CursedWolfSpellCount[playerId]);
         AmongUsClient.Instance.FinishRpcImmediately(writer);
     }
-    public static void RpcSyncPuppeteerList()
-    {
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SyncPuppeteerList, SendOption.Reliable, -1);
-        writer.Write(Main.PuppeteerList.Count);
-        Main.PuppeteerList.Do(p => { writer.Write(p.Key); writer.Write(p.Value); });
-        AmongUsClient.Instance.FinishRpcImmediately(writer);
-    }
     public static void ResetCurrentDousingTarget(byte arsonistId) => SetCurrentDousingTarget(arsonistId, 255);
     public static void ResetCurrentDrawTarget(byte arsonistId) => SetCurrentDrawTarget(arsonistId, 255);
     public static void ResetCurrentRevealTarget(byte arsonistId) => SetCurrentRevealTarget(arsonistId, 255);
