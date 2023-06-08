@@ -218,6 +218,7 @@ internal class ChangeRoleSettings
             Infectious.Init();
             Monarch.Init();
             Virus.Init();
+            Tracker.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
@@ -579,6 +580,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Wildling:
                         Wildling.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Tracker:
+                        Tracker.Add(pc.PlayerId);
                         break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())
