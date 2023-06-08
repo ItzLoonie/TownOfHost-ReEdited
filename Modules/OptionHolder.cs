@@ -29,14 +29,12 @@ public static class Options
     {
         Logger.Info("Options.Load Start", "Options");
         taskOptionsLoad = Task.Run(Load);
-        if (Main.FastBoot.Value) taskOptionsLoad.ContinueWith(t => { Logger.Msg("模组选项加载线程结束", "Load Options"); });
     }
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start)), HarmonyPostfix]
     public static void WaitOptionsLoad()
     {
-        if (!Main.FastBoot.Value) return;
         taskOptionsLoad.Wait();
-        Logger.Msg("模组选项加载线程结束", "Load Options");
+        Logger.Info("Options.Load End", "Options");
     }
     // オプションId
     public const int PresetId = 0;
