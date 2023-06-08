@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Hazel;
+    using Sentry.Protocol;
     using UnityEngine;
     using static TOHE.Options;
     using static UnityEngine.GraphicsBuffer;
@@ -12,7 +13,7 @@
         private static List<byte> playerIdList = new();
 
         public static List<byte> UnreportablePlayers = new();
-        public static Dictionary<byte, byte> BloodhoundTarget = new();
+        public static Dictionary<byte, List<byte>> BloodhoundTargets = new();
 
         public static OptionItem ArrowsPointingToDeadBody;
         public static OptionItem LeaveDeadBodyUnreportable;
@@ -27,7 +28,7 @@
         {
             playerIdList = new();
             UnreportablePlayers = new List<byte>();
-            BloodhoundTarget = new Dictionary<byte, byte>();
+            BloodhoundTargets = new Dictionary<byte, List<byte>>();
         }
         public static void Add(byte playerId)
         {
@@ -68,12 +69,15 @@
                 SendRPC(apc, false);
             }
 
-            foreach (var item in BloodhoundTarget)
+            foreach (var bloodhound in BloodhoundTargets)
             {
-                TargetArrow.Remove(item.Key, item.Value);
+                foreach (var target in bloodhound.Value)
+                {
+                    TargetArrow.Remove(bloodhound.Key, target);
+                }
             }
 
-            BloodhoundTarget.Clear();
+            BloodhoundTargets.Clear();
         }
 
         public static void OnPlayerDead(PlayerControl target)
@@ -91,19 +95,20 @@
 
         public static void OnReportDeadBody(PlayerControl pc, GameData.PlayerInfo target, PlayerControl killer)
         {
-            foreach (var apc in playerIdList)
+            if (!BloodhoundTargets.ContainsKey(pc.PlayerId))
             {
-                LocateArrow.RemoveAllTarget(apc);
-                SendRPC(apc, false);
+                BloodhoundTargets.Add(pc.PlayerId, new List<byte>());
             }
 
-            // Only 1 Target at a time
-            if (BloodhoundTarget.ContainsKey(pc.PlayerId))
+            if (BloodhoundTargets[pc.PlayerId].Contains(killer.PlayerId))
             {
                 return;
             }
 
-            BloodhoundTarget.Add(pc.PlayerId, killer.PlayerId);
+            LocateArrow.Remove(pc.PlayerId, target.Object.transform.position);
+            SendRPC(pc.PlayerId, false);
+
+            BloodhoundTargets[pc.PlayerId].Add(killer.PlayerId);
             TargetArrow.Add(pc.PlayerId, killer.PlayerId);
 
             if (LeaveDeadBodyUnreportable.GetBool())
@@ -117,7 +122,16 @@
             if (!seer.Is(CustomRoles.Bloodhound)) return "";
             if (target != null && seer.PlayerId != target.PlayerId) return "";
             if (GameStates.IsMeeting) return "";
-            if (BloodhoundTarget.ContainsKey(seer.PlayerId)) return TargetArrow.GetArrows(seer, BloodhoundTarget[seer.PlayerId]);
+            if (BloodhoundTargets.ContainsKey(seer.PlayerId))
+            {
+                var arrows = "";
+                foreach (var targetId in BloodhoundTargets[seer.PlayerId])
+                {
+                    var arrow = TargetArrow.GetArrows(seer, targetId);
+                    arrows += Utils.ColorString(seer.GetRoleColor(), arrow);
+                }
+                return arrows;
+            }
             return Utils.ColorString(Color.white, LocateArrow.GetArrows(seer));
         }
     }
