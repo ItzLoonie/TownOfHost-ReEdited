@@ -1767,7 +1767,7 @@ class FixedUpdatePatch
 
                 Suffix.Append(EvilTracker.GetTargetArrow(seer, target));
 
-                //Suffix.Append(Tracker.GetTrackerArrow(seer, target));
+                Suffix.Append(Tracker.GetTrackerArrow(seer, target));
 
                 if (GameStates.IsInTask && seer.Is(CustomRoles.AntiAdminer))
                 {
