@@ -831,7 +831,7 @@ class ShapeshiftPatch
                     {
                         var totalAlive = Main.AllAlivePlayerControls.Count();
                         //自分が最後の生き残りの場合は勝利のために死なない
-                        if (totalAlive != 1 && !GameStates.IsEnded)
+                        if (totalAlive > 0 && !GameStates.IsEnded)
                         {
                             Main.PlayerStates[shapeshifter.PlayerId].deathReason = PlayerState.DeathReason.Misfire;
                             shapeshifter.RpcMurderPlayerV3(shapeshifter);
