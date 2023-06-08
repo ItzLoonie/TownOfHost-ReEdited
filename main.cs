@@ -4,6 +4,7 @@ using BepInEx.Configuration;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Il2CppInterop.Runtime.Injection;
+using Sentry.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -374,6 +375,7 @@ public class Main : BasePlugin
                 {CustomRoles.Contagious, "#2E8B57"},
                 {CustomRoles.Unreportable, "#FF6347"},
                 {CustomRoles.Rogue, "#696969"},
+                {CustomRoles.Lucky, "#b8d7a3"},
                 //SoloKombat
                 {CustomRoles.KB_Normal, "#f55252"}
             };
@@ -602,6 +604,7 @@ public enum CustomRoles
     Contagious,
     Unreportable,
     Rogue,
+    Lucky
 }
 //WinData
 public enum CustomWinner

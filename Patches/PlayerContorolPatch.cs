@@ -435,10 +435,19 @@ class CheckMurderPatch
         if (killer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Sidekick) && !Options.SidekickCanKillSidekick.GetBool())
             return false;
 
-
         //医生护盾检查
         if (Medicaler.OnCheckMurder(killer, target))
             return false;
+
+        if (target.Is(CustomRoles.Lucky))
+        {
+            var rd = IRandom.Instance;
+            if (rd.Next(0, 100) < Options.LuckyProbability.GetInt())
+            {
+                killer.RpcGuardAndKill(target);
+                return false;
+            }
+        }
 
         switch (target.GetCustomRole())
         {
