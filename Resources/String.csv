@@ -1205,6 +1205,7 @@
 "MediumshiperOnlyReceiveMsgFromCrew","只会收到来自<color=#8cffff>船员</color>的消息（包括<color=#ff1919>背叛</color>和<color=#cf6acd>魅惑</color>）","Receive messages only from <color=#8cffff>Crewmates</color> (including <color=#ff1919>Madmates</color> and <color=#cf6acd>Charmed</color> Players)","Получать сообщения только от <color=#8cffff>Членов Экипажа</color> (включая <color=#ff1919>Безумцев</color> и <color=#cf6acd>Зачарованных</color>)","只會收到來自<color=#8cffff>船員</color>的消息(包括<color=#ff1919>背叛</color>的和<color=#cf6acd>被魅惑</color>的)",""
 "DovesOfNeaceCooldown","歌颂冷却时间","Ability Cooldown","Откат способности","歌頌冷卻時間",""
 "DovesOfNeaceMaxOfUseage","歌颂次数上限","Max Number of Ability Uses","Количество способностей","歌頌次數上限",""
+"TrackerHideVote","","Hide <color=#3CB371>Tracker</color> Votes","","",""
 
 "## 死因 / Death Reasons"
 "DeathReason.Kill","被杀","Kill","Убит","被殺","被杀"
