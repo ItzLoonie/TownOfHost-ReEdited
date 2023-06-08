@@ -6,6 +6,7 @@
     using UnityEngine;
     using static TOHE.Options;
     using static UnityEngine.GraphicsBuffer;
+    using static TOHE.Translator;
 
     public static class Bloodhound
     {
@@ -110,6 +111,8 @@
 
             BloodhoundTargets[pc.PlayerId].Add(killer.PlayerId);
             TargetArrow.Add(pc.PlayerId, killer.PlayerId);
+
+            pc.Notify(GetString("BloodhoundTrackRecorded"));
 
             if (LeaveDeadBodyUnreportable.GetBool())
             {

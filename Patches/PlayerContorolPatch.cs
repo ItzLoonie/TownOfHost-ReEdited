@@ -942,6 +942,10 @@ class ReportDeadBodyPatch
                     {
                         Bloodhound.OnReportDeadBody(__instance, target, killer);
                     }
+                    else
+                    {
+                        __instance.Notify(GetString("BloodhoundNoTrack"));
+                    }
                     
                     return false;
                 }
