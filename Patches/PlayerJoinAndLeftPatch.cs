@@ -268,7 +268,7 @@ class CreatePlayerPatch
                     }
                 }, 3.2f, "DisplayLastResult");
             }
-            if (PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsUp && Options.EnableUpMode.GetBool())
+            if (PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsUp) //&& Options.EnableUpMode.GetBool())
             {
                 new LateTask(() =>
                 {

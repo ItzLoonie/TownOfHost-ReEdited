@@ -173,11 +173,11 @@ internal class ChatCommands
                     canceled = true;
                     subArgs = text.Remove(0, 3);
                     if (!PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsUp) break;
-                    if (!Options.EnableUpMode.GetBool())
-                    {
-                        Utils.SendMessage(string.Format(GetString("Message.YTPlanDisabled"), GetString("EnableYTPlan")));
-                        break;
-                    }
+                   // if (!Options.EnableUpMode.GetBool())
+                  //  {
+                 //       Utils.SendMessage(string.Format(GetString("Message.YTPlanDisabled"), GetString("EnableYTPlan")));
+                //        break;
+               //     }
                     if (!GameStates.IsLobby)
                     {
                         Utils.SendMessage(GetString("Message.OnlyCanUseInLobby"));
