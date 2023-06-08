@@ -176,8 +176,7 @@ class CheckMurderPatch
                 case CustomRoles.Puppeteer:
                     if (target.Is(CustomRoles.Needy)) return false;
                     Main.PuppeteerList[target.PlayerId] = killer.PlayerId;
-                    RPC.RpcSyncPuppeteerList();
-                    killer.SetKillCooldownV2();
+                    killer.SetKillCooldown();
                     killer.RPCPlayCustomSound("Line");
                     Utils.NotifyRoles(SpecifySeer: killer);
                     return false;
@@ -1398,7 +1397,6 @@ class FixedUpdatePatch
                     if (!player.IsAlive() || Pelican.IsEaten(player.PlayerId))
                     {
                         Main.PuppeteerList.Remove(player.PlayerId);
-                        RPC.RpcSyncPuppeteerList();
                     }
                     else
                     {
@@ -1439,7 +1437,6 @@ class FixedUpdatePatch
                                     player.RpcMurderPlayerV3(target);
                                     Utils.MarkEveryoneDirtySettings();
                                     Main.PuppeteerList.Remove(player.PlayerId);
-                                    RPC.RpcSyncPuppeteerList();
                                     Utils.NotifyRoles();
                                 }
                             }
