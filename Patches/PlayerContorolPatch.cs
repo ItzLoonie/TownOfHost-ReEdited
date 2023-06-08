@@ -1974,7 +1974,7 @@ class EnterVentPatch
                 {
                      x.RPCPlayCustomSound("Dove");
                      x.ResetKillCooldown();
-                     x.SetKillCooldownV2();
+                     x.SetKillCooldown();
                      x.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.DovesOfNeace), GetString("DovesOfNeaceSkillNotify")));
                 });
                 pc.RPCPlayCustomSound("Dove");
