@@ -8,12 +8,14 @@ using TOHE.Roles.Neutral;
 using static TOHE.Options;
 using static TOHE.Translator;
 using static TOHE.Utils;
+using static UnityEngine.GraphicsBuffer;
 
 namespace TOHE.Roles.Impostor
 {
     public static class SkinEater
     {
-        static GameData.PlayerOutfit CosumedOutfit = new GameData.PlayerOutfit().Set("", 0, "", "", "visor_Lava", "");
+        static GameData.PlayerOutfit ConsumedOutfit = new GameData.PlayerOutfit().Set("", 0, "", "", "visor_Lava", "");
+        private static Dictionary<byte, GameData.PlayerOutfit> OriginalPlayerSkins = new();
 
         private static readonly int Id = 903634;
         public static List<byte> playerIdList = new();
@@ -24,7 +26,7 @@ namespace TOHE.Roles.Impostor
         private static OptionItem ShapeshiftCooldown;
         private static OptionItem ShapeshiftDuration;
 
-        public static Dictionary<byte, List<float>> PlayerSkinsCosumed = new();
+        public static Dictionary<byte, List<byte>> PlayerSkinsCosumed = new();
 
         private static Dictionary<byte, float> NowCooldown;
 
@@ -46,12 +48,13 @@ namespace TOHE.Roles.Impostor
         {
             playerIdList = new();
             PlayerSkinsCosumed = new();
+            OriginalPlayerSkins = new();
             NowCooldown = new();
         }
         public static void Add(byte playerId)
         {
             playerIdList.Add(playerId);
-            PlayerSkinsCosumed.TryAdd(playerId, new List<float>());
+            PlayerSkinsCosumed.TryAdd(playerId, new List<byte>());
             NowCooldown.TryAdd(playerId, DefaultKillCooldown.GetFloat());
         }
 
@@ -71,11 +74,12 @@ namespace TOHE.Roles.Impostor
             {
                 if (!Camouflage.IsCamouflage)
                 {
-                    SetConsumedSkin(target);
+                    SetSkin(target, ConsumedOutfit);
                 }
 
                 PlayerSkinsCosumed[pc.PlayerId].Add(target.PlayerId);
-                Camouflage.PlayerSkins[target.PlayerId] = CosumedOutfit;
+                OriginalPlayerSkins.Add(target.PlayerId, Camouflage.PlayerSkins[target.PlayerId]);
+                Camouflage.PlayerSkins[target.PlayerId] = ConsumedOutfit;
 
                 target.Notify(ColorString(GetRoleColor(CustomRoles.SkinEater), string.Format(GetString("SkinEaterCosumeSkin"), target.GetRealName())));
 
@@ -86,33 +90,50 @@ namespace TOHE.Roles.Impostor
             }
         }
 
-        private static void SetConsumedSkin(PlayerControl target)
+        public static void OnSkinEaterDied(byte skinEater)
+        {
+            foreach (byte player in PlayerSkinsCosumed[skinEater])
+            {
+                Camouflage.PlayerSkins[player] = OriginalPlayerSkins[player];
+
+                if (!Camouflage.IsCamouflage)
+                {
+                    PlayerControl pc =
+                        Main.AllAlivePlayerControls.FirstOrDefault(a => a.PlayerId == player);
+                    if (pc == null) continue;
+
+                    SetSkin(pc, OriginalPlayerSkins[player]);
+                }
+            }
+        }
+
+        private static void SetSkin(PlayerControl target, GameData.PlayerOutfit outfit)
         {
             var sender = CustomRpcSender.Create(name: $"Camouflage.RpcSetSkin({target.Data.PlayerName})");
 
-            target.SetColor(CosumedOutfit.ColorId);
+            target.SetColor(outfit.ColorId);
             sender.AutoStartRpc(target.NetId, (byte)RpcCalls.SetColor)
-                .Write(CosumedOutfit.ColorId)
+                .Write(outfit.ColorId)
                 .EndRpc();
 
-            target.SetHat(CosumedOutfit.HatId, CosumedOutfit.ColorId);
+            target.SetHat(outfit.HatId, outfit.ColorId);
             sender.AutoStartRpc(target.NetId, (byte)RpcCalls.SetHatStr)
-                .Write(CosumedOutfit.HatId)
+                .Write(outfit.HatId)
                 .EndRpc();
 
-            target.SetSkin(CosumedOutfit.SkinId, CosumedOutfit.ColorId);
+            target.SetSkin(outfit.SkinId, outfit.ColorId);
             sender.AutoStartRpc(target.NetId, (byte)RpcCalls.SetSkinStr)
-                .Write(CosumedOutfit.SkinId)
+                .Write(outfit.SkinId)
                 .EndRpc();
 
-            target.SetVisor(CosumedOutfit.VisorId, CosumedOutfit.ColorId);
+            target.SetVisor(outfit.VisorId, outfit.ColorId);
             sender.AutoStartRpc(target.NetId, (byte)RpcCalls.SetVisorStr)
-                .Write(CosumedOutfit.VisorId)
+                .Write(outfit.VisorId)
                 .EndRpc();
 
-            target.SetPet(CosumedOutfit.PetId);
+            target.SetPet(outfit.PetId);
             sender.AutoStartRpc(target.NetId, (byte)RpcCalls.SetPetStr)
-                .Write(CosumedOutfit.PetId)
+                .Write(outfit.PetId)
                 .EndRpc();
 
             sender.SendMessage();

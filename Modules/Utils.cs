@@ -1451,6 +1451,9 @@ public static class Utils
             case CustomRoles.Pelican:
                 Pelican.OnPelicanDied(target.PlayerId);
                 break;
+            case CustomRoles.SkinEater:
+                SkinEater.OnSkinEaterDied(target.PlayerId);
+                break;
         }
 
         if (Executioner.Target.ContainsValue(target.PlayerId))
