@@ -448,7 +448,7 @@ class CheckMurderPatch
                 var rd = IRandom.Instance;
                 if (rd.Next(0, 100) < Options.LuckeyProbability.GetInt())
                 {
-                    killer.SetKillCooldownV2(target: target, forceAnime: true);
+                    killer.RpcGuardAndKill(target);
                     return false;
                 }
                 break;
