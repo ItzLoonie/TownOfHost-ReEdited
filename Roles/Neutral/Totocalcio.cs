@@ -105,7 +105,7 @@ public static class Totocalcio
         SendRPC(killer.PlayerId);
 
         killer.ResetKillCooldown();
-        killer.SetKillCooldownV2();
+        killer.SetKillCooldown();
         killer.RPCPlayCustomSound("Bet");
 
         killer.Notify(GetString("TotocalcioBetPlayer"));
