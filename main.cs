@@ -340,6 +340,7 @@ public class Main : BasePlugin
                 {CustomRoles.Infectious, "#7B8968"},
                 {CustomRoles.Virus, "#2E8B57"},
                 {CustomRoles.Farseer, "#BA55D3"},
+                {CustomRoles.Pursuer, "#617218"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -561,6 +562,7 @@ public enum CustomRoles
     Totocalcio,
     Succubus,
     Virus,
+    Pursuer,
 
     //SoloKombat
     KB_Normal,
@@ -657,6 +659,7 @@ public enum AdditionalWinners
     Totocalcio = CustomRoles.Totocalcio,
     Jackal = CustomRoles.Jackal,
     Sidekick = CustomRoles.Sidekick,
+    Pursuer = CustomRoles.Pursuer,
 }
 public enum SuffixModes
 {
