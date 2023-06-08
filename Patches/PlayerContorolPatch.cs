@@ -1770,6 +1770,8 @@ class FixedUpdatePatch
 
                 Suffix.Append(EvilTracker.GetTargetArrow(seer, target));
 
+                Suffix.Append(Bloodhound.GetTargetArrow(seer, target));
+
                 if (GameStates.IsInTask && seer.Is(CustomRoles.AntiAdminer))
                 {
                     AntiAdminer.FixedUpdate();

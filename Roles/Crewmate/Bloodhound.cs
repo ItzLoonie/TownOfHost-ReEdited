@@ -62,6 +62,12 @@
 
         public static void Clear()
         {
+            foreach (var apc in playerIdList)
+            {
+                LocateArrow.RemoveAllTarget(apc);
+                SendRPC(apc, false);
+            }
+
             foreach (var item in BloodhoundTarget)
             {
                 TargetArrow.Remove(item.Key, item.Value);
@@ -73,20 +79,6 @@
         public static void OnPlayerDead(PlayerControl target)
         {
             if (!ArrowsPointingToDeadBody.GetBool()) return; 
-
-            var pos = target.GetTruePosition();
-            float minDis = float.MaxValue;
-            string minName = "";
-            foreach (var pc in Main.AllAlivePlayerControls)
-            {
-                if (pc.PlayerId == target.PlayerId) continue;
-                var dis = Vector2.Distance(pc.GetTruePosition(), pos);
-                if (dis < minDis && dis < 1.5f)
-                {
-                    minDis = dis;
-                    minName = pc.GetRealName();
-                }
-            }
 
             foreach (var pc in playerIdList)
             {
