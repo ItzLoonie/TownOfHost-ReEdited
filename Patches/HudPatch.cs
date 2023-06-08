@@ -134,6 +134,9 @@ class HudManagerPatch
                     case CustomRoles.Counterfeiter:
                         __instance.KillButton.OverrideText(GetString("CounterfeiterButtonText"));
                         break;
+                    case CustomRoles.Pursuer:
+                        __instance.KillButton.OverrideText(GetString("PursuerButtonText"));
+                        break;
                     case CustomRoles.Gangster:
                         Gangster.SetKillButtonText(player.PlayerId);
                         break;

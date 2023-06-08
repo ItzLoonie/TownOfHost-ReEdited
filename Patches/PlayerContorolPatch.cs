@@ -123,6 +123,7 @@ class CheckMurderPatch
 
         // 赝品检查
         if (Counterfeiter.OnClientMurder(killer)) return false;
+        if (Pursuer.OnClientMurder(killer)) return false;
 
         //判定凶手技能
         if (killer.PlayerId != target.PlayerId)
@@ -326,6 +327,10 @@ class CheckMurderPatch
                 case CustomRoles.Counterfeiter:
                     if (Counterfeiter.CanBeClient(target) && Counterfeiter.CanSeel(killer.PlayerId))
                         Counterfeiter.SeelToClient(killer, target);
+                    return false;
+                case CustomRoles.Pursuer:
+                    if (Pursuer.CanBeClient(target) && Pursuer.CanSeel(killer.PlayerId))
+                        Pursuer.SeelToClient(killer, target);
                     return false;
             }
         }
