@@ -940,9 +940,9 @@ class ReportDeadBodyPatch
                 {
                     if (killer != null)
                     {
-
+                        Bloodhound.OnReportDeadBody(__instance, target, killer);
                     }
-                    Bloodhound.OnReportDeadBody(__instance, target, killer);
+                    
                     return false;
                 }
 
