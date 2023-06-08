@@ -150,6 +150,7 @@ class CheckMurderPatch
                         if (target.Is(CustomRoles.Needy)) return false;
                         Main.isCursed = true;
                         killer.SetKillCooldown();
+                        //RPC.PlaySoundRPC(killer.PlayerId, Sounds.KillSound);
                         killer.RPCPlayCustomSound("Line");
                         Main.CursedPlayers[killer.PlayerId] = target;
                         Main.WarlockTimer.Add(killer.PlayerId, 0f);
@@ -1929,9 +1930,9 @@ class EnterVentPatch
         if (pc.Is(CustomRoles.Veteran))
         {
             Main.VeteranInProtect.Remove(pc.PlayerId);
-            Main.VeteranInProtect.Add(pc.PlayerId, Utils.GetTimeStamp());
+            Main.VeteranInProtect.Add(pc.PlayerId, Utils.GetTimeStamp(DateTime.Now));
             Main.VeteranNumOfUsed[pc.PlayerId]--;
-            if (!pc.IsModClient()) pc.RpcGuardAndKill(pc);
+            pc.RpcGuardAndKill(pc);
             pc.RPCPlayCustomSound("Gunload");
             pc.Notify(GetString("VeteranOnGuard"), Options.VeteranSkillDuration.GetFloat());
         }
