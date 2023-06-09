@@ -1399,7 +1399,7 @@
 "FarseerVision","","<color=#BA55D3>Overseer</color> Vision","Обзор <color=#BA55D3>Смотрителя</color>","",""
 "FarseerVision","","<color=#BA55D3>Overseer</color> Vision","Обзор <color=#BA55D3>Смотрителя</color>","",""
 "MerchantMaxSell","","Max number of Add-ons to sell","","",""
-"MerchantMoneyPerSell","","Amount of <color=#D27D2D>money</color> for sold Add-on","","",""
+"MerchantMoneyPerSell","","Amount of <color=#D27D2D>money</color> earned for sold Add-on","","",""
 "MerchantMoneyRequiredToBribe","","Amount of <color=#D27D2D>money</color> required to bribe a killer","","",""
 "MerchantNotifyBribery","","Inform <color=#D27D2D>Merchant</color> when a killer gets bribed","","",""
 "MerchantTargetCrew","","Can sell to <color=#8cffff>Crew</color>","","",""
