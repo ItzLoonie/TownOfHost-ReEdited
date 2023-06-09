@@ -1134,6 +1134,10 @@ public static class Utils
             {
                 SelfSuffix.Append(Bloodhound.GetTargetArrow(seer));
             }
+            if (seer.Is(CustomRoles.Tracker))
+            {
+                SelfSuffix.Append(Tracker.GetTrackerArrow(seer));
+            }
 
             //タスクを終えたSnitchがインポスター/キル可能なニュートラルの方角を確認できる
             SelfSuffix.Append(Snitch.GetSnitchArrow(seer));
@@ -1311,8 +1315,13 @@ public static class Utils
                             TargetRoleText = $"<size={fontSize}>{EvilTracker.GetArrowAndLastRoom(seer, target)}</size>\r\n";
                     }
 
-                    //RealNameを取得 なければ現在の名前をRealNamesに書き込む
-                    string TargetPlayerName = target.GetRealName(isForMeeting);
+                    if (seer.Is(CustomRoles.Tracker))
+                    {
+                        TargetMark.Append(Tracker.GetTargetMark(seer, target));
+                    }
+
+                //RealNameを取得 なければ現在の名前をRealNamesに書き込む
+                string TargetPlayerName = target.GetRealName(isForMeeting);
 
                     if (seer.Is(CustomRoles.Psychic) && seer.IsAlive() && target.IsRedForPsy(seer) && isForMeeting)
                     {

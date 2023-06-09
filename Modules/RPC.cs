@@ -818,6 +818,9 @@ internal static class RPC
             case CustomRoles.Bloodhound:
                 Bloodhound.Add(targetId); 
                 break;
+            case CustomRoles.Tracker:
+                Tracker.Add(targetId);
+                break;
         }
         HudManager.Instance.SetHudActive(true);
         if (PlayerControl.LocalPlayer.PlayerId == targetId) RemoveDisableDevicesPatch.UpdateDisableDevices();

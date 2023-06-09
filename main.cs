@@ -304,6 +304,7 @@ public class Main : BasePlugin
                 {CustomRoles.DovesOfNeace, "#007FFF"},
                 {CustomRoles.Monarch, "#FFA500"},
                 {CustomRoles.Bloodhound, "#8B0000"},
+                {CustomRoles.Tracker, "#3CB371"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Jester, "#ec62a5"},
@@ -530,6 +531,7 @@ public enum CustomRoles
     Monarch,
     Farseer,
     Bloodhound,
+    Tracker,
     //Neutral
     Arsonist,
     HexMaster,
