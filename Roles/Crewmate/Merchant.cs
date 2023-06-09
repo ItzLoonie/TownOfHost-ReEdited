@@ -52,8 +52,8 @@ namespace TOHE.Roles.Crewmate
         private static OptionItem OptionCanSellHarmful;
         private static OptionItem OptionCanSellNeutral;
 
-        private static OptionItem OptionSellHarmfulToEvil;
-        private static OptionItem OptionSellHelpfulToCrew;
+        private static OptionItem OptionSellOnlyHarmfulToEvil;
+        private static OptionItem OptionSellOnlyHelpfulToCrew;
 
         public static void SetupCustomOption()
         {
@@ -65,8 +65,8 @@ namespace TOHE.Roles.Crewmate
             OptionCanSellHelpful = BooleanOptionItem.Create(Id + 14, "MerchantSellHelpful", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
             OptionCanSellHarmful = BooleanOptionItem.Create(Id + 15, "MerchantSellHarmful", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
             OptionCanSellNeutral = BooleanOptionItem.Create(Id + 16, "MerchantSellNeutral", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
-            OptionSellHarmfulToEvil = BooleanOptionItem.Create(Id + 17, "MerchantSellHarmfulToEvil", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
-            OptionSellHelpfulToCrew = BooleanOptionItem.Create(Id + 18, "MerchantSellHelpfulToCrew", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
+            OptionSellOnlyHarmfulToEvil = BooleanOptionItem.Create(Id + 17, "MerchantSellHarmfulToEvil", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
+            OptionSellOnlyHelpfulToCrew = BooleanOptionItem.Create(Id + 18, "MerchantSellHelpfulToCrew", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
 
             OverrideTasksData.Create(Id + 11, TabGroup.CrewmateRoles, CustomRoles.Merchant);
         }
@@ -107,34 +107,53 @@ namespace TOHE.Roles.Crewmate
             }
 
             var rd = IRandom.Instance;
+            CustomRoles addon = addons[rd.Next(0, addons.Count)];
+
             List<PlayerControl> AllAlivePlayer =
-                Main.AllAlivePlayerControls.Where(x => x.PlayerId != player.PlayerId && !Pelican.IsEaten(x.PlayerId)).ToList();
+                Main.AllAlivePlayerControls.Where(x =>
+                    (x.PlayerId != player.PlayerId && !Pelican.IsEaten(x.PlayerId))
+                    &&
+                    !x.Is(addon)
+                    &&
+                    !CustomRolesHelper.CheckAddonConfilct(addon, x)
+                    &&
+                    (
+                        (OptionCanTargetCrew.GetBool() && CustomRolesHelper.IsCrewmate(x.GetCustomRole())) 
+                        ||
+                        (OptionCanTargetImpostor.GetBool() && CustomRolesHelper.IsImpostor(x.GetCustomRole()))
+                        ||
+                        (OptionCanTargetNeutral.GetBool() && (CustomRolesHelper.IsNeutral(x.GetCustomRole()) || CustomRolesHelper.IsNeutralKilling(x.GetCustomRole())))
+                    )
+                ).ToList();
+
             if (AllAlivePlayer.Count >= 1)
             {
+                bool helpfulAddon = IsHelpful(addon);
+                bool harmfulAddon = !helpfulAddon;
+
+                if (helpfulAddon && OptionSellOnlyHarmfulToEvil.GetBool())
+                {
+                    AllAlivePlayer = AllAlivePlayer.Where(a => CustomRolesHelper.IsCrewmate(a.GetCustomRole())).ToList();
+                }
+
+                if (harmfulAddon && OptionSellOnlyHelpfulToCrew.GetBool())
+                {
+                    AllAlivePlayer = AllAlivePlayer.Where(a =>
+                        CustomRolesHelper.IsImpostor(a.GetCustomRole())
+                        ||
+                        CustomRolesHelper.IsNeutral(a.GetCustomRole())
+                        ||
+                        CustomRolesHelper.IsNeutralKilling(a.GetCustomRole())
+                    ).ToList();
+                }
+
+                if (AllAlivePlayer.Count == 0)
+                {
+                    player.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Merchant), GetString("MerchantAddonSellFail")));
+                    return;
+                }
+
                 PlayerControl target = AllAlivePlayer[rd.Next(0, AllAlivePlayer.Count)];
-                CustomRoles role = target.GetCustomRole();
-
-                bool isCrewmate = CustomRolesHelper.IsCrewmate(role);
-                bool isImpostor = CustomRolesHelper.IsImpostor(role);
-                bool isNeutral = CustomRolesHelper.IsNeutral(role) || CustomRolesHelper.IsNeutralKilling(role);
-
-                if ((!OptionCanTargetCrew.GetBool() && isCrewmate) ||
-                    (!OptionCanTargetImpostor.GetBool() && isImpostor) ||
-                    (!OptionCanTargetNeutral.GetBool() && isNeutral))
-                {
-                    player.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Merchant), GetString("MerchantAddonSellFail")));
-                    return;
-                }
-
-                CustomRoles addon = addons[rd.Next(0, addons.Count)];
-                if (target.Is(addon) ||
-                    (OptionSellHarmfulToEvil.GetBool() && (isImpostor || isNeutral) && !IsHarmful(addon)) ||
-                    (OptionSellHelpfulToCrew.GetBool() && isCrewmate && IsHarmful(addon)) ||
-                    CustomRolesHelper.CheckAddonConfilct(addon, target))
-                {
-                    player.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Merchant), GetString("MerchantAddonSellFail")));
-                    return;
-                }
 
                 target.RpcSetCustomRole(addon);
                 target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Merchant), GetString("MerchantAddonSell")));
@@ -146,9 +165,9 @@ namespace TOHE.Roles.Crewmate
             }
         }
 
-        private static bool IsHarmful(CustomRoles addon)
+        private static bool IsHelpful(CustomRoles addon)
         {
-            return harmfulAddons.Contains(addon);
+            return helpfulAddons.Contains(addon);
         }
     }
 }
