@@ -1130,6 +1130,10 @@ public static class Utils
                 if (AntiAdminer.IsDoorLogWatch) SelfSuffix.Append("★").Append(GetString("AntiAdminerDL"));
                 if (AntiAdminer.IsCameraWatch) SelfSuffix.Append("★").Append(GetString("AntiAdminerCA"));
             }
+            if (seer.Is(CustomRoles.Bloodhound))
+            {
+                SelfSuffix.Append(Bloodhound.GetTargetArrow(seer));
+            }
             if (seer.Is(CustomRoles.Tracker))
             {
                 SelfSuffix.Append(Tracker.GetTrackerArrow(seer));
@@ -1479,8 +1483,8 @@ public static class Utils
 
         FixedUpdatePatch.LoversSuicide(target.PlayerId, onMeeting);
 
-        Jackal.AfterPlayerDiedTask(target);
-
+        if (CustomRoles.Jackal.IsEnable())
+            Jackal.AfterPlayerDiedTask(target);
     }
     public static void ChangeInt(ref int ChangeTo, int input, int max)
     {

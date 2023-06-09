@@ -166,6 +166,7 @@
 "Observer","观察者","Observer","Аудитор","窺視者",""
 "Monarch","","Monarch","Монарх","",""
 "Farseer","","Overseer","Смотритель","",""
+"Bloodhound","","Bloodhound","","",""
 "Tracker","","Tracker","","",""
 
 "# 中立阵营 / Neutrals"
@@ -387,6 +388,7 @@
 "DovesOfNeaceInfo","何必打打杀杀呢？","Vent to reset kill cooldowns","А зачем убивать?","何必打打殺殺呢?",""
 "MonarchInfo","","Give your crew extra voting power!","Дайте игрокам дополнительные голоса!","",""
 "FarseerInfo","","Reveal roles of other players","Выявляйте роли других игроков","",""
+"BloodhoundInfo","","Find Corpses and their Murderers","","",""
 "TrackerInfo","","Keep Track of other players","","",""
 
 "# 中立阵营 / Neutral descriptions"
@@ -551,6 +553,7 @@
 "MonarchInfoLong","","(Crewmates):\nAs the Monarch, you can knight players to give them an extra vote.\n\nYou cannot knight someone who already have extra votes.","(Член Экипажа):\nМонарх может посвятить игроков, чтобы дать им дополнительный голос.\n\nОн не может посвятить того, у кого уже есть дополнительные голоса.","",""
 "DovesOfNeaceInfoLong","(船员阵营):\n当和平之鸽可以通过使用通风管道进行歌颂，在场所有拥有击杀键的玩家的击杀/技能冷却时间会被重置。当和平之鸽成为叛徒时歌颂只对船员生效。","(Crewmates):\nWhen the Pacifist vents, they will reset the kill cooldown for every player with a kill button. When they become a Madmate, this ability will only work on Crewmates.","(Член Экипажа):\nКогда Пацифист использует вентиляцию, время перезарядки убийства/навыков всех игроков с кнопкой убийства будет сброшено. Когда Пацифист становится предателем, навык действует только на Членов Экипажа.",""(船員陣營):\n和平之鴿可以通過進入通風管來進行歌頌，",""
 "FarseerInfoLong","","(Crewmates):\nAs a Overseer you have very limited vision but you can use your kill button to reveal the role of a nearby player. Use the kill button to start the reveal, a 「○」 will be displayed next to the reveal target. Stay near the target for a defined time to reveal his role, if you move too far away from the target the reveal will be aborted.","(Член Экипажа):\nУ Смотрителя ограниченный обзор, но вы можете использовать кнопку убийства, чтобы показать роль ближайшего игрока. У этого игрока будет отображаться 「○」 рядом с никнеймом. Оставайтесь рядом с целью в течение определенного времени, чтобы раскрыть его роль, если вы отойдете слишком далеко от цели, раскрытие будет прервано.","",""
+"BloodhoundInfoLong","","(Crewmates):\nAs a Bloodhound you can't report corpses, instead after trying to report the corpse you will see an arrow leading you to the killer. If a meeting is called, the arrows disappear. Depending on the setting, the body you found cannot be reported.","","",""
 "TrackerInfoLong","","(Crewmates):\nAs a tracker, you can vote for a player in the meeting, which will mark their position for you in the game with arrows. In addition, at the beginning of a meeting you will be shown in which room the player was last, if the option is activated.","","",""
 
 "# 中立阵营 / Neutrals descriptions"
@@ -1205,6 +1208,8 @@
 "MediumshiperOnlyReceiveMsgFromCrew","只会收到来自<color=#8cffff>船员</color>的消息（包括<color=#ff1919>背叛</color>和<color=#cf6acd>魅惑</color>）","Receive messages only from <color=#8cffff>Crewmates</color> (including <color=#ff1919>Madmates</color> and <color=#cf6acd>Charmed</color> Players)","Получать сообщения только от <color=#8cffff>Членов Экипажа</color> (включая <color=#ff1919>Безумцев</color> и <color=#cf6acd>Зачарованных</color>)","只會收到來自<color=#8cffff>船員</color>的消息(包括<color=#ff1919>背叛</color>的和<color=#cf6acd>被魅惑</color>的)",""
 "DovesOfNeaceCooldown","歌颂冷却时间","Ability Cooldown","Откат способности","歌頌冷卻時間",""
 "DovesOfNeaceMaxOfUseage","歌颂次数上限","Max Number of Ability Uses","Количество способностей","歌頌次數上限",""
+"BloodhoundArrowsPointingToDeadBody","","Arrows pointing to dead bodies","","",""
+"BloodhoundLeaveDeadBodyUnreportable","","Bodies the Bloodhound uses can't be reported","","",""
 "TrackerHideVote","","Hide <color=#3CB371>Tracker</color> Votes","","",""
 
 "## 死因 / Death Reasons"
@@ -1381,6 +1386,8 @@
 "DovesOfNeaceMaxUsage","已达到技能使用次数上限","Ability use limit reached","Вы использовали все свои способности","已達到技能使用次數上限",""
 "DovesOfNeaceSkillNotify","和平之鸽重置了您的击杀/技能冷却","Pacifist reset your kill cooldown","Пацифист сбросил ваш откат убийства / способности","和平之鴿重置了您的殺人/技能冷卻",""
 "BeRecruitedByJackal","","You have been recruited by the Jackal","Вы были завербованы Шакалом","",""
+"BloodhoundTrackRecorded","","Track recorded","","",""
+"BloodhoundNoTrack","","nothing to track","","",""
 "TrackerLastRoomMessage","","The evaluation of your tracking showed that the last room in which your target was located was \"{0}\".".","","",""
 
 "MonarchKnightCooldown","","Knight Cooldown","Откат посвящения","",""
@@ -1489,7 +1496,7 @@
 "MediumshipTitle","【 ★ 冥界之声 ★ 】","【★ Voice of the Underworld ★】","【★ Голос с другого мира ★】","【 ★ 冥界之声 ★ 】","【 ★ 冥界之声 ★ 】"
 "MafiaRevengeTitle","【 ★ 特供情报 ★ 】","【 ★ NEWS ★ 】","【 ★ НОВОСТИ ★ 】","【 ★ 特供情报 ★ 】",""
 "TrackerTitle","","【 ★ Track Reading ★ 】","","",""
-"Temp.Blank","","","​","",""
+"Temp.Blank","​","​","​","​","​"
 "TabGroup.SystemSettings","系统设置","System Settings","Системные настройки","系统设置","系统设置"
 "TabGroup.GameSettings","游戏设置","Game Settings","Игровые настройки","游戏设置","游戏设置"
 "TabGroup.CrewmateRoles","船员阵营职业","Crewmate Roles","Роли Членов Экипажа","船员阵营职业","船员阵营职业"
