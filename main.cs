@@ -303,7 +303,7 @@ public class Main : BasePlugin
                 {CustomRoles.Observer, "#a8e0fa"},
                 {CustomRoles.DovesOfNeace, "#007FFF"},
                 {CustomRoles.Monarch, "#FFA500"},
-                {CustomRoles.Merchant, "#BC8F8F"},
+                {CustomRoles.Merchant, "#D27D2D"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Jester, "#ec62a5"},
