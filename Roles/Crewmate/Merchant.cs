@@ -201,7 +201,7 @@ namespace TOHE.Roles.Crewmate
             return false;
         }
 
-        public static bool IsBriebedKiller(PlayerControl killer, PlayerControl target)
+        public static bool IsBribedKiller(PlayerControl killer, PlayerControl target)
         {
             return bribedKiller[target.PlayerId].Contains(killer.PlayerId);
         }

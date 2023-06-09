@@ -205,7 +205,7 @@ public static class GuessManager
                     return true;
 
                 }
-                if (target.Is(CustomRoles.Merchant) && Merchant.IsBriebedKiller(pc, target))
+                if (target.Is(CustomRoles.Merchant) && Merchant.IsBribedKiller(pc, target))
                 {
                     if (!isUI) Utils.SendMessage(GetString("BribedByMerchant2"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("BribedByMerchant2"));
