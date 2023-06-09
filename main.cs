@@ -4,10 +4,12 @@ using BepInEx.Configuration;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Il2CppInterop.Runtime.Injection;
+using Sentry.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using TOHE.Roles.Crewmate;
 using TOHE.Roles.Neutral;
 using UnityEngine;
 
@@ -302,6 +304,8 @@ public class Main : BasePlugin
                 {CustomRoles.Observer, "#a8e0fa"},
                 {CustomRoles.DovesOfNeace, "#007FFF"},
                 {CustomRoles.Monarch, "#FFA500"},
+                {CustomRoles.Bloodhound, "#8B0000"},
+                {CustomRoles.Tracker, "#3CB371"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Jester, "#ec62a5"},
@@ -374,6 +378,7 @@ public class Main : BasePlugin
                 {CustomRoles.Contagious, "#2E8B57"},
                 {CustomRoles.Unreportable, "#FF6347"},
                 {CustomRoles.Rogue, "#696969"},
+                {CustomRoles.Lucky, "#b8d7a3"},
                 //SoloKombat
                 {CustomRoles.KB_Normal, "#f55252"}
             };
@@ -527,6 +532,8 @@ public enum CustomRoles
     DovesOfNeace,
     Monarch,
     Farseer,
+    Bloodhound,
+    Tracker,
     //Neutral
     Arsonist,
     HexMaster,
@@ -602,6 +609,7 @@ public enum CustomRoles
     Contagious,
     Unreportable,
     Rogue,
+    Lucky
 }
 //WinData
 public enum CustomWinner
