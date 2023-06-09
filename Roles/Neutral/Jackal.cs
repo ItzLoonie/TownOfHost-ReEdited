@@ -103,9 +103,11 @@ public static class Jackal
     }
     public static void AfterPlayerDiedTask(PlayerControl target)
     {
-        var killer = target.GetRealKiller();
-        if (!ResetKillCooldownWhenSbGetKilled.GetBool() || killer == null) return;
-        Main.AllAlivePlayerControls.Where(x => x.PlayerId != killer.PlayerId && playerIdList.Contains(x.PlayerId)).Do(x => x.SetKillCooldown(0));
+        if (!ResetKillCooldownWhenSbGetKilled.GetBool()) return;
+
+            Main.AllAlivePlayerControls
+                .Where(x => !target.Is(CustomRoles.Jackal) && x.Is(CustomRoles.Jackal))
+                .Do(x => x.SetKillCooldown(KillCooldown.GetFloat()));
     }
 
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
