@@ -4,10 +4,12 @@ using BepInEx.Configuration;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Il2CppInterop.Runtime.Injection;
+using Sentry.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using TOHE.Roles.Crewmate;
 using TOHE.Roles.Neutral;
 using UnityEngine;
 
@@ -62,7 +64,6 @@ public class Main : BasePlugin
     public static ConfigEntry<bool> EnableCustomButton { get; private set; }
     public static ConfigEntry<bool> EnableCustomSoundEffect { get; private set; }
     public static ConfigEntry<bool> SwitchVanilla { get; private set; }
-    public static ConfigEntry<bool> FastBoot { get; private set; }
     public static ConfigEntry<bool> VersionCheat { get; private set; }
     public static ConfigEntry<bool> GodMode { get; private set; }
 
@@ -207,7 +208,6 @@ public class Main : BasePlugin
         EnableCustomButton = Config.Bind("Client Options", "EnableCustomButton", true);
         EnableCustomSoundEffect = Config.Bind("Client Options", "EnableCustomSoundEffect", true);
         SwitchVanilla = Config.Bind("Client Options", "SwitchVanilla", false);
-        FastBoot = Config.Bind("Client Options", "FastBoot", true);
         VersionCheat = Config.Bind("Client Options", "VersionCheat", false);
         GodMode = Config.Bind("Client Options", "GodMode", false);
 
@@ -304,6 +304,8 @@ public class Main : BasePlugin
                 {CustomRoles.Observer, "#a8e0fa"},
                 {CustomRoles.DovesOfNeace, "#007FFF"},
                 {CustomRoles.Monarch, "#FFA500"},
+                {CustomRoles.Bloodhound, "#8B0000"},
+                {CustomRoles.Tracker, "#3CB371"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Jester, "#ec62a5"},
@@ -340,6 +342,7 @@ public class Main : BasePlugin
                 {CustomRoles.Infectious, "#7B8968"},
                 {CustomRoles.Virus, "#2E8B57"},
                 {CustomRoles.Farseer, "#BA55D3"},
+                {CustomRoles.Pursuer, "#617218"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -375,6 +378,7 @@ public class Main : BasePlugin
                 {CustomRoles.Contagious, "#2E8B57"},
                 {CustomRoles.Unreportable, "#FF6347"},
                 {CustomRoles.Rogue, "#696969"},
+                {CustomRoles.Lucky, "#b8d7a3"},
                 //SoloKombat
                 {CustomRoles.KB_Normal, "#f55252"}
             };
@@ -529,6 +533,8 @@ public enum CustomRoles
     DovesOfNeace,
     Monarch,
     Farseer,
+    Bloodhound,
+    Tracker,
     //Neutral
     Arsonist,
     HexMaster,
@@ -562,6 +568,7 @@ public enum CustomRoles
     Totocalcio,
     Succubus,
     Virus,
+    Pursuer,
 
     //SoloKombat
     KB_Normal,
@@ -603,6 +610,7 @@ public enum CustomRoles
     Contagious,
     Unreportable,
     Rogue,
+    Lucky
 }
 //WinData
 public enum CustomWinner
@@ -658,6 +666,7 @@ public enum AdditionalWinners
     Totocalcio = CustomRoles.Totocalcio,
     Jackal = CustomRoles.Jackal,
     Sidekick = CustomRoles.Sidekick,
+    Pursuer = CustomRoles.Pursuer,
 }
 public enum SuffixModes
 {

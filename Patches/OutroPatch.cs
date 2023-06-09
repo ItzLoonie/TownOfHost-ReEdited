@@ -197,8 +197,8 @@ class SetEverythingUpPatch
         }
         if (CustomWinnerHolder.WinnerTeam is not CustomWinner.Draw and not CustomWinner.None and not CustomWinner.Error)
         {
-            if (AdditionalWinnerText == "") WinnerText.text = $"<color={CustomWinnerColor}>{CustomWinnerText}{GetString("Win")}</color>";
-            else WinnerText.text = $"<color={CustomWinnerColor}>{CustomWinnerText}</color>{AdditionalWinnerText}{GetString("Win")}";
+            if (AdditionalWinnerText == "") WinnerText.text = $"<color={CustomWinnerColor}>{CustomWinnerText}</color>";
+            else WinnerText.text = $"<color={CustomWinnerColor}>{CustomWinnerText}</color>";
         }
 
         static string GetWinnerRoleName(CustomRoles role)

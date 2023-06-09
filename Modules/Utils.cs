@@ -429,13 +429,20 @@ public static class Utils
             case CustomRoles.Monarch:
             case CustomRoles.Virus:
             case CustomRoles.Farseer:
+            case CustomRoles.Counterfeiter:
+            case CustomRoles.Pursuer:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:
             case CustomRoles.Terrorist:
             case CustomRoles.Sunnyboy:
-            case CustomRoles.Crewpostor:
                 if (ForRecompute)
+                    hasTasks = false;
+                    break;
+            case CustomRoles.Crewpostor:
+                if (ForRecompute && !p.IsDead)
+                    hasTasks = false;
+                if (p.IsDead)
                     hasTasks = false;
                 break;
             case CustomRoles.Executioner:
@@ -535,6 +542,9 @@ public static class Utils
                 break;
             case CustomRoles.Counterfeiter:
                 ProgressText.Append(Counterfeiter.GetSeelLimit(playerId));
+                break;
+            case CustomRoles.Pursuer:
+                ProgressText.Append(Pursuer.GetSeelLimit(playerId));
                 break;
             case CustomRoles.Revolutionist:
                 var draw = GetDrawPlayerCount(playerId, out var _);
@@ -1120,6 +1130,14 @@ public static class Utils
                 if (AntiAdminer.IsDoorLogWatch) SelfSuffix.Append("★").Append(GetString("AntiAdminerDL"));
                 if (AntiAdminer.IsCameraWatch) SelfSuffix.Append("★").Append(GetString("AntiAdminerCA"));
             }
+            if (seer.Is(CustomRoles.Bloodhound))
+            {
+                SelfSuffix.Append(Bloodhound.GetTargetArrow(seer));
+            }
+            if (seer.Is(CustomRoles.Tracker))
+            {
+                SelfSuffix.Append(Tracker.GetTrackerArrow(seer));
+            }
 
             //タスクを終えたSnitchがインポスター/キル可能なニュートラルの方角を確認できる
             SelfSuffix.Append(Snitch.GetSnitchArrow(seer));
@@ -1297,8 +1315,13 @@ public static class Utils
                             TargetRoleText = $"<size={fontSize}>{EvilTracker.GetArrowAndLastRoom(seer, target)}</size>\r\n";
                     }
 
-                    //RealNameを取得 なければ現在の名前をRealNamesに書き込む
-                    string TargetPlayerName = target.GetRealName(isForMeeting);
+                    if (seer.Is(CustomRoles.Tracker))
+                    {
+                        TargetMark.Append(Tracker.GetTargetMark(seer, target));
+                    }
+
+                //RealNameを取得 なければ現在の名前をRealNamesに書き込む
+                string TargetPlayerName = target.GetRealName(isForMeeting);
 
                     if (seer.Is(CustomRoles.Psychic) && seer.IsAlive() && target.IsRedForPsy(seer) && isForMeeting)
                     {
@@ -1463,8 +1486,8 @@ public static class Utils
 
         FixedUpdatePatch.LoversSuicide(target.PlayerId, onMeeting);
 
-        Jackal.AfterPlayerDiedTask(target);
-
+        if (CustomRoles.Jackal.IsEnable())
+            Jackal.AfterPlayerDiedTask(target);
     }
     public static void ChangeInt(ref int ChangeTo, int input, int max)
     {

@@ -434,6 +434,7 @@ static class ExtendedPlayerControl
             CustomRoles.Bomber => false,
             CustomRoles.Innocent => pc.IsAlive(),
             CustomRoles.Counterfeiter => Counterfeiter.CanUseKillButton(pc.PlayerId),
+            CustomRoles.Pursuer => Pursuer.CanUseKillButton(pc.PlayerId),
             CustomRoles.FFF => pc.IsAlive(),
             CustomRoles.Medicaler => Medicaler.CanUseKillButton(pc.PlayerId),
             CustomRoles.Gamer => pc.IsAlive(),
@@ -603,6 +604,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Counterfeiter:
                 Counterfeiter.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Pursuer:
+                Pursuer.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.FFF:
                 Main.AllPlayerKillCooldown[player.PlayerId] = 0f;

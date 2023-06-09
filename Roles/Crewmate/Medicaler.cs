@@ -93,7 +93,8 @@ public static class Medicaler
         SendRPC(killer.PlayerId);
         ProtectList.Add(target.PlayerId);
         SendRPCForProtectList();
-        killer.SetKillCooldownV2(target: target);
+        killer.RpcGuardAndKill(target);
+        killer.SetKillCooldown();
         killer.RPCPlayCustomSound("Shield");
         target.RPCPlayCustomSound("Shield");
 
@@ -109,10 +110,10 @@ public static class Medicaler
 
         ProtectList.Remove(target.PlayerId);
         SendRPCForProtectList();
-        killer.SetKillCooldownV2(target: target, forceAnime: true);
         killer.RpcGuardAndKill(target);
         if (TargetCanSeeProtect.GetBool())
             target.RpcGuardAndKill(target);
+        killer.SetKillCooldown();
         Utils.NotifyRoles(target);
         if (KnowTargetShieldBroken.GetBool())
             Main.AllPlayerControls.Where(x => playerIdList.Contains(x.PlayerId)).Do(x => x.Notify(Translator.GetString("MedicalerTargetShieldBroken")));

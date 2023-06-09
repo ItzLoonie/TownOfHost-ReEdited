@@ -74,7 +74,8 @@ internal static class Assassin
             MarkedPlayer.Add(killer.PlayerId, target.PlayerId);
             SendRPC(killer.PlayerId);
             killer.ResetKillCooldown();
-            killer.SetKillCooldownV2();
+            killer.SetKillCooldown();
+            killer.SyncSettings();
             killer.RPCPlayCustomSound("Clothe");
             return false;
         }
@@ -84,7 +85,7 @@ internal static class Assassin
         if (!pc.IsAlive() || Pelican.IsEaten(pc.PlayerId)) return;
         if (!shapeshifting)
         {
-            pc.SetKillCooldownV2();
+            pc.SetKillCooldown();
             return;
         }
         if (MarkedPlayer.ContainsKey(pc.PlayerId))
