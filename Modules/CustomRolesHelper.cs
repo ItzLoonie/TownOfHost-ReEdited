@@ -468,7 +468,8 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Lovers && pc.Is(CustomRoles.Innocent)) return false;
         if (role is CustomRoles.Lovers && pc.Is(CustomRoles.Provocateur)) return false;
         if (role is CustomRoles.Brakar && pc.Is(CustomRoles.Dictator)) return false;
-        if (role is CustomRoles.Luckey && pc.Is(CustomRoles.Lucky)) return false;
+        if (role is CustomRoles.Lucky && pc.Is(CustomRoles.Luckey)) return false;
+        if (role is CustomRoles.Bloodhound && pc.Is(CustomRoles.Oblivious)) return false;
         return true;
     }
     public static RoleTypes GetRoleTypes(this CustomRoles role)
