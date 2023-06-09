@@ -201,6 +201,11 @@ namespace TOHE.Roles.Crewmate
             return false;
         }
 
+        public static bool IsBriebedKiller(PlayerControl killer, PlayerControl target)
+        {
+            return bribedKiller[target.PlayerId].Contains(killer.PlayerId);
+        }
+
         private static void NotifyBribery(PlayerControl killer, PlayerControl target)
         {
             killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Merchant), GetString("BribedByMerchant")));

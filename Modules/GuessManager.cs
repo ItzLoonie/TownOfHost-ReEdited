@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using TMPro;
 using TOHE.Modules;
+using TOHE.Roles.Crewmate;
 using UnityEngine;
 using static TOHE.Translator;
 
@@ -197,35 +198,41 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("EGGuessSnitchTaskDone"));
                     return true;
                 }
-                 if (role.IsAdditionRole() && !Options.CanGuessAddons.GetBool() && Options.GuesserMode.GetBool())
+                if (role.IsAdditionRole() && !Options.CanGuessAddons.GetBool() && Options.GuesserMode.GetBool())
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessAdtRole"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessAdtRole"));
                     return true;
 
                 }
-           /*     if (role.IsAdditionRole())
+                if (target.Is(CustomRoles.Merchant) && Merchant.IsBriebedKiller(pc, target))
                 {
-                    if (
-                        (
-                            (pc.Is(CustomRoles.NiceGuesser) && !Options.GGCanGuessAdt.GetBool()) ||
-                            (pc.Is(CustomRoles.EvilGuesser) && !Options.EGCanGuessAdt.GetBool()) ||
-                            (pc.Is(CustomRoles.Guesser) && !Options.GCanGuessAdt.GetBool()) ||
-                            (
-                                (
-                                    Options.CrewmatesCanGuess.GetBool() ||
-                                    Options.ImpostorsCanGuess.GetBool() ||
-                                    Options.NeutralKillersCanGuess.GetBool() ||
-                                    Options.PassiveNeutralsCanGuess.GetBool()
-                                ) && (!Options.CanGuessAddons.GetBool() && role is not CustomRoles.Infected || role is not CustomRoles.Workhorse || role is not CustomRoles.Madmate || role is not CustomRoles.Charmed || role is not CustomRoles.Egoist)
-                            )
-                        )
-                    )
-                    {
-                        Utils.SendMessage(GetString("GuessAdtRole"), pc.PlayerId);
-                        return true;
-                    }
-                } */
+                    if (!isUI) Utils.SendMessage(GetString("BribedByMerchant2"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("BribedByMerchant2"));
+                    return true;
+                }
+                /*     if (role.IsAdditionRole())
+                     {
+                         if (
+                             (
+                                 (pc.Is(CustomRoles.NiceGuesser) && !Options.GGCanGuessAdt.GetBool()) ||
+                                 (pc.Is(CustomRoles.EvilGuesser) && !Options.EGCanGuessAdt.GetBool()) ||
+                                 (pc.Is(CustomRoles.Guesser) && !Options.GCanGuessAdt.GetBool()) ||
+                                 (
+                                     (
+                                         Options.CrewmatesCanGuess.GetBool() ||
+                                         Options.ImpostorsCanGuess.GetBool() ||
+                                         Options.NeutralKillersCanGuess.GetBool() ||
+                                         Options.PassiveNeutralsCanGuess.GetBool()
+                                     ) && (!Options.CanGuessAddons.GetBool() && role is not CustomRoles.Infected || role is not CustomRoles.Workhorse || role is not CustomRoles.Madmate || role is not CustomRoles.Charmed || role is not CustomRoles.Egoist)
+                                 )
+                             )
+                         )
+                         {
+                             Utils.SendMessage(GetString("GuessAdtRole"), pc.PlayerId);
+                             return true;
+                         }
+                     } */
 
                 if (pc.PlayerId == target.PlayerId)
                 {
