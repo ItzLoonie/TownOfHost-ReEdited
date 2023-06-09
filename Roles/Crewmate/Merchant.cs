@@ -207,7 +207,7 @@ namespace TOHE.Roles.Crewmate
 
             if (OptionNotifyBribery.GetBool())
             {
-                target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Merchant), GetString("MerchantKillAttemptBribed")));
+                target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Merchant), GetString("MerchantNotifyBribery")));
             }
         }
     }

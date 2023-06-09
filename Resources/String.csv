@@ -1384,6 +1384,7 @@
 "MerchantAddonSell","","The Merchant sold you a new Add-on","","",""
 "MerchantAddonSellFail","","Could not sell an Add-on","","",""
 "BribedByMerchant","","The Merchant bribed you, you can't kill him","","",""
+"MerchantKillAttemptBribed","","An attempted killing was averted by bribery","","",""
 
 "MonarchKnightCooldown","","Knight Cooldown","Откат посвящения","",""
 "MonarchKnightMax","","Maximum Knights","Максимум просвящений","",""
