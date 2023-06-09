@@ -90,6 +90,7 @@ enum CustomRPC
     SetRevealedPlayer,
     SetCurrentRevealTarget,
     SetJackalRecruitLimit,
+    SetBloodhoundArrow,
 
     //SoloKombat
     SyncKBPlayer,
@@ -477,6 +478,9 @@ internal class RPCHandlerPatch
                 Utils.FlashColor(new(1f, 0f, 0f, 0.3f));
                 if (Constants.ShouldPlaySfx()) RPC.PlaySound(PlayerControl.LocalPlayer.PlayerId, Sounds.KillSound);
                 break;
+            case CustomRPC.SetBloodhoundArrow:
+                Bloodhound.ReceiveRPC(reader);
+                break;
         }
     }
 }
@@ -810,6 +814,12 @@ internal static class RPC
                 break;
             case CustomRoles.Virus:
                 Virus.Add(targetId);
+                break;
+            case CustomRoles.Bloodhound:
+                Bloodhound.Add(targetId); 
+                break;
+            case CustomRoles.Tracker:
+                Tracker.Add(targetId);
                 break;
         }
         HudManager.Instance.SetHudActive(true);
