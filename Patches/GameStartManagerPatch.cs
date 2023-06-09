@@ -99,7 +99,7 @@ public class GameStartManagerPatch
                 if (Main.updateTime >= 50)
                 {
                     Main.updateTime = 0;
-                    if (GameData.Instance.PlayerCount >= 14 && !GameStates.IsCountDown)
+                    if (GameData.Instance.PlayerCount >= 15 && !GameStates.IsCountDown)
                     {
                         GameStartManager.Instance.startState = GameStartManager.StartingStates.Countdown;
                         GameStartManager.Instance.countDownTimer = 10;

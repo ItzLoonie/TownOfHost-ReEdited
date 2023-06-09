@@ -1036,6 +1036,7 @@ public static class Utils
             + $"\n  ○ /rn {GetString("Command.rename")}"
             + $"\n  ○ /qt {GetString("Command.quit")}"
             + "\n\n" + GetString("CommandHostList")
+            + $"\n  ○ /up {GetString("Command.up")}"
             + $"\n  ○ /s {GetString("Command.say")}"
             + $"\n  ○ /rn {GetString("Command.rename")}"
             + $"\n  ○ /xf {GetString("Command.solvecover")}"
@@ -1044,7 +1045,7 @@ public static class Utils
             + $"\n  ○ /exe {GetString("Command.exe")}"
             + $"\n  ○ /level {GetString("Command.level")}"
             + $"\n  ○ /id {GetString("Command.idlist")}"
-            + $"\n  ○ /qq {GetString("Command.qq")}"
+            //+ $"\n  ○ /qq {GetString("Command.qq")}"
             + $"\n  ○ /dump {GetString("Command.dump")}"
             , ID);
     }
