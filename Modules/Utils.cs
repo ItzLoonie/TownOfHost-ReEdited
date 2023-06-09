@@ -1130,6 +1130,10 @@ public static class Utils
                 if (AntiAdminer.IsDoorLogWatch) SelfSuffix.Append("★").Append(GetString("AntiAdminerDL"));
                 if (AntiAdminer.IsCameraWatch) SelfSuffix.Append("★").Append(GetString("AntiAdminerCA"));
             }
+            if (seer.Is(CustomRoles.Bloodhound))
+            {
+                SelfSuffix.Append(Bloodhound.GetTargetArrow(seer));
+            }
 
             //タスクを終えたSnitchがインポスター/キル可能なニュートラルの方角を確認できる
             SelfSuffix.Append(Snitch.GetSnitchArrow(seer));
