@@ -68,7 +68,16 @@
                 if (targetRoom == null) room += GetString("FailToTrack");
                 else room += GetString(targetRoom.RoomId.ToString());
 
-                msgToSend.Add(pc, string.Format(Translator.GetString("TrackerLastRoomMessage"), room));
+                if (msgToSend.ContainsKey(pc))
+                {
+                    msgToSend[pc] = string.Format(Translator.GetString("TrackerLastRoomMessage"), room);
+                }
+                else
+                {
+                    msgToSend.Add(pc, string.Format(Translator.GetString("TrackerLastRoomMessage"), room));
+                }
+
+                
             }
         }
 
