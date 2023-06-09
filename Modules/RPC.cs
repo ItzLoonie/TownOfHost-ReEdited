@@ -481,12 +481,6 @@ internal class RPCHandlerPatch
             case CustomRPC.SetBloodhoundArrow:
                 Bloodhound.ReceiveRPC(reader);
                 break;
-                /*case CustomRPC.SyncCurseAndKill:
-                    int ccount = reader.ReadInt32();
-                    Main.isCurseAndKill = new();
-                    for (int i = 0; i < ccount; i++)
-                        Main.isCurseAndKill.Add(reader.ReadByte(), reader.ReadBoolean());
-                    break;*/
         }
     }
 }
