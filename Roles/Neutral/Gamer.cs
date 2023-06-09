@@ -86,7 +86,7 @@ public static class Gamer
     public static bool CheckGamerMurder(PlayerControl killer, PlayerControl target)
     {
         if (killer == null || target == null || !killer.Is(CustomRoles.Gamer) || target.Is(CustomRoles.Gamer) || !PlayerHealth.ContainsKey(target.PlayerId)) return false;
-        killer.SetKillCooldownV2();
+        killer.SetKillCooldown();
 
         if (PlayerHealth[target.PlayerId] - Damage.GetInt() < 1)
         {
@@ -115,10 +115,12 @@ public static class Gamer
             return true;
         }
 
+        killer.SetKillCooldown();
+
         GamerHealth[target.PlayerId] -= SelfDamage.GetInt();
         SendRPC(target.PlayerId);
         RPC.PlaySoundRPC(target.PlayerId, Sounds.KillSound);
-        killer.SetKillCooldownV2(target: target, forceAnime: true);
+        killer.RpcGuardAndKill(target);
         Utils.NotifyRoles(target);
 
         Logger.Info($"{killer.GetNameWithRole()} 对玩家 {target.GetNameWithRole()} 造成了 {SelfDamage.GetInt()} 点伤害", "Gamer");

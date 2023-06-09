@@ -429,13 +429,20 @@ public static class Utils
             case CustomRoles.Monarch:
             case CustomRoles.Virus:
             case CustomRoles.Farseer:
+            case CustomRoles.Counterfeiter:
+            case CustomRoles.Pursuer:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:
             case CustomRoles.Terrorist:
             case CustomRoles.Sunnyboy:
-            case CustomRoles.Crewpostor:
                 if (ForRecompute)
+                    hasTasks = false;
+                    break;
+            case CustomRoles.Crewpostor:
+                if (ForRecompute && !p.IsDead)
+                    hasTasks = false;
+                if (p.IsDead)
                     hasTasks = false;
                 break;
             case CustomRoles.Executioner:
@@ -535,6 +542,9 @@ public static class Utils
                 break;
             case CustomRoles.Counterfeiter:
                 ProgressText.Append(Counterfeiter.GetSeelLimit(playerId));
+                break;
+            case CustomRoles.Pursuer:
+                ProgressText.Append(Pursuer.GetSeelLimit(playerId));
                 break;
             case CustomRoles.Revolutionist:
                 var draw = GetDrawPlayerCount(playerId, out var _);

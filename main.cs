@@ -63,7 +63,6 @@ public class Main : BasePlugin
     public static ConfigEntry<bool> EnableCustomButton { get; private set; }
     public static ConfigEntry<bool> EnableCustomSoundEffect { get; private set; }
     public static ConfigEntry<bool> SwitchVanilla { get; private set; }
-    public static ConfigEntry<bool> FastBoot { get; private set; }
     public static ConfigEntry<bool> VersionCheat { get; private set; }
     public static ConfigEntry<bool> GodMode { get; private set; }
 
@@ -208,7 +207,6 @@ public class Main : BasePlugin
         EnableCustomButton = Config.Bind("Client Options", "EnableCustomButton", true);
         EnableCustomSoundEffect = Config.Bind("Client Options", "EnableCustomSoundEffect", true);
         SwitchVanilla = Config.Bind("Client Options", "SwitchVanilla", false);
-        FastBoot = Config.Bind("Client Options", "FastBoot", true);
         VersionCheat = Config.Bind("Client Options", "VersionCheat", false);
         GodMode = Config.Bind("Client Options", "GodMode", false);
 
@@ -342,6 +340,7 @@ public class Main : BasePlugin
                 {CustomRoles.Infectious, "#7B8968"},
                 {CustomRoles.Virus, "#2E8B57"},
                 {CustomRoles.Farseer, "#BA55D3"},
+                {CustomRoles.Pursuer, "#617218"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -564,6 +563,7 @@ public enum CustomRoles
     Totocalcio,
     Succubus,
     Virus,
+    Pursuer,
 
     //SoloKombat
     KB_Normal,
@@ -660,6 +660,7 @@ public enum AdditionalWinners
     Totocalcio = CustomRoles.Totocalcio,
     Jackal = CustomRoles.Jackal,
     Sidekick = CustomRoles.Sidekick,
+    Pursuer = CustomRoles.Pursuer,
 }
 public enum SuffixModes
 {
