@@ -166,6 +166,7 @@
 "Observer","观察者","Observer","Аудитор","窺視者",""
 "Monarch","","Monarch","Монарх","",""
 "Farseer","","Overseer","Смотритель","",""
+"Merchant","","Merchant","","",""
 
 "# 中立阵营 / Neutrals"
 "Jester","小丑","Jester","Шут","小丑","小丑"
@@ -386,6 +387,7 @@
 "DovesOfNeaceInfo","何必打打杀杀呢？","Vent to reset kill cooldowns","А зачем убивать?","何必打打殺殺呢?",""
 "MonarchInfo","","Give your crew extra voting power!","Дайте игрокам дополнительные голоса!","",""
 "FarseerInfo","","Reveal roles of other players","Выявляйте роли других игроков","",""
+"MerchantInfo","","Sell add-ons","","",""
 
 "# 中立阵营 / Neutral descriptions"
 "ArsonistInfo","乖乖站好！","Douse Everyone and Ignite","Облейте всех игроков, а потом подожгите","燒吧，燒吧，燃燒吧","乖乖站好！"
@@ -549,6 +551,7 @@
 "MonarchInfoLong","","(Crewmates):\nAs the Monarch, you can knight players to give them an extra vote.\n\nYou cannot knight someone who already have extra votes.","(Член Экипажа):\nМонарх может посвятить игроков, чтобы дать им дополнительный голос.\n\nОн не может посвятить того, у кого уже есть дополнительные голоса.","",""
 "DovesOfNeaceInfoLong","(船员阵营):\n当和平之鸽可以通过使用通风管道进行歌颂，在场所有拥有击杀键的玩家的击杀/技能冷却时间会被重置。当和平之鸽成为叛徒时歌颂只对船员生效。","(Crewmates):\nWhen the Pacifist vents, they will reset the kill cooldown for every player with a kill button. When they become a Madmate, this ability will only work on Crewmates.","(Член Экипажа):\nКогда Пацифист использует вентиляцию, время перезарядки убийства/навыков всех игроков с кнопкой убийства будет сброшено. Когда Пацифист становится предателем, навык действует только на Членов Экипажа.",""(船員陣營):\n和平之鴿可以通過進入通風管來進行歌頌，",""
 "FarseerInfoLong","","(Crewmates):\nAs a Overseer you have very limited vision but you can use your kill button to reveal the role of a nearby player. Use the kill button to start the reveal, a 「○」 will be displayed next to the reveal target. Stay near the target for a defined time to reveal his role, if you move too far away from the target the reveal will be aborted.","(Член Экипажа):\nУ Смотрителя ограниченный обзор, но вы можете использовать кнопку убийства, чтобы показать роль ближайшего игрока. У этого игрока будет отображаться 「○」 рядом с никнеймом. Оставайтесь рядом с целью в течение определенного времени, чтобы раскрыть его роль, если вы отойдете слишком далеко от цели, раскрытие будет прервано.","",""
+"MerchantInfoLong","","(Crewmates):\As the Merchant you try to give an add-on to an random player with each task you complete.","","",""
 
 "# 中立阵营 / Neutrals descriptions"
 "ArsonistInfoLong","(中立阵营):\n纵火犯可以通过对玩家点击击杀按钮并跟随其数秒来完成涂油，开始涂油以及涂油成功时会显示护盾破碎的动画作为提示（仅自己可见）。当所有存活玩家都被纵火犯涂油后，纵火犯可以通过跳通风管来点火，并单独获得胜利。\n\n玩家名显示「△」表示涂油中\n玩家名显示「▲」表示已涂油。","(Neutrals):\nThe Arsonist can douse by clicking the kill button on the player and following them for a few seconds. When the dousing starts and it's successful, a shield animation will be displayed as a reminder (only visible to themselves). When the Arsonist has doused all surviving players, the Arsonist can vent to start the fire and win alone.\n\nIf the player name shows 「△」, that means they are being doused;\nif the player name shows 「▲」, it means they have been completely doused.","(нейтральный): поджигатель может закончить смазку, нажав на кнопку убийства игрока и следуя за ним в течение нескольких секунд, начать мазать, а также показать анимацию разбитого щита, когда она будет успешной (только для себя). После того, как все выжившие игроки были смазаны поджигателем, поджигатель мог воспламенить его, перепрыгнув через вентиляционную трубу и одержать победу в одиночку. \ n что n игрок показыва「△」заяв в смазыва \ что n что игрок показыва「▲」что смазыва.","(中立陣營):\n縱火犯可以通過對玩家使用殺人鍵並跟隨數秒來澆油，開始以及結束澆油時會出現盾牌破碎的效果作為提示。當所有存活玩家都被縱火犯澆上油時，縱火犯可以以跳管道的方式來點火，並單獨獲勝。\n\n玩家名字顯示「△」表示澆油中\n顯示「▲」表示已經澆油。","(中立阵营):\n纵火犯可以通过对玩家点击击杀按钮并跟随其数秒来完成涂油，开始涂油以及涂油成功时会显示护盾破碎的动画作为提示（仅自己可见）。当所有存活玩家都被纵火犯涂油后，纵火犯可以通过跳通风管来点火，并单独获得胜利。\n\n玩家名显示「△」表示涂油中\n玩家名显示「▲」表示已涂油。"
@@ -1377,6 +1380,9 @@
 "DovesOfNeaceMaxUsage","已达到技能使用次数上限","Ability use limit reached","Вы использовали все свои способности","已達到技能使用次數上限",""
 "DovesOfNeaceSkillNotify","和平之鸽重置了您的击杀/技能冷却","Pacifist reset your kill cooldown","Пацифист сбросил ваш откат убийства / способности","和平之鴿重置了您的殺人/技能冷卻",""
 "BeRecruitedByJackal","","You have been recruited by the Jackal","Вы были завербованы Шакалом","",""
+"MerchantAddonDelivered","","Add-on delivered","","",""
+"MerchantAddonSell","","The Merchant gave you a new Add-on","","",""
+"MerchantAddonSellFail","","Could not deliver an Add-on","","",""
 
 "MonarchKnightCooldown","","Knight Cooldown","Откат посвящения","",""
 "MonarchKnightMax","","Maximum Knights","Максимум просвящений","",""
@@ -1389,6 +1395,16 @@
 "FarseerRevealCooldown","","<color=#BA55D3>Reveal</color> Cooldown","Откат раскрытия","",""
 "FarseerRevealTime","","<color=#BA55D3>Reveal</color> Time","Время раскрытия","",""
 "FarseerVision","","<color=#BA55D3>Overseer</color> Vision","Обзор <color=#BA55D3>Смотрителя</color>","",""
+"FarseerVision","","<color=#BA55D3>Overseer</color> Vision","Обзор <color=#BA55D3>Смотрителя</color>","",""
+"MerchantMaxSell","","Max number of Add-ons to sell","","",""
+"MerchantTargetCrew","","Can target <color=#8cffff>Crew</color>","","",""
+"MerchantTargetImpostor","","Can target <color=#ff1919>Impostor</color>","","",""
+"MerchantTargetNeutral","","Can target <color=#7f8c8d>Neutral</color>","","",""
+"MerchantSellHelpful","","Sell <color=#8cffff>helpful</color> Add-ons","","",""
+"MerchantSellHarmful","","Sell <color=#ff1919>harmful</color> Add-ons","","",""
+"MerchantSellNeutral","","Sell <color=#7f8c8d>neutral</color> Add-ons","","",""
+"MerchantSellHarmfulToEvil","","Sell <color=#ff1919>harmful</color> Add-ons only to <color=#ff1919>Evil</color>","","",""
+"MerchantSellHelpfulToCrew","","Sell <color=#8cffff>helpful</color> Add-ons only to <color=#8cffff>Crew</color>","","",""
 
 "## 信息 / Message"
 "Message.SetToSeconds","信息发送冷却时间为【{0}】秒","Set to 【{0}】 seconds.","Установлен на 【{0}】 секунды","訊息傳送冷卻時間設為【{0}】秒","信息发送冷却时间为【{0}】秒"
