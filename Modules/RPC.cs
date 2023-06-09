@@ -59,6 +59,7 @@ enum CustomRPC
     SetPelicanEtenNum,
     SwordsManKill,
     SetCounterfeiterSellLimit,
+    SetPursuerSellLimit,
     SetMedicalerProtectLimit,
     SetGangsterRecruitLimit,
     SetGhostPlayer,
@@ -88,8 +89,8 @@ enum CustomRPC
     SetVirusInfectLimit,
     SetRevealedPlayer,
     SetCurrentRevealTarget,
-    SyncPuppeteerList,
-    SyncCurseAndKill,
+    SetJackalRecruitLimit,
+    SetBloodhoundArrow,
 
     //SoloKombat
     SyncKBPlayer,
@@ -355,11 +356,17 @@ internal class RPCHandlerPatch
             case CustomRPC.SetCounterfeiterSellLimit:
                 Counterfeiter.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetPursuerSellLimit:
+                Pursuer.ReceiveRPC(reader);
+                break;
             case CustomRPC.SetMedicalerProtectLimit:
                 Medicaler.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetGangsterRecruitLimit:
                 Gangster.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetJackalRecruitLimit:
+                Jackal.ReceiveRPC(reader);
                 break;
             case CustomRPC.PlayCustomSound:
                 CustomSoundsManager.ReceiveRPC(reader);
@@ -471,17 +478,8 @@ internal class RPCHandlerPatch
                 Utils.FlashColor(new(1f, 0f, 0f, 0.3f));
                 if (Constants.ShouldPlaySfx()) RPC.PlaySound(PlayerControl.LocalPlayer.PlayerId, Sounds.KillSound);
                 break;
-            case CustomRPC.SyncPuppeteerList:
-                int pcount = reader.ReadInt32();
-                Main.PuppeteerList = new();
-                for (int i = 0; i < pcount; i++)
-                    Main.PuppeteerList.Add(reader.ReadByte(), reader.ReadByte());
-                break;
-            case CustomRPC.SyncCurseAndKill:
-                int ccount = reader.ReadInt32();
-                Main.isCurseAndKill = new();
-                for (int i = 0; i < ccount; i++)
-                    Main.isCurseAndKill.Add(reader.ReadByte(), reader.ReadBoolean());
+            case CustomRPC.SetBloodhoundArrow:
+                Bloodhound.ReceiveRPC(reader);
                 break;
         }
     }
@@ -727,6 +725,9 @@ internal static class RPC
             case CustomRoles.Counterfeiter:
                 Counterfeiter.Add(targetId);
                 break;
+            case CustomRoles.Pursuer:
+                Pursuer.Add(targetId);
+                break;
             case CustomRoles.Gangster:
                 Gangster.Add(targetId);
                 break;
@@ -813,6 +814,9 @@ internal static class RPC
                 break;
             case CustomRoles.Virus:
                 Virus.Add(targetId);
+                break;
+            case CustomRoles.Bloodhound:
+                Bloodhound.Add(targetId); 
                 break;
         }
         HudManager.Instance.SetHudActive(true);
@@ -905,20 +909,6 @@ internal static class RPC
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetCursedWolfSpellCount, SendOption.Reliable, -1);
         writer.Write(playerId);
         writer.Write(Main.CursedWolfSpellCount[playerId]);
-        AmongUsClient.Instance.FinishRpcImmediately(writer);
-    }
-    public static void RpcSyncPuppeteerList()
-    {
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SyncPuppeteerList, SendOption.Reliable, -1);
-        writer.Write(Main.PuppeteerList.Count);
-        Main.PuppeteerList.Do(p => { writer.Write(p.Key); writer.Write(p.Value); });
-        AmongUsClient.Instance.FinishRpcImmediately(writer);
-    }
-    public static void RpcSyncCurseAndKill()
-    {
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SyncPuppeteerList, SendOption.Reliable, -1);
-        writer.Write(Main.isCurseAndKill.Count);
-        Main.isCurseAndKill.Do(p => { writer.Write(p.Key); writer.Write(p.Value); });
         AmongUsClient.Instance.FinishRpcImmediately(writer);
     }
     public static void ResetCurrentDousingTarget(byte arsonistId) => SetCurrentDousingTarget(arsonistId, 255);

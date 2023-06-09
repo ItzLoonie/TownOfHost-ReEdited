@@ -468,7 +468,7 @@ public static class GuessManager
         CreateGuesserButton(__instance);
     else if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.GetCustomRole().IsNonNK() && Options.PassiveNeutralsCanGuess.GetBool())
         CreateGuesserButton(__instance);
-}
+} 
         }
     }
     public static void CreateGuesserButton(MeetingHud __instance)
@@ -587,6 +587,14 @@ public static class GuessManager
                     if (!Options.GCanGuessImp.GetBool() && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Impostor) && index == 1) continue;
                     if (!Options.GCanGuessAdt.GetBool() && index == 3) continue;
                 }
+                else if (Options.GuesserMode.GetBool())
+                {
+                  //  if (index == 0) continue;
+                 //   if (index == 1) continue;
+                //    if (index == 2) continue;
+                    if (!Options.CanGuessAddons.GetBool() && index == 3) continue;
+
+                }
                 Transform TeambuttonParent = new GameObject().transform;
                 TeambuttonParent.SetParent(container);
                 Transform Teambutton = UnityEngine.Object.Instantiate(buttonTemplate, TeambuttonParent);
@@ -601,7 +609,8 @@ public static class GuessManager
                 {
                     CustomRoleTypes.Crewmate => new Color32(140, 255, 255, byte.MaxValue),
                     CustomRoleTypes.Impostor => new Color32(255, 25, 25, byte.MaxValue),
-                    CustomRoleTypes.Neutral => new Color32(255, 171, 27, byte.MaxValue),
+                    CustomRoleTypes.Neutral => new Color32(127, 140, 141, byte.MaxValue),
+             //       CustomRoleTypes.Madmate => new Color32(255, 25, 25, byte.MaxValue),
                     CustomRoleTypes.Addon => new Color32(255, 154, 206, byte.MaxValue),
                     _ => throw new NotImplementedException(),
                 };

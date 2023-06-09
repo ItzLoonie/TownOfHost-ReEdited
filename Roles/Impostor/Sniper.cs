@@ -112,6 +112,7 @@ public static class Sniper
         {
             canUse = true;
         }
+
         Logger.Info($" CanUseKillButton:{canUse}", "Sniper");
         return canUse;
     }

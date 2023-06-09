@@ -189,6 +189,7 @@ internal class ChangeRoleSettings
             Workhorse.Init();
             Pelican.Init();
             Counterfeiter.Init();
+            Pursuer.Init();
             Gangster.Init();
             Medicaler.Init();
             Gamer.Init();
@@ -217,6 +218,7 @@ internal class ChangeRoleSettings
             Infectious.Init();
             Monarch.Init();
             Virus.Init();
+            Bloodhound.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
@@ -486,6 +488,9 @@ internal class SelectRolesPatch
                     case CustomRoles.Counterfeiter:
                         Counterfeiter.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.Pursuer:
+                        Pursuer.Add(pc.PlayerId);
+                        break;
                     case CustomRoles.Gangster:
                         Gangster.Add(pc.PlayerId);
                         break;
@@ -575,6 +580,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Wildling:
                         Wildling.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Bloodhound:
+                        Bloodhound.Add(pc.PlayerId);
                         break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())
@@ -748,7 +756,7 @@ internal class SelectRolesPatch
         var allPlayers = new List<PlayerControl>();
         foreach (var pc in Main.AllPlayerControls)
         {
-            if (pc.Is(CustomRoles.GM) || (pc.HasSubRole() && !Options.NoLimitAddonsNum.GetBool()) || pc.Is(CustomRoles.Needy) || pc.Is(CustomRoles.Ntr) || pc.Is(CustomRoles.God) || pc.Is(CustomRoles.FFF)) continue;
+            if (pc.Is(CustomRoles.GM) || (pc.HasSubRole() && pc.GetCustomSubRoles().Count >= Options.NoLimitAddonsNumMax.GetInt()) || pc.Is(CustomRoles.Ntr) || pc.Is(CustomRoles.God) || pc.Is(CustomRoles.FFF)) continue;
             allPlayers.Add(pc);
         }
         var role = CustomRoles.Lovers;

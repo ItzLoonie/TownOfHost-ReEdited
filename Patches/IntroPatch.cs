@@ -129,7 +129,7 @@ class BeginCrewmatePatch
             __instance.overlayHandle.color = Palette.ImpostorRed;
             return false;
         }
-         else if (PlayerControl.LocalPlayer.Is(CustomRoleTypes.Madmate))
+         else if (PlayerControl.LocalPlayer.GetCustomRole().IsMadmate())
         {
             teamToDisplay = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             teamToDisplay.Add(PlayerControl.LocalPlayer);
@@ -352,7 +352,7 @@ class IntroCutsceneDestroyPatch
                     new LateTask(() =>
                     {
                         Main.AllPlayerControls.Do(x => x.ResetKillCooldown());
-                        Main.AllPlayerControls.Where(x => (Main.AllPlayerKillCooldown[x.PlayerId] - 2f) > 0f).Do(pc => pc.SetKillCooldownV2(Main.AllPlayerKillCooldown[pc.PlayerId] - 2f));
+                        Main.AllPlayerControls.Where(x => (Main.AllPlayerKillCooldown[x.PlayerId] - 2f) > 0f).Do(pc => pc.SetKillCooldown(Main.AllPlayerKillCooldown[pc.PlayerId] - 2f));
                     }, 2f, "FixKillCooldownTask");
             }
             new LateTask(() => Main.AllPlayerControls.Do(pc => pc.RpcSetRoleDesync(RoleTypes.Shapeshifter, -3)), 2f, "SetImpostorForServer");

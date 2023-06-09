@@ -101,11 +101,11 @@ class HudManagerPatch
                         break;
                     case CustomRoles.Arsonist:
                         __instance.KillButton.OverrideText(GetString("ArsonistDouseButtonText"));
-                        __instance.AbilityButton.buttonLabelText.text = GetString("ArsonistVetnButtonText");
+                        __instance.ImpostorVentButton.buttonLabelText.text = GetString("ArsonistVetnButtonText");
                         break;
                     case CustomRoles.Revolutionist:
                         __instance.KillButton.OverrideText(GetString("RevolutionistDrawButtonText"));
-                        __instance.AbilityButton.buttonLabelText.text = GetString("RevolutionistVetnButtonText");
+                        __instance.ImpostorVentButton.buttonLabelText.text = GetString("RevolutionistVetnButtonText");
                         break;
                     case CustomRoles.Farseer:
                         __instance.KillButton.OverrideText(GetString("FarseerKillButtonText"));
@@ -133,6 +133,9 @@ class HudManagerPatch
                         break;
                     case CustomRoles.Counterfeiter:
                         __instance.KillButton.OverrideText(GetString("CounterfeiterButtonText"));
+                        break;
+                    case CustomRoles.Pursuer:
+                        __instance.KillButton.OverrideText(GetString("PursuerButtonText"));
                         break;
                     case CustomRoles.Gangster:
                         Gangster.SetKillButtonText(player.PlayerId);
@@ -447,13 +450,11 @@ class VentButtonDoClickPatch
     public static bool Prefix(VentButton __instance)
     {
         var pc = PlayerControl.LocalPlayer;
-        if (pc == null || pc.inVent || __instance.currentTarget == null || !pc.CanMove || !__instance.isActiveAndEnabled) return true;
-        if (pc.GetCustomRole() is CustomRoles.Swooper or CustomRoles.Arsonist or CustomRoles.Revolutionist or CustomRoles.Veteran or CustomRoles.Paranoia or CustomRoles.Mayor or CustomRoles.Grenadier or CustomRoles.DovesOfNeace)
         {
+            if (!pc.Is(CustomRoles.Swooper) || !pc.Is(CustomRoles.Wraith) || pc.inVent || __instance.currentTarget == null || !pc.CanMove || !__instance.isActiveAndEnabled) return true;
             pc?.MyPhysics?.RpcEnterVent(__instance.currentTarget.Id);
             return false;
         }
-        return true;
     }
 }
 [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.Show))]

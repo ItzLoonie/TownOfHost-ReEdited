@@ -429,13 +429,20 @@ public static class Utils
             case CustomRoles.Monarch:
             case CustomRoles.Virus:
             case CustomRoles.Farseer:
+            case CustomRoles.Counterfeiter:
+            case CustomRoles.Pursuer:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:
             case CustomRoles.Terrorist:
             case CustomRoles.Sunnyboy:
-            case CustomRoles.Crewpostor:
                 if (ForRecompute)
+                    hasTasks = false;
+                    break;
+            case CustomRoles.Crewpostor:
+                if (ForRecompute && !p.IsDead)
+                    hasTasks = false;
+                if (p.IsDead)
                     hasTasks = false;
                 break;
             case CustomRoles.Executioner:
@@ -536,6 +543,9 @@ public static class Utils
             case CustomRoles.Counterfeiter:
                 ProgressText.Append(Counterfeiter.GetSeelLimit(playerId));
                 break;
+            case CustomRoles.Pursuer:
+                ProgressText.Append(Pursuer.GetSeelLimit(playerId));
+                break;
             case CustomRoles.Revolutionist:
                 var draw = GetDrawPlayerCount(playerId, out var _);
                 ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Revolutionist).ShadeColor(0.25f), $"({draw.Item1}/{draw.Item2})"));
@@ -576,6 +586,10 @@ public static class Utils
                 break;
             case CustomRoles.Virus:
                 ProgressText.Append(Virus.GetInfectLimit());
+                break;
+            case CustomRoles.Jackal:
+                if (Jackal.CanRecruitSidekick.GetBool())
+                ProgressText.Append(Jackal.GetRecruitLimit(playerId));
                 break;
             default:
                 //タスクテキスト
@@ -1116,6 +1130,10 @@ public static class Utils
                 if (AntiAdminer.IsDoorLogWatch) SelfSuffix.Append("★").Append(GetString("AntiAdminerDL"));
                 if (AntiAdminer.IsCameraWatch) SelfSuffix.Append("★").Append(GetString("AntiAdminerCA"));
             }
+            if (seer.Is(CustomRoles.Bloodhound))
+            {
+                SelfSuffix.Append(Bloodhound.GetTargetArrow(seer));
+            }
 
             //タスクを終えたSnitchがインポスター/キル可能なニュートラルの方角を確認できる
             SelfSuffix.Append(Snitch.GetSnitchArrow(seer));
@@ -1273,6 +1291,8 @@ public static class Utils
                         (seer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Jackal))||
                         (target.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) ||
                         (Totocalcio.KnowRole(seer, target)) ||
+                        (Lawyer.KnowRole(seer, target)) ||
+                        (Executioner.KnowRole(seer, target)) ||
                         (Succubus.KnowRole(seer, target)) ||
                         (Infectious.KnowRole(seer, target)) ||
                         (Virus.KnowRole(seer, target)) ||
@@ -1349,13 +1369,14 @@ public static class Utils
 
                 TargetMark.Append(Executioner.TargetMark(seer, target));
 
-                TargetMark.Append(Lawyer.TargetMark(seer, target));
+             //   TargetMark.Append(Lawyer.TargetMark(seer, target));
 
                 TargetMark.Append(Gamer.TargetMark(seer, target));
 
                 TargetMark.Append(Medicaler.TargetMark(seer, target));
 
                 TargetMark.Append(Totocalcio.TargetMark(seer, target));
+                TargetMark.Append(Lawyer.LawyerMark(seer, target));
 
                 //KB目标玩家名字后缀
                 TargetSuffix.Clear();
@@ -1399,8 +1420,8 @@ public static class Utils
         BountyHunter.AfterMeetingTasks();
         EvilTracker.AfterMeetingTasks();
         SerialKiller.AfterMeetingTasks();
-        if (Options.AirShipVariableElectrical.GetBool())
-            AirShipElectricalDoors.Initialize();
+        if (Options.AirshipVariableElectrical.GetBool())
+            AirshipElectricalDoors.Initialize();
     }
     public static void AfterPlayerDeathTasks(PlayerControl target, bool onMeeting = false)
     {
@@ -1453,8 +1474,8 @@ public static class Utils
 
         FixedUpdatePatch.LoversSuicide(target.PlayerId, onMeeting);
 
-        Jackal.AfterPlayerDiedTask(target);
-
+        if (CustomRoles.Jackal.IsEnable())
+            Jackal.AfterPlayerDiedTask(target);
     }
     public static void ChangeInt(ref int ChangeTo, int input, int max)
     {

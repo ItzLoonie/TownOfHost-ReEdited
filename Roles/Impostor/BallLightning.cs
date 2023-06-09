@@ -74,7 +74,7 @@ public static class BallLightning
     {
         if (killer == null || target == null || !killer.Is(CustomRoles.BallLightning)) return false;
         if (IsGhost(target)) return false;
-        killer.SetKillCooldownV2();
+        killer.SetKillCooldown();
         killer.RPCPlayCustomSound("Shield");
         StartConvertCountDown(killer, target);
         return true;

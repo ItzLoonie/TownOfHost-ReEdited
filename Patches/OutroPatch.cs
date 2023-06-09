@@ -143,6 +143,10 @@ class SetEverythingUpPatch
                 CustomWinnerColor = Utils.GetRoleColorCode(CustomRoles.Impostor);
                 __instance.BackgroundBar.material.color = Utils.GetRoleColor(CustomRoles.Impostor);
                 break;
+            case CustomWinner.Rogue:
+                CustomWinnerColor = Utils.GetRoleColorCode(CustomRoles.Rogue);
+                __instance.BackgroundBar.material.color = Utils.GetRoleColor(CustomRoles.Rogue);
+                break;
             case CustomWinner.Egoist:
                 CustomWinnerColor = Utils.GetRoleColorCode(CustomRoles.Egoist);
                 __instance.BackgroundBar.material.color = Utils.GetRoleColor(CustomRoles.Egoist);
@@ -193,8 +197,8 @@ class SetEverythingUpPatch
         }
         if (CustomWinnerHolder.WinnerTeam is not CustomWinner.Draw and not CustomWinner.None and not CustomWinner.Error)
         {
-            if (AdditionalWinnerText == "") WinnerText.text = $"<color={CustomWinnerColor}>{CustomWinnerText}{GetString("Win")}</color>";
-            else WinnerText.text = $"<color={CustomWinnerColor}>{CustomWinnerText}</color>{AdditionalWinnerText}{GetString("Win")}";
+            if (AdditionalWinnerText == "") WinnerText.text = $"<color={CustomWinnerColor}>{CustomWinnerText}</color>";
+            else WinnerText.text = $"<color={CustomWinnerColor}>{CustomWinnerText}</color>";
         }
 
         static string GetWinnerRoleName(CustomRoles role)
