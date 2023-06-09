@@ -1154,7 +1154,7 @@ class FixedUpdatePatch
             string AllowlistFilePath = @"./TOHE_DATA/Allowlist.txt";
 
 
-            if (!lowLoad && GameStates.IsLobby && !player.AmOwner && Options.KickLowLevelPlayer.GetInt() != 0)
+            if (GameStates.IsLobby && !player.AmOwner && Options.KickLowLevelPlayer.GetInt() != 0)
             {
                 bool isAllowlisted = false;
 
@@ -1172,9 +1172,13 @@ class FixedUpdatePatch
                     }
                 }
 
-                bool shouldKick = true;
+                bool shouldKick = false;
 
-                if (isAllowlisted || player.Data.PlayerLevel >= Options.KickLowLevelPlayer.GetInt())
+                if (!isAllowlisted && player.Data.PlayerLevel < Options.KickLowLevelPlayer.GetInt())
+                {
+                    shouldKick = true;
+                }
+                else
                 {
                     shouldKick = false;
                 }
@@ -1192,6 +1196,8 @@ class FixedUpdatePatch
                     }
                 }
             }
+
+
 
             DoubleTrigger.OnFixedUpdate(player);
             Vampire.OnFixedUpdate(player);
