@@ -12,6 +12,7 @@ namespace TOHE.Roles.Crewmate
         private static readonly List<byte> playerIdList = new();
 
         private static Dictionary<byte, int> addonsSold = new();
+        private static Dictionary<byte, List<byte>> bribedKiller = new();
 
         private static List<CustomRoles> addons = new();
 
@@ -45,28 +46,38 @@ namespace TOHE.Roles.Crewmate
         };
 
         private static OptionItem OptionMaxSell;
+        private static OptionItem OptionMoneyPerSell;
+        private static OptionItem OptionMoneyRequiredToBribe;
+        private static OptionItem OptionNotifyBribery;
         private static OptionItem OptionCanTargetCrew;
         private static OptionItem OptionCanTargetImpostor;
         private static OptionItem OptionCanTargetNeutral;
         private static OptionItem OptionCanSellHelpful;
         private static OptionItem OptionCanSellHarmful;
         private static OptionItem OptionCanSellNeutral;
-
         private static OptionItem OptionSellOnlyHarmfulToEvil;
         private static OptionItem OptionSellOnlyHelpfulToCrew;
+
+        private static int GetCurrentAmountOfMoney(byte playerId)
+        {
+            return (addonsSold[playerId] * OptionMoneyPerSell.GetInt()) - (bribedKiller[playerId].Count * OptionMoneyRequiredToBribe.GetInt());
+        }
 
         public static void SetupCustomOption()
         {
             SetupRoleOptions(Id, TabGroup.CrewmateRoles, CustomRoles.Merchant);
             OptionMaxSell = IntegerOptionItem.Create(Id + 10, "MerchantMaxSell", new(1, 99, 1), 5, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]).SetValueFormat(OptionFormat.Times);
-            OptionCanTargetCrew = BooleanOptionItem.Create(Id + 11, "MerchantTargetCrew", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
-            OptionCanTargetImpostor = BooleanOptionItem.Create(Id + 12, "MerchantTargetImpostor", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
-            OptionCanTargetNeutral = BooleanOptionItem.Create(Id + 13, "MerchantTargetNeutral", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
-            OptionCanSellHelpful = BooleanOptionItem.Create(Id + 14, "MerchantSellHelpful", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
-            OptionCanSellHarmful = BooleanOptionItem.Create(Id + 15, "MerchantSellHarmful", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
-            OptionCanSellNeutral = BooleanOptionItem.Create(Id + 16, "MerchantSellNeutral", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
-            OptionSellOnlyHarmfulToEvil = BooleanOptionItem.Create(Id + 17, "MerchantSellHarmfulToEvil", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
-            OptionSellOnlyHelpfulToCrew = BooleanOptionItem.Create(Id + 18, "MerchantSellHelpfulToCrew", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
+            OptionMoneyPerSell = IntegerOptionItem.Create(Id + 11, "MerchantMoneyPerSell", new(1, 99, 1), 1, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]).SetValueFormat(OptionFormat.Times);
+            OptionMoneyRequiredToBribe = IntegerOptionItem.Create(Id + 12, "MerchantMoneyRequiredToBribe", new(1, 99, 1), 5, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]).SetValueFormat(OptionFormat.Times);
+            OptionNotifyBribery = BooleanOptionItem.Create(Id + 13, "MerchantNotifyBribery", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
+            OptionCanTargetCrew = BooleanOptionItem.Create(Id + 14, "MerchantTargetCrew", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
+            OptionCanTargetImpostor = BooleanOptionItem.Create(Id + 15, "MerchantTargetImpostor", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
+            OptionCanTargetNeutral = BooleanOptionItem.Create(Id + 16, "MerchantTargetNeutral", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
+            OptionCanSellHelpful = BooleanOptionItem.Create(Id + 17, "MerchantSellHelpful", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
+            OptionCanSellHarmful = BooleanOptionItem.Create(Id + 18, "MerchantSellHarmful", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
+            OptionCanSellNeutral = BooleanOptionItem.Create(Id + 19, "MerchantSellNeutral", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
+            OptionSellOnlyHarmfulToEvil = BooleanOptionItem.Create(Id + 20, "MerchantSellHarmfulToEvil", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
+            OptionSellOnlyHelpfulToCrew = BooleanOptionItem.Create(Id + 21, "MerchantSellHelpfulToCrew", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
 
             OverrideTasksData.Create(Id + 11, TabGroup.CrewmateRoles, CustomRoles.Merchant);
         }
@@ -76,6 +87,7 @@ namespace TOHE.Roles.Crewmate
 
             addons = new List<CustomRoles>();
             addonsSold = new Dictionary<byte, int>();
+            bribedKiller = new Dictionary<byte, List<byte>>();
 
             if (OptionCanSellHelpful.GetBool())
             {
@@ -97,6 +109,7 @@ namespace TOHE.Roles.Crewmate
         {
             playerIdList.Add(playerId);
             addonsSold.Add(playerId, 0);
+            bribedKiller.Add(playerId, new List<byte>());
         }
 
         public static void OnTaskFinished(PlayerControl player)
@@ -128,7 +141,7 @@ namespace TOHE.Roles.Crewmate
 
             if (AllAlivePlayer.Count >= 1)
             {
-                bool helpfulAddon = IsHelpful(addon);
+                bool helpfulAddon = helpfulAddons.Contains(addon);
                 bool harmfulAddon = !helpfulAddon;
 
                 if (helpfulAddon && OptionSellOnlyHarmfulToEvil.GetBool())
@@ -165,9 +178,37 @@ namespace TOHE.Roles.Crewmate
             }
         }
 
-        private static bool IsHelpful(CustomRoles addon)
+        public static bool OnClientMurder(PlayerControl killer, PlayerControl target)
         {
-            return helpfulAddons.Contains(addon);
+            if (!target.Is(CustomRoles.Merchant))
+            {
+                return false;
+            }
+
+            if (bribedKiller[target.PlayerId].Contains(killer.PlayerId))
+            {
+                NotifyBribery(killer, target);
+                return true;
+            }
+
+            if (GetCurrentAmountOfMoney(target.PlayerId) >= OptionMoneyRequiredToBribe.GetInt())
+            {
+                NotifyBribery(killer, target);
+                bribedKiller[target.PlayerId].Add(killer.PlayerId);
+                return true;
+            }
+
+            return false;
+        }
+
+        private static void NotifyBribery(PlayerControl killer, PlayerControl target)
+        {
+            killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Merchant), GetString("BribedByMerchant")));
+
+            if (OptionNotifyBribery.GetBool())
+            {
+                target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Merchant), GetString("MerchantNotifyBribery")));
+            }
         }
     }
 }
