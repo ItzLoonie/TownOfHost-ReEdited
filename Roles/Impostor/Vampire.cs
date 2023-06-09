@@ -54,7 +54,7 @@ public static class Vampire
         if (!IsThisRole(killer.PlayerId)) return true;
         if (target.Is(CustomRoles.Bait)) return true;
 
-        killer.SetKillCooldownV2();
+        killer.SetKillCooldown();
         killer.RPCPlayCustomSound("Bite");
 
         //誰かに噛まれていなければ登録

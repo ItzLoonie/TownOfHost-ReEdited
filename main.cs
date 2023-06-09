@@ -62,7 +62,6 @@ public class Main : BasePlugin
     public static ConfigEntry<bool> EnableCustomButton { get; private set; }
     public static ConfigEntry<bool> EnableCustomSoundEffect { get; private set; }
     public static ConfigEntry<bool> SwitchVanilla { get; private set; }
-    public static ConfigEntry<bool> FastBoot { get; private set; }
     public static ConfigEntry<bool> VersionCheat { get; private set; }
     public static ConfigEntry<bool> GodMode { get; private set; }
 
@@ -207,7 +206,6 @@ public class Main : BasePlugin
         EnableCustomButton = Config.Bind("Client Options", "EnableCustomButton", true);
         EnableCustomSoundEffect = Config.Bind("Client Options", "EnableCustomSoundEffect", true);
         SwitchVanilla = Config.Bind("Client Options", "SwitchVanilla", false);
-        FastBoot = Config.Bind("Client Options", "FastBoot", true);
         VersionCheat = Config.Bind("Client Options", "VersionCheat", false);
         GodMode = Config.Bind("Client Options", "GodMode", false);
 
