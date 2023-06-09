@@ -108,7 +108,8 @@ public static class Divinator
                 CustomRoles.Arsonist or
                 CustomRoles.Innocent or
                 CustomRoles.FFF or
-                CustomRoles.Greedier
+                CustomRoles.Greedier or
+                CustomRoles.Tracker
                 => "Impulse",
 
                 CustomRoles.Vampire or
@@ -174,7 +175,8 @@ public static class Divinator
                 CustomRoles.Collector or
                 CustomRoles.Sunnyboy or
                 CustomRoles.Bard or
-                CustomRoles.Totocalcio
+                CustomRoles.Totocalcio or
+                CustomRoles.Bloodhound
                 => "Enthusiasm",
 
                 CustomRoles.BoobyTrap or

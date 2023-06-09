@@ -691,6 +691,7 @@ class MurderPlayerPatch
             Lawyer.ChangeRoleByTarget(target);
         Hacker.AddDeadBody(target);
         Mortician.OnPlayerDead(target);
+        Bloodhound.OnPlayerDead(target);
 
         Utils.AfterPlayerDeathTasks(target);
 
@@ -947,6 +948,21 @@ class ReportDeadBodyPatch
             }
             else //报告尸体事件
             {
+                if (Bloodhound.UnreportablePlayers.Contains(target.PlayerId)) return false;
+
+                if (__instance.Is(CustomRoles.Bloodhound))
+                {
+                    if (killer != null)
+                    {
+                        Bloodhound.OnReportDeadBody(__instance, target, killer);
+                    }
+                    else
+                    {
+                        __instance.Notify(GetString("BloodhoundNoTrack"));
+                    }
+                    
+                    return false;
+                }
 
                 // 清洁工来扫大街咯
                 if (__instance.Is(CustomRoles.Cleaner))
@@ -986,7 +1002,7 @@ class ReportDeadBodyPatch
                     return false;
                 }
 
-                if (target.Object.Is(CustomRoles.Unreportable)) return false; 
+                if (target.Object.Is(CustomRoles.Unreportable)) return false;
             }
 
             if (Options.SyncButtonMode.GetBool() && target == null)
@@ -1061,6 +1077,7 @@ class ReportDeadBodyPatch
         Main.GrenadierBlinding.Clear();
         Main.MadGrenadierBlinding.Clear();
         Divinator.didVote.Clear();
+        Bloodhound.Clear();
 
         Camouflager.OnReportDeadBody();
         Psychic.OnReportDeadBody();
@@ -1077,10 +1094,11 @@ class ReportDeadBodyPatch
         Hacker.OnReportDeadBody();
         Judge.OnReportDeadBody();
         Greedier.OnReportDeadBody();
+        Tracker.OnReportDeadBody();
 
         Mortician.OnReportDeadBody(player, target);
         Mediumshiper.OnReportDeadBody(target);
-
+        
         foreach (var x in Main.RevolutionistStart)
         {
             var tar = Utils.GetPlayerById(x.Key);
@@ -1736,6 +1754,7 @@ class FixedUpdatePatch
 
                 }
                 if (seer.Is(CustomRoles.EvilTracker)) Mark.Append(EvilTracker.GetTargetMark(seer, target));
+                if (seer.Is(CustomRoles.Tracker)) Mark.Append(Tracker.GetTargetMark(seer, target));
                 //タスクが終わりそうなSnitchがいるとき、インポスター/キル可能なニュートラルに警告が表示される
                 Mark.Append(Snitch.GetWarningArrow(seer, target));
 
@@ -1771,6 +1790,10 @@ class FixedUpdatePatch
                 Suffix.Append(Mortician.GetTargetArrow(seer, target));
 
                 Suffix.Append(EvilTracker.GetTargetArrow(seer, target));
+
+                Suffix.Append(Bloodhound.GetTargetArrow(seer, target));
+
+                Suffix.Append(Tracker.GetTrackerArrow(seer, target));
 
                 if (GameStates.IsInTask && seer.Is(CustomRoles.AntiAdminer))
                 {
