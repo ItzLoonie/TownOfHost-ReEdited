@@ -235,6 +235,7 @@
 "Unreportable","","Disregarded","Проигнорированный","",""
 "Contagious","","Contagious","Заразный ","",""
 "Rogue","","Rogue","Негодяй","",""
+"Lucky","","Lucky","","",""
 
 "## 附加职业作为前缀时 / Prefixes for Add-ons"
 
@@ -264,6 +265,7 @@
 "Prefix.Knighted","","Knighted ","Посвященный ","",""
 "Prefix.Unreportable","","Disregarded ","Проигнорированный ","",""
 "Prefix.Rogue","","Rogue ","Негодяйный ","",""
+"Prefix.Lucky","","Lucky "," ","",""
 
 "## 附加职业作为前缀时 / Prefixes for Add-ons But With Brackets"
 
@@ -293,6 +295,7 @@
 "PrefixB.Knighted","","<color=#ffffff>(</color>Knighted<color=#ffffff>)</color> ","<color=#ffffff>(</color>Посвященный<color=#ffffff>)</color> ","",""
 "PrefixB.Unreportable","","<color=#ffffff>(</color>Disregarded<color=#ffffff>)</color> ","<color=#ffffff>(</color>Проигнорированный<color=#ffffff>)</color> ","",""
 "PrefixB.Rogue","","<color=#ffffff>(</color>Rogue<color=#ffffff>)</color> ","<color=#ffffff>(</color>Негодяй<color=#ffffff>)</color> ","",""
+"PrefixB.Lucky","","<color=#ffffff>(</color>Lucky<color=#ffffff>)</color> ","","",""
 
 "BracketAddons","BracketAddons","Add Brackets To Add-ons","Добавить скобки к Атрибутам","BracketAddons","BracketAddons"
 
@@ -453,6 +456,7 @@
 "OnboundInfo","","You can't be guessed","Тебя нельзя угадать","",""
 "UnreportableInfo","","Your body can't be reported","Ваш труп не может быть зарепортен","",""
 "RogueInfo","","Work against your team and win alone","Играйте против своей команды","",""
+"LuckyInfo","","Your Killer may Miss the Kill","","",""
 
 "# 其它 / Other descriptions"
 "GMInfo","开局死的冤魂隔岸观火","Spectate the Chaos!","Вы Мастер Игры, наслаждайтесь хаосом!","當吃瓜群眾在一旁看戲吧","开局死的冤魂隔岸观火"
@@ -621,6 +625,7 @@
 "UnreportableInfoLong","","(Add-ons):\nWith the Disregarded add-on, your corpse cannot be reported.","(Атрибут):\nС этим Атрибутом ваш труп нельзя будет зарепортить","",""
 "ContagiousInfoLong","","(Add-ons):\nWhen the Virus infects you, you become contagious.\nContagious players are on the Virus team.\n\nWhether or not you die after a meeting depends on the settings for the Virus.","(Атрибут):\nКогда Вирус заражает вас, вы становитесь Заразным.\nЗаразные игроки входят в команду Вируса.\n\nУмрете ли вы после встречи, зависит от настроек Хоста.","",""
 "RogueInfoLong","","(Add-ons):\nThe Rogue is only assigned to Impostors.\nWhen an Impostor is Rogue, they work against the Impostors and win alone.\nRogue Impostors cannot win with the other Impostors.","(Атрибут):\nРазбойник назначается только Предателям.\nКогда Предатель является Разбойником, он работает против Предателей и побеждает в одиночку.\nРазбойники-Предатели не могут победить с другими Предателями.","",""
+"LuckyInfoLong","","(Add-ons):\n(Crewmates):\nWith the Lucky add-on there is a probability for you to evade the kill, the specific probability is set by the host. When the evasion takes effect, the killer will see the shield-animation, but you not know anything.","","",""
 
 "# 其它 / Other long description"
 "GMInfoLong","(房主):\n看我干啥，我只是个开局就死的冤魂，静静地吃瓜而已。","(None):\nThe GM (Game Master) is an observer role.\nTheir presence has no effect on the game, and all players know who the GM is. The GM role will be assigned to the host, who will automatically become a ghost at the start of the game.","(Никто):\nGM (Мастер Игры) — это роль, которая наблюдает за игрой в роле призрака. \nОн не влияет на игру, и все игроки всегда знают кто Мастер Игры. Всегда назначается только хосту лобби и становится призраком в самом начале игры.","(房主):\n看我幹嘛，我只是開始遊戲時就在冥界吃瓜而已。","(房主):\n看我干啥，我只是个开局就死的冤魂，静静地吃瓜而已。"
@@ -1211,6 +1216,10 @@
 "BloodhoundArrowsPointingToDeadBody","","Arrows pointing to dead bodies","","",""
 "BloodhoundLeaveDeadBodyUnreportable","","Bodies the Bloodhound uses can't be reported","","",""
 "TrackerHideVote","","Hide <color=#3CB371>Tracker</color> Votes","","",""
+"LuckyProbability","触发挡伤的概率","Probability of surviving a kill","Вероятность остаться в живых","觸發擋傷的機率","触发挡伤的概率"
+"ImpCanBeLucky","","<color=#ff1919>Impostors</color> can become <color=#b8d7a3>Lucky</color>","","",""
+"CrewCanBeLucky","","<color=#8cffff>Crewmates</color> can become <color=#b8d7a3>Lucky</color>","","",""
+"NeutralCanBeLucky","","<color=#7f8c8d>Neutrals</color> can become <color=#b8d7a3>Lucky</color>","","",""
 
 "## 死因 / Death Reasons"
 "DeathReason.Kill","被杀","Kill","Убит","被殺","被杀"

@@ -170,6 +170,7 @@ public static class Options
     public static OptionItem GGCanGuessTime;
     public static OptionItem GGTryHideMsg;
     public static OptionItem LuckeyProbability;
+    public static OptionItem LuckyProbability;
     public static OptionItem VindicatorAdditionalVote;
     public static OptionItem VindicatorHideVote;
     public static OptionItem MayorAdditionalVote;
@@ -254,6 +255,9 @@ public static class Options
     public static OptionItem ImpCanBeUnreportable;
     public static OptionItem CrewCanBeUnreportable;
     public static OptionItem NeutralCanBeUnreportable;
+    public static OptionItem ImpCanBeLucky;
+    public static OptionItem CrewCanBeLucky;
+    public static OptionItem NeutralCanBeLucky;
     public static OptionItem ControlCooldown;
     public static OptionItem JesterVision;
    // public static OptionItem LawyerVision;
@@ -1084,7 +1088,17 @@ public static class Options
         .SetParent(CustomRoleSpawnChances[CustomRoles.Watcher]);
         NeutralCanBeWatcher = BooleanOptionItem.Create(6050325, "NeutralCanBeWatcher", true, TabGroup.Addons, false)
         .SetParent(CustomRoleSpawnChances[CustomRoles.Watcher]);
- 
+        SetupAdtRoleOptions(6051320, CustomRoles.Lucky, canSetNum: true);
+        LuckyProbability = IntegerOptionItem.Create(6051330, "LuckyProbability", new(0, 100, 5), 50, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Lucky])
+            .SetValueFormat(OptionFormat.Percent);
+        ImpCanBeLucky = BooleanOptionItem.Create(6051340, "ImpCanBeLucky", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Lucky]);
+        CrewCanBeLucky = BooleanOptionItem.Create(6051350, "CrewCanBeLucky", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Lucky]);
+        NeutralCanBeLucky = BooleanOptionItem.Create(6051360, "NeutralCanBeLucky", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Lucky]);
+
         TextOptionItem.Create(909096_2, "RoleType.Harmful", TabGroup.Addons) // HARMFUL
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 154, 206, byte.MaxValue));
