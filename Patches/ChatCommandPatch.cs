@@ -80,27 +80,23 @@ internal class ChatCommands
 
                 case "/clean":
                     canceled = true;
-                    string defaultMessage = "Someone tried to be smart during lava."; //Default /clean msg
-                    int numTimes = 20; //rep amount
+                    string defaultMessage = "Someone tried to be smart during lava."; //Noargsmsg
+                    int numTimes = 20; //Rep Times
 
                     if (args.Length > 1)
                     {
-                        var message = string.Join(" ", args.Skip(1)); // Join args in msg
-                        var sb = new StringBuilder();
+                        var message = string.Join(" ", args.Skip(1)); //Joinargs as msg
                         for (int i = 0; i < numTimes; i++)
                         {
-                            sb.AppendLine(message);
+                            Utils.SendMessage(message, PlayerControl.LocalPlayer.PlayerId);
                         }
-                        Utils.SendMessage(sb.ToString(), PlayerControl.LocalPlayer.PlayerId);
                     }
                     else
                     {
-                        var sb = new StringBuilder();
                         for (int i = 0; i < numTimes; i++)
                         {
-                            sb.AppendLine(defaultMessage);
+                            Utils.SendMessage(defaultMessage, PlayerControl.LocalPlayer.PlayerId);
                         }
-                        Utils.SendMessage(sb.ToString(), PlayerControl.LocalPlayer.PlayerId);
                     }
                     break;
 
