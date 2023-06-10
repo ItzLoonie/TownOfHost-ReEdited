@@ -1326,6 +1326,8 @@ public static class Utils
                 if (seer.Is(CustomRoles.Tracker))
                 {
                     TargetMark.Append(Tracker.GetTargetMark(seer, target));
+                    if (isForMeeting && Tracker.IsTrackTarget(seer, target) && Tracker.CanSeeLastRoomInMeeting)
+                        TargetRoleText = $"<size={fontSize}>{Tracker.GetArrowAndLastRoom(seer, target)}</size>\r\n";
                 }
 
                 //RealNameを取得 なければ現在の名前をRealNamesに書き込む
