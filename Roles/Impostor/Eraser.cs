@@ -84,7 +84,6 @@ internal static class Eraser
 
         Utils.NotifyRoles(player);
     }
-
     public static void OnReportDeadBody()
     {
         PlayerToErase = new();
