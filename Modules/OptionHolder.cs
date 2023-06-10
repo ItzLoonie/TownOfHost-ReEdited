@@ -198,6 +198,7 @@ public static class Options
     public static OptionItem ArsonistCooldown;
     public static OptionItem JesterCanUseButton;
     public static OptionItem JesterCanVent;
+    public static OptionItem LegacyMafia;
     public static OptionItem NotifyGodAlive;
     public static OptionItem MarioVentNumWin;
     public static OptionItem VeteranSkillCooldown;
@@ -289,6 +290,9 @@ public static class Options
 
     public static OptionItem ShapeshiftCD;
     public static OptionItem ShapeshiftDur;
+
+    public static OptionItem MafiaShapeshiftCD;
+    public static OptionItem MafiaShapeshiftDur;
 
     public static OptionItem ScientistDur;
     public static OptionItem ScientistCD;
@@ -514,6 +518,7 @@ public static class Options
     public static OptionItem KickPlayerFriendCodeNotExist;
     public static OptionItem KickLowLevelPlayer;
     public static OptionItem ApplyBanList;
+    public static OptionItem ApplyModeratorList;
     public static OptionItem AutoWarnStopWords;
 
     public static OptionItem DIYGameSettings;
@@ -554,8 +559,8 @@ public static class Options
         "SuffixMode.RoomHost",
         "SuffixMode.OriginalName",
         "SuffixMode.DoNotKillMe",
-        "SuffixMode.NoAndroidPlz"
-    };
+        "SuffixMode.NoAndroidPlz",
+        "SuffixMode.AutoHost"    };
     public static readonly string[] roleAssigningAlgorithms =
     {
         "RoleAssigningAlgorithm.Default",
@@ -766,6 +771,14 @@ public static class Options
         MafiaCanKillNum = IntegerOptionItem.Create(901615, "MafiaCanKillNum", new(0, 15, 1), 1, TabGroup.ImpostorRoles, false)
         .SetParent(CustomRoleSpawnChances[CustomRoles.Mafia])
             .SetValueFormat(OptionFormat.Players);
+        LegacyMafia = BooleanOptionItem.Create(901616, "LegacyMafia", false, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Mafia]);
+        MafiaShapeshiftCD = FloatOptionItem.Create(901617, "ShapeshiftCooldown", new(1f, 999f, 1f), 15f, TabGroup.ImpostorRoles, false)
+            .SetParent(LegacyMafia)
+            .SetValueFormat(OptionFormat.Seconds);
+        MafiaShapeshiftDur = FloatOptionItem.Create(901618, "ShapeshiftDuration", new(1f, 999f, 1f), 30f, TabGroup.ImpostorRoles, false)
+            .SetParent(LegacyMafia)
+            .SetValueFormat(OptionFormat.Seconds);
         TimeThief.SetupCustomOption();
         SetupRoleOptions(150005, TabGroup.ImpostorRoles, CustomRoles.Vindicator);
         VindicatorAdditionalVote = IntegerOptionItem.Create(150010, "MayorAdditionalVote", new(1, 99, 1), 3, TabGroup.ImpostorRoles, false)
@@ -1338,6 +1351,7 @@ public static class Options
         KickPlayerFriendCodeNotExist = BooleanOptionItem.Create(1_000_101, "KickPlayerFriendCodeNotExist", false, TabGroup.SystemSettings, true);
         ApplyDenyNameList = BooleanOptionItem.Create(1_000_100, "ApplyDenyNameList", true, TabGroup.SystemSettings, true);
         ApplyBanList = BooleanOptionItem.Create(1_000_110, "ApplyBanList", true, TabGroup.SystemSettings, true);
+        ApplyModeratorList = BooleanOptionItem.Create(6090072, "ApplyModeratorList", false, TabGroup.SystemSettings, false);
         AutoKickStart = BooleanOptionItem.Create(1_000_010, "AutoKickStart", false, TabGroup.SystemSettings, false);
         AutoKickStartTimes = IntegerOptionItem.Create(1_000_024, "AutoKickStartTimes", new(0, 99, 1), 1, TabGroup.SystemSettings, false)
         .SetParent(AutoKickStart)
