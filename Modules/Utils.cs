@@ -477,6 +477,7 @@ public static class Utils
 
         return hasTasks;
     }
+
     public static bool CanBeMadmate(this PlayerControl pc)
     {
         return pc != null && pc.GetCustomRole().IsCrewmate() && !pc.Is(CustomRoles.Madmate)
@@ -1300,25 +1301,31 @@ public static class Utils
                         (Succubus.KnowRole(seer, target)) ||
                         (Infectious.KnowRole(seer, target)) ||
                         (Virus.KnowRole(seer, target)) ||
-                        (seer.IsRevealedPlayer(target)) ||
+                        (seer.IsRevealedPlayer(target) && !target.Is(CustomRoles.Trickster)) ||
                         (seer.Is(CustomRoles.God)) ||
                         (target.Is(CustomRoles.GM))
                         ? $"<size={fontSize}>{target.GetDisplayRoleName(seer.PlayerId != target.PlayerId && !seer.Data.IsDead)}{GetProgressText(target)}</size>\r\n" : "";
 
+                if (!seer.Data.IsDead && seer.IsRevealedPlayer(target) && target.Is(CustomRoles.Trickster))
+                {
+                    TargetRoleText = Farseer.RandomRole[seer.PlayerId];
+                    TargetRoleText += Farseer.GetTaskState();
+                }
+
                 if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
                     TargetRoleText = $"<size={fontSize}>{GetProgressText(target)}</size>\r\n";
 
-                    if (seer.Is(CustomRoles.EvilTracker))
-                    {
-                        TargetMark.Append(EvilTracker.GetTargetMark(seer, target));
-                        if (isForMeeting && EvilTracker.IsTrackTarget(seer, target) && EvilTracker.CanSeeLastRoomInMeeting)
-                            TargetRoleText = $"<size={fontSize}>{EvilTracker.GetArrowAndLastRoom(seer, target)}</size>\r\n";
-                    }
+                if (seer.Is(CustomRoles.EvilTracker))
+                {
+                    TargetMark.Append(EvilTracker.GetTargetMark(seer, target));
+                    if (isForMeeting && EvilTracker.IsTrackTarget(seer, target) && EvilTracker.CanSeeLastRoomInMeeting)
+                        TargetRoleText = $"<size={fontSize}>{EvilTracker.GetArrowAndLastRoom(seer, target)}</size>\r\n";
+                }
 
-                    if (seer.Is(CustomRoles.Tracker))
-                    {
-                        TargetMark.Append(Tracker.GetTargetMark(seer, target));
-                    }
+                if (seer.Is(CustomRoles.Tracker))
+                {
+                    TargetMark.Append(Tracker.GetTargetMark(seer, target));
+                }
 
                 //RealNameを取得 なければ現在の名前をRealNamesに書き込む
                 string TargetPlayerName = target.GetRealName(isForMeeting);
