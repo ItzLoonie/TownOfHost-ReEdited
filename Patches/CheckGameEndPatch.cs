@@ -484,7 +484,7 @@ class GameEndChecker
                 CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Virus);
             }
             
-            else if (Imp == 0 && Jackal == 0 && Pel == 0 && Vamp == 0 && Juggy == 0 && SK == 0 && Hex == 0 && Wraith == 0 && Pois == 0 && Virus == 0 && BK == 0 && Gam == 0 && CM == 0 && Crew <= Rogue) //嗜血骑士胜利
+            else if (Jackal == 0 && Pel == 0 && Vamp == 0 && Juggy == 0 && SK == 0 && Hex == 0 && Wraith == 0 && Pois == 0 && Virus == 0 && BK == 0 && Gam == 0 && CM == 0 && Crew <= Rogue && Imp <= Rogue) //嗜血骑士胜利
             {
                 reason = GameOverReason.ImpostorByKill;
                 CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Rogue);
