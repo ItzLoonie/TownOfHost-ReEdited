@@ -603,7 +603,7 @@ internal class ChatCommands
                     {
                         if (devMark == "▲") Utils.SendMessage(string.Format(GetString("Message.YTPlanSelected"), roleName), playerId);
                         else Utils.SendMessage(string.Format(GetString("Message.YTPlanSelectFailed"), roleName), playerId);
-                        return;
+                        //return;
                     }
                     if (devMark == "▲")
                     {
@@ -611,7 +611,7 @@ internal class ChatCommands
                         Main.DevRole.Remove(pid);
                         Main.DevRole.Add(pid, rl);
                     }
-                    //if (isUp) return;
+                    if (isUp) return;
                 }
                 var sb = new StringBuilder();
                 sb.Append(devMark + roleName + Utils.GetRoleMode(rl) + GetString($"{rl}InfoLong"));
