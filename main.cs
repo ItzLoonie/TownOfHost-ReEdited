@@ -24,7 +24,7 @@ namespace TOHE;
 public class Main : BasePlugin
 {
     // == プログラム設定 / Program Config ==
-    public static readonly string ModName = "TOHE";
+    public static readonly string ModName = "TOHE-R";
     public static readonly string ModColor = "#ffc0cb";
     public static readonly bool AllowPublicRoom = true;
     public static readonly string ForkId = "TOHE";
