@@ -78,6 +78,32 @@ internal class ChatCommands
                     else Utils.SendMessage("Winner: " + string.Join(",", Main.winnerNameList));
                     break;
 
+                case "/clean":
+                    canceled = true;
+                    string defaultMessage = "Someone tried to be smart during lava."; //Default /clean msg
+                    int numTimes = 20; //rep amount
+
+                    if (args.Length > 1)
+                    {
+                        var message = string.Join(" ", args.Skip(1)); // Join args in msg
+                        var sb = new StringBuilder();
+                        for (int i = 0; i < numTimes; i++)
+                        {
+                            sb.AppendLine(message);
+                        }
+                        Utils.SendMessage(sb.ToString(), PlayerControl.LocalPlayer.PlayerId);
+                    }
+                    else
+                    {
+                        var sb = new StringBuilder();
+                        for (int i = 0; i < numTimes; i++)
+                        {
+                            sb.AppendLine(defaultMessage);
+                        }
+                        Utils.SendMessage(sb.ToString(), PlayerControl.LocalPlayer.PlayerId);
+                    }
+                    break;
+
                 case "/l":
                 case "/lastresult":
                     canceled = true;
