@@ -68,7 +68,7 @@ internal static class Eraser
             return;
         }
 
-        if (target.GetCustomRole().IsNeutral())
+        if (target.GetCustomRole().IsNeutral() || (target.GetCustomRole() == CustomRoles.Monarch))
         {
             Utils.SendMessage(string.Format(GetString("EraserEraseNeutralNotice"), target.GetRealName()), player.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Eraser), GetString("EraserEraseMsgTitle")));
             return;
@@ -77,13 +77,14 @@ internal static class Eraser
         EraseLimit[player.PlayerId]--;
         SendRPC(player.PlayerId);
 
-        if (!PlayerToErase.Contains(target.PlayerId))
-            PlayerToErase.Add(target.PlayerId);
+            if (!PlayerToErase.Contains(target.PlayerId))
+                PlayerToErase.Add(target.PlayerId);
 
         Utils.SendMessage(string.Format(GetString("EraserEraseNotice"), target.GetRealName()), player.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Eraser), GetString("EraserEraseMsgTitle")));
 
         Utils.NotifyRoles(player);
     }
+
     public static void OnReportDeadBody()
     {
         PlayerToErase = new();
