@@ -197,35 +197,47 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("EGGuessSnitchTaskDone"));
                     return true;
                 }
-                 if (role.IsAdditionRole() && !Options.CanGuessAddons.GetBool() && Options.GuesserMode.GetBool())
-                {
-                    if (!isUI) Utils.SendMessage(GetString("GuessAdtRole"), pc.PlayerId);
-                    else pc.ShowPopUp(GetString("GuessAdtRole"));
-                    return true;
+                /*   if (role.IsAdditionRole() && !Options.CanGuessAddons.GetBool() && Options.GuesserMode.GetBool())
+                  {
+                      if (!isUI) Utils.SendMessage(GetString("GuessAdtRole"), pc.PlayerId);
+                      else pc.ShowPopUp(GetString("GuessAdtRole"));
+                      return true;
 
-                }
-           /*     if (role.IsAdditionRole())
+                  }*/
+
+                if (role.IsAdditionRole())
                 {
-                    if (
+                    if ((
+                        (pc.Is(CustomRoles.NiceGuesser) && !Options.GGCanGuessAdt.GetBool()) ||
+                        (pc.Is(CustomRoles.EvilGuesser) && !Options.EGCanGuessAdt.GetBool()) ||
+                        (pc.Is(CustomRoles.Guesser) && !Options.GCanGuessAdt.GetBool()) ||
                         (
-                            (pc.Is(CustomRoles.NiceGuesser) && !Options.GGCanGuessAdt.GetBool()) ||
-                            (pc.Is(CustomRoles.EvilGuesser) && !Options.EGCanGuessAdt.GetBool()) ||
-                            (pc.Is(CustomRoles.Guesser) && !Options.GCanGuessAdt.GetBool()) ||
                             (
-                                (
-                                    Options.CrewmatesCanGuess.GetBool() ||
-                                    Options.ImpostorsCanGuess.GetBool() ||
-                                    Options.NeutralKillersCanGuess.GetBool() ||
-                                    Options.PassiveNeutralsCanGuess.GetBool()
-                                ) && (!Options.CanGuessAddons.GetBool() && role is not CustomRoles.Infected || role is not CustomRoles.Workhorse || role is not CustomRoles.Madmate || role is not CustomRoles.Charmed || role is not CustomRoles.Egoist)
+                                Options.CrewmatesCanGuess.GetBool() ||
+                                Options.ImpostorsCanGuess.GetBool() ||
+                                Options.NeutralKillersCanGuess.GetBool() ||
+                                Options.PassiveNeutralsCanGuess.GetBool()
+                            ) && (
+                                !Options.CanGuessAddons.GetBool() &&
+                                role != CustomRoles.Infected &&
+                                role != CustomRoles.Workhorse &&
+                                role != CustomRoles.Madmate &&
+                                role != CustomRoles.Charmed &&
+                                role != CustomRoles.Egoist &&
+                                role != CustomRoles.Rogue &&
+                                role != CustomRoles.TicketsStealer &&
+                                role != CustomRoles.Knighted &&
+                                role != CustomRoles.Lovers &&
+                                role != CustomRoles.Contagious
                             )
                         )
-                    )
+                    ))
                     {
                         Utils.SendMessage(GetString("GuessAdtRole"), pc.PlayerId);
                         return true;
                     }
-                } */
+                }
+
 
                 if (pc.PlayerId == target.PlayerId)
                 {
