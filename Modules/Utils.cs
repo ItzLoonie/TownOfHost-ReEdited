@@ -1380,6 +1380,8 @@ public static class Utils
                     TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Marshall), "★"));
                 if (seer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Sidekick))
                     TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Jackal), " ♥"));
+                if (seer.Is(CustomRoles.Monarch) && target.Is(CustomRoles.Knighted))
+                    TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Knighted), " 亗"));
                 if (seer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Sidekick) && Options.SidekickKnowOtherSidekick.GetBool())
                     TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Jackal), " ♥"));
 

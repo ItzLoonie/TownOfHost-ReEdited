@@ -838,7 +838,10 @@ class MeetingHudStartPatch
                     sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jackal), " ♥")); //変更対象にSnitchマークをつける
                     sb.Append(Snitch.GetWarningMark(seer, target));
                     break;
-
+                case CustomRoles.Monarch:
+                    if (target.Is(CustomRoles.Knighted))
+                    sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Knighted), " 亗")); //変更対象にSnitchマークをつける
+                    break;
                 case CustomRoles.EvilTracker:
                     sb.Append(EvilTracker.GetTargetMark(seer, target));
                     break;

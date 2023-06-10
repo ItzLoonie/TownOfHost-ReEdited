@@ -1672,6 +1672,11 @@ class FixedUpdatePatch
                     if (target.Is(CustomRoles.Sidekick)) //targetがタスクを終わらせたマッドスニッチ
                         Mark.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jackal), " ♥")); //targetにマーク付与
                 }
+                if (seer.Is(CustomRoles.Monarch)) //seerがインポスター
+                {
+                    if (target.Is(CustomRoles.Knighted)) //targetがタスクを終わらせたマッドスニッチ
+                        Mark.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Knighted), " 亗")); //targetにマーク付与
+                }
 
                 if (seer.Is(CustomRoles.Sidekick)) //seerがインポスター
                 {
