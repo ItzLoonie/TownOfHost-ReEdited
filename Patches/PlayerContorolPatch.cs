@@ -436,10 +436,19 @@ class CheckMurderPatch
         if (killer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Sidekick) && !Options.SidekickCanKillSidekick.GetBool())
             return false;
 
-
         //医生护盾检查
         if (Medicaler.OnCheckMurder(killer, target))
             return false;
+
+        if (target.Is(CustomRoles.Lucky))
+        {
+            var rd = IRandom.Instance;
+            if (rd.Next(0, 100) < Options.LuckyProbability.GetInt())
+            {
+                killer.RpcGuardAndKill(target);
+                return false;
+            }
+        }
 
         switch (target.GetCustomRole())
         {
@@ -683,6 +692,7 @@ class MurderPlayerPatch
             Lawyer.ChangeRoleByTarget(target);
         Hacker.AddDeadBody(target);
         Mortician.OnPlayerDead(target);
+        Bloodhound.OnPlayerDead(target);
 
         Utils.AfterPlayerDeathTasks(target);
 
@@ -939,6 +949,21 @@ class ReportDeadBodyPatch
             }
             else //报告尸体事件
             {
+                if (Bloodhound.UnreportablePlayers.Contains(target.PlayerId)) return false;
+
+                if (__instance.Is(CustomRoles.Bloodhound))
+                {
+                    if (killer != null)
+                    {
+                        Bloodhound.OnReportDeadBody(__instance, target, killer);
+                    }
+                    else
+                    {
+                        __instance.Notify(GetString("BloodhoundNoTrack"));
+                    }
+                    
+                    return false;
+                }
 
                 // 清洁工来扫大街咯
                 if (__instance.Is(CustomRoles.Cleaner))
@@ -961,7 +986,7 @@ class ReportDeadBodyPatch
                 if (Main.CleanerBodies.Contains(target.PlayerId)) return false;
 
                 // 胆小鬼不敢报告
-                if (__instance.Is(CustomRoles.Oblivious) && (target?.Object == null || !target.Object.Is(CustomRoles.Bait))) return false;
+                if (__instance.Is(CustomRoles.Oblivious) && (target?.Object == null || !target.Object.Is(CustomRoles.Bait) && !Options.ObliviousBaitImmune.GetBool())) return false;
 
                 // 报告了诡雷尸体
                 if (Main.BoobyTrapBody.Contains(target.PlayerId) && __instance.IsAlive())
@@ -978,7 +1003,7 @@ class ReportDeadBodyPatch
                     return false;
                 }
 
-                if (target.Object.Is(CustomRoles.Unreportable)) return false; 
+                if (target.Object.Is(CustomRoles.Unreportable)) return false;
             }
 
             if (Options.SyncButtonMode.GetBool() && target == null)
@@ -1053,6 +1078,7 @@ class ReportDeadBodyPatch
         Main.GrenadierBlinding.Clear();
         Main.MadGrenadierBlinding.Clear();
         Divinator.didVote.Clear();
+        Bloodhound.Clear();
 
         Camouflager.OnReportDeadBody();
         Psychic.OnReportDeadBody();
@@ -1069,10 +1095,11 @@ class ReportDeadBodyPatch
         Hacker.OnReportDeadBody();
         Judge.OnReportDeadBody();
         Greedier.OnReportDeadBody();
+        Tracker.OnReportDeadBody();
 
         Mortician.OnReportDeadBody(player, target);
         Mediumshiper.OnReportDeadBody(target);
-
+        
         foreach (var x in Main.RevolutionistStart)
         {
             var tar = Utils.GetPlayerById(x.Key);
@@ -1584,6 +1611,11 @@ class FixedUpdatePatch
                 else if (Executioner.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (Main.GodMode.Value) RoleText.enabled = true;
                 else RoleText.enabled = false; //そうでなければロールを非表示
+                if (!PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer.IsRevealedPlayer(__instance) && __instance.Is(CustomRoles.Trickster))
+                { 
+                    RoleText.text = Farseer.RandomRole[PlayerControl.LocalPlayer.PlayerId];
+                    RoleText.text += Farseer.GetTaskState();
+                }
                 if (!AmongUsClient.Instance.IsGameStarted && AmongUsClient.Instance.NetworkMode != NetworkModes.FreePlay)
                 {
                     RoleText.enabled = false; //ゲームが始まっておらずフリープレイでなければロールを非表示
@@ -1640,6 +1672,11 @@ class FixedUpdatePatch
                 {
                     if (target.Is(CustomRoles.Sidekick)) //targetがタスクを終わらせたマッドスニッチ
                         Mark.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jackal), " ♥")); //targetにマーク付与
+                }
+                if (seer.Is(CustomRoles.Monarch)) //seerがインポスター
+                {
+                    if (target.Is(CustomRoles.Knighted)) //targetがタスクを終わらせたマッドスニッチ
+                        Mark.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Knighted), " 亗")); //targetにマーク付与
                 }
 
                 if (seer.Is(CustomRoles.Sidekick)) //seerがインポスター
@@ -1728,6 +1765,7 @@ class FixedUpdatePatch
 
                 }
                 if (seer.Is(CustomRoles.EvilTracker)) Mark.Append(EvilTracker.GetTargetMark(seer, target));
+                if (seer.Is(CustomRoles.Tracker)) Mark.Append(Tracker.GetTargetMark(seer, target));
                 //タスクが終わりそうなSnitchがいるとき、インポスター/キル可能なニュートラルに警告が表示される
                 Mark.Append(Snitch.GetWarningArrow(seer, target));
 
@@ -1763,6 +1801,10 @@ class FixedUpdatePatch
                 Suffix.Append(Mortician.GetTargetArrow(seer, target));
 
                 Suffix.Append(EvilTracker.GetTargetArrow(seer, target));
+
+                Suffix.Append(Bloodhound.GetTargetArrow(seer, target));
+
+                Suffix.Append(Tracker.GetTrackerArrow(seer, target));
 
                 if (GameStates.IsInTask && seer.Is(CustomRoles.AntiAdminer))
                 {

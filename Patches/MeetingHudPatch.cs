@@ -91,6 +91,9 @@ class CheckForEndVotingPatch
                             case CustomRoles.Eraser:
                                 Eraser.OnVote(pc, voteTarget);
                                 break;
+                            case CustomRoles.Tracker:
+                                Tracker.OnVote(pc, voteTarget);
+                                break;
                         }
                     }
                 }
@@ -161,6 +164,8 @@ class CheckForEndVotingPatch
                 if (CheckRole(ps.TargetPlayerId, CustomRoles.Divinator) && Divinator.HideVote.GetBool()) continue;
                 //隐藏抹除者的票
                 if (CheckRole(ps.TargetPlayerId, CustomRoles.Eraser) && Eraser.HideVote.GetBool()) continue;
+
+                if (CheckRole(ps.TargetPlayerId, CustomRoles.Tracker) && Tracker.HideVote.GetBool()) continue;
 
                 //主动叛变模式下自票无效
                 if (ps.TargetPlayerId == ps.VotedFor && Options.MadmateSpawnMode.GetInt() == 2) continue;
@@ -311,6 +316,8 @@ class CheckForEndVotingPatch
         var coloredRole = Utils.GetDisplayRoleName(exileId, true);
         if (Options.ConfirmEgoistOnEject.GetBool() && player.Is(CustomRoles.Egoist))
             coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Egoist), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
+        if (Options.ConfirmRogueOnEject.GetBool() && player.Is(CustomRoles.Rogue))
+            coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Rogue), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
         if (Options.ConfirmSidekickOnEject.GetBool() && player.Is(CustomRoles.Sidekick))
             coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Sidekick), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
         if (Options.ConfirmLoversOnEject.GetBool() && player.Is(CustomRoles.Lovers))
@@ -344,7 +351,7 @@ class CheckForEndVotingPatch
             case 1:
                 if (player.GetCustomRole().IsImpostor() || player.Is(CustomRoles.Parasite))
                     name = string.Format(GetString("BelongTo"), realName, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Impostor), GetString("TeamImpostor")));
-                else if (player.GetCustomRole().IsCrewmate() || !player.Is(CustomRoles.Sidekick))
+                else if (player.GetCustomRole().IsCrewmate() && !player.Is(CustomRoles.Sidekick))
                     name = string.Format(GetString("IsGood"), realName);
                 else if (player.GetCustomRole().IsNeutral() && !player.Is(CustomRoles.Parasite) || player.Is(CustomRoles.Sidekick))
                     name = string.Format(GetString("BelongTo"), realName, Utils.ColorString(new Color32(127, 140, 141, byte.MaxValue), GetString("TeamNeutral")));
@@ -621,6 +628,8 @@ class MeetingHudStartPatch
                 AddMsg(string.Format(GetString("MediumshipNotifyTarget"), Main.AllPlayerNames[Mediumshiper.ContactPlayer[pc.PlayerId]]), pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Mediumshiper), GetString("MediumshipTitle")));
             if (Main.VirusNotify.ContainsKey(pc.PlayerId))
                 AddMsg(Main.VirusNotify[pc.PlayerId], pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Virus), GetString("VirusNoticeTitle")));
+            if (Tracker.msgToSend.ContainsKey(pc.PlayerId))
+                AddMsg(Tracker.msgToSend[pc.PlayerId], pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Tracker), GetString("TrackerTitle")));
         }
         //宝箱怪的消息（合并）
         if (MimicMsg != "")
@@ -639,6 +648,7 @@ class MeetingHudStartPatch
         Main.DetectiveNotify.Clear();
         Main.VirusNotify.Clear();
         Mortician.msgToSend.Clear();
+        Tracker.msgToSend.Clear();
     }
     public static void Prefix(MeetingHud __instance)
     {
@@ -695,6 +705,12 @@ class MeetingHudStartPatch
                 PlayerControl.LocalPlayer.Is(CustomRoles.God) ||
                 PlayerControl.LocalPlayer.Is(CustomRoles.GM) ||
                 Main.GodMode.Value;
+            if (!PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer.IsRevealedPlayer(pc) && pc.Is(CustomRoles.Trickster))
+            {
+                roleTextMeeting.text = Farseer.RandomRole[PlayerControl.LocalPlayer.PlayerId];
+                roleTextMeeting.text += Farseer.GetTaskState();
+            }
+            
             if (EvilTracker.IsTrackTarget(PlayerControl.LocalPlayer, pc) && EvilTracker.CanSeeLastRoomInMeeting)
             {
                 roleTextMeeting.text = EvilTracker.GetArrowAndLastRoom(PlayerControl.LocalPlayer, pc);
@@ -813,6 +829,8 @@ class MeetingHudStartPatch
                 case CustomRoles.DarkHide:
                 case CustomRoles.BloodKnight:
                 case CustomRoles.Infectious:
+                case CustomRoles.Virus:
+                case CustomRoles.Succubus:
                     sb.Append(Snitch.GetWarningMark(seer, target));
                     break;
                 case CustomRoles.Jackal:
@@ -820,7 +838,10 @@ class MeetingHudStartPatch
                     sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jackal), " ♥")); //変更対象にSnitchマークをつける
                     sb.Append(Snitch.GetWarningMark(seer, target));
                     break;
-
+                case CustomRoles.Monarch:
+                    if (target.Is(CustomRoles.Knighted))
+                    sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Knighted), " 亗")); //変更対象にSnitchマークをつける
+                    break;
                 case CustomRoles.EvilTracker:
                     sb.Append(EvilTracker.GetTargetMark(seer, target));
                     break;
@@ -853,6 +874,9 @@ class MeetingHudStartPatch
                 case CustomRoles.Gamer:
                     sb.Append(Gamer.TargetMark(seer, target));
                     sb.Append(Snitch.GetWarningMark(seer, target));
+                    break;
+                case CustomRoles.Tracker:
+                    sb.Append(Tracker.GetTargetMark(seer, target));
                     break;
             }
 

@@ -205,6 +205,20 @@ public static class GuessManager
                     return true;
 
                 }
+                 if (role.IsImpostor() && !Options.ImpCanGuessImp.GetBool() && pc.Is(CustomRoleTypes.Impostor) && Options.GuesserMode.GetBool())
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessImpRole"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessImpRole"));
+                    return true;
+
+                }
+                 if (role.IsCrewmate() && !Options.CrewCanGuessCrew.GetBool() && pc.Is(CustomRoleTypes.Crewmate) && Options.GuesserMode.GetBool())
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessCrewRole"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessCrewRole"));
+                    return true;
+
+                }
                 if (target.Is(CustomRoles.Merchant) && Merchant.IsBribedKiller(pc, target))
                 {
                     if (!isUI) Utils.SendMessage(GetString("BribedByMerchant2"), pc.PlayerId);
@@ -596,8 +610,8 @@ public static class GuessManager
                 }
                 else if (Options.GuesserMode.GetBool())
                 {
-                  //  if (index == 0) continue;
-                 //   if (index == 1) continue;
+                    if (!Options.CrewCanGuessCrew.GetBool() &&  PlayerControl.LocalPlayer.Is(CustomRoleTypes.Crewmate) && index == 0) continue;
+                    if (!Options.ImpCanGuessImp.GetBool() && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Impostor) && index == 1) continue;
                 //    if (index == 2) continue;
                     if (!Options.CanGuessAddons.GetBool() && index == 3) continue;
 

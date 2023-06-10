@@ -219,6 +219,8 @@ internal class ChangeRoleSettings
             Infectious.Init();
             Monarch.Init();
             Virus.Init();
+            Bloodhound.Init();
+            Tracker.Init();
             Merchant.Init();
 
             SoloKombatManager.Init();
@@ -438,7 +440,10 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Farseer:
                         foreach (var ar in Main.AllPlayerControls)
+                        { 
                             Main.isRevealed.Add((pc.PlayerId, ar.PlayerId), false);
+                        }
+                        Farseer.RandomRole.Add(pc.PlayerId, Farseer.GetRandomCrewRoleString());
                         break;
                     case CustomRoles.Executioner:
                         Executioner.Add(pc.PlayerId);
@@ -581,6 +586,12 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Wildling:
                         Wildling.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Bloodhound:
+                        Bloodhound.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Tracker:
+                        Tracker.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Merchant:
                         Merchant.Add(pc.PlayerId);

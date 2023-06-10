@@ -5,10 +5,12 @@ using BepInEx.Configuration;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Il2CppInterop.Runtime.Injection;
+using Sentry.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using TOHE.Roles.Crewmate;
 using TOHE.Roles.Neutral;
 using UnityEngine;
 
@@ -23,7 +25,7 @@ namespace TOHE;
 public class Main : BasePlugin
 {
     // == プログラム設定 / Program Config ==
-    public static readonly string ModName = "TOHE";
+    public static readonly string ModName = "TOHE-R";
     public static readonly string ModColor = "#ffc0cb";
     public static readonly bool AllowPublicRoom = true;
     public static readonly string ForkId = "TOHE";
@@ -303,6 +305,8 @@ public class Main : BasePlugin
                 {CustomRoles.Observer, "#a8e0fa"},
                 {CustomRoles.DovesOfNeace, "#007FFF"},
                 {CustomRoles.Monarch, "#FFA500"},
+                {CustomRoles.Bloodhound, "#8B0000"},
+                {CustomRoles.Tracker, "#3CB371"},
                 {CustomRoles.Merchant, "#D27D2D"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
@@ -376,6 +380,7 @@ public class Main : BasePlugin
                 {CustomRoles.Contagious, "#2E8B57"},
                 {CustomRoles.Unreportable, "#FF6347"},
                 {CustomRoles.Rogue, "#696969"},
+                {CustomRoles.Lucky, "#b8d7a3"},
                 //SoloKombat
                 {CustomRoles.KB_Normal, "#f55252"}
             };
@@ -529,6 +534,8 @@ public enum CustomRoles
     DovesOfNeace,
     Monarch,
     Farseer,
+    Bloodhound,
+    Tracker,
     Merchant,
     //Neutral
     Arsonist,
@@ -605,6 +612,7 @@ public enum CustomRoles
     Contagious,
     Unreportable,
     Rogue,
+    Lucky
 }
 //WinData
 public enum CustomWinner

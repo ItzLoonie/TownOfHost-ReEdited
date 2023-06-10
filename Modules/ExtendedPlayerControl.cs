@@ -559,6 +559,9 @@ static class ExtendedPlayerControl
             case CustomRoles.NWitch:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.ControlCooldown.GetFloat(); //アーソニストはアーソニストのキルクールに。
                 break;
+            case CustomRoles.Inhibitor:
+                Main.AllPlayerKillCooldown[player.PlayerId] = Options.InhibitorCD.GetFloat(); //アーソニストはアーソニストのキルクールに。
+                break;
             case CustomRoles.Revolutionist:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.RevolutionistCooldown.GetFloat();
                 break;
@@ -569,10 +572,10 @@ static class ExtendedPlayerControl
             case CustomRoles.HexMaster:
             case CustomRoles.Wraith:
             case CustomRoles.Parasite:
-                Main.AllPlayerKillCooldown[player.PlayerId] = Options.DefaultKillCooldown;
+                Main.AllPlayerKillCooldown[player.PlayerId] = Options.ParasiteCD.GetFloat();
             break;
             case CustomRoles.NSerialKiller:
-                Main.AllPlayerKillCooldown[player.PlayerId] = Options.DefaultKillCooldown;
+                Main.AllPlayerKillCooldown[player.PlayerId] = Options.NSerialKillerKillCD.GetFloat();
             break;
             case CustomRoles.Poisoner:
                 Poisoner.SetKillCooldown(player.PlayerId);
@@ -773,6 +776,7 @@ static class ExtendedPlayerControl
     }
     public static bool IsNeutralKiller(this PlayerControl player) => player.GetCustomRole().IsNK();
     public static bool IsNonNeutralKiller(this PlayerControl player) => player.GetCustomRole().IsNonNK();
+    public static bool IsSnitchTarget(this PlayerControl player) => player.GetCustomRole().IsSnitchTarget();
     public static bool KnowDeathReason(this PlayerControl seer, PlayerControl target)
         => (seer.Is(CustomRoles.Doctor)
         || (seer.Data.IsDead && Options.GhostCanSeeDeathReason.GetBool()))
