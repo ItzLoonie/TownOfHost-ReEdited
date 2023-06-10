@@ -51,20 +51,19 @@ class RepairSystemPatch
 
         if (Options.DisableCloseDoor.GetBool() && systemType == SystemTypes.Doors) return false;
 
-        //蠢蛋无法修复破坏
+        //Note: "SystemTypes.Laboratory" сauses bugs in the Host, it is better not to use
         if (player.Is(CustomRoles.Fool) && 
-            (systemType is SystemTypes.Sabotage or
+            (systemType is
             SystemTypes.Reactor or
             SystemTypes.LifeSupp or
-            SystemTypes.Laboratory or
             SystemTypes.Comms or
             SystemTypes.Electrical))
         { return false; }
+
         if (player.Is(CustomRoles.Madmate) && !Options.MadmateCanFixSabotage.GetBool() && 
-            (systemType is SystemTypes.Sabotage or
+            (systemType is
             SystemTypes.Reactor or
             SystemTypes.LifeSupp or
-            SystemTypes.Laboratory or
             SystemTypes.Comms or
             SystemTypes.Electrical))
         { return false; }
