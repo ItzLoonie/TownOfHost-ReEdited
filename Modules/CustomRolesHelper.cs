@@ -523,7 +523,9 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Rogue && (!pc.GetCustomRole().IsImpostor())) return false;
         if (role is CustomRoles.Flashman && pc.Is(CustomRoles.Swooper)) return false;
         if (role is CustomRoles.Lovers && pc.Is(CustomRoles.Dictator)) return false;
-        if (role is CustomRoles.Lovers && pc.Is(CustomRoles.Innocent)) return false;
+        if (role is CustomRoles.Lovers && pc.Is(CustomRoles.Dictator)) return false;
+        if (role is CustomRoles.Bait && pc.Is(CustomRoles.Unreportable)) return false;
+        if (role is CustomRoles.Unreportable && pc.Is(CustomRoles.Bait)) return false;
         if (role is CustomRoles.Lovers && pc.Is(CustomRoles.Provocateur)) return false;
         if (role is CustomRoles.Oblivious && pc.Is(CustomRoles.Bloodhound)) return false;
         if (role is CustomRoles.Brakar && pc.Is(CustomRoles.Dictator)) return false;
