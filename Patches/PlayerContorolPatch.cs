@@ -985,7 +985,7 @@ class ReportDeadBodyPatch
                 if (Main.CleanerBodies.Contains(target.PlayerId)) return false;
 
                 // 胆小鬼不敢报告
-                if (__instance.Is(CustomRoles.Oblivious) && (target?.Object == null || !target.Object.Is(CustomRoles.Bait))) return false;
+                if (__instance.Is(CustomRoles.Oblivious) && (target?.Object == null || !target.Object.Is(CustomRoles.Bait) && !Options.ObliviousBaitImmune.GetBool())) return false;
 
                 // 报告了诡雷尸体
                 if (Main.BoobyTrapBody.Contains(target.PlayerId) && __instance.IsAlive())

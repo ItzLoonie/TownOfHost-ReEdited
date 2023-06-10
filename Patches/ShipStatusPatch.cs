@@ -49,8 +49,18 @@ class RepairSystemPatch
 
         if (Options.DisableSabotage.GetBool() && systemType == SystemTypes.Sabotage) return false;
 
+        if (Options.DisableCloseDoor.GetBool() && systemType == SystemTypes.Doors) return false;
+
         //蠢蛋无法修复破坏
         if (player.Is(CustomRoles.Fool) && 
+            (systemType is SystemTypes.Sabotage or
+            SystemTypes.Reactor or
+            SystemTypes.LifeSupp or
+            SystemTypes.Laboratory or
+            SystemTypes.Comms or
+            SystemTypes.Electrical))
+        { return false; }
+        if (player.Is(CustomRoles.Madmate) && !Options.MadmateCanFixSabotage.GetBool() && 
             (systemType is SystemTypes.Sabotage or
             SystemTypes.Reactor or
             SystemTypes.LifeSupp or
@@ -76,6 +86,13 @@ class RepairSystemPatch
         }
 
         if (systemType == SystemTypes.Sabotage && AmongUsClient.Instance.NetworkMode != NetworkModes.FreePlay)
+        {
+            if (player.Is(CustomRoleTypes.Impostor) && !player.Is(CustomRoles.Minimalism) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
+            if (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) return true;
+            if (player.Is(CustomRoles.Parasite) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
+            return false;
+        }
+        if (systemType == SystemTypes.Doors && AmongUsClient.Instance.NetworkMode != NetworkModes.FreePlay)
         {
             if (player.Is(CustomRoleTypes.Impostor) && !player.Is(CustomRoles.Minimalism) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
             if (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) return true;

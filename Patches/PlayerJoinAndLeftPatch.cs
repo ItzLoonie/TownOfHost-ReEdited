@@ -176,6 +176,7 @@ class OnPlayerLeftPatch
             Logger.SendInGame(string.Format(GetString("PlayerLeftByError"), data?.PlayerName));
             new LateTask(() =>
             {
+            CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Error);
             GameManager.Instance.enabled = false;
             GameManager.Instance.RpcEndGame(GameOverReason.ImpostorDisconnect, false);
             }, 3f, "Disconnect Error Auto-end");

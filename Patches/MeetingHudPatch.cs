@@ -316,6 +316,8 @@ class CheckForEndVotingPatch
         var coloredRole = Utils.GetDisplayRoleName(exileId, true);
         if (Options.ConfirmEgoistOnEject.GetBool() && player.Is(CustomRoles.Egoist))
             coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Egoist), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
+        if (Options.ConfirmRogueOnEject.GetBool() && player.Is(CustomRoles.Rogue))
+            coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Rogue), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
         if (Options.ConfirmSidekickOnEject.GetBool() && player.Is(CustomRoles.Sidekick))
             coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Sidekick), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
         if (Options.ConfirmLoversOnEject.GetBool() && player.Is(CustomRoles.Lovers))
@@ -821,6 +823,8 @@ class MeetingHudStartPatch
                 case CustomRoles.DarkHide:
                 case CustomRoles.BloodKnight:
                 case CustomRoles.Infectious:
+                case CustomRoles.Virus:
+                case CustomRoles.Succubus:
                     sb.Append(Snitch.GetWarningMark(seer, target));
                     break;
                 case CustomRoles.Jackal:
