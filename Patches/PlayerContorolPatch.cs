@@ -1610,6 +1610,11 @@ class FixedUpdatePatch
                 else if (Executioner.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (Main.GodMode.Value) RoleText.enabled = true;
                 else RoleText.enabled = false; //そうでなければロールを非表示
+                if (!PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer.IsRevealedPlayer(__instance) && __instance.Is(CustomRoles.Trickster))
+                { 
+                    RoleText.text = Farseer.RandomRole[PlayerControl.LocalPlayer.PlayerId];
+                    RoleText.text += Farseer.GetTaskState();
+                }
                 if (!AmongUsClient.Instance.IsGameStarted && AmongUsClient.Instance.NetworkMode != NetworkModes.FreePlay)
                 {
                     RoleText.enabled = false; //ゲームが始まっておらずフリープレイでなければロールを非表示
