@@ -159,6 +159,14 @@ public class PlayerGameOptionsSender : GameOptionsSender
             AURoleOptions.ShapeshifterCooldown = Options.ShapeshiftCD.GetFloat();
             AURoleOptions.ShapeshifterDuration = Options.ShapeshiftDur.GetFloat();
             break;
+            case CustomRoles.Mafia:
+            AURoleOptions.ShapeshifterCooldown = Options.MafiaShapeshiftCD.GetFloat();
+            AURoleOptions.ShapeshifterDuration = Options.MafiaShapeshiftDur.GetFloat();
+            break;
+            case CustomRoles.ScientistTOHE:
+            AURoleOptions.ScientistCooldown = Options.ScientistCD.GetFloat();
+            AURoleOptions.ScientistBatteryCharge = Options.ScientistDur.GetFloat();
+            break;
             case CustomRoles.Wildling:
             AURoleOptions.ShapeshifterCooldown = Wildling.ShapeshiftCD.GetFloat();
             AURoleOptions.ShapeshifterDuration = Wildling.ShapeshiftDur.GetFloat();
