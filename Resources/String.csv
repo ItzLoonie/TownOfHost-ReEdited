@@ -1547,6 +1547,7 @@
 "OtherRoles.NeutralRoles","★ 中立阵营职业","★ Neutral Roles","★ Нейтральные Роли","★ 中立阵营职业","★ 中立阵营职业"
 "OtherRoles.ImpostorRoles","★ 内鬼阵营职业","★ Impostor Roles","★ Роли Предателей","★ 内鬼阵营职业","★ 内鬼阵营职业"
 "OtherRoles.Addons","★ 附加职业","★ Add-Ons","★ Атрибуты","★ 附加职业","★ 附加职业"
+"RoleType.VanillaRoles","","★ Vanilla Roles","★ Ванильные Роли","",""
 "RoleType.ImpKilling","","<color=#6a0000>★</color> Impostor <color=#6a0000>Killing</color> Roles","<color=#6a0000>★</color> Роли Предатели <color=#6a0000>Убийцы</color>","",""
 "RoleType.ImpSupport","","<color=#00ffff>★</color> Impostor <color=#00ffff>Support</color> Roles","<color=#00ffff>★</color> <color=#00ffff>Помогающие</color> Роли Предателя","",""
 "RoleType.ImpConcealing","","<color=#6e003a>★</color> Impostor <color=#6e003a>Concealing</color> Roles","<color=#6e003a>★</color> <color=#6e003a>Скрывающиеся</color> Роли Предателей","",""
