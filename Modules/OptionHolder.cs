@@ -712,7 +712,7 @@ public static class Options
         EnableGM = BooleanOptionItem.Create(100, "GM", false, TabGroup.GameSettings, false)
             .SetColor(Utils.GetRoleColor(CustomRoles.GM))
             .SetHeader(true);
-        //==================================================================================================================================//
+//==================================================================================================================================//
 
         // Impostor
         TextOptionItem.Create(909090_7, "RoleType.VanillaRoles", TabGroup.ImpostorRoles) // Vanilla
@@ -842,7 +842,7 @@ public static class Options
         ParasiteCD = FloatOptionItem.Create(6050725, "KillCooldown", new(0f, 999f, 2.5f), 30f, TabGroup.ImpostorRoles, false)
         .SetParent(CustomRoleSpawnChances[CustomRoles.Parasite])
             .SetValueFormat(OptionFormat.Seconds);
-        //==================================================================================================================================//
+//==================================================================================================================================//
 
         // Crewmate
         TextOptionItem.Create(909092_12, "RoleType.VanillaRoles", TabGroup.CrewmateRoles)
