@@ -27,6 +27,8 @@
 
 "# Customize via dat file"
 "HostText","","Host","","",""
+"HostTextColor","","#000000","","",""
+"HostTextHeartColor","","#000000","","",""
 
 "## Alignment Sub Text"
 "SubText.Crewmate","做任务和找<color=#ff1919>内鬼</color>","Find and exile the <color=#ff1919>Impostors</color>","Найди и кикни <color=#ff1919>Предателей</color>","",""
