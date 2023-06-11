@@ -16,6 +16,7 @@ public static class Succubus
     public static OptionItem CharmMax;
     public static OptionItem KnowTargetRole;
     public static OptionItem TargetKnowOtherTarget;
+    public static OptionItem CanCharmNeutral;
     public static OptionItem CharmedCountMode;
     public static OptionItem CanCharmNeutral;
 

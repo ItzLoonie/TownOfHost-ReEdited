@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AmongUs.GameOptions;
+using Epic.OnlineServices;
+using Il2CppSystem.Collections.Generic;
+using TOHE.Roles.AddOns.Crewmate;
+using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
 using static TOHE.Options;
 using static TOHE.Translator;
-using static UnityEngine.GraphicsBuffer;
+using static TOHE.Utils;
 
 namespace TOHE.Roles.Crewmate
 {
@@ -16,9 +20,47 @@ namespace TOHE.Roles.Crewmate
     {
         private static readonly int Id = 7052269;
 
+        private static readonly string fontSize = "1.5";
+
         public static OptionItem FarseerCooldown;
         public static OptionItem FarseerRevealTime;
-        public static OptionItem Vision; 
+        public static OptionItem Vision;
+
+        private static System.Collections.Generic.List<CustomRoles> randomRolesForTrickster = new System.Collections.Generic.List<CustomRoles>
+        {
+            CustomRoles.Snitch,
+            CustomRoles.Luckey,
+            CustomRoles.Needy,
+            CustomRoles.SuperStar,
+            CustomRoles.CyberStar,
+            CustomRoles.Mayor,
+            CustomRoles.Paranoia,
+            CustomRoles.Psychic,
+            CustomRoles.SabotageMaster,
+            CustomRoles.Snitch,
+            CustomRoles.Marshall,
+            CustomRoles.SpeedBooster,
+            CustomRoles.Dictator,
+            CustomRoles.Doctor,
+            CustomRoles.Detective,
+            CustomRoles.NiceGuesser,
+            CustomRoles.Transporter,
+            CustomRoles.TimeManager,
+            CustomRoles.Veteran,
+            CustomRoles.Bodyguard,
+            CustomRoles.Grenadier,
+            CustomRoles.Divinator,
+            CustomRoles.Glitch,
+            CustomRoles.Judge,
+            CustomRoles.Mortician,
+            CustomRoles.Mediumshiper,
+            CustomRoles.Observer,
+            CustomRoles.DovesOfNeace,
+            CustomRoles.Bloodhound,
+            CustomRoles.Tracker,
+        };
+
+        public static System.Collections.Generic.Dictionary<int, string> RandomRole = new System.Collections.Generic.Dictionary<int, string>();
 
         public static void SetupCustomOption()
         {
@@ -29,7 +71,6 @@ namespace TOHE.Roles.Crewmate
                 .SetValueFormat(OptionFormat.Seconds);
             Vision = FloatOptionItem.Create(Id + 12, "FarseerVision", new(0f, 5f, 0.05f), 0.25f, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Farseer])
                 .SetValueFormat(OptionFormat.Multiplier);
-
         }
 
         public static void SetCooldown(byte id) => Main.AllPlayerKillCooldown[id] = FarseerCooldown.GetFloat();
@@ -41,7 +82,7 @@ namespace TOHE.Roles.Crewmate
                 if (!player.IsAlive() || Pelican.IsEaten(player.PlayerId))
                 {
                     Main.FarseerTimer.Remove(player.PlayerId);
-                    Utils.NotifyRoles(player);
+                    NotifyRoles(player);
                     RPC.ResetCurrentRevealTarget(player.PlayerId);
                 }
                 else
@@ -58,7 +99,7 @@ namespace TOHE.Roles.Crewmate
                         Main.FarseerTimer.Remove(player.PlayerId);//塗が完了したのでDictionaryから削除
                         Main.isRevealed[(player.PlayerId, ar_target.PlayerId)] = true;//塗り完了
                         player.RpcSetRevealtPlayer(ar_target, true);
-                        Utils.NotifyRoles(player);//名前変更
+                        NotifyRoles(player);//名前変更
                         RPC.ResetCurrentRevealTarget(player.PlayerId);
                     }
                     else
@@ -73,7 +114,7 @@ namespace TOHE.Roles.Crewmate
                         else//それ以外は削除
                         {
                             Main.FarseerTimer.Remove(player.PlayerId);
-                            Utils.NotifyRoles(player);
+                            NotifyRoles(player);
                             RPC.ResetCurrentRevealTarget(player.PlayerId);
 
                             Logger.Info($"Canceled: {player.GetNameWithRole()}", "Arsonist");
@@ -81,6 +122,40 @@ namespace TOHE.Roles.Crewmate
                     }
                 }
             }
+        }
+
+        public static string GetRandomCrewRoleString()
+        {
+            var rd = IRandom.Instance;
+            var randomRole = randomRolesForTrickster[rd.Next(0, randomRolesForTrickster.Count)];
+
+            string roleName = GetRoleName(randomRole);
+            string RoleText = ColorString(GetRoleColor(randomRole), GetString(randomRole.ToString()));
+
+            return $"<size={fontSize}>{RoleText}</size>";
+        }
+
+        public static string GetTaskState()
+        {
+            var playersWithTasks = Main.PlayerStates.Where(a => a.Value.GetTaskState().hasTasks).ToArray();
+            if (playersWithTasks.Length == 0)
+            {
+                return string.Empty;
+            }
+
+            var rd = IRandom.Instance;
+            var randomPlayer = playersWithTasks[rd.Next(0, playersWithTasks.Length)];
+            var taskState = randomPlayer.Value.GetTaskState();
+
+            Color TextColor;
+            var TaskCompleteColor = Color.green;
+            var NonCompleteColor = Color.yellow;
+            var NormalColor = taskState.IsTaskFinished ? TaskCompleteColor : NonCompleteColor;
+
+            TextColor = Camouflager.IsActive ? Color.gray : NormalColor;
+            string Completed = Camouflager.IsActive ? "?" : $"{taskState.CompletedTasksCount}";
+
+            return $" <size={fontSize}>" + ColorString(TextColor, $"({Completed}/{taskState.AllTasksCount})") + "</size>\r\n";
         }
     }
 }

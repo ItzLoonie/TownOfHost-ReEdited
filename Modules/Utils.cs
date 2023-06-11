@@ -477,6 +477,7 @@ public static class Utils
 
         return hasTasks;
     }
+
     public static bool CanBeMadmate(this PlayerControl pc)
     {
         return pc != null && pc.GetCustomRole().IsCrewmate() && !pc.Is(CustomRoles.Madmate)
@@ -1103,13 +1104,16 @@ public static class Utils
         }
         else
         {
+            string textColor = GetString("HostTextColor");
+            string heartColor = GetString("HostTextHeartColor");
+
             if (!GameStates.IsLobby) return;
             if (player.AmOwner)
             {
                 if (GameStates.IsOnlineGame)
-                    name = $"<color=#4bf4ff>† </color>" + name + $"<color=#4bf4ff> †</color>";
+                    name = $"<color={textColor}>{GetString("HostText")}</color><color={heartColor}>♥</color>" + name;
                 if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
-                    name = $"<color=#f55252><size=1.7>{GetString("ModeSoloKombat")}</size></color>\r\n" + name;
+                    name = $"<color=#F55252><size=1.7>{GetString("ModeSoloKombat")}</size></color>\r\n" + name;
             }
             if (!name.Contains('\r') && player.FriendCode.GetDevUser().HasTag())
                 name = player.FriendCode.GetDevUser().GetTag() + name;
@@ -1123,6 +1127,7 @@ public static class Utils
                     SuffixModes.OriginalName => name += $"\r\n<size=1.7><color=#d4adcf>{DataManager.player.Customization.Name}</color></size>",
                     SuffixModes.DoNotKillMe => name += $"\r\n<size=1.7><color=#41d3bd>{GetString("SuffixModeText.DoNotKillMe")}</color></size>",
                     SuffixModes.NoAndroidPlz => name += $"\r\n<size=1.7><color=#fffff2>{GetString("SuffixModeText.NoAndroidPlz")}</color></size>",
+                    SuffixModes.AutoHost => name += $"\r\n<size=1.7><color={Main.ModColor}>{GetString("SuffixModeText.AutoHost")}</color></size>",
                     _ => name
                 };
         }
@@ -1408,25 +1413,33 @@ public static class Utils
                         (Succubus.KnowRole(seer, target)) ||
                         (Infectious.KnowRole(seer, target)) ||
                         (Virus.KnowRole(seer, target)) ||
-                        (seer.IsRevealedPlayer(target)) ||
+                        (seer.IsRevealedPlayer(target) && !target.Is(CustomRoles.Trickster)) ||
                         (seer.Is(CustomRoles.God)) ||
                         (target.Is(CustomRoles.GM))
                         ? $"<size={fontSize}>{target.GetDisplayRoleName(seer.PlayerId != target.PlayerId && !seer.Data.IsDead)}{GetProgressText(target)}</size>\r\n" : "";
 
+                if (!seer.Data.IsDead && seer.IsRevealedPlayer(target) && target.Is(CustomRoles.Trickster))
+                {
+                    TargetRoleText = Farseer.RandomRole[seer.PlayerId];
+                    TargetRoleText += Farseer.GetTaskState();
+                }
+
                 if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
                     TargetRoleText = $"<size={fontSize}>{GetProgressText(target)}</size>\r\n";
 
-                    if (seer.Is(CustomRoles.EvilTracker))
-                    {
-                        TargetMark.Append(EvilTracker.GetTargetMark(seer, target));
-                        if (isForMeeting && EvilTracker.IsTrackTarget(seer, target) && EvilTracker.CanSeeLastRoomInMeeting)
-                            TargetRoleText = $"<size={fontSize}>{EvilTracker.GetArrowAndLastRoom(seer, target)}</size>\r\n";
-                    }
+                if (seer.Is(CustomRoles.EvilTracker))
+                {
+                    TargetMark.Append(EvilTracker.GetTargetMark(seer, target));
+                    if (isForMeeting && EvilTracker.IsTrackTarget(seer, target) && EvilTracker.CanSeeLastRoomInMeeting)
+                        TargetRoleText = $"<size={fontSize}>{EvilTracker.GetArrowAndLastRoom(seer, target)}</size>\r\n";
+                }
 
-                    if (seer.Is(CustomRoles.Tracker))
-                    {
-                        TargetMark.Append(Tracker.GetTargetMark(seer, target));
-                    }
+                if (seer.Is(CustomRoles.Tracker))
+                {
+                    TargetMark.Append(Tracker.GetTargetMark(seer, target));
+                    if (isForMeeting && Tracker.IsTrackTarget(seer, target) && Tracker.CanSeeLastRoomInMeeting)
+                        TargetRoleText = $"<size={fontSize}>{Tracker.GetArrowAndLastRoom(seer, target)}</size>\r\n";
+                }
 
                 //RealNameを取得 なければ現在の名前をRealNamesに書き込む
                 string TargetPlayerName = target.GetRealName(isForMeeting);
@@ -1481,6 +1494,8 @@ public static class Utils
                     TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Marshall), "★"));
                 if (seer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Sidekick))
                     TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Jackal), " ♥"));
+                if (seer.Is(CustomRoles.Monarch) && target.Is(CustomRoles.Knighted))
+                    TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Knighted), " 亗"));
                 if (seer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Sidekick) && Options.SidekickKnowOtherSidekick.GetBool())
                     TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Jackal), " ♥"));
 

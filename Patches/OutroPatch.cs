@@ -193,17 +193,23 @@ class SetEverythingUpPatch
         foreach (var additionalWinners in CustomWinnerHolder.AdditionalWinnerTeams)
         {
             var addWinnerRole = (CustomRoles)additionalWinners;
-            AdditionalWinnerText += "＆" + Utils.ColorString(Utils.GetRoleColor(addWinnerRole), GetWinnerRoleName(addWinnerRole));
+            AdditionalWinnerText += "+" + Utils.ColorString(Utils.GetRoleColor(addWinnerRole), GetAdditionalWinnerRoleName(addWinnerRole));
         }
         if (CustomWinnerHolder.WinnerTeam is not CustomWinner.Draw and not CustomWinner.None and not CustomWinner.Error)
         {
-            if (AdditionalWinnerText == "") WinnerText.text = $"<color={CustomWinnerColor}>{CustomWinnerText}</color>";
-            else WinnerText.text = $"<color={CustomWinnerColor}>{CustomWinnerText}</color>";
+            if (AdditionalWinnerText == "") WinnerText.text = $"<size=100%><color={CustomWinnerColor}>{CustomWinnerText}</color></size>";
+            else WinnerText.text = $"<size=100%><color={CustomWinnerColor}>{CustomWinnerText}</color></size>\n<size=50%>{AdditionalWinnerText}</size>";
         }
 
         static string GetWinnerRoleName(CustomRoles role)
         {
             var name = GetString($"WinnerRoleText.{Enum.GetName(typeof(CustomRoles), role)}");
+            if (name == "" || name.StartsWith("*") || name.StartsWith("<INVALID")) name = Utils.GetRoleName(role);
+            return name;
+        }
+        static string GetAdditionalWinnerRoleName(CustomRoles role)
+        {
+            var name = GetString($"AdditionalWinnerRoleText.{Enum.GetName(typeof(CustomRoles), role)}");
             if (name == "" || name.StartsWith("*") || name.StartsWith("<INVALID")) name = Utils.GetRoleName(role);
             return name;
         }

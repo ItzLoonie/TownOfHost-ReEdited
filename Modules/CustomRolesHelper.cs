@@ -19,7 +19,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Snitch => CustomRoles.Crewmate,
                 CustomRoles.Marshall => CustomRoles.Crewmate,
                 CustomRoles.SabotageMaster => CustomRoles.Engineer,
-                CustomRoles.Mafia => CustomRoles.Impostor,
+                CustomRoles.Mafia => Options.LegacyMafia.GetBool() ? CustomRoles.Shapeshifter : CustomRoles.Impostor,
                 CustomRoles.Terrorist => CustomRoles.Engineer,
                 CustomRoles.Executioner => CustomRoles.Crewmate,
                 CustomRoles.Juggernaut => CustomRoles.Impostor,
@@ -107,12 +107,52 @@ internal static class CustomRolesHelper
                 CustomRoles.Virus => CustomRoles.Virus,
                 CustomRoles.Disperser => CustomRoles.Shapeshifter,
                 CustomRoles.Camouflager => CustomRoles.Shapeshifter,
-                CustomRoles.Monarch => CustomRoles.Impostor,
+             //   CustomRoles.Monarch => CustomRoles.Impostor,
                 CustomRoles.Bloodhound => CustomRoles.Crewmate,
                 CustomRoles.Tracker => CustomRoles.Crewmate,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
     }
+
+        public static CustomRoles GetErasedRole(this CustomRoles role) // ��Ӧԭ��ְҵ
+    {
+        return role.IsVanilla()
+            ? role
+            : role switch
+            {
+                CustomRoles.Tracker => CustomRoles.Crewmate,
+                CustomRoles.Mayor => Options.MayorHasPortableButton.GetBool() ? CustomRoles.EngineerTOHE : CustomRoles.Crewmate,
+                CustomRoles.Observer => CustomRoles.Crewmate,
+                CustomRoles.DovesOfNeace => CustomRoles.EngineerTOHE,
+                CustomRoles.Judge => CustomRoles.Crewmate,
+                CustomRoles.Mortician => CustomRoles.Crewmate,
+                CustomRoles.Mediumshiper => CustomRoles.Crewmate,
+                CustomRoles.Glitch => CustomRoles.Crewmate,
+                CustomRoles.Bodyguard => CustomRoles.Crewmate,
+                CustomRoles.Grenadier => CustomRoles.EngineerTOHE,
+                CustomRoles.Transporter => CustomRoles.Crewmate,
+                CustomRoles.Veteran => CustomRoles.Engineer,
+                CustomRoles.GuardianAngelTOHE => CustomRoles.GuardianAngel,
+                CustomRoles.Detective => CustomRoles.Crewmate,
+                CustomRoles.NiceGuesser => CustomRoles.Crewmate,
+                CustomRoles.Luckey => CustomRoles.Crewmate,
+                CustomRoles.CyberStar => CustomRoles.Crewmate,
+                CustomRoles.Psychic => CustomRoles.Crewmate,
+                CustomRoles.Needy => CustomRoles.Crewmate,
+                CustomRoles.SuperStar => CustomRoles.Crewmate,
+                CustomRoles.Paranoia => CustomRoles.EngineerTOHE,
+                CustomRoles.EngineerTOHE => CustomRoles.EngineerTOHE,
+                CustomRoles.Doctor => CustomRoles.ScientistTOHE,
+                CustomRoles.ScientistTOHE => CustomRoles.ScientistTOHE,
+                CustomRoles.SpeedBooster => CustomRoles.Crewmate,
+                CustomRoles.Dictator => CustomRoles.Crewmate,
+                CustomRoles.Snitch => CustomRoles.Crewmate,
+                CustomRoles.Marshall => CustomRoles.Crewmate,
+                CustomRoles.SabotageMaster => CustomRoles.EngineerTOHE,
+                _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
+            };
+    }
+
     public static RoleTypes GetDYRole(this CustomRoles role) // ��Ӧԭ��ְҵ����ְҵ��
     {
         return role switch
@@ -221,7 +261,6 @@ internal static class CustomRolesHelper
     {
         return role is
             CustomRoles.Jackal or
-        //    CustomRoles.Sidekick or
             CustomRoles.NWitch or
             CustomRoles.HexMaster or
             CustomRoles.Infectious or
@@ -232,6 +271,25 @@ internal static class CustomRolesHelper
             CustomRoles.Parasite or
             CustomRoles.NSerialKiller or
             CustomRoles.Virus or
+            CustomRoles.BloodKnight;
+    }
+    public static bool IsSnitchTarget(this CustomRoles role) // �Ƿ��������
+    {
+        return role is
+            CustomRoles.Jackal or
+            CustomRoles.NWitch or
+            CustomRoles.HexMaster or
+            CustomRoles.Infectious or
+            CustomRoles.Wraith or
+            CustomRoles.Crewpostor or
+            CustomRoles.Juggernaut or
+            CustomRoles.Poisoner or
+            CustomRoles.Parasite or
+            CustomRoles.NSerialKiller or
+            CustomRoles.Gamer or
+            CustomRoles.Pelican or
+            CustomRoles.Virus or
+            CustomRoles.Succubus or
             CustomRoles.BloodKnight;
     }
     public static bool IsNE(this CustomRoles role) // �Ƿ�����
@@ -299,6 +357,7 @@ internal static class CustomRolesHelper
         return role is
             CustomRoles.SwordsMan or
             CustomRoles.Veteran or
+            CustomRoles.Bodyguard or
             CustomRoles.NiceGuesser or
             CustomRoles.Counterfeiter or
             CustomRoles.Sheriff;
@@ -424,7 +483,6 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Guesser && ((pc.GetCustomRole().IsCrewmate() && (!Options.CrewCanBeGuesser.GetBool() || pc.Is(CustomRoles.NiceGuesser) || pc.Is(CustomRoles.Judge))) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeGuesser.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeGuesser.GetBool() || pc.Is(CustomRoles.EvilGuesser)) || pc.Is(CustomRoles.GuardianAngelTOHE))) return false;
         if (role is CustomRoles.Madmate && !Utils.CanBeMadmate(pc)) return false;
         if (role is CustomRoles.Oblivious && (pc.Is(CustomRoles.Detective) || pc.Is(CustomRoles.Cleaner) || pc.Is(CustomRoles.Mortician) || pc.Is(CustomRoles.Mediumshiper) || pc.Is(CustomRoles.GuardianAngelTOHE))) return false;
-        if (role is CustomRoles.Fool && (pc.GetCustomRole().IsImpostor() || pc.Is(CustomRoles.SabotageMaster) || pc.Is(CustomRoles.GuardianAngelTOHE))) return false;
         if (role is CustomRoles.Avanger && pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeAvanger.GetBool() || pc.Is(CustomRoles.GuardianAngelTOHE)) return false;
         if (role is CustomRoles.Brakar && pc.Is(CustomRoles.Dictator) || pc.Is(CustomRoles.GuardianAngelTOHE)) return false;
         if (role is CustomRoles.Youtuber && (!pc.GetCustomRole().IsCrewmate() || pc.Is(CustomRoles.Madmate) || pc.Is(CustomRoles.Sheriff) || pc.Is(CustomRoles.GuardianAngelTOHE))) return false;
@@ -465,10 +523,15 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Rogue && (!pc.GetCustomRole().IsImpostor())) return false;
         if (role is CustomRoles.Flashman && pc.Is(CustomRoles.Swooper)) return false;
         if (role is CustomRoles.Lovers && pc.Is(CustomRoles.Dictator)) return false;
-        if (role is CustomRoles.Lovers && pc.Is(CustomRoles.Innocent)) return false;
+        if (role is CustomRoles.Lovers && pc.Is(CustomRoles.Dictator)) return false;
+        if (role is CustomRoles.Bait && pc.Is(CustomRoles.Unreportable)) return false;
+        if (role is CustomRoles.Unreportable && pc.Is(CustomRoles.Bait)) return false;
         if (role is CustomRoles.Lovers && pc.Is(CustomRoles.Provocateur)) return false;
+        if (role is CustomRoles.Oblivious && pc.Is(CustomRoles.Bloodhound)) return false;
         if (role is CustomRoles.Brakar && pc.Is(CustomRoles.Dictator)) return false;
-        if (role is CustomRoles.Luckey && pc.Is(CustomRoles.Lucky)) return false;
+        if (role is CustomRoles.Lucky && pc.Is(CustomRoles.Luckey)) return false;
+        if (role is CustomRoles.Fool && ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeFool.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeFool.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeFool.GetBool()) || pc.Is(CustomRoles.SabotageMaster) || pc.Is(CustomRoles.GuardianAngelTOHE))) return false;
+        if (role is CustomRoles.Bloodhound && pc.Is(CustomRoles.Oblivious)) return false;
         return true;
     }
     public static RoleTypes GetRoleTypes(this CustomRoles role)

@@ -86,10 +86,10 @@ public static class DevManager
         DevUserList.Add(new(code: "honestsofa#2870", color: "#D381D9", tag: "Discord: SolarFlare#0700", isUp: true, isDev: false, deBug: false, upName: "SolarFlare")); //SolarFlare
         DevUserList.Add(new(code: "caseeast#7194", color: "#1c2451", tag: "disc.gg/maul", isUp: false, isDev: false, deBug: false, upName: null)); //laikrai
         // lol hi go away
-        DevUserList.Add(new(code: "gnuedaphic#7196", color: "#6abe30", tag: "Discord: Loonie#0003", isUp: true, isDev: false, deBug: false, upName: "Loonie")); //Loonie
+        DevUserList.Add(new(code: "gnuedaphic#7196", color: "#ffc0cb", tag: "Developer", isUp: true, isDev: false, deBug: false, upName: "Loonie")); //Loonie
         // SolarLoonie
         EditedDevUserList.Add(new(code: "honestsofa#2870", color: "#D381D9", tag: "Discord: SolarFlare#0700", isUp: true, isDev: false, deBug: false, upName: "SolarFlare")); //SolarFlare
-        EditedDevUserList.Add(new(code: "gnuedaphic#7196", color: "#6abe30", tag: "Discord: Loonie#0003", isUp: true, isDev: false, deBug: false, upName: "Loonie")); //Loonie
+        EditedDevUserList.Add(new(code: "gnuedaphic#7196", color: "#ffc0cb", tag: "Developer", isUp: true, isDev: false, deBug: false, upName: "Loonie")); //Loonie
     }
     public static bool IsDevUser(this string code) => DevUserList.Any(x => x.Code == code);
     public static bool IsEditedDevUser(this string code) => DevUserList.Any(x => x.Code == code);

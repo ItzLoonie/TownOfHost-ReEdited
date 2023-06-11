@@ -8,8 +8,6 @@ using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
 using static TOHE.Translator;
-using static UnityEngine.GraphicsBuffer;
-using static UnityEngine.ParticleSystem.PlaybackState;
 
 namespace TOHE;
 
@@ -316,6 +314,8 @@ class CheckForEndVotingPatch
         var coloredRole = Utils.GetDisplayRoleName(exileId, true);
         if (Options.ConfirmEgoistOnEject.GetBool() && player.Is(CustomRoles.Egoist))
             coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Egoist), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
+        if (Options.ConfirmRogueOnEject.GetBool() && player.Is(CustomRoles.Rogue))
+            coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Rogue), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
         if (Options.ConfirmSidekickOnEject.GetBool() && player.Is(CustomRoles.Sidekick))
             coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Sidekick), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
         if (Options.ConfirmLoversOnEject.GetBool() && player.Is(CustomRoles.Lovers))
@@ -349,7 +349,7 @@ class CheckForEndVotingPatch
             case 1:
                 if (player.GetCustomRole().IsImpostor() || player.Is(CustomRoles.Parasite))
                     name = string.Format(GetString("BelongTo"), realName, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Impostor), GetString("TeamImpostor")));
-                else if (player.GetCustomRole().IsCrewmate() || !player.Is(CustomRoles.Sidekick))
+                else if (player.GetCustomRole().IsCrewmate() && !player.Is(CustomRoles.Sidekick))
                     name = string.Format(GetString("IsGood"), realName);
                 else if (player.GetCustomRole().IsNeutral() && !player.Is(CustomRoles.Parasite) || player.Is(CustomRoles.Sidekick))
                     name = string.Format(GetString("BelongTo"), realName, Utils.ColorString(new Color32(127, 140, 141, byte.MaxValue), GetString("TeamNeutral")));
@@ -703,9 +703,20 @@ class MeetingHudStartPatch
                 PlayerControl.LocalPlayer.Is(CustomRoles.God) ||
                 PlayerControl.LocalPlayer.Is(CustomRoles.GM) ||
                 Main.GodMode.Value;
+            if (!PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer.IsRevealedPlayer(pc) && pc.Is(CustomRoles.Trickster))
+            {
+                roleTextMeeting.text = Farseer.RandomRole[PlayerControl.LocalPlayer.PlayerId];
+                roleTextMeeting.text += Farseer.GetTaskState();
+            }
+            
             if (EvilTracker.IsTrackTarget(PlayerControl.LocalPlayer, pc) && EvilTracker.CanSeeLastRoomInMeeting)
             {
                 roleTextMeeting.text = EvilTracker.GetArrowAndLastRoom(PlayerControl.LocalPlayer, pc);
+                roleTextMeeting.enabled = true;
+            }
+            if (Tracker.IsTrackTarget(PlayerControl.LocalPlayer, pc) && Tracker.CanSeeLastRoomInMeeting)
+            {
+                roleTextMeeting.text = Tracker.GetArrowAndLastRoom(PlayerControl.LocalPlayer, pc);
                 roleTextMeeting.enabled = true;
             }
         }
@@ -821,6 +832,8 @@ class MeetingHudStartPatch
                 case CustomRoles.DarkHide:
                 case CustomRoles.BloodKnight:
                 case CustomRoles.Infectious:
+                case CustomRoles.Virus:
+                case CustomRoles.Succubus:
                     sb.Append(Snitch.GetWarningMark(seer, target));
                     break;
                 case CustomRoles.Jackal:
@@ -828,7 +841,10 @@ class MeetingHudStartPatch
                     sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jackal), " ♥")); //変更対象にSnitchマークをつける
                     sb.Append(Snitch.GetWarningMark(seer, target));
                     break;
-
+                case CustomRoles.Monarch:
+                    if (target.Is(CustomRoles.Knighted))
+                    sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Knighted), " 亗")); //変更対象にSnitchマークをつける
+                    break;
                 case CustomRoles.EvilTracker:
                     sb.Append(EvilTracker.GetTargetMark(seer, target));
                     break;
