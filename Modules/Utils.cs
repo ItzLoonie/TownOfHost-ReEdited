@@ -1383,7 +1383,7 @@ public static class Utils
                     {
                         TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
                     }
-                    if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.PassiveNeutralsCanGuess.GetBool() && seer.GetCustomRole().IsNK() && seer.GetCustomRole().IsNeutral())
+                    if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.PassiveNeutralsCanGuess.GetBool() && seer.GetCustomRole().IsNonNK())
                     {
                         TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
                     }
