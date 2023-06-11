@@ -246,7 +246,7 @@ public static class HexMaster
         }
         else
         {
-            str.Append(IsHexMode(hexmaster.PlayerId) ? GetString("WitchModeHex") : GetString("WitchModeKill"));
+            str.Append(IsHexMode(hexmaster.PlayerId) ? GetString("HexMasterModeHex") : GetString("HexMasterModeKill"));
         }
         return str.ToString();
     }

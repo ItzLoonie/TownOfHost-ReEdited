@@ -439,7 +439,10 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Farseer:
                         foreach (var ar in Main.AllPlayerControls)
+                        { 
                             Main.isRevealed.Add((pc.PlayerId, ar.PlayerId), false);
+                        }
+                        Farseer.RandomRole.Add(pc.PlayerId, Farseer.GetRandomCrewRoleString());
                         break;
                     case CustomRoles.Executioner:
                         Executioner.Add(pc.PlayerId);

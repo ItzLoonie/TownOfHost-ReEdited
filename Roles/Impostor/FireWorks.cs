@@ -21,6 +21,7 @@ public static class FireWorks
     private static readonly int Id = 1700;
     private static OptionItem FireWorksCount;
     private static OptionItem FireWorksRadius;
+    public static OptionItem CanKill;
 
     public static Dictionary<byte, int> nowFireWorksCount = new();
     private static Dictionary<byte, List<Vector3>> fireWorksPosition = new();
@@ -36,6 +37,7 @@ public static class FireWorks
             .SetValueFormat(OptionFormat.Pieces);
         FireWorksRadius = FloatOptionItem.Create(Id + 11, "FireWorksRadius", new(0.5f, 5f, 0.5f), 2f, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.FireWorks])
             .SetValueFormat(OptionFormat.Multiplier);
+        CanKill = BooleanOptionItem.Create(Id + 12, "CanKill", false, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.FireWorks]);
     }
 
     public static void Init()
@@ -80,6 +82,10 @@ public static class FireWorks
         if (pc.Data.IsDead) return false;
         var canUse = false;
         if ((state[pc.PlayerId] & FireWorksState.CanUseKill) != 0)
+        {
+            canUse = true;
+        }
+        if (CanKill.GetBool())
         {
             canUse = true;
         }
