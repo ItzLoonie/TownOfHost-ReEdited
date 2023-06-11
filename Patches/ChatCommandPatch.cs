@@ -884,7 +884,7 @@ internal class ChatCommands
                 }
 
                 // Ban the specified player
-                AmongUsClient.Instance.KickPlayer(bannedPlayer.GetClientId(), false); // Ban implementation
+                AmongUsClient.Instance.KickPlayer(bannedPlayer.GetClientId(), true); // Ban implementation
 
                 string bannedPlayerName = bannedPlayer.GetRealName();
                 string banReason = string.Join(" ", args.Skip(2));
