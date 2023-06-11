@@ -217,8 +217,8 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("GuessCrewRole"));
                     return true;
 
-                }
-           /*     if (role.IsAdditionRole())
+                }*/
+                if (role.IsAdditionRole())
                 {
                     if ((
                         (pc.Is(CustomRoles.NiceGuesser) && !Options.GGCanGuessAdt.GetBool()) ||
