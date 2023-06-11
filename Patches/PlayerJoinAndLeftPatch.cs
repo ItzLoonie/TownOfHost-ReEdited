@@ -268,28 +268,28 @@ class CreatePlayerPatch
                     }
                 }, 3.2f, "DisplayLastResult");
             }
-            if (PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsUp) //&& Options.EnableUpMode.GetBool())
+            if (PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsUp) //&& !Options.EnableUpMode.GetBool())
             {
                 new LateTask(() =>
                 {
                     if (!AmongUsClient.Instance.IsGameStarted && client.Character != null)
                     {
                         Main.isChatCommand = true;
-                   //     Utils.SendMessage($"{GetString("Message.YTPlanNotice")} {PlayerControl.LocalPlayer.FriendCode.GetDevUser().UpName}", client.Character.PlayerId);
+                        //Utils.SendMessage($"{GetString("Message.YTPlanNotice")} {PlayerControl.LocalPlayer.FriendCode.GetDevUser().UpName}", client.Character.PlayerId);
                     }
                 }, 3.3f, "DisplayUpWarnning");
             }
-            if (PlayerControl.LocalPlayer.FriendCode.GetEditedDevUser().IsUp)
+          /*  if (PlayerControl.LocalPlayer.FriendCode.GetEditedDevUser().IsUp)
             {
                 new LateTask(() =>
                 {
                     if (!AmongUsClient.Instance.IsGameStarted && client.Character != null)
                     {
                         Main.isChatCommand = true;
-                     //   Utils.SendMessage($"{GetString("Message.YTPlanNotice")} {PlayerControl.LocalPlayer.FriendCode.GetEditedDevUser().UpName}", client.Character.PlayerId);
+                        Utils.SendMessage($"{GetString("Message.YTPlanNotice")} {PlayerControl.LocalPlayer.FriendCode.GetEditedDevUser().UpName}", client.Character.PlayerId);
                     }
                 }, 3.3f, "DisplayUpWarnning");
-            }
+            }*/
         }
     }
 }
