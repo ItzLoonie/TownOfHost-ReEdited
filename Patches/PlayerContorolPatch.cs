@@ -883,6 +883,10 @@ class ShapeshiftPatch
                 if (shapeshifting)
                     Disperser.DispersePlayers(shapeshifter);
                 break;
+            case CustomRoles.Dazzler:
+                if (shapeshifting)
+                    Dazzler.OnShapeshift(shapeshifter, target);
+                break;
         }
 
     End:

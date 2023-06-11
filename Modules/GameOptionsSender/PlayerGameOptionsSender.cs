@@ -269,6 +269,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 opt.SetFloat(FloatOptionNames.CrewLightMod, Farseer.Vision.GetFloat());
                 opt.SetFloat(FloatOptionNames.ImpostorLightMod, Farseer.Vision.GetFloat());
                 break;
+            case CustomRoles.Dazzler:
+                Dazzler.ApplyGameOptions();
+                break;
         }
 
         // Ϊ�Ի��ߵ�����
@@ -294,6 +297,8 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 opt.SetFloat(FloatOptionNames.ImpostorLightMod, Options.GrenadierCauseVision.GetFloat());
             }
         }
+
+        Dazzler.SetDazzled(player, opt);
 
         foreach (var subRole in Main.PlayerStates[player.PlayerId].SubRoles)
         {

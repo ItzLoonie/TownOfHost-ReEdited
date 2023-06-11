@@ -591,6 +591,9 @@ internal class SelectRolesPatch
                     case CustomRoles.Tracker:
                         Tracker.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.Dazzler:
+                        Dazzler.Add(pc.PlayerId);
+                        break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())
                 {
