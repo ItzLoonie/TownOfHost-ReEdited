@@ -56,12 +56,12 @@ internal class VersionShowerStartPatch
         if (Main.IsAprilFools) Main.credentialsText = $"\r\n<color=#00bfff>Town Of Host</color> v11.45.14";
 #if DEBUG
       //  Main.credentialsText += $"\r\n<color=#a54aff>Modified by </color><color=#ff3b6f>Loonie</color>";
-        Main.credentialsText += $"\r\n<color=#a54aff>Continued by </color><color=#ff3b6f>Loonie</color>";
+        Main.credentialsText += $"\r\n<color=#a54aff>Continued by </color><color=#ff3b6f>iamazing2</color>";
 #endif
 
 #if RELEASE
 
-        Main.credentialsText += $"\r\n<color=#a54aff>Continued by </color><color=#ff3b6f>Loonie</color>";
+        Main.credentialsText += $"\r\n<color=#a54aff>Continued by </color><color=#ff3b6f>iamazing2</color>";
 #endif
         var credentials = Object.Instantiate(__instance.text);
         credentials.text = Main.credentialsText;
