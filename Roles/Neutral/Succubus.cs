@@ -18,7 +18,6 @@ public static class Succubus
     public static OptionItem TargetKnowOtherTarget;
     public static OptionItem CanCharmNeutral;
     public static OptionItem CharmedCountMode;
-    public static OptionItem CanCharmNeutral;
 
     public static readonly string[] charmedCountMode =
     {

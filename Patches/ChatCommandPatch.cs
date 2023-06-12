@@ -762,6 +762,11 @@ internal class ChatCommands
         if (Judge.TrialMsg(player, text)) { canceled = true; return; }
         if (Mediumshiper.MsMsg(player, text)) return;
         if (MafiaRevengeManager.MafiaMsgCheck(player, text)) return;
+        string logFilePath = "BanReasons.txt";
+        if (!File.Exists(logFilePath))
+        {
+            File.Create(logFilePath).Close();
+        }
         switch (args[0])
         {
             case "/l":
@@ -841,6 +846,9 @@ internal class ChatCommands
                 }
                 Utils.SendMessage(textToSend);
                 break;
+
+
+
             case "/ban":
                 // Check if the ban command is enabled in the settings
                 if (Options.ApplyModeratorList.GetValue() == 0)
@@ -884,18 +892,27 @@ internal class ChatCommands
                 }
 
                 // Ban the specified player
-                AmongUsClient.Instance.KickPlayer(bannedPlayer.GetClientId(), true); // Ban implementation
+                AmongUsClient.Instance.KickPlayer(bannedPlayer.GetClientId(), true);
 
                 string bannedPlayerName = bannedPlayer.GetRealName();
-                string banReason = string.Join(" ", args.Skip(2));
-                string btextToSend = $"{bannedPlayerName} {GetString("BanCommandBanned")}";
-                if (GameStates.IsInGame)
+                string banReason = args.Length > 2 ? args[2] : ""; // Get the ban reason from the command arguments or set it to an empty string if not provided
+
+                // Log the ban details to the file
+                string moderatorName = player.GetRealName().ToString();
+                string moderatorFriendCode = player.FriendCode.ToString();
+                string bannedPlayerFriendCode = bannedPlayer.FriendCode.ToString();
+                string logMessage = $"[{DateTime.Now}] {moderatorFriendCode},{moderatorName} Banned: {bannedPlayerFriendCode},{bannedPlayerName} Reason: {banReason}";
+                File.AppendAllText(logFilePath, logMessage + Environment.NewLine);
+
+                // Send the ban message
+                string banMessage = $"{bannedPlayerName} {GetString("BanCommandBanned")}";
+                if (!string.IsNullOrEmpty(banReason))
                 {
-                    btextToSend += $"{GetString("BanCommandBannedRole")} {GetString(bannedPlayer.GetCustomRole().ToString())}";
+                    banMessage += $" {GetString("BanCommandReason")} {banReason}";
                 }
-                btextToSend += $"\nReason: {banReason}";
-                Utils.SendMessage(btextToSend);
+                Utils.SendMessage(banMessage);
                 break;
+
 
             case "/xf":
                 if (!GameStates.IsInGame)
