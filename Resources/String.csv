@@ -1044,6 +1044,7 @@
 "TriggerDouble","双击模式","Double Click","Двойное нажатие","連點兩下","双击模式"
 "TimeManagerIncreaseMeetingTime","增加会议时长","Increase voting time by","Увеличить время встреч на","增加的會議時間","增加会议时长"
 "TimeManagerLimitMeetingTime","会议时长上限","Maximum Length of Meetings","Лимит увеличения времени встреч","會議時間上限","会议时长上限"
+"MadTimeManagerLimitMeetingTime","","<color=#ff1919>Mad</color> <color=#6495ed>Time Manager</color> - Minimum Voting Time","<color=#ff1919>Безумный</color> <color=#6495ed>Мастер Времени</color> - минимальное время встречи","",""
 "AssignOnlyToCrewmate","只有<color=#8cffff>船员</color>会成为加班狂","Assign only to <color=#8cffff>Crewmates</color>","Назначать только <color=#8cffff>Членам Экипажа</color>","只有<color=#8cffff>船員</color>會成為加班狂","只有%role%会成为加班狂"
 "WorkhorseNumLongTasks","额外的长任务数","Additional Long Tasks","Дополнительные долгие задания","額外的長任務數量","额外的长任务数"
 "WorkhorseNumShortTasks","额外的短任务数","Additional Short Tasks","Дополнительные короткие задания","額外的短任務數量","额外的短任务数"
