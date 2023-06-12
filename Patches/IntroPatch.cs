@@ -52,18 +52,18 @@ class CoBeginPatch
     public static void Prefix()
     {
         var logger = Logger.Handler("Info");
-        logger.Info("------------显示名称------------");
+        logger.Info("------------♪ Display Name ♪------------");
         foreach (var pc in Main.AllPlayerControls)
         {
             logger.Info($"{(pc.AmOwner ? "[*]" : ""),-3}{pc.PlayerId,-2}:{pc.name.PadRightV2(20)}:{pc.cosmetics.nameText.text}({Palette.ColorNames[pc.Data.DefaultOutfit.ColorId].ToString().Replace("Color", "")})");
             pc.cosmetics.nameText.text = pc.name;
         }
-        logger.Info("------------职业分配------------");
+        logger.Info("------------ ♥Role Assignment ♥------------");
         foreach (var pc in Main.AllPlayerControls)
         {
             logger.Info($"{(pc.AmOwner ? "[*]" : ""),-3}{pc.PlayerId,-2}:{pc?.Data?.PlayerName?.PadRightV2(20)}:{pc.GetAllRoleName().RemoveHtmlTags()}");
         }
-        logger.Info("------------运行环境------------");
+        logger.Info("------------╟ Platform ╟------------");
         foreach (var pc in Main.AllPlayerControls)
         {
             try
@@ -80,14 +80,14 @@ class CoBeginPatch
                 Logger.Exception(ex, "Platform");
             }
         }
-        logger.Info("------------基本设置------------");
+        logger.Info("------------ ♥ Basic Settings ♥ ------------");
         var tmp = GameOptionsManager.Instance.CurrentGameOptions.ToHudString(GameData.Instance ? GameData.Instance.PlayerCount : 10).Split("\r\n").Skip(1);
         foreach (var t in tmp) logger.Info(t);
-        logger.Info("------------详细设置------------");
+        logger.Info("------------ ♪ Detailed Settings ♪ ------------");
         foreach (var o in OptionItem.AllOptions)
             if (!o.IsHiddenOn(Options.CurrentGameMode) && (o.Parent == null ? !o.GetString().Equals("0%") : o.Parent.GetBool()))
                 logger.Info($"{(o.Parent == null ? o.GetName(true, true).RemoveHtmlTags().PadRightV2(40) : $"┗ {o.GetName(true, true).RemoveHtmlTags()}".PadRightV2(41))}:{o.GetString().RemoveHtmlTags()}");
-        logger.Info("-------------其它信息-------------");
+        logger.Info("------------ ╟ Other Information ╟ -------------");
         logger.Info($"玩家人数: {Main.AllPlayerControls.Count()}");
         Main.AllPlayerControls.Do(x => Main.PlayerStates[x.PlayerId].InitTask(x));
         GameData.Instance.RecomputeTaskCounts();
