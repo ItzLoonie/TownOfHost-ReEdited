@@ -704,6 +704,9 @@ internal static class RPC
             case CustomRoles.Snitch:
                 Snitch.Add(targetId);
                 break;
+            case CustomRoles.Plumber:
+                Plumber.Add(targetId);
+                break;
             case CustomRoles.Marshall:
                 Marshall.Add(targetId);
                 break;

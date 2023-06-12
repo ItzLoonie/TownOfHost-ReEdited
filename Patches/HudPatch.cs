@@ -2,6 +2,7 @@ using HarmonyLib;
 using Il2CppSystem.Text;
 using System.Collections.Generic;
 using System.Linq;
+using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
@@ -193,6 +194,10 @@ class HudManagerPatch
                     case CustomRoles.Mario:
                         __instance.AbilityButton.buttonLabelText.text = GetString("MarioVentButtonText");
                         __instance.AbilityButton.SetUsesRemaining(Options.MarioVentNumWin.GetInt() - (Main.MarioVentCount.TryGetValue(PlayerControl.LocalPlayer.PlayerId, out var mx) ? mx : 0));
+                        break;
+                    case CustomRoles.Plumber:
+                        __instance.AbilityButton.buttonLabelText.text = GetString("PlumberVentButtonText");
+                        __instance.AbilityButton.SetUsesRemaining(Plumber.PlumberVentNumWin - (Main.PlumberVentCount.TryGetValue(PlayerControl.LocalPlayer.PlayerId, out var px) ? px : 0));
                         break;
                     case CustomRoles.Veteran:
                         __instance.AbilityButton.buttonLabelText.text = GetString("VeteranVetnButtonText");

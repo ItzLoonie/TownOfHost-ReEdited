@@ -17,6 +17,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Opportunist => CustomRoles.Crewmate,
                 CustomRoles.Vindicator => CustomRoles.Impostor,
                 CustomRoles.Snitch => CustomRoles.Crewmate,
+                CustomRoles.Plumber => CustomRoles.Engineer,
                 CustomRoles.Marshall => CustomRoles.Crewmate,
                 CustomRoles.SabotageMaster => CustomRoles.Engineer,
                 CustomRoles.Mafia => Options.LegacyMafia.GetBool() ? CustomRoles.Shapeshifter : CustomRoles.Impostor,
@@ -149,6 +150,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Snitch => CustomRoles.Crewmate,
                 CustomRoles.Marshall => CustomRoles.Crewmate,
                 CustomRoles.SabotageMaster => CustomRoles.EngineerTOHE,
+                CustomRoles.Plumber => CustomRoles.EngineerTOHE,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
     }
@@ -274,6 +276,25 @@ internal static class CustomRolesHelper
             CustomRoles.BloodKnight;
     }
     public static bool IsSnitchTarget(this CustomRoles role) // �Ƿ��������
+    {
+        return role is
+            CustomRoles.Jackal or
+            CustomRoles.NWitch or
+            CustomRoles.HexMaster or
+            CustomRoles.Infectious or
+            CustomRoles.Wraith or
+            CustomRoles.Crewpostor or
+            CustomRoles.Juggernaut or
+            CustomRoles.Poisoner or
+            CustomRoles.Parasite or
+            CustomRoles.NSerialKiller or
+            CustomRoles.Gamer or
+            CustomRoles.Pelican or
+            CustomRoles.Virus or
+            CustomRoles.Succubus or
+            CustomRoles.BloodKnight;
+    }
+    public static bool IsPlumberTarget(this CustomRoles role) // �Ƿ��������
     {
         return role is
             CustomRoles.Jackal or

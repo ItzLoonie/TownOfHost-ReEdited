@@ -80,6 +80,7 @@ internal class ChangeRoleSettings
             Main.MayorUsedButtonCount = new();
             Main.ParaUsedButtonCount = new();
             Main.MarioVentCount = new();
+            Main.PlumberVentCount = new();
             Main.VeteranInProtect = new();
             Main.VeteranNumOfUsed = new();
             Main.GrenadierBlinding = new();
@@ -482,6 +483,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Mario:
                         Main.MarioVentCount[pc.PlayerId] = 0;
+                        break;
+                    case CustomRoles.Plumber:
+                        Main.PlumberVentCount[pc.PlayerId] = 0;
                         break;
                     case CustomRoles.TimeManager:
                         TimeManager.Add(pc.PlayerId);

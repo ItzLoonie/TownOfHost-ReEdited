@@ -15,6 +15,9 @@ using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
 using static TOHE.Translator;
+using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.ParticleSystem.PlaybackState;
+
 namespace TOHE;
 
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CheckProtect))]
@@ -1440,7 +1443,6 @@ class FixedUpdatePatch
                     CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Mario); //马里奥这个多动症赢了
                     CustomWinnerHolder.WinnerIds.Add(player.PlayerId);
                 }
-
                 Pelican.OnFixedUpdate();
                 BallLightning.OnFixedUpdate();
                 Swooper.OnFixedUpdate(player);
@@ -1826,9 +1828,13 @@ class FixedUpdatePatch
 
                 //矢印オプションありならタスクが終わったスニッチはインポスター/キル可能なニュートラルの方角がわかる
                 Suffix.Append(Snitch.GetSnitchArrow(seer, target));
-
-                Suffix.Append(BountyHunter.GetTargetArrow(seer, target));
-
+                if (GameStates.IsInTask && player.Is(CustomRoles.Plumber) && Plumber.PlumberVentCount[player.PlayerId].RemainingVentCount > Plumber.PlumberVentNumWin)
+                {
+                    if (Plumber.PlumberVentCount[player.PlayerId].RemainingVentCount == Plumber.PlumberVentNumWin)
+                    {
+                        Suffix.Append(Plumber.GetPlumberArrow(seer, target));
+                    }
+                }
                 Suffix.Append(Mortician.GetTargetArrow(seer, target));
 
                 Suffix.Append(EvilTracker.GetTargetArrow(seer, target));
@@ -1956,7 +1962,7 @@ class EnterVentPatch
                 pc?.ReportDeadBody(null);
             }
         }
-
+        Plumber.OnEnterVent(pc);
         if (pc.Is(CustomRoles.Paranoia))
         {
             if (Main.ParaUsedButtonCount.TryGetValue(pc.PlayerId, out var count) && count < Options.ParanoiaNumOfUseButton.GetInt())
@@ -1990,7 +1996,6 @@ class EnterVentPatch
                 CustomWinnerHolder.WinnerIds.Add(pc.PlayerId);
             }
         }
-
         if (!AmongUsClient.Instance.AmHost) return;
 
         Main.LastEnteredVent.Remove(pc.PlayerId);

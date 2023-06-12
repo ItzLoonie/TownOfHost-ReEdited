@@ -406,6 +406,7 @@ public static class Utils
             case CustomRoles.Opportunist:
             case CustomRoles.NWitch:
             case CustomRoles.Mario:
+            case CustomRoles.Plumber:
             case CustomRoles.God:
             case CustomRoles.SwordsMan:
             case CustomRoles.Innocent:
@@ -486,6 +487,7 @@ public static class Utils
             (pc.Is(CustomRoles.Mayor) && !Options.MayorCanBeMadmate.GetBool()) ||
             (pc.Is(CustomRoles.NiceGuesser) && !Options.NGuesserCanBeMadmate.GetBool()) ||
             (pc.Is(CustomRoles.Snitch) && !Options.SnitchCanBeMadmate.GetBool()) ||
+            pc.Is(CustomRoles.Plumber) && !Plumber.PlumberCanBeMadmate ||
             (pc.Is(CustomRoles.Judge) && !Options.JudgeCanBeMadmate.GetBool()) ||
             pc.Is(CustomRoles.Needy) ||
             pc.Is(CustomRoles.CyberStar) ||
@@ -531,6 +533,9 @@ public static class Utils
                 break;
             case CustomRoles.Mario:
                 ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Mario).ShadeColor(0.25f), $"({(Main.MarioVentCount.TryGetValue(playerId, out var count) ? count : 0)}/{Options.MarioVentNumWin.GetInt()})"));
+                break;
+            case CustomRoles.Plumber:
+                ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Plumber).ShadeColor(0.25f), $"({(Plumber.PlumberVentCount.TryGetValue(playerId, out var pcount) ? pcount : 0)}/{Plumber.PlumberVentNumWin})"));
                 break;
             case CustomRoles.QuickShooter:
                 ProgressText.Append(QuickShooter.GetShotLimit(playerId));
@@ -1196,6 +1201,8 @@ public static class Utils
             //インポスター/キル可能なニュートラルに対するSnitch警告
             SelfMark.Append(Snitch.GetWarningArrow(seer));
 
+            SelfMark.Append(Plumber.GetWarningArrow(seer));
+
             //ハートマークを付ける(自分に)
             if (seer.Is(CustomRoles.Lovers) || CustomRolesHelper.RoleExist(CustomRoles.Ntr)) SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Lovers), "♡"));
 
@@ -1262,7 +1269,7 @@ public static class Utils
 
             //タスクを終えたSnitchがインポスター/キル可能なニュートラルの方角を確認できる
             SelfSuffix.Append(Snitch.GetSnitchArrow(seer));
-
+            SelfSuffix.Append(Plumber.GetPlumberArrow(seer));
             SelfSuffix.Append(EvilTracker.GetTargetArrow(seer, seer));
 
             //KB自身名字后缀

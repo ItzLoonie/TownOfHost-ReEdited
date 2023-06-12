@@ -72,6 +72,7 @@ public static class Divinator
                 CustomRoles.Mayor or
                 CustomRoles.Vindicator or
                 CustomRoles.Snitch or
+                CustomRoles.Plumber or
                 CustomRoles.Marshall or
                 CustomRoles.Counterfeiter or
                 CustomRoles.God or

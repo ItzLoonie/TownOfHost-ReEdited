@@ -143,7 +143,8 @@ public class Main : BasePlugin
     public static Dictionary<byte, byte> SpeedBoostTarget = new();
     public static Dictionary<byte, int> MayorUsedButtonCount = new();
     public static Dictionary<byte, int> ParaUsedButtonCount = new();
-    public static Dictionary<byte, int> MarioVentCount = new();
+    public static Dictionary<byte, int> MarioVentCount = new(); 
+    public static Dictionary<byte, int> PlumberVentCount = new();
     public static Dictionary<byte, long> VeteranInProtect = new();
     public static Dictionary<byte, int> VeteranNumOfUsed = new();
     public static Dictionary<byte, long> GrenadierBlinding = new();
@@ -288,6 +289,7 @@ public class Main : BasePlugin
                 {CustomRoles.Dictator, "#df9b00"},
                 {CustomRoles.Detective, "#7160e8" },
                 {CustomRoles.SwordsMan, "#f0e68c"},
+                {CustomRoles.Plumber, "#87CEEB"},
                 {CustomRoles.NiceGuesser, "#eede26"},
                 {CustomRoles.Transporter, "#42D1FF"},
                 {CustomRoles.TimeManager, "#6495ed"},
@@ -534,6 +536,7 @@ public enum CustomRoles
     Farseer,
     Bloodhound,
     Tracker,
+    Plumber,
     //Neutral
     Arsonist,
     HexMaster,
