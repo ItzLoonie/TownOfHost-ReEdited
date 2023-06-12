@@ -17,7 +17,7 @@ namespace TOHE;
 public class ModUpdater
 {
     private static readonly string URL_2018k = "http://api.2018k.cn";
-    private static readonly string URL_Github = "https://github.com/xVCantCode/TOHE-Revival";
+    private static readonly string URL_Github = "https://api.github.com/repos/Loonie-Toons/TOHE-Restored";
     public static bool hasUpdate = false;
     public static bool forceUpdate = false;
     public static bool isBroken = false;
@@ -119,7 +119,7 @@ public class ModUpdater
             
             if (downloadUrl == null || downloadUrl == "")
             {
-                Logger.Error("Failed to obtain Download url", "CheckRelease");
+                Logger.Error("获取下载地址失败", "CheckRelease");
                 return Task.FromResult(false);
             }
 
@@ -137,16 +137,16 @@ public class ModUpdater
             {
                 isChecked = true;
                 isBroken = false;
-                Logger.Error($"Error Occured while checking for updates\n{ex}", "CheckRelease", false);
+                Logger.Error($"检查更新时发生错误\n{ex}", "CheckRelease", false);
             }
-            Logger.Error($"Error Occured while checking, it was ignored\n{ex}", "CheckRelease", false);
+            Logger.Error($"检查更新时发生错误，已忽略\n{ex}", "CheckRelease", false);
             return Task.FromResult(false);
         }
         return Task.FromResult(true);
     }
     public static async Task<bool> CheckReleaseFromGithub(bool beta = false)
     {
-        Logger.Warn("Start checking Github Updates", "CheckRelease");
+        Logger.Warn("开始从Github检查更新", "CheckRelease");
         string url = beta ? Main.BetaBuildURL.Value : URL_Github + "/releases/latest";
         try
         {
