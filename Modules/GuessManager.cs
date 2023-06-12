@@ -453,36 +453,46 @@ public static class GuessManager
     {
         public static void Postfix(MeetingHud __instance)
         {
-            if (!Options.GuesserMode.GetBool())
+
+          /*if (!Options.GuesserMode.GetBool())
             {
-            if (PlayerControl.LocalPlayer.GetCustomRole() is CustomRoles.NiceGuesser or CustomRoles.EvilGuesser or CustomRoles.Guesser && PlayerControl.LocalPlayer.IsAlive())
-                CreateGuesserButton(__instance);
-           /*                 foreach (var subRole in PlayerControl.LocalPlayer.GetCustomSubRoles())
+                foreach (var subRole in PlayerControl.LocalPlayer.GetCustomSubRoles())
                 {
                     switch (subRole)
                     {
-                        
+
                         case CustomRoles.Guesser:
                         {
-                        if (PlayerControl.LocalPlayer.IsAlive())
-                        CreateGuesserButton(__instance);
+                            if (PlayerControl.LocalPlayer.IsAlive())
+                                CreateGuesserButton(__instance);
                         }
-                        break;
-                        
+                        break;   
                     }
-                } */
-            }
+                }
+            }*/
+
             if (Options.GuesserMode.GetBool())
-{
-    if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.GetCustomRole().IsImpostor() && Options.ImpostorsCanGuess.GetBool())
-        CreateGuesserButton(__instance);
-    else if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.GetCustomRole().IsCrewmate() && Options.CrewmatesCanGuess.GetBool())
-        CreateGuesserButton(__instance);
-    else if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.GetCustomRole().IsNK() && Options.NeutralKillersCanGuess.GetBool())
-        CreateGuesserButton(__instance);
-    else if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.GetCustomRole().IsNonNK() && Options.PassiveNeutralsCanGuess.GetBool())
-        CreateGuesserButton(__instance);
-} 
+            {
+                if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.GetCustomRole().IsImpostor() && Options.ImpostorsCanGuess.GetBool())
+                    CreateGuesserButton(__instance);
+                else if (PlayerControl.LocalPlayer.GetCustomRole() is CustomRoles.EvilGuesser && !Options.ImpostorsCanGuess.GetBool())
+                    CreateGuesserButton(__instance);
+
+                if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.GetCustomRole().IsCrewmate() && Options.CrewmatesCanGuess.GetBool())
+                    CreateGuesserButton(__instance);
+                else if (PlayerControl.LocalPlayer.GetCustomRole() is CustomRoles.NiceGuesser && !Options.CrewmatesCanGuess.GetBool())
+                    CreateGuesserButton(__instance);
+
+                if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.GetCustomRole().IsNK() && Options.NeutralKillersCanGuess.GetBool())
+                    CreateGuesserButton(__instance);
+                if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.GetCustomRole().IsNonNK() && Options.PassiveNeutralsCanGuess.GetBool())
+                    CreateGuesserButton(__instance);
+            }
+            else
+            {
+                if (PlayerControl.LocalPlayer.GetCustomRole() is CustomRoles.NiceGuesser or CustomRoles.EvilGuesser or CustomRoles.Guesser && PlayerControl.LocalPlayer.IsAlive())
+                    CreateGuesserButton(__instance);
+            }
         }
     }
     public static void CreateGuesserButton(MeetingHud __instance)
