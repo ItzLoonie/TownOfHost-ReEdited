@@ -1104,8 +1104,9 @@ public static class Utils
         }
         else
         {
+            string hostname = GetString("HostNameColor");
             string textColor = GetString("HostTextColor");
-            string symbol = GetString("HostTexSymbol");
+            string symbol = GetString("HostTextSymbol");
             string symbolColor = GetString("HostTextSymbolColor");
             string streamingColor = GetString("StreamingColor");
             string RecordingColor = GetString("RecordingColor");
@@ -1119,7 +1120,7 @@ public static class Utils
             if (player.AmOwner)
             {
                 if (GameStates.IsOnlineGame)
-                    name = $"<color={textColor}>{GetString("HostText")}</color><color={symbolColor}>{symbol}</color>" + name;
+                    name = $"<color={textColor}>{GetString("HostText")}</color><color={symbolColor}>{symbol}</color>" + $"<color={hostname}>{name}</color>";
                 if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
                     name = $"<color=#F55252><size=1.7>{GetString("ModeSoloKombat")}</size></color>\r\n" + name;
             }

@@ -26,9 +26,11 @@
 "TextBelowVersionText","","This text should not appear.\nIf it does, you likely built this from the source code.","","",""
 
 "# Customize via dat file"
+"HostNameColor","","#000000","","",""
 "HostText","","Host","","",""
+"HostTextSymbol",""," ","","",""
 "HostTextColor","","#000000","","",""
-"HostTextHeartColor","","#000000","","",""
+"HostTextSymbolColor","","#000000","","",""
 "StreamingColor","","#000000",",","",""
 "RecordingColor","","#000000","","",""
 "RoomHostColor","","#000000","","",""
