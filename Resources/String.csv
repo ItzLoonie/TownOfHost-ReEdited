@@ -29,6 +29,12 @@
 "HostText","","Host","","",""
 "HostTextColor","","#000000","","",""
 "HostTextHeartColor","","#000000","","",""
+"StreamingColor","","#000000",",","",""
+"RecordingColor","","#000000","","",""
+"RoomHostColor","","#000000","","",""
+"OriginalNameColor","","#000000","","",""
+"NoAndroidPlzColor","","#000000","","",""
+"AutoHostColor","","#000000","","",""
 
 "## Alignment Sub Text"
 "SubText.Crewmate","做任务和找<color=#ff1919>内鬼</color>","Find and exile the <color=#ff1919>Impostors</color>","Найди и кикни <color=#ff1919>Предателей</color>","",""
@@ -1261,6 +1267,7 @@
 "BanCommandBanMod","","You are not permitted to ban other moderators.","","",""
 "BanCommandBanned","","was banned from the game.","","",""
 "BanCommandBannedRole","","Their role was","","",""
+"BanCommandNoReason","","You are not permitted to ban without a reason.","","",""
 
 "## 死因 / Death Reasons"
 "DeathReason.Kill","被杀","Kill","Убит","被殺","被杀"

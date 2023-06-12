@@ -11,6 +11,8 @@ using TOHE.Modules;
 using TOHE.Roles.Crewmate;
 using UnityEngine;
 using static TOHE.Translator;
+using AmongUs.Data.Player;
+using Rewired;
 
 namespace TOHE;
 
@@ -98,6 +100,23 @@ internal class ChatCommands
                             Utils.SendMessage(defaultMessage, PlayerControl.LocalPlayer.PlayerId);
                         }
                     }
+                    break;
+                case "/setmod":
+                    if (args.Length < 2 || !byte.TryParse(args[1], out byte playerId))
+                        break;
+
+                    var newmod = Utils.GetPlayerById(playerId);
+                    if (newmod == null)
+                    {
+                        Utils.SendMessage(GetString("SetModCommandInvalidID"), PlayerControl.LocalPlayer.PlayerId);
+                        break;
+                    }
+
+                    string friendCode = newmod.FriendCode.ToString();
+                    string playerName = newmod.GetRealName().ToString();
+
+                    string setModCommandOutput = $"Setting moderator: {friendCode}, {playerName}";
+                    ModHandler.HandleSetModCommand(newmod, friendCode, playerName, setModCommandOutput);
                     break;
 
                 case "/l":
@@ -520,6 +539,7 @@ internal class ChatCommands
             __instance.quickChatMenu.ResetGlyphs();
         }
         return !canceled;
+
     }
 
     public static string FixRoleNameInput(string text)
@@ -847,70 +867,21 @@ internal class ChatCommands
                 Utils.SendMessage(textToSend);
                 break;
 
-
-
             case "/ban":
-                // Check if the ban command is enabled in the settings
-                if (Options.ApplyModeratorList.GetValue() == 0)
+                if (args.Length < 3)
                 {
-                    Utils.SendMessage(GetString("BanCommandDisabled"), player.PlayerId);
+                    Utils.SendMessage(GetString("BanCommandNoReason"), player.PlayerId);
                     break;
                 }
 
-                // Check if the player has the necessary privileges to use the command
-                if (!IsPlayerModerator(player.FriendCode))
-                {
-                    Utils.SendMessage(GetString("BanCommandNoAccess"), player.PlayerId);
-                    break;
-                }
-
-                subArgs = args.Length < 2 ? "" : args[1];
-                if (string.IsNullOrEmpty(subArgs) || !byte.TryParse(subArgs, out byte banPlayerId))
+                if (!byte.TryParse(args[1], out byte banPlayerId))
                 {
                     Utils.SendMessage(GetString("BanCommandInvalidID"), player.PlayerId);
                     break;
                 }
 
-                if (banPlayerId == 0)
-                {
-                    Utils.SendMessage(GetString("BanCommandBanHost"), player.PlayerId);
-                    break;
-                }
-
-                var bannedPlayer = Utils.GetPlayerById(banPlayerId);
-                if (bannedPlayer == null)
-                {
-                    Utils.SendMessage(GetString("BanCommandInvalidID"), player.PlayerId);
-                    break;
-                }
-
-                // Prevent moderators from banning other moderators
-                if (IsPlayerModerator(bannedPlayer.FriendCode))
-                {
-                    Utils.SendMessage(GetString("BanCommandBanMod"), player.PlayerId);
-                    break;
-                }
-
-                // Ban the specified player
-                AmongUsClient.Instance.KickPlayer(bannedPlayer.GetClientId(), true);
-
-                string bannedPlayerName = bannedPlayer.GetRealName();
-                string banReason = args.Length > 2 ? args[2] : ""; // Get the ban reason from the command arguments or set it to an empty string if not provided
-
-                // Log the ban details to the file
-                string moderatorName = player.GetRealName().ToString();
-                string moderatorFriendCode = player.FriendCode.ToString();
-                string bannedPlayerFriendCode = bannedPlayer.FriendCode.ToString();
-                string logMessage = $"[{DateTime.Now}] {moderatorFriendCode},{moderatorName} Banned: {bannedPlayerFriendCode},{bannedPlayerName} Reason: {banReason}";
-                File.AppendAllText(logFilePath, logMessage + Environment.NewLine);
-
-                // Send the ban message
-                string banMessage = $"{bannedPlayerName} {GetString("BanCommandBanned")}";
-                if (!string.IsNullOrEmpty(banReason))
-                {
-                    banMessage += $" {GetString("BanCommandReason")} {banReason}";
-                }
-                Utils.SendMessage(banMessage);
+                string banReason = string.Join(" ", args.Skip(2));
+                BanCommandHandler.HandleBanCommand(player, banPlayerId, banReason);
                 break;
 
 
@@ -1045,6 +1016,83 @@ internal class ChatCommands
                 break;
         }
     }
+    public class ModHandler
+    {
+        public static string modFilePath = @"./TOHE_DATA/Moderators.txt";
+
+        public static void HandleSetModCommand(PlayerControl moderator, string friendCode, string playerName, string commandOutput)
+        {
+            // Check if the moderator is already in the list
+            string[] moderators = File.ReadAllLines(modFilePath);
+            for (int i = 0; i < moderators.Length; i++)
+            {
+                string[] modInfo = moderators[i].Split(',');
+                if (modInfo.Length >= 2 && modInfo[0] == friendCode)
+                {
+                    // Update the moderator's information
+                    moderators[i] = $"{friendCode},{playerName}";
+                    File.WriteAllLines(modFilePath, moderators);
+                    Utils.SendMessage(commandOutput);
+                    return;
+                }
+            }
+
+            // Add the new moderator to the file
+            string newModInfo = $"{friendCode},{playerName}";
+            File.AppendAllText(modFilePath, newModInfo + Environment.NewLine);
+
+            // Send the success message
+            Utils.SendMessage(commandOutput);
+        }
+    }
+
+
+
+    public class BanCommandHandler
+    {
+        public static string logFilePath = @"./TOHE_DATA/BanLogs.txt";
+
+        public static void HandleBanCommand(PlayerControl moderator, byte playerId, string banReason)
+        {
+            if (Options.ApplyModeratorList.GetValue() == 0)
+            {
+                Utils.SendMessage(GetString("BanCommandDisabled"), moderator.PlayerId);
+                return;
+            }
+            if (!IsPlayerModerator(moderator.FriendCode))
+            {
+                Utils.SendMessage(GetString("BanCommandNoAccess"), moderator.PlayerId);
+                return;
+            }
+            if (playerId == 0)
+            {
+                Utils.SendMessage(GetString("BanCommandBanHost"), moderator.PlayerId);
+                return;
+            }
+            var bannedPlayer = Utils.GetPlayerById(playerId);
+            if (bannedPlayer == null)
+            {
+                Utils.SendMessage(GetString("BanCommandInvalidID"), moderator.PlayerId);
+                return;
+            }
+            if (IsPlayerModerator(bannedPlayer.FriendCode))
+            {
+                Utils.SendMessage(GetString("BanCommandBanMod"), moderator.PlayerId);
+                return;
+            }
+            AmongUsClient.Instance.KickPlayer(bannedPlayer.GetClientId(), true);
+
+            string bannedPlayerName = bannedPlayer.GetRealName().ToString();
+            string moderatorName = moderator.GetRealName().ToString();
+            string moderatorFriendCode = moderator.FriendCode.ToString();
+            string bannedPlayerFriendCode = bannedPlayer.FriendCode.ToString();
+            string logMessage = $"Moderator: {moderatorFriendCode},{moderatorName} Has Banned: {bannedPlayerFriendCode},{bannedPlayerName} Reason: {banReason} [{DateTime.Now}] ";
+            File.AppendAllText(logFilePath, logMessage + Environment.NewLine);
+            string banMessage = $"{bannedPlayerName} {GetString("BanCommandBanned")} {GetString("BanCommandReason")} {banReason}";
+            Utils.SendMessage(banMessage);
+        }
+
+    }
 }
 [HarmonyPatch(typeof(ChatController), nameof(ChatController.Update))]
 internal class ChatUpdatePatch
@@ -1097,6 +1145,7 @@ internal class AddChatPatch
     }
 }
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.RpcSendChat))]
+
 internal class RpcSendChatPatch
 {
     public static bool Prefix(PlayerControl __instance, string chatText, ref bool __result)
