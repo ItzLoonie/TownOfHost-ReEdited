@@ -12,6 +12,7 @@ using TOHE.Roles.Crewmate;
 using UnityEngine;
 using static TOHE.Translator;
 using AmongUs.Data.Player;
+using Rewired;
 
 namespace TOHE;
 
@@ -99,6 +100,23 @@ internal class ChatCommands
                             Utils.SendMessage(defaultMessage, PlayerControl.LocalPlayer.PlayerId);
                         }
                     }
+                    break;
+                case "/setmod":
+                    if (args.Length < 2 || !byte.TryParse(args[1], out byte playerId))
+                        break;
+
+                    var newmod = Utils.GetPlayerById(playerId);
+                    if (newmod == null)
+                    {
+                        Utils.SendMessage(GetString("SetModCommandInvalidID"), PlayerControl.LocalPlayer.PlayerId);
+                        break;
+                    }
+
+                    string friendCode = newmod.FriendCode.ToString();
+                    string playerName = newmod.GetRealName().ToString();
+
+                    string setModCommandOutput = $"Setting moderator: {friendCode}, {playerName}";
+                    ModHandler.HandleSetModCommand(newmod, friendCode, playerName, setModCommandOutput);
                     break;
 
                 case "/l":
@@ -521,6 +539,7 @@ internal class ChatCommands
             __instance.quickChatMenu.ResetGlyphs();
         }
         return !canceled;
+
     }
 
     public static string FixRoleNameInput(string text)
@@ -997,6 +1016,38 @@ internal class ChatCommands
                 break;
         }
     }
+    public class ModHandler
+    {
+        public static string modFilePath = @"./TOHE_DATA/Moderators.txt";
+
+        public static void HandleSetModCommand(PlayerControl moderator, string friendCode, string playerName, string commandOutput)
+        {
+            // Check if the moderator is already in the list
+            string[] moderators = File.ReadAllLines(modFilePath);
+            for (int i = 0; i < moderators.Length; i++)
+            {
+                string[] modInfo = moderators[i].Split(',');
+                if (modInfo.Length >= 2 && modInfo[0] == friendCode)
+                {
+                    // Update the moderator's information
+                    moderators[i] = $"{friendCode},{playerName}";
+                    File.WriteAllLines(modFilePath, moderators);
+                    Utils.SendMessage(commandOutput);
+                    return;
+                }
+            }
+
+            // Add the new moderator to the file
+            string newModInfo = $"{friendCode},{playerName}";
+            File.AppendAllText(modFilePath, newModInfo + Environment.NewLine);
+
+            // Send the success message
+            Utils.SendMessage(commandOutput);
+        }
+    }
+
+
+
     public class BanCommandHandler
     {
         public static string logFilePath = @"./TOHE_DATA/BanLogs.txt";
