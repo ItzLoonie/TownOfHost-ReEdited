@@ -1087,7 +1087,7 @@ public static class Options
         .SetParent(CustomRoleSpawnChances[CustomRoles.NWitch])
             .SetValueFormat(OptionFormat.Seconds);
         Wraith.SetupCustomOption();
-        Virus.SetupCustomOption();
+
         //==================================================================================================================================//
 
         TextOptionItem.Create(909094_3, "RoleType.NeutralExperimental", TabGroup.NeutralRoles)

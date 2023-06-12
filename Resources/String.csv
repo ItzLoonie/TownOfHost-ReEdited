@@ -1261,6 +1261,7 @@
 "BanCommandBanMod","","You are not permitted to ban other moderators.","","",""
 "BanCommandBanned","","was banned from the game.","","",""
 "BanCommandBannedRole","","Their role was","","",""
+"BanCommandNoReason","","You are not permitted to ban without a reason.","","",""
 
 "## 死因 / Death Reasons"
 "DeathReason.Kill","被杀","Kill","Убит","被殺","被杀"
