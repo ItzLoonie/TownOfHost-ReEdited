@@ -22,7 +22,7 @@ public static class AntiBlackout
     ///<summary>
     ///AntiBlackout内の処理が必要であるかどうか
     ///</summary>
-    public static bool IsRequired => Options.NoGameEnd.GetBool() || Jackal.IsEnable || Pelican.IsEnable || Gamer.IsEnable || BloodKnight.IsEnable || Succubus.IsEnable || CustomRoles.Poisoner.IsEnable || CustomRoles.Infectious.IsEnable || CustomRoles.Juggernaut.IsEnable || CustomRoles.NSerialKiller.IsEnable || CustomRoles.Virus.IsEnable || CustomRoles.Wraith.IsEnable;
+    public static bool IsRequired => Options.NoGameEnd.GetBool() || Jackal.IsEnable || Pelican.IsEnable || Gamer.IsEnable || BloodKnight.IsEnable || Succubus.IsEnable || CustomRoles.Poisoner.IsEnable() || CustomRoles.Infectious.IsEnable() || CustomRoles.Juggernaut.IsEnable() || CustomRoles.NSerialKiller.IsEnable() || CustomRoles.Virus.IsEnable() || CustomRoles.Wraith.IsEnable();
     ///<summary>
     ///インポスター以外の人数とインポスターの人数の差
     ///</summary>
