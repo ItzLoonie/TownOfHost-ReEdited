@@ -13,6 +13,7 @@ public static class Wraith
     private static readonly int Id = 1004444;
     private static List<byte> playerIdList = new();
 
+    public static OptionItem WraithKillCooldown;
     private static OptionItem WraithCooldown;
     private static OptionItem WraithDuration;
 
@@ -22,7 +23,8 @@ public static class Wraith
 
     public static void SetupCustomOption()
     {
-        SetupSingleRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.Wraith, 1, zeroOne: false);        
+        SetupSingleRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.Wraith, 1, zeroOne: false);
+        WraithKillCooldown = FloatOptionItem.Create(Id + 6, "WraithKillCooldown", new(1f, 999f, 1f), 1f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Wraith]);
         WraithCooldown = FloatOptionItem.Create(Id + 2, "WraithCooldown", new(1f, 999f, 1f), 30f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Wraith])
             .SetValueFormat(OptionFormat.Seconds);
         WraithDuration = FloatOptionItem.Create(Id + 4, "WraithDuration", new(1f, 999f, 1f), 15f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Wraith])
@@ -171,13 +173,51 @@ public static class Wraith
         }
         return str.ToString();
     }
-
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
     {
         if (!IsInvis(killer.PlayerId)) return true;
-        killer.SetKillCooldown();
+
+        if (WraithKillCooldown != null)
+        {
+            float customKillCooldown = WraithKillCooldown.GetFloat();
+            killer.SetWraithKillCooldown(customKillCooldown);
+        }
+        else
+        {
+            killer.SetWraithKillCooldown();
+        }
+
         target.RpcCheckAndMurder(target);
         target.SetRealKiller(killer);
         return false;
     }
+
+    public static void SetWraithKillCooldown(this PlayerControl player, float time = -1f)
+    {
+        if (player == null) return;
+        if (!player.CanUseKillButton()) return;
+
+        if (time >= 0f)
+        {
+            Main.AllPlayerKillCooldown[player.PlayerId] = time;
+        }
+        else
+        {
+            if (WraithKillCooldown != null)
+            {
+                float customKillCooldown = WraithKillCooldown.GetFloat();
+                Main.AllPlayerKillCooldown[player.PlayerId] = customKillCooldown;
+            }
+            else
+            {
+                float defaultKillCooldown = 45f;
+                Main.AllPlayerKillCooldown[player.PlayerId] = defaultKillCooldown;
+            }
+        }
+
+        player.SyncSettings();
+        player.RpcGuardAndKill();
+        player.ResetKillCooldown();
+    }
+
 }

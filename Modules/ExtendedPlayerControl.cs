@@ -566,11 +566,11 @@ static class ExtendedPlayerControl
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.RevolutionistCooldown.GetFloat();
                 break;
             case CustomRoles.Jackal:
-       //     case CustomRoles.Sidekick:
+            case CustomRoles.Wraith:
+                //     case CustomRoles.Sidekick:
                 Jackal.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.HexMaster:
-            case CustomRoles.Wraith:
             case CustomRoles.Parasite:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.ParasiteCD.GetFloat();
             break;
