@@ -1,11 +1,5 @@
 using AmongUs.GameOptions;
-using HarmonyLib;
-using Sentry.Internal;
 using System.Linq;
-using static UnityEngine.GridBrushBase;
-using static UnityEngine.ParticleSystem.PlaybackState;
-using TOHE.Roles.AddOns.Crewmate;
-using TOHE.Roles.AddOns.Impostor;
 
 namespace TOHE;
 
