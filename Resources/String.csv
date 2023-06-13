@@ -1199,7 +1199,7 @@
 "CharmedCountMode.Succubus","<color=#cf6acd>魅魔阵营</color>","<color=#cf6acd>Cultist</color>","<color=#cf6acd>Суккубом</color>","<color=#cf6acd>魅魔陣營</color>",""
 "CharmedCountMode.Original","原本阵营","Original Team","Первоначальной командой","原本陣營",""
 "JackalCanWinBySabotageWhenNoImpAlive","没有<color=#ff1919>内鬼</color>存活时破坏视作豺狼胜利","When all <color=#ff1919>Impostors</color> are dead, the <color=#00b4eb>Jackal</color> wins by sabotage instead","Саботаж <color=#ff1919>Предателя</color> считается победой <color=#00b4eb>Шакала</color> если все <color=#ff1919>Предатели</color> мертвы","沒有<color=#ff1919>偽裝者</color>時存活時破壞視作為豺狼勝利",""
-"ResetKillCooldownWhenPlayerGetKilled","当有人被击杀时立刻将击杀冷却恢复至0（不包括自己击杀）","Reset kill cooldown to 0 if someone gets killed by another player","Сбросить откат убийства до 0, когда кого-то убивают (исключение со своим убийством)","當有人被殺時立刻將殺人冷卻恢復至0(不包括自己殺人)",""
+"ResetKillCooldownWhenPlayerGetKilled","当有人被击杀时立刻将击杀冷却恢复至0（不包括自己击杀）","Reset kill cooldown if someone gets killed by another player","Сбросить откат убийства, когда кого-то убивают","當有人被殺時立刻將殺人冷卻恢復至0(不包括自己殺人)",""
 "JackalCanRecruitSidekick","","Can recruit <color=#00b4eb>Sidekick</color>","Может нанять <color=#00b4eb>Союзника</color>","",""
 "JackalSidekickRecruitLimit","","Maximum Number Of Recruits","Максимальное количество Новобранцев","",""
 "ImpCanBeNecroview","","<color=#ff1919>Impostors</color> can become <color=#663399>Necroview</color>","<color=#ff1919>Предатели</color> могут стать <color=#663399>Некровидящим</color>","",""
