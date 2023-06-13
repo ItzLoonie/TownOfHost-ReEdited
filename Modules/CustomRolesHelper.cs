@@ -1,5 +1,11 @@
 using AmongUs.GameOptions;
+using HarmonyLib;
+using Sentry.Internal;
 using System.Linq;
+using static UnityEngine.GridBrushBase;
+using static UnityEngine.ParticleSystem.PlaybackState;
+using TOHE.Roles.AddOns.Crewmate;
+using TOHE.Roles.AddOns.Impostor;
 
 namespace TOHE;
 
@@ -208,7 +214,6 @@ internal static class CustomRolesHelper
             CustomRoles.Trapper or
             CustomRoles.Brakar or
             CustomRoles.Oblivious or
-            CustomRoles.Guesser or
             CustomRoles.Bewilder or
             CustomRoles.Knighted or
             CustomRoles.Workhorse or
@@ -225,8 +230,6 @@ internal static class CustomRolesHelper
             CustomRoles.Infected or
             CustomRoles.Onbound or
             CustomRoles.Contagious or
-            CustomRoles.Bait or
-            CustomRoles.Trapper or
             CustomRoles.Guesser or
             CustomRoles.Rogue or
             CustomRoles.Unreportable or
