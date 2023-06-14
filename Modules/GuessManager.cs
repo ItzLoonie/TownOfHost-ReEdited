@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Reflection;
 using TMPro;
 using TOHE.Modules;
 using UnityEngine;
@@ -188,7 +187,7 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("GuessOnbound"));
                     return true;
                 }
-                
+
                 if (role == CustomRoles.GM || target.Is(CustomRoles.GM))
                 {
                     Utils.SendMessage(GetString("GuessGM"), pc.PlayerId);
@@ -298,39 +297,6 @@ public static class GuessManager
                     return true;
 
                 }
-                if (role.IsAdditionRole())
-                {
-                    if ((
-                        (pc.Is(CustomRoles.NiceGuesser) && !Options.GGCanGuessAdt.GetBool()) ||
-                        (pc.Is(CustomRoles.EvilGuesser) && !Options.EGCanGuessAdt.GetBool()) ||
-                        (pc.Is(CustomRoles.Guesser) && !Options.GCanGuessAdt.GetBool()) ||
-                        (
-                            (
-                                Options.CrewmatesCanGuess.GetBool() ||
-                                Options.ImpostorsCanGuess.GetBool() ||
-                                Options.NeutralKillersCanGuess.GetBool() ||
-                                Options.PassiveNeutralsCanGuess.GetBool()
-                            ) && (
-                                !Options.CanGuessAddons.GetBool() &&
-                                role != CustomRoles.Infected &&
-                                role != CustomRoles.Workhorse &&
-                                role != CustomRoles.Madmate &&
-                                role != CustomRoles.Charmed &&
-                                role != CustomRoles.Egoist &&
-                                role != CustomRoles.Rogue &&
-                                role != CustomRoles.TicketsStealer &&
-                                role != CustomRoles.Knighted &&
-                                role != CustomRoles.Lovers &&
-                                role != CustomRoles.Contagious
-                            )
-                        )
-                    ))
-                    {
-                        Utils.SendMessage(GetString("GuessAdtRole"), pc.PlayerId);
-                        return true;
-                    }
-                }
-
 
                 if (pc.PlayerId == target.PlayerId)
                 {
@@ -338,22 +304,22 @@ public static class GuessManager
                     else pc.ShowPopUp(Utils.ColorString(Color.cyan, GetString("MessageFromKPD")) + "\n" + GetString("LaughToWhoGuessSelf"));
                     guesserSuicide = true;
                 }
-                else if (pc.Is(CustomRoles.NiceGuesser) && target.Is(CustomRoleTypes.Crewmate) && !Options.GGCanGuessCrew.GetBool() && !pc.Is(CustomRoles.Madmate)) 
-                { 
-                    guesserSuicide = true; 
-                    Logger.Msg($"{guesserSuicide}", "guesserSuicide1"); 
+                else if (pc.Is(CustomRoles.NiceGuesser) && target.Is(CustomRoleTypes.Crewmate) && !Options.GGCanGuessCrew.GetBool() && !pc.Is(CustomRoles.Madmate))
+                {
+                    guesserSuicide = true;
+                    Logger.Msg($"{guesserSuicide}", "guesserSuicide1");
                 }
-                else if (pc.Is(CustomRoles.EvilGuesser) && target.Is(CustomRoleTypes.Impostor) && !Options.EGCanGuessImp.GetBool()) 
-                { 
-                    guesserSuicide = true; 
-                    Logger.Msg($"{guesserSuicide}", "guesserSuicide2"); 
+                else if (pc.Is(CustomRoles.EvilGuesser) && target.Is(CustomRoleTypes.Impostor) && !Options.EGCanGuessImp.GetBool())
+                {
+                    guesserSuicide = true;
+                    Logger.Msg($"{guesserSuicide}", "guesserSuicide2");
                 }
                 //  else if (pc.Is(CustomRoles.Guesser)/* && role.IsImpostor() && !Options.GCanGuessImp.GetBool()*/) guesserSuicide = true;
                 //   else if (pc.Is(CustomRoles.Guesser)/* && role.IsCrewmate() && !pc.Is(CustomRoles.Madmate) && !Options.GCanGuessCrew.GetBool() */) guesserSuicide = true;
-                else if (!target.Is(role)) 
-                { 
-                    guesserSuicide = true; 
-                    Logger.Msg($"{guesserSuicide}", "guesserSuicide3"); 
+                else if (!target.Is(role))
+                {
+                    guesserSuicide = true;
+                    Logger.Msg($"{guesserSuicide}", "guesserSuicide3");
                 }
 
                 Logger.Info($"{pc.GetNameWithRole()} guessed {target.GetNameWithRole()}", "Guesser");
@@ -557,22 +523,22 @@ public static class GuessManager
         public static void Postfix(MeetingHud __instance)
         {
 
-          /*if (!Options.GuesserMode.GetBool())
-            {
-                foreach (var subRole in PlayerControl.LocalPlayer.GetCustomSubRoles())
-                {
-                    switch (subRole)
-                    {
+            /*if (!Options.GuesserMode.GetBool())
+              {
+                  foreach (var subRole in PlayerControl.LocalPlayer.GetCustomSubRoles())
+                  {
+                      switch (subRole)
+                      {
 
-                        case CustomRoles.Guesser:
-                        {
-                            if (PlayerControl.LocalPlayer.IsAlive())
-                                CreateGuesserButton(__instance);
-                        }
-                        break;   
-                    }
-                }
-            }*/
+                          case CustomRoles.Guesser:
+                          {
+                              if (PlayerControl.LocalPlayer.IsAlive())
+                                  CreateGuesserButton(__instance);
+                          }
+                          break;   
+                      }
+                  }
+              }*/
 
             if (Options.GuesserMode.GetBool())
             {
@@ -722,9 +688,9 @@ public static class GuessManager
                 }
                 else if (Options.GuesserMode.GetBool())
                 {
-                    if (!Options.CrewCanGuessCrew.GetBool() &&  PlayerControl.LocalPlayer.Is(CustomRoleTypes.Crewmate) && index == 0) continue;
+                    if (!Options.CrewCanGuessCrew.GetBool() && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Crewmate) && index == 0) continue;
                     if (!Options.ImpCanGuessImp.GetBool() && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Impostor) && index == 1) continue;
-                //    if (index == 2) continue;
+                    //    if (index == 2) continue;
                     if (!Options.CanGuessAddons.GetBool() && index == 3) continue;
 
                 }
@@ -734,21 +700,7 @@ public static class GuessManager
                 Teambutton.FindChild("ControllerHighlight").gameObject.SetActive(false);
                 Transform TeambuttonMask = UnityEngine.Object.Instantiate(maskTemplate, TeambuttonParent);
                 TextMeshPro Teamlabel = UnityEngine.Object.Instantiate(textTemplate, Teambutton);
-                //Type destroyableSingletonType = typeof(DestroyableSingleton<>).MakeGenericType(typeof(HatManager));
-                //object destroyableSingletonInstance = destroyableSingletonType.GetProperty("Instance")?.GetValue(null);
-                //string nameplateId = "nameplate_NoPlate";
-                //MethodInfo getNamePlateByIdMethod = destroyableSingletonType.GetMethod("GetNamePlateById");
-                //object nameplateData = getNamePlateByIdMethod?.Invoke(destroyableSingletonInstance, new object[] { nameplateId });
-
-                //Type nameplateDataType = nameplateData.GetType();
-                //object nameplateViewData = nameplateDataType.GetProperty("viewData")?.GetValue(nameplateData);
-                //object viewData = nameplateViewData?.GetType().GetProperty("viewData")?.GetValue(nameplateViewData);
-                //Sprite sprite = viewData?.GetType().GetProperty("Image")?.GetValue(viewData) as Sprite;
-                //nameplateDataType.GetProperty("Image")?.SetValue(nameplateData, sprite);
-                Teambutton.GetComponent<SpriteRenderer>().sprite = Teambutton.GetType()
-                    .GetProperty("Image", BindingFlags.Instance | BindingFlags.Public)
-                    .GetValue(Teambutton) as Sprite;
-                //Teambutton.GetComponent<SpriteRenderer>().sprite = DestroyableSingleton<HatManager>.Instance.GetNamePlateById("nameplate_NoPlate")?.viewData?.viewData?.Image;
+                Teambutton.GetComponent<SpriteRenderer>().sprite = DestroyableSingleton<HatManager>.Instance.GetNamePlateById("nameplate_NoPlate")?.viewData?.viewData?.Image;
                 RoleSelectButtons.Add((CustomRoleTypes)index, Teambutton.GetComponent<SpriteRenderer>());
                 TeambuttonParent.localPosition = new(-2.75f + (tabCount++ * 1.73f), 2.225f, -200);
                 TeambuttonParent.localScale = new(0.53f, 0.53f, 1f);
@@ -757,7 +709,7 @@ public static class GuessManager
                     CustomRoleTypes.Crewmate => new Color32(140, 255, 255, byte.MaxValue),
                     CustomRoleTypes.Impostor => new Color32(255, 25, 25, byte.MaxValue),
                     CustomRoleTypes.Neutral => new Color32(127, 140, 141, byte.MaxValue),
-             //       CustomRoleTypes.Madmate => new Color32(255, 25, 25, byte.MaxValue),
+                    //       CustomRoleTypes.Madmate => new Color32(255, 25, 25, byte.MaxValue),
                     CustomRoleTypes.Addon => new Color32(255, 154, 206, byte.MaxValue),
                     _ => throw new NotImplementedException(),
                 };
@@ -809,21 +761,7 @@ public static class GuessManager
                 Pagebutton.FindChild("ControllerHighlight").gameObject.SetActive(false);
                 Transform PagebuttonMask = UnityEngine.Object.Instantiate(maskTemplate, PagebuttonParent);
                 TextMeshPro Pagelabel = UnityEngine.Object.Instantiate(textTemplate, Pagebutton);
-                //Type destroyableSingletonType = typeof(DestroyableSingleton<>).MakeGenericType(typeof(HatManager));
-                //object destroyableSingletonInstance = destroyableSingletonType.GetProperty("Instance")?.GetValue(null);
-                //string nameplateId = "nameplate_NoPlate";
-                //MethodInfo getNamePlateByIdMethod = destroyableSingletonType.GetMethod("GetNamePlateById");
-                //object nameplateData = getNamePlateByIdMethod?.Invoke(destroyableSingletonInstance, new object[] { nameplateId });
-
-                //Type nameplateDataType = nameplateData.GetType();
-                //object nameplateViewData = nameplateDataType.GetProperty("viewData")?.GetValue(nameplateData);
-                //object viewData = nameplateViewData?.GetType().GetProperty("viewData")?.GetValue(nameplateViewData);
-                //Sprite sprite = viewData?.GetType().GetProperty("Image")?.GetValue(viewData) as Sprite;
-                //nameplateDataType.GetProperty("Image")?.SetValue(nameplateData, sprite);
-                Pagebutton.GetComponent<SpriteRenderer>().sprite = Pagebutton.GetType()
-                    .GetProperty("Image", BindingFlags.Instance | BindingFlags.Public)
-                    .GetValue(Pagebutton) as Sprite;
-                //Pagebutton.GetComponent<SpriteRenderer>().sprite = DestroyableSingleton<HatManager>.Instance.GetNamePlateById("nameplate_NoPlate")?.viewData?.viewData?.Image;
+                Pagebutton.GetComponent<SpriteRenderer>().sprite = DestroyableSingleton<HatManager>.Instance.GetNamePlateById("nameplate_NoPlate")?.viewData?.viewData?.Image;
                 PagebuttonParent.localPosition = IsNext ? new(3.535f, -2.2f, -200) : new(-3.475f, -2.2f, -200);
                 PagebuttonParent.localScale = new(0.55f, 0.55f, 1f);
                 Pagelabel.color = Color.white;
@@ -851,12 +789,12 @@ public static class GuessManager
             int ind = 0;
             foreach (CustomRoles role in Enum.GetValues(typeof(CustomRoles)))
             {
-                if (role.IsVanilla() || 
-                    role is CustomRoles.GM 
-                    or CustomRoles.NotAssigned 
-                    or CustomRoles.KB_Normal 
-                    or CustomRoles.Marshall 
-                    or CustomRoles.Paranoia 
+                if (role.IsVanilla() ||
+                    role is CustomRoles.GM
+                    or CustomRoles.NotAssigned
+                    or CustomRoles.KB_Normal
+                    or CustomRoles.Marshall
+                    or CustomRoles.Paranoia
                     or CustomRoles.SuperStar
                     ) continue;
 
@@ -871,21 +809,8 @@ public static class GuessManager
                 button.FindChild("ControllerHighlight").gameObject.SetActive(false);
                 Transform buttonMask = UnityEngine.Object.Instantiate(maskTemplate, buttonParent);
                 TextMeshPro label = UnityEngine.Object.Instantiate(textTemplate, button);
-                //Type destroyableSingletonType = typeof(DestroyableSingleton<>).MakeGenericType(typeof(HatManager));
-                //object destroyableSingletonInstance = destroyableSingletonType.GetProperty("Instance")?.GetValue(null);
-                //string nameplateId = "nameplate_NoPlate";
-                //MethodInfo getNamePlateByIdMethod = destroyableSingletonType.GetMethod("GetNamePlateById");
-                //object nameplateData = getNamePlateByIdMethod?.Invoke(destroyableSingletonInstance, new object[] { nameplateId });
 
-                //Type nameplateDataType = nameplateData.GetType();
-                //object nameplateViewData = nameplateDataType.GetProperty("viewData")?.GetValue(nameplateData);
-                //object viewData = nameplateViewData?.GetType().GetProperty("viewData")?.GetValue(nameplateViewData);
-                //Sprite sprite = viewData?.GetType().GetProperty("Image")?.GetValue(viewData) as Sprite;
-                //nameplateDataType.GetProperty("Image")?.SetValue(nameplateData, sprite);
-                button.GetComponent<SpriteRenderer>().sprite = button.GetType()
-                    .GetProperty("Image", BindingFlags.Instance | BindingFlags.Public)
-                    .GetValue(button) as Sprite;
-                //button.GetComponent<SpriteRenderer>().sprite = DestroyableSingleton<HatManager>.Instance.GetNamePlateById("nameplate_NoPlate")?.viewData?.viewData?.Image;
+                button.GetComponent<SpriteRenderer>().sprite = DestroyableSingleton<HatManager>.Instance.GetNamePlateById("nameplate_NoPlate")?.viewData?.viewData?.Image;
                 if (!RoleButtons.ContainsKey(role.GetCustomRoleTypes()))
                 {
                     RoleButtons.Add(role.GetCustomRoleTypes(), new());
