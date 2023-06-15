@@ -441,9 +441,7 @@ class CheckMurderPatch
             return false;
 
         if (Jackal.ResetKillCooldownWhenSbGetKilled.GetBool() && !killer.Is(CustomRoles.Jackal) && !target.Is(CustomRoles.Jackal) && !GameStates.IsMeeting)
-        {
             Jackal.AfterPlayerDiedTask(killer);
-        }
 
         if (target.Is(CustomRoles.Lucky))
         {
