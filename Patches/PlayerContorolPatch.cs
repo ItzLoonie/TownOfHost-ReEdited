@@ -1778,6 +1778,8 @@ class FixedUpdatePatch
                 }
                 if (seer.Is(CustomRoles.EvilTracker)) Mark.Append(EvilTracker.GetTargetMark(seer, target));
                 if (seer.Is(CustomRoles.Tracker)) Mark.Append(Tracker.GetTargetMark(seer, target));
+                if (seer.Is(CustomRoles.Amor)) Mark.Append(Amor.GetLoversMark(seer, target));
+                
                 //タスクが終わりそうなSnitchがいるとき、インポスター/キル可能なニュートラルに警告が表示される
                 Mark.Append(Snitch.GetWarningArrow(seer, target));
 

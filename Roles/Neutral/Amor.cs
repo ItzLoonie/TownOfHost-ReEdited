@@ -17,7 +17,6 @@ namespace TOHE.Roles.Neutral
         private static OptionItem MatchmakeCooldown;
         private static OptionItem MatchmakeMax;
         public static OptionItem KnowTargetRole;
-        public static OptionItem TargetKnowOtherTarget;
         public static OptionItem LoversSuicide;
 
         public static void SetupCustomOption()
@@ -28,7 +27,6 @@ namespace TOHE.Roles.Neutral
             MatchmakeMax = IntegerOptionItem.Create(Id + 11, "VirusInfectMax", new(2, 4, 1), 2, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor])
                 .SetValueFormat(OptionFormat.Times);
             KnowTargetRole = BooleanOptionItem.Create(Id + 12, "VirusKnowTargetRole", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor]);
-            TargetKnowOtherTarget = BooleanOptionItem.Create(Id + 13, "VirusTargetKnowOtherTarget", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor]);
             LoversSuicide = BooleanOptionItem.Create(Id + 14, "LoversSuicide", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor]);
         }
 
@@ -98,11 +96,12 @@ namespace TOHE.Roles.Neutral
         {
             if (Lovers.Contains(player) && target.Is(CustomRoles.Amor)) return true;
             if (KnowTargetRole.GetBool() && player.Is(CustomRoles.Amor) && Lovers.Contains(target)) return true;
-            if (TargetKnowOtherTarget.GetBool() && Lovers.Contains(player) && Lovers.Contains(target)) return true;
             return false;
         }
 
         public static string GetMatchmakeLimit() => Utils.ColorString(MatchmakeLimit >= 1 ? Utils.GetRoleColor(CustomRoles.Amor) : Color.gray, $"({MatchmakeLimit})");
+
+        public static string GetLoversMark(PlayerControl seer, PlayerControl target) => Lovers.Any(a => a.PlayerId == target.PlayerId) ? Utils.ColorString(seer.GetRoleColor(), "♡") : "";
 
         public static void CheckLoversSuicide(byte deathId = 0x7f, bool isExiled = false)
         {

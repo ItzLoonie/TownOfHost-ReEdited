@@ -1335,6 +1335,11 @@ public static class Utils
                         TargetRoleText = $"<size={fontSize}>{Tracker.GetArrowAndLastRoom(seer, target)}</size>\r\n";
                 }
 
+                if (seer.Is(CustomRoles.Amor))
+                {
+                    TargetMark.Append(Amor.GetLoversMark(seer, target));
+                }
+
                 //RealNameを取得 なければ現在の名前をRealNamesに書き込む
                 string TargetPlayerName = target.GetRealName(isForMeeting);
 

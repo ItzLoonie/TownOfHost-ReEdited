@@ -886,6 +886,9 @@ class MeetingHudStartPatch
                 case CustomRoles.Tracker:
                     sb.Append(Tracker.GetTargetMark(seer, target));
                     break;
+                case CustomRoles.Amor:
+                    sb.Append(Amor.GetLoversMark(seer, target));
+                    break;
             }
 
             bool isLover = false;
