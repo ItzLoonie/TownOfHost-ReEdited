@@ -1518,9 +1518,6 @@ public static class Utils
             Lawyer.ChangeRoleByTarget(target);
 
         FixedUpdatePatch.LoversSuicide(target.PlayerId, onMeeting);
-
-        if (CustomRoles.Jackal.IsEnable())
-            Jackal.AfterPlayerDiedTask(target);
     }
     public static void ChangeInt(ref int ChangeTo, int input, int max)
     {
