@@ -1523,6 +1523,7 @@ public static class Utils
             Lawyer.ChangeRoleByTarget(target);
 
         FixedUpdatePatch.LoversSuicide(target.PlayerId, onMeeting);
+        Amor.LoversSuicide(target.PlayerId, onMeeting);
 
         if (CustomRoles.Jackal.IsEnable())
             Jackal.AfterPlayerDiedTask(target);

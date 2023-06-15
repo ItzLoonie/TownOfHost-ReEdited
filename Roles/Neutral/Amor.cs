@@ -11,7 +11,7 @@ namespace TOHE.Roles.Neutral
         private static readonly int Id = 7772269;
         private static List<byte> playerIdList = new();
         private static int MatchmakeLimit = new();
-        public static List<byte> Lovers = new();
+        public static List<PlayerControl> Lovers = new();
 
         private static OptionItem MatchmakeCooldown;
         private static OptionItem MatchmakeMax;
@@ -68,16 +68,16 @@ namespace TOHE.Roles.Neutral
                 return;
             }
 
-            Lovers.Add(target.PlayerId);
+            Lovers.Add(target);
 
-            var aliveLovers = Main.AllAlivePlayerControls.Where(a => Lovers.Contains(a.PlayerId)).ToList();
+            Lovers = Lovers.Where(x => x.IsAlive()).ToList();
 
-            MatchmakeLimit = MatchmakeMax.GetInt() - aliveLovers.Count;
+            MatchmakeLimit = MatchmakeMax.GetInt() - Lovers.Count;
             SendRPC();
 
-            if (aliveLovers.Count == MatchmakeMax.GetInt())
+            if (Lovers.Count == MatchmakeMax.GetInt())
             {
-                foreach (var lover in aliveLovers)
+                foreach (var lover in Lovers)
                 {
                     lover.RpcSetCustomRole(CustomRoles.Lovers);
                     
@@ -90,12 +90,41 @@ namespace TOHE.Roles.Neutral
 
         public static bool KnowRole(PlayerControl player, PlayerControl target)
         {
-            if (Lovers.Contains(player.PlayerId) && target.Is(CustomRoles.Amor)) return true;
-            if (KnowTargetRole.GetBool() && player.Is(CustomRoles.Amor) && Lovers.Contains(target.PlayerId)) return true;
-            if (TargetKnowOtherTarget.GetBool() && Lovers.Contains(player.PlayerId) && Lovers.Contains(target.PlayerId)) return true;
+            if (Lovers.Contains(player) && target.Is(CustomRoles.Amor)) return true;
+            if (KnowTargetRole.GetBool() && player.Is(CustomRoles.Amor) && Lovers.Contains(target)) return true;
+            if (TargetKnowOtherTarget.GetBool() && Lovers.Contains(player) && Lovers.Contains(target)) return true;
             return false;
         }
 
         public static string GetMatchmakeLimit() => Utils.ColorString(MatchmakeLimit >= 1 ? Utils.GetRoleColor(CustomRoles.Amor) : Color.gray, $"({MatchmakeLimit})");
+
+        public static void LoversSuicide(byte deathId = 0x7f, bool isExiled = false)
+        {
+            if (Options.LoverSuicide.GetBool() && CustomRoles.Lovers.IsEnable())
+            {
+                foreach (var loversPlayer in Lovers)
+                {
+                    //生きていて死ぬ予定でなければスキップ
+                    if (!loversPlayer.Data.IsDead && loversPlayer.PlayerId != deathId) continue;
+
+                    foreach (var partnerPlayer in Lovers)
+                    {
+                        //本人ならスキップ
+                        if (loversPlayer.PlayerId == partnerPlayer.PlayerId) continue;
+
+                        //残った恋人を全て殺す(2人以上可)
+                        //生きていて死ぬ予定もない場合は心中
+                        if (partnerPlayer.PlayerId != deathId && !partnerPlayer.Data.IsDead)
+                        {
+                            Main.PlayerStates[partnerPlayer.PlayerId].deathReason = PlayerState.DeathReason.FollowingSuicide;
+                            if (isExiled)
+                                CheckForEndVotingPatch.TryAddAfterMeetingDeathPlayers(PlayerState.DeathReason.FollowingSuicide, partnerPlayer.PlayerId);
+                            else
+                                partnerPlayer.RpcMurderPlayerV3(partnerPlayer);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
