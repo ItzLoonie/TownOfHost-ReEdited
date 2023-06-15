@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TOHE.Modules;
+using TOHE.Roles.Crewmate;
 using TOHE.Roles.Neutral;
 using UnityEngine;
 
@@ -260,6 +261,8 @@ public class TaskState
                 else player.Notify(string.Format(Translator.GetString("SpeedBoosterTaskDone"), Main.AllPlayerSpeed[player.PlayerId].ToString("0.0#####")));
             }
 
+
+
             /*
             //叛徒修理搞破坏
             if (player.IsAlive()
@@ -340,6 +343,8 @@ public class TaskState
                 CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Workaholic); //爆破で勝利した人も勝利させる
                 CustomWinnerHolder.WinnerIds.Add(player.PlayerId);
             }
+
+            Merchant.OnTaskFinished(player);
 
             //船鬼要抽奖啦
             if (player.Is(CustomRoles.Crewpostor))
