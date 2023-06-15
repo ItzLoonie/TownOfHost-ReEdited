@@ -723,7 +723,7 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.ShapeshifterTOHE])
             .SetValueFormat(OptionFormat.Seconds);
 
-        TextOptionItem.Create(909090_1, "RoleType.ImpKilling", TabGroup.ImpostorRoles) // KILLING
+        TextOptionItem.Create(909096_1, "RoleType.ImpKilling", TabGroup.ImpostorRoles) // KILLING
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 25, 25, byte.MaxValue));// KILLING
         EvilTracker.SetupCustomOption();
@@ -1334,18 +1334,18 @@ public static class Options
         //==================================================================================================================================//
         //                                                AUTO HOST SETTINGS                                                                //
         //==================================================================================================================================//
-        TextOptionItem.Create(909096_0, "xV.AutoHost", TabGroup.OtherRoles)
+        TextOptionItem.Create(6090030, "xV.AutoHost", TabGroup.OtherRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 154, 206, byte.MaxValue));
 
         EnableGM = BooleanOptionItem.Create(100, "GM", false, TabGroup.OtherRoles, false)
             .SetColor(Utils.GetRoleColor(CustomRoles.GM))
             .SetHeader(true);
-        SuffixMode = StringOptionItem.Create(1_000_001, "SuffixMode", suffixModes, 0, TabGroup.OtherRoles, true)
+        SuffixMode = StringOptionItem.Create(6090031, "SuffixMode", suffixModes, 0, TabGroup.OtherRoles, true)
             .SetHeader(true);
-        ApplyModeratorList = BooleanOptionItem.Create(6090072, "ApplyModeratorList", false, TabGroup.OtherRoles, false)
+        ApplyModeratorList = BooleanOptionItem.Create(6090032, "ApplyModeratorList", false, TabGroup.OtherRoles, false)
             .SetHeader(true);
-        AllowAllowlist = BooleanOptionItem.Create(6090070, "AllowAllowlist", false, TabGroup.OtherRoles, false);
+        AllowAllowlist = BooleanOptionItem.Create(6090030, "AllowAllowlist", false, TabGroup.OtherRoles, false);
 
         //==================================================================================================================================//
         //                                             AUTO HOST SETTINGS END                                                               //
