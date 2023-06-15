@@ -1,7 +1,7 @@
 using HarmonyLib;
-using Newtonsoft.Json.Linq;
+//using Newtonsoft.Json.Linq;
 using System;
-using System.Globalization;
+//using System.Globalization;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
@@ -16,8 +16,8 @@ namespace TOHE;
 [HarmonyPatch]
 public class ModUpdater
 {
-    private static readonly string URL_2018k = "http://api.2018k.cn";
-    private static readonly string URL_Github = "https://api.github.com/repos/Loonie-Toons/TOHE-Restored";
+    //private static readonly string URL_2018k = "http://api.2018k.cn";
+    //private static readonly string URL_Github = "https://api.github.com/repos/Loonie-Toons/TOHE-Restored";
     public static bool hasUpdate = false;
     public static bool forceUpdate = false;
     public static bool isBroken = false;
@@ -34,7 +34,7 @@ public class ModUpdater
     [HarmonyPriority(2)]
     public static void Start_Prefix(MainMenuManager __instance)
     {
-        NewVersionCheck();
+        /*NewVersionCheck();
         DeleteOldFiles();
         InfoPopup = UnityEngine.Object.Instantiate(Twitch.TwitchManager.Instance.TwitchPopup);
         InfoPopup.name = "InfoPopup";
@@ -56,7 +56,7 @@ public class ModUpdater
             Logger.Info("forceupdate: " + forceUpdate, "CheckRelease");
             Logger.Info("downloadUrl: " + downloadUrl, "CheckRelease");
             Logger.Info("latestVersionl: " + latestVersion, "CheckRelease");
-        }
+        }*/
         
     }
 
@@ -84,7 +84,7 @@ public class ModUpdater
         return result;
     }
 
-    public static Task<bool> CheckRelease(bool onlyInfo = false)
+    /*public static Task<bool> CheckRelease(bool onlyInfo = false)
     {
         Logger.Warn("开始从2018k检查更新", "CheckRelease");
         string url = UrlSetId(UrlSetCheck(URL_2018k)) + "&version=" + Main.PluginVersion;
@@ -213,7 +213,7 @@ public class ModUpdater
             return false;
         }
         return true;
-    }
+    }*/
     public static void StartUpdate(string url)
     {
         ShowPopup(GetString("updatePleaseWait"), StringNames.Cancel, true, false);
@@ -239,7 +239,7 @@ public class ModUpdater
         }
         return true;
     }
-    public static bool BackOldDLL()
+    /*public static bool BackOldDLL()
     {
         try
         {
@@ -274,7 +274,7 @@ public class ModUpdater
             Logger.Error($"清除更新残留失败\n{e}", "DeleteOldFiles");
         }
         return;
-    }
+    }*/
     private static readonly object downloadLock = new();
     public static async Task<bool> DownloadDLL(string url)
     {

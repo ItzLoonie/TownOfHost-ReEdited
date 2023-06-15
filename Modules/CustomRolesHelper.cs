@@ -19,7 +19,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Snitch => CustomRoles.Crewmate,
                 CustomRoles.Marshall => CustomRoles.Crewmate,
                 CustomRoles.SabotageMaster => CustomRoles.Engineer,
-                CustomRoles.Mafia => CustomRoles.Impostor,
+                CustomRoles.Mafia => Options.LegacyMafia.GetBool() ? CustomRoles.Shapeshifter : CustomRoles.Impostor,
                 CustomRoles.Terrorist => CustomRoles.Engineer,
                 CustomRoles.Executioner => CustomRoles.Crewmate,
                 CustomRoles.Juggernaut => CustomRoles.Impostor,
@@ -208,7 +208,6 @@ internal static class CustomRolesHelper
             CustomRoles.Trapper or
             CustomRoles.Brakar or
             CustomRoles.Oblivious or
-            CustomRoles.Guesser or
             CustomRoles.Bewilder or
             CustomRoles.Knighted or
             CustomRoles.Workhorse or
@@ -225,8 +224,6 @@ internal static class CustomRolesHelper
             CustomRoles.Infected or
             CustomRoles.Onbound or
             CustomRoles.Contagious or
-            CustomRoles.Bait or
-            CustomRoles.Trapper or
             CustomRoles.Guesser or
             CustomRoles.Rogue or
             CustomRoles.Unreportable or
@@ -529,8 +526,9 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Lovers && pc.Is(CustomRoles.Provocateur)) return false;
         if (role is CustomRoles.Oblivious && pc.Is(CustomRoles.Bloodhound)) return false;
         if (role is CustomRoles.Brakar && pc.Is(CustomRoles.Dictator)) return false;
-        if (role is CustomRoles.Luckey && pc.Is(CustomRoles.Lucky)) return false;
+        if (role is CustomRoles.Lucky && pc.Is(CustomRoles.Luckey)) return false;
         if (role is CustomRoles.Fool && ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeFool.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeFool.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeFool.GetBool()) || pc.Is(CustomRoles.SabotageMaster) || pc.Is(CustomRoles.GuardianAngelTOHE))) return false;
+        if (role is CustomRoles.Bloodhound && pc.Is(CustomRoles.Oblivious)) return false;
         return true;
     }
     public static RoleTypes GetRoleTypes(this CustomRoles role)

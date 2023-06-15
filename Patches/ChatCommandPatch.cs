@@ -2,6 +2,7 @@ using Assets.CoreScripts;
 using HarmonyLib;
 using Hazel;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,14 @@ namespace TOHE;
 [HarmonyPatch(typeof(ChatController), nameof(ChatController.SendChat))]
 internal class ChatCommands
 {
+    // Function to check if a player is a moderator
+    private static bool IsPlayerModerator(string friendCode)
+    {
+        var friendCodesFilePath = @"./TOHE_DATA/Moderators.txt";
+        var friendCodes = File.ReadAllLines(friendCodesFilePath);
+        return friendCodes.Contains(friendCode);
+    }
+
     public static List<string> ChatHistory = new();
 
     public static bool Prefix(ChatController __instance)
@@ -243,6 +252,59 @@ internal class ChatCommands
                         Utils.SendMessage(args.Skip(1).Join(delimiter: " "), title: $"<color=#ff0000>{GetString("MessageFromTheHost")}</color>");
                     break;
 
+            case "/kick":
+            canceled = true;
+                // Check if the kick command is enabled in the settings
+                if (Options.ApplyModeratorList.GetValue() == 0)
+                {
+                    Utils.SendMessage(GetString("KickCommandDisabled"), PlayerControl.LocalPlayer.PlayerId);
+                    break;
+                }
+
+                // Check if the player has the necessary privileges to use the command
+                if (!IsPlayerModerator(PlayerControl.LocalPlayer.FriendCode))
+                {
+                    Utils.SendMessage(GetString("KickCommandNoAccess"), PlayerControl.LocalPlayer.PlayerId);
+                    break;
+                }
+
+                subArgs = args.Length < 2 ? "" : args[1];
+                if (string.IsNullOrEmpty(subArgs) || !byte.TryParse(subArgs, out byte kickPlayerId))
+                {
+                    Utils.SendMessage(GetString("KickCommandInvalidID"), PlayerControl.LocalPlayer.PlayerId);
+                    break;
+                }
+
+                if (kickPlayerId == 0)
+                {
+                    Utils.SendMessage(GetString("KickCommandKickHost"), PlayerControl.LocalPlayer.PlayerId);
+                    break;
+                }
+
+                var kickedPlayer = Utils.GetPlayerById(kickPlayerId);
+                if (kickedPlayer == null)
+                {
+                    Utils.SendMessage(GetString("KickCommandInvalidID"), PlayerControl.LocalPlayer.PlayerId);
+                    break;
+                }
+
+                // Prevent moderators from kicking other moderators
+                if (IsPlayerModerator(kickedPlayer.FriendCode))
+                {
+                    Utils.SendMessage(GetString("KickCommandKickMod"), PlayerControl.LocalPlayer.PlayerId);
+                    break;
+                }
+
+                // Kick the specified player
+                AmongUsClient.Instance.KickPlayer(kickedPlayer.GetClientId(), true);
+                string kickedPlayerName = kickedPlayer.GetRealName();
+                string textToSend = $"{kickedPlayerName} {GetString("KickCommandKicked")}";
+                if (GameStates.IsInGame)
+                {
+                    textToSend += $"{GetString("KickCommandKickedRole")} {GetString(kickedPlayer.GetCustomRole().ToString())}";
+                }
+                Utils.SendMessage(textToSend);
+                break;
                 case "/exe":
                     canceled = true;
                     if (GameStates.IsLobby)
@@ -603,7 +665,7 @@ internal class ChatCommands
                     {
                         if (devMark == "▲") Utils.SendMessage(string.Format(GetString("Message.YTPlanSelected"), roleName), playerId);
                         else Utils.SendMessage(string.Format(GetString("Message.YTPlanSelectFailed"), roleName), playerId);
-                        return;
+                        //return;
                     }
                     if (devMark == "▲")
                     {
@@ -611,7 +673,7 @@ internal class ChatCommands
                         Main.DevRole.Remove(pid);
                         Main.DevRole.Add(pid, rl);
                     }
-                    //if (isUp) return;
+                    if (isUp) return;
                 }
                 var sb = new StringBuilder();
                 sb.Append(devMark + roleName + Utils.GetRoleMode(rl) + GetString($"{rl}InfoLong"));
@@ -748,6 +810,58 @@ internal class ChatCommands
                 {
                     Utils.SendMessage(string.Format(GetString("SureUse.quit"), cid), player.PlayerId);
                 }
+                break;
+            case "/kick":
+                // Check if the kick command is enabled in the settings
+                if (Options.ApplyModeratorList.GetValue() == 0)
+                {
+                    Utils.SendMessage(GetString("KickCommandDisabled"), player.PlayerId);
+                    break;
+                }
+
+                // Check if the player has the necessary privileges to use the command
+                if (!IsPlayerModerator(player.FriendCode))
+                {
+                    Utils.SendMessage(GetString("KickCommandNoAccess"), player.PlayerId);
+                    break;
+                }
+
+                subArgs = args.Length < 2 ? "" : args[1];
+                if (string.IsNullOrEmpty(subArgs) || !byte.TryParse(subArgs, out byte kickPlayerId))
+                {
+                    Utils.SendMessage(GetString("KickCommandInvalidID"), player.PlayerId);
+                    break;
+                }
+
+                if (kickPlayerId == 0)
+                {
+                    Utils.SendMessage(GetString("KickCommandKickHost"), player.PlayerId);
+                    break;
+                }
+
+                var kickedPlayer = Utils.GetPlayerById(kickPlayerId);
+                if (kickedPlayer == null)
+                {
+                    Utils.SendMessage(GetString("KickCommandInvalidID"), player.PlayerId);
+                    break;
+                }
+
+                // Prevent moderators from kicking other moderators
+                if (IsPlayerModerator(kickedPlayer.FriendCode))
+                {
+                    Utils.SendMessage(GetString("KickCommandKickMod"), player.PlayerId);
+                    break;
+                }
+
+                // Kick the specified player
+                AmongUsClient.Instance.KickPlayer(kickedPlayer.GetClientId(), true);
+                string kickedPlayerName = kickedPlayer.GetRealName();
+                string textToSend = $"{kickedPlayerName} {GetString("KickCommandKicked")}";
+                if (GameStates.IsInGame)
+                {
+                    textToSend += $"{GetString("KickCommandKickedRole")} {GetString(kickedPlayer.GetCustomRole().ToString())}";
+                }
+                Utils.SendMessage(textToSend);
                 break;
 
             case "/xf":

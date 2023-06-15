@@ -1,15 +1,9 @@
 ﻿namespace TOHE.Roles.Crewmate
 {
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Hazel;
-    using Il2CppSystem.Runtime.Remoting.Messaging;
-    using MS.Internal.Xml.XPath;
     using UnityEngine;
     using static TOHE.Options;
     using static TOHE.Translator;
-    using static UnityEngine.GraphicsBuffer;
 
     public static class Tracker
     {
@@ -18,8 +12,10 @@
         private static List<byte> playerIdList = new();
 
         private static OptionItem TrackLimitOpt;
-        private static OptionItem CanSeeLastRoomInMeeting;
+        private static OptionItem OptionCanSeeLastRoomInMeeting;
         public static OptionItem HideVote;
+
+        public static bool CanSeeLastRoomInMeeting;
 
         private static Dictionary<byte, int> TrackLimit = new();
         public static Dictionary<byte, byte> TrackerTarget = new();
@@ -31,7 +27,7 @@
             SetupRoleOptions(Id, TabGroup.CrewmateRoles, CustomRoles.Tracker);
             TrackLimitOpt = IntegerOptionItem.Create(Id + 10, "DivinatorSkillLimit", new(1, 990, 1), 5, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Tracker])
                 .SetValueFormat(OptionFormat.Times);
-            CanSeeLastRoomInMeeting = BooleanOptionItem.Create(Id + 11, "EvilTrackerCanSeeLastRoomInMeeting", true, TabGroup.CrewmateRoles, false)
+            OptionCanSeeLastRoomInMeeting = BooleanOptionItem.Create(Id + 11, "EvilTrackerCanSeeLastRoomInMeeting", true, TabGroup.CrewmateRoles, false)
                 .SetParent(CustomRoleSpawnChances[CustomRoles.Tracker]);
             HideVote = BooleanOptionItem.Create(Id + 12, "TrackerHideVote", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Tracker]);
         }
@@ -41,6 +37,7 @@
             TrackLimit = new();
             TrackerTarget = new();
             msgToSend = new();
+            CanSeeLastRoomInMeeting = OptionCanSeeLastRoomInMeeting.GetBool();
         }
         public static void Add(byte playerId)
         {
@@ -54,7 +51,7 @@
 
         public static void OnReportDeadBody()
         {
-            if (!CanSeeLastRoomInMeeting.GetBool()) return;
+            if (!OptionCanSeeLastRoomInMeeting.GetBool()) return;
 
             foreach (var pc in playerIdList)
             {
@@ -70,11 +67,11 @@
 
                 if (msgToSend.ContainsKey(pc))
                 {
-                    msgToSend[pc] = string.Format(Translator.GetString("TrackerLastRoomMessage"), room);
+                    msgToSend[pc] = string.Format(GetString("TrackerLastRoomMessage"), room);
                 }
                 else
                 {
-                    msgToSend.Add(pc, string.Format(Translator.GetString("TrackerLastRoomMessage"), room));
+                    msgToSend.Add(pc, string.Format(GetString("TrackerLastRoomMessage"), room));
                 }
 
                 
@@ -105,6 +102,20 @@
             if (target != null && seer.PlayerId != target.PlayerId) return "";
             if (GameStates.IsMeeting) return "";
             return Utils.ColorString(Color.white, TargetArrow.GetArrows(seer, TrackerTarget[seer.PlayerId]));
+        }
+
+        public static bool IsTrackTarget(PlayerControl seer, PlayerControl target)
+            => seer.IsAlive() && playerIdList.Contains(seer.PlayerId)
+                && TrackerTarget[seer.PlayerId] == target.PlayerId
+                && target.IsAlive();
+
+        public static string GetArrowAndLastRoom(PlayerControl seer, PlayerControl target)
+        {
+            string text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Tracker), TargetArrow.GetArrows(seer, target.PlayerId));
+            var room = Main.PlayerStates[target.PlayerId].LastRoom;
+            if (room == null) text += Utils.ColorString(Color.gray, "@" + GetString("FailToTrack"));
+            else text += Utils.ColorString(Utils.GetRoleColor(CustomRoles.Tracker), "@" + GetString(room.RoomId.ToString()));
+            return text;
         }
     }
 }

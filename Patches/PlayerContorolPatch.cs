@@ -14,6 +14,7 @@ using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
 using static TOHE.Translator;
+
 namespace TOHE;
 
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CheckProtect))]
@@ -1542,6 +1543,7 @@ class FixedUpdatePatch
                     Utils.ApplySuffix(__instance);
             }
         }
+
         //LocalPlayer専用
         if (__instance.AmOwner)
         {
@@ -1557,6 +1559,7 @@ class FixedUpdatePatch
         //役職テキストの表示
         var RoleTextTransform = __instance.cosmetics.nameText.transform.Find("RoleText");
         var RoleText = RoleTextTransform.GetComponent<TMPro.TextMeshPro>();
+
         if (RoleText != null && __instance != null && !lowLoad)
         {
             if (GameStates.IsLobby)
@@ -1574,6 +1577,7 @@ class FixedUpdatePatch
             if (GameStates.IsInGame)
             {
                 var RoleTextData = Utils.GetRoleText(PlayerControl.LocalPlayer.PlayerId, __instance.PlayerId);
+
                 //if (Options.CurrentGameMode == CustomGameMode.HideAndSeek)
                 //{
                 //    var hasRole = main.AllPlayerCustomRoles.TryGetValue(__instance.PlayerId, out var role);
@@ -1615,6 +1619,7 @@ class FixedUpdatePatch
                     RoleText.text = Farseer.RandomRole[PlayerControl.LocalPlayer.PlayerId];
                     RoleText.text += Farseer.GetTaskState();
                 }
+
                 if (!AmongUsClient.Instance.IsGameStarted && AmongUsClient.Instance.NetworkMode != NetworkModes.FreePlay)
                 {
                     RoleText.enabled = false; //ゲームが始まっておらずフリープレイでなければロールを非表示
@@ -1672,13 +1677,18 @@ class FixedUpdatePatch
                     if (target.Is(CustomRoles.Sidekick)) //targetがタスクを終わらせたマッドスニッチ
                         Mark.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jackal), " ♥")); //targetにマーク付与
                 }
+                if (seer.Is(CustomRoles.Monarch)) //seerがインポスター
+                {
+                    if (target.Is(CustomRoles.Knighted)) //targetがタスクを終わらせたマッドスニッチ
+                        Mark.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Knighted), " 亗")); //targetにマーク付与
+                }
 
                 if (seer.Is(CustomRoles.Sidekick)) //seerがインポスター
                 {
                     if (target.Is(CustomRoles.Sidekick) && Options.SidekickKnowOtherSidekick.GetBool()) //targetがタスクを終わらせたマッドスニッチ
                         Mark.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jackal), " ♥")); //targetにマーク付与
                 }
-                if (seer.GetCustomRole().IsCrewmate() && seer.Is(CustomRoles.Madmate) && Marshall.OptionMadmateCanFindMarshall.GetBool()) //seerがインポスター
+                if (seer.GetCustomRole().IsCrewmate() && seer.Is(CustomRoles.Madmate) && Marshall.MadmateCanFindMarshall) //seerがインポスター
                 {
                     if (target.Is(CustomRoles.Marshall) && target.GetPlayerTaskState().IsTaskFinished) //targetがタスクを終わらせたマッドスニッチ
                         Mark.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Marshall), "★")); //targetにマーク付与
@@ -1786,6 +1796,7 @@ class FixedUpdatePatch
                 {
                     Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Lovers)}>♡</color>");
                 }
+
 
                 //矢印オプションありならタスクが終わったスニッチはインポスター/キル可能なニュートラルの方角がわかる
                 Suffix.Append(Snitch.GetSnitchArrow(seer, target));
@@ -2188,7 +2199,7 @@ class PlayerControlSetRolePatch
             {
                 var self = seer.PlayerId == target.PlayerId;
                 var seerIsKiller = seer.Is(CustomRoleTypes.Impostor) || Main.ResetCamPlayerList.Contains(seer.PlayerId);
-                if ((self && targetIsKiller) || (!seerIsKiller && target.Is(CustomRoleTypes.Impostor)) || seer.Is(CustomRoles.NSerialKiller))
+                if ((self && targetIsKiller) || (!seerIsKiller && target.Is(CustomRoleTypes.Impostor)) || seer.Is(CustomRoles.NSerialKiller) || seer.Is(CustomRoles.Juggernaut) || seer.Is(CustomRoles.Wraith) || seer.Is(CustomRoles.NWitch) || seer.Is(CustomRoles.Poisoner) || seer.Is(CustomRoles.Infectious) || seer.Is(CustomRoles.Monarch) || seer.Is(CustomRoles.Pursuer) || seer.Is(CustomRoles.Virus))
                 {
                     ghostRoles[seer] = RoleTypes.ImpostorGhost;
                 }

@@ -87,7 +87,7 @@ public static class Monarch
     public static string GetKnightLimit() => Utils.ColorString(KnightLimit >= 1 ? Utils.GetRoleColor(CustomRoles.Monarch) : Color.gray, $"({KnightLimit})");
     public static bool CanBeKnighted(this PlayerControl pc)
     {
-        return pc != null && (!pc.GetCustomRole().IsNotKnightable())
+        return pc != null && (!pc.GetCustomRole().IsNotKnightable() && !pc.Is(CustomRoles.Knighted) && !pc.Is(CustomRoles.TicketsStealer))
         && !(
             false
             );
