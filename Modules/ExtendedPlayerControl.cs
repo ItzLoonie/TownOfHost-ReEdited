@@ -777,6 +777,9 @@ static class ExtendedPlayerControl
         return rangePlayers;
     }
     public static bool IsNeutralKiller(this PlayerControl player) => player.GetCustomRole().IsNK();
+    public static bool IsNeutralBenign(this PlayerControl player) => player.GetCustomRole().IsNB();
+    public static bool IsNeutralEvil(this PlayerControl player) => player.GetCustomRole().IsNC();
+    public static bool IsNeutralChaos(this PlayerControl player) => player.GetCustomRole().IsNC();
     public static bool IsNonNeutralKiller(this PlayerControl player) => player.GetCustomRole().IsNonNK();
     public static bool IsSnitchTarget(this PlayerControl player) => player.GetCustomRole().IsSnitchTarget();
     public static bool KnowDeathReason(this PlayerControl seer, PlayerControl target)
