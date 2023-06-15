@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Hazel;
+using MS.Internal.Xml.XPath;
 using UnityEngine;
 using static Il2CppSystem.Globalization.CultureInfo;
 using static TOHE.Options;
+using static TOHE.Translator;
 
 namespace TOHE.Roles.Neutral
 {
@@ -24,10 +26,10 @@ namespace TOHE.Roles.Neutral
             SetupSingleRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.Amor, 1, zeroOne: false);
             MatchmakeCooldown = FloatOptionItem.Create(Id + 10, "AmorMatchmakeCooldown", new(0f, 990f, 2.5f), 30f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor])
                 .SetValueFormat(OptionFormat.Seconds);
-            MatchmakeMax = IntegerOptionItem.Create(Id + 11, "VirusInfectMax", new(2, 4, 1), 2, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor])
+            MatchmakeMax = IntegerOptionItem.Create(Id + 11, "AmorMatchmakeMax", new(2, 4, 1), 2, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor])
                 .SetValueFormat(OptionFormat.Times);
-            KnowTargetRole = BooleanOptionItem.Create(Id + 12, "VirusKnowTargetRole", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor]);
-            LoversSuicide = BooleanOptionItem.Create(Id + 13, "LoversSuicide", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor]);
+            KnowTargetRole = BooleanOptionItem.Create(Id + 12, "AmorKnowLoverRole", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor]);
+            LoversSuicide = BooleanOptionItem.Create(Id + 13, "AmorLoversSuicide", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor]);
         }
 
         public static void Init()
@@ -58,22 +60,28 @@ namespace TOHE.Roles.Neutral
             MatchmakeLimit = reader.ReadInt32();
         }
 
-        public static void OnCheckMurder(PlayerControl target)
+        public static void OnCheckMurder(PlayerControl player, PlayerControl target)
         {
             if (Lovers.Count == MatchmakeMax.GetInt())
             {
-                // inform amor..
+                player.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amor), GetString("AmorLoverPairExists")));
                 return;
             }
 
             if (target.Is(CustomRoles.Lovers))
             {
-                // inform amor..
+                player.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amor), GetString("AmorPlayerAlreadyInLove")));
                 return;
             }
 
-            Lovers.Add(target);
+            if (Lovers.Any(a => a.PlayerId == target.PlayerId))
+            {
+                return;
+            }
 
+            player.SetKillCooldown();
+
+            Lovers.Add(target);
             Lovers = Lovers.Where(x => x.IsAlive()).ToList();
 
             MatchmakeLimit = MatchmakeMax.GetInt() - Lovers.Count;
@@ -84,10 +92,10 @@ namespace TOHE.Roles.Neutral
                 foreach (var lover in Lovers)
                 {
                     lover.RpcSetCustomRole(CustomRoles.Lovers);
-                    
-                    // inform lovers
+                    lover.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amor), GetString("AmorPlayerFellInLove")));
                 }
 
+                player.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amor), GetString("AmorMadePlayerFallInLove")));
                 Utils.NotifyRoles();
             }
         }

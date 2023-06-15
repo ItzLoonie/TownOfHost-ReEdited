@@ -334,7 +334,7 @@ class CheckMurderPatch
                         Pursuer.SeelToClient(killer, target);
                     return false;
                 case CustomRoles.Amor:
-                    Amor.OnCheckMurder(target);
+                    Amor.OnCheckMurder(killer, target);
                     return false;
             }
         }

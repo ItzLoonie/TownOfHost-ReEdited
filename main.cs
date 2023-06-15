@@ -343,7 +343,7 @@ public class Main : BasePlugin
                 {CustomRoles.Virus, "#2E8B57"},
                 {CustomRoles.Farseer, "#BA55D3"},
                 {CustomRoles.Pursuer, "#617218"},
-                {CustomRoles.Amor, "#ff9ace"},
+                {CustomRoles.Amor, "#ee3377"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
