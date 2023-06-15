@@ -140,7 +140,7 @@ namespace TOHE.Roles.Crewmate
             var playersWithTasks = Main.PlayerStates.Where(a => a.Value.GetTaskState().hasTasks).ToArray();
             if (playersWithTasks.Length == 0)
             {
-                return string.Empty;
+                return "\r\n";
             }
 
             var rd = IRandom.Instance;
