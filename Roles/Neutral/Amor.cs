@@ -27,7 +27,7 @@ namespace TOHE.Roles.Neutral
             MatchmakeMax = IntegerOptionItem.Create(Id + 11, "VirusInfectMax", new(2, 4, 1), 2, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor])
                 .SetValueFormat(OptionFormat.Times);
             KnowTargetRole = BooleanOptionItem.Create(Id + 12, "VirusKnowTargetRole", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor]);
-            LoversSuicide = BooleanOptionItem.Create(Id + 14, "LoversSuicide", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor]);
+            LoversSuicide = BooleanOptionItem.Create(Id + 13, "LoversSuicide", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor]);
         }
 
         public static void Init()
@@ -94,8 +94,8 @@ namespace TOHE.Roles.Neutral
 
         public static bool KnowRole(PlayerControl player, PlayerControl target)
         {
-            if (Lovers.Contains(player) && target.Is(CustomRoles.Amor)) return true;
-            if (KnowTargetRole.GetBool() && player.Is(CustomRoles.Amor) && Lovers.Contains(target)) return true;
+            if (Lovers.Any(a => a.PlayerId == player.PlayerId) && target.Is(CustomRoles.Amor)) return true;
+            if (KnowTargetRole.GetBool() && player.Is(CustomRoles.Amor) && Lovers.Any(a => a.PlayerId == player.PlayerId)) return true;
             return false;
         }
 
