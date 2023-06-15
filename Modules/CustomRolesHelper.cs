@@ -19,7 +19,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Snitch => CustomRoles.Crewmate,
                 CustomRoles.Marshall => CustomRoles.Crewmate,
                 CustomRoles.SabotageMaster => CustomRoles.Engineer,
-                CustomRoles.Mafia => CustomRoles.Impostor,
+                CustomRoles.Mafia => Options.LegacyMafia.GetBool() ? CustomRoles.Shapeshifter : CustomRoles.Impostor,
                 CustomRoles.Terrorist => CustomRoles.Engineer,
                 CustomRoles.Executioner => CustomRoles.Crewmate,
                 CustomRoles.Juggernaut => CustomRoles.Impostor,
@@ -209,7 +209,6 @@ internal static class CustomRolesHelper
             CustomRoles.Trapper or
             CustomRoles.Brakar or
             CustomRoles.Oblivious or
-            CustomRoles.Guesser or
             CustomRoles.Bewilder or
             CustomRoles.Knighted or
             CustomRoles.Workhorse or
@@ -226,8 +225,6 @@ internal static class CustomRolesHelper
             CustomRoles.Infected or
             CustomRoles.Onbound or
             CustomRoles.Contagious or
-            CustomRoles.Bait or
-            CustomRoles.Trapper or
             CustomRoles.Guesser or
             CustomRoles.Rogue or
             CustomRoles.Unreportable or

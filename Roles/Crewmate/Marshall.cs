@@ -14,7 +14,7 @@ public static class Marshall
 
     public static OptionItem OptionMadmateCanFindMarshall;
 
-    private static bool MadmateCanFindMarshall;
+    public static bool MadmateCanFindMarshall = false;
 
     private static readonly Dictionary<byte, bool> IsExposed = new();
     private static readonly Dictionary<byte, bool> IsComplete = new();
@@ -33,7 +33,7 @@ public static class Marshall
         playerIdList.Clear();
         IsEnable = false;
 
-        MadmateCanFindMarshall = OptionMadmateCanFindMarshall.GetBool();
+        //MadmateCanFindMarshall = OptionMadmateCanFindMarshall.GetBool();
 
         IsExposed.Clear();
         IsComplete.Clear();
