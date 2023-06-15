@@ -1421,7 +1421,11 @@ class FixedUpdatePatch
 
                 if (GameStates.IsInTask && player.IsAlive() && Options.LadderDeath.GetBool()) FallFromLadder.FixedUpdate(player);
 
-                if (GameStates.IsInGame) LoversSuicide();
+                if (GameStates.IsInGame)
+                {
+                    LoversSuicide();
+                    Amor.CheckLoversSuicide();
+                }
 
                 #region 傀儡师处理
                 if (GameStates.IsInTask && Main.PuppeteerList.ContainsKey(player.PlayerId))

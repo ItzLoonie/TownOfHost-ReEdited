@@ -2,6 +2,7 @@
 using System.Linq;
 using Hazel;
 using UnityEngine;
+using static Il2CppSystem.Globalization.CultureInfo;
 using static TOHE.Options;
 
 namespace TOHE.Roles.Neutral
@@ -17,6 +18,7 @@ namespace TOHE.Roles.Neutral
         private static OptionItem MatchmakeMax;
         public static OptionItem KnowTargetRole;
         public static OptionItem TargetKnowOtherTarget;
+        public static OptionItem LoversSuicide;
 
         public static void SetupCustomOption()
         {
@@ -27,6 +29,7 @@ namespace TOHE.Roles.Neutral
                 .SetValueFormat(OptionFormat.Times);
             KnowTargetRole = BooleanOptionItem.Create(Id + 12, "VirusKnowTargetRole", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor]);
             TargetKnowOtherTarget = BooleanOptionItem.Create(Id + 13, "VirusTargetKnowOtherTarget", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor]);
+            LoversSuicide = BooleanOptionItem.Create(Id + 14, "LoversSuicide", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor]);
         }
 
         public static void Init()
@@ -40,6 +43,9 @@ namespace TOHE.Roles.Neutral
             playerIdList.Add(playerId);
             MatchmakeLimit = MatchmakeMax.GetInt();
         }
+        public static bool IsEnable => playerIdList.Count > 0;
+
+        public static byte PlayerId => playerIdList.First();
 
         public static void SetCooldown(byte id) => Main.AllPlayerKillCooldown[id] = MatchmakeCooldown.GetFloat();
 
@@ -98,33 +104,46 @@ namespace TOHE.Roles.Neutral
 
         public static string GetMatchmakeLimit() => Utils.ColorString(MatchmakeLimit >= 1 ? Utils.GetRoleColor(CustomRoles.Amor) : Color.gray, $"({MatchmakeLimit})");
 
-        public static void LoversSuicide(byte deathId = 0x7f, bool isExiled = false)
+        public static void CheckLoversSuicide(byte deathId = 0x7f, bool isExiled = false)
         {
-            if (Options.LoverSuicide.GetBool() && CustomRoles.Lovers.IsEnable())
+            if (!IsEnable || !LoversSuicide.GetBool() || Lovers.Count < 2)
             {
-                foreach (var loversPlayer in Lovers)
+                return;
+            }
+
+            var player = Lovers.FirstOrDefault(a => a.PlayerId == deathId);
+            if ((player == null || !player.Data.IsDead) && !isExiled)
+            {
+                return;
+            }
+
+            foreach (var lover in Lovers.Where(a => a.PlayerId != deathId))
+            {
+                if (!lover.Data.IsDead)
                 {
-                    //生きていて死ぬ予定でなければスキップ
-                    if (!loversPlayer.Data.IsDead && loversPlayer.PlayerId != deathId) continue;
-
-                    foreach (var partnerPlayer in Lovers)
-                    {
-                        //本人ならスキップ
-                        if (loversPlayer.PlayerId == partnerPlayer.PlayerId) continue;
-
-                        //残った恋人を全て殺す(2人以上可)
-                        //生きていて死ぬ予定もない場合は心中
-                        if (partnerPlayer.PlayerId != deathId && !partnerPlayer.Data.IsDead)
-                        {
-                            Main.PlayerStates[partnerPlayer.PlayerId].deathReason = PlayerState.DeathReason.FollowingSuicide;
-                            if (isExiled)
-                                CheckForEndVotingPatch.TryAddAfterMeetingDeathPlayers(PlayerState.DeathReason.FollowingSuicide, partnerPlayer.PlayerId);
-                            else
-                                partnerPlayer.RpcMurderPlayerV3(partnerPlayer);
-                        }
-                    }
+                    Main.PlayerStates[lover.PlayerId].deathReason = PlayerState.DeathReason.FollowingSuicide;
+                    if (isExiled)
+                        CheckForEndVotingPatch.TryAddAfterMeetingDeathPlayers(PlayerState.DeathReason.FollowingSuicide, lover.PlayerId);
+                    else
+                        lover.RpcMurderPlayerV3(lover);
                 }
             }
+        }
+
+        public static bool CheckAmorLoverLeave(PlayerControl leaver)
+        {
+            if (Lovers.Contains(leaver))
+            {
+                Lovers.Remove(leaver);
+                if (Lovers.Count < 1)
+                {
+                    Main.PlayerStates[Amor.Lovers[0].PlayerId].RemoveSubRole(CustomRoles.Lovers);
+                }
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

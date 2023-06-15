@@ -651,8 +651,7 @@ public enum CustomWinner
     Juggernaut = CustomRoles.Juggernaut,
     Infectious = CustomRoles.Infectious,
     Virus = CustomRoles.Virus,
-    Rogue = CustomRoles.Rogue,
-    Amor = CustomRoles.Amor
+    Rogue = CustomRoles.Rogue
 }
 public enum AdditionalWinners
 {
@@ -669,6 +668,7 @@ public enum AdditionalWinners
     Jackal = CustomRoles.Jackal,
     Sidekick = CustomRoles.Sidekick,
     Pursuer = CustomRoles.Pursuer,
+    Amor = CustomRoles.Amor
 }
 public enum SuffixModes
 {
