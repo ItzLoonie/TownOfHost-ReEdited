@@ -103,7 +103,7 @@ namespace TOHE.Roles.Neutral
         public static bool KnowRole(PlayerControl player, PlayerControl target)
         {
             if (Lovers.Any(a => a.PlayerId == player.PlayerId) && target.Is(CustomRoles.Amor)) return true;
-            if (KnowTargetRole.GetBool() && player.Is(CustomRoles.Amor) && Lovers.Any(a => a.PlayerId == player.PlayerId)) return true;
+            if (KnowTargetRole.GetBool() && player.Is(CustomRoles.Amor) && Lovers.Any(a => a.PlayerId == target.PlayerId)) return true;
             return false;
         }
 
