@@ -220,6 +220,7 @@ internal class ChangeRoleSettings
             Virus.Init();
             Bloodhound.Init();
             Tracker.Init();
+            Amor.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
@@ -590,6 +591,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Tracker:
                         Tracker.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Amor:
+                        Amor.Add(pc.PlayerId);
                         break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())

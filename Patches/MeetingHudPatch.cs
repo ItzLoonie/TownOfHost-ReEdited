@@ -699,6 +699,7 @@ class MeetingHudStartPatch
                 (Succubus.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (Infectious.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (Virus.KnowRole(PlayerControl.LocalPlayer, pc)) ||
+                (Amor.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 PlayerControl.LocalPlayer.IsRevealedPlayer(pc) ||
                 PlayerControl.LocalPlayer.Is(CustomRoles.God) ||
                 PlayerControl.LocalPlayer.Is(CustomRoles.GM) ||

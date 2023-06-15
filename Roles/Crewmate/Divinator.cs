@@ -200,7 +200,8 @@ public static class Divinator
                 CustomRoles.Swooper
                 => "Glitch",
 
-                CustomRoles.Succubus
+                CustomRoles.Succubus or
+                CustomRoles.Amor
                 => "Love",
 
                 _ => "None",

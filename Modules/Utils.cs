@@ -431,6 +431,7 @@ public static class Utils
             case CustomRoles.Farseer:
             case CustomRoles.Counterfeiter:
             case CustomRoles.Pursuer:
+            case CustomRoles.Amor:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:
@@ -591,6 +592,9 @@ public static class Utils
             case CustomRoles.Jackal:
                 if (Jackal.CanRecruitSidekick.GetBool())
                 ProgressText.Append(Jackal.GetRecruitLimit(playerId));
+                break;
+            case CustomRoles.Amor:
+                ProgressText.Append(Amor.GetMatchmakeLimit());
                 break;
             default:
                 //タスクテキスト
@@ -1302,6 +1306,7 @@ public static class Utils
                         (Succubus.KnowRole(seer, target)) ||
                         (Infectious.KnowRole(seer, target)) ||
                         (Virus.KnowRole(seer, target)) ||
+                        (Amor.KnowRole(seer, target)) ||
                         (seer.IsRevealedPlayer(target) && !target.Is(CustomRoles.Trickster)) ||
                         (seer.Is(CustomRoles.God)) ||
                         (target.Is(CustomRoles.GM))

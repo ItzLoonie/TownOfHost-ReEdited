@@ -333,6 +333,9 @@ class CheckMurderPatch
                     if (Pursuer.CanBeClient(target) && Pursuer.CanSeel(killer.PlayerId))
                         Pursuer.SeelToClient(killer, target);
                     return false;
+                case CustomRoles.Amor:
+                    Amor.OnCheckMurder(target);
+                    return false;
             }
         }
 
@@ -1606,6 +1609,7 @@ class FixedUpdatePatch
                 else if (Succubus.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (Infectious.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (Virus.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
+                else if (Amor.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (PlayerControl.LocalPlayer.IsRevealedPlayer(__instance)) RoleText.enabled = true;
                 else if (PlayerControl.LocalPlayer.Is(CustomRoles.God)) RoleText.enabled = true;
                 else if (PlayerControl.LocalPlayer.Is(CustomRoles.GM)) RoleText.enabled = true;

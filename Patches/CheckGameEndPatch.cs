@@ -86,6 +86,11 @@ class GameEndChecker
                         .Where(pc => (pc.Is(CustomRoles.Jackal) || pc.Is(CustomRoles.Sidekick)) && !pc.Is(CustomRoles.Lovers) && !pc.Is(CustomRoles.Infected))
                         .Do(pc => CustomWinnerHolder.WinnerIds.Add(pc.PlayerId));
                     break;
+                case CustomWinner.Amor:
+                    Main.AllPlayerControls
+                        .Where(pc => (pc.Is(CustomRoles.Amor) || Amor.Lovers.Contains(pc.PlayerId)))
+                        .Do(pc => CustomWinnerHolder.WinnerIds.Add(pc.PlayerId));
+                    break;
             }
             if (CustomWinnerHolder.WinnerTeam is not CustomWinner.Draw and not CustomWinner.None and not CustomWinner.Error)
             {

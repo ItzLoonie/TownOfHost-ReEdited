@@ -343,6 +343,7 @@ public class Main : BasePlugin
                 {CustomRoles.Virus, "#2E8B57"},
                 {CustomRoles.Farseer, "#BA55D3"},
                 {CustomRoles.Pursuer, "#617218"},
+                {CustomRoles.Amor, "#ff9ace"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -568,6 +569,7 @@ public enum CustomRoles
     Succubus,
     Virus,
     Pursuer,
+    Amor,
 
     //SoloKombat
     KB_Normal,
@@ -649,7 +651,8 @@ public enum CustomWinner
     Juggernaut = CustomRoles.Juggernaut,
     Infectious = CustomRoles.Infectious,
     Virus = CustomRoles.Virus,
-    Rogue = CustomRoles.Rogue
+    Rogue = CustomRoles.Rogue,
+    Amor = CustomRoles.Amor
 }
 public enum AdditionalWinners
 {

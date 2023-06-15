@@ -110,6 +110,7 @@ internal static class CustomRolesHelper
              //   CustomRoles.Monarch => CustomRoles.Impostor,
                 CustomRoles.Bloodhound => CustomRoles.Crewmate,
                 CustomRoles.Tracker => CustomRoles.Crewmate,
+                CustomRoles.Amor => CustomRoles.Amor,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
     }
@@ -189,6 +190,7 @@ internal static class CustomRolesHelper
             CustomRoles.Infectious => RoleTypes.Impostor,
             CustomRoles.Virus => RoleTypes.Impostor,
             CustomRoles.Farseer => RoleTypes.Impostor,
+            CustomRoles.Amor => RoleTypes.Impostor,
             _ => RoleTypes.GuardianAngel
         };
     }
@@ -252,7 +254,8 @@ internal static class CustomRolesHelper
             CustomRoles.Collector or
             CustomRoles.Sunnyboy or
             CustomRoles.Totocalcio or
-            CustomRoles.Succubus;
+            CustomRoles.Succubus or
+            CustomRoles.Amor;
     }
     public static bool IsNK(this CustomRoles role) // �Ƿ��������
     {
@@ -451,7 +454,8 @@ internal static class CustomRolesHelper
             CustomRoles.BloodKnight or
             CustomRoles.Totocalcio or
             CustomRoles.Virus or
-            CustomRoles.Succubus;
+            CustomRoles.Succubus or
+            CustomRoles.Amor;
     }
     public static bool IsMadmate(this CustomRoles role)
     {
@@ -529,6 +533,7 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Lucky && pc.Is(CustomRoles.Luckey)) return false;
         if (role is CustomRoles.Fool && ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeFool.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeFool.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeFool.GetBool()) || pc.Is(CustomRoles.SabotageMaster) || pc.Is(CustomRoles.GuardianAngelTOHE))) return false;
         if (role is CustomRoles.Bloodhound && pc.Is(CustomRoles.Oblivious)) return false;
+        if (role is CustomRoles.Lovers && pc.Is(CustomRoles.Amor)) return false;
         return true;
     }
     public static RoleTypes GetRoleTypes(this CustomRoles role)

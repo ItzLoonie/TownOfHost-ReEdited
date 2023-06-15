@@ -450,6 +450,7 @@ static class ExtendedPlayerControl
             CustomRoles.Monarch => Monarch.CanUseKillButton(pc),
             CustomRoles.Virus => pc.IsAlive(),
             CustomRoles.Farseer => pc.IsAlive(),
+            CustomRoles.Amor => pc.IsAlive(),
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
     }
@@ -678,6 +679,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Farseer:
                 Farseer.SetCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Amor:
+                Amor.SetCooldown(player.PlayerId);
                 break;
         }
         if (player.PlayerId == LastImpostor.currentId)
