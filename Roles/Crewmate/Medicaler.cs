@@ -96,7 +96,8 @@ public static class Medicaler
         killer.RpcGuardAndKill(target);
         killer.SetKillCooldown();
         killer.RPCPlayCustomSound("Shield");
-        target.RPCPlayCustomSound("Shield");
+        if (TargetCanSeeProtect.GetBool())
+            target.RPCPlayCustomSound("Shield");
 
         Utils.NotifyRoles(killer);
         Utils.NotifyRoles(target);
