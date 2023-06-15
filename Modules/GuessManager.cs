@@ -524,7 +524,7 @@ public static class GuessManager
         public static void Postfix(MeetingHud __instance)
         {
 
-          /*if (!Options.GuesserMode.GetBool())
+            /*if (!Options.GuesserMode.GetBool())
             {
                 foreach (var subRole in PlayerControl.LocalPlayer.GetCustomSubRoles())
                 {
@@ -701,21 +701,7 @@ public static class GuessManager
                 Teambutton.FindChild("ControllerHighlight").gameObject.SetActive(false);
                 Transform TeambuttonMask = UnityEngine.Object.Instantiate(maskTemplate, TeambuttonParent);
                 TextMeshPro Teamlabel = UnityEngine.Object.Instantiate(textTemplate, Teambutton);
-                //Type destroyableSingletonType = typeof(DestroyableSingleton<>).MakeGenericType(typeof(HatManager));
-                //object destroyableSingletonInstance = destroyableSingletonType.GetProperty("Instance")?.GetValue(null);
-                //string nameplateId = "nameplate_NoPlate";
-                //MethodInfo getNamePlateByIdMethod = destroyableSingletonType.GetMethod("GetNamePlateById");
-                //object nameplateData = getNamePlateByIdMethod?.Invoke(destroyableSingletonInstance, new object[] { nameplateId });
-
-                //Type nameplateDataType = nameplateData.GetType();
-                //object nameplateViewData = nameplateDataType.GetProperty("viewData")?.GetValue(nameplateData);
-                //object viewData = nameplateViewData?.GetType().GetProperty("viewData")?.GetValue(nameplateViewData);
-                //Sprite sprite = viewData?.GetType().GetProperty("Image")?.GetValue(viewData) as Sprite;
-                //nameplateDataType.GetProperty("Image")?.SetValue(nameplateData, sprite);
-                Teambutton.GetComponent<SpriteRenderer>().sprite = Teambutton.GetType()
-                    .GetProperty("Image", BindingFlags.Instance | BindingFlags.Public)
-                    .GetValue(Teambutton) as Sprite;
-                //Teambutton.GetComponent<SpriteRenderer>().sprite = DestroyableSingleton<HatManager>.Instance.GetNamePlateById("nameplate_NoPlate")?.viewData?.viewData?.Image;
+                Teambutton.GetComponent<SpriteRenderer>().sprite = CustomButton.Get("GuessPlateWithKPD");
                 RoleSelectButtons.Add((CustomRoleTypes)index, Teambutton.GetComponent<SpriteRenderer>());
                 TeambuttonParent.localPosition = new(-2.75f + (tabCount++ * 1.73f), 2.225f, -200);
                 TeambuttonParent.localScale = new(0.53f, 0.53f, 1f);
@@ -776,21 +762,7 @@ public static class GuessManager
                 Pagebutton.FindChild("ControllerHighlight").gameObject.SetActive(false);
                 Transform PagebuttonMask = UnityEngine.Object.Instantiate(maskTemplate, PagebuttonParent);
                 TextMeshPro Pagelabel = UnityEngine.Object.Instantiate(textTemplate, Pagebutton);
-                //Type destroyableSingletonType = typeof(DestroyableSingleton<>).MakeGenericType(typeof(HatManager));
-                //object destroyableSingletonInstance = destroyableSingletonType.GetProperty("Instance")?.GetValue(null);
-                //string nameplateId = "nameplate_NoPlate";
-                //MethodInfo getNamePlateByIdMethod = destroyableSingletonType.GetMethod("GetNamePlateById");
-                //object nameplateData = getNamePlateByIdMethod?.Invoke(destroyableSingletonInstance, new object[] { nameplateId });
-
-                //Type nameplateDataType = nameplateData.GetType();
-                //object nameplateViewData = nameplateDataType.GetProperty("viewData")?.GetValue(nameplateData);
-                //object viewData = nameplateViewData?.GetType().GetProperty("viewData")?.GetValue(nameplateViewData);
-                //Sprite sprite = viewData?.GetType().GetProperty("Image")?.GetValue(viewData) as Sprite;
-                //nameplateDataType.GetProperty("Image")?.SetValue(nameplateData, sprite);
-                Pagebutton.GetComponent<SpriteRenderer>().sprite = Pagebutton.GetType()
-                    .GetProperty("Image", BindingFlags.Instance | BindingFlags.Public)
-                    .GetValue(Pagebutton) as Sprite;
-                //Pagebutton.GetComponent<SpriteRenderer>().sprite = DestroyableSingleton<HatManager>.Instance.GetNamePlateById("nameplate_NoPlate")?.viewData?.viewData?.Image;
+                Pagebutton.GetComponent<SpriteRenderer>().sprite = CustomButton.Get("GuessPlateWithKPD");
                 PagebuttonParent.localPosition = IsNext ? new(3.535f, -2.2f, -200) : new(-3.475f, -2.2f, -200);
                 PagebuttonParent.localScale = new(0.55f, 0.55f, 1f);
                 Pagelabel.color = Color.white;
@@ -838,21 +810,7 @@ public static class GuessManager
                 button.FindChild("ControllerHighlight").gameObject.SetActive(false);
                 Transform buttonMask = UnityEngine.Object.Instantiate(maskTemplate, buttonParent);
                 TextMeshPro label = UnityEngine.Object.Instantiate(textTemplate, button);
-                //Type destroyableSingletonType = typeof(DestroyableSingleton<>).MakeGenericType(typeof(HatManager));
-                //object destroyableSingletonInstance = destroyableSingletonType.GetProperty("Instance")?.GetValue(null);
-                //string nameplateId = "nameplate_NoPlate";
-                //MethodInfo getNamePlateByIdMethod = destroyableSingletonType.GetMethod("GetNamePlateById");
-                //object nameplateData = getNamePlateByIdMethod?.Invoke(destroyableSingletonInstance, new object[] { nameplateId });
-
-                //Type nameplateDataType = nameplateData.GetType();
-                //object nameplateViewData = nameplateDataType.GetProperty("viewData")?.GetValue(nameplateData);
-                //object viewData = nameplateViewData?.GetType().GetProperty("viewData")?.GetValue(nameplateViewData);
-                //Sprite sprite = viewData?.GetType().GetProperty("Image")?.GetValue(viewData) as Sprite;
-                //nameplateDataType.GetProperty("Image")?.SetValue(nameplateData, sprite);
-                button.GetComponent<SpriteRenderer>().sprite = button.GetType()
-                    .GetProperty("Image", BindingFlags.Instance | BindingFlags.Public)
-                    .GetValue(button) as Sprite;
-                //button.GetComponent<SpriteRenderer>().sprite = DestroyableSingleton<HatManager>.Instance.GetNamePlateById("nameplate_NoPlate")?.viewData?.viewData?.Image;
+                button.GetComponent<SpriteRenderer>().sprite = CustomButton.Get("GuessPlate");
                 if (!RoleButtons.ContainsKey(role.GetCustomRoleTypes()))
                 {
                     RoleButtons.Add(role.GetCustomRoleTypes(), new());
