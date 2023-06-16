@@ -139,6 +139,8 @@ class GameEndChecker
                     if(!(!Main.LoversPlayers.ToArray().All(p => p.IsAlive()) && Options.LoverSuicide.GetBool()) ||
                        !(!Amor.Lovers.ToArray().All(p => p.IsAlive()) && Amor.LoversSuicide.GetBool()))
                     {
+                        Logger.Info("Amor.Lovers.ToArray().All(p => p.IsAlive()", "TEST_Amor_Win");
+
                         if (CustomWinnerHolder.WinnerTeam is CustomWinner.Crewmate or CustomWinner.Impostor or CustomWinner.Jackal or CustomWinner.Pelican)
                         {
                             CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Lovers);
@@ -408,6 +410,7 @@ class GameEndChecker
             }
             else if (Main.AllAlivePlayerControls.All(p => p.Is(CustomRoles.Lovers) || p.Is(CustomRoles.Amor))) //恋人胜利
             {
+                Logger.Info("CheckGameEndByLivingPlayers => All(p => p.Is(CustomRoles.Lovers) || p.Is(CustomRoles.Amor)", "TEST_Amor_Win");
                 reason = GameOverReason.ImpostorByKill;
                 CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Lovers);
                 if (Amor.IsEnable)
