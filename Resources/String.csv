@@ -1432,6 +1432,7 @@
 "BloodhoundTrackRecorded","","Track recorded","Трек активирован","",""
 "BloodhoundNoTrack","","Nothing to track","Нечего отслеживать","",""
 "TrackerLastRoomMessage","","The evaluation of your tracking showed that the last room in which your target was located was:【{0}】","Оценка вашего отслеживания показала, что последняя локация в которой находилась ваша цель, была:【{0}】","",""
+"DazzlerDazzled","","You got dazzled","","",""
 
 "MonarchKnightCooldown","","Knight Cooldown","Откат посвящения","",""
 "MonarchKnightMax","","Maximum Knights","Максимум просвящений","",""
@@ -1443,7 +1444,7 @@
 "VirusNoticeMessage2","","The body your reported was infected by the Virus! Vote the Virus out this meeting or you will die.","Труп который вы зарепортили, был заражён вирусом! Голосуйте против Вируса на этой встрече, иначе вы умрёте.","",""
 "FarseerRevealCooldown","","<color=#BA55D3>Reveal</color> Cooldown","Откат раскрытия","",""
 "FarseerRevealTime","","<color=#BA55D3>Reveal</color> Time","Время раскрытия","",""
-"FarseerVision","","<color=#BA55D3>Overseer</color> Vision","Обзор <color=#BA55D3>Смотрителя</color>","",""
+"FarseerVision","","<color=#BA55D3>Overseer</color> Vision","Обзор <color=#BA55D3>Смотрителя</color>","","""
 
 "## 信息 / Message"
 "Message.SetToSeconds","信息发送冷却时间为【{0}】秒","Set to 【{0}】 seconds.","Установлен на 【{0}】 секунды","訊息傳送冷卻時間設為【{0}】秒","信息发送冷却时间为【{0}】秒"

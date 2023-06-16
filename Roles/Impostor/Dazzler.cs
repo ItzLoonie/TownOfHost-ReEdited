@@ -67,6 +67,7 @@ namespace TOHE.Roles.Impostor
 
             if (!PlayersDazzled[pc.PlayerId].Contains(target.PlayerId) && PlayersDazzled[pc.PlayerId].Count < DazzleLimitOpt.GetInt())
             {
+                target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Dazzler), GetString("DazzlerDazzled")));
                 PlayersDazzled[pc.PlayerId].Add(target.PlayerId);
                 MarkEveryoneDirtySettings();
             }
