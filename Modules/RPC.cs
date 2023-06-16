@@ -825,6 +825,9 @@ internal static class RPC
             case CustomRoles.Tracker:
                 Tracker.Add(targetId);
                 break;
+            case CustomRoles.Merchant:
+                Merchant.Add(targetId);
+                break;
             case CustomRoles.Amor:
                 Amor.Add(targetId);
                 break;
