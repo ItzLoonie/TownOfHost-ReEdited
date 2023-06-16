@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using TMPro;
 using TOHE.Modules;
+using TOHE.Roles.Crewmate;
 using UnityEngine;
 using static TOHE.Translator;
 
@@ -302,6 +303,12 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("GuessCrewRole"));
                     return true;
 
+                }
+                if (target.Is(CustomRoles.Merchant) && Merchant.IsBribedKiller(pc, target))
+                {
+                    if (!isUI) Utils.SendMessage(GetString("BribedByMerchant2"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("BribedByMerchant2"));
+                    return true;
                 }
 
                 if (pc.PlayerId == target.PlayerId)
