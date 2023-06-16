@@ -269,6 +269,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 opt.SetFloat(FloatOptionNames.CrewLightMod, Farseer.Vision.GetFloat());
                 opt.SetFloat(FloatOptionNames.ImpostorLightMod, Farseer.Vision.GetFloat());
                 break;
+            case CustomRoles.Deathpact:
+                Deathpact.ApplyGameOptions();
+                break;
         }
 
         // Ϊ�Ի��ߵ�����

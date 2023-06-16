@@ -492,6 +492,7 @@ public enum CustomRoles
     Crewpostor,
     Disperser,
     Camouflager,
+    Deathpact,
     //Crewmate(Vanilla)
     Engineer,
     GuardianAngel,

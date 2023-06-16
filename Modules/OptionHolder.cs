@@ -762,6 +762,7 @@ public static class Options
         QuickShooter.SetupCustomOption();
         Sniper.SetupCustomOption();
         Witch.SetupCustomOption(); //spellcaster
+        Deathpact.SetupCustomOption();
         TextOptionItem.Create(909090_1, "RoleType.ImpSupport", TabGroup.ImpostorRoles)// SUPPORT
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 25, 25, byte.MaxValue));// SUPPORT

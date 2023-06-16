@@ -888,6 +888,10 @@ class ShapeshiftPatch
                 if (shapeshifting)
                     Disperser.DispersePlayers(shapeshifter);
                 break;
+            case CustomRoles.Deathpact:
+                if (shapeshifting) 
+                    Deathpact.OnShapeshift(shapeshifter, target);
+                break;
         }
 
     End:
@@ -1373,6 +1377,7 @@ class FixedUpdatePatch
             #endregion
 
             Farseer.OnPostFix(player);
+            Deathpact.OnFixedUpdate(player);
 
             if (!lowLoad)
             {
