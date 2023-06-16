@@ -2027,7 +2027,9 @@ class EnterVentPatch
                      x.RPCPlayCustomSound("Dove");
                      x.ResetKillCooldown();
                      x.SetKillCooldown();
-                     x.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.DovesOfNeace), GetString("DovesOfNeaceSkillNotify")));
+                     if (x.Is(CustomRoles.SerialKiller))
+                        { SerialKiller.OnReportDeadBody(); }
+                    x.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.DovesOfNeace), GetString("DovesOfNeaceSkillNotify")));
                 });
                 pc.RPCPlayCustomSound("Dove");
                 pc.Notify(string.Format(GetString("DovesOfNeaceOnGuard"), Main.DovesOfNeaceNumOfUsed[pc.PlayerId]));
