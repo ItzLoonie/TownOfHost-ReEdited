@@ -1478,7 +1478,7 @@
 "DeathpactShowArrowsToOtherPlayersInPact","","Show arrows leading to other players in <color=#ff1919>Death pact</color>","","",""
 "DeathpactReduceVisionWhileInPact","","Reduce vision for players in <color=#ff1919>Death pact</color>","","",""
 "DeathpactVisionWhileInPact","","Vision for players in <color=#ff1919>Death pact</color>","","",""
-"DeathpactKillPlayersInDeathpactOnMeeting","","Kill players in concluded <color=#ff1919>Death pact</color> on meeting","","",""
+"DeathpactKillPlayersInDeathpactOnMeeting","","Kill players in <color=#ff1919>Death pact</color> on meeting","","",""
 
 "## 信息 / Message"
 "Message.SetToSeconds","信息发送冷却时间为【{0}】秒","Set to 【{0}】 seconds.","Установлен на 【{0}】 секунды","訊息傳送冷卻時間設為【{0}】秒","信息发送冷却时间为【{0}】秒"
