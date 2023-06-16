@@ -1,4 +1,5 @@
 using AmongUs.GameOptions;
+using AmongUs.GameOptions;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Unity.IL2CPP;
@@ -33,10 +34,10 @@ public class Main : BasePlugin
     public const string DebugKeyHash = "c0fd562955ba56af3ae20d7ec9e64c664f0facecef4b3e366e109306adeae29d";
     public const string DebugKeySalt = "59687b";
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
-    public static readonly string MainMenuText = "哟这不TOHE吗，几天不见Bug又多了？";
+    public static readonly string MainMenuText = " ";
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "2.4.0";
-    public const int PluginCreate = 5;
+    public const string PluginVersion = "2.4.2";
+    public const int PluginCreate = 2;
     public const bool Canary = false;
 
     public static readonly bool ShowQQButton = true;
@@ -306,6 +307,7 @@ public class Main : BasePlugin
                 {CustomRoles.Monarch, "#FFA500"},
                 {CustomRoles.Bloodhound, "#8B0000"},
                 {CustomRoles.Tracker, "#3CB371"},
+                {CustomRoles.Merchant, "#D27D2D"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Jester, "#ec62a5"},
@@ -535,6 +537,7 @@ public enum CustomRoles
     Farseer,
     Bloodhound,
     Tracker,
+    Merchant,
     //Neutral
     Arsonist,
     HexMaster,

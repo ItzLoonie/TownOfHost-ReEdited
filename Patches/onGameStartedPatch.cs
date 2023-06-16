@@ -12,6 +12,7 @@ using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using static TOHE.Modules.CustomRoleSelector;
 using static TOHE.Translator;
+using static UnityEngine.GraphicsBuffer;
 
 namespace TOHE;
 
@@ -220,6 +221,7 @@ internal class ChangeRoleSettings
             Virus.Init();
             Bloodhound.Init();
             Tracker.Init();
+            Merchant.Init();
             Dazzler.Init();
 
             SoloKombatManager.Init();
@@ -591,6 +593,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Tracker:
                         Tracker.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Merchant:
+                        Merchant.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Dazzler:
                         Dazzler.Add(pc.PlayerId);

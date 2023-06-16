@@ -45,13 +45,13 @@ internal class PingTrackerUpdatePatch
 [HarmonyPatch(typeof(VersionShower), nameof(VersionShower.Start))]
 internal class VersionShowerStartPatch
 {
-    public static GameObject OVersionShower;
+    //public static GameObject OVersionShower;
     private static TextMeshPro SpecialEventText;
-    private static TextMeshPro VisitText;
+    //private static TextMeshPro VisitText;
 
     private static void Postfix(VersionShower __instance)
     {
-        Main.credentialsText = $"\r\n<color={Main.ModColor}>{Main.ModName}</color> v{Main.PluginVersion} Pre-release 3";
+        Main.credentialsText = $"\r\n<color={Main.ModColor}>{Main.ModName}</color> v{Main.PluginVersion}";
     //    Main.credentialsText = $"\r\n<color=#de56fd>TOHE SolarLoonieEdit</color> v{Main.PluginVersion}";
         if (Main.IsAprilFools) Main.credentialsText = $"\r\n<color=#00bfff>Town Of Host</color> v11.45.14";
 #if DEBUG
@@ -69,7 +69,7 @@ internal class VersionShowerStartPatch
         var credentials = Object.Instantiate(__instance.text);
         credentials.text = Main.credentialsText;
         credentials.alignment = TextAlignmentOptions.TopRight;
-        credentials.transform.position = new Vector3(4.6f, 3.2f, 0);
+        credentials.transform.position = new Vector3(3.2f, 2.5f, 0);
 
         ErrorText.Create(__instance.text);
         if (Main.hasArgumentException && ErrorText.Instance != null)
@@ -91,7 +91,7 @@ internal class VersionShowerStartPatch
             ColorUtility.TryParseHtmlString(Main.ModColor, out var col);
             SpecialEventText.color = col;
         }
-        else if (!Main.IsAprilFools)
+      /*else if (!Main.IsAprilFools)
         {
             SpecialEventText.text = $"{Main.MainMenuText}";
             SpecialEventText.fontSize = 0.9f;
@@ -103,7 +103,7 @@ internal class VersionShowerStartPatch
         if ((OVersionShower = GameObject.Find("VersionShower")) != null && !Main.IsAprilFools)
         {
             OVersionShower.transform.localScale = new Vector3(0.6f, 0.6f, 1f);
-            OVersionShower.transform.position = new Vector3(-5.3f, 2.9f, 0f);
+            OVersionShower.transform.position = new Vector3(-7.3f, 3.9f, 0f);
             if (TitleLogoPatch.amongUsLogo != null)
             {
                 if (VisitText == null && ModUpdater.visit > 0)
@@ -117,7 +117,7 @@ internal class VersionShowerStartPatch
                     VisitText.transform.position = new Vector3(-5.3f, 2.75f, 0f);
                 }
             }
-        }
+        }*/
     }
 }
 
@@ -126,15 +126,15 @@ internal class TitleLogoPatch
 {
     public static GameObject Ambience;
     public static GameObject amongUsLogo;
-    public static GameObject PlayLocalButton;
-    public static GameObject PlayOnlineButton;
-    public static GameObject HowToPlayButton;
-    public static GameObject FreePlayButton;
-    public static GameObject BottomButtons;
+    //public static GameObject PlayLocalButton;
+    //public static GameObject PlayOnlineButton;
+    //public static GameObject HowToPlayButton;
+    //public static GameObject FreePlayButton;
+    //public static GameObject BottomButtons;
 
     private static void Postfix(MainMenuManager __instance)
     {
-        if (Main.IsAprilFools)
+      /*if (Main.IsAprilFools)
         {
             if ((amongUsLogo = GameObject.Find("bannerLogo_AmongUs")) != null)
             {
@@ -149,7 +149,7 @@ internal class TitleLogoPatch
             renderer.sprite = Utils.LoadSprite("TOHE.Resources.Images.TownOfHost-Logo.png", 300f);
 
             return;
-        }
+        }*/
 
         if ((amongUsLogo = GameObject.Find("bannerLogo_AmongUs")) != null)
         {
@@ -157,7 +157,7 @@ internal class TitleLogoPatch
             amongUsLogo.transform.position += Vector3.up * 0.25f;
         }
 
-        if ((PlayLocalButton = GameObject.Find("PlayLocalButton")) != null)
+        /* if ((PlayLocalButton = GameObject.Find("PlayLocalButton")) != null)
         {
             PlayLocalButton.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
             PlayLocalButton.transform.position = new Vector3(-0.76f, -2.1f, 0f);
@@ -185,15 +185,15 @@ internal class TitleLogoPatch
         {
             BottomButtons.transform.localScale = new Vector3(0.7f, 0.7f, 1f);
             BottomButtons.transform.position = new Vector3(0f, -2.71f, 0f);
-        }
+        }*/
 
         if ((Ambience = GameObject.Find("Ambience")) != null)
         {
             Ambience.SetActive(false);
             var CustomBG = new GameObject("CustomBG");
-            CustomBG.transform.position = new Vector3(0, 0, 520f);
+            CustomBG.transform.position = new Vector3(2.095f, -0.25f, 520f);
             var bgRenderer = CustomBG.AddComponent<SpriteRenderer>();
-            bgRenderer.sprite = Utils.LoadSprite("TOHE.Resources.Images.TOHE-BG.jpg", 179f);
+            bgRenderer.sprite = Utils.LoadSprite("TOHE.Resources.Images.TOHE-BG.jpg", 245f);
         }
     }
 }

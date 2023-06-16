@@ -110,6 +110,7 @@ internal static class CustomRolesHelper
              //   CustomRoles.Monarch => CustomRoles.Impostor,
                 CustomRoles.Bloodhound => CustomRoles.Crewmate,
                 CustomRoles.Tracker => CustomRoles.Crewmate,
+                CustomRoles.Merchant => CustomRoles.Crewmate,
                 CustomRoles.Dazzler => CustomRoles.Shapeshifter,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
@@ -209,7 +210,6 @@ internal static class CustomRolesHelper
             CustomRoles.Trapper or
             CustomRoles.Brakar or
             CustomRoles.Oblivious or
-            CustomRoles.Guesser or
             CustomRoles.Bewilder or
             CustomRoles.Knighted or
             CustomRoles.Workhorse or
@@ -226,8 +226,6 @@ internal static class CustomRolesHelper
             CustomRoles.Infected or
             CustomRoles.Onbound or
             CustomRoles.Contagious or
-            CustomRoles.Bait or
-            CustomRoles.Trapper or
             CustomRoles.Guesser or
             CustomRoles.Rogue or
             CustomRoles.Unreportable or

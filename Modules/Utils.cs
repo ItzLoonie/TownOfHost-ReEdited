@@ -1333,14 +1333,63 @@ public static class Utils
                 //RealNameを取得 なければ現在の名前をRealNamesに書き込む
                 string TargetPlayerName = target.GetRealName(isForMeeting);
 
-                    if (seer.Is(CustomRoles.Psychic) && seer.IsAlive() && target.IsRedForPsy(seer) && isForMeeting)
+                if (seer.Is(CustomRoles.Psychic) && seer.IsAlive() && target.IsRedForPsy(seer) && isForMeeting)
+                {
+                    TargetPlayerName = ColorString(GetRoleColor(CustomRoles.Impostor), TargetPlayerName);
+                }
+                if (seer.Is(CustomRoles.Mafia) && !seer.IsAlive() && target.IsAlive())
+                {
+                    TargetPlayerName = ColorString(GetRoleColor(CustomRoles.Mafia), target.PlayerId.ToString()) + " " + TargetPlayerName;
+                }
+                if (seer.Is(CustomRoles.Judge))
+                {
+                    if (seer.IsAlive() && target.IsAlive() && isForMeeting)
                     {
-                        TargetPlayerName = ColorString(GetRoleColor(CustomRoles.Impostor), TargetPlayerName);
+                        TargetPlayerName = ColorString(GetRoleColor(CustomRoles.Judge), target.PlayerId.ToString()) + " " + TargetPlayerName;
                     }
-                    if (seer.Is(CustomRoles.Mafia) && !seer.IsAlive() && target.IsAlive())
+                }
+
+                // Guesser Mode ID
+                if (Options.GuesserMode.GetBool())
+                {
+                    //Impostors
+                    if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.CrewmatesCanGuess.GetBool() && seer.GetCustomRole().IsCrewmate())
                     {
-                        TargetPlayerName = ColorString(GetRoleColor(CustomRoles.Mafia), target.PlayerId.ToString()) + " " + TargetPlayerName;
+                        TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
                     }
+                    else if (seer.Is(CustomRoles.NiceGuesser) && !Options.CrewmatesCanGuess.GetBool())
+                    {
+                        if (seer.IsAlive() && target.IsAlive() && isForMeeting && NoCache)
+                        {
+                            TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
+                        }
+                    }
+
+                    //Crewmates
+                    if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.ImpostorsCanGuess.GetBool() && seer.GetCustomRole().IsImpostor())
+                    {
+                        TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
+                    }
+                    else if (seer.Is(CustomRoles.EvilGuesser) && !Options.ImpostorsCanGuess.GetBool())
+                    {
+                        if (seer.IsAlive() && target.IsAlive() && isForMeeting && NoCache)
+                        {
+                            TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
+                        }
+                    }
+
+                    // Neutrals
+                    if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.NeutralKillersCanGuess.GetBool() && seer.GetCustomRole().IsNK())
+                    {
+                        TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
+                    }
+                    if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.PassiveNeutralsCanGuess.GetBool() && seer.GetCustomRole().IsNonNK())
+                    {
+                        TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
+                    }
+                }
+                else // Off Guesser Mode ID
+                {
                     if (seer.Is(CustomRoles.NiceGuesser) || seer.Is(CustomRoles.EvilGuesser) || seer.Is(CustomRoles.Guesser))
                     {
                         if (seer.IsAlive() && target.IsAlive() && isForMeeting && NoCache)
@@ -1348,32 +1397,7 @@ public static class Utils
                             TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
                         }
                     }
-                    if (seer.Is(CustomRoles.Judge))
-                    {
-                        if (seer.IsAlive() && target.IsAlive() && isForMeeting)
-                        {
-                            TargetPlayerName = ColorString(GetRoleColor(CustomRoles.Judge), target.PlayerId.ToString()) + " " + TargetPlayerName;
-                        }
-                    }
-                    if (Options.GuesserMode.GetBool())
-                    {
-                        if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.CrewmatesCanGuess.GetBool() && seer.GetCustomRole().IsCrewmate())
-                        {
-                            TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
-                        }
-                        if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.ImpostorsCanGuess.GetBool() && seer.GetCustomRole().IsImpostor())
-                        {
-                            TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
-                        }
-                        if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.NeutralKillersCanGuess.GetBool() && seer.GetCustomRole().IsNK())
-                        {
-                            TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
-                        }
-                        if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.PassiveNeutralsCanGuess.GetBool() && seer.GetCustomRole().IsNK() && seer.GetCustomRole().IsNeutral())
-                        {
-                            TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
-                        }
-                    }
+                }
                 //ターゲットのプレイヤー名の色を書き換えます。
                 TargetPlayerName = TargetPlayerName.ApplyNameColorData(seer, target, isForMeeting);
 
@@ -1494,9 +1518,6 @@ public static class Utils
             Lawyer.ChangeRoleByTarget(target);
 
         FixedUpdatePatch.LoversSuicide(target.PlayerId, onMeeting);
-
-        if (CustomRoles.Jackal.IsEnable())
-            Jackal.AfterPlayerDiedTask(target);
     }
     public static void ChangeInt(ref int ChangeTo, int input, int max)
     {

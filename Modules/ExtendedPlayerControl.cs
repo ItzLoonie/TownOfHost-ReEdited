@@ -566,17 +566,19 @@ static class ExtendedPlayerControl
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.RevolutionistCooldown.GetFloat();
                 break;
             case CustomRoles.Jackal:
-       //     case CustomRoles.Sidekick:
+          //case CustomRoles.Sidekick:
                 Jackal.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.HexMaster:
             case CustomRoles.Wraith:
+                Main.AllPlayerKillCooldown[player.PlayerId] = Options.DefaultKillCooldown;
+                break;
             case CustomRoles.Parasite:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.ParasiteCD.GetFloat();
-            break;
+                break;
             case CustomRoles.NSerialKiller:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.NSerialKillerKillCD.GetFloat();
-            break;
+                break;
             case CustomRoles.Poisoner:
                 Poisoner.SetKillCooldown(player.PlayerId);
                 break;
@@ -778,6 +780,9 @@ static class ExtendedPlayerControl
         return rangePlayers;
     }
     public static bool IsNeutralKiller(this PlayerControl player) => player.GetCustomRole().IsNK();
+    public static bool IsNeutralBenign(this PlayerControl player) => player.GetCustomRole().IsNB();
+    public static bool IsNeutralEvil(this PlayerControl player) => player.GetCustomRole().IsNC();
+    public static bool IsNeutralChaos(this PlayerControl player) => player.GetCustomRole().IsNC();
     public static bool IsNonNeutralKiller(this PlayerControl player) => player.GetCustomRole().IsNonNK();
     public static bool IsSnitchTarget(this PlayerControl player) => player.GetCustomRole().IsSnitchTarget();
     public static bool KnowDeathReason(this PlayerControl seer, PlayerControl target)
