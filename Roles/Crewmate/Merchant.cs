@@ -36,7 +36,7 @@ namespace TOHE.Roles.Crewmate
         {
             CustomRoles.Oblivious,
             CustomRoles.Bewilder,
-            CustomRoles.Workhorse,
+            //CustomRoles.Workhorse,
             CustomRoles.Fool,
             //CustomRoles.Avanger,
             CustomRoles.Unreportable
