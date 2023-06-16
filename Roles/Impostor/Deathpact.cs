@@ -201,7 +201,8 @@ namespace TOHE.Roles.Impostor
             {
                 foreach (var otherPlayerInPact in deathpact.Value.Where(a => a.PlayerId != seer.PlayerId))
                 {
-                    arrows += TargetArrow.GetArrows(seer, otherPlayerInPact.PlayerId);
+                    var arrow = TargetArrow.GetArrows(seer, otherPlayerInPact.PlayerId);
+                    arrows += Utils.ColorString(Utils.GetRoleColor(CustomRoles.Crewmate), arrow); 
                 }
             }
 
