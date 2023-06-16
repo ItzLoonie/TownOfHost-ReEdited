@@ -28,7 +28,8 @@ namespace TOHE.Roles.Crewmate
             CustomRoles.Knighted,
             CustomRoles.Necroview,
             CustomRoles.Onbound,
-            CustomRoles.DualPersonality
+            CustomRoles.DualPersonality,
+            CustomRoles.Lucky
         };
 
         private static readonly List<CustomRoles> harmfulAddons = new List<CustomRoles>
