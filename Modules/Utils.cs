@@ -1352,8 +1352,8 @@ public static class Utils
                 // Guesser Mode ID
                 if (Options.GuesserMode.GetBool())
                 {
-                    //Impostors
-                    if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.CrewmatesCanGuess.GetBool() && seer.GetCustomRole().IsCrewmate())
+                    //Crewmates
+                    if (seer.IsAlive() && target.IsAlive() && isForMeeting && !seer.Is(CustomRoles.Judge) && Options.CrewmatesCanGuess.GetBool() && seer.GetCustomRole().IsCrewmate())
                     {
                         TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
                     }
@@ -1365,8 +1365,8 @@ public static class Utils
                         }
                     }
 
-                    //Crewmates
-                    if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.ImpostorsCanGuess.GetBool() && seer.GetCustomRole().IsImpostor())
+                    //Impostors
+                    if (seer.IsAlive() && target.IsAlive() && isForMeeting && !seer.Is(CustomRoles.Mafia) && Options.ImpostorsCanGuess.GetBool() && seer.GetCustomRole().IsImpostor())
                     {
                         TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
                     }
