@@ -104,8 +104,6 @@ namespace TOHE.Roles.Impostor
 
             foreach (var player in PlayersInDeathpact[pc.PlayerId])
             {
-                //player.Notify(GetString("DeathpactAssigned"));
-
                 if (!ShowArrowsToOtherPlayersInPact.GetBool())
                 {
                     continue;
@@ -155,7 +153,7 @@ namespace TOHE.Roles.Impostor
             if (PlayersInDeathpact[deathpact.PlayerId].Any(a => a.Data.Disconnected || a.Data.IsDead))
             {
                 ClearDeathpact(deathpact.PlayerId);
-                deathpact.Notify(Translator.GetString("DeathpactAvertedByKill"));
+                deathpact.Notify(Translator.GetString("DeathpactAverted"));
                 return true;
             }
 
