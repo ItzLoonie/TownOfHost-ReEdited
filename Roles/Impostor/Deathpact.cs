@@ -99,12 +99,12 @@ namespace TOHE.Roles.Impostor
             }
 
             pc.Notify(GetString("DeathpactComplete"));
-            DeathpactTime[pc.PlayerId] = Utils.GetTimeStamp() + (long)DeathpactDuration.GetFloat();
+            DeathpactTime[pc.PlayerId] = Utils.GetTimeStamp() + (long)DeathpactDuration.GetInt();
             ActiveDeathpacts.Add(pc.PlayerId);
 
             foreach (var player in PlayersInDeathpact[pc.PlayerId])
             {
-                player.Notify(GetString("DeathpactAssigned"));
+                //player.Notify(GetString("DeathpactAssigned"));
 
                 if (!ShowArrowsToOtherPlayersInPact.GetBool())
                 {
@@ -214,6 +214,30 @@ namespace TOHE.Roles.Impostor
             if (ActiveDeathpacts.Count == 0) return false;
             if (PlayersInDeathpact.Any(a => ActiveDeathpacts.Contains(a.Key) && a.Value.Any(b => b.PlayerId == player.PlayerId))) return true;
             return false;
+        }
+
+        public static string GetDeathpactString(PlayerControl player)
+        {
+            string result = string.Empty;
+
+            var activeDeathpactsForPlayer = PlayersInDeathpact.Where(a => ActiveDeathpacts.Contains(a.Key) && a.Value.Any(b => b.PlayerId == player.PlayerId));
+            foreach (var deathpact in activeDeathpactsForPlayer)
+            {
+                string otherPlayerNames = string.Empty;
+                foreach (var otherPlayerInPact in deathpact.Value.Where(a => a.PlayerId != player.PlayerId))
+                {
+                    otherPlayerNames += otherPlayerInPact.name.ToUpper() + ",";
+                }
+
+                otherPlayerNames = otherPlayerNames.Remove(otherPlayerNames.Length - 1);
+
+                int countdown = (int)(DeathpactTime[deathpact.Key] - Utils.GetTimeStamp());
+
+                result +=
+                    $"{ColorString(GetRoleColor(CustomRoles.Impostor), string.Format(GetString("DeathpactActiveDeathpact"), otherPlayerNames, countdown))}";
+            }
+
+            return result;
         }
 
         public static void ClearDeathpact(byte deathpact)
