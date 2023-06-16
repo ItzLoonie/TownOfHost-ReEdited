@@ -823,6 +823,7 @@ public static class Options
         WarlockCanKillSelf = BooleanOptionItem.Create(901408, "CanKillSelf", false, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Warlock]);
         Wildling.SetupCustomOption();
+        Dazzler.SetupCustomOption();
         TextOptionItem.Create(909090_3, "RoleType.Madmate", TabGroup.ImpostorRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 25, 25, byte.MaxValue));
@@ -838,7 +839,6 @@ public static class Options
         ParasiteCD = FloatOptionItem.Create(6050725, "KillCooldown", new(0f, 999f, 2.5f), 30f, TabGroup.ImpostorRoles, false)
         .SetParent(CustomRoleSpawnChances[CustomRoles.Parasite])
             .SetValueFormat(OptionFormat.Seconds);
-        Dazzler.SetupCustomOption();
 
 //==================================================================================================================================//
 
