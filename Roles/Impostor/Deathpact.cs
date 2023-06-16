@@ -27,6 +27,7 @@ namespace TOHE.Roles.Impostor
         private static OptionItem ShowArrowsToOtherPlayersInPact;
         private static OptionItem ReduceVisionWhileInPact;
         private static OptionItem VisionWhileInPact;
+        private static OptionItem KillDeathpactPlayersOnMeeting;
 
         public static void SetupCustomOption()
         {
@@ -45,6 +46,7 @@ namespace TOHE.Roles.Impostor
             ReduceVisionWhileInPact = BooleanOptionItem.Create(Id + 16, "DeathpactReduceVisionWhileInPact", true, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Deathpact]);
             VisionWhileInPact = FloatOptionItem.Create(Id + 17, "DeathpactVisionWhileInPact", new(0f, 5f, 0.05f), 0.65f, TabGroup.ImpostorRoles, false).SetParent(ReduceVisionWhileInPact)
                 .SetValueFormat(OptionFormat.Multiplier);
+            KillDeathpactPlayersOnMeeting = BooleanOptionItem.Create(Id + 18, "DeathpactKillPlayersInDeathpactOnMeeting", false, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Deathpact]);
         }
 
         public static void Init()
@@ -132,7 +134,7 @@ namespace TOHE.Roles.Impostor
             {
                 foreach (var playerInDeathpact in PlayersInDeathpact[player.PlayerId])
                 {
-                    KillDeathpactPlayer(player, playerInDeathpact);
+                    KillPlayerInDeathpact(player, playerInDeathpact);
                 }
 
                 ClearDeathpact(player.PlayerId);
@@ -170,7 +172,7 @@ namespace TOHE.Roles.Impostor
             return cancelDeathpact;
         }
 
-        public static void KillDeathpactPlayer(PlayerControl deathpact, PlayerControl target)
+        public static void KillPlayerInDeathpact(PlayerControl deathpact, PlayerControl target)
         {
             if (deathpact == null || target == null || target.Data.Disconnected) return;
             if (!target.IsAlive()) return;
@@ -262,6 +264,28 @@ namespace TOHE.Roles.Impostor
             if (ReduceVisionWhileInPact.GetBool())
             {
                 MarkEveryoneDirtySettings();
+            }
+        }
+
+        public static void OnReportDeadBody()
+        {
+            foreach (var deathpact in ActiveDeathpacts)
+            {
+                var deathpactPlayer = Main.AllPlayerControls.FirstOrDefault(a => a.PlayerId == deathpact);
+                if (deathpactPlayer == null)
+                {
+                    continue;
+                }
+
+                if (KillDeathpactPlayersOnMeeting.GetBool())
+                {
+                    foreach (var player in PlayersInDeathpact[deathpact])
+                    {
+                        KillPlayerInDeathpact(deathpactPlayer, player);
+                    }
+                }
+
+                ClearDeathpact(deathpact);
             }
         }
     }
