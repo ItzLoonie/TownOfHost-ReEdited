@@ -360,7 +360,7 @@
 "ParasiteInfo","","Help the Impostors kill the crew","Помогите Предателям убить Членов Экипажей","",""
 "DisperserInfo","","Teleport everyone to random vents","Телепортируй всех в случайные венты","",""
 "InhibitorInfo","","You cannot kill during sabotages","Вы не можете убивать во время саботажей","",""
-"Dazzler","","Take away their vision","","",""
+"DazzlerInfo","","Take away their vision","","",""
 
 "# 船员阵营 / Crewmate descriptions"
 "LuckeyInfo","你擅长治疗内鬼的低血压","Your Killer may Miss the Kill","Убийца может промазать по вам","是生是死，看你是歐還是非","你擅长治疗内鬼的低血压"
@@ -1240,7 +1240,8 @@
 "ImpCanBeFool","","<color=#ff1919>Impostors</color> can become <color=#e6e7ff>Fool</color>","<color=#ff1919>Предатели</color> могут стать <color=#e6e7ff>Глупцом</color>","",""
 "CrewCanBeFool","","<color=#8cffff>Crewmates</color> can become <color=#e6e7ff>Fool</color>","<color=#8cffff>Члены Экипажа</color> могут стать <color=#e6e7ff>Глупцом</color>","",""
 "NeutralCanBeFool","","<color=#7f8c8d>Neutrals</color> can become <color=#e6e7ff>Fool</color>","<color=#7f8c8d>Нейтралы</color> могут стать <color=#e6e7ff>Глупцом</color>","",""
-"DazzlerCauseVision","","Lowered vision","","",""
+"DazzlerCauseVision","","Reduced vision","","",""
+"DazzlerDazzleLimit","","Max number of players affected by reduced vision","","",""
 
 "## Moderation for Auto-Hosters"
 "ApplyModeratorList","","Apply Moderator List","","",""

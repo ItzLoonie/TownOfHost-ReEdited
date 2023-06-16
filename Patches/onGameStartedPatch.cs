@@ -220,6 +220,7 @@ internal class ChangeRoleSettings
             Virus.Init();
             Bloodhound.Init();
             Tracker.Init();
+            Dazzler.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
