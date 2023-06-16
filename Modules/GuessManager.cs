@@ -97,7 +97,7 @@ public static class GuessManager
         Logger.Msg(msg, "Msg Guesser");
         Logger.Msg($"{operate}", "Operate");
 
-        if (!pc.IsAlive())
+        if (!pc.IsAlive() && (!ChatCommands.IsPlayerModerator(pc.FriendCode) && operate == 1))
         {
             if (!isUI) Utils.SendMessage(GetString("GuessDead"), pc.PlayerId);
             else pc.ShowPopUp(GetString("GuessDead"));
@@ -155,6 +155,12 @@ public static class GuessManager
             var target = Utils.GetPlayerById(targetId);
             if (target != null)
             {
+                if (!pc.IsAlive())
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessDead"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessDead"));
+                    return true;
+                }
                 bool guesserSuicide = false;
                 if (!Main.GuesserGuessed.ContainsKey(pc.PlayerId)) Main.GuesserGuessed.Add(pc.PlayerId, 0);
                 if (pc.Is(CustomRoles.NiceGuesser) && Main.GuesserGuessed[pc.PlayerId] >= Options.GGCanGuessTime.GetInt())

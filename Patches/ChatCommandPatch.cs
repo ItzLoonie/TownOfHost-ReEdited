@@ -20,7 +20,7 @@ namespace TOHE;
 internal class ChatCommands
 {
     // Function to check if a player is a moderator
-    private static bool IsPlayerModerator(string friendCode)
+    public static bool IsPlayerModerator(string friendCode)
     {
         var friendCodesFilePath = @"./TOHE_DATA/Moderators.txt";
         var friendCodes = File.ReadAllLines(friendCodesFilePath);
