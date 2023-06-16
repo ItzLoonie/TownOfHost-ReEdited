@@ -125,6 +125,7 @@ class CheckMurderPatch
         // 赝品检查
         if (Counterfeiter.OnClientMurder(killer)) return false;
         if (Pursuer.OnClientMurder(killer)) return false;
+        if (Merchant.OnClientMurder(killer, target)) return false;
 
         //判定凶手技能
         if (killer.PlayerId != target.PlayerId)
@@ -439,6 +440,9 @@ class CheckMurderPatch
         //医生护盾检查
         if (Medicaler.OnCheckMurder(killer, target))
             return false;
+
+        if (Jackal.ResetKillCooldownWhenSbGetKilled.GetBool() && !killer.Is(CustomRoles.Jackal) && !target.Is(CustomRoles.Jackal) && !GameStates.IsMeeting)
+            Jackal.AfterPlayerDiedTask(killer);
 
         if (target.Is(CustomRoles.Lucky))
         {
