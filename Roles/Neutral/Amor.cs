@@ -119,7 +119,7 @@ namespace TOHE.Roles.Neutral
             }
 
             var player = Lovers.FirstOrDefault(a => a.PlayerId == deathId);
-            if ((player == null || !player.Data.IsDead) && !isExiled)
+            if (player == null || (!player.Data.IsDead && !isExiled))
             {
                 return;
             }
