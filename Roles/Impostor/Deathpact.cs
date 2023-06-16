@@ -75,7 +75,7 @@ namespace TOHE.Roles.Impostor
 
         public static void OnShapeshift(PlayerControl pc, PlayerControl target)
         {
-            if (!pc.IsAlive() || Pelican.IsEaten(pc.PlayerId)) return;
+            if (!pc.IsAlive() || !target.IsAlive() || Pelican.IsEaten(pc.PlayerId)) return;
 
             if (!PlayersInDeathpact[pc.PlayerId].Any(b => b.PlayerId == target.PlayerId))
             {
@@ -271,14 +271,14 @@ namespace TOHE.Roles.Impostor
         {
             foreach (var deathpact in ActiveDeathpacts)
             {
-                var deathpactPlayer = Main.AllPlayerControls.FirstOrDefault(a => a.PlayerId == deathpact);
-                if (deathpactPlayer == null)
-                {
-                    continue;
-                }
-
                 if (KillDeathpactPlayersOnMeeting.GetBool())
                 {
+                    var deathpactPlayer = Main.AllPlayerControls.FirstOrDefault(a => a.PlayerId == deathpact);
+                    if (deathpactPlayer == null)
+                    {
+                        continue;
+                    }
+
                     foreach (var player in PlayersInDeathpact[deathpact])
                     {
                         KillPlayerInDeathpact(deathpactPlayer, player);
