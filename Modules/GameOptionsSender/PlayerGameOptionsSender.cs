@@ -298,6 +298,8 @@ public class PlayerGameOptionsSender : GameOptionsSender
             }
         }
 
+        Deathpact.SetDeathpactVision(player, opt);
+
         foreach (var subRole in Main.PlayerStates[player.PlayerId].SubRoles)
         {
             switch (subRole)

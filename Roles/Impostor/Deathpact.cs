@@ -116,7 +116,7 @@ namespace TOHE.Roles.Impostor
             }
         }
 
-        public static void SetPactVision(PlayerControl player, IGameOptions opt)
+        public static void SetDeathpactVision(PlayerControl player, IGameOptions opt)
         {
             if (!ReduceVisionWhileInPact.GetBool())
             {
@@ -143,7 +143,7 @@ namespace TOHE.Roles.Impostor
                     KillDeathpactPlayer(player, playerInDeathpact);
                 }
 
-                ClearDeathPact(player.PlayerId);
+                ClearDeathpact(player.PlayerId);
                 player.Notify(Translator.GetString("DeathpactExecuted"));
             }
         }
@@ -152,7 +152,7 @@ namespace TOHE.Roles.Impostor
         {
             if (PlayersInDeathpact[deathpact.PlayerId].Any(a => a.Data.Disconnected || a.Data.IsDead))
             {
-                ClearDeathPact(deathpact.PlayerId);
+                ClearDeathpact(deathpact.PlayerId);
                 deathpact.Notify(Translator.GetString("DeathpactAvertedByKill"));
                 return true;
             }
@@ -171,7 +171,7 @@ namespace TOHE.Roles.Impostor
 
             if (cancelDeathpact)
             {
-                ClearDeathPact(deathpact.PlayerId);
+                ClearDeathpact(deathpact.PlayerId);
                 deathpact.Notify(Translator.GetString("DeathpactAverted"));
             }
 
@@ -188,11 +188,16 @@ namespace TOHE.Roles.Impostor
             target.RpcMurderPlayerV3(target);
         }
 
-        public static void ClearDeathPact(byte deathpact)
+        public static void ClearDeathpact(byte deathpact)
         {
             DeathpactTime[deathpact] = 0;
             ActiveDeathpacts.Remove(deathpact);
             PlayersInDeathpact[deathpact].Clear();
+
+            if (ReduceVisionWhileInPact.GetBool())
+            {
+                MarkEveryoneDirtySettings();
+            }
         }
     }
 }
