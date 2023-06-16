@@ -9,6 +9,7 @@ using TOHE.Modules;
 using TOHE.Roles.Crewmate;
 using TOHE.Roles.Neutral;
 using UnityEngine;
+using UnityEngine.UI;
 using static TOHE.Options;
 using static TOHE.Translator;
 using static TOHE.Utils;
@@ -207,11 +208,22 @@ namespace TOHE.Roles.Impostor
             return arrows;
         }
 
+        public static string GetDeathpactMark(PlayerControl seer, PlayerControl target)
+        {
+            if (!seer.Is(CustomRoles.Deathpact) || !Deathpact.IsInDeathpact(seer.PlayerId, target)) return string.Empty;
+            return Utils.ColorString(Palette.ImpostorRed, "◀");
+        }
+
         public static bool IsInActiveDeathpact(PlayerControl player)
         {
             if (ActiveDeathpacts.Count == 0) return false;
             if (PlayersInDeathpact.Any(a => ActiveDeathpacts.Contains(a.Key) && a.Value.Any(b => b.PlayerId == player.PlayerId))) return true;
             return false;
+        }
+
+        public static bool IsInDeathpact(byte deathpact, PlayerControl target)
+        {
+            return PlayersInDeathpact[deathpact].Any(a => a.PlayerId == target.PlayerId);
         }
 
         public static string GetDeathpactString(PlayerControl player)

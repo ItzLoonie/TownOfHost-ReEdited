@@ -1806,8 +1806,7 @@ class FixedUpdatePatch
                 {
                     Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Lovers)}>♡</color>");
                 }
-
-
+                
                 //矢印オプションありならタスクが終わったスニッチはインポスター/キル可能なニュートラルの方角がわかる
                 Suffix.Append(Snitch.GetSnitchArrow(seer, target));
 
@@ -1822,6 +1821,7 @@ class FixedUpdatePatch
                 Suffix.Append(Tracker.GetTrackerArrow(seer, target));
 
                 Suffix.Append(Deathpact.GetDeathpactPlayerArrow(seer));
+                Suffix.Append(Deathpact.GetDeathpactMark(seer, target));
 
                 if (GameStates.IsInTask && seer.Is(CustomRoles.AntiAdminer))
                 {
