@@ -1,16 +1,13 @@
 using AmongUs.GameOptions;
-using AmongUs.GameOptions;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Il2CppInterop.Runtime.Injection;
-using Sentry.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using TOHE.Roles.Crewmate;
 using TOHE.Roles.Neutral;
 using UnityEngine;
 
