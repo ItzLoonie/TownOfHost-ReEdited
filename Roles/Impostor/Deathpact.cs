@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using AmongUs.GameOptions;
 using MS.Internal.Xml.XPath;
 using TOHE.Modules;
+using TOHE.Roles.Crewmate;
 using TOHE.Roles.Neutral;
 using UnityEngine;
 using static TOHE.Options;
 using static TOHE.Translator;
 using static TOHE.Utils;
 using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.ParticleSystem.PlaybackState;
 
 namespace TOHE.Roles.Impostor
 {
@@ -188,8 +190,45 @@ namespace TOHE.Roles.Impostor
             target.RpcMurderPlayerV3(target);
         }
 
+        public static string GetDeathpactPlayerArrow(PlayerControl seer)
+        {
+            if (GameStates.IsMeeting) return "";
+            if (!ShowArrowsToOtherPlayersInPact.GetBool()) return "";
+            if (!IsInActiveDeathpact(seer)) return "";
+
+            string arrows = string.Empty;
+            var activeDeathpactsForPlayer = PlayersInDeathpact.Where(a => ActiveDeathpacts.Contains(a.Key) && a.Value.Any(b => b.PlayerId == seer.PlayerId));
+            foreach (var deathpact in activeDeathpactsForPlayer)
+            {
+                foreach (var otherPlayerInPact in deathpact.Value.Where(a => a.PlayerId != seer.PlayerId))
+                {
+                    arrows += TargetArrow.GetArrows(seer, otherPlayerInPact.PlayerId);
+                }
+            }
+
+            return arrows;
+        }
+
+        public static bool IsInActiveDeathpact(PlayerControl player)
+        {
+            if (ActiveDeathpacts.Count == 0) return false;
+            if (PlayersInDeathpact.Any(a => ActiveDeathpacts.Contains(a.Key) && a.Value.Any(b => b.PlayerId == player.PlayerId))) return true;
+            return false;
+        }
+
         public static void ClearDeathpact(byte deathpact)
         {
+            if (ShowArrowsToOtherPlayersInPact.GetBool())
+            {
+                foreach (var player in PlayersInDeathpact[deathpact])
+                {
+                    foreach (var otherPlayerInPact in PlayersInDeathpact[deathpact].Where(a => a.PlayerId != player.PlayerId))
+                    {
+                        TargetArrow.Remove(player.PlayerId, otherPlayerInPact.PlayerId);
+                    }
+                }
+            }
+
             DeathpactTime[deathpact] = 0;
             ActiveDeathpacts.Remove(deathpact);
             PlayersInDeathpact[deathpact].Clear();

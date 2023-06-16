@@ -1141,6 +1141,8 @@ public static class Utils
                 SelfSuffix.Append(Tracker.GetTrackerArrow(seer));
             }
 
+            SelfSuffix.Append(Deathpact.GetDeathpactPlayerArrow(seer));
+
             //タスクを終えたSnitchがインポスター/キル可能なニュートラルの方角を確認できる
             SelfSuffix.Append(Snitch.GetSnitchArrow(seer));
 

@@ -1820,6 +1820,8 @@ class FixedUpdatePatch
 
                 Suffix.Append(Tracker.GetTrackerArrow(seer, target));
 
+                Suffix.Append(Deathpact.GetDeathpactPlayerArrow(seer));
+
                 if (GameStates.IsInTask && seer.Is(CustomRoles.AntiAdminer))
                 {
                     AntiAdminer.FixedUpdate();
