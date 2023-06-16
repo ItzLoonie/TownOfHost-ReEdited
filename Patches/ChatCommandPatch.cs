@@ -782,7 +782,7 @@ internal class ChatCommands
         if (Judge.TrialMsg(player, text)) { canceled = true; return; }
         if (Mediumshiper.MsMsg(player, text)) return;
         if (MafiaRevengeManager.MafiaMsgCheck(player, text)) return;
-        string logFilePath = "BanReasons.txt";
+        string logFilePath = @"./TOHE_DATA/BanLogs.txt";
         if (!File.Exists(logFilePath))
         {
             File.Create(logFilePath).Close();
@@ -1030,7 +1030,7 @@ internal class ChatCommands
                 if (modInfo.Length >= 2 && modInfo[0] == friendCode)
                 {
                     // Update the moderator's information
-                    moderators[i] = $"{friendCode},{playerName}";
+                    moderators[i] = $"{friendCode}"; //,{playerName}";
                     File.WriteAllLines(modFilePath, moderators);
                     Utils.SendMessage(commandOutput);
                     return;
