@@ -1251,6 +1251,7 @@
 "NeutralCanBeFool","","<color=#7f8c8d>Neutrals</color> can become <color=#e6e7ff>Fool</color>","<color=#7f8c8d>Нейтралы</color> могут стать <color=#e6e7ff>Глупцом</color>","",""
 "DazzlerCauseVision","","Reduced vision","","",""
 "DazzlerDazzleLimit","","Max number of players affected by reduced vision","","",""
+"DazzlerResetDazzledVisionOnDeath","","Reset vision of dazzled players on death/eject","","",""
 
 "## Moderation for Auto-Hosters"
 "ApplyModeratorList","","Apply Moderator List","Применить список модераторов","",""

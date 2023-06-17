@@ -24,7 +24,8 @@ namespace TOHE.Roles.Impostor
         private static OptionItem ShapeshiftCooldown;
         private static OptionItem ShapeshiftDuration;
         private static OptionItem CauseVision;
-        private static OptionItem DazzleLimitOpt;
+        private static OptionItem DazzleLimit;
+        private static OptionItem ResetDazzledVisionOnDeath;
 
         public static void SetupCustomOption()
         {
@@ -37,8 +38,9 @@ namespace TOHE.Roles.Impostor
                 .SetValueFormat(OptionFormat.Seconds);
             CauseVision = FloatOptionItem.Create(Id + 13, "DazzlerCauseVision", new(0f, 5f, 0.05f), 0.65f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Dazzler])
                 .SetValueFormat(OptionFormat.Multiplier);
-            DazzleLimitOpt = IntegerOptionItem.Create(Id + 14, "DazzlerDazzleLimit", new(1, 15, 1), 3, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Dazzler])
+            DazzleLimit = IntegerOptionItem.Create(Id + 14, "DazzlerDazzleLimit", new(1, 15, 1), 3, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Dazzler])
                 .SetValueFormat(OptionFormat.Times);
+            ResetDazzledVisionOnDeath = BooleanOptionItem.Create(Id + 15, "DazzlerResetDazzledVisionOnDeath", true, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Dazzler]);
         }
 
         public static void Init()
@@ -65,7 +67,7 @@ namespace TOHE.Roles.Impostor
         {
             if (!pc.IsAlive() || Pelican.IsEaten(pc.PlayerId)) return;
 
-            if (!PlayersDazzled[pc.PlayerId].Contains(target.PlayerId) && PlayersDazzled[pc.PlayerId].Count < DazzleLimitOpt.GetInt())
+            if (!PlayersDazzled[pc.PlayerId].Contains(target.PlayerId) && PlayersDazzled[pc.PlayerId].Count < DazzleLimit.GetInt())
             {
                 target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Dazzler), GetString("DazzlerDazzled")));
                 PlayersDazzled[pc.PlayerId].Add(target.PlayerId);
@@ -75,7 +77,8 @@ namespace TOHE.Roles.Impostor
 
         public static void SetDazzled(PlayerControl player, IGameOptions opt)
         {
-            if (PlayersDazzled.Any(a => a.Value.Contains(player.PlayerId) && Main.AllAlivePlayerControls.Any(b => b.PlayerId == a.Key)))
+            if (PlayersDazzled.Any(a => a.Value.Contains(player.PlayerId) && 
+               (!ResetDazzledVisionOnDeath.GetBool() || Main.AllAlivePlayerControls.Any(b => b.PlayerId == a.Key))))
             {
                 opt.SetVision(false);
                 opt.SetFloat(FloatOptionNames.CrewLightMod, CauseVision.GetFloat());
