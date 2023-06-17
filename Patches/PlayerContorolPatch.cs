@@ -125,8 +125,7 @@ class CheckMurderPatch
         // 赝品检查
         if (Counterfeiter.OnClientMurder(killer)) return false;
         if (Pursuer.OnClientMurder(killer)) return false;
-        if (Merchant.OnClientMurder(killer, target)) return false;
-
+        
         //判定凶手技能
         if (killer.PlayerId != target.PlayerId)
         {
@@ -340,6 +339,8 @@ class CheckMurderPatch
         // 击杀前检查
         if (!killer.RpcCheckAndMurder(target, true))
             return false;
+
+        if (Merchant.OnClientMurder(killer, target)) return false;
 
         // Don't infect when Shielded
         if (killer.Is(CustomRoles.Virus))
