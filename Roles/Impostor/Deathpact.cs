@@ -280,7 +280,7 @@ namespace TOHE.Roles.Impostor
                 if (KillDeathpactPlayersOnMeeting.GetBool())
                 {
                     var deathpactPlayer = Main.AllPlayerControls.FirstOrDefault(a => a.PlayerId == deathpact);
-                    if (deathpactPlayer == null)
+                    if (deathpactPlayer == null || deathpactPlayer.Data.IsDead)
                     {
                         continue;
                     }
