@@ -75,7 +75,13 @@ namespace TOHE.Roles.Impostor
 
         public static void OnShapeshift(PlayerControl pc, PlayerControl target)
         {
-            if (!pc.IsAlive() || !target.IsAlive() || Pelican.IsEaten(pc.PlayerId)) return;
+            if (!pc.IsAlive() || Pelican.IsEaten(pc.PlayerId)) return;
+
+            if (!target.IsAlive() || Pelican.IsEaten(target.PlayerId))
+            {
+                pc.Notify(GetString("DeathpactCouldNotAddTarget"));
+                return;
+            }
 
             if (!PlayersInDeathpact[pc.PlayerId].Any(b => b.PlayerId == target.PlayerId))
             {

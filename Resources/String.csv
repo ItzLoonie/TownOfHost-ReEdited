@@ -1445,6 +1445,7 @@
 "BribedByMerchant2","","You cannot guess the Merchant after he bribed you.","","",""
 "MerchantKillAttemptBribed","","An attempted killing was averted by bribery","","",""
 "DeathpactActiveDeathpact","","Find【{0}】in【{1}】seconds.","","",""
+"DeathpactCouldNotAddTarget","","Target can't be added to death pact.","","",""
 "DeathpactComplete","","Death pact was concluded.","","",""
 "DeathpactExecuted","","Death pact was executed.","","",""
 "DeathpactAverted","","Death pact was averted.","","",""
