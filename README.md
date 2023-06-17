@@ -11,9 +11,10 @@
 >
 > This mod is not affiliated with Among Us or Innersloth LLC, and the content contained therein is not endorsed or otherwise sponsored by Innersloth LLC. Portions of the materials contained herein are property of Innersloth LLC. © Innersloth LLC.
 >
-
+> ##### Note: The website is still a Work In Progress, please bear with us - Moe <br>
 <p align="center">
-<a href="https://tohe.cc" target="_blank"><img src="https://img.shields.io/badge/Website%20-%231DA1F2.svg?&style=for-the-badge&logo=vuedotjs&logoColor=white&color=3aa675"/></a>
+
+<a href="https://tohe-r-doc.vercel.app/" target="_blank"><img src="https://img.shields.io/badge/Website%20-%231DA1F2.svg?&style=for-the-badge&logo=vuedotjs&logoColor=white&color=3aa675"/></a>
 <a href="https://discord.gg/hkk2p9ggv4" target="_blank"><img src="https://img.shields.io/badge/Discord%20-%231DA1F2.svg?&style=for-the-badge&logo=discord&logoColor=white&color=5662f6"/></a>
 <a href="https://github.com/Loonie-Toons/TOHE-Restored" target="_blank"><img src="https://img.shields.io/badge/Lateset Version%20-%231DA1F2.svg?&style=for-the-badge&logo=github&logoColor=white&color=181717"/></a>
 </p>
@@ -21,23 +22,20 @@
 </p>
 
 ---
+<br>
 
-**This is a project for me to learn C#.**
-
-**So many thanks to these mods for their codes and helps:**
-
-> 
+**Credit to these mods and their developers for the code and help:**
 ### :star: [TOHE](https://github.com/KARPED1EM/TownOfHostEdited) :
 > 
 > - Our repo is forked from TOHE
 ### :star: [TOH](https://github.com/tukasa0001/TownOfHost) :
 > 
-> - Our repo is originally based off off of TOH
+> - Our repo is based initially on TOH
 > 
 ### :star: [TOHY](https://github.com/Yumenopai/TownOfHost_Y) :
 > 
 > - Many role ideas
-> - Provided role: AntiAdminer, CursedWolf, Workaholic, Greedier, DarkHide
+> - Provided roles: AntiAdminer, CursedWolf, Workaholic, Greedier, DarkHide
 > - Reference: Modify game announcement
 > 
 ### :star: [TOH:TOR](https://github.com/music-discussion/TownOfHost-TheOtherRoles) :
