@@ -410,7 +410,6 @@ class GameEndChecker
             }
             else if (Main.AllAlivePlayerControls.All(p => p.Is(CustomRoles.Lovers) || p.Is(CustomRoles.Amor))) //恋人胜利
             {
-                Logger.Info("CheckGameEndByLivingPlayers => All(p => p.Is(CustomRoles.Lovers) || p.Is(CustomRoles.Amor)", "TEST_Amor_Win");
                 reason = GameOverReason.ImpostorByKill;
                 CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Lovers);
                 if (Amor.IsEnable)
