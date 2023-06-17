@@ -23,13 +23,13 @@ namespace TOHE.Roles.Neutral
 
         public static void SetupCustomOption()
         {
-            SetupSingleRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.Amor, 1, zeroOne: false);
-            MatchmakeCooldown = FloatOptionItem.Create(Id + 10, "AmorMatchmakeCooldown", new(0f, 990f, 2.5f), 30f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor])
+            SetupSingleRoleOptions(Id, TabGroup.OtherRoles, CustomRoles.Amor, 1, zeroOne: false);
+            MatchmakeCooldown = FloatOptionItem.Create(Id + 10, "AmorMatchmakeCooldown", new(0f, 990f, 2.5f), 30f, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor])
                 .SetValueFormat(OptionFormat.Seconds);
-            MatchmakeMax = IntegerOptionItem.Create(Id + 11, "AmorMatchmakeMax", new(2, 4, 1), 2, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor])
+            MatchmakeMax = IntegerOptionItem.Create(Id + 11, "AmorMatchmakeMax", new(2, 4, 1), 2, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor])
                 .SetValueFormat(OptionFormat.Times);
-            KnowTargetRole = BooleanOptionItem.Create(Id + 12, "AmorKnowLoverRole", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor]);
-            LoversSuicide = BooleanOptionItem.Create(Id + 13, "AmorLoversSuicide", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor]);
+            KnowTargetRole = BooleanOptionItem.Create(Id + 12, "AmorKnowLoverRole", true, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor]);
+            LoversSuicide = BooleanOptionItem.Create(Id + 13, "AmorLoversSuicide", true, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Amor]);
         }
 
         public static void Init()

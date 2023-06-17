@@ -984,8 +984,7 @@ public static class Options
         Lawyer.SetupCustomOption();
         SetupRoleOptions(50100, TabGroup.NeutralRoles, CustomRoles.Opportunist);
         Pursuer.SetupCustomOption();
-        Amor.SetupCustomOption();
-
+        
         TextOptionItem.Create(909094_1, "RoleType.NeutralEvil", TabGroup.NeutralRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(127, 140, 141, byte.MaxValue));
@@ -1292,6 +1291,7 @@ public static class Options
         .SetParent(CustomRoleSpawnChances[CustomRoles.Revolutionist])
             .SetValueFormat(OptionFormat.Seconds);
         SetupRoleOptions(5051412, TabGroup.OtherRoles, CustomRoles.Provocateur);
+        Amor.SetupCustomOption();
 
         // 副职
         TextOptionItem.Create(909096_0, "OtherRoles.Addons", TabGroup.OtherRoles)
