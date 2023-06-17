@@ -811,6 +811,14 @@ internal class ChatCommands
                     Utils.SendMessage(string.Format(GetString("SureUse.quit"), cid), player.PlayerId);
                 }
                 break;
+            case "/id":
+                if (Options.ApplyModeratorList.GetValue() == 0 || !IsPlayerModerator(player.FriendCode)) break;
+
+                string msgText = GetString("PlayerIdList");
+                foreach (var pc in Main.AllPlayerControls)
+                    msgText += "\n" + pc.PlayerId.ToString() + " → " + Main.AllPlayerNames[pc.PlayerId];
+                Utils.SendMessage(msgText, player.PlayerId);
+                break;
             case "/kick":
                 // Check if the kick command is enabled in the settings
                 if (Options.ApplyModeratorList.GetValue() == 0)
