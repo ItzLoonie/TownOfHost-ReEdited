@@ -122,7 +122,13 @@ public class PlayerState
         }
         if (role == CustomRoles.Contagious)
         {
-            countTypes = CountTypes.Virus;
+            countTypes = Virus.ContagiousCountMode.GetInt() switch
+            {
+                0 => CountTypes.OutOfGame,
+                1 => CountTypes.Virus,
+                2 => countTypes,
+                _ => throw new NotImplementedException()
+            };
             SubRoles.Remove(CustomRoles.Madmate);
             SubRoles.Remove(CustomRoles.Sidekick);
             SubRoles.Remove(CustomRoles.Rogue);
