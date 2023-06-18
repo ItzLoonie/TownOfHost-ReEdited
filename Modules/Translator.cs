@@ -67,8 +67,8 @@ public static class Translator
 
     public static string GetString(string s, Dictionary<string, string> replacementDic = null, bool console = false)
     {
-        var langId = TranslationController.InstanceExists ? TranslationController.Instance.currentLanguage.languageID : SupportedLangs.SChinese;
-        if (console) langId = SupportedLangs.SChinese;
+        var langId = TranslationController.InstanceExists ? TranslationController.Instance.currentLanguage.languageID : SupportedLangs.English;
+        if (console) langId = SupportedLangs.English;
         if (Main.ForceOwnLanguage.Value) langId = GetUserTrueLang();
         string str = GetString(s, langId);
         if (replacementDic != null)
@@ -86,7 +86,7 @@ public static class Translator
         {
             if (translateMaps.TryGetValue(str, out var dic) && (!dic.TryGetValue((int)langId, out res) || res == "" || (langId is not SupportedLangs.SChinese and not SupportedLangs.TChinese && Regex.IsMatch(res, @"[\u4e00-\u9fa5]") && res == GetString(str, SupportedLangs.SChinese)))) //strに該当する&無効なlangIdかresが空
             {
-                if (langId == SupportedLangs.SChinese || langId == SupportedLangs.English) res = $"*{str}";
+                if (langId == SupportedLangs.English) res = $"*{str}";
                 else res = GetString(str, SupportedLangs.English);
             }
             if (!translateMaps.ContainsKey(str)) //translateMapsにない場合、StringNamesにあれば取得する
@@ -108,7 +108,7 @@ public static class Translator
     public static string GetRoleString(string str, bool forUser = true)
     {
         var CurrentLanguage = TranslationController.Instance.currentLanguage.languageID;
-        var lang = forUser ? CurrentLanguage : SupportedLangs.SChinese;
+        var lang = forUser ? CurrentLanguage : SupportedLangs.English;
         if (Main.ForceOwnLanguageRoleName.Value)
             lang = GetUserTrueLang();
 
