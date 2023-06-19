@@ -63,7 +63,7 @@
 
         public static void FixedUpdate(PlayerControl player)
         {
-            if (!GameStates.IsInTask || !IsEnable || !SuicideTimer.ContainsKey(player.PlayerId)) return;
+            if (!GameStates.IsInTask || !IsEnable || !SuicideTimer.ContainsKey(player.PlayerId) || !player.IsAlive()) return;
 
             if (SuicideTimer[player.PlayerId] >= TimeLimit.GetFloat())
             {
