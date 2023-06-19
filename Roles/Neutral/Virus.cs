@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Epic.OnlineServices;
 using Hazel;
 using UnityEngine;
 using static TOHE.Options;
 using static TOHE.Translator;
-using static UnityEngine.GraphicsBuffer;
 
 namespace TOHE.Roles.Neutral
 {
