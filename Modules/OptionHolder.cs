@@ -517,6 +517,7 @@ public static class Options
     public static OptionItem ApplyDenyNameList;
     public static OptionItem KickPlayerFriendCodeNotExist;
     public static OptionItem KickLowLevelPlayer;
+    public static OptionItem ApplyAllowList;
     public static OptionItem ApplyBanList;
     public static OptionItem ApplyModeratorList;
     public static OptionItem AllowSayCommand;
@@ -1356,6 +1357,7 @@ public static class Options
         KickLowLevelPlayer = IntegerOptionItem.Create(6090074, "KickLowLevelPlayer", new(0, 100, 1), 0, TabGroup.SystemSettings, false)
             .SetValueFormat(OptionFormat.Level)
             .SetHeader(true);
+        ApplyAllowList = BooleanOptionItem.Create(6090075, "ApplyAllowList", false, TabGroup.SystemSettings, false);
         KickAndroidPlayer = BooleanOptionItem.Create(6090071, "KickAndroidPlayer", false, TabGroup.SystemSettings, false);
         KickPlayerFriendCodeNotExist = BooleanOptionItem.Create(1_000_101, "KickPlayerFriendCodeNotExist", false, TabGroup.SystemSettings, true);
         ApplyDenyNameList = BooleanOptionItem.Create(1_000_100, "ApplyDenyNameList", true, TabGroup.SystemSettings, true);
