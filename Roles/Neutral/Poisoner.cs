@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using static TOHE.Translator;
 
-namespace TOHE.Roles.Impostor;
+namespace TOHE.Roles.Neutral;
 
 public static class Poisoner
 {
