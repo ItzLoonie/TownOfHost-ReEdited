@@ -417,6 +417,7 @@ public static class Options
     public static OptionItem PassiveNeutralsCanGuess;
     public static OptionItem HideGuesserCommands;
     public static OptionItem CanGuessAddons;
+    public static OptionItem GuessAddonExemptions;
     public static OptionItem ImpCanGuessImp;
     public static OptionItem CrewCanGuessCrew;
 
@@ -1452,8 +1453,10 @@ public static class Options
         .SetParent(GuesserMode);
         PassiveNeutralsCanGuess = BooleanOptionItem.Create(6050835, "PassiveNeutralsCanGuess", false, TabGroup.GameSettings, false)
         .SetParent(GuesserMode);
-        CanGuessAddons = BooleanOptionItem.Create(6050845, "CanGuessAddons", true, TabGroup.GameSettings, false)
+        CanGuessAddons = BooleanOptionItem.Create(6050846 + 15, "CanGuessAddons", false, TabGroup.GameSettings, false)
         .SetParent(GuesserMode);
+        GuessAddonExemptions = BooleanOptionItem.Create(6050846 + 16, "CanGuessAddonExemptions", false, TabGroup.GameSettings, false).SetParent(CanGuessAddons);
+        GuessManagerHelpers.SetUpSpecialOptions(6050846 + 30);
         CrewCanGuessCrew = BooleanOptionItem.Create(6050850, "CrewCanGuessCrew", true, TabGroup.GameSettings, false)
         .SetParent(GuesserMode);
         ImpCanGuessImp = BooleanOptionItem.Create(6050855, "ImpCanGuessImp", true, TabGroup.GameSettings, false)

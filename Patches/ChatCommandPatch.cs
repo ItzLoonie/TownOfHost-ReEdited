@@ -151,7 +151,7 @@ internal class ChatCommands
                     subArgs = args.Length < 2 ? "" : args[1];
                     Utils.SendMessage(string.Format(GetString("Message.SetLevel"), subArgs), PlayerControl.LocalPlayer.PlayerId);
                     int.TryParse(subArgs, out int input);
-                    if (input is < 1 or > 999)
+                    if (input is < 1 or > 4000)
                     {
                         Utils.SendMessage(GetString("Message.AllowLevelRange"), PlayerControl.LocalPlayer.PlayerId);
                         break;
@@ -362,7 +362,7 @@ internal class ChatCommands
                 }
 
                 // Kick the specified player
-                AmongUsClient.Instance.KickPlayer(kickedPlayer.GetClientId(), true);
+                AmongUsClient.Instance.KickPlayer(kickedPlayer.GetClientId(), false);
                 string kickedPlayerName = kickedPlayer.GetRealName();
                 string textToSend = $"{kickedPlayerName} {GetString("KickCommandKicked")}";
                 if (GameStates.IsInGame)
@@ -857,7 +857,7 @@ internal class ChatCommands
                 }
 
                 // Kick the specified player
-                AmongUsClient.Instance.KickPlayer(kickedPlayer.GetClientId(), true);
+                AmongUsClient.Instance.KickPlayer(kickedPlayer.GetClientId(), false);
                 string kickedPlayerName = kickedPlayer.GetRealName();
                 string textToSend = $"{kickedPlayerName} {GetString("KickCommandKicked")}";
                 if (GameStates.IsInGame)
@@ -1004,11 +1004,6 @@ internal class ChatCommands
                 {
                     if (args.Length > 1)
                         Utils.SendMessage(args.Skip(1).Join(delimiter: " "), title: $"<color={Main.ModColor}>{GetString("MessageFromDev")}</color>");
-                }
-                else if (player.FriendCode.IsDevUser())
-                {
-                    if (args.Length > 1)
-                        Utils.SendMessage(args.Skip(1).Join(delimiter: " "), title: $"<color=#4bc9b0>{GetString("MessageFromSponsor")}</color>");
                 }
                 break;
 
