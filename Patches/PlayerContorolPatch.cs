@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -1144,9 +1145,12 @@ class FixedUpdatePatch
     private static StringBuilder Suffix = new(120);
     private static int LevelKickBufferTime = 10;
     private static Dictionary<byte, int> BufferTime = new();
+   
     public static void Postfix(PlayerControl __instance)
     {
         var player = __instance;
+        
+        Utils.ApplyModeratorSuffix(__instance);
 
         if (!GameStates.IsModHost) return;
 

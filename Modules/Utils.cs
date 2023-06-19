@@ -1023,6 +1023,26 @@ public static class Utils
         if (name != player.name && player.CurrentOutfitType == PlayerOutfitType.Default)
             player.RpcSetName(name);
     }
+    public static void ApplyModeratorSuffix(PlayerControl player)
+    {
+        if (player == null) return;
+        string name = Main.AllPlayerNames.TryGetValue(player.PlayerId, out var n) ? n : "";
+        if (name == "") return;
+        if ((player.AmOwner || (player.IsModClient() && player.FriendCode.GetDevUser().HasTag()))) return;
+        if (Options.ApplyModeratorList.GetValue() == 0 || !ChatCommands.IsPlayerModerator(player.FriendCode) || !GameStates.IsLobby)
+        { 
+            name = Main.AllPlayerNames.TryGetValue(player.PlayerId, out var n1) ? n1 : "";
+        }
+        else if (Options.ApplyModeratorList.GetValue() == 1)
+        {
+            if (ChatCommands.IsPlayerModerator(player.FriendCode)) 
+            {
+                name = $"<color=#8bbee0>MODERATOR♥</color>" + name;
+            }
+        }
+        if (name != player.name && player.CurrentOutfitType == PlayerOutfitType.Default)
+            player.RpcSetName(name);
+    }
     public static PlayerControl GetPlayerById(int PlayerId)
     {
         return Main.AllPlayerControls.Where(pc => pc.PlayerId == PlayerId).FirstOrDefault();

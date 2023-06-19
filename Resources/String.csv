@@ -501,7 +501,8 @@
 "TimeThiefInfoLong","(内鬼阵营):\n蚀时者每击杀一个人，会议时间就将减少一定时间。如果蚀时者死亡，会议时间会恢复正常。","(Impostors):\nEvery time the Time Thief kills a player, the meeting time will be reduced by a certain amount of time. If the Time Thief dies, the meeting time will return to normal."," (Предатель):\nКаждое убийство Вора Времени сокращает время обсуждения и голосования на собраниях. \nВ зависимости от настроек потерянное время возвращается после того, как он будет убит или изгнан.","(偽裝者陣營):\n時間竊賊每殺死一個人，那麼會議時間就會減少一定時間，如果時間竊賊死亡，那麼會議時間將會恢復。","(内鬼阵营):\n蚀时者每击杀一个人，会议时间就将减少一定时间。如果蚀时者死亡，会议时间会恢复正常。"
 "SniperInfoLong","(内鬼阵营):\n狙击手拥有远距离射杀的能力。方法为：进入变形到解除变形的位置连成一条线，这条线包括这条线的射线上距离最近的玩家会被狙杀。狙击手在子弹用完后可以进行正常击杀。","(Impostors):\nYou can shoot players from far away.\nYou have to shapeshift twice to make a successful snipe.\nImagine an arrow pointing from your first shapeshift location towards your unshift location.\nThat will be the direction in which the snipe will be made.\nThe snipe kills the first person in its path.\nYou cannot kill normally until you use up all of your ammos."," (Предатель):\nСнайпер может стрелять в игроков на расстоянии. \nОн убивает игрока который, находится с ним на одной линии, от точки Морфа до точки возвращения в свой облик. \nОн может совершать обычные убийства после того, как все его патроны закончатся.","(偽裝者陣營):\n狙擊手擁有遠距離狙殺的技能，當狙擊手變形時會標記一個點(標記A)，解除變形時也會標記一個點(標記B)，標記A到標記B即為彈道，\n子彈將由標記A穿越彈道後再從標記B打出，並狙殺離這條彈道上最近的人(若有人處於彈道中則不會被狙殺)，狙擊手在子彈用完之後可以正常殺人。","(内鬼阵营):\n狙击手拥有远距离射杀的能力。方法为：进入变形到解除变形的位置连成一条线，这条线包括这条线的射线上距离最近的玩家会被狙杀。狙击手在子弹用完后可以进行正常击杀。"
 "EvilTrackerInfoLong","(内鬼阵营):\n追踪者可以追踪其他人，追踪者可以变形为某个人以切换追踪目标为变形的目标。玩家名称下面的箭头代表着目标的方向。当内鬼队友杀人时，追踪者将会看到击杀闪烁提示。","(Impostors):\nThe Agent can track other people, and the Agent can shapeshift into someone to switch the tracking target to the shapeshift target (You will immediately unshift after performing shapeshift). The arrow below the Agent's name indicates the direction of the target. When the Agent's teammate kills, the Agent will see a kill-flash."," (Предатель):\nЗлой Трекер может отслеживать других игроков. \nОн может видеть стрелки, которые указывают на Предателей или на того, в кого он превратился. \nОн может видеть когда было совершено убийство с помощью вспышки убийства.","(偽裝者陣營):\n邪惡追蹤者可以通過變形來指定一個追蹤目標，變形後將會解除變形，並且玩家名稱會出現一個箭頭指向目標，當隊友殺人時，邪惡追蹤者將會看到螢幕閃爍為提示。","(内鬼阵营):\n追踪者可以追踪其他人，追踪者可以变形为某个人以切换追踪目标为变形的目标。玩家名称下面的箭头代表着目标的方向。当内鬼队友杀人时，追踪者将会看到击杀闪烁提示。"
-"EvilGuesserInfoLong","(内鬼阵营):\n邪恶赌怪可以在会议时猜测某位玩家的职业，正确则击杀目标，错误则会自杀。\n猜测指令为：/bt [玩家编号] [职业名]\n您可以在玩家名字前看到该玩家的编号，或者使用/id指令查看所有玩家的编号。","(Impostors):\nThe Evil Guesser can guess the role of a certain player during the meeting. If it is correct, the target dies, and if it is wrong, the Evil Guesser dies.\nThe guessing command is: /bt [player id] [role]\nYou can see the player's id before the player's name, or use the /id command to view the id of all players."," (Предатель):\nЗлой Угадыватель может угадывать роли определённого игрока во время встречи. Если он угадает роль правильно, то он убьет эту цель, а если неправильно, то он совершит самоубийство. \nКоманда для угадываний: '/bt [Номер игрока] [Название Роли]'' \nПример: /bt 3 Байт \nВы можете увидеть номер игрока перед его никнеймом, или же для просмотра номеров всех игроков нужно использовать команду ''/id''.","(偽裝者陣營):\n邪惡賭怪可以在會議上猜測某位玩家的職業，正確則會讓猜測目標死亡，錯誤則會自殺，\n猜測指令為/bt [玩家ID] [職業名](指令開頭的/bt可以替換為/bet、/guess、/gs等)\n你可以在玩家名字前看到玩家ID，或使用/id來查詢所有玩家的ID。","(内鬼阵营):\n邪恶赌怪可以在会议时猜测某位玩家的职业，正确则击杀目标，错误则会自杀。\n猜测指令为：/bt [玩家编号] [职业名]\n您可以在玩家名字前看到该玩家的编号，或者使用/id指令查看所有玩家的编号。"
+"EvilGuesserInfoLong","(内鬼阵营):\n邪恶赌怪可以在会议时猜测某位玩家的职业，正确则击杀目标，错误则会自杀。\n猜测指令为：/bt [玩家编号] [职业名]\n您可以在玩家名字前看到该玩家的编号，或者使用
+指令查看所有玩家的编号。","(Impostors):\nThe Evil Guesser can guess the role of a certain player during the meeting. If it is correct, the target dies, and if it is wrong, the Evil Guesser dies.\nThe guessing command is: /bt [player id] [role]\nYou can see the player's id before the player's name, or use the /id command to view the id of all players."," (Предатель):\nЗлой Угадыватель может угадывать роли определённого игрока во время встречи. Если он угадает роль правильно, то он убьет эту цель, а если неправильно, то он совершит самоубийство. \nКоманда для угадываний: '/bt [Номер игрока] [Название Роли]'' \nПример: /bt 3 Байт \nВы можете увидеть номер игрока перед его никнеймом, или же для просмотра номеров всех игроков нужно использовать команду ''/id''.","(偽裝者陣營):\n邪惡賭怪可以在會議上猜測某位玩家的職業，正確則會讓猜測目標死亡，錯誤則會自殺，\n猜測指令為/bt [玩家ID] [職業名](指令開頭的/bt可以替換為/bet、/guess、/gs等)\n你可以在玩家名字前看到玩家ID，或使用/id來查詢所有玩家的ID。","(内鬼阵营):\n邪恶赌怪可以在会议时猜测某位玩家的职业，正确则击杀目标，错误则会自杀。\n猜测指令为：/bt [玩家编号] [职业名]\n您可以在玩家名字前看到该玩家的编号，或者使用/id指令查看所有玩家的编号。"
 "AntiAdminerInfoLong","(内鬼阵营):\n监管者可以随时知道是否有船员阵营玩家或中立阵营玩家靠近监控面板、管理室地图、生命检测、通行记录等设备。请注意：监管者并不知道靠近的人是否真的在使用设备，只是知道有人靠近设备。","(Impostors):\nThe Anti Adminer can at any time find out if there are crewmates or neutrals near Cameras, Admin Table, Vitals, DoorLog and/or other devices. Note: Anti Adminer does not know for sure if the player is using the device while near it, they only know that someone is near the device."," (Предатель):\nАнти Админер может в любое время узнать, есть ли Члены Экипажа или Нейтральные игроки рядом с Камерами, Админским столом, Пульсами, Журналами и с другими устройствами. \nПожалуйста, обратите внимание: Анти Админер не знает наверняка использует ли игрок устройство находясь рядом с ним, а знает только то, что кто-то находится рядом с устройством.","(偽裝者陣營):\n監管者在有非偽裝者陣營玩家靠近任何一個設備時(例如管理室地圖、心電圖、通行紀錄等) 會收到提示，但是請注意: 監管者只知道有人在靠近此設備，並不知道是否在真正使用該設備。","(内鬼阵营):\n监管者可以随时知道是否有船员阵营玩家或中立阵营玩家靠近监控面板、管理室地图、生命检测、通行记录等设备。请注意：监管者并不知道靠近的人是否真的在使用设备，只是知道有人靠近设备。"
 "SansInfoLong","(内鬼阵营):\n狂妄杀手每次成功击杀都会减少他的击杀冷却。","(Impostors):\nThe Arrogance reduces their kill cooldown with each successful kill of theirs."," (Предатель):\nКаждый раз, когда Высокомер совершает убийство, его откат убийства будет уменьшаться. ","(偽裝者陣營):\n狂妄殺手每次殺人都會減少他的殺人冷卻。","(内鬼阵营):\n狂妄杀手每次成功击杀都会减少他的击杀冷却。"
 "BomberInfoLong","(内鬼阵营):\n自爆兵可以使用变形按钮来进行自爆，炸死一定范围里的玩家。但是作为代价，自爆兵自己也会被炸死。请注意：自爆兵爆炸的时候全体玩家会看到杀戮闪烁。","(Impostors):\nThe Bomber can use the shapeshift button to self-explode, killing players within a certain range. But as a price, the Bomber will also die. Note: All players will see a kill-flash when the Bomber explodes."," (Предатель):\nБомбер может использовать Морф, чтобы взорвать игроков которые оказались в радиусе бомбы. Но в качестве платы, сам Бомбер будет также взорван. \nПожалуйста, обратите внимание: Когда Бомбер взорвётся, все игроки увидят ''Вспышку Убийства''. Эта вспышка точно такая же, как вспышка убийства когда умирает Знаменитость. Пожалуйста, обращайте внимание на экран.","(偽裝者陣營):\n自爆兵能使用變形來炸死一定範圍內的玩家，但是作為代價，自爆兵自己也會被炸死。請注意: 自爆兵爆炸時全部玩家會看到螢幕閃爍作為提示(這個閃爍是跟網紅一樣的，請注意區別)。","(内鬼阵营):\n自爆兵可以使用变形按钮来进行自爆，炸死一定范围里的玩家。但是作为代价，自爆兵自己也会被炸死。请注意：自爆兵爆炸的时候全体玩家会看到杀戮闪烁。"
@@ -1248,13 +1249,37 @@
 
 "## Moderation for Auto-Hosters"
 "ApplyModeratorList","","Apply Moderator List","Применить список модераторов","",""
+"AllowSayCommand","","Allow moderators to use /say command"," ","",""
 "KickCommandDisabled","","The kick command is currently disabled.","Команда кика в настоящее время отключена","",""
 "KickCommandNoAccess","","You do not have access to the kick command.","У вас нет доступа к команде кика","",""
 "KickCommandInvalidID","","Invalid player ID specified.\nPlease use '/kick [playerID]' to kick a player.","Указан неверный идентификатор игрока.\nИспользуйте '/kick [playerID]', чтобы кикнуть игрока.","",""
 "KickCommandKickHost","","You are not permitted to kick the host.","Вам не разрешено кикать Хоста.","",""
 "KickCommandKickMod","","You are not permitted to kick other moderators.","Вам не разрешено кикать других модераторов.","",""
-"KickCommandKicked","","was kicked from the game.","был кикнут из игры.","",""
+"KickCommandKicked","","was kicked from the game by ","был кикнут из игры.","",""
 "KickCommandKickedRole","","Their role was","Их роль была","",""
+
+"BanCommandDisabled","","The ban command is currently disabled.","","",""
+"BanCommandNoAccess","","You do not have access to the ban command.","","",""
+"BanCommandInvalidID","","Invalid player ID specified.\nPlease use '/ban [playerID]' to ban a player.","","",""
+"BanCommandBanHost","","You are not permitted to ban the host.","","",""
+"BanCommandBanMod","","You are not permitted to ban other moderators.","","",""
+"BanCommandBanned","","was banned from the game by ","","",""
+"BanCommandBannedRole","","Their role was","","",""
+
+"midCommandDisabled","","The mid command is currently disabled.","","",""
+"midCommandNoAccess","","You do not have access to the mid command."," ","",""
+
+"WarnCommandDisabled","","The warn command is currently disabled."," ","",""
+"WarnCommandNoAccess","","You do not have access to the warn command."," ","",""
+"WarnCommandInvalidID","","Invalid player ID specified.\nPlease use '/warn [playerID]' to warn a player."," ","",""
+"WarnCommandWarnHost","","You are not permitted to warn the host."," ","",""
+"WarnCommandWarnMod","","You are not permitted to warn other moderators."," ","",""
+"WarnCommandWarned","","has been warned. There will be no more warnings given and aprropriate action will be taken \n~ "," ","",""
+
+"SayCommandDisabled","","The say command is currently disabled.","","",""
+"MessageFromModerator","","【 ★ Moderator message ★ 】","","",""
+
+
 
 "## 死因 / Death Reasons"
 "DeathReason.Kill","被杀","Kill","Убит","被殺","被杀"
