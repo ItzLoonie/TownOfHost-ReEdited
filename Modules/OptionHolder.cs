@@ -149,7 +149,7 @@ public static class Options
     public static OptionItem MadmateKnowWhosImp;
     public static OptionItem MadmateKnowWhosMadmate;
     public static OptionItem MadmateHasImpostorVision;
-    public static OptionItem MadmateCanFixSabotage;
+    //public static OptionItem MadmateCanFixSabotage;
     public static OptionItem ImpCanKillMadmate;
     public static OptionItem MadmateCanKillImp;
     public static OptionItem JackalCanKillSidekick;
@@ -680,8 +680,8 @@ public static class Options
             .SetGameMode(CustomGameMode.Standard);
         MadmateHasImpostorVision = BooleanOptionItem.Create(900054, "MadmateHasImpostorVision", true, TabGroup.ImpostorRoles, false)
             .SetGameMode(CustomGameMode.Standard);
-        MadmateCanFixSabotage = BooleanOptionItem.Create(900058, "MadmateCanFixSabotage", false, TabGroup.ImpostorRoles, false)
-            .SetGameMode(CustomGameMode.Standard);
+        //MadmateCanFixSabotage = BooleanOptionItem.Create(900058, "MadmateCanFixSabotage", false, TabGroup.ImpostorRoles, false)
+            //.SetGameMode(CustomGameMode.Standard);
 
         DefaultShapeshiftCooldown = FloatOptionItem.Create(5011, "DefaultShapeshiftCooldown", new(5f, 999f, 5f), 15f, TabGroup.ImpostorRoles, false)
             .SetGameMode(CustomGameMode.Standard)
