@@ -125,7 +125,6 @@ class CheckMurderPatch
         // 赝品检查
         if (Counterfeiter.OnClientMurder(killer)) return false;
         if (Pursuer.OnClientMurder(killer)) return false;
-        if (Merchant.OnClientMurder(killer, target)) return false;
 
         //判定凶手技能
         if (killer.PlayerId != target.PlayerId)
@@ -340,6 +339,8 @@ class CheckMurderPatch
         // 击杀前检查
         if (!killer.RpcCheckAndMurder(target, true))
             return false;
+        if (Merchant.OnClientMurder(killer, target)) return false;
+
 
         // Don't infect when Shielded
         if (killer.Is(CustomRoles.Virus))
@@ -951,7 +952,7 @@ class ReportDeadBodyPatch
             {
                 if (__instance.Is(CustomRoles.Jester) && !Options.JesterCanUseButton.GetBool()) return false;
             }
-            else //报告尸体事件
+            if (target != null) //拍灯事件
             {
                 if (Bloodhound.UnreportablePlayers.Contains(target.PlayerId)) return false;
 
@@ -2027,7 +2028,9 @@ class EnterVentPatch
                      x.RPCPlayCustomSound("Dove");
                      x.ResetKillCooldown();
                      x.SetKillCooldown();
-                     x.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.DovesOfNeace), GetString("DovesOfNeaceSkillNotify")));
+                     if (x.Is(CustomRoles.SerialKiller))
+                        { SerialKiller.OnReportDeadBody(); }
+                    x.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.DovesOfNeace), GetString("DovesOfNeaceSkillNotify")));
                 });
                 pc.RPCPlayCustomSound("Dove");
                 pc.Notify(string.Format(GetString("DovesOfNeaceOnGuard"), Main.DovesOfNeaceNumOfUsed[pc.PlayerId]));
