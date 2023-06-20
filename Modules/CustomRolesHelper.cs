@@ -249,7 +249,6 @@ internal static class CustomRolesHelper
             CustomRoles.NWitch or
             CustomRoles.Pursuer or
             CustomRoles.Revolutionist or
-            CustomRoles.DarkHide or
             CustomRoles.Provocateur or
             CustomRoles.Gamer or
             CustomRoles.FFF or
@@ -269,6 +268,7 @@ internal static class CustomRolesHelper
             CustomRoles.Infectious or
             CustomRoles.Wraith or
             CustomRoles.Crewpostor or
+            CustomRoles.DarkHide or
             CustomRoles.Juggernaut or
             CustomRoles.Poisoner or
             CustomRoles.Parasite or
@@ -285,6 +285,7 @@ internal static class CustomRolesHelper
             CustomRoles.Wraith or
             CustomRoles.Crewpostor or
             CustomRoles.Juggernaut or
+            CustomRoles.DarkHide or
             CustomRoles.Poisoner or
             CustomRoles.Parasite or
             CustomRoles.NSerialKiller or
@@ -299,7 +300,6 @@ internal static class CustomRolesHelper
         return role is
             CustomRoles.Jester or
             CustomRoles.Gamer or
-            CustomRoles.DarkHide or
             CustomRoles.Pelican or
             CustomRoles.Arsonist or
             CustomRoles.Executioner or
