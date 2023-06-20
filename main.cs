@@ -104,6 +104,7 @@ public class Main : BasePlugin
     public static List<byte> WorkaholicAlive = new();
     public static List<byte> BaitAlive = new();
     public static List<byte> BoobyTrapBody = new();
+    public static List<byte> BoobyTrapKiller = new();
     public static Dictionary<byte, byte> KillerOfBoobyTrapBody = new();
     public static Dictionary<byte, string> DetectiveNotify = new();
     public static Dictionary<byte, string> VirusNotify = new();

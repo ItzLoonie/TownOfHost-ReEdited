@@ -1477,6 +1477,7 @@
 "BribedByMerchant","","The Merchant bribed you, you can't kill him","","",""
 "BribedByMerchant2","","You cannot guess the Merchant after he bribed you.","","",""
 "MerchantKillAttemptBribed","","An attempted killing was averted by bribery","","",""
+"TrapOnlyWorksOnTheBodyBoobyTrap","","Trap works only on body <color=#ff1919>Booby Trap</color>","Мина рабоатет только на трупе <color=#ff1919>Мины Ловушки</color>","",""
 
 "MonarchKnightCooldown","","Knight Cooldown","Откат посвящения","",""
 "MonarchKnightMax","","Maximum Knights","Максимум просвящений","",""
