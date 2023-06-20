@@ -1,12 +1,13 @@
+using System.Linq;
 using AmongUs.GameOptions;
 using Hazel;
+using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using Il2CppSystem.Linq;
 using InnerNet;
-using System.Linq;
+using Mathf = UnityEngine.Mathf;
 using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
-using Mathf = UnityEngine.Mathf;
 
 namespace TOHE.Modules;
 
@@ -48,7 +49,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
         else base.SendGameOptions();
     }
 
-    public override void SendOptionsArray(byte[] optionArray)
+    public override void SendOptionsArray(Il2CppStructArray<byte> optionArray)
     {
         for (byte i = 0; i < GameManager.Instance.LogicComponents.Count; i++)
         {
