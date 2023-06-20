@@ -98,13 +98,12 @@ public static class GuessManager
         Logger.Msg(msg, "Msg Guesser");
         Logger.Msg($"{operate}", "Operate");
 
-        if (!pc.IsAlive() && (!ChatCommands.IsPlayerModerator(pc.FriendCode) && operate == 1))
+        if (!pc.IsAlive() && operate == 1)
         {
             if (!isUI) Utils.SendMessage(GetString("GuessDead"), pc.PlayerId);
             else pc.ShowPopUp(GetString("GuessDead"));
             return true;
         }
-
         if (pc.GetCustomRole().IsCrewmate() && !Options.CrewmatesCanGuess.GetBool() && !pc.Is(CustomRoles.NiceGuesser) && !pc.Is(CustomRoles.Guesser) && !pc.Is(CustomRoles.Judge))
         {
             if (!isUI) Utils.SendMessage(GetString("GuessNotAllowed"), pc.PlayerId);

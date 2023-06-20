@@ -1,4 +1,6 @@
+using AmongUs.GameOptions;
 using BepInEx.Configuration;
+using Il2CppInterop.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -163,6 +165,11 @@ public abstract class OptionItem
             Translator.GetString(Name, ReplacementDictionary, console) :
             Utils.ColorString(NameColor, Translator.GetString(Name, ReplacementDictionary));
     }
+    public virtual void SetBool(bool value)
+    {
+        int intValue = value ? 1 : 0;
+        SetValue(intValue);
+    }
     public virtual bool GetBool() => CurrentValue != 0 && (Parent == null || Parent.GetBool());
     public virtual int GetInt() => CurrentValue;
     public virtual float GetFloat() => CurrentValue;
@@ -211,7 +218,6 @@ public abstract class OptionItem
         CallUpdateValueEvent(beforeValue, afterValue);
         Refresh();
     }
-
     // 演算子オーバーロード
     public static OptionItem operator ++(OptionItem item)
         => item.Do(item => item.SetValue(item.CurrentValue + 1));

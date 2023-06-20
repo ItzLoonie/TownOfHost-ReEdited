@@ -118,6 +118,11 @@ internal class ChatCommands
                     string setModCommandOutput = $"Setting moderator: {friendCode}, {playerName}";
                     ModHandler.HandleSetModCommand(newmod, friendCode, playerName, setModCommandOutput);
                     break;
+                case "/setgm":
+                    if (args.Length < 2 || !bool.TryParse(args[1], out bool enableGM))
+                        break;
+                    GMHandler.HandleSetGMCommand(enableGM);
+                    break;
 
                 case "/l":
                 case "/lastresult":
@@ -849,6 +854,13 @@ internal class ChatCommands
                     break;
                 }
 
+                // Check if there are no arguments and the executing player is a moderator
+                if (args.Length < 2 && IsPlayerModerator(player.FriendCode))
+                {
+                    string formatString = GuessManager.GetFormatString();
+                    Utils.SendMessage(formatString, player.PlayerId, "ID Lists for Moderator");
+                    break;
+                }
                 // Prevent moderators from kicking other moderators
                 if (IsPlayerModerator(kickedPlayer.FriendCode))
                 {
@@ -1025,7 +1037,7 @@ internal class ChatCommands
                 if (modInfo.Length >= 2 && modInfo[0] == friendCode)
                 {
                     // Update the moderator's information
-                    moderators[i] = $"{friendCode}"; //,{playerName}";
+                    moderators[i] = $"{friendCode}"; //,{playerName}"; 
                     File.WriteAllLines(modFilePath, moderators);
                     Utils.SendMessage(commandOutput);
                     return;
@@ -1033,7 +1045,7 @@ internal class ChatCommands
             }
 
             // Add the new moderator to the file
-            string newModInfo = $"{friendCode},{playerName}";
+            string newModInfo = $"{friendCode}";
             File.AppendAllText(modFilePath, newModInfo + Environment.NewLine);
 
             // Send the success message
@@ -1041,7 +1053,23 @@ internal class ChatCommands
         }
     }
 
+    public class GMHandler
+    {
+        public static void HandleSetGMCommand(bool enableGM)
+        {
+            // Find the appropriate option item instance
+            OptionItem enableGMOption = OptionItem.AllOptions.FirstOrDefault(o => o.Name == "GM");
+            if (enableGMOption == null)
+                return;
 
+            // Set the boolean value of the option item directly
+            enableGMOption.CurrentValue = enableGM ? 1 : 0;
+
+            // Optionally, you can provide feedback to the player about the change
+            string enableGMMessage = enableGM ? "GM enabled." : "GM disabled.";
+            Utils.SendMessage(enableGMMessage, PlayerControl.LocalPlayer.PlayerId);
+        }
+    }
 
     public class BanCommandHandler
     {

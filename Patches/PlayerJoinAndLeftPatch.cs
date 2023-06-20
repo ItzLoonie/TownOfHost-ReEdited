@@ -85,6 +85,7 @@ class OnPlayerJoinedPatch
             AmongUsClient.Instance.KickPlayer(client.Id, true);
             Logger.Info($"ブロック済みのプレイヤー{client?.PlayerName}({client.FriendCode})をBANしました。", "BAN");
         }
+        // TODO:: * fix the following function to make sure it migrates friend codes to PUIDs, just like the Mojang -> Microsoft account migration...
         BanManager.CheckBanPlayer(client);
         BanManager.CheckDenyNamePlayer(client);
         RPC.RpcVersionCheck();
