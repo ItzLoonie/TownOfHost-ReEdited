@@ -58,7 +58,7 @@ public class Main : BasePlugin
     public static ConfigEntry<string> HideColor { get; private set; }
     public static ConfigEntry<int> MessageWait { get; private set; }
     public static ConfigEntry<bool> UnlockFPS { get; private set; }
-    public static ConfigEntry<bool> AutoStart { get; private set; }
+    public static ConfigEntry<bool> AutoStart { get; private set; } // Private = Only 'Main' class can change it
     public static ConfigEntry<bool> ForceOwnLanguage { get; private set; }
     public static ConfigEntry<bool> ForceOwnLanguageRoleName { get; private set; }
     public static ConfigEntry<bool> EnableCustomButton { get; private set; }
