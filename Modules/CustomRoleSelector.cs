@@ -231,10 +231,17 @@ internal class CustomRoleSelector
     EndOfAssign:
 
         // 隐藏职业
-        if (!Options.DisableHiddenRoles.GetBool())
+        if (!Options.DisableSunnyboy.GetBool())
         {
             if (rd.Next(0, 100) < 3 && rolesToAssign.Remove(CustomRoles.Jester)) rolesToAssign.Add(CustomRoles.Sunnyboy);
+        }
+        if (!Options.DisableBard.GetBool())
+        {
             if (rd.Next(0, 100) < 5 && rolesToAssign.Remove(CustomRoles.Sans)) rolesToAssign.Add(CustomRoles.Bard);
+        }
+        if (!Options.DisableSaboteur.GetBool())
+        {
+            if (rd.Next(0, 100) < 25 && rolesToAssign.Remove(CustomRoles.Inhibitor)) rolesToAssign.Add(CustomRoles.Saboteur);
         }
 
         // EAC封禁名单玩家开房将被分配为小丑

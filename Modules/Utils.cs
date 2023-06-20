@@ -436,6 +436,7 @@ public static class Utils
             case CustomRoles.Workaholic:
             case CustomRoles.Terrorist:
             case CustomRoles.Sunnyboy:
+            case CustomRoles.Phantom:
                 if (ForRecompute)
                     hasTasks = false;
                     break;
@@ -1000,7 +1001,8 @@ public static class Utils
             if (player.AmOwner)
             {
                 if (GameStates.IsOnlineGame)
-                    name = $"<color=#902efd>{GetString("HostText")}</color><color=#4bf4ff>♥</color>" + name;
+               //     name = $"<color=#902efd>{GetString("HostText")}</color><color=#4bf4ff>♥</color>" + name;
+                    name = $"<color={GetString("HostColor")}>{GetString("HostText")}</color><color={GetString("IconColor")}>{GetString("Icon")}</color>" + $"<color={GetString("NameColor")}>" + name + $"</color>";
                 if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
                     name = $"<color=#f55252><size=1.7>{GetString("ModeSoloKombat")}</size></color>\r\n" + name;
             }
@@ -1033,7 +1035,7 @@ public static class Utils
     private static StringBuilder SelfMark = new(20);
     private static StringBuilder TargetSuffix = new();
     private static StringBuilder TargetMark = new(20);
-    public static void NotifyRoles(bool isForMeeting = false, PlayerControl SpecifySeer = null, bool NoCache = false, bool ForceLoop = false, bool CamouflageIsForMeeting = false)
+    public static void NotifyRoles(bool isForMeeting = false, PlayerControl SpecifySeer = null, bool NoCache = false, bool ForceLoop = false, bool CamouflageIsForMeeting = false, bool GuesserIsForMeeting = false)
     {
         if (!AmongUsClient.Instance.AmHost) return;
         if (Main.AllPlayerControls == null) return;
@@ -1341,6 +1343,10 @@ public static class Utils
                 {
                     TargetPlayerName = ColorString(GetRoleColor(CustomRoles.Mafia), target.PlayerId.ToString()) + " " + TargetPlayerName;
                 }
+                if (seer.Is(CustomRoles.Retributionist) && !seer.IsAlive() && target.IsAlive())
+                {
+                    TargetPlayerName = ColorString(GetRoleColor(CustomRoles.Retributionist), target.PlayerId.ToString()) + " " + TargetPlayerName;
+                }
                 if (seer.Is(CustomRoles.Judge))
                 {
                     if (seer.IsAlive() && target.IsAlive() && isForMeeting)
@@ -1352,8 +1358,8 @@ public static class Utils
                 // Guesser Mode ID
                 if (Options.GuesserMode.GetBool())
                 {
-                    //Impostors
-                    if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.CrewmatesCanGuess.GetBool() && seer.GetCustomRole().IsCrewmate())
+                    //Crewmates
+                    if (seer.IsAlive() && target.IsAlive() && isForMeeting && !seer.Is(CustomRoles.Judge) && !seer.Is(CustomRoles.Retributionist) && Options.CrewmatesCanGuess.GetBool() && seer.GetCustomRole().IsCrewmate())
                     {
                         TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
                     }
@@ -1365,8 +1371,8 @@ public static class Utils
                         }
                     }
 
-                    //Crewmates
-                    if (seer.IsAlive() && target.IsAlive() && isForMeeting && Options.ImpostorsCanGuess.GetBool() && seer.GetCustomRole().IsImpostor())
+                    //Impostors
+                    if (seer.IsAlive() && target.IsAlive() && isForMeeting && !seer.Is(CustomRoles.Mafia) && Options.ImpostorsCanGuess.GetBool() && seer.GetCustomRole().IsImpostor())
                     {
                         TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
                     }

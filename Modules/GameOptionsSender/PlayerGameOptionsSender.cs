@@ -92,6 +92,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.SabotageMaster:
             case CustomRoles.Mario:
             case CustomRoles.EngineerTOHE:
+            case CustomRoles.Phantom:
             case CustomRoles.Crewpostor:
             case CustomRoles.Jester:
                 AURoleOptions.EngineerCooldown = 0f;
@@ -121,8 +122,8 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Medicaler:
             case CustomRoles.Provocateur:
             case CustomRoles.Monarch:
-      //      case CustomRoles.Farseer:
             case CustomRoles.Counterfeiter:
+            case CustomRoles.Succubus:
                 opt.SetVision(false);
                 break;
             case CustomRoles.Virus:
