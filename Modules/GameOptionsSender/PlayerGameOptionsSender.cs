@@ -158,21 +158,21 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 EvilTracker.ApplyGameOptions(player.PlayerId);
                 break;
             case CustomRoles.ShapeshifterTOHE:
-            AURoleOptions.ShapeshifterCooldown = Options.ShapeshiftCD.GetFloat();
-            AURoleOptions.ShapeshifterDuration = Options.ShapeshiftDur.GetFloat();
-            break;
+                AURoleOptions.ShapeshifterCooldown = Options.ShapeshiftCD.GetFloat();
+                AURoleOptions.ShapeshifterDuration = Options.ShapeshiftDur.GetFloat();
+                break;
             case CustomRoles.Mafia:
-            AURoleOptions.ShapeshifterCooldown = Options.MafiaShapeshiftCD.GetFloat();
-            AURoleOptions.ShapeshifterDuration = Options.MafiaShapeshiftDur.GetFloat();
-            break;
+                AURoleOptions.ShapeshifterCooldown = Options.MafiaShapeshiftCD.GetFloat();
+                AURoleOptions.ShapeshifterDuration = Options.MafiaShapeshiftDur.GetFloat();
+                break;
             case CustomRoles.ScientistTOHE:
-            AURoleOptions.ScientistCooldown = Options.ScientistCD.GetFloat();
-            AURoleOptions.ScientistBatteryCharge = Options.ScientistDur.GetFloat();
-            break;
+                AURoleOptions.ScientistCooldown = Options.ScientistCD.GetFloat();
+                AURoleOptions.ScientistBatteryCharge = Options.ScientistDur.GetFloat();
+                break;
             case CustomRoles.Wildling:
-            AURoleOptions.ShapeshifterCooldown = Wildling.ShapeshiftCD.GetFloat();
-            AURoleOptions.ShapeshifterDuration = Wildling.ShapeshiftDur.GetFloat();
-            break;
+                AURoleOptions.ShapeshifterCooldown = Wildling.ShapeshiftCD.GetFloat();
+                AURoleOptions.ShapeshifterDuration = Wildling.ShapeshiftDur.GetFloat();
+                break;
             case CustomRoles.Jackal:
        //     case CustomRoles.Sidekick:
                 Jackal.ApplyGameOptions(opt);
@@ -200,8 +200,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
          //       Main.NormalOptions.KillCooldown = Options.ControlCooldown.GetFloat();
                 break;
             case CustomRoles.NSerialKiller:
-                opt.SetVision(Options.NSerialKillerHasImpostorVision.GetBool());
-            //    Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
+                NSerialKiller.ApplyGameOptions(opt);
                 break;
             case CustomRoles.Juggernaut:
                 opt.SetVision(Juggernaut.HasImpostorVision.GetBool());
@@ -210,13 +209,13 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 opt.SetVision(Infectious.HasImpostorVision.GetBool());
                 break;
             case CustomRoles.Lawyer:
-             //   Main.NormalOptions.CrewLightMod = Lawyer.LawyerVision.GetFloat();
-            break;
+                //Main.NormalOptions.CrewLightMod = Lawyer.LawyerVision.GetFloat();
+                break;
             case CustomRoles.Wraith:
             case CustomRoles.HexMaster:
             case CustomRoles.Parasite:
                 opt.SetVision(true);
-           //     Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
+                //Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
                 break;
             
             case CustomRoles.Gamer:

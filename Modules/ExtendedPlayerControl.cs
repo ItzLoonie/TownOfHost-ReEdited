@@ -477,7 +477,7 @@ static class ExtendedPlayerControl
             CustomRoles.Jackal => Jackal.CanVent.GetBool(),
        //     CustomRoles.Sidekick => Jackal.CanVent.GetBool(),
             CustomRoles.Poisoner => Poisoner.CanVent.GetBool(),
-            CustomRoles.NSerialKiller => Options.NSerialKillerCanVent.GetBool(),
+            CustomRoles.NSerialKiller => NSerialKiller.CanVent.GetBool(),
             CustomRoles.Pelican => Pelican.CanVent.GetBool(),
             CustomRoles.Gamer => Gamer.CanVent.GetBool(),
             CustomRoles.BloodKnight => BloodKnight.CanVent.GetBool(),
@@ -579,7 +579,7 @@ static class ExtendedPlayerControl
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.ParasiteCD.GetFloat();
                 break;
             case CustomRoles.NSerialKiller:
-                Main.AllPlayerKillCooldown[player.PlayerId] = Options.NSerialKillerKillCD.GetFloat();
+                NSerialKiller.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.Poisoner:
                 Poisoner.SetKillCooldown(player.PlayerId);
