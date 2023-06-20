@@ -26,6 +26,14 @@ namespace TOHE.Roles.Neutral
         public static OptionItem KnowTargetRole;
         public static OptionItem TargetKnowOtherTarget;
         public static OptionItem KillInfectedPlayerAfterMeeting;
+        public static OptionItem ContagiousCountMode;
+
+        public static readonly string[] contagiousCountMode =
+        {
+            "ContagiousCountMode.None",
+            "ContagiousCountMode.Virus",
+            "ContagiousCountMode.Original",
+        };
 
         public static void SetupCustomOption()
         {
@@ -39,6 +47,7 @@ namespace TOHE.Roles.Neutral
             KnowTargetRole = BooleanOptionItem.Create(Id + 13, "VirusKnowTargetRole", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus]);
             TargetKnowOtherTarget = BooleanOptionItem.Create(Id + 14, "VirusTargetKnowOtherTarget", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus]);
             KillInfectedPlayerAfterMeeting = BooleanOptionItem.Create(Id + 15, "VirusKillInfectedPlayerAfterMeeting", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus]);
+            ContagiousCountMode = StringOptionItem.Create(Id + 17, "ContagiousCountMode", contagiousCountMode, 0, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Virus]);
         }
 
         public static void Init()

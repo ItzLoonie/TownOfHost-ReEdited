@@ -15,6 +15,7 @@ public static class Lawyer
     private static OptionItem CanTargetImpostor;
     private static OptionItem CanTargetNeutralKiller;
     private static OptionItem CanTargetCrewmate;
+    private static OptionItem CanTargetJester;
     public static OptionItem ChangeRolesAfterTargetKilled;
     public static OptionItem LawyerVision;
     public static OptionItem KnowTargetRole;
@@ -45,6 +46,7 @@ public static class Lawyer
         CanTargetImpostor = BooleanOptionItem.Create(Id + 10, "LawyerCanTargetImpostor", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Lawyer]);
         CanTargetNeutralKiller = BooleanOptionItem.Create(Id + 12, "LawyerCanTargetNeutralKiller", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Lawyer]);
         CanTargetCrewmate = BooleanOptionItem.Create(Id + 13, "LawyerCanTargetCrewmate", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Lawyer]);
+        CanTargetJester = BooleanOptionItem.Create(Id + 16, "LawyerCanTargetJester", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Lawyer]);
         KnowTargetRole = BooleanOptionItem.Create(Id + 15, "KnowTargetRole", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Lawyer]);
         TargetKnowsLawyer = BooleanOptionItem.Create(Id + 16, "TargetKnowsLawyer", false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Lawyer]);
         ChangeRolesAfterTargetKilled = StringOptionItem.Create(Id + 11, "LawyerChangeRolesAfterTargetKilled", ChangeRoles, 1, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Lawyer]);
@@ -69,7 +71,8 @@ public static class Lawyer
                 else if (!CanTargetImpostor.GetBool() && target.Is(CustomRoleTypes.Impostor)) continue;
                 else if (!CanTargetNeutralKiller.GetBool() && target.IsNeutralKiller()) continue;
                 else if (!CanTargetCrewmate.GetBool() && target.Is(CustomRoleTypes.Crewmate)) continue;
-                else if (target.Is(CustomRoleTypes.Neutral) && !target.IsNeutralKiller()) continue;
+                else if (!CanTargetJester.GetBool() && target.Is(CustomRoles.Jester)) continue;
+                else if (target.Is(CustomRoleTypes.Neutral) && !target.IsNeutralKiller() && !target.Is(CustomRoles.Jester)) continue;
                 if (target.GetCustomRole() is CustomRoles.GM or CustomRoles.SuperStar) continue;
                 if (Utils.GetPlayerById(playerId).Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers)) continue;
 

@@ -24,7 +24,7 @@ namespace TOHE.Roles.Crewmate
             CustomRoles.Bait,
             CustomRoles.Trapper,
             CustomRoles.Brakar,
-            CustomRoles.Guesser,
+       //     CustomRoles.Guesser,
             CustomRoles.Knighted,
             CustomRoles.Necroview,
             CustomRoles.Onbound,
@@ -35,9 +35,9 @@ namespace TOHE.Roles.Crewmate
         {
             CustomRoles.Oblivious,
             CustomRoles.Bewilder,
-            CustomRoles.Workhorse,
-            CustomRoles.Fool,
-            CustomRoles.Avanger,
+        //    CustomRoles.Workhorse,
+     //       CustomRoles.Fool,
+        //    CustomRoles.Avanger,
             CustomRoles.Unreportable
         };
 
