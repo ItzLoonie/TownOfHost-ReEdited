@@ -1000,9 +1000,11 @@ public static class Utils
             if (!GameStates.IsLobby) return;
             if (player.AmOwner)
             {
-                if (GameStates.IsOnlineGame)
-               //     name = $"<color=#902efd>{GetString("HostText")}</color><color=#4bf4ff>♥</color>" + name;
-                    name = $"<color={GetString("HostColor")}>{GetString("HostText")}</color><color={GetString("IconColor")}>{GetString("Icon")}</color>" + $"<color={GetString("NameColor")}>" + name + $"</color>";
+                if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
+                    name = $"<color={GetString("HostColor")}>{GetString("HostText")}</color><color={GetString("IconColor")}>{GetString("Icon")}</color><color={GetString("NameColor")}>{name}</color>";
+
+                    //name = $"<color=#902efd>{GetString("HostText")}</color><color=#4bf4ff>♥</color>" + name;
+
                 if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
                     name = $"<color=#f55252><size=1.7>{GetString("ModeSoloKombat")}</size></color>\r\n" + name;
             }
