@@ -290,9 +290,9 @@ public static class Options
     public static OptionItem BTKillCooldown;
     public static OptionItem TrapOnlyWorksOnTheBodyBoobyTrap;
 
-    public static OptionItem NSerialKillerKillCD;
-    public static OptionItem NSerialKillerHasImpostorVision;
-    public static OptionItem NSerialKillerCanVent;
+    //public static OptionItem NSerialKillerKillCD;
+    //public static OptionItem NSerialKillerHasImpostorVision;
+    //public static OptionItem NSerialKillerCanVent;
 
     public static OptionItem ParasiteCD;
 
@@ -1078,14 +1078,7 @@ public static class Options
         Jackal.SetupCustomOption();
         Juggernaut.SetupCustomOption();
         Poisoner.SetupCustomOption();
-        SetupSingleRoleOptions(6050620, TabGroup.NeutralRoles, CustomRoles.NSerialKiller, 1, zeroOne: false);
-        NSerialKillerKillCD = FloatOptionItem.Create(6050625, "KillCooldown", new(0f, 999f, 2.5f), 30f, TabGroup.NeutralRoles, false)
-        .SetParent(CustomRoleSpawnChances[CustomRoles.NSerialKiller])
-            .SetValueFormat(OptionFormat.Seconds);
-        NSerialKillerCanVent = BooleanOptionItem.Create(6050630, "CanVent", true, TabGroup.NeutralRoles, false)
-        .SetParent(CustomRoleSpawnChances[CustomRoles.NSerialKiller]);
-        NSerialKillerHasImpostorVision = BooleanOptionItem.Create(6050635, "ImpostorVision", true, TabGroup.NeutralRoles, false)
-        .SetParent(CustomRoleSpawnChances[CustomRoles.NSerialKiller]);
+        NSerialKiller.SetupCustomOption();
         DarkHide.SetupCustomOption(); //TOH_Y
         Virus.SetupCustomOption();
         Wraith.SetupCustomOption();
