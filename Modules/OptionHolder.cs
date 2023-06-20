@@ -733,7 +733,7 @@ public static class Options
 //==================================================================================================================================//
 
         // Impostor
-        TextOptionItem.Create(909090_7, "RoleType.VanillaRoles", TabGroup.ImpostorRoles) // Vanilla
+        TextOptionItem.Create(909090_1, "RoleType.VanillaRoles", TabGroup.ImpostorRoles) // Vanilla
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 25, 25, byte.MaxValue));
         SetupRoleOptions(180000, TabGroup.ImpostorRoles, CustomRoles.ImpostorTOHE);
@@ -745,7 +745,7 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.ShapeshifterTOHE])
             .SetValueFormat(OptionFormat.Seconds);
 
-        TextOptionItem.Create(909090_1, "RoleType.ImpKilling", TabGroup.ImpostorRoles) // KILLING
+        TextOptionItem.Create(909090_2, "RoleType.ImpKilling", TabGroup.ImpostorRoles) // KILLING
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 25, 25, byte.MaxValue));// KILLING
         EvilTracker.SetupCustomOption();
@@ -780,7 +780,7 @@ public static class Options
         QuickShooter.SetupCustomOption();
         Sniper.SetupCustomOption();
         Witch.SetupCustomOption(); //spellcaster
-        TextOptionItem.Create(909090_1, "RoleType.ImpSupport", TabGroup.ImpostorRoles)// SUPPORT
+        TextOptionItem.Create(909090_3, "RoleType.ImpSupport", TabGroup.ImpostorRoles)// SUPPORT
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 25, 25, byte.MaxValue));// SUPPORT
         Hacker.SetupCustomOption(); //anonymous
@@ -815,7 +815,7 @@ public static class Options
             .SetValueFormat(OptionFormat.Votes);
         VindicatorHideVote = BooleanOptionItem.Create(150015, "MayorHideVote", false, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Vindicator]);
-        TextOptionItem.Create(909090_2, "RoleType.ImpConcealing", TabGroup.ImpostorRoles) //CONCEALING
+        TextOptionItem.Create(909090_4, "RoleType.ImpConcealing", TabGroup.ImpostorRoles) //CONCEALING
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 25, 25, byte.MaxValue));//CONCEALING
         SetupRoleOptions(901595, TabGroup.ImpostorRoles, CustomRoles.Escapee);
@@ -845,7 +845,7 @@ public static class Options
         WarlockCanKillSelf = BooleanOptionItem.Create(901408, "CanKillSelf", false, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Warlock]);
         Wildling.SetupCustomOption();
-        TextOptionItem.Create(909090_3, "RoleType.Madmate", TabGroup.ImpostorRoles)
+        TextOptionItem.Create(909090_5, "RoleType.Madmate", TabGroup.ImpostorRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 25, 25, byte.MaxValue));
         SetupRoleOptions(907090, TabGroup.ImpostorRoles, CustomRoles.Crewpostor);
