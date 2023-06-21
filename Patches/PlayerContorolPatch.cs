@@ -2225,7 +2225,7 @@ class PlayerControlSetRolePatch
             {
                 var self = seer.PlayerId == target.PlayerId;
                 var seerIsKiller = seer.Is(CustomRoleTypes.Impostor) || Main.ResetCamPlayerList.Contains(seer.PlayerId);
-                if ((self && targetIsKiller) || (!seerIsKiller && target.Is(CustomRoleTypes.Impostor)) || seer.Is(CustomRoles.NSerialKiller) || seer.Is(CustomRoles.Juggernaut) || seer.Is(CustomRoles.Wraith) || seer.Is(CustomRoles.NWitch) || seer.Is(CustomRoles.Poisoner) || seer.Is(CustomRoles.Infectious) || seer.Is(CustomRoles.Monarch) || seer.Is(CustomRoles.Pursuer) || seer.Is(CustomRoles.Virus))
+                if ((self && targetIsKiller) || (!seerIsKiller && target.Is(CustomRoleTypes.Impostor)) || seer.Is(CustomRoles.NSerialKiller))
                 {
                     ghostRoles[seer] = RoleTypes.ImpostorGhost;
                 }
