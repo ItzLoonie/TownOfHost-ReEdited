@@ -7,9 +7,9 @@ using System.Text.RegularExpressions;
 using TMPro;
 using TOHE.Modules;
 using TOHE.Roles.Crewmate;
+using TOHE.Roles.AddOns.Impostor;
 using UnityEngine;
 using static TOHE.Translator;
-using TOHE.Roles.AddOns.Impostor;
 
 namespace TOHE;
 
