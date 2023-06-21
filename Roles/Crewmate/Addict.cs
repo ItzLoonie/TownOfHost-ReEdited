@@ -19,10 +19,13 @@
         public static OptionItem VentCooldown;
         public static OptionItem TimeLimit;
         public static OptionItem ImmortalTimeAfterVent;
+        public static OptionItem SpeedWhileImmortal;
         public static OptionItem FreezeTimeAfterImmortal;
 
         private static Dictionary<byte, float> SuicideTimer = new();
         private static Dictionary<byte, float> ImmortalTimer = new();
+
+        private static float DefaultSpeed = new();
 
         public static void SetupCustomOption()
         {
@@ -33,7 +36,9 @@
                 .SetValueFormat(OptionFormat.Seconds);
             ImmortalTimeAfterVent = FloatOptionItem.Create(Id + 13, "AddictImmortalTimeAfterVent", new(5f, 999f, 1f), 10f, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Addict])
                 .SetValueFormat(OptionFormat.Seconds);
-            FreezeTimeAfterImmortal = FloatOptionItem.Create(Id + 14, "AddictFreezeTimeAfterImmortal", new(5f, 999f, 1f), 10f, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Addict])
+            SpeedWhileImmortal = FloatOptionItem.Create(Id + 14, "AddictSpeedWhileImmortal", new(0.25f, 5f, 0.25f), 1.75f, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Addict])
+                .SetValueFormat(OptionFormat.Multiplier);
+            FreezeTimeAfterImmortal = FloatOptionItem.Create(Id + 15, "AddictFreezeTimeAfterImmortal", new(5f, 999f, 1f), 10f, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Addict])
                 .SetValueFormat(OptionFormat.Seconds);
         }
         public static void Init()
@@ -41,12 +46,14 @@
             playerIdList = new();
             SuicideTimer = new();
             ImmortalTimer = new();
+            DefaultSpeed = new();
         }
         public static void Add(byte playerId)
         {
             playerIdList.Add(playerId);
             SuicideTimer.TryAdd(playerId, -10f);
             ImmortalTimer.TryAdd(playerId, 420f);
+            DefaultSpeed = Main.AllPlayerSpeed[playerId];
         }
         public static bool IsEnable => playerIdList.Count > 0;
 
@@ -77,6 +84,12 @@
 
                 if (IsImmortal(player))
                 {
+                    if (Main.AllPlayerSpeed[player.PlayerId] == DefaultSpeed)
+                    {
+                        Main.AllPlayerSpeed[player.PlayerId] = SpeedWhileImmortal.GetFloat();
+                        player.MarkDirtySettings();
+                    }
+
                     ImmortalTimer[player.PlayerId] += Time.fixedDeltaTime;
                 }
                 else
@@ -100,13 +113,12 @@
 
         private static void AddictGetDown(PlayerControl addict)
         {
-            var tmpSpeed = Main.AllPlayerSpeed[addict.PlayerId];
             Main.AllPlayerSpeed[addict.PlayerId] = Main.MinSpeed;
             ReportDeadBodyPatch.CanReport[addict.PlayerId] = false;
             addict.MarkDirtySettings();
             new LateTask(() =>
             {
-                Main.AllPlayerSpeed[addict.PlayerId] = Main.AllPlayerSpeed[addict.PlayerId] - Main.MinSpeed + tmpSpeed;
+                Main.AllPlayerSpeed[addict.PlayerId] = DefaultSpeed;
                 ReportDeadBodyPatch.CanReport[addict.PlayerId] = true;
                 addict.MarkDirtySettings();
             }, FreezeTimeAfterImmortal.GetFloat(), "AddictGetDown");

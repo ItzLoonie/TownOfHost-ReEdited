@@ -1470,6 +1470,7 @@
 "MerchantSellHarmfulToEvil","","Can sell <color=#ff1919>harmful</color> Add-ons only to <color=#ff1919>Evil</color>","","",""
 "MerchantSellHelpfulToCrew","","Can sell <color=#8cffff>helpful</color> Add-ons only to <color=#8cffff>Crew</color>","","",""
 "AddictImmortalTimeAfterVent","","Time noone can interact with the <color=#8cffff>Addict</color>","","",""
+"AddictSpeedWhileImmortal","","Movementspeed while noone can interact with the <color=#8cffff>Addict</color>","","",""
 "AddictFreezeTimeAfterImmortal","","Time the <color=#8cffff>Addict</color> gets frozen in place after Immortality","","",""
 
 "## 信息 / Message"
