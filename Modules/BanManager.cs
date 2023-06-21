@@ -79,17 +79,22 @@ public static class BanManager
         using StreamReader reader = new(stream, Encoding.UTF8);
         return reader.ReadToEnd();
     }
-  
+
     public static void AddBanPlayer(InnerNet.ClientData player)
     {
         if (!AmongUsClient.Instance.AmHost || player == null) return;
         string something = Something.GetSomethingByClient(player);
-		if (!CheckBanList(something) && !string.IsNullOrWhiteSpace(something))
+        if (!CheckBanList(something) && !string.IsNullOrWhiteSpace(something))
         {
-            File.AppendAllText(HARD_BAN_LIST_PATH, $"{something},{player.PlayerName}\n");
-            Logger.SendInGame(string.Format(GetString("Message.AddedPlayerToBanList"), player.PlayerName));
+            string banEntry = $"{something},{player.PlayerName}\n";
+            if (!File.ReadAllText(HARD_BAN_LIST_PATH).Contains(banEntry))
+            {
+                File.AppendAllText(HARD_BAN_LIST_PATH, banEntry);
+                Logger.SendInGame(string.Format(GetString("Message.AddedPlayerToBanList"), player.PlayerName));
+            }
         }
     }
+
     public static void CheckDenyNamePlayer(InnerNet.ClientData player)
     {
         if (!AmongUsClient.Instance.AmHost || !Options.ApplyDenyNameList.GetBool()) return;
