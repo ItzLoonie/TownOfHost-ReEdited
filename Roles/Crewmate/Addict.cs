@@ -27,13 +27,13 @@
         public static void SetupCustomOption()
         {
             SetupRoleOptions(Id, TabGroup.CrewmateRoles, CustomRoles.Addict);
-            VentCooldown = FloatOptionItem.Create(Id + 11, "VentCooldown", new(5f, 999f, 5f), 40f, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Addict])
+            VentCooldown = FloatOptionItem.Create(Id + 11, "VentCooldown", new(5f, 999f, 1f), 40f, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Addict])
                 .SetValueFormat(OptionFormat.Seconds);
-            TimeLimit = FloatOptionItem.Create(Id + 12, "SerialKillerLimit", new(5f, 999f, 5f), 45f, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Addict])
+            TimeLimit = FloatOptionItem.Create(Id + 12, "SerialKillerLimit", new(5f, 999f, 1f), 45f, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Addict])
                 .SetValueFormat(OptionFormat.Seconds);
-            ImmortalTimeAfterVent = FloatOptionItem.Create(Id + 13, "AddictImmortalTimeAfterVent", new(5f, 999f, 5f), 10f, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Addict])
+            ImmortalTimeAfterVent = FloatOptionItem.Create(Id + 13, "AddictImmortalTimeAfterVent", new(5f, 999f, 1f), 10f, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Addict])
                 .SetValueFormat(OptionFormat.Seconds);
-            FreezeTimeAfterImmortal = FloatOptionItem.Create(Id + 14, "AddictFreezeTimeAfterImmortal", new(5f, 999f, 5f), 10f, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Addict])
+            FreezeTimeAfterImmortal = FloatOptionItem.Create(Id + 14, "AddictFreezeTimeAfterImmortal", new(5f, 999f, 1f), 10f, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Addict])
                 .SetValueFormat(OptionFormat.Seconds);
         }
         public static void Init()
