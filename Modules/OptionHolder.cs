@@ -1349,6 +1349,13 @@ public static class Options
         GTryHideMsg = BooleanOptionItem.Create(6050575, "GuesserTryHideMsg", true, TabGroup.Addons, false)
         .SetParent(CustomRoleSpawnChances[CustomRoles.Guesser])
             .SetColor(Color.green);
+        SetupAdtRoleOptions(6050440, CustomRoles.Fool, canSetNum: true, tab: TabGroup.Addons);
+        ImpCanBeFool = BooleanOptionItem.Create(6050443, "ImpCanBeFool", true, TabGroup.Addons, false)
+        .SetParent(CustomRoleSpawnChances[CustomRoles.Fool]);
+        CrewCanBeFool = BooleanOptionItem.Create(6050444, "CrewCanBeFool", true, TabGroup.Addons, false)
+        .SetParent(CustomRoleSpawnChances[CustomRoles.Fool]);
+        NeutralCanBeFool = BooleanOptionItem.Create(6050445, "NeutralCanBeFool", true, TabGroup.Addons, false)
+        .SetParent(CustomRoleSpawnChances[CustomRoles.Fool]);
         #endregion
 
         #region Autohost
