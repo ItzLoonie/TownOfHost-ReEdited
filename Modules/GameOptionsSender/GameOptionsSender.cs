@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using AmongUs.GameOptions;
 using Hazel;
+using Il2CppInterop.Runtime.InteropTypes.Arrays;
+using Il2CppSystem;
 using InnerNet;
-using System;
-using System.Collections.Generic;
 
 namespace TOHE.Modules;
 
@@ -24,7 +25,6 @@ public abstract class GameOptionsSender
 
     public abstract IGameOptions BasedGameOptions { get; }
     public abstract bool IsDirty { get; protected set; }
-    public byte[] ByteArray = new byte[0]; // 送信時に使い回す配列
 
 
     public virtual void SendGameOptions()
@@ -48,15 +48,14 @@ public abstract class GameOptionsSender
         writer.EndMessage();
 
         // 配列化&送信
-        Span<byte> writerSpan = new(writer.Buffer, 1, writer.Length - 1);
-        if (ByteArray == null || ByteArray.Length != writerSpan.Length) ByteArray = new byte[writerSpan.Length];
-        for (int i = 0; i < ByteArray.Length; i++)
-            ByteArray[i] = writerSpan[i];
+        var byteArray = new Il2CppStructArray<byte>(writer.Length - 1);
+        // MessageWriter.ToByteArray
+        Buffer.BlockCopy(writer.Buffer.Cast<Array>(), 1, byteArray.Cast<Array>(), 0, writer.Length - 1);
 
-        SendOptionsArray(ByteArray);
+        SendOptionsArray(byteArray);
         writer.Recycle();
     }
-    public virtual void SendOptionsArray(byte[] optionArray)
+    public virtual void SendOptionsArray(Il2CppStructArray<byte> optionArray)
     {
         for (byte i = 0; i < GameManager.Instance.LogicComponents.Count; i++)
         {
@@ -66,7 +65,7 @@ public abstract class GameOptionsSender
             }
         }
     }
-    protected virtual void SendOptionsArray(byte[] optionArray, byte LogicOptionsIndex, int targetClientId)
+    protected virtual void SendOptionsArray(Il2CppStructArray<byte> optionArray, byte LogicOptionsIndex, int targetClientId)
     {
         var writer = MessageWriter.Get(SendOption.Reliable);
 

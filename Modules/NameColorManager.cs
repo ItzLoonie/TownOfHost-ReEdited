@@ -61,7 +61,7 @@ public static class NameColorManager
         if (color != "") return true;
         else return seer == target
             || (Main.GodMode.Value && seer.AmOwner)
-            || (!seer.IsAlive() && Options.GhostCanSeeOtherRoles.GetBool())
+            || (Main.PlayerStates[seer.Data.PlayerId].IsDead && Options.GhostCanSeeOtherRoles.GetBool()) //seer.Data.IsDead
             || target.Is(CustomRoles.GM)
             || seer.Is(CustomRoles.GM)
             || seer.Is(CustomRoles.God)
