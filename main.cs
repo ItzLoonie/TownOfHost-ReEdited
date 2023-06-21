@@ -383,7 +383,7 @@ public class Main : BasePlugin
                 {CustomRoles.Unreportable, "#FF6347"},
                 {CustomRoles.Rogue, "#696969"},
                 {CustomRoles.Lucky, "#b8d7a3"},
-                {CustomRoles.DoubleShot, "#ff1919"},
+                {CustomRoles.DoubleShot, "#19fa8d"},
                 //SoloKombat
                 {CustomRoles.KB_Normal, "#f55252"}
             };
