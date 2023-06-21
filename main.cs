@@ -308,7 +308,7 @@ public class Main : BasePlugin
                 {CustomRoles.Bloodhound, "#8B0000"},
                 {CustomRoles.Tracker, "#3CB371"},
                 {CustomRoles.Merchant, "#D27D2D"},
-                {CustomRoles.Addict, "#ffff33"},
+                {CustomRoles.Addict, "#008000"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Jester, "#ec62a5"},

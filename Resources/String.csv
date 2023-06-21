@@ -1469,9 +1469,9 @@
 "MerchantSellNeutral","","Can sell <color=#7f8c8d>neutral</color> Add-ons","","",""
 "MerchantSellHarmfulToEvil","","Can sell <color=#ff1919>harmful</color> Add-ons only to <color=#ff1919>Evil</color>","","",""
 "MerchantSellHelpfulToCrew","","Can sell <color=#8cffff>helpful</color> Add-ons only to <color=#8cffff>Crew</color>","","",""
-"AddictInvulnerbilityTimeAfterVent","","<color=#ffff33>Invulnerbility</color> Time","","",""
-"AddictSpeedWhileInvulnerble","","Movementspeed while <color=#ffff33>Invulnerble</color>","","",""
-"AddictFreezeTimeAfterInvulnerbility","","Time the <color=#ffff33>Addict</color> gets frozen in place after <color=#ffff33>Invulnerbility</color>","","",""
+"AddictInvulnerbilityTimeAfterVent","","<color=#008000>Invulnerbility</color> Time","","",""
+"AddictSpeedWhileInvulnerble","","Movementspeed while <color=#008000>Invulnerble</color>","","",""
+"AddictFreezeTimeAfterInvulnerbility","","Time the <color=#008000>Addict</color> gets frozen in place after <color=#008000>Invulnerbility</color>","","",""
 
 "## 信息 / Message"
 "Message.SetToSeconds","信息发送冷却时间为【{0}】秒","Set to 【{0}】 seconds.","Установлен на 【{0}】 секунды","訊息傳送冷卻時間設為【{0}】秒","信息发送冷却时间为【{0}】秒"
