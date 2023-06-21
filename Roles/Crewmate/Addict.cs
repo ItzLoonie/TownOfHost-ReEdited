@@ -63,8 +63,9 @@
         {
             foreach (var player in playerIdList)
             {
-                SuicideTimer[player] = 0f;
+                SuicideTimer[player] = -10f;
                 ImmortalTimer[player] = 420f;
+                Main.AllPlayerSpeed[player] = DefaultSpeed;
             }
         }
 
@@ -84,12 +85,6 @@
 
                 if (IsImmortal(player))
                 {
-                    if (Main.AllPlayerSpeed[player.PlayerId] == DefaultSpeed)
-                    {
-                        Main.AllPlayerSpeed[player.PlayerId] = SpeedWhileImmortal.GetFloat();
-                        player.MarkDirtySettings();
-                    }
-
                     ImmortalTimer[player.PlayerId] += Time.fixedDeltaTime;
                 }
                 else
@@ -109,6 +104,9 @@
 
             SuicideTimer[pc.PlayerId] = 0f;
             ImmortalTimer[pc.PlayerId] = 0f;
+
+            Main.AllPlayerSpeed[pc.PlayerId] = SpeedWhileImmortal.GetFloat();
+            pc.MarkDirtySettings();
         }
 
         private static void AddictGetDown(PlayerControl addict)
