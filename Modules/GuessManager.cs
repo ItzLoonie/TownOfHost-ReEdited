@@ -4,18 +4,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Reflection;
 using TMPro;
 using TOHE.Modules;
 using TOHE.Roles.Crewmate;
 using UnityEngine;
 using static TOHE.Translator;
+using TOHE.Roles.AddOns.Impostor;
 
 namespace TOHE;
 
 public static class GuessManager
 {
-
+    private static PlayerControl tempPC = null;
     public static string GetFormatString()
     {
         string text = GetString("PlayerIdList");
@@ -315,14 +315,14 @@ public static class GuessManager
                     }
                 }
 
-                if (role.IsImpostor() && !Options.ImpCanGuessImp.GetBool() && target.Is(CustomRoleTypes.Impostor) && Options.GuesserMode.GetBool())
+                if ((pc.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoleTypes.Impostor) && !Options.ImpCanGuessImp.GetBool()) && Options.GuesserMode.GetBool())
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessImpRole"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessImpRole"));
                     return true;
 
                 }
-                if (role.IsCrewmate() && !Options.CrewCanGuessCrew.GetBool() && target.Is(CustomRoleTypes.Crewmate) && Options.GuesserMode.GetBool())
+                if ((pc.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoleTypes.Crewmate) && !Options.CrewCanGuessCrew.GetBool()) && Options.GuesserMode.GetBool())
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessCrewRole"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessCrewRole"));
@@ -336,28 +336,93 @@ public static class GuessManager
                     return true;
                 }
 
+                // Guess check
                 if (pc.PlayerId == target.PlayerId)
                 {
-                    if (!isUI) Utils.SendMessage(GetString("LaughToWhoGuessSelf"), pc.PlayerId, Utils.ColorString(Color.cyan, GetString("MessageFromKPD")));
-                    else pc.ShowPopUp(Utils.ColorString(Color.cyan, GetString("MessageFromKPD")) + "\n" + GetString("LaughToWhoGuessSelf"));
-                    guesserSuicide = true;
+                    if (pc.Is(CustomRoles.DoubleShot) && DoubleShot.DoubleShotIsActive)
+                    {
+                        DoubleShot.DoubleShotIsActive = false;
+
+                        if (tempPC == null)
+                            tempPC = pc;
+
+                        Logger.Msg($"{DoubleShot.DoubleShotIsActive}", "guesserDoubleShotIsActive");
+
+                        if (!isUI) Utils.SendMessage(GetString("GuessDoubleShot"), pc.PlayerId);
+                        else pc.ShowPopUp(GetString("GuessDoubleShot"));
+                        return true;
+                    }
+                    else
+                    {
+                        if (!isUI) Utils.SendMessage(GetString("LaughToWhoGuessSelf"), pc.PlayerId, Utils.ColorString(Color.cyan, GetString("MessageFromKPD")));
+                        else pc.ShowPopUp(Utils.ColorString(Color.cyan, GetString("MessageFromKPD")) + "\n" + GetString("LaughToWhoGuessSelf"));
+                        guesserSuicide = true;
+                    }
                 }
                 else if (pc.Is(CustomRoles.NiceGuesser) && target.Is(CustomRoleTypes.Crewmate) && !Options.GGCanGuessCrew.GetBool() && !pc.Is(CustomRoles.Madmate)) 
-                { 
-                    guesserSuicide = true; 
-                    Logger.Msg($"{guesserSuicide}", "guesserSuicide1"); 
+                {
+                    if (pc.Is(CustomRoles.DoubleShot) && DoubleShot.DoubleShotIsActive)
+                    {
+                        DoubleShot.DoubleShotIsActive = false;
+
+                        if (tempPC == null)
+                            tempPC = pc;
+
+                        Logger.Msg($"{DoubleShot.DoubleShotIsActive}", "guesserDoubleShotIsActive");
+
+                        if (!isUI) Utils.SendMessage(GetString("GuessDoubleShot"), pc.PlayerId);
+                        else pc.ShowPopUp(GetString("GuessDoubleShot"));
+                        return true;
+                    }
+                    else
+                    {
+                        guesserSuicide = true;
+                        Logger.Msg($"{guesserSuicide}", "guesserSuicide1");
+                    }
                 }
                 else if (pc.Is(CustomRoles.EvilGuesser) && target.Is(CustomRoleTypes.Impostor) && !Options.EGCanGuessImp.GetBool()) 
-                { 
-                    guesserSuicide = true; 
-                    Logger.Msg($"{guesserSuicide}", "guesserSuicide2"); 
+                {
+                    if (pc.Is(CustomRoles.DoubleShot) && DoubleShot.DoubleShotIsActive)
+                    {
+                        DoubleShot.DoubleShotIsActive = false;
+
+                        if (tempPC == null)
+                            tempPC = pc;
+
+                        Logger.Msg($"{DoubleShot.DoubleShotIsActive}", "guesserDoubleShotIsActive");
+
+                        if (!isUI) Utils.SendMessage(GetString("GuessDoubleShot"), pc.PlayerId);
+                        else pc.ShowPopUp(GetString("GuessDoubleShot"));
+                        return true;
+                    }
+                    else
+                    {
+                        guesserSuicide = true;
+                        Logger.Msg($"{guesserSuicide}", "guesserSuicide2");
+                    }
                 }
                 //  else if (pc.Is(CustomRoles.Guesser)/* && role.IsImpostor() && !Options.GCanGuessImp.GetBool()*/) guesserSuicide = true;
                 //   else if (pc.Is(CustomRoles.Guesser)/* && role.IsCrewmate() && !pc.Is(CustomRoles.Madmate) && !Options.GCanGuessCrew.GetBool() */) guesserSuicide = true;
                 else if (!target.Is(role)) 
-                { 
-                    guesserSuicide = true; 
-                    Logger.Msg($"{guesserSuicide}", "guesserSuicide3"); 
+                {
+                    if (pc.Is(CustomRoles.DoubleShot) && DoubleShot.DoubleShotIsActive)
+                    {
+                        DoubleShot.DoubleShotIsActive = false;
+                        
+                        if (tempPC == null)
+                            tempPC = pc;
+
+                        Logger.Msg($"{DoubleShot.DoubleShotIsActive}", "guesserDoubleShotIsActive");
+
+                        if (!isUI) Utils.SendMessage(GetString("GuessDoubleShot"), pc.PlayerId);
+                        else pc.ShowPopUp(GetString("GuessDoubleShot"));
+                        return true;
+                    }
+                    else
+                    {
+                        guesserSuicide = true;
+                        Logger.Msg($"{guesserSuicide}", "guesserSuicide3");
+                    }
                 }
 
                 Logger.Info($"{pc.GetNameWithRole()} guessed {target.GetNameWithRole()}", "Guesser");
@@ -378,6 +443,12 @@ public static class GuessManager
                     Main.PlayerStates[dp.PlayerId].deathReason = PlayerState.DeathReason.Gambled;
                     dp.SetRealKiller(pc);
                     RpcGuesserMurderPlayer(dp);
+
+                    if (dp == tempPC)
+                    {
+                        DoubleShot.DoubleShotIsActive = true;
+                        tempPC = null;
+                    }
 
                     //死者检查
                     Utils.AfterPlayerDeathTasks(dp, true);

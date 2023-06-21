@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using TOHE.Roles.AddOns.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
 
@@ -382,6 +383,7 @@ public class Main : BasePlugin
                 {CustomRoles.Unreportable, "#FF6347"},
                 {CustomRoles.Rogue, "#696969"},
                 {CustomRoles.Lucky, "#b8d7a3"},
+                {CustomRoles.DoubleShot, "#ff1919"},
                 //SoloKombat
                 {CustomRoles.KB_Normal, "#f55252"}
             };
@@ -616,7 +618,8 @@ public enum CustomRoles
     Contagious,
     Unreportable,
     Rogue,
-    Lucky
+    Lucky,
+    DoubleShot
 }
 //WinData
 public enum CustomWinner

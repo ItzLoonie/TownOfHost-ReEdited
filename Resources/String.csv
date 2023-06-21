@@ -248,6 +248,7 @@
 "Contagious","","Contagious","Заразный ","",""
 "Rogue","","Rogue","Негодяй","",""
 "Lucky","","Lucky","Удачливый","",""
+"DoubleShot","","Double Shot","Второй Шанс","",""
 
 "## 附加职业作为前缀时 / Prefixes for Add-ons"
 
@@ -278,6 +279,7 @@
 "Prefix.Unreportable","","Disregarded ","Проигнорированный ","",""
 "Prefix.Rogue","","Rogue ","Негодяйный ","",""
 "Prefix.Lucky","","Lucky ","Удачливый ","",""
+"Prefix.DoubleShot","","Double Shot ","Второй Шанс ","",""
 
 "## 附加职业作为前缀时 / Prefixes for Add-ons But With Brackets"
 
@@ -308,6 +310,7 @@
 "PrefixB.Unreportable","","<color=#ffffff>(</color>Disregarded<color=#ffffff>)</color> ","<color=#ffffff>(</color>Проигнорированный<color=#ffffff>)</color> ","",""
 "PrefixB.Rogue","","<color=#ffffff>(</color>Rogue<color=#ffffff>)</color> ","<color=#ffffff>(</color>Негодяй<color=#ffffff>)</color> ","",""
 "PrefixB.Lucky","","<color=#ffffff>(</color>Lucky<color=#ffffff>)</color> ","<color=#ffffff>(</color>Удачливый<color=#ffffff>)</color> ","",""
+"PrefixB.DoubleShot","","<color=#ffffff>(</color>Double Shot<color=#ffffff>)</color> ","<color=#ffffff>(</color>Второй Шанс<color=#ffffff>)</color> ","",""
 
 "BracketAddons","BracketAddons","Add Brackets To Add-ons","Добавить скобки к Атрибутам","BracketAddons","BracketAddons"
 
@@ -473,6 +476,7 @@
 "UnreportableInfo","","Your body can't be reported","Ваш труп не может быть зарепортен","",""
 "RogueInfo","","Work against your team and win alone","Играйте против своей команды","",""
 "LuckyInfo","","Your Killer may Miss the Kill","Убийца может промазать по вам","",""
+"DoubleShotInfo","","You have an extra life when you guess role","У вас есть второй шанс на угадывание","",""
 
 "# 其它 / Other descriptions"
 "GMInfo","开局死的冤魂隔岸观火","Spectate the Chaos!","Вы Мастер Игры, наслаждайтесь хаосом!","當吃瓜群眾在一旁看戲吧","开局死的冤魂隔岸观火"
@@ -645,7 +649,8 @@
 "UnreportableInfoLong","","(Add-ons):\nWith the Disregarded add-on, your corpse cannot be reported.","(Атрибут):\nС этим Атрибутом ваш труп нельзя будет зарепортить","",""
 "ContagiousInfoLong","","(Add-ons):\nWhen the Virus infects you, you become contagious.\nContagious players are on the Virus team.\n\nWhether or not you die after a meeting depends on the settings for the Virus.","(Атрибут):\nКогда Вирус заражает вас, вы становитесь Заразным.\nЗаразные игроки входят в команду Вируса.\n\nУмрете ли вы после встречи, зависит от настроек Хоста.","",""
 "RogueInfoLong","","(Add-ons):\nThe Rogue is only assigned to Impostors.\nWhen an Impostor is Rogue, they work against the Impostors and win alone.\nRogue Impostors cannot win with the other Impostors.","(Атрибут):\nРазбойник назначается только Предателям.\nКогда Предатель является Разбойником, он работает против Предателей и побеждает в одиночку.\nРазбойники-Предатели не могут победить с другими Предателями.","",""
-"LuckyInfoLong","","(Add-ons):\n(Crewmates):\nWith the Lucky add-on there is a probability for you to evade the kill, the specific probability is set by the host. When the evasion takes effect, the killer will see the shield-animation, but you not know anything.","(Атрибут):\nУ Удачливого будет возникать определенная вероятность того, что Убийца не сможет убить игрока с Атрибутом Удачливого, вероятность устанавливается в зависимости от настроек Хоста.\nПримечание: Это та же роль Удачника, но в виде Атрибута","",""
+"LuckyInfoLong","","(Add-ons):\nWith the Lucky add-on there is a probability for you to evade the kill, the specific probability is set by the host. When the evasion takes effect, the killer will see the shield-animation, but you not know anything.","(Атрибут):\nУ Удачливого будет возникать определенная вероятность того, что Убийца не сможет убить игрока с Атрибутом Удачливого, вероятность устанавливается в зависимости от настроек Хоста.\nПримечание: Это та же роль Удачника, но в виде Атрибута","",""
+"DoubleShotInfoLong","","(Add-ons):\nWhen a player with Double Shot guesses the role incorrectly, they will get a second chance to survive, but the next wrong guess will result in death","(Атрибут):\nКогда игрок с Вторым Шансом неправильно угадывает роль, он получает второй шанс выжить, но следующий неверное отгадывание приведет к смерти","",""
 
 "# 其它 / Other long description"
 "GMInfoLong","(房主):\n看我干啥，我只是个开局就死的冤魂，静静地吃瓜而已。","(None):\nThe GM (Game Master) is an observer role.\nTheir presence has no effect on the game, and all players know who the GM is. The GM role will be assigned to the host, who will automatically become a ghost at the start of the game.","(Никто):\nGM (Мастер Игры) — это роль, которая наблюдает за игрой в роле призрака. \nОн не влияет на игру, и все игроки всегда знают кто Мастер Игры. Всегда назначается только хосту лобби и становится призраком в самом начале игры.","(房主):\n看我幹嘛，我只是開始遊戲時就在冥界吃瓜而已。","(房主):\n看我干啥，我只是个开局就死的冤魂，静静地吃瓜而已。"
@@ -1378,6 +1383,7 @@
 "GGGuessMax","您已达到每次会议猜测次数上限\n不能再猜测啦！","You've reached the limit of maximum guesses, you can't guess anymore!","Вы достигли максимального предела угадывания для каждой встречи, вы больше не можете угадывать!","你已經達到每次會議猜測次數上限\n不能再繼續猜測啦!","您已达到每次会议猜测次数上限\n不能再猜测啦！"
 "EGGuessMax","您已达到每次会议猜测次数上限\n不能再猜测啦！","You've reached the limit of maximum guesses, you can't guess anymore!","Вы достигли максимального предела угадывания для каждой встречи, вы больше не можете угадывать!","你已經達到每次會議猜測次數上限\n不能再繼續猜測啦!","您已达到每次会议猜测次数上限\n不能再猜测啦！"
 "EGGuessSnitchTaskDone","很抱歉，该房设置不允许猜测完成任务的告密者","You thought you could guess the Snitch when all of their tasks are done? Nice try.... You're not getting out of this that easily.","Из-за настроек комнаты, ты не можешь угадать Стукача который сделал свои задания.","很抱歉，根據該房設定不允許猜測完成任務的告密者","很抱歉，该房设置不允许猜测完成任务的告密者"
+"GuessDoubleShot","","You didn't guess the role or the guess did not match the settings, but you survived due to Double Shot","Вы не угадали роли или угадывание не соответствовало настройкам, но вы выжили за счёт Второго Шанса","",""
 "LaughToWhoGuessSelf","有一说一，你是懂赌怪的","Tried to guess, who tried to self-guess! It's you! Ahah!","Попробуйте угадать, кто попытался себя угадать! Это ты! Ахах!","你應該是懂賭怪的，對吧?","有一说一，你是懂赌怪的"
 "GuessDisabled","","Sorry, the host restricted guessing for your role.","","",""
 "JudgeDead","很抱歉，死亡后不能进行审判","Sorry, you can't trial after death.","Нету судьи - нету суда!","很抱歉，死亡後不能進行審判","很抱歉，死亡后不能进行审判"
