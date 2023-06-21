@@ -1228,7 +1228,7 @@ public static class Utils
                 TargetMark.Append(Snitch.GetWarningMark(seer, target));
 
                 //ハートマークを付ける(相手に)
-                if (seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers))
+                if (seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers) && Amor.IsLoverPair(seer, target))
                 {
                     TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♡</color>");
                 }
@@ -1289,7 +1289,7 @@ public static class Utils
                     //他人の役職とタスクは幽霊が他人の役職を見れるようになっていてかつ、seerが死んでいる場合のみ表示されます。それ以外の場合は空になります。
                     string TargetRoleText =
                         (seer.Data.IsDead && Options.GhostCanSeeOtherRoles.GetBool()) ||
-                        (seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers) && Options.LoverKnowRoles.GetBool()) ||
+                        (seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers) && Options.LoverKnowRoles.GetBool() && Amor.IsLoverPair(seer, target)) ||
                         (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoleTypes.Impostor) && Options.ImpKnowAlliesRole.GetBool()) ||
                         (seer.Is(CustomRoles.Madmate) && target.Is(CustomRoleTypes.Impostor) && Options.MadmateKnowWhosImp.GetBool()) ||
                         (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Madmate) && Options.ImpKnowWhosMadmate.GetBool()) ||

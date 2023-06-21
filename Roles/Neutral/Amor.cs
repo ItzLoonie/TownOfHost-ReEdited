@@ -135,6 +135,10 @@ namespace TOHE.Roles.Neutral
                         lover.RpcMurderPlayerV3(lover);
                 }
             }
+
+            Lovers.Clear();
+            MatchmakeLimit = MatchmakeMax.GetInt();
+            SendRPC();
         }
 
         public static bool CheckAmorLoverLeave(PlayerControl leaver)
@@ -151,6 +155,25 @@ namespace TOHE.Roles.Neutral
             }
 
             return false;
+        }
+
+        public static bool IsLoverPair(PlayerControl seer, PlayerControl target)
+        {
+            return Amor.AreAmorLovers(seer, target) || Amor.AreNaturalLovers(seer, target);
+        }
+
+        public static bool AreAmorLovers(PlayerControl seer, PlayerControl target)
+        {
+            return
+                Lovers.Any(a => a.PlayerId == seer.PlayerId) &&
+                Lovers.Any(a => a.PlayerId == target.PlayerId);
+        }
+
+        public static bool AreNaturalLovers(PlayerControl seer, PlayerControl target)
+        {
+            return
+                Main.LoversPlayers.Any(a => a.PlayerId == seer.PlayerId) &&
+                Main.LoversPlayers.Any(a => a.PlayerId == target.PlayerId);
         }
     }
 }
