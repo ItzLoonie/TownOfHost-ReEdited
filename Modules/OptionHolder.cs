@@ -289,6 +289,9 @@ public static class Options
     public static OptionItem DovesOfNeaceMaxOfUseage;
     public static OptionItem BTKillCooldown;
     public static OptionItem TrapOnlyWorksOnTheBodyBoobyTrap;
+    public static OptionItem ImpCanBeDoubleShot;
+    public static OptionItem CrewCanBeDoubleShot;
+    public static OptionItem NeutralCanBeDoubleShot;
 
     //public static OptionItem NSerialKillerKillCD;
     //public static OptionItem NSerialKillerHasImpostorVision;
@@ -1227,6 +1230,12 @@ public static class Options
         JudgeCanBeMadmate = BooleanOptionItem.Create(6050405, "JudgeCanBeMadmate", false, TabGroup.Addons, false)
         .SetParent(CustomRoleSpawnChances[CustomRoles.Madmate]);
         SetupAdtRoleOptions(6050677, CustomRoles.DoubleShot, canSetNum: false, canSetChance: true);
+        ImpCanBeDoubleShot = BooleanOptionItem.Create(6050700, "ImpCanBeDoubleShot", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.DoubleShot]);
+        CrewCanBeDoubleShot = BooleanOptionItem.Create(6050701, "CrewCanBeDoubleShot", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.DoubleShot]);
+        NeutralCanBeDoubleShot = BooleanOptionItem.Create(6050702, "NeutralCanBeDoubleShot", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.DoubleShot]);
         LastImpostor.SetupCustomOption();
         SetupAdtRoleOptions(6051677, CustomRoles.Mimic, canSetNum: true, tab: TabGroup.Addons);        
         SetupAdtRoleOptions(6051660, CustomRoles.TicketsStealer, canSetNum: true, tab: TabGroup.Addons);

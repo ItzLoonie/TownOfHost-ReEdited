@@ -3,7 +3,6 @@
     public static class DoubleShot
     {
         public static bool DoubleShotIsActive;
-
         public static void Init()
         {
             DoubleShotIsActive = true;
