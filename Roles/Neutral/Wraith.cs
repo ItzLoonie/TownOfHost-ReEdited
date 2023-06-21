@@ -6,7 +6,7 @@ using System.Text;
 using static TOHE.Options;
 using static TOHE.Translator;
 
-namespace TOHE.Roles.Impostor;
+namespace TOHE.Roles.Neutral;
 
 public static class Wraith
 {

@@ -109,7 +109,7 @@ public abstract class OptionItem
 
         if (AllOptions.Any(op => op.Id == id))
         {
-            Logger.Error($"重复出现选项ID:{id}", "OptionItem");
+            Logger.Error($"Repeat option ID:{id}", "OptionItem");
         }
         _allOptions.Add(this);
     }

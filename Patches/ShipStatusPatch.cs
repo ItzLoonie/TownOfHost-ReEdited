@@ -60,13 +60,13 @@ class RepairSystemPatch
             SystemTypes.Electrical))
         { return false; }
 
-        if (player.Is(CustomRoles.Madmate) && !Options.MadmateCanFixSabotage.GetBool() && 
+      /*if (player.Is(CustomRoles.Madmate) && !Options.MadmateCanFixSabotage.GetBool() && 
             (systemType is
             SystemTypes.Reactor or
             SystemTypes.LifeSupp or
             SystemTypes.Comms or
             SystemTypes.Electrical))
-        { return false; }
+        { return false; }*/
 
         //SabotageMaster
         if (player.Is(CustomRoles.SabotageMaster))

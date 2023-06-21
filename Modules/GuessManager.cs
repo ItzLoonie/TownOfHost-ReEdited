@@ -175,6 +175,30 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("EGGuessMax"));
                     return true;
                 }
+                if (pc.Is(CustomRoles.Phantom) && !Options.PhantomCanGuess.GetBool())
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessDisabled"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessDisabled"));
+                    return true;
+                }
+                if (pc.Is(CustomRoles.Terrorist) && !Options.TerroristCanGuess.GetBool())
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessDisabled"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessDisabled"));
+                    return true;
+                }
+                if (pc.Is(CustomRoles.Workaholic) && !Options.WorkaholicCanGuess.GetBool())
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessDisabled"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessDisabled"));
+                    return true;
+                }
+                if (pc.Is(CustomRoles.God) && !Options.GodCanGuess.GetBool())
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessDisabled"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessDisabled"));
+                    return true;
+                }
                 if (role == CustomRoles.SuperStar || target.Is(CustomRoles.SuperStar))
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessSuperStar"), pc.PlayerId);
@@ -193,7 +217,13 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("GuessOnbound"));
                     return true;
                 }
-
+                if (role == CustomRoles.Phantom && target.Is(CustomRoles.Phantom))
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessPhantom"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessPhantom"));
+                    return true;
+                }
+                
                 if (role == CustomRoles.GM || target.Is(CustomRoles.GM))
                 {
                     Utils.SendMessage(GetString("GuessGM"), pc.PlayerId);

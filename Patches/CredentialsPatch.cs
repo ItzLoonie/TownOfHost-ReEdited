@@ -56,7 +56,7 @@ internal class VersionShowerStartPatch
         if (Main.IsAprilFools) Main.credentialsText = $"\r\n<color=#00bfff>Town Of Host</color> v11.45.14";
 #if DEBUG
       //  Main.credentialsText += $"\r\n<color=#a54aff>Modified by </color><color=#ff3b6f>Loonie</color>";
-        Main.credentialsText += $"\r\n<color=#a54aff>Continued by </color><color=#ff3b6f>Loonie</color>";
+        Main.credentialsText += $"\r\n<color=#a54aff>By <color=#ffc0cb>KARPED1EM</color> & </color><color=#f34c50>Loonie</color>";
 #endif
 
 #if RELEASE
