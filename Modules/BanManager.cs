@@ -36,11 +36,11 @@ public static class BanManager
                 File.WriteAllText(DENY_NAME_LIST_PATH, GetResourcesTxt("TOHE.Resources.Config.DenyName.txt"));
             }
             if (!File.Exists(MODERATOR_LIST_PATH))
-                            {
+             {
                 Logger.Warn("Creating a new Moderators.txt file", "BanManager");
                 File.Create(MODERATOR_LIST_PATH).Close();
                 File.WriteAllText(MODERATOR_LIST_PATH, GetResourcesTxt("TOHE.Resources.Config.Moderators.txt"));
-                            }
+             }
             if (!File.Exists(AllowlistFilePath))
             {
                 Logger.Warn("Creating a new Allowlist.txt file", "BanManager");

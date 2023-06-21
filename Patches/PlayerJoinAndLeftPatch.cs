@@ -233,7 +233,11 @@ class CreatePlayerPatch
         {
             if (client.Character == null) return;
             if (Main.OverrideWelcomeMsg != "") Utils.SendMessage(Main.OverrideWelcomeMsg, client.Character.PlayerId);
-            else TemplateManager.SendTemplate("welcome", client.Character.PlayerId, true);
+            else 
+            { 
+                TemplateManager.SendTemplate("welcome", client.Character.PlayerId, true);
+                if (ChatCommands.IsPlayerModerator(client.FriendCode)) TemplateManager.SendTemplate("modCommands", client.Character.PlayerId , true);
+            }
         }, 3f, "Welcome Message");
         if (Main.OverrideWelcomeMsg == "" && Main.PlayerStates.Count != 0 && Main.clientIdList.Contains(client.Id))
         {
