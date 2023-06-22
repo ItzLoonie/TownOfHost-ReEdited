@@ -1274,9 +1274,9 @@
 "ImpCanBeFool","","<color=#ff1919>Impostors</color> can become <color=#e6e7ff>Fool</color>","<color=#ff1919>Предатели</color> могут стать <color=#e6e7ff>Глупцом</color>","",""
 "CrewCanBeFool","","<color=#8cffff>Crewmates</color> can become <color=#e6e7ff>Fool</color>","<color=#8cffff>Члены Экипажа</color> могут стать <color=#e6e7ff>Глупцом</color>","",""
 "NeutralCanBeFool","","<color=#7f8c8d>Neutrals</color> can become <color=#e6e7ff>Fool</color>","<color=#7f8c8d>Нейтралы</color> могут стать <color=#e6e7ff>Глупцом</color>","",""
-"ImpCanBeDoubleShot","","<color=#ff1919>Impostors</color> can become <color=#19fa8d>Double Shot</color>","У <color=#ff1919>Предателей</color> может быть <color=#19fa8d>Второй Шанс</color>","",""
-"CrewCanBeDoubleShot","","<color=#8cffff>Crewmates</color> can become <color=#19fa8d>Double Shot</color>","У <color=#8cffff>Членов Экипажа</color> может быть <color=#19fa8d>Второй Шанс</color>","",""
-"NeutralCanBeDoubleShot","","<color=#7f8c8d>Neutrals</color> can become <color=#19fa8d>Double Shot</color>","У <color=#7f8c8d>Нейтралов</color> может быть <color=#19fa8d>Второй Шанс</color>","",""
+"ImpCanBeDoubleShot","","<color=#ff1919>Impostors</color> can have <color=#19fa8d>Double Shot</color>","У <color=#ff1919>Предателей</color> может быть <color=#19fa8d>Второй Шанс</color>","",""
+"CrewCanBeDoubleShot","","<color=#8cffff>Crewmates</color> can have <color=#19fa8d>Double Shot</color>","У <color=#8cffff>Членов Экипажа</color> может быть <color=#19fa8d>Второй Шанс</color>","",""
+"NeutralCanBeDoubleShot","","<color=#7f8c8d>Neutrals</color> can have <color=#19fa8d>Double Shot</color>","У <color=#7f8c8d>Нейтралов</color> может быть <color=#19fa8d>Второй Шанс</color>","",""
 
 "## Moderation for Auto-Hosters"
 "ApplyModeratorList","","Apply Moderator List","Применить список модераторов","",""

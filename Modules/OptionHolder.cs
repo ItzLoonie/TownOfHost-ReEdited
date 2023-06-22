@@ -1143,6 +1143,13 @@ public static class Options
         .SetParent(CustomRoleSpawnChances[CustomRoles.Necroview]);
         NeutralCanBeNecroview = BooleanOptionItem.Create(6050513, "NeutralCanBeNecroview", true, TabGroup.Addons, false)
         .SetParent(CustomRoleSpawnChances[CustomRoles.Necroview]);
+        SetupAdtRoleOptions(6050677, CustomRoles.DoubleShot, canSetNum: false, canSetChance: true); // Double Shot is designed only for 1 player for the whole game
+        ImpCanBeDoubleShot = BooleanOptionItem.Create(6050700, "ImpCanBeDoubleShot", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.DoubleShot]);
+        CrewCanBeDoubleShot = BooleanOptionItem.Create(6050701, "CrewCanBeDoubleShot", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.DoubleShot]);
+        NeutralCanBeDoubleShot = BooleanOptionItem.Create(6050702, "NeutralCanBeDoubleShot", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.DoubleShot]);
         SetupAdtRoleOptions(6050605, CustomRoles.Onbound, canSetNum: true, tab: TabGroup.Addons);
         ImpCanBeOnbound = BooleanOptionItem.Create(6050616, "ImpCanBeOnbound", true, TabGroup.Addons, false)
         .SetParent(CustomRoleSpawnChances[CustomRoles.Onbound]);
@@ -1229,13 +1236,6 @@ public static class Options
             .SetValueFormat(OptionFormat.Pieces);
         JudgeCanBeMadmate = BooleanOptionItem.Create(6050405, "JudgeCanBeMadmate", false, TabGroup.Addons, false)
         .SetParent(CustomRoleSpawnChances[CustomRoles.Madmate]);
-        SetupAdtRoleOptions(6050677, CustomRoles.DoubleShot, canSetNum: false, canSetChance: true);
-        ImpCanBeDoubleShot = BooleanOptionItem.Create(6050700, "ImpCanBeDoubleShot", true, TabGroup.Addons, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.DoubleShot]);
-        CrewCanBeDoubleShot = BooleanOptionItem.Create(6050701, "CrewCanBeDoubleShot", true, TabGroup.Addons, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.DoubleShot]);
-        NeutralCanBeDoubleShot = BooleanOptionItem.Create(6050702, "NeutralCanBeDoubleShot", true, TabGroup.Addons, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.DoubleShot]);
         LastImpostor.SetupCustomOption();
         SetupAdtRoleOptions(6051677, CustomRoles.Mimic, canSetNum: true, tab: TabGroup.Addons);        
         SetupAdtRoleOptions(6051660, CustomRoles.TicketsStealer, canSetNum: true, tab: TabGroup.Addons);
