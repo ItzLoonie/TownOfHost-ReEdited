@@ -417,6 +417,7 @@ static class ExtendedPlayerControl
             CustomRoles.Mafia => Utils.CanMafiaKill(),
             CustomRoles.Mare => Utils.IsActive(SystemTypes.Electrical),
             CustomRoles.Inhibitor => !Utils.IsActive(SystemTypes.Electrical) && !Utils.IsActive(SystemTypes.Laboratory) && !Utils.IsActive(SystemTypes.Comms) && !Utils.IsActive(SystemTypes.LifeSupp) && !Utils.IsActive(SystemTypes.Reactor),
+            CustomRoles.Saboteur => Utils.IsActive(SystemTypes.Electrical) || Utils.IsActive(SystemTypes.Laboratory) || Utils.IsActive(SystemTypes.Comms) || Utils.IsActive(SystemTypes.LifeSupp) || Utils.IsActive(SystemTypes.Reactor),
             CustomRoles.Sniper => Sniper.CanUseKillButton(pc),
             CustomRoles.Sheriff => Sheriff.CanUseKillButton(pc.PlayerId),
             CustomRoles.Pelican => pc.IsAlive(),
@@ -476,7 +477,7 @@ static class ExtendedPlayerControl
             CustomRoles.Jackal => Jackal.CanVent.GetBool(),
        //     CustomRoles.Sidekick => Jackal.CanVent.GetBool(),
             CustomRoles.Poisoner => Poisoner.CanVent.GetBool(),
-            CustomRoles.NSerialKiller => Options.NSerialKillerCanVent.GetBool(),
+            CustomRoles.NSerialKiller => NSerialKiller.CanVent.GetBool(),
             CustomRoles.Pelican => Pelican.CanVent.GetBool(),
             CustomRoles.Gamer => Gamer.CanVent.GetBool(),
             CustomRoles.BloodKnight => BloodKnight.CanVent.GetBool(),
@@ -560,6 +561,7 @@ static class ExtendedPlayerControl
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.ControlCooldown.GetFloat(); //アーソニストはアーソニストのキルクールに。
                 break;
             case CustomRoles.Inhibitor:
+            case CustomRoles.Saboteur:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.InhibitorCD.GetFloat(); //アーソニストはアーソニストのキルクールに。
                 break;
             case CustomRoles.Revolutionist:
@@ -577,7 +579,7 @@ static class ExtendedPlayerControl
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.ParasiteCD.GetFloat();
                 break;
             case CustomRoles.NSerialKiller:
-                Main.AllPlayerKillCooldown[player.PlayerId] = Options.NSerialKillerKillCD.GetFloat();
+                NSerialKiller.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.Poisoner:
                 Poisoner.SetKillCooldown(player.PlayerId);
@@ -594,6 +596,9 @@ static class ExtendedPlayerControl
             case CustomRoles.Zombie:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.ZombieKillCooldown.GetFloat();
                 Main.AllPlayerSpeed[player.PlayerId] -= Options.ZombieSpeedReduce.GetFloat();
+                break;
+            case CustomRoles.BoobyTrap:
+                Main.AllPlayerKillCooldown[player.PlayerId] = Options.BTKillCooldown.GetFloat();
                 break;
             case CustomRoles.Scavenger:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.ScavengerKillCooldown.GetFloat();
@@ -855,6 +860,10 @@ static class ExtendedPlayerControl
         //targetがnullでなく取得できない場合は登録前なので生きているとする
         if (target == null || target.Is(CustomRoles.GM) || target.Is(CustomRoles.Glitch)) return false;
         return GameStates.IsLobby || (target != null && (!Main.PlayerStates.TryGetValue(target.PlayerId, out var ps) || !ps.IsDead));
+    }
+    public static bool IsExiled(this PlayerControl target)
+    {
+        return GameStates.InGame || (target != null && (Main.PlayerStates[target.PlayerId].deathReason == PlayerState.DeathReason.Vote));
     }
 
 }
