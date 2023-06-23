@@ -1,16 +1,13 @@
 using AmongUs.GameOptions;
-using AmongUs.GameOptions;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Il2CppInterop.Runtime.Injection;
-using Sentry.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using TOHE.Roles.Crewmate;
 using TOHE.Roles.Neutral;
 using UnityEngine;
 
@@ -37,8 +34,8 @@ public class Main : BasePlugin
     public static readonly string MainMenuText = " ";
     public const string PluginGuid = "com.karped1em.townofhostedited";
     public const string PluginVersion = "2.4.2";
-    public const int PluginCreate = 2;
-    public const bool Canary = false;
+    public const int PluginCreate = 3;
+    public const bool Canary = true;
 
     public static readonly bool ShowQQButton = true;
     public static readonly string QQInviteUrl = "https://jq.qq.com/?_wv=1027&k=2RpigaN6";
@@ -107,6 +104,7 @@ public class Main : BasePlugin
     public static List<byte> WorkaholicAlive = new();
     public static List<byte> BaitAlive = new();
     public static List<byte> BoobyTrapBody = new();
+    public static List<byte> BoobyTrapKiller = new();
     public static Dictionary<byte, byte> KillerOfBoobyTrapBody = new();
     public static Dictionary<byte, string> DetectiveNotify = new();
     public static Dictionary<byte, string> VirusNotify = new();
@@ -127,6 +125,7 @@ public class Main : BasePlugin
     public static Dictionary<byte, PlayerControl> CursedPlayers = new();
     public static Dictionary<byte, bool> isCurseAndKill = new();
     public static Dictionary<byte, int> MafiaRevenged = new();
+    public static Dictionary<byte, int> RetributionistRevenged = new();
     public static Dictionary<byte, int> GuesserGuessed = new();
     public static Dictionary<byte, int> CapitalismAddTask = new();
     public static Dictionary<byte, int> CapitalismAssignTask = new();
@@ -308,6 +307,7 @@ public class Main : BasePlugin
                 {CustomRoles.Bloodhound, "#8B0000"},
                 {CustomRoles.Tracker, "#3CB371"},
                 {CustomRoles.Merchant, "#D27D2D"},
+                {CustomRoles.Retributionist, "#228B22"},
                 {CustomRoles.Addict, "#008000"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
@@ -346,6 +346,7 @@ public class Main : BasePlugin
                 {CustomRoles.Virus, "#2E8B57"},
                 {CustomRoles.Farseer, "#BA55D3"},
                 {CustomRoles.Pursuer, "#617218"},
+                {CustomRoles.Phantom, "#662962"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -493,6 +494,7 @@ public enum CustomRoles
     Crewpostor,
     Disperser,
     Camouflager,
+    Saboteur,
     //Crewmate(Vanilla)
     Engineer,
     GuardianAngel,
@@ -538,6 +540,7 @@ public enum CustomRoles
     Bloodhound,
     Tracker,
     Merchant,
+    Retributionist,
     Addict,
     //Neutral
     Arsonist,
@@ -573,6 +576,7 @@ public enum CustomRoles
     Succubus,
     Virus,
     Pursuer,
+    Phantom,
 
     //SoloKombat
     KB_Normal,
@@ -654,7 +658,8 @@ public enum CustomWinner
     Juggernaut = CustomRoles.Juggernaut,
     Infectious = CustomRoles.Infectious,
     Virus = CustomRoles.Virus,
-    Rogue = CustomRoles.Rogue
+    Rogue = CustomRoles.Rogue,
+    Phantom = CustomRoles.Phantom,
 }
 public enum AdditionalWinners
 {
@@ -671,6 +676,7 @@ public enum AdditionalWinners
     Jackal = CustomRoles.Jackal,
     Sidekick = CustomRoles.Sidekick,
     Pursuer = CustomRoles.Pursuer,
+    Phantom = CustomRoles.Phantom,
 }
 public enum SuffixModes
 {

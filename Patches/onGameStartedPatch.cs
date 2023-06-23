@@ -51,6 +51,7 @@ internal class ChangeRoleSettings
             Main.FarseerTimer = new();
             Main.CursedPlayers = new();
             Main.MafiaRevenged = new();
+            Main.RetributionistRevenged = new();
             Main.isCurseAndKill = new();
             Main.isCursed = false;
             Main.PuppeteerList = new();
@@ -222,6 +223,7 @@ internal class ChangeRoleSettings
             Bloodhound.Init();
             Tracker.Init();
             Merchant.Init();
+            NSerialKiller.Init();
             Addict.Init();
 
             SoloKombatManager.Init();
@@ -596,6 +598,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Merchant:
                         Merchant.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.NSerialKiller:
+                        NSerialKiller.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Addict:
                         Addict.Add(pc.PlayerId);

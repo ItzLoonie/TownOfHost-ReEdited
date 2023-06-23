@@ -14,6 +14,7 @@ public static class DarkHide
     public static OptionItem KillCooldown;
     public static OptionItem HasImpostorVision;
     public static OptionItem CanCountNeutralKiller;
+    public static OptionItem SnatchesWin;
 
     public static Dictionary<byte, float> CurrentKillCooldown = new();
     public static Dictionary<byte, bool> IsWinKill = new();
@@ -25,6 +26,8 @@ public static class DarkHide
             .SetValueFormat(OptionFormat.Seconds);
         HasImpostorVision = BooleanOptionItem.Create(Id + 11, "ImpostorVision", false, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.DarkHide]);
         CanCountNeutralKiller = BooleanOptionItem.Create(Id + 12, "CanCountNeutralKiller", false, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.DarkHide]);
+        SnatchesWin = BooleanOptionItem.Create(Id + 13, "SnatchesWin", false, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.DarkHide]);
+
     }
     public static void Init()
     {
@@ -78,7 +81,7 @@ public static class DarkHide
         {
             succeeded = succeeded || ExtendedPlayerControl.IsNeutralKiller(Ktarget);
         }
-        if (succeeded)
+        if (succeeded && SnatchesWin.GetBool())
             IsWinKill[killer.PlayerId] = true;
 
         killer.DRpcSetKillCount();

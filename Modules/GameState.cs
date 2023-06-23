@@ -57,6 +57,17 @@ public class PlayerState
     {
         MainRole = role;
         countTypes = role.GetCountTypes();
+        if (role == CustomRoles.DarkHide)
+        {
+            if (!DarkHide.SnatchesWin.GetBool())
+            {
+                countTypes = CountTypes.DarkHide;
+            }
+            if (DarkHide.SnatchesWin.GetBool())
+            {
+                countTypes = CountTypes.Crew;
+            }
+        }
     }
     public void SetSubRole(CustomRoles role, bool AllReplace = false)
     {
@@ -122,7 +133,13 @@ public class PlayerState
         }
         if (role == CustomRoles.Contagious)
         {
-            countTypes = CountTypes.Virus;
+            countTypes = Virus.ContagiousCountMode.GetInt() switch
+            {
+                0 => CountTypes.OutOfGame,
+                1 => CountTypes.Virus,
+                2 => countTypes,
+                _ => throw new NotImplementedException()
+            };
             SubRoles.Remove(CustomRoles.Madmate);
             SubRoles.Remove(CustomRoles.Sidekick);
             SubRoles.Remove(CustomRoles.Rogue);
