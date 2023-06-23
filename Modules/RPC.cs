@@ -79,6 +79,7 @@ enum CustomRPC
     Judge,
     Guess,
     MafiaRevenge,
+    RetributionistRevenge,
     SetSwooperTimer,
     SetWraithTimer,
     SetBKTimer,
@@ -111,7 +112,7 @@ public enum Sounds
 internal class RPCHandlerPatch
 {
     public static bool TrustedRpc(byte id)
-    => (CustomRPC)id is CustomRPC.VersionCheck or CustomRPC.RequestRetryVersionCheck or CustomRPC.AntiBlackout or CustomRPC.Judge or CustomRPC.Guess or CustomRPC.MafiaRevenge;
+    => (CustomRPC)id is CustomRPC.VersionCheck or CustomRPC.RequestRetryVersionCheck or CustomRPC.AntiBlackout or CustomRPC.Judge or CustomRPC.Guess or CustomRPC.MafiaRevenge or CustomRPC.RetributionistRevenge;
     public static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader)
     {
         var rpcType = (RpcCalls)callId;
@@ -450,6 +451,9 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.MafiaRevenge:
                 MafiaRevengeManager.ReceiveRPC(reader, __instance);
+                break;
+            case CustomRPC.RetributionistRevenge:
+                RetributionistRevengeManager.ReceiveRPC(reader, __instance);
                 break;
             case CustomRPC.SetSwooperTimer:
                 Swooper.ReceiveRPC(reader);
@@ -827,6 +831,9 @@ internal static class RPC
                 break;
             case CustomRoles.Merchant:
                 Merchant.Add(targetId);
+                break;
+            case CustomRoles.NSerialKiller:
+                NSerialKiller.Add(targetId);
                 break;
             case CustomRoles.Amor:
                 Amor.Add(targetId);

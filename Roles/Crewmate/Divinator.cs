@@ -140,6 +140,7 @@ public static class Divinator
                 CustomRoles.Warlock or
                 CustomRoles.Hacker or
                 CustomRoles.Mafia or
+                CustomRoles.Retributionist or
                 CustomRoles.Doctor or
                 CustomRoles.ScientistTOHE or
                 CustomRoles.Transporter or
