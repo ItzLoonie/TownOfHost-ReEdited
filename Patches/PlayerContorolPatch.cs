@@ -125,7 +125,6 @@ class CheckMurderPatch
         // 赝品检查
         if (Counterfeiter.OnClientMurder(killer)) return false;
         if (Pursuer.OnClientMurder(killer)) return false;
-        if (Merchant.OnClientMurder(killer, target)) return false;
 
         //判定凶手技能
         if (killer.PlayerId != target.PlayerId)
@@ -340,6 +339,8 @@ class CheckMurderPatch
         // 击杀前检查
         if (!killer.RpcCheckAndMurder(target, true))
             return false;
+        if (Merchant.OnClientMurder(killer, target)) return false;
+
 
         // Don't infect when Shielded
         if (killer.Is(CustomRoles.Virus))
@@ -443,6 +444,12 @@ class CheckMurderPatch
 
         if (Jackal.ResetKillCooldownWhenSbGetKilled.GetBool() && !killer.Is(CustomRoles.Jackal) && !target.Is(CustomRoles.Jackal) && !GameStates.IsMeeting)
             Jackal.AfterPlayerDiedTask(killer);
+
+        if (target.Is(CustomRoles.BoobyTrap) && Options.TrapOnlyWorksOnTheBodyBoobyTrap.GetBool() && !GameStates.IsMeeting)
+        {
+            Main.BoobyTrapBody.Add(target.PlayerId);
+            Main.BoobyTrapKiller.Add(target.PlayerId);
+        }
 
         if (target.Is(CustomRoles.Lucky))
         {
@@ -655,7 +662,7 @@ class MurderPlayerPatch
         switch (killer.GetCustomRole())
         {
             case CustomRoles.BoobyTrap:
-                if (killer != target)
+                if (!Options.TrapOnlyWorksOnTheBodyBoobyTrap.GetBool() && killer != target)
                 {
                     if (!Main.BoobyTrapBody.Contains(target.PlayerId)) Main.BoobyTrapBody.Add(target.PlayerId);
                     if (!Main.KillerOfBoobyTrapBody.ContainsKey(target.PlayerId)) Main.KillerOfBoobyTrapBody.Add(target.PlayerId, killer.PlayerId);
@@ -955,7 +962,7 @@ class ReportDeadBodyPatch
             {
                 if (__instance.Is(CustomRoles.Jester) && !Options.JesterCanUseButton.GetBool()) return false;
             }
-            else //报告尸体事件
+            if (target != null) //拍灯事件
             {
                 if (Bloodhound.UnreportablePlayers.Contains(target.PlayerId)) return false;
 
@@ -999,16 +1006,29 @@ class ReportDeadBodyPatch
                 // 报告了诡雷尸体
                 if (Main.BoobyTrapBody.Contains(target.PlayerId) && __instance.IsAlive())
                 {
-                    var killerID = Main.KillerOfBoobyTrapBody[target.PlayerId];
-                    Main.PlayerStates[__instance.PlayerId].deathReason = PlayerState.DeathReason.Bombed;
-                    __instance.SetRealKiller(Utils.GetPlayerById(killerID));
+                    if (!Options.TrapOnlyWorksOnTheBodyBoobyTrap.GetBool())
+                    {
+                        var killerID = Main.KillerOfBoobyTrapBody[target.PlayerId];
+                        Main.PlayerStates[__instance.PlayerId].deathReason = PlayerState.DeathReason.Bombed;
+                        __instance.SetRealKiller(Utils.GetPlayerById(killerID));
 
-                    __instance.RpcMurderPlayerV3(__instance);
-                    RPC.PlaySoundRPC(killerID, Sounds.KillSound);
+                        __instance.RpcMurderPlayerV3(__instance);
+                        RPC.PlaySoundRPC(killerID, Sounds.KillSound);
 
-                    if (!Main.BoobyTrapBody.Contains(__instance.PlayerId)) Main.BoobyTrapBody.Add(__instance.PlayerId);
-                    if (!Main.KillerOfBoobyTrapBody.ContainsKey(__instance.PlayerId)) Main.KillerOfBoobyTrapBody.Add(__instance.PlayerId, killerID);
-                    return false;
+                        if (!Main.BoobyTrapBody.Contains(__instance.PlayerId)) Main.BoobyTrapBody.Add(__instance.PlayerId);
+                        if (!Main.KillerOfBoobyTrapBody.ContainsKey(__instance.PlayerId)) Main.KillerOfBoobyTrapBody.Add(__instance.PlayerId, killerID);
+                        return false;
+                    }
+                    else
+                    {
+                        var killerID2 = target.PlayerId;
+                        Main.PlayerStates[__instance.PlayerId].deathReason = PlayerState.DeathReason.Bombed;
+                        __instance.SetRealKiller(Utils.GetPlayerById(killerID2));
+
+                        __instance.RpcMurderPlayerV3(__instance);
+                        RPC.PlaySoundRPC(killerID2, Sounds.KillSound);
+                        return false;
+                    }
                 }
 
                 if (target.Object.Is(CustomRoles.Unreportable)) return false;
@@ -1129,7 +1149,7 @@ class ReportDeadBodyPatch
 
         MeetingTimeManager.OnReportDeadBody();
 
-        Utils.NotifyRoles(isForMeeting: true, NoCache: true, CamouflageIsForMeeting: true);
+        Utils.NotifyRoles(isForMeeting: true, NoCache: true, CamouflageIsForMeeting: true, GuesserIsForMeeting: true);
 
         Utils.SyncAllSettings();
     }
@@ -2036,7 +2056,9 @@ class EnterVentPatch
                      x.RPCPlayCustomSound("Dove");
                      x.ResetKillCooldown();
                      x.SetKillCooldown();
-                     x.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.DovesOfNeace), GetString("DovesOfNeaceSkillNotify")));
+                     if (x.Is(CustomRoles.SerialKiller))
+                        { SerialKiller.OnReportDeadBody(); }
+                    x.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.DovesOfNeace), GetString("DovesOfNeaceSkillNotify")));
                 });
                 pc.RPCPlayCustomSound("Dove");
                 pc.Notify(string.Format(GetString("DovesOfNeaceOnGuard"), Main.DovesOfNeaceNumOfUsed[pc.PlayerId]));

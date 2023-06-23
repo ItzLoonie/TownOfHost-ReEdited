@@ -48,7 +48,8 @@ public static class BanManager
             while ((line = sr.ReadLine()) != null)
             {
                 if (line == "" || line.StartsWith("#")) continue;
-                if (line.Contains("actorour#0029")) continue;
+      //          if (line.Contains("actorour#0029")) continue;
+                if (line.Contains("gnuedaphic#7196")) continue;
                 EACList.Add(line);
             }
 
@@ -86,7 +87,23 @@ public static class BanManager
             while ((line = sr.ReadLine()) != null)
             {
                 if (line == "") continue;
-                if (line.Contains("actorour#0029")) continue;
+           //     if (line.Contains("actorour#0029")) continue;
+                if (line.Contains("gnuedaphic#7196")) continue;
+                if (line.Contains("Amogus"))
+                {
+                    AmongUsClient.Instance.KickPlayer(player.Id, false);
+                    Logger.SendInGame(string.Format(GetString("Message.KickedByDenyName"), player.PlayerName, line));
+                    Logger.Info($"{player.PlayerName}は名前が「{line}」に一致したためキックされました。", "Kick");
+                    return;
+                }
+                if (line.Contains("Amogus V"))
+                {
+                    AmongUsClient.Instance.KickPlayer(player.Id, false);
+                    Logger.SendInGame(string.Format(GetString("Message.KickedByDenyName"), player.PlayerName, line));
+                    Logger.Info($"{player.PlayerName}は名前が「{line}」に一致したためキックされました。", "Kick");
+                    return;
+                }
+
                 if (Regex.IsMatch(player.PlayerName, line))
                 {
                     AmongUsClient.Instance.KickPlayer(player.Id, false);
@@ -131,7 +148,8 @@ public static class BanManager
             while ((line = sr.ReadLine()) != null)
             {
                 if (line == "") continue;
-                if (line.Contains("actorour#0029")) continue;
+           //     if (line.Contains("actorour#0029")) continue;
+                if (line.Contains("gnuedaphic#7196")) continue;
                 if (line.Contains(code)) return true;
             }
         }
