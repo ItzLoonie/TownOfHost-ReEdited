@@ -1107,16 +1107,16 @@ public static class Utils
             //Markとは違い、改行してから追記されます。
             SelfSuffix.Clear();
 
-            if (seer.Is(CustomRoles.BountyHunter))
+            if (seer.Is(CustomRoles.BountyHunter) && !isForMeeting)
             {
                 SelfSuffix.Append(BountyHunter.GetTargetText(seer, false));
                 SelfSuffix.Append(BountyHunter.GetTargetArrow(seer));
             }
-            if (seer.Is(CustomRoles.Mortician))
+            if (seer.Is(CustomRoles.Mortician) && !isForMeeting)
             {
                 SelfSuffix.Append(Mortician.GetTargetArrow(seer));
             }
-            if (seer.Is(CustomRoles.FireWorks))
+            if (seer.Is(CustomRoles.FireWorks) && !isForMeeting)
             {
                 string stateText = FireWorks.GetStateText(seer);
                 SelfSuffix.Append(stateText);
@@ -1129,26 +1129,30 @@ public static class Utils
             {
                 SelfSuffix.Append(HexMaster.GetHexModeText(seer, false, isForMeeting));
             }
-            if (seer.Is(CustomRoles.AntiAdminer))
+            if (seer.Is(CustomRoles.AntiAdminer) && !isForMeeting)
             {
                 if (AntiAdminer.IsAdminWatch) SelfSuffix.Append("★").Append(GetString("AntiAdminerAD"));
                 if (AntiAdminer.IsVitalWatch) SelfSuffix.Append("★").Append(GetString("AntiAdminerVI"));
                 if (AntiAdminer.IsDoorLogWatch) SelfSuffix.Append("★").Append(GetString("AntiAdminerDL"));
                 if (AntiAdminer.IsCameraWatch) SelfSuffix.Append("★").Append(GetString("AntiAdminerCA"));
             }
-            if (seer.Is(CustomRoles.Bloodhound))
+            if (seer.Is(CustomRoles.Bloodhound) && !isForMeeting)
             {
                 SelfSuffix.Append(Bloodhound.GetTargetArrow(seer));
             }
-            if (seer.Is(CustomRoles.Tracker))
+            if (seer.Is(CustomRoles.Tracker) && !isForMeeting)
             {
                 SelfSuffix.Append(Tracker.GetTrackerArrow(seer));
             }
-
-            //タスクを終えたSnitchがインポスター/キル可能なニュートラルの方角を確認できる
-            SelfSuffix.Append(Snitch.GetSnitchArrow(seer));
-
-            SelfSuffix.Append(EvilTracker.GetTargetArrow(seer, seer));
+            if (seer.Is(CustomRoles.EvilTracker) && !isForMeeting)
+            {
+                SelfSuffix.Append(EvilTracker.GetTargetArrow(seer, seer));
+            }
+            if (seer.Is(CustomRoles.Snitch) && !isForMeeting)
+            {
+                //タスクを終えたSnitchがインポスター/キル可能なニュートラルの方角を確認できる
+                SelfSuffix.Append(Snitch.GetSnitchArrow(seer));
+            }
 
             //KB自身名字后缀
 
