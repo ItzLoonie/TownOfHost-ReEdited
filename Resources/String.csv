@@ -24,6 +24,11 @@
 
 "## 作者署名（会显示在右上角，不需要请留空）/ A sign of an author (Please leave blank when not needed)"
 "TextBelowVersionText","","Source code","","",""
+"# Rich Presence Configuration"
+"LargeImageKey","","https://cdn.nerdschalk.com/wp-content/uploads/2020/10/ezgif-com-gif-maker-1.gif","","",""
+"LargeImageText","","Auto Hosting","","",""
+"SmallImageKey","","https://media2.giphy.com/media/Asb0LwwJP9o9Y2VZip/giphy.gif","","",""
+"SmallImageText","","xV","","",""
 
 "# Customize via dat file"
 "HostNameColor","","#000000","","",""

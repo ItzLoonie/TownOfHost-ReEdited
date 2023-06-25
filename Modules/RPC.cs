@@ -396,6 +396,7 @@ internal class RPCHandlerPatch
                 QuickShooter.ReceiveRPC(reader);
                 break;
             case CustomRPC.RestTOHESetting:
+                if (AmongUsClient.Instance.AmHost) break;
                 OptionItem.AllOptions.ToArray().Where(x => x.Id > 0).Do(x => x.SetValueNoRpc(x.DefaultValue));
                 OptionShower.GetText();
                 break;
