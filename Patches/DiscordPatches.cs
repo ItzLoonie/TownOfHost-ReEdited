@@ -21,7 +21,7 @@ namespace TOHE;
 public static partial class DiscordRP
 {
 	private static Discord.Discord DiscordInterface = null;
-
+	
 	public static void Update(bool immediately = false)
 		=> new System.Threading.Tasks.Task(() => _UpdateReal(immediately)).Start();
 
@@ -82,7 +82,7 @@ public static partial class DiscordRP
 		{
 			// We are in the main menu
 			case InnerNetClient.GameStates.NotJoined:
-				a_Details = "Creating a game";
+				a_Details = "Creating a Game";
 				a_State = "In Menus";
 				break;
 
@@ -104,7 +104,7 @@ public static partial class DiscordRP
 					switch (AmongUsClient.Instance.NetworkMode)
 					{
 						case NetworkModes.LocalGame:
-							a_Details = "Playing a local game";
+							a_Details = "Playing a Local Game";
 							break;
 						case NetworkModes.OnlineGame:
 							break;
@@ -122,7 +122,7 @@ public static partial class DiscordRP
 
 			// Game has ended
 			case InnerNetClient.GameStates.Ended:
-				a_State = "Game ended";
+				a_State = "Game Ended";
 				break;
 
 			default:
@@ -135,7 +135,7 @@ public static partial class DiscordRP
 		if (AmongUsClient.Instance.GameState != InnerNetClient.GameStates.NotJoined)
 		{
 			if (GameStates.IsLobby)
-				a_State = "In lobby";
+				a_State = "In Lobby";
 
 			if (GameStates.IsMeeting)
 			{
@@ -144,7 +144,7 @@ public static partial class DiscordRP
 					a_Party_Size_CurrentSize = Utils.AllAlivePlayersCount;
 					a_Party_Size_MaxSize = GameOptionsManager.Instance.CurrentGameOptions.MaxPlayers;
 				}
-				a_State = "In a meeting";
+				a_State = "In a Meeting";
 			}
 
 			if (a_Party_Size_CurrentSize == 0 && a_Party_Size_MaxSize == 0)
@@ -154,8 +154,11 @@ public static partial class DiscordRP
 			}
 
 			// Make sure the payload is valid, because 50/10 is allowed and 0/10 is not. Makes sense, Discord!
-			if (a_Party_Size_CurrentSize <= 0 && a_Party_Size_MaxSize > 0)
+			// Except for the rant, make sure both sizes are valid if they are not 0.
+			if (a_Party_Size_CurrentSize is not 0 and <= 0)
 				a_Party_Size_CurrentSize = 1;
+			if (a_Party_Size_MaxSize is not 0 and <= 0)
+				a_Party_Size_MaxSize = 1;
 
 			if (AmongUsClient.Instance.NetworkMode == NetworkModes.OnlineGame)
 			{
@@ -167,7 +170,6 @@ public static partial class DiscordRP
 			}
 		}
 		
-		// Send the rich presence to the Discord client
 		DiscordInterface.GetActivityManager().UpdateActivity(new Activity()
 		{
 			ApplicationId = a_ApplicationId,
@@ -207,7 +209,7 @@ public static partial class DiscordRP
 			Type = a_Type
 		}, (Action<Result>)((Result res) =>
 		{
-			Logger.Info($"Received response from Discord client: {res}", "DiscordRP");
+			Logger.Info($"Received response from Discord client: {res}", "CustomDiscordManager - Activity");
 		}));
 	}
 }
@@ -236,17 +238,16 @@ public static partial class DiscordRP
 				discordAppId = 1111023738197119020; // 1111023738197119020
 
 			*/
-			DiscordInterface = new Discord.Discord(1111023738197119020L, (ulong)CreateFlags.NoRequireDiscord);
-			DiscordInterface.SetLogHook(LogLevel.Debug, (Action<LogLevel, string>)((LogLevel l, string s) =>
-			{
-				Logger.Error($" [{l}] {s}", "Discord Log - CustomDiscordManager");
-			}));
+			DiscordInterface = new Discord.Discord(/*1111023738197119020L*/477175586805252107L, (ulong)CreateFlags.NoRequireDiscord);
+			DiscordInterface.SetLogHook(LogLevel.Debug, (Action<LogLevel, string>)((LogLevel l, string s)
+				=> Logger.Error($" [{l}] {s}", "Discord Log - CustomDiscordManager")
+			));
 			__instance.presence = null;
 
 			ActivityManager activityManager = DiscordInterface.GetActivityManager();
 			activityManager.RegisterSteam(945360U); // Among Us' AppID on steam
 				
-			activityManager.OnActivityJoin = (Action<string>)((string joinSecret) =>
+			activityManager.OnActivityJoin += (Action<string>)((string joinSecret) =>
 			{
 				if (!AmongUsClient.Instance)
 				{
@@ -273,8 +274,7 @@ public static partial class DiscordRP
 				AmongUsClient.Instance.StartCoroutine(AmongUsClient.Instance.CoJoinOnlineGameFromCode(targetGameCode));
 			});
 
-#region Implementation-Idea-1
-			//Thanksforthehelpwithcode,Innersloth,youwereusefulforonce
+			#region Implementation-Idea-1
 			/*
 			SceneManager.sceneLoaded += (UnityEngine.Events.UnityAction<Scene, LoadSceneMode>)(Action<Scene, LoadSceneMode>)((Scene scene, LoadSceneMode mode) =>
 			{
@@ -289,8 +289,8 @@ public static partial class DiscordRP
 					// We are in a menu scene, update
 					Update(true);
 			});
-				*/
-#endregion Implementation-Idea-1
+			*/
+			#endregion Implementation-Idea-1
 
 
 			// Cause an update now
@@ -304,7 +304,6 @@ public static partial class DiscordRP
 
 		return false;
 	}
-
 	// Layer 2 of blocking Among Us' activities
 	[HarmonyPatch(typeof(ActivityManager), nameof(ActivityManager.UpdateActivity))]
 	[HarmonyPrefix]
