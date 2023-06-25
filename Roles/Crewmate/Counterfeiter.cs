@@ -80,7 +80,7 @@ public static class Counterfeiter
         notActiveList.Add(pc.PlayerId);
         pc.SetKillCooldown();
         pc.RPCPlayCustomSound("Bet");
-        Utils.NotifyRoles(pc);
+        Utils.NotifyRoles(SpecifySeer: pc);
         Logger.Info($"赝品商 {pc.GetRealName()} 将赝品卖给了 {target.GetRealName()}", "Counterfeiter");
     }
     public static bool OnClientMurder(PlayerControl pc)

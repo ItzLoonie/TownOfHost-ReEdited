@@ -718,8 +718,8 @@ class MurderPlayerPatch
         {
             __instance.MarkDirtySettings();
             target.MarkDirtySettings();
-            Utils.NotifyRoles(killer);
-            Utils.NotifyRoles(target);
+            Utils.NotifyRoles(SpecifySeer: killer);
+            Utils.NotifyRoles(SpecifySeer: target);
         }
         else
         {
@@ -1253,7 +1253,7 @@ class FixedUpdatePatch
                 if (!player.IsAlive() || Pelican.IsEaten(player.PlayerId))
                 {
                     Main.ArsonistTimer.Remove(player.PlayerId);
-                    Utils.NotifyRoles(__instance);
+                    Utils.NotifyRoles(SpecifySeer: __instance);
                     RPC.ResetCurrentDousingTarget(player.PlayerId);
                 }
                 else
@@ -1270,7 +1270,7 @@ class FixedUpdatePatch
                         Main.ArsonistTimer.Remove(player.PlayerId);//塗が完了したのでDictionaryから削除
                         Main.isDoused[(player.PlayerId, ar_target.PlayerId)] = true;//塗り完了
                         player.RpcSetDousedPlayer(ar_target, true);
-                        Utils.NotifyRoles(player);//名前変更
+                        Utils.NotifyRoles(SpecifySeer: player);//名前変更
                         RPC.ResetCurrentDousingTarget(player.PlayerId);
                     }
                     else
@@ -1285,7 +1285,7 @@ class FixedUpdatePatch
                         else//それ以外は削除
                         {
                             Main.ArsonistTimer.Remove(player.PlayerId);
-                            Utils.NotifyRoles(player);
+                            Utils.NotifyRoles(SpecifySeer: player);
                             RPC.ResetCurrentDousingTarget(player.PlayerId);
 
                             Logger.Info($"Canceled: {player.GetNameWithRole()}", "Arsonist");
@@ -1301,7 +1301,7 @@ class FixedUpdatePatch
                 if (!player.IsAlive() || Pelican.IsEaten(player.PlayerId))
                 {
                     Main.RevolutionistTimer.Remove(player.PlayerId);
-                    Utils.NotifyRoles(player);
+                    Utils.NotifyRoles(SpecifySeer: player);
                     RPC.ResetCurrentDrawTarget(player.PlayerId);
                 }
                 else
@@ -1318,7 +1318,7 @@ class FixedUpdatePatch
                         Main.RevolutionistTimer.Remove(player.PlayerId);//拉拢完成从字典中删除
                         Main.isDraw[(player.PlayerId, rv_target.PlayerId)] = true;//完成拉拢
                         player.RpcSetDrawPlayer(rv_target, true);
-                        Utils.NotifyRoles(player);
+                        Utils.NotifyRoles(SpecifySeer: player);
                         RPC.ResetCurrentDrawTarget(player.PlayerId);
                         if (IRandom.Instance.Next(1, 100) <= Options.RevolutionistKillProbability.GetInt())
                         {
@@ -1340,7 +1340,7 @@ class FixedUpdatePatch
                         else//否则删除
                         {
                             Main.RevolutionistTimer.Remove(player.PlayerId);
-                            Utils.NotifyRoles(__instance);
+                            Utils.NotifyRoles(SpecifySeer: __instance);
                             RPC.ResetCurrentDrawTarget(player.PlayerId);
 
                             Logger.Info($"Canceled: {__instance.GetNameWithRole()}", "Revolutionist");
@@ -1368,7 +1368,7 @@ class FixedUpdatePatch
                                 Main.PlayerStates[pc.PlayerId].deathReason = PlayerState.DeathReason.Sacrifice;
                                 pc.RpcMurderPlayerV3(pc);
                                 Main.PlayerStates[pc.PlayerId].SetDead();
-                                Utils.NotifyRoles(pc);
+                                Utils.NotifyRoles(SpecifySeer: pc);
                             }
                             player.Data.IsDead = true;
                             Main.PlayerStates[player.PlayerId].deathReason = PlayerState.DeathReason.Sacrifice;
@@ -1976,7 +1976,7 @@ class EnterVentPatch
         {
             Main.MarioVentCount.TryAdd(pc.PlayerId, 0);
             Main.MarioVentCount[pc.PlayerId]++;
-            Utils.NotifyRoles(pc);
+            Utils.NotifyRoles(SpecifySeer: pc);
             if (pc.AmOwner)
             {
                 if (Main.MarioVentCount[pc.PlayerId] % 5 == 0) CustomSoundsManager.Play("MarioCoin");
@@ -2165,7 +2165,7 @@ class PlayerControlCompleteTaskPatch
             taskState.CompletedTasksCount++;
             GameData.Instance.RpcSetTasks(player.PlayerId, new byte[0]); //タスクを再配布
             player.SyncSettings();
-            Utils.NotifyRoles(player);
+            Utils.NotifyRoles(SpecifySeer: player);
             return false;
         }
 
