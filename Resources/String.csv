@@ -1505,6 +1505,7 @@
 "MerchantSellNeutral","","Can sell <color=#7f8c8d>neutral</color> Add-ons","","",""
 "MerchantSellHarmfulToEvil","","Can sell <color=#ff1919>harmful</color> Add-ons only to <color=#ff1919>Evil</color>","","",""
 "MerchantSellHelpfulToCrew","","Can sell <color=#8cffff>helpful</color> Add-ons only to <color=#8cffff>Crew</color>","","",""
+"SkinEaterHideNameCosumed","","Hide Name of devoured Players.","","",""
 
 "## 信息 / Message"
 "Message.SetToSeconds","信息发送冷却时间为【{0}】秒","Set to 【{0}】 seconds.","Установлен на 【{0}】 секунды","訊息傳送冷卻時間設為【{0}】秒","信息发送冷却时间为【{0}】秒"
