@@ -271,7 +271,10 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 opt.SetFloat(FloatOptionNames.ImpostorLightMod, Farseer.Vision.GetFloat());
                 break;
             case CustomRoles.EvilSpirit:
-                AURoleOptions.GuardianAngelCooldown = 20f;
+                AURoleOptions.GuardianAngelCooldown = Spiritcaller.SpiritAbilityCooldown.GetFloat();
+                break;
+            case CustomRoles.Spiritcaller:
+                opt.SetVision(Spiritcaller.ImpostorVision.GetBool());
                 break;
         }
 

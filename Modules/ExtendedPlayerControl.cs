@@ -489,6 +489,7 @@ static class ExtendedPlayerControl
             CustomRoles.HexMaster => true,
             CustomRoles.Wraith => true,
             CustomRoles.Parasite => true,
+            CustomRoles.Spiritcaller => Spiritcaller.CanVent.GetBool(),
 
             CustomRoles.Arsonist => pc.IsDouseDone(),
             CustomRoles.Revolutionist => pc.IsDrawDone(),
@@ -684,6 +685,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Farseer:
                 Farseer.SetCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Spiritcaller:
+                Spiritcaller.SetKillCooldown(player.PlayerId);
                 break;
         }
         if (player.PlayerId == LastImpostor.currentId)

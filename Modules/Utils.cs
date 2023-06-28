@@ -595,6 +595,9 @@ public static class Utils
                 if (Jackal.CanRecruitSidekick.GetBool())
                 ProgressText.Append(Jackal.GetRecruitLimit(playerId));
                 break;
+            case CustomRoles.Spiritcaller:
+                ProgressText.Append(Spiritcaller.GetSpiritLimit());
+                break;
             default:
                 //タスクテキスト
                 var taskState = Main.PlayerStates?[playerId].GetTaskState();

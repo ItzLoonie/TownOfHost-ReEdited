@@ -28,16 +28,16 @@ class CheckProtectPatch
 
         if (__instance.Is(CustomRoles.EvilSpirit))
         {
-            // todo check task condition of EvilSpirit
-
             if (target.Is(CustomRoles.Spiritcaller))
             {
-                // todo protect
-                return true;
+                Spiritcaller.ProtectSpiritcaller();
+            }
+            else
+            {
+                Spiritcaller.FreezePlayer(__instance, target);
             }
 
-            Spiritcaller.FreezePlayer(__instance, target);
-
+            __instance.RpcResetAbilityCooldown();
             return true;
         }
 
@@ -359,7 +359,7 @@ class CheckMurderPatch
         if (Merchant.OnClientMurder(killer, target)) return false;
 
         if (killer.Is(CustomRoles.Virus)) Virus.OnCheckMurder(killer, target);
-        else if (killer.Is(CustomRoles.Spiritcaller)) Spiritcaller.OnCheckMurder(killer, target);
+        else if (killer.Is(CustomRoles.Spiritcaller)) Spiritcaller.OnCheckMurder(target);
 
         // 清道夫清理尸体
         if (killer.Is(CustomRoles.Scavenger))
@@ -532,6 +532,15 @@ class CheckMurderPatch
                 break;
             case CustomRoles.Wildling:
                 if (Wildling.InProtect(target.PlayerId))
+                {
+                    killer.RpcGuardAndKill(target);
+                    target.RpcGuardAndKill();
+                    target.Notify(GetString("BKOffsetKill"));
+                    return false;
+                }
+                break;
+            case CustomRoles.Spiritcaller:
+                if (Spiritcaller.InProtect(target))
                 {
                     killer.RpcGuardAndKill(target);
                     target.RpcGuardAndKill();
@@ -1452,6 +1461,7 @@ class FixedUpdatePatch
                 Swooper.OnFixedUpdate(player);
                 Wraith.OnFixedUpdate(player);
                 BloodKnight.OnFixedUpdate(player);
+                Spiritcaller.OnFixedUpdate(player);
 
                 if (GameStates.IsInTask && player.IsAlive() && Options.LadderDeath.GetBool()) FallFromLadder.FixedUpdate(player);
 

@@ -92,6 +92,7 @@ enum CustomRPC
     SetCurrentRevealTarget,
     SetJackalRecruitLimit,
     SetBloodhoundArrow,
+    SetSpiritcallerSpiritLimit,
 
     //SoloKombat
     SyncKBPlayer,
