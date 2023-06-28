@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Hazel;
 using UnityEngine;
+using static Il2CppMono.Security.X509.X520;
 using static TOHE.Options;
 using static TOHE.Translator;
 using static UnityEngine.GraphicsBuffer;
@@ -89,7 +90,19 @@ namespace TOHE.Roles.Neutral
             GhostPlayer.Add(target.PlayerId);
             target.RpcSetCustomRole(CustomRoles.EvilSpirit);
 
-            new LateTask(() => { Utils.SendMessage(GetString("VirusNoticeMessage"), target.PlayerId, GetString("VirusNoticeTitle")); }, 3f);
+            var writer = CustomRpcSender.Create("MessagesToSend", SendOption.None);
+            writer.StartMessage(target.GetClientId());
+            writer.StartRpc(target.NetId, (byte)RpcCalls.SetName)
+                .Write(GetString("VirusNoticeTitle"))
+                .EndRpc();
+            writer.StartRpc(target.NetId, (byte)RpcCalls.SendChat)
+                .Write(GetString("VirusNoticeMessage"))
+                .EndRpc();
+            writer.StartRpc(target.NetId, (byte)RpcCalls.SetName)
+                .Write(target.Data.PlayerName)
+                .EndRpc();
+            writer.EndMessage();
+            writer.SendMessage();
         }
 
         public static void OnKilledBodyReport(PlayerControl target)
