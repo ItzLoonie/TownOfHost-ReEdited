@@ -114,6 +114,8 @@ internal static class CustomRolesHelper
                 CustomRoles.Tracker => CustomRoles.Crewmate,
                 CustomRoles.Merchant => CustomRoles.Crewmate,
                 CustomRoles.Retributionist => CustomRoles.Crewmate,
+                CustomRoles.Spiritcaller => CustomRoles.Impostor,
+                CustomRoles.EvilSpirit => CustomRoles.GuardianAngel,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
     }
@@ -194,6 +196,7 @@ internal static class CustomRolesHelper
             CustomRoles.Infectious => RoleTypes.Impostor,
             CustomRoles.Virus => RoleTypes.Impostor,
             CustomRoles.Farseer => RoleTypes.Impostor,
+            CustomRoles.Spiritcaller => RoleTypes.Impostor,
             _ => RoleTypes.GuardianAngel
         };
     }
@@ -274,7 +277,8 @@ internal static class CustomRolesHelper
             CustomRoles.Parasite or
             CustomRoles.NSerialKiller or
             CustomRoles.Virus or
-            CustomRoles.BloodKnight;
+            CustomRoles.BloodKnight or
+            CustomRoles.Spiritcaller;
     }
     public static bool IsSnitchTarget(this CustomRoles role) // �Ƿ��������
     {
@@ -293,7 +297,8 @@ internal static class CustomRolesHelper
             CustomRoles.Pelican or
             CustomRoles.Virus or
             CustomRoles.Succubus or
-            CustomRoles.BloodKnight;
+            CustomRoles.BloodKnight or
+            CustomRoles.Spiritcaller;
     }
     public static bool IsNE(this CustomRoles role) // �Ƿ�����
     {
@@ -353,7 +358,8 @@ internal static class CustomRolesHelper
             CustomRoles.BloodKnight or
             CustomRoles.Infectious or
             CustomRoles.Virus or
-            CustomRoles.Succubus;
+            CustomRoles.Succubus or
+            CustomRoles.Spiritcaller;
     }
     public static bool IsCK(this CustomRoles role) // �Ƿ������Ա
     {
@@ -460,7 +466,8 @@ internal static class CustomRolesHelper
             CustomRoles.BloodKnight or
             CustomRoles.Totocalcio or
             CustomRoles.Virus or
-            CustomRoles.Succubus;
+            CustomRoles.Succubus or
+            CustomRoles.Spiritcaller;
     }
     public static bool IsMadmate(this CustomRoles role)
     {
@@ -638,6 +645,7 @@ internal static class CustomRolesHelper
            CustomRoles.Infectious => CountTypes.Infectious,
            CustomRoles.Crewpostor => CountTypes.Impostor,
            CustomRoles.Virus => CountTypes.Virus,
+           CustomRoles.Spiritcaller => CountTypes.Spiritcaller,
            _ => role.IsImpostorTeam() ? CountTypes.Impostor : CountTypes.Crew,
        };
 
@@ -672,4 +680,5 @@ public enum CountTypes
     Virus,
     Rogue,
     DarkHide,
+    Spiritcaller
 }

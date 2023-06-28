@@ -270,6 +270,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 opt.SetFloat(FloatOptionNames.CrewLightMod, Farseer.Vision.GetFloat());
                 opt.SetFloat(FloatOptionNames.ImpostorLightMod, Farseer.Vision.GetFloat());
                 break;
+            case CustomRoles.EvilSpirit:
+                AURoleOptions.GuardianAngelCooldown = 20f;
+                break;
         }
 
         // Ϊ�Ի��ߵ�����

@@ -224,6 +224,7 @@ internal class ChangeRoleSettings
             Tracker.Init();
             Merchant.Init();
             NSerialKiller.Init();
+            Spiritcaller.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
@@ -600,6 +601,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.NSerialKiller:
                         NSerialKiller.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Spiritcaller:
+                        Spiritcaller.Add(pc.PlayerId);
                         break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())

@@ -451,6 +451,7 @@ static class ExtendedPlayerControl
             CustomRoles.Monarch => Monarch.CanUseKillButton(pc),
             CustomRoles.Virus => pc.IsAlive(),
             CustomRoles.Farseer => pc.IsAlive(),
+            CustomRoles.Spiritcaller => pc.IsAlive(),
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
     }

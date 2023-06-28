@@ -7,6 +7,7 @@ using AmongUs.GameOptions;
 using HarmonyLib;
 using Hazel;
 using InnerNet;
+using MS.Internal.Xml.XPath;
 using TOHE.Modules;
 using TOHE.Roles.AddOns.Crewmate;
 using TOHE.Roles.Crewmate;
@@ -24,6 +25,22 @@ class CheckProtectPatch
     {
         if (!AmongUsClient.Instance.AmHost) return false;
         Logger.Info("CheckProtect発生: " + __instance.GetNameWithRole() + "=>" + target.GetNameWithRole(), "CheckProtect");
+
+        if (__instance.Is(CustomRoles.EvilSpirit))
+        {
+            // todo check task condition of EvilSpirit
+
+            if (target.Is(CustomRoles.Spiritcaller))
+            {
+                // todo protect
+                return true;
+            }
+
+            Spiritcaller.FreezePlayer(__instance, target);
+
+            return true;
+        }
+
         if (__instance.Is(CustomRoles.Sheriff))
         {
             if (__instance.Data.IsDead)
@@ -341,12 +358,8 @@ class CheckMurderPatch
             return false;
         if (Merchant.OnClientMurder(killer, target)) return false;
 
-
-        // Don't infect when Shielded
-        if (killer.Is(CustomRoles.Virus))
-        {
-            Virus.OnCheckMurder(killer, target);
-        }
+        if (killer.Is(CustomRoles.Virus)) Virus.OnCheckMurder(killer, target);
+        else if (killer.Is(CustomRoles.Spiritcaller)) Spiritcaller.OnCheckMurder(killer, target);
 
         // 清道夫清理尸体
         if (killer.Is(CustomRoles.Scavenger))
@@ -2225,7 +2238,11 @@ class PlayerControlSetRolePatch
             {
                 var self = seer.PlayerId == target.PlayerId;
                 var seerIsKiller = seer.Is(CustomRoleTypes.Impostor) || Main.ResetCamPlayerList.Contains(seer.PlayerId);
-                if ((self && targetIsKiller) || (!seerIsKiller && target.Is(CustomRoleTypes.Impostor)) || seer.Is(CustomRoles.NSerialKiller) || seer.Is(CustomRoles.Juggernaut) || seer.Is(CustomRoles.Wraith) || seer.Is(CustomRoles.NWitch) || seer.Is(CustomRoles.Poisoner) || seer.Is(CustomRoles.Infectious) || seer.Is(CustomRoles.Monarch) || seer.Is(CustomRoles.Pursuer) || seer.Is(CustomRoles.Virus))
+                if (Spiritcaller.IsGhostPlayer(target.PlayerId))
+                {
+                    ghostRoles[seer] = RoleTypes.GuardianAngel;
+                }
+                else if ((self && targetIsKiller) || (!seerIsKiller && target.Is(CustomRoleTypes.Impostor)) || seer.Is(CustomRoles.NSerialKiller) || seer.Is(CustomRoles.Juggernaut) || seer.Is(CustomRoles.Wraith) || seer.Is(CustomRoles.NWitch) || seer.Is(CustomRoles.Poisoner) || seer.Is(CustomRoles.Infectious) || seer.Is(CustomRoles.Monarch) || seer.Is(CustomRoles.Pursuer) || seer.Is(CustomRoles.Virus))
                 {
                     ghostRoles[seer] = RoleTypes.ImpostorGhost;
                 }

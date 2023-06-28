@@ -431,6 +431,8 @@ public static class Utils
             case CustomRoles.Farseer:
             case CustomRoles.Counterfeiter:
             case CustomRoles.Pursuer:
+            case CustomRoles.Spiritcaller:
+            case CustomRoles.EvilSpirit:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:

@@ -346,6 +346,8 @@ public class Main : BasePlugin
                 {CustomRoles.Farseer, "#BA55D3"},
                 {CustomRoles.Pursuer, "#617218"},
                 {CustomRoles.Phantom, "#662962"},
+                {CustomRoles.Spiritcaller, "#669999"},
+                {CustomRoles.EvilSpirit, "#669999"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -575,6 +577,8 @@ public enum CustomRoles
     Virus,
     Pursuer,
     Phantom,
+    Spiritcaller,
+    EvilSpirit,
 
     //SoloKombat
     KB_Normal,
@@ -658,6 +662,7 @@ public enum CustomWinner
     Virus = CustomRoles.Virus,
     Rogue = CustomRoles.Rogue,
     Phantom = CustomRoles.Phantom,
+    Spiritcaller = CustomRoles.Spiritcaller
 }
 public enum AdditionalWinners
 {
