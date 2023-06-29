@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AmongUs.GameOptions;
 using Hazel;
 using UnityEngine;
 using static TOHE.Options;
@@ -13,6 +14,7 @@ namespace TOHE.Roles.Neutral
         private static int SpiritLimit = new();
 
         private static List<byte> GhostPlayer = new();
+        private static Dictionary<byte, long> PlayersHaunted = new();
 
         private static OptionItem KillCooldown;
         public static OptionItem CanVent;
@@ -54,6 +56,7 @@ namespace TOHE.Roles.Neutral
             playerIdList = new();
             SpiritLimit = new();
             ProtectTimeStamp = new();
+            PlayersHaunted = new();
         }
 
         public static void Add(byte playerId)
@@ -61,6 +64,7 @@ namespace TOHE.Roles.Neutral
             playerIdList.Add(playerId);
             SpiritLimit = SpiritMax.GetInt();
             ProtectTimeStamp = 0;
+            PlayersHaunted = new();
 
             if (!AmongUsClient.Instance.AmHost) return;
             if (!Main.ResetCamPlayerList.Contains(playerId))
@@ -110,10 +114,18 @@ namespace TOHE.Roles.Neutral
 
         public static void OnFixedUpdate(PlayerControl pc)
         {
-            if (!GameStates.IsInTask || !pc.Is(CustomRoles.Spiritcaller)) return;
-            if (ProtectTimeStamp < Utils.GetTimeStamp() && ProtectTimeStamp != 0)
+            if (!GameStates.IsInTask) return;
+
+            if (pc.Is(CustomRoles.Spiritcaller))
             {
-                ProtectTimeStamp = 0;
+                if (ProtectTimeStamp < Utils.GetTimeStamp() && ProtectTimeStamp != 0)
+                {
+                    ProtectTimeStamp = 0;
+                }
+            }
+            else if (PlayersHaunted.ContainsKey(pc.PlayerId) && PlayersHaunted[pc.PlayerId] < Utils.GetTimeStamp())
+            {
+                PlayersHaunted.Remove(pc.PlayerId);
             }
         }
 
@@ -121,6 +133,12 @@ namespace TOHE.Roles.Neutral
 
         public static void FreezePlayer(PlayerControl player, PlayerControl target)
         {
+            if (!PlayersHaunted.ContainsKey(target.PlayerId))
+            {
+                long time = Utils.GetTimeStamp() + (long)SpiritCauseVisionTime.GetFloat();
+                PlayersHaunted.Add(target.PlayerId, time);
+            }
+
             var tmpSpeed = Main.AllPlayerSpeed[target.PlayerId];
             Main.AllPlayerSpeed[target.PlayerId] = Main.MinSpeed;
             ReportDeadBodyPatch.CanReport[target.PlayerId] = false;
@@ -134,8 +152,14 @@ namespace TOHE.Roles.Neutral
             }, SpiritFreezeTime.GetFloat()); 
         }
 
-        public static void ReduceVision(PlayerControl player, PlayerControl target)
+        public static void ReduceVision(IGameOptions opt, PlayerControl target)
         {
+            if (PlayersHaunted.ContainsKey(target.PlayerId))
+            {
+                opt.SetVision(false);
+                opt.SetFloat(FloatOptionNames.CrewLightMod, SpiritCauseVision.GetFloat());
+                opt.SetFloat(FloatOptionNames.ImpostorLightMod, SpiritCauseVision.GetFloat());
+            }
         }
 
         public static void ProtectSpiritcaller()

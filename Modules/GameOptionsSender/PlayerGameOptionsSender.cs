@@ -302,7 +302,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             }
         }
 
-        Spiritcaller.InProtect
+        Spiritcaller.ReduceVision(opt, player);
 
         foreach (var subRole in Main.PlayerStates[player.PlayerId].SubRoles)
         {
