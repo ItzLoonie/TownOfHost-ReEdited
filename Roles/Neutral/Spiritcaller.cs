@@ -30,8 +30,6 @@ namespace TOHE.Roles.Neutral
 
         public static void SetupCustomOption()
         {
-            // todo: Speak with evil spirits
-
             SetupSingleRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.Spiritcaller, 1, zeroOne: false);
             KillCooldown = FloatOptionItem.Create(Id + 10, "KillCooldown", new(0f, 60f, 1f), 30f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Spiritcaller])
                 .SetValueFormat(OptionFormat.Seconds);
