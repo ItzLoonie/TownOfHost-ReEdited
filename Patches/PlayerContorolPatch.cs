@@ -34,7 +34,7 @@ class CheckProtectPatch
             }
             else
             {
-                Spiritcaller.FreezePlayer(__instance, target);
+                Spiritcaller.HauntPlayer(target);
             }
 
             __instance.RpcResetAbilityCooldown();
