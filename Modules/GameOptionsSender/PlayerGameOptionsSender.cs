@@ -302,6 +302,8 @@ public class PlayerGameOptionsSender : GameOptionsSender
             }
         }
 
+        Spiritcaller.InProtect
+
         foreach (var subRole in Main.PlayerStates[player.PlayerId].SubRoles)
         {
             switch (subRole)

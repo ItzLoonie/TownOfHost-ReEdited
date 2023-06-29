@@ -21,6 +21,8 @@ namespace TOHE.Roles.Neutral
         public static OptionItem SpiritAbilityCooldown;
         private static OptionItem SpiritFreezeTime;
         private static OptionItem SpiritProtectTime;
+        private static OptionItem SpiritCauseVision;
+        private static OptionItem SpiritCauseVisionTime;
 
         private static long ProtectTimeStamp = new();
 
@@ -40,6 +42,10 @@ namespace TOHE.Roles.Neutral
             SpiritFreezeTime = FloatOptionItem.Create(Id + 15, "SpiritcallerFreezeTime", new(0f, 30f, 1f), 5f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Spiritcaller])
                 .SetValueFormat(OptionFormat.Seconds);
             SpiritProtectTime = FloatOptionItem.Create(Id + 16, "SpiritcallerProtectTime", new(0f, 30f, 1f), 5f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Spiritcaller])
+                .SetValueFormat(OptionFormat.Seconds);
+            SpiritCauseVision = FloatOptionItem.Create(Id + 17, "SpiritCauseVision", new(0f, 5f, 0.05f), 0.3f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Spiritcaller])
+                .SetValueFormat(OptionFormat.Multiplier);
+            SpiritCauseVisionTime = FloatOptionItem.Create(Id + 18, "SpiritcallerCauseVisionTime", new(0f, 45f, 1f), 5f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Spiritcaller])
                 .SetValueFormat(OptionFormat.Seconds);
         }
 
@@ -126,6 +132,10 @@ namespace TOHE.Roles.Neutral
                 target.MarkDirtySettings();
                 RPC.PlaySoundRPC(target.PlayerId, Sounds.TaskComplete);
             }, SpiritFreezeTime.GetFloat()); 
+        }
+
+        public static void ReduceVision(PlayerControl player, PlayerControl target)
+        {
         }
 
         public static void ProtectSpiritcaller()
