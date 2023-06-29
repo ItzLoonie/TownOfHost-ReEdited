@@ -544,7 +544,6 @@ class CheckMurderPatch
                 {
                     killer.RpcGuardAndKill(target);
                     target.RpcGuardAndKill();
-                    target.Notify(GetString("BKOffsetKill"));
                     return false;
                 }
                 break;
