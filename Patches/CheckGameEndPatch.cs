@@ -512,11 +512,10 @@ class GameEndChecker
                 reason = GameOverReason.ImpostorByKill;
                 CustomWinnerHolder.ResetAndSetWinner(CustomWinner.DarkHide);
             }
-            else if (Imp == 0 && Jackal == 0 && Pel == 0 && Vamp == 0 && DH == 0 && Rogue == 0 && SK == 0 && Hex == 0 && Wraith == 0 && Pois == 0 && Virus == 0 && BK == 0 && Gam == 0 && CM == 0 && Juggy == 0 && Crew <= Juggy) //嗜血骑士胜利
+            else if (Imp == 0 && Jackal == 0 && Pel == 0 && Vamp == 0 && DH == 0 && Rogue == 0 && SK == 0 && Hex == 0 && Wraith == 0 && Pois == 0 && Virus == 0 && BK == 0 && Gam == 0 && CM == 0 && Juggy == 0 && Crew <= SC) //嗜血骑士胜利
             {
                 reason = GameOverReason.ImpostorByKill;
                 CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Spiritcaller);
-                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Spiritcaller);
             }
             else if (Jackal == 0 && Pel == 0 && Vamp == 0 && Juggy == 0 && DH == 0 && SK == 0 && Hex == 0 && Wraith == 0 && Pois == 0 && Virus == 0 && BK == 0 && Gam == 0 && CM == 0 && Crew <= Rogue && SC == 0 && Imp <= Rogue) //嗜血骑士胜利
             {
