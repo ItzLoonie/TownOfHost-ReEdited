@@ -895,6 +895,9 @@ class ShapeshiftPatch
                 if (shapeshifting)
                     Disperser.DispersePlayers(shapeshifter);
                 break;
+            case CustomRoles.Twister:
+                Twister.TwistPlayers(shapeshifter);
+                break;
         }
 
     End:

@@ -815,6 +815,7 @@ public static class Options
             .SetValueFormat(OptionFormat.Votes);
         VindicatorHideVote = BooleanOptionItem.Create(150015, "MayorHideVote", false, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Vindicator]);
+        Twister.SetupCustomOption();
         TextOptionItem.Create(909090_4, "RoleType.ImpConcealing", TabGroup.ImpostorRoles) //CONCEALING
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 25, 25, byte.MaxValue));//CONCEALING
