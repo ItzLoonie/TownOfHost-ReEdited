@@ -55,6 +55,7 @@ namespace TOHE.Roles.Neutral
             SpiritLimit = new();
             ProtectTimeStamp = new();
             PlayersHaunted = new();
+            GhostPlayer = new();
         }
 
         public static void Add(byte playerId)
@@ -62,7 +63,6 @@ namespace TOHE.Roles.Neutral
             playerIdList.Add(playerId);
             SpiritLimit = SpiritMax.GetInt();
             ProtectTimeStamp = 0;
-            PlayersHaunted = new();
 
             if (!AmongUsClient.Instance.AmHost) return;
             if (!Main.ResetCamPlayerList.Contains(playerId))
