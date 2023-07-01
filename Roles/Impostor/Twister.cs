@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TOHE.Modules;
+using TOHE.Roles.Neutral;
 using static TOHE.Options;
 using static TOHE.Translator;
 using static TOHE.Utils;
@@ -34,13 +35,13 @@ namespace TOHE.Roles.Impostor
             var rd = new System.Random();
             foreach (var pc in Main.AllAlivePlayerControls)
             {
-                if (changePositionPlayers.Contains(pc.PlayerId) || pc.onLadder || pc.inVent || GameStates.IsMeeting)
+                if (changePositionPlayers.Contains(pc.PlayerId) || Pelican.IsEaten(pc.PlayerId) || !pc.IsAlive() || pc.onLadder || pc.inVent || GameStates.IsMeeting)
                 {
                     continue;
                 }
 
-                var filtered = PlayerControl.AllPlayerControls.ToArray().Where(a => 
-                    a.PlayerId != pc.PlayerId && !changePositionPlayers.Contains(a.PlayerId)).ToList();
+                var filtered = Main.AllAlivePlayerControls.Where(a =>
+                    pc.IsAlive() && !Pelican.IsEaten(pc.PlayerId) && a.PlayerId != pc.PlayerId && !changePositionPlayers.Contains(a.PlayerId)).ToList();
                 if (filtered.Count == 0)
                 {
                     break;
