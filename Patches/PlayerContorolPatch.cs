@@ -2260,6 +2260,10 @@ class PlayerControlSetRolePatch
                     ghostRoles[seer] = RoleTypes.CrewmateGhost;
                 }
             }
+            if (Spiritcaller.IsGhostPlayer(target.PlayerId))
+            {
+                roleType = RoleTypes.GuardianAngel;
+            }
             if (ghostRoles.All(kvp => kvp.Value == RoleTypes.CrewmateGhost))
             {
                 roleType = RoleTypes.CrewmateGhost;
