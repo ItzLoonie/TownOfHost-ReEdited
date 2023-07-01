@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Hazel;
-using MS.Internal.Xml.XPath;
 using UnityEngine;
-using static Il2CppSystem.Globalization.CultureInfo;
 using static TOHE.Options;
 using static TOHE.Translator;
 
@@ -124,7 +122,7 @@ namespace TOHE.Roles.Neutral
                 return;
             }
 
-            foreach (var lover in Lovers.Where(a => a.PlayerId != deathId))
+            foreach (var lover in Lovers.Where(a => a.PlayerId != deathId).ToList())
             {
                 if (!lover.Data.IsDead)
                 {
