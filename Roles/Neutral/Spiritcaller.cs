@@ -95,7 +95,7 @@ namespace TOHE.Roles.Neutral
             GhostPlayer.Add(target.PlayerId);
             target.RpcSetCustomRole(CustomRoles.EvilSpirit);
 
-            var writer = CustomRpcSender.Create("MessagesToSend", SendOption.None);
+            var writer = CustomRpcSender.Create("SpiritCallerSendMessage", SendOption.None);
             writer.StartMessage(target.GetClientId());
             writer.StartRpc(target.NetId, (byte)RpcCalls.SetName)
                 .Write(GetString("SpiritcallerNoticeTitle"))
