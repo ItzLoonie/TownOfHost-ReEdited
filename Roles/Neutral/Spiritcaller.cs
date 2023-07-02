@@ -90,6 +90,12 @@ namespace TOHE.Roles.Neutral
         {
             if (SpiritLimit < 1) return;
 
+            // TODO Turn Pelican into Evil Spirit 
+            // => Eaten Players currently wont get ported out of Pelican
+            if (target.Is(CustomRoles.Pelican)) return;
+
+            // TODO Evil Spirit shouldnt win with crew
+
             SpiritLimit--;
             SendRPC();
             GhostPlayer.Add(target.PlayerId);
