@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AmongUs.GameOptions;
 using Hazel;
 using UnityEngine;
@@ -97,6 +98,9 @@ namespace TOHE.Roles.Neutral
             SendRPC();
             GhostPlayer.Add(target.PlayerId);
             target.RpcSetCustomRole(CustomRoles.EvilSpirit);
+
+            if (AmongUsClient.Instance.AmHost && !Main.ResetCamPlayerList.Contains(target.PlayerId))
+                Main.ResetCamPlayerList.Add(target.PlayerId);
 
             var writer = CustomRpcSender.Create("SpiritCallerSendMessage", SendOption.None);
             writer.StartMessage(target.GetClientId());
