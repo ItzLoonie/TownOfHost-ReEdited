@@ -92,7 +92,7 @@ enum CustomRPC
     SetCurrentRevealTarget,
     SetJackalRecruitLimit,
     SetBloodhoundArrow,
-
+    SetVultureArrow,
     //SoloKombat
     SyncKBPlayer,
     SyncKBBackCountdown,
@@ -485,6 +485,9 @@ internal class RPCHandlerPatch
             case CustomRPC.SetBloodhoundArrow:
                 Bloodhound.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetVultureArrow:
+                Vulture.ReceiveRPC(reader);
+                break;
         }
     }
 }
@@ -821,6 +824,9 @@ internal static class RPC
                 break;
             case CustomRoles.Bloodhound:
                 Bloodhound.Add(targetId); 
+                break;
+            case CustomRoles.Vulture:
+                Vulture.Add(targetId);
                 break;
             case CustomRoles.Tracker:
                 Tracker.Add(targetId);

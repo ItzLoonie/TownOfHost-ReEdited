@@ -317,6 +317,7 @@ public class Main : BasePlugin
                 {CustomRoles.God, "#f96464"},
                 {CustomRoles.Opportunist, "#4dff4d"},
                 {CustomRoles.Mario, "#ff6201"},
+                {CustomRoles.Vulture, "#556B2F"},
                 {CustomRoles.Jackal, "#00b4eb"},
                 {CustomRoles.Sidekick, "#00b4eb"},
                 {CustomRoles.Innocent, "#8f815e"},
@@ -575,6 +576,7 @@ public enum CustomRoles
     Virus,
     Pursuer,
     Phantom,
+    Vulture,
 
     //SoloKombat
     KB_Normal,
@@ -638,6 +640,7 @@ public enum CustomWinner
     Sidekick = CustomRoles.Sidekick,
     God = CustomRoles.God,
     Mario = CustomRoles.Mario,
+    Vulture = CustomRoles.Vulture,
     Innocent = CustomRoles.Innocent,
     Pelican = CustomRoles.Pelican,
     Youtuber = CustomRoles.Youtuber,

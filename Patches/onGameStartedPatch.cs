@@ -222,6 +222,7 @@ internal class ChangeRoleSettings
             Virus.Init();
             Bloodhound.Init();
             Tracker.Init();
+            Vulture.Init();
             Merchant.Init();
             NSerialKiller.Init();
 
@@ -591,6 +592,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Bloodhound:
                         Bloodhound.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Vulture:
+                        Vulture.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Tracker:
                         Tracker.Add(pc.PlayerId);

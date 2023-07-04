@@ -704,6 +704,7 @@ class MurderPlayerPatch
         Hacker.AddDeadBody(target);
         Mortician.OnPlayerDead(target);
         Bloodhound.OnPlayerDead(target);
+        Vulture.OnPlayerDead(target);
 
         Utils.AfterPlayerDeathTasks(target);
 
@@ -976,6 +977,17 @@ class ReportDeadBodyPatch
                     return false;
                 }
 
+                if (Vulture.UnreportablePlayers.Contains(target.PlayerId)) return false;
+
+                if (__instance.Is(CustomRoles.Vulture))
+                {
+                    Vulture.OnReportDeadBody(__instance, target);
+                    __instance.RpcGuardAndKill(__instance);
+                    __instance.Notify(GetString("VultureReportBody"));
+                    Logger.Info($"{__instance.GetRealName()} ate {target.PlayerName} corpse", "Vulture");
+                    return false;
+                }
+
                 // 清洁工来扫大街咯
                 if (__instance.Is(CustomRoles.Cleaner))
                 {
@@ -1103,6 +1115,7 @@ class ReportDeadBodyPatch
         Main.MadGrenadierBlinding.Clear();
         Divinator.didVote.Clear();
         Bloodhound.Clear();
+        Vulture.Clear();
 
         Camouflager.OnReportDeadBody();
         Psychic.OnReportDeadBody();
@@ -1431,6 +1444,12 @@ class FixedUpdatePatch
                 {
                     Main.MarioVentCount[player.PlayerId] = Options.MarioVentNumWin.GetInt();
                     CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Mario); //马里奥这个多动症赢了
+                    CustomWinnerHolder.WinnerIds.Add(player.PlayerId);
+                }
+                if (GameStates.IsInTask && player.Is(CustomRoles.Vulture) && Vulture.BodyReportCount >= Vulture.NumberOfReportsToWin.GetInt())
+                {
+                    Vulture.BodyReportCount = Vulture.NumberOfReportsToWin.GetInt();
+                    CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Vulture);
                     CustomWinnerHolder.WinnerIds.Add(player.PlayerId);
                 }
 
@@ -1828,6 +1847,8 @@ class FixedUpdatePatch
                 Suffix.Append(BountyHunter.GetTargetArrow(seer, target));
 
                 Suffix.Append(Mortician.GetTargetArrow(seer, target));
+                if (Vulture.ArrowsPointingToDeadBody.GetBool())
+                    Suffix.Append(Vulture.GetTargetArrow(seer, target));
 
                 Suffix.Append(EvilTracker.GetTargetArrow(seer, target));
 

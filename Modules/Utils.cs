@@ -533,6 +533,9 @@ public static class Utils
             case CustomRoles.Mario:
                 ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Mario).ShadeColor(0.25f), $"({(Main.MarioVentCount.TryGetValue(playerId, out var count) ? count : 0)}/{Options.MarioVentNumWin.GetInt()})"));
                 break;
+            case CustomRoles.Vulture:
+                ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Vulture).ShadeColor(0.25f), $"({Vulture.BodyReportCount}/{Vulture.NumberOfReportsToWin.GetInt()})"));
+                break;
             case CustomRoles.QuickShooter:
                 ProgressText.Append(QuickShooter.GetShotLimit(playerId));
                 break;
@@ -1116,6 +1119,9 @@ public static class Utils
             {
                 SelfSuffix.Append(Mortician.GetTargetArrow(seer));
             }
+            if (seer.Is(CustomRoles.Vulture) && Vulture.ArrowsPointingToDeadBody.GetBool())
+                SelfSuffix.Append(Vulture.GetTargetArrow(seer));
+
             if (seer.Is(CustomRoles.FireWorks))
             {
                 string stateText = FireWorks.GetStateText(seer);

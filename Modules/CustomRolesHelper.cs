@@ -111,6 +111,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Camouflager => CustomRoles.Shapeshifter,
              //   CustomRoles.Monarch => CustomRoles.Impostor,
                 CustomRoles.Bloodhound => CustomRoles.Crewmate,
+                CustomRoles.Vulture => CustomRoles.Engineer,
                 CustomRoles.Tracker => CustomRoles.Crewmate,
                 CustomRoles.Merchant => CustomRoles.Crewmate,
                 CustomRoles.Retributionist => CustomRoles.Crewmate,
@@ -253,6 +254,7 @@ internal static class CustomRolesHelper
             CustomRoles.Gamer or
             CustomRoles.FFF or
             CustomRoles.Workaholic or
+            CustomRoles.Vulture or
             CustomRoles.Pelican or
             CustomRoles.Collector or
             CustomRoles.Sunnyboy or
@@ -325,6 +327,7 @@ internal static class CustomRolesHelper
             CustomRoles.Revolutionist or
             CustomRoles.FFF or
             CustomRoles.Workaholic or
+            CustomRoles.Vulture or
             CustomRoles.Collector or
             CustomRoles.Provocateur;
     }
@@ -347,6 +350,7 @@ internal static class CustomRolesHelper
             CustomRoles.Parasite or
             CustomRoles.DarkHide or
             CustomRoles.Workaholic or
+            CustomRoles.Vulture or
             CustomRoles.Collector or
             CustomRoles.Poisoner or
             CustomRoles.NSerialKiller or
@@ -453,6 +457,7 @@ internal static class CustomRolesHelper
             CustomRoles.DarkHide or
             CustomRoles.Infectious or
             CustomRoles.Workaholic or
+            CustomRoles.Vulture or
             CustomRoles.Collector or
             CustomRoles.Provocateur or
             CustomRoles.Sunnyboy or
@@ -538,6 +543,8 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Lucky && pc.Is(CustomRoles.Luckey)) return false;
         if (role is CustomRoles.Fool && ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeFool.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeFool.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeFool.GetBool()) || pc.Is(CustomRoles.SabotageMaster) || pc.Is(CustomRoles.GuardianAngelTOHE))) return false;
         if (role is CustomRoles.Bloodhound && pc.Is(CustomRoles.Oblivious)) return false;
+        if (role is CustomRoles.Vulture && pc.Is(CustomRoles.Oblivious)) return false;
+        if (role is CustomRoles.Oblivious && pc.Is(CustomRoles.Vulture)) return false;
         return true;
     }
     public static RoleTypes GetRoleTypes(this CustomRoles role)
