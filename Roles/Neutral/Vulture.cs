@@ -15,8 +15,7 @@ public static class Vulture
     private static List<byte> playerIdList = new();
 
     public static List<byte> UnreportablePlayers = new();
-    public static int BodyReportCount;
-    public static bool IsReportCDOver;
+    public static Dictionary<byte, int> BodyReportCount;
 
     public static OptionItem ArrowsPointingToDeadBody;
     public static OptionItem NumberOfReportsToWin;
@@ -31,11 +30,12 @@ public static class Vulture
     {
         playerIdList = new();
         UnreportablePlayers = new List<byte>();
-        BodyReportCount = 0;
+        BodyReportCount = new();
     }
     public static void Add(byte playerId)
     {
-        playerIdList.Add(playerId);;
+        playerIdList.Add(playerId);
+        BodyReportCount[playerId] = 0;
 
     }
     public static bool IsEnable => playerIdList.Count > 0;
@@ -102,12 +102,13 @@ public static class Vulture
 
     public static void OnReportDeadBody(PlayerControl pc, GameData.PlayerInfo target)
     {
-        BodyReportCount++;
+        BodyReportCount[pc.PlayerId]++;
         LocateArrow.Remove(pc.PlayerId, target.Object.transform.position);
         SendRPC(pc.PlayerId, false);
         pc.Notify(GetString("VultureBodyReported"));
+        UnreportablePlayers.Remove(target.PlayerId);
         UnreportablePlayers.Add(target.PlayerId);
-        playerIdList.Remove(target.PlayerId);
+        //playerIdList.Remove(target.PlayerId);
     }
 
     public static string GetTargetArrow(PlayerControl seer, PlayerControl target = null)
