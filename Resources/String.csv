@@ -1081,7 +1081,7 @@
 "SniperAimAssist","狙击范围内有玩家时提醒狙击手","Aim Assist","Помощь в прицеливании","狙擊範圍有玩家時提醒狙擊手","狙击范围内有玩家时提醒狙击手"
 "SniperAimAssistOneshot","闪烁提示而不是一直显示","One shot Assist","Помощь только с одним выстрелом","閃爍提示而不是一直顯示","闪烁提示而不是一直显示"
 "NameDisplayAddons","显示职业同时显示附加职业","Display Add-Ons next to the role name","Показывать Атрибуты","顯示職業時同時顯示附加職業","显示职业同时显示附加职业"
-"NoLimitAddonsNumMax","不限制每位玩家的附加职业上限","Max Add-ons Per Player","Максимальное количество Атрибутов на игрока","不限制每位玩家的附加職業上限","不限制每位玩家的附加职业上限"
+"LimitAddonsNumMax","不限制每位玩家的附加职业上限","Max Add-ons Per Player","Максимальное количество Атрибутов на игрока","不限制每位玩家的附加職業上限","不限制每位玩家的附加职业上限"
 "LoverSpawnChances","出现概率","Spawn Chance of <color=#ff9ace>Lovers</color>","Шанс появления <color=#ff9ace>Любовников</color>","出現機率","出现概率"
 "AdditionRolesSpawnRate","出现概率","Spawn Chance","Шанс появления","出現機率","出现概率"
 "LighterVision","执灯视野大小","<color=#eee5be>Lighter</color> Vision","Дальность <color=#eee5be>Фонарика</color>","执灯视野大小",""

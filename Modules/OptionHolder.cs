@@ -586,7 +586,7 @@ public static class Options
     //Add-Ons
     public static OptionItem NameDisplayAddons;
     public static OptionItem AddBracketsToAddons;
-    public static OptionItem NoLimitAddonsNumMax;
+    public static OptionItem LimitAddonsNumMax;
     public static OptionItem BewilderVision;
     public static OptionItem ImpCanBeAvanger;
     public static OptionItem MadmateSpawnMode;
@@ -768,7 +768,7 @@ public static class Options
         NameDisplayAddons = BooleanOptionItem.Create(6050248, "NameDisplayAddons", true, TabGroup.Addons, false)
             .SetGameMode(CustomGameMode.Standard)
             .SetHeader(true);
-        NoLimitAddonsNumMax = IntegerOptionItem.Create(6050252, "NoLimitAddonsNumMax", new(0, 15, 1), 0, TabGroup.Addons, false);
+        LimitAddonsNumMax = IntegerOptionItem.Create(6050252, "LimitAddonsNumMax", new(0, 15, 1), 1, TabGroup.Addons, false);
 
         // GM
         EnableGM = BooleanOptionItem.Create(100, "GM", false, TabGroup.GameSettings, false)
