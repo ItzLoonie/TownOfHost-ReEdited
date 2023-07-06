@@ -74,7 +74,11 @@ public static class BountyHunter
         if (ShowTargetArrow) TargetArrow.Add(bountyId, targetId);
     }
     //public static void SetKillCooldown(byte id, float amount) => Main.AllPlayerKillCooldown[id] = amount;
-    public static void ApplyGameOptions() => AURoleOptions.ShapeshifterCooldown = TargetChangeTime;
+    public static void ApplyGameOptions()
+    {
+        AURoleOptions.ShapeshifterCooldown = TargetChangeTime;
+        AURoleOptions.ShapeshifterDuration = 1f;
+    }
 
     public static void OnCheckMurder(PlayerControl killer, PlayerControl target)
     {

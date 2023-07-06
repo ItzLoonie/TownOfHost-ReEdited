@@ -99,7 +99,7 @@ public static class Totocalcio
 
         BetTimes[killer.PlayerId]--;
         if (BetPlayer.TryGetValue(killer.PlayerId, out var originalTarget) && Utils.GetPlayerById(originalTarget) != null)
-            Utils.NotifyRoles(Utils.GetPlayerById(originalTarget));
+            Utils.NotifyRoles(SpecifySeer: Utils.GetPlayerById(originalTarget));
         BetPlayer.Remove(killer.PlayerId);
         BetPlayer.Add(killer.PlayerId, target.PlayerId);
         SendRPC(killer.PlayerId);
