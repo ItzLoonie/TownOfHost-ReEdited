@@ -164,6 +164,8 @@ public static class Sheriff
                 CanKill = CanKillInfected.GetBool();
             if (SubRoleTarget == CustomRoles.Contagious)
                 CanKill = CanKillContagious.GetBool();
+            if (SubRoleTarget == CustomRoles.Rascal)
+                CanKill = true;
         }
 
 

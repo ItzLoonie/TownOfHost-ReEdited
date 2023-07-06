@@ -67,7 +67,7 @@ public static class Monarch
 
             killer.ResetKillCooldown();
             killer.SetKillCooldown();
-            killer.RpcGuardAndKill(target);
+      //      killer.RpcGuardAndKill(target);
             target.RpcGuardAndKill(killer);
             target.RpcGuardAndKill(target);
 

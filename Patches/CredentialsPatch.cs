@@ -187,13 +187,21 @@ internal class TitleLogoPatch
             BottomButtons.transform.position = new Vector3(0f, -2.71f, 0f);
         }*/
 
-        if ((Ambience = GameObject.Find("Ambience")) != null)
+     /*   if ((Ambience = GameObject.Find("Ambience")) != null)
         {
             Ambience.SetActive(false);
             var CustomBG = new GameObject("CustomBG");
             CustomBG.transform.position = new Vector3(2.095f, -0.25f, 520f);
             var bgRenderer = CustomBG.AddComponent<SpriteRenderer>();
             bgRenderer.sprite = Utils.LoadSprite("TOHE.Resources.Images.TOHE-BG.jpg", 245f);
+        } */
+        if ((Ambience = GameObject.Find("Ambience")) != null)
+        {
+            Ambience.SetActive(false);
+            var CustomBG = new GameObject("CustomBG");
+            CustomBG.transform.position = new Vector3(0, 0, 520f);
+            var bgRenderer = CustomBG.AddComponent<SpriteRenderer>();
+            bgRenderer.sprite = Utils.LoadSprite("TOHE.Resources.Images.TOHE-BG.jpg", 179f);
         }
     }
 }

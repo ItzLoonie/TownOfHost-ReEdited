@@ -38,6 +38,11 @@ public static class Wraith
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+
+                    if (!AmongUsClient.Instance.AmHost) return;
+                if (!Main.ResetCamPlayerList.Contains(playerId))
+                Main.ResetCamPlayerList.Add(playerId);
+
     }
     public static bool IsEnable => playerIdList.Count > 0;
     private static void SendRPC(PlayerControl pc)

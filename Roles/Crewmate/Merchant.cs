@@ -18,31 +18,36 @@ namespace TOHE.Roles.Crewmate
 
         private static readonly List<CustomRoles> helpfulAddons = new List<CustomRoles>
         {
-            CustomRoles.Watcher,
-            CustomRoles.Lighter,
+            {CustomRoles.Watcher},
             CustomRoles.Seer,
             CustomRoles.Bait,
             CustomRoles.Trapper,
             CustomRoles.Brakar,
-       //     CustomRoles.Guesser,
             CustomRoles.Knighted,
             CustomRoles.Necroview,
             CustomRoles.Onbound,
-            CustomRoles.DualPersonality
+            CustomRoles.DualPersonality 
         };
 
         private static readonly List<CustomRoles> harmfulAddons = new List<CustomRoles>
         {
-            CustomRoles.Oblivious,
+       //     CustomRoles.Oblivious,
             CustomRoles.Bewilder,
-        //    CustomRoles.Workhorse,
-     //       CustomRoles.Fool,
-        //    CustomRoles.Avanger,
             CustomRoles.Unreportable
         };
 
         private static readonly List<CustomRoles> neutralAddons = new List<CustomRoles>
         {
+           CustomRoles.Soulless
+        };
+
+        private static readonly List<CustomRoles> experimentalAddons = new List<CustomRoles>
+        {
+        //    CustomRoles.Flashman,
+            CustomRoles.Egoist,
+            CustomRoles.Ntr,
+            CustomRoles.Guesser,
+            CustomRoles.Fool
         };
 
         private static OptionItem OptionMaxSell;
@@ -55,6 +60,7 @@ namespace TOHE.Roles.Crewmate
         private static OptionItem OptionCanSellHelpful;
         private static OptionItem OptionCanSellHarmful;
         private static OptionItem OptionCanSellNeutral;
+        private static OptionItem OptionCanSellExperimental;
         private static OptionItem OptionSellOnlyHarmfulToEvil;
         private static OptionItem OptionSellOnlyHelpfulToCrew;
 
@@ -76,6 +82,7 @@ namespace TOHE.Roles.Crewmate
             OptionCanSellHelpful = BooleanOptionItem.Create(Id + 9, "MerchantSellHelpful", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
             OptionCanSellHarmful = BooleanOptionItem.Create(Id + 10, "MerchantSellHarmful", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
             OptionCanSellNeutral = BooleanOptionItem.Create(Id + 11, "MerchantSellNeutral", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
+            OptionCanSellExperimental = BooleanOptionItem.Create(Id + 15, "MerchantSellExperimental", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
             OptionSellOnlyHarmfulToEvil = BooleanOptionItem.Create(Id + 12, "MerchantSellHarmfulToEvil", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
             OptionSellOnlyHelpfulToCrew = BooleanOptionItem.Create(Id + 13, "MerchantSellHelpfulToCrew", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
 
@@ -102,6 +109,11 @@ namespace TOHE.Roles.Crewmate
             if (OptionCanSellNeutral.GetBool())
             {
                 addons.AddRange(neutralAddons);
+            }
+
+            if (OptionCanSellExperimental.GetBool())
+            {
+                addons.AddRange(experimentalAddons);
             }
         }
 

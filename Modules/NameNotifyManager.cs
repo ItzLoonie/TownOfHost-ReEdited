@@ -16,7 +16,7 @@ public static class NameNotifyManager
         Notice.Remove(pc.PlayerId);
         Notice.Add(pc.PlayerId, new(text, Utils.GetTimeStamp() + (long)time));
         SendRPC(pc.PlayerId);
-        Utils.NotifyRoles(pc);
+        Utils.NotifyRoles(SpecifySeer: pc);
         Logger.Info($"New name notify for {pc.GetNameWithRole()}: {text} ({time}s)", "Name Notify");
     }
     public static void OnFixedUpdate(PlayerControl player)
@@ -29,7 +29,7 @@ public static class NameNotifyManager
         if (Notice.ContainsKey(player.PlayerId) && Notice[player.PlayerId].Item2 < Utils.GetTimeStamp())
         {
             Notice.Remove(player.PlayerId);
-            Utils.NotifyRoles(player);
+            Utils.NotifyRoles(SpecifySeer: player);
         }
     }
     public static bool GetNameNotify(PlayerControl player, out string name)

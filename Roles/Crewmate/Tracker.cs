@@ -101,6 +101,7 @@
             if (!seer.Is(CustomRoles.Tracker)) return "";
             if (target != null && seer.PlayerId != target.PlayerId) return "";
             if (GameStates.IsMeeting) return "";
+            if (!TrackerTarget.ContainsKey(seer.PlayerId)) return "";
             return Utils.ColorString(Color.white, TargetArrow.GetArrows(seer, TrackerTarget[seer.PlayerId]));
         }
 
