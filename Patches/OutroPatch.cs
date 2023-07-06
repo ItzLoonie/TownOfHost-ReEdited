@@ -121,6 +121,8 @@ class SetEverythingUpPatch
         {
             CustomWinnerText = GetWinnerRoleName(winnerRole);
             CustomWinnerColor = Utils.GetRoleColorCode(winnerRole);
+            __instance.WinText.color = Utils.GetRoleColor(winnerRole);
+            __instance.BackgroundBar.material.color = Utils.GetRoleColor(winnerRole);
             if (winnerRole.IsNeutral())
             {
                 __instance.BackgroundBar.material.color = Utils.GetRoleColor(winnerRole);

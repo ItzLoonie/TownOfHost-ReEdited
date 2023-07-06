@@ -184,6 +184,9 @@ class HudManagerPatch
                     case CustomRoles.Cleaner:
                         __instance.ReportButton.OverrideText(GetString("CleanerReportButtonText"));
                         break;
+                    case CustomRoles.Vulture:
+                        __instance.ReportButton.OverrideText(GetString("VultureEatButtonText"));
+                        break;
                     case CustomRoles.Swooper:
                         __instance.ImpostorVentButton.OverrideText(GetString(Swooper.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "SwooperRevertVentButtonText" : "SwooperVentButtonText"));
                         break;
@@ -215,6 +218,9 @@ class HudManagerPatch
                     case CustomRoles.Succubus:
                         __instance.KillButton.OverrideText(GetString("SuccubusKillButtonText"));
                         break;
+                    case CustomRoles.CursedSoul:
+                        __instance.KillButton.OverrideText(GetString("CursedSoulKillButtonText"));
+                        break;
                     case CustomRoles.DovesOfNeace:
                         __instance.AbilityButton.buttonLabelText.text = GetString("DovesOfNeaceVentButtonText");
                         break;
@@ -223,6 +229,21 @@ class HudManagerPatch
                         break;
                     case CustomRoles.Monarch:
                         __instance.KillButton.OverrideText(GetString("MonarchKillButtonText"));
+                        break;
+                    case CustomRoles.Deputy:
+                        __instance.KillButton.OverrideText(GetString("DeputyHandcuffText"));
+                        break;
+                    case CustomRoles.Addict:
+                        __instance.AbilityButton.OverrideText(GetString("AddictVentButtonText"));
+                        break;
+                    case CustomRoles.Dazzler:
+                        __instance.AbilityButton.OverrideText(GetString("DazzleButtonText"));
+                        break;
+                    case CustomRoles.Deathpact:
+                        __instance.AbilityButton.OverrideText(GetString("DeathpactButtonText"));
+                        break;
+                    case CustomRoles.Devourer:
+                        __instance.AbilityButton.OverrideText(GetString("DevourerButtonText"));
                         break;
                 }
 
@@ -423,8 +444,10 @@ class SetHudActivePatch
                 __instance.SabotageButton.ToggleVisible(true);
                 break;
             case CustomRoles.Jackal:
-      //      case CustomRoles.Sidekick:
                 Jackal.SetHudActive(__instance, isActive);
+                break;
+            case CustomRoles.Traitor:
+                Traitor.SetHudActive(__instance, isActive);
                 break;
             
             case CustomRoles.Bomber:
@@ -468,7 +491,7 @@ class MapBehaviourShowPatch
         if (opts.Mode is MapOptions.Modes.Normal or MapOptions.Modes.Sabotage)
         {
             var player = PlayerControl.LocalPlayer;
-            if (player.Is(CustomRoleTypes.Impostor) || (player.Is(CustomRoles.Parasite)) || (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()))
+            if (player.Is(CustomRoleTypes.Impostor) || (player.Is(CustomRoles.Parasite)) || (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) || (player.Is(CustomRoles.Traitor) && Traitor.CanUseSabotage.GetBool()))
                 opts.Mode = MapOptions.Modes.Sabotage;
             else
                 opts.Mode = MapOptions.Modes.Normal;
@@ -511,7 +534,7 @@ class TaskPanelBehaviourPatch
                     {
                         var text = sb.ToString().TrimEnd('\n').TrimEnd('\r');
                         if (!Utils.HasTasks(player.Data, false) && sb.ToString().Count(s => (s == '\n')) >= 2)
-                            text = $"{Utils.ColorString(new Color32(255, 20, 147, byte.MaxValue), GetString("FakeTask"))}\r\n{text}";
+                            text = $"{ Utils.ColorString(Utils.GetRoleColor(player.GetCustomRole()).ShadeColor(0.2f), GetString("FakeTask"))}\r\n{text}";
                         AllText += $"\r\n\r\n<size=85%>{text}</size>";
                     }
 
