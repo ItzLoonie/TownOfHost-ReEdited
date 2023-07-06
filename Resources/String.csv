@@ -582,7 +582,7 @@
 "RetributionistInfoLong","","(Crewmates):\nAs the Retributionist, you can kill a limited amount of players after your death.\n\nUse /ret [playerID] to kill.","","",""
 
 "# 中立阵营 / Neutrals descriptions"
-"VultureInfoLong","","(Neutrals):\nAs Vulture you can not report bodies normally. If you report a corpse it will become unreportable. You need to report a configurable amount of dead bodies to win","","",""
+"VultureInfoLong","","(Neutrals):\n As Vulture if you report a corpse when not on eating cooldown and ability usage remaining, you will eat the corpse and make it unreportable. If you report a corpse while on eating cooldown or max ability usage (for the round) finishes you will report the body normally. You need to eat a configurable amount of dead bodies to win","","",""
 "ArsonistInfoLong","(中立阵营):\n纵火犯可以通过对玩家点击击杀按钮并跟随其数秒来完成涂油，开始涂油以及涂油成功时会显示护盾破碎的动画作为提示（仅自己可见）。当所有存活玩家都被纵火犯涂油后，纵火犯可以通过跳通风管来点火，并单独获得胜利。\n\n玩家名显示「△」表示涂油中\n玩家名显示「▲」表示已涂油。","(Neutrals):\nThe Arsonist can douse by clicking the kill button on the player and following them for a few seconds. When the dousing starts and it's successful, a shield animation will be displayed as a reminder (only visible to themselves). When the Arsonist has doused all surviving players, the Arsonist can vent to start the fire and win alone.\n\nIf the player name shows 「△」, that means they are being doused;\nif the player name shows 「▲」, it means they have been completely doused.","(нейтральный): поджигатель может закончить смазку, нажав на кнопку убийства игрока и следуя за ним в течение нескольких секунд, начать мазать, а также показать анимацию разбитого щита, когда она будет успешной (только для себя). После того, как все выжившие игроки были смазаны поджигателем, поджигатель мог воспламенить его, перепрыгнув через вентиляционную трубу и одержать победу в одиночку. \ n что n игрок показыва「△」заяв в смазыва \ что n что игрок показыва「▲」что смазыва.","(中立陣營):\n縱火犯可以通過對玩家使用殺人鍵並跟隨數秒來澆油，開始以及結束澆油時會出現盾牌破碎的效果作為提示。當所有存活玩家都被縱火犯澆上油時，縱火犯可以以跳管道的方式來點火，並單獨獲勝。\n\n玩家名字顯示「△」表示澆油中\n顯示「▲」表示已經澆油。","(中立阵营):\n纵火犯可以通过对玩家点击击杀按钮并跟随其数秒来完成涂油，开始涂油以及涂油成功时会显示护盾破碎的动画作为提示（仅自己可见）。当所有存活玩家都被纵火犯涂油后，纵火犯可以通过跳通风管来点火，并单独获得胜利。\n\n玩家名显示「△」表示涂油中\n玩家名显示「▲」表示已涂油。"
 "JesterInfoLong","(中立阵营):\n小丑被票出则小丑单独游戏胜利。游戏结束时若小丑仍存活则小丑输掉游戏。请注意：小丑、处刑人、冤罪师可以共享胜利。","(Neutrals):\nIf the Jester get voted out, the Jester wins the game alone. If the Jester is still alive at the end of the game, the Jester loses the game. Note: Jester, Executioner, and Innocent can win together.","(Злой - Нейтрал):\nШут сможет выиграть игру, если за него проголосуют во время голосования и он будет изгнан.\nВ противном случае Шут проиграет. \nПримечание: Шут, Палач и Обвинитель могут победить вместе.","(中立陣營):\n如果小丑被票出時則小丑單獨獲勝。如果遊戲結束時小丑仍然存活則失敗。\n請注意: 小丑、暴民、冤罪師可以一同獲勝。","(中立阵营):\n小丑被票出则小丑单独游戏胜利。游戏结束时若小丑仍存活则小丑输掉游戏。请注意：小丑、处刑人、冤罪师可以共享胜利。"
 "TerroristInfoLong","(中立阵营):\n恐怖分子完成所有任务后死亡，则恐怖分子单独获得胜利。（怎么死都行，包括票死，反正死了就行）","(Neutrals):\nIf the Terrorist dies after completing all tasks, the Terrorist wins the game alone. (They can win by either being voted out or killed).","(Злой - Нейтрал):\nТеррорист побеждает в одиночку, если его убивают или изгоняют. \nНо только если все его задания будут выполнены.","(中立陣營):\n當恐怖分子完成所有任務後死亡的話，則恐怖分子單獨獲勝。(只要死了就可以)","(中立阵营):\n恐怖分子完成所有任务后死亡，则恐怖分子单独获得胜利。（怎么死都行，包括票死，反正死了就行）"
@@ -1274,7 +1274,10 @@
 "NeutralCanBeFool","","<color=#7f8c8d>Neutrals</color> can become <color=#e6e7ff>Fool</color>","<color=#7f8c8d>Нейтралы</color> могут стать <color=#e6e7ff>Глупцом</color>","",""
 "VultureArrowsPointingToDeadBody","","Arrows pointing to dead bodies","Может видеть стрелки указывающие на трупы","",""
 "VultureNumberOfReportsToWin","","Number of body reports required to win","","",""
-"VultureReportBody","","Body reported successfully","","",""
+"VultureReportCooldown","","Eating cooldown","","",""
+"VultureReportBody","","Body eaten successfully","","",""
+"VultureMaxEatenInOneRound","","Maximum corpses that can be eaten in one round","","",""
+"VultureCooldownUp","","Eating cooldown finished","","",""
 
 "## Moderation for Auto-Hosters"
 "ApplyModeratorList","","Apply Moderator List","Применить список модераторов","",""

@@ -954,7 +954,12 @@ class ReportDeadBodyPatch
             if (__instance.Is(CustomRoles.Minimalism)) return false;
             //禁止小黑人报告
             if (((Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive) && Options.DisableReportWhenCC.GetBool()) return false;
-
+            long now = Utils.GetTimeStamp();
+            //if ((__instance.Is(CustomRoles.Vulture) && (now - (long)Vulture.LastReport[__instance.PlayerId] < (long)Vulture.VultureReportCD.GetFloat())))
+            //{
+            //    __instance.Notify($"Reporting Failed, Try after {(long)Vulture.VultureReportCD.GetFloat() - (now - Vulture.LastReport[__instance.PlayerId])} seconds");
+            //    return false;
+            //}
             if (target == null) //拍灯事件
             {
                 if (__instance.Is(CustomRoles.Jester) && !Options.JesterCanUseButton.GetBool()) return false;
@@ -981,11 +986,26 @@ class ReportDeadBodyPatch
 
                 if (__instance.Is(CustomRoles.Vulture))
                 {
-                    Vulture.OnReportDeadBody(__instance, target);
-                    __instance.RpcGuardAndKill(__instance);
-                    __instance.Notify(GetString("VultureReportBody"));
-                    Logger.Info($"{__instance.GetRealName()} ate {target.PlayerName} corpse", "Vulture");
-                    return false;
+                    
+                    if ((Vulture.AbilityLeftInRound[__instance.PlayerId] > 0) && (now - Vulture.LastReport[__instance.PlayerId] > (long)Vulture.VultureReportCD.GetFloat()))
+                    {
+                        Vulture.LastReport[__instance.PlayerId] = now;
+                        Vulture.OnReportDeadBody(__instance, target);
+                        __instance.RpcGuardAndKill(__instance);
+                        __instance.Notify(GetString("VultureReportBody"));
+                        if (Vulture.AbilityLeftInRound[__instance.PlayerId] > 0)
+                        {
+                            new LateTask(() =>
+                            {
+                                __instance.RpcGuardAndKill(__instance);
+                                __instance.Notify(GetString("VultureCooldownUp"));
+                                return;
+                            }, Vulture.VultureReportCD.GetFloat(),"Vulture CD");
+                        }
+                        
+                        Logger.Info($"{__instance.GetRealName()} ate {target.PlayerName} corpse", "Vulture");
+                        return false;
+                    }
                 }
 
                 // 清洁工来扫大街咯
