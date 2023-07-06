@@ -2087,6 +2087,9 @@
 "VultureNumberOfReportsToWin","","Bodies needed to win","","",""
 "VultureReportBody","","Body eaten!","","",""
 "VultureEatButtonText","","Consume","","",""
+"VultureReportCooldown","","Eating cooldown","","",""
+"VultureMaxEatenInOneRound","","Maximum corpses that can be eaten in one round","","",""
+"VultureCooldownUp","","Eating cooldown finished","","",""
 
 "## 模组信息 / Mod Info"
 "Developer","开发者","Developer","Разработчики","開發者","开发者"
