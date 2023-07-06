@@ -269,7 +269,8 @@ internal static class CustomRolesHelper
             CustomRoles.Rogue or
             CustomRoles.Unreportable or
             CustomRoles.Lucky or
-            CustomRoles.DoubleShot;
+            CustomRoles.DoubleShot or
+            CustomRoles.EvilSpirit;
     }
     public static bool IsNonNK(this CustomRoles role) // ROLE ASSIGNING, NOT NEUTRAL TYPE
     {
@@ -531,7 +532,8 @@ internal static class CustomRolesHelper
             CustomRoles.BloodKnight or
             CustomRoles.Totocalcio or
             CustomRoles.Virus or
-            CustomRoles.Succubus;
+            CustomRoles.Succubus or
+            CustomRoles.Spiritcaller;
     }
         public static bool IsAbleToBeSidekicked(this CustomRoles role)
     {

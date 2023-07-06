@@ -614,8 +614,7 @@ public enum CustomRoles
     Traitor,
     Vulture,
     Spiritcaller,
-    EvilSpirit,
-
+    
     //SoloKombat
     KB_Normal,
 
@@ -661,6 +660,7 @@ public enum CustomRoles
    // Reflective,
     Rascal,
     Soulless,
+    EvilSpirit
 }
 //WinData
 public enum CustomWinner

@@ -233,7 +233,6 @@
 "Traitor","","Traitor","","",""
 "Vulture","","Vulture","","",""
 "Spiritcaller","","Spiritcaller","","",""
-"EvilSpirit","","Evil Spirit","","",""
 
 "# 附加职业 / Add-ons"
 "LastImpostor","绝境者","Last Impostor","Последний Предатель","絕境者","绝境者"
@@ -271,6 +270,7 @@
 "DoubleShot","","Double Shot","Второй Шанс","",""
 "Rascal","","Rascal","","",""
 "Soulless","","Soulless","","",""
+"EvilSpirit","","Evil Spirit","","",""
 
 "## 附加职业作为前缀时 / Prefixes for Add-ons"
 
@@ -303,6 +303,7 @@
 "Prefix.Lucky","","Lucky ","Удачливый ","",""
 "Prefix.DoubleShot","","Double Shot ","Второй Шанс ","",""
 "Prefix.Rascal","","Rascal ","","",""
+"Prefix.EvilSpirit","","Evil Spirit ","Удачливый ","",""
 
 "## 附加职业作为前缀时 / Prefixes for Add-ons But With Brackets"
 
@@ -335,6 +336,7 @@
 "PrefixB.Lucky","","<color=#ffffff>(</color>Lucky<color=#ffffff>)</color> ","<color=#ffffff>(</color>Удачливый<color=#ffffff>)</color> ","",""
 "PrefixB.DoubleShot","","<color=#ffffff>(</color>Double Shot<color=#ffffff>)</color> ","<color=#ffffff>(</color>Второй Шанс<color=#ffffff>)</color> ","",""
 "PrefixB.Rascal","","<color=#ffffff>(</color>Rascal<color=#ffffff>)</color> ","","",""
+"PrefixB.EvilSpirit","","<color=#ffffff>(</color>Evil Spirit<color=#ffffff>)</color> ","","",""
 
 "BracketAddons","BracketAddons","Add Brackets To Add-ons","Добавить скобки к Атрибутам","BracketAddons","BracketAddons"
 
@@ -522,6 +524,7 @@
 "DoubleShotInfo","","You have an extra life when guessing","У вас есть второй шанс на угадывание","",""
 "RascalInfo","","You appear evil in some cases","","",""
 "SoullessInfo","","You have no soul","","",""
+"EvilSpirit","","You are an evil Spirit","","",""
 
 "# 其它 / Other descriptions"
 "GMInfo","开局死的冤魂隔岸观火","Spectate the chaos!","Вы Мастер Игры, наслаждайтесь хаосом!","當吃瓜群眾在一旁看戲吧","开局死的冤魂隔岸观火"
@@ -681,7 +684,6 @@
 "TraitorInfoLong","","(Neutrals):\nAs the Traitor, you were an Impostor that betrayed the Impostors.\nYou know the Impostors but they don't know you.\nThe twist? They can kill you but you can't kill them.\n\nEliminate the Impostors by other means, then kill everyone else to win!","","",""
 "VultureInfoLong","","(Neutrals):\nAs the Vulture, you do not report bodies normally.\nInstead, reporting a body causes you to eat it, making it unreportable.\n\nEat enough bodies to win!","","",""
 "SpiritcallerInfoLong","","(Neutrals):\nAs the Spiritcaller, your victims become Evil Spirits after they die. These spirits can help you win by freezing other players for a short time and/or blocking their vision. Alternatively, the spirits can give you a shield that protects you briefly from an attempted kill.","","",""
-"EvilSpiritInfoLong","","(Neutrals):\nAs Evil Spirit, it's your job to help the Spiritcaller to victory. You can use your Haunt button to freeze players and reduce their vision. Alternatively, you can use your Haunt button to temporarily give the Spiritcaller a shield against a kill attempt.","","",""
 
 "# 附加职业 / Add-ons descriptions"
 "LastImpostorInfoLong","(附加职业):\n这个效果在内鬼仅剩一人时赋予该内鬼。使其击杀冷却缩短。","(Add-ons):\nThis effect is given to the last surviving Impostor. Reduces their kill cooldown.","(Атрибут):\nАтрибут, присваивается последнему Предателю. \nВремя отката убийства становится меньше, чем обычно. \nНе назначается Охотнику за головами, Серийному убийце или Вампиру.","(附加職業):\n這個效果只在偽裝者陣營只剩下一人時賦予該玩家，被賦予效果的玩家殺人冷卻將會縮短。","(附加职业):\n这个效果在内鬼仅剩一人时赋予该内鬼。使其击杀冷却缩短。"
@@ -719,6 +721,7 @@
 "DoubleShotInfoLong","","(Add-ons):\nWhen a player with Double Shot guesses a role incorrectly, they will get a second chance to guess, but the next wrong guess will result in suicide.","(Атрибут):\nКогда игрок со Вторым Шансом неправильно угадывает роль, он получает второй шанс выжить, но следующий неверное отгадывание приведет к смерти","",""
 "RascalInfoLong","","(Add-ons):\nAs the Rascal, you can die to the Sheriff and Snitch can find you if Snitch can find madmates.\n\nOnly assigned to Crewmates, cannot be assigned by the Merchant.","","",""
 "SoullessInfoLong","","(Add-ons):\nWhen a Cursed Soul snatches your soul, you get this add-on.\n\nYou are not counted as alive.","","",""
+"EvilSpiritInfoLong","","(Neutrals):\nAs Evil Spirit, it's your job to help the Spiritcaller to victory. You can use your Haunt button to freeze players and reduce their vision. Alternatively, you can use your Haunt button to temporarily give the Spiritcaller a shield against a kill attempt.","","",""
 
 "# 其它 / Other long description"
 "GMInfoLong","(房主):\n看我干啥，我只是个开局就死的冤魂，静静地吃瓜而已。","(None):\nThe GM (Game Master) is an observer role.\nTheir presence has no effect on the game, and all players know who the GM is. The GM role will be assigned to the host, who will automatically become a ghost at the start of the game.","(Никто):\nGM (Мастер Игры) — это роль, которая наблюдает за игрой в роле призрака. \nОн не влияет на игру, и все игроки всегда знают кто Мастер Игры. Всегда назначается только хосту лобби и становится призраком в самом начале игры.","(房主):\n看我幹嘛，我只是開始遊戲時就在冥界吃瓜而已。","(房主):\n看我干啥，我只是个开局就死的冤魂，静静地吃瓜而已。"
