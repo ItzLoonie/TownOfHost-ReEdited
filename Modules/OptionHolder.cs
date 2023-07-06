@@ -534,6 +534,9 @@ public static class Options
     // その他
     public static OptionItem FixFirstKillCooldown;
     public static OptionItem ShieldPersonDiedFirst;
+    public static OptionItem ShieldWorksUntilTheFirstMeeting;
+    public static OptionItem EveryoneSeesTheShield;
+    public static OptionItem TargetSeesTriedKillHim;
     public static OptionItem GhostCanSeeOtherRoles;
     public static OptionItem GhostCanSeeOtherVotes;
     public static OptionItem GhostCanSeeDeathReason;
@@ -2079,7 +2082,16 @@ public static class Options
         // 首刀保护
         ShieldPersonDiedFirst = BooleanOptionItem.Create(50_900_676, "ShieldPersonDiedFirst", false, TabGroup.GameSettings, false)
             .SetGameMode(CustomGameMode.Standard)
-           .SetColor(new Color32(193, 255, 209, byte.MaxValue));
+            .SetColor(new Color32(193, 255, 209, byte.MaxValue));
+        ShieldWorksUntilTheFirstMeeting = BooleanOptionItem.Create(50_900_679, "ShieldWorksUntilTheFirstMeeting", false, TabGroup.GameSettings, false)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetParent(ShieldPersonDiedFirst);
+        EveryoneSeesTheShield = BooleanOptionItem.Create(50_900_683, "EveryoneSeesTheShield", false, TabGroup.GameSettings, false)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetParent(ShieldPersonDiedFirst);
+        TargetSeesTriedKillHim = BooleanOptionItem.Create(50_900_686, "TargetSeesTriedKillHim", false, TabGroup.GameSettings, false)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetParent(ShieldPersonDiedFirst);
 
         // 杀戮闪烁持续
         KillFlashDuration = FloatOptionItem.Create(90000, "KillFlashDuration", new(0.1f, 0.45f, 0.05f), 0.3f, TabGroup.GameSettings, false)

@@ -599,10 +599,15 @@ class CheckMurderPatch
         //首刀保护
         if (Main.ShieldPlayer != byte.MaxValue && Main.ShieldPlayer == target.PlayerId && Utils.IsAllAlive)
         {
-            Main.ShieldPlayer = byte.MaxValue;
-            killer.SetKillCooldown();
+            if (!Options.ShieldWorksUntilTheFirstMeeting.GetBool())
+                Main.ShieldPlayer = byte.MaxValue;
+
+            killer.SetKillCooldown(10);
             killer.RpcGuardAndKill(target);
-            target.RpcGuardAndKill();
+
+            if (Options.TargetSeesTriedKillHim.GetBool())
+                target.RpcGuardAndKill();
+
             return false;
         }
 
@@ -1222,6 +1227,9 @@ class ReportDeadBodyPatch
             .Do(pc => Camouflage.RpcSetSkin(pc, RevertToDefault: true));
 
         MeetingTimeManager.OnReportDeadBody();
+
+        if (Main.ShieldPlayer != byte.MaxValue && MeetingStates.FirstMeeting && Options.ShieldWorksUntilTheFirstMeeting.GetBool())
+            Main.ShieldPlayer = byte.MaxValue;
 
         Utils.NotifyRoles(isForMeeting: true, NoCache: true, CamouflageIsForMeeting: true, GuesserIsForMeeting: true);
 
@@ -1894,6 +1902,9 @@ class FixedUpdatePatch
                 if (seer.Is(CustomRoles.Tracker)) Mark.Append(Tracker.GetTargetMark(seer, target));
                 //タスクが終わりそうなSnitchがいるとき、インポスター/キル可能なニュートラルに警告が表示される
                 Mark.Append(Snitch.GetWarningArrow(seer, target));
+
+                if ((Main.ShieldPlayer == target.PlayerId) && Options.EveryoneSeesTheShield.GetBool())
+                    Mark.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Opportunist), "●"));
 
                 if (target.Is(CustomRoles.SuperStar) && Options.EveryOneKnowSuperStar.GetBool())
                     Mark.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.SuperStar), "★"));

@@ -1126,6 +1126,9 @@ public static class Utils
             SelfMark.Append(Witch.GetSpelledMark(seer.PlayerId, isForMeeting));
             SelfMark.Append(HexMaster.GetHexedMark(seer.PlayerId, isForMeeting));
 
+            if ((Main.ShieldPlayer == seer.PlayerId) && Options.EveryoneSeesTheShield.GetBool()) 
+                SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Opportunist), "●"));
+
             //如果是大明星
             if (seer.Is(CustomRoles.SuperStar) && Options.EveryOneKnowSuperStar.GetBool())
                 SelfMark.Append(ColorString(GetRoleColor(CustomRoles.SuperStar), "★"));
@@ -1267,6 +1270,9 @@ public static class Utils
                 //呪われている人
                 TargetMark.Append(Witch.GetSpelledMark(target.PlayerId, isForMeeting));
                 TargetMark.Append(HexMaster.GetHexedMark(target.PlayerId, isForMeeting));
+
+                if ((Main.ShieldPlayer == target.PlayerId) && Options.EveryoneSeesTheShield.GetBool())
+                    TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Opportunist)}>●</color>");
 
                 //如果是大明星
                 if (target.Is(CustomRoles.SuperStar) && Options.EveryOneKnowSuperStar.GetBool())
