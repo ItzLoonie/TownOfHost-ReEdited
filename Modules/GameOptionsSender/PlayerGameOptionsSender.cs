@@ -90,6 +90,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
         switch (role)
         {
             case CustomRoles.Terrorist:
+            case CustomRoles.Vulture:
             case CustomRoles.SabotageMaster:
             case CustomRoles.Mario:
             case CustomRoles.EngineerTOHE:
@@ -100,15 +101,19 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 AURoleOptions.EngineerInVentMaxTime = 0f;
                 break;
             case CustomRoles.ShapeMaster:
-                AURoleOptions.ShapeshifterCooldown = 0f;
+                AURoleOptions.ShapeshifterCooldown = 1f;
                 AURoleOptions.ShapeshifterLeaveSkin = false;
                 AURoleOptions.ShapeshifterDuration = Options.ShapeMasterShapeshiftDuration.GetFloat();
                 break;
             case CustomRoles.Warlock:
                 AURoleOptions.ShapeshifterCooldown = Main.isCursed ? 1f : Options.DefaultKillCooldown;
+                AURoleOptions.ShapeshifterDuration = Options.WarlockShiftDuration.GetFloat();
                 break;
             case CustomRoles.SerialKiller:
                 SerialKiller.ApplyGameOptions(player);
+                break;
+            case CustomRoles.Tracefinder:
+                Tracefinder.ApplyGameOptions();
                 break;
             case CustomRoles.BountyHunter:
                 BountyHunter.ApplyGameOptions();
@@ -123,8 +128,10 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Medicaler:
             case CustomRoles.Provocateur:
             case CustomRoles.Monarch:
+            case CustomRoles.Deputy:
             case CustomRoles.Counterfeiter:
             case CustomRoles.Succubus:
+            case CustomRoles.CursedSoul:
                 opt.SetVision(false);
                 break;
             case CustomRoles.Virus:
@@ -195,12 +202,26 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Pursuer:
                 opt.SetVision(true);
                 break;
-             case CustomRoles.NWitch:
-                opt.SetVision(true);
-         //       Main.NormalOptions.KillCooldown = Options.ControlCooldown.GetFloat();
-                break;
             case CustomRoles.NSerialKiller:
                 NSerialKiller.ApplyGameOptions(opt);
+                break;
+            case CustomRoles.Traitor:
+                Traitor.ApplyGameOptions(opt);
+                break;
+            case CustomRoles.NWitch:
+                NWitch.ApplyGameOptions(opt);
+                break;
+            case CustomRoles.Maverick:
+                Maverick.ApplyGameOptions(opt);
+                break;
+            case CustomRoles.Jinx:
+                Jinx.ApplyGameOptions(opt);
+                break;
+            case CustomRoles.Ritualist:
+                Ritualist.ApplyGameOptions(opt);
+                break;
+            case CustomRoles.Pickpocket:
+                Pickpocket.ApplyGameOptions(opt);
                 break;
             case CustomRoles.Juggernaut:
                 opt.SetVision(Juggernaut.HasImpostorVision.GetBool());
@@ -270,6 +291,19 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 opt.SetFloat(FloatOptionNames.CrewLightMod, Farseer.Vision.GetFloat());
                 opt.SetFloat(FloatOptionNames.ImpostorLightMod, Farseer.Vision.GetFloat());
                 break;
+            case CustomRoles.Dazzler:
+                Dazzler.ApplyGameOptions();
+                break;
+            case CustomRoles.Devourer:
+                Devourer.ApplyGameOptions();
+                break;
+            case CustomRoles.Addict:
+                AURoleOptions.EngineerCooldown = Addict.VentCooldown.GetFloat();
+                AURoleOptions.EngineerInVentMaxTime = 1;
+                break;
+            case CustomRoles.Deathpact:
+                Deathpact.ApplyGameOptions();
+                break;
         }
 
         // Ϊ�Ի��ߵ�����
@@ -295,6 +329,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 opt.SetFloat(FloatOptionNames.ImpostorLightMod, Options.GrenadierCauseVision.GetFloat());
             }
         }
+
+        Dazzler.SetDazzled(player, opt);
+        Deathpact.SetDeathpactVision(player, opt);
 
         foreach (var subRole in Main.PlayerStates[player.PlayerId].SubRoles)
         {
