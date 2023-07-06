@@ -2375,7 +2375,7 @@ class PlayerControlSetRolePatch
             {
                 roleType = RoleTypes.GuardianAngel;
             }
-            if (ghostRoles.All(kvp => kvp.Value == RoleTypes.CrewmateGhost))
+            else if (ghostRoles.All(kvp => kvp.Value == RoleTypes.CrewmateGhost))
             {
                 roleType = RoleTypes.CrewmateGhost;
             }
