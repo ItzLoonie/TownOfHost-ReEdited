@@ -2362,7 +2362,7 @@ class PlayerControlSetRolePatch
                 {
                     ghostRoles[seer] = RoleTypes.GuardianAngel;
                 }
-                if ((self && targetIsKiller) || (!seerIsKiller && (target.Is(CustomRoleTypes.Impostor) || Main.ResetCamPlayerList.Contains(target.PlayerId))))
+                else if((self && targetIsKiller) || (!seerIsKiller && (target.Is(CustomRoleTypes.Impostor) || Main.ResetCamPlayerList.Contains(target.PlayerId))))
                 {
                     ghostRoles[seer] = RoleTypes.ImpostorGhost;
                 }
