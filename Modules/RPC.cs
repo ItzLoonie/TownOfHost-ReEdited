@@ -523,6 +523,10 @@ internal class RPCHandlerPatch
             case CustomRPC.SetVultureArrow:
                 Vulture.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetSpiritcallerSpiritLimit:
+                Spiritcaller.ReceiveRPC(reader);
+                break;
+                
         }
     }
 }
