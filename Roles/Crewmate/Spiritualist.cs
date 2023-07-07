@@ -79,6 +79,12 @@ namespace TOHE.Roles.Crewmate
         {
             foreach (var spiritualist in playerIdList)
             {
+                PlayerControl player = Main.AllPlayerControls.FirstOrDefault(a => a.PlayerId == spiritualist);
+                if (!player.IsAlive())
+                {
+                    continue;
+                }
+
                 LastGhostArrowShowTime[spiritualist] = 0;
                 ShowGhostArrowUntil[spiritualist] = 0;
 
