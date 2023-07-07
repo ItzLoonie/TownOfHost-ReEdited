@@ -38,7 +38,7 @@ namespace TOHE.Roles.Crewmate
         public static void Add(byte playerId)
         {
             playerIdList.Add(playerId);
-            SpiritualistTarget = 0;
+            SpiritualistTarget = byte.MaxValue;
             LastGhostArrowShowTime.Add(playerId, 0);
             ShowGhostArrowUntil.Add(playerId, 0);
         }
@@ -108,7 +108,7 @@ namespace TOHE.Roles.Crewmate
             if (!seer.Is(CustomRoles.Spiritualist) || !seer.IsAlive()) return "";
             if (target != null && seer.PlayerId != target.PlayerId) return "";
             if (GameStates.IsMeeting) return "";
-            if (SpiritualistTarget != 0 && ShowArrow(seer.PlayerId))
+            if (SpiritualistTarget != byte.MaxValue && ShowArrow(seer.PlayerId))
             {
                 return Utils.ColorString(seer.GetRoleColor(), TargetArrow.GetArrows(seer, SpiritualistTarget)); 
             }
