@@ -125,7 +125,7 @@ class OnPlayerLeftPatch
             if (data.Character.Is(CustomRoles.Pelican))
                 Pelican.OnPelicanDied(data.Character.PlayerId);
             if (Spiritualist.SpiritualistTarget == data.Character.PlayerId)
-                Spiritualist.SpiritualistTarget = 0;
+                Spiritualist.SpiritualistTarget = byte.MaxValue;
             if (Main.PlayerStates[data.Character.PlayerId].deathReason == PlayerState.DeathReason.etc) //死因が設定されていなかったら
             {
                 Main.PlayerStates[data.Character.PlayerId].deathReason = PlayerState.DeathReason.Disconnected;
