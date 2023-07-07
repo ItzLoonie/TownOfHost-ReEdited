@@ -75,7 +75,7 @@ public static class Divinator
                 CustomRoles.Marshall or
                 CustomRoles.Counterfeiter or
                 CustomRoles.God or
-                CustomRoles.Judge or
+                CustomRoles.ParityCop or
                 CustomRoles.Observer or
                 CustomRoles.DovesOfNeace or
                 CustomRoles.Virus
@@ -122,7 +122,8 @@ public static class Divinator
                 CustomRoles.Bodyguard or
                 CustomRoles.Opportunist or
                 CustomRoles.Pelican or
-                CustomRoles.ImperiusCurse
+                CustomRoles.ImperiusCurse or
+                CustomRoles.Vulture
                 => "Weirdo",
 
                 CustomRoles.EvilGuesser or

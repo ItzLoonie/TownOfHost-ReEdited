@@ -1001,6 +1001,7 @@ public static class Options
         ParanoiaVentCooldown = FloatOptionItem.Create(8020495, "ParanoiaVentCooldown", new(0, 990, 1), 10, TabGroup.CrewmateRoles, false)
         .SetParent(CustomRoleSpawnChances[CustomRoles.Paranoia])
             .SetValueFormat(OptionFormat.Seconds);
+        ParityCop.SetupCustomOption();
         Psychic.SetupCustomOption();
         Snitch.SetupCustomOption();
         Spiritualist.SetupCustomOption();

@@ -1,6 +1,8 @@
 using AmongUs.GameOptions;
 using System.Linq;
+using TOHE.Roles.Crewmate;
 using TOHE.Roles.Neutral;
+using static UnityEngine.GraphicsBuffer;
 
 namespace TOHE;
 
@@ -108,6 +110,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Sunnyboy => CustomRoles.Scientist,
                 CustomRoles.Phantom => Options.PhantomCanVent.GetBool() ? CustomRoles.Engineer : CustomRoles.Crewmate,
                 CustomRoles.Judge => CustomRoles.Crewmate,
+                CustomRoles.ParityCop => CustomRoles.Crewmate,
                 CustomRoles.Councillor => CustomRoles.Impostor,
                 CustomRoles.Mortician => CustomRoles.Crewmate,
                 CustomRoles.Mediumshiper => CustomRoles.Crewmate,
@@ -146,6 +149,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Observer => CustomRoles.Crewmate,
                 CustomRoles.DovesOfNeace => CustomRoles.EngineerTOHE,
                 CustomRoles.Judge => CustomRoles.Crewmate,
+                CustomRoles.ParityCop => CustomRoles.Crewmate,
                 CustomRoles.Mortician => CustomRoles.Crewmate,
                 CustomRoles.Mediumshiper => CustomRoles.Crewmate,
                 CustomRoles.Glitch => CustomRoles.Crewmate,
@@ -719,6 +723,32 @@ internal static class CustomRolesHelper
     public static bool IsDesyncRole(this CustomRoles role) => role.GetDYRole() != RoleTypes.GuardianAngel;
     public static bool IsImpostorTeam(this CustomRoles role) => role.IsImpostor() || role == CustomRoles.Madmate;
     public static bool IsCrewmate(this CustomRoles role) => !role.IsImpostor() && !role.IsNeutral() && !role.IsMadmate();
+
+    public static bool IsImpostorTeamV2(this CustomRoles role) => (role.IsImpostorTeam() && role != CustomRoles.Trickster && !role.IsConverted()) || role == CustomRoles.Rascal;
+    public static bool IsNeutralTeamV2(this CustomRoles role) => (role.IsConverted() || role.IsNeutral() && role != CustomRoles.Madmate);
+
+    public static bool IsCrewmateTeamV2(this CustomRoles role) => ((!role.IsImpostorTeamV2() && !role.IsNeutralTeamV2()) || (role == CustomRoles.Trickster && !role.IsConverted()));
+     
+    public static bool IsConverted(this CustomRoles role)
+    {
+
+        return (role is CustomRoles.Charmed ||
+                role is CustomRoles.Sidekick ||
+                role is CustomRoles.Infected ||
+                role is CustomRoles.Contagious ||
+                role is CustomRoles.Lovers ||
+                ((role is CustomRoles.Egoist) && (ParityCop.ParityCheckEgoistInt() == 1)));
+    }
+    public static bool IsRevealingRole(this CustomRoles role, PlayerControl target)
+    {
+        return (((role is CustomRoles.Mayor) && (Options.MayorRevealWhenDoneTasks.GetBool()) && target.AllTasksCompleted()) ||
+             ((role is CustomRoles.SuperStar) && (Options.EveryOneKnowSuperStar.GetBool())) ||
+            ((role is CustomRoles.Marshall) && target.AllTasksCompleted()) ||
+            ((role is CustomRoles.Workaholic) && (Options.WorkaholicVisibleToEveryone.GetBool())) ||
+            ((role is CustomRoles.Doctor) && (Options.DoctorVisibleToEveryone.GetBool())) ||
+            ((role is CustomRoles.Bait) && (Options.BaitNotification).GetBool()));
+    }
+
     public static bool IsNNK(this CustomRoles role) => role.IsNeutral() && !role.IsNK();
     public static bool IsVanilla(this CustomRoles role)
     {

@@ -1208,6 +1208,7 @@ class ReportDeadBodyPatch
         Eraser.OnReportDeadBody();
         Hacker.OnReportDeadBody();
         Judge.OnReportDeadBody();
+        ParityCop.OnReportDeadBody();
     //    Councillor.OnReportDeadBody();
         Greedier.OnReportDeadBody();
         Tracker.OnReportDeadBody();

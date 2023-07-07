@@ -212,6 +212,7 @@ internal class ChangeRoleSettings
             Psychic.Init();
             Hangman.Init();
             Judge.Init();
+            ParityCop.Init();
             Councillor.Init();
             Mortician.Init();
             Mediumshiper.Init();
@@ -580,6 +581,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Judge:
                         Judge.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.ParityCop:
+                        ParityCop.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Councillor:
                         Councillor.Add(pc.PlayerId);

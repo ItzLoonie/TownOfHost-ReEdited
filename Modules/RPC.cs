@@ -833,6 +833,9 @@ internal static class RPC
             case CustomRoles.Judge:
                 Judge.Add(targetId);
                 break;
+            case CustomRoles.ParityCop:
+                ParityCop.Add(targetId);
+                break;
             case CustomRoles.Councillor:
                 Councillor.Add(targetId);
                 break;

@@ -54,6 +54,7 @@ namespace TOHE.Roles.Crewmate
             CustomRoles.Tracefinder,
             CustomRoles.Glitch,
             CustomRoles.Judge,
+            CustomRoles.ParityCop,
             CustomRoles.Mortician,
             CustomRoles.Mediumshiper,
             CustomRoles.Observer,
