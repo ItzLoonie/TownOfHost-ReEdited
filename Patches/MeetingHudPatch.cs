@@ -880,7 +880,7 @@ class MeetingHudStartPatch
                         pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Mafia), target.PlayerId.ToString()) + " " + pva.NameText.text;
                     break;
                 case CustomRoles.Retributionist:
-                    if (seer.Data.IsDead && !target.Data.IsDead)
+                    if ((seer.Data.IsDead && !target.Data.IsDead) || (Options.GuesserMode.GetBool() && Options.CrewmatesCanGuess.GetBool() && !seer.Data.IsDead))
                         pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Retributionist), target.PlayerId.ToString()) + " " + pva.NameText.text;
                     break;
                 case CustomRoles.NiceGuesser:

@@ -1416,7 +1416,7 @@ public static class Utils
                 {
                     TargetPlayerName = ColorString(GetRoleColor(CustomRoles.Mafia), target.PlayerId.ToString()) + " " + TargetPlayerName;
                 }
-                if (seer.Is(CustomRoles.Retributionist) && !seer.IsAlive() && target.IsAlive())
+                if ((seer.Is(CustomRoles.Retributionist) && !seer.IsAlive() && target.IsAlive()) || (Options.GuesserMode.GetBool() && Options.CrewmatesCanGuess.GetBool() && seer.Is(CustomRoles.Retributionist) && seer.IsAlive()))
                 {
                     TargetPlayerName = ColorString(GetRoleColor(CustomRoles.Retributionist), target.PlayerId.ToString()) + " " + TargetPlayerName;
                 }
