@@ -518,6 +518,7 @@ public enum CustomRoles
     Deathpact,
     Devourer,
     EvilDiviner,
+    Lurker,
     //Crewmate(Vanilla)
     Engineer,
     GuardianAngel,

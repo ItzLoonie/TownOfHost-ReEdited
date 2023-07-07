@@ -920,6 +920,9 @@ internal static class RPC
             case CustomRoles.Spiritualist:
                 Spiritualist.Add(targetId);
                 break;
+            case CustomRoles.Lurker:
+                Lurker.Add(targetId);
+                break;
         }
         HudManager.Instance.SetHudActive(true);
         if (PlayerControl.LocalPlayer.PlayerId == targetId) RemoveDisableDevicesPatch.UpdateDisableDevices();

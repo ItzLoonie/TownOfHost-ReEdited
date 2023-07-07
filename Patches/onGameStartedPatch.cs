@@ -241,6 +241,7 @@ internal class ChangeRoleSettings
             Traitor.Init();
             Spiritualist.Init();
             Vulture.Init();
+            Lurker.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
@@ -671,7 +672,9 @@ internal class SelectRolesPatch
                     case CustomRoles.Vulture:
                         Vulture.Add(pc.PlayerId);
                         break;
-                    
+                    case CustomRoles.Lurker:
+                        Lurker.Add(pc.PlayerId);
+                        break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())
                 {

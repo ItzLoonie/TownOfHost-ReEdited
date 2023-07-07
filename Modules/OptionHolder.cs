@@ -826,6 +826,7 @@ public static class Options
         QuickShooter.SetupCustomOption();
         Sniper.SetupCustomOption();
         Witch.SetupCustomOption(); //spellcaster
+        Lurker.SetupCustomOption();
         TextOptionItem.Create(909090_3, "RoleType.ImpSupport", TabGroup.ImpostorRoles)// SUPPORT
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 25, 25, byte.MaxValue));// SUPPORT
