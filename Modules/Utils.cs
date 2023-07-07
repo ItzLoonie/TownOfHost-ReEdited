@@ -934,7 +934,8 @@ public static class Utils
             case "绿": case "綠": case "深绿": 
             case "green": case "Green": 
             case "Зел": case "зел": 
-            case "Зелёный": case "Зеленый": case "зелёный": case "зеленый": color = 2; break;
+            case "Зелёный": case "Зеленый": case "зелёный": case "зеленый": 
+                color = 2; break;
             case "3": 
             case "粉红": 
             case "pink": case "Pink": 
