@@ -11,6 +11,7 @@ using TOHE.Modules;
 using TOHE.Roles.Crewmate;
 using UnityEngine;
 using static TOHE.Translator;
+using TOHE.Roles.Impostor;
 
 namespace TOHE;
 
@@ -44,6 +45,7 @@ internal class ChatCommands
         if (text.Length >= 4) if (text[..3] == "/up") args[0] = "/up";
         if (GuessManager.GuesserMsg(PlayerControl.LocalPlayer, text)) goto Canceled;
         if (Judge.TrialMsg(PlayerControl.LocalPlayer, text)) goto Canceled;
+        if (Councillor.MurderMsg(PlayerControl.LocalPlayer, text)) goto Canceled;
         if (Mediumshiper.MsMsg(PlayerControl.LocalPlayer, text)) goto Canceled;
         if (MafiaRevengeManager.MafiaMsgCheck(PlayerControl.LocalPlayer, text)) goto Canceled;
         if (RetributionistRevengeManager.RetributionistMsgCheck(PlayerControl.LocalPlayer, text)) goto Canceled;
@@ -593,6 +595,7 @@ internal class ChatCommands
             "分散机" => GetString("Disperser"),
             "和平之鸽" or "和平之鴿" or "和平的鸽子" or "和平" => GetString("DovesOfNeace"),
             "持槍" or "持械" or "手长" => GetString("Reach"),
+            "monarch" => GetString("Monarch"),
             _ => text,
         };
     }
@@ -704,6 +707,7 @@ internal class ChatCommands
         if (text.Length >= 3) if (text[..2] == "/r" && text[..3] != "/rn") args[0] = "/r";
         if (GuessManager.GuesserMsg(player, text)) { canceled = true; return; }
         if (Judge.TrialMsg(player, text)) { canceled = true; return; }
+        if (Councillor.MurderMsg(player, text)) { canceled = true; return; }
         if (Mediumshiper.MsMsg(player, text)) return;
         if (MafiaRevengeManager.MafiaMsgCheck(player, text)) return;
         if (RetributionistRevengeManager.RetributionistMsgCheck(player, text)) return;

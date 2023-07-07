@@ -93,6 +93,8 @@ class ExileControllerWrapUpPatch
             //判断恐怖分子胜利
             if (role == CustomRoles.Terrorist) Utils.CheckTerroristWin(exiled);
 
+            if (role == CustomRoles.Devourer) Devourer.OnDevourerDied(exiled.PlayerId);
+
             if (CustomWinnerHolder.WinnerTeam != CustomWinner.Terrorist) Main.PlayerStates[exiled.PlayerId].SetDead();
         }
         if (AmongUsClient.Instance.AmHost && Main.IsFixedCooldown)
@@ -118,6 +120,12 @@ class ExileControllerWrapUpPatch
                 CustomRoles.Greedier or
                 CustomRoles.DovesOfNeace or
                 CustomRoles.QuickShooter or
+                CustomRoles.Addict or
+                CustomRoles.ShapeshifterTOHE or
+                CustomRoles.Wildling or
+                CustomRoles.Deathpact or
+                CustomRoles.Dazzler or
+                CustomRoles.Devourer or
                 CustomRoles.Bomber
                 ) pc.RpcResetAbilityCooldown();
         }

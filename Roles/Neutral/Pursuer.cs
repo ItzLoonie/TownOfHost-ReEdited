@@ -80,7 +80,7 @@ public static class Pursuer
         notActiveList.Add(pc.PlayerId);
         pc.SetKillCooldownV2();
         pc.RPCPlayCustomSound("Bet");
-        Utils.NotifyRoles(pc);
+        Utils.NotifyRoles(SpecifySeer: pc);
         Logger.Info($"赝品商 {pc.GetRealName()} 将赝品卖给了 {target.GetRealName()}", "Pursuer");
     }
     public static bool OnClientMurder(PlayerControl pc)

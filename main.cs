@@ -35,7 +35,7 @@ public class Main : BasePlugin
     public const string PluginGuid = "com.karped1em.townofhostedited";
     public const string PluginVersion = "2.4.2";
     public const int PluginCreate = 3;
-    public const bool Canary = true;
+    public const bool Canary = false;
 
     public static readonly bool ShowQQButton = true;
     public static readonly string QQInviteUrl = "https://jq.qq.com/?_wv=1027&k=2RpigaN6";
@@ -149,6 +149,7 @@ public class Main : BasePlugin
     public static Dictionary<byte, long> GrenadierBlinding = new();
     public static Dictionary<byte, long> MadGrenadierBlinding = new();
     public static Dictionary<byte, int> CursedWolfSpellCount = new();
+    public static Dictionary<byte, int> JinxSpellCount = new();
     public static int AliveImpostorCount;
     public static bool isCursed;
     public static Dictionary<byte, bool> CheckShapeshift = new();
@@ -263,7 +264,7 @@ public class Main : BasePlugin
             roleColors = new Dictionary<CustomRoles, string>()
             {
                 //バニラ役職
-                {CustomRoles.Crewmate, "#ffffff"},
+                {CustomRoles.Crewmate, "#8cffff"},
                 {CustomRoles.Engineer, "#8cffff"},
                 {CustomRoles.Scientist, "#8cffff"},
                 {CustomRoles.GuardianAngel, "#ffffff"},
@@ -280,7 +281,7 @@ public class Main : BasePlugin
                 {CustomRoles.Mayor, "#204d42"},
                 {CustomRoles.Paranoia, "#c993f5"},
                 {CustomRoles.Psychic, "#6F698C"},
-                {CustomRoles.Sheriff, "#f8cd46"},
+                {CustomRoles.Sheriff, "#ffb347"},
                 {CustomRoles.SuperStar, "#f6f657"},
                 {CustomRoles.CyberStar, "#ee4a55" },
                 {CustomRoles.SpeedBooster, "#00ffff"},
@@ -295,7 +296,7 @@ public class Main : BasePlugin
                 {CustomRoles.Bodyguard, "#185abd"},
                 {CustomRoles.Counterfeiter, "#BE29EC"},
                 {CustomRoles.Grenadier, "#3c4a16"},
-                {CustomRoles.Medicaler, "#00a4ff"},
+                {CustomRoles.Medicaler, "#00ff97"},
                 {CustomRoles.Divinator, "#882c83"},
                 {CustomRoles.Glitch, "#dcdcdc"},
                 {CustomRoles.Judge, "#f8d85a"},
@@ -308,6 +309,12 @@ public class Main : BasePlugin
                 {CustomRoles.Tracker, "#3CB371"},
                 {CustomRoles.Merchant, "#D27D2D"},
                 {CustomRoles.Retributionist, "#228B22"},
+                {CustomRoles.Deputy, "#df9026"},
+                {CustomRoles.Guardian, "#2E8B57"},
+                {CustomRoles.Addict, "#008000"},
+                {CustomRoles.Tracefinder, "#0066CC"},
+                {CustomRoles.Oracle, "#6666FF"},
+                {CustomRoles.Spiritualist, "#669999"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Jester, "#ec62a5"},
@@ -330,7 +337,7 @@ public class Main : BasePlugin
                 {CustomRoles.Collector, "#9d8892"},
                 {CustomRoles.Provocateur, "#74ba43"},
                 {CustomRoles.Sunnyboy, "#ff9902"},
-                {CustomRoles.Poisoner, "#ed2f91"},
+                {CustomRoles.Poisoner, "#478800"},
                 {CustomRoles.NWitch, "#BF5FFF"},
                 {CustomRoles.Totocalcio, "#ff9409"},
                 {CustomRoles.Succubus, "#cf6acd"},
@@ -346,6 +353,13 @@ public class Main : BasePlugin
                 {CustomRoles.Farseer, "#BA55D3"},
                 {CustomRoles.Pursuer, "#617218"},
                 {CustomRoles.Phantom, "#662962"},
+                {CustomRoles.Jinx, "#ed2f91"},
+                {CustomRoles.Maverick, "#781717"},
+                {CustomRoles.CursedSoul, "#531269"},
+                {CustomRoles.Ritualist, "#663399"},
+                {CustomRoles.Pickpocket, "#47008B"},
+                {CustomRoles.Traitor, "#BA2E05"},
+                {CustomRoles.Vulture, "#556B2F"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -369,7 +383,7 @@ public class Main : BasePlugin
                 {CustomRoles.TicketsStealer, "#ff1919"},
                 {CustomRoles.DualPersonality, "#3a648f"},
                 {CustomRoles.Mimic, "#ff1919"},
-                {CustomRoles.Guesser, "#ffb347"},
+                {CustomRoles.Guesser, "#f8cd46"},
                 {CustomRoles.Necroview, "#663399"},
                 {CustomRoles.Reach, "#74ba43"},
                 {CustomRoles.Charmed, "#cf6acd"},
@@ -382,6 +396,10 @@ public class Main : BasePlugin
                 {CustomRoles.Unreportable, "#FF6347"},
                 {CustomRoles.Rogue, "#696969"},
                 {CustomRoles.Lucky, "#b8d7a3"},
+                {CustomRoles.DoubleShot, "#19fa8d"},
+     //           {CustomRoles.Reflective, "#FFD700"},
+                {CustomRoles.Rascal, "#990000"},
+                {CustomRoles.Soulless, "#531269"},
                 //SoloKombat
                 {CustomRoles.KB_Normal, "#f55252"}
             };
@@ -491,9 +509,15 @@ public enum CustomRoles
     Trickster,
     Swooper,
     Crewpostor,
+    Parasite,
     Disperser,
     Camouflager,
     Saboteur,
+    Councillor,
+    Dazzler,
+    Deathpact,
+    Devourer,
+    EvilDiviner,
     Twister,
     //Crewmate(Vanilla)
     Engineer,
@@ -541,6 +565,12 @@ public enum CustomRoles
     Tracker,
     Merchant,
     Retributionist,
+    Deputy,
+    Guardian,
+    Addict,
+    Tracefinder,
+    Oracle,
+    Spiritualist,
     //Neutral
     Arsonist,
     HexMaster,
@@ -559,7 +589,6 @@ public enum CustomRoles
     Revolutionist,
     NSerialKiller,
     Juggernaut,
-    Parasite,
     Infectious,
     FFF,
     Konan,
@@ -576,6 +605,13 @@ public enum CustomRoles
     Virus,
     Pursuer,
     Phantom,
+    Jinx,
+    Maverick,
+    CursedSoul,
+    Ritualist,
+    Pickpocket,
+    Traitor,
+    Vulture,
 
     //SoloKombat
     KB_Normal,
@@ -617,7 +653,11 @@ public enum CustomRoles
     Contagious,
     Unreportable,
     Rogue,
-    Lucky
+    Lucky,
+    DoubleShot,
+   // Reflective,
+    Rascal,
+    Soulless,
 }
 //WinData
 public enum CustomWinner
@@ -659,6 +699,12 @@ public enum CustomWinner
     Virus = CustomRoles.Virus,
     Rogue = CustomRoles.Rogue,
     Phantom = CustomRoles.Phantom,
+    Jinx = CustomRoles.Jinx,
+    CursedSoul = CustomRoles.CursedSoul,
+    Ritualist = CustomRoles.Ritualist,
+    Pickpocket = CustomRoles.Pickpocket,
+    Traitor = CustomRoles.Traitor,
+    Vulture = CustomRoles.Vulture,
 }
 public enum AdditionalWinners
 {
@@ -676,6 +722,7 @@ public enum AdditionalWinners
     Sidekick = CustomRoles.Sidekick,
     Pursuer = CustomRoles.Pursuer,
     Phantom = CustomRoles.Phantom,
+    Maverick = CustomRoles.Maverick,
 }
 public enum SuffixModes
 {

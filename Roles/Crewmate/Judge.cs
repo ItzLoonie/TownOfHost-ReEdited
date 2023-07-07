@@ -120,6 +120,7 @@ public static class Judge
                 else if (pc.Is(CustomRoles.Sidekick)) judgeSuicide = false;
                 else if (pc.Is(CustomRoles.Infected)) judgeSuicide = false;
                 else if (pc.Is(CustomRoles.Contagious)) judgeSuicide = false;
+                else if (target.Is(CustomRoles.Rascal)) judgeSuicide = false;
                 else if (target.Is(CustomRoles.Madmate) && CanTrialMadmate.GetBool()) judgeSuicide = false;
                 else if (target.Is(CustomRoles.Charmed) && CanTrialCharmed.GetBool()) judgeSuicide = false;
                 else if (target.GetCustomRole().IsCK() && CanTrialCrewKilling.GetBool()) judgeSuicide = false;
@@ -146,9 +147,9 @@ public static class Judge
                     //死者检查
                     Utils.AfterPlayerDeathTasks(dp, true);
 
-                    Utils.NotifyRoles(isForMeeting: true, NoCache: true);
+                    Utils.NotifyRoles(isForMeeting: false, NoCache: true);
 
-                    new LateTask(() => { Utils.SendMessage(string.Format(GetString("TrialKill"), Name), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Judge), GetString("TrialKillTitle"))); }, 0.6f, "Guess Msg");
+                    new LateTask(() => { Utils.SendMessage(string.Format(GetString("TrialKill"), Name), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.NiceGuesser), GetString("TrialKillTitle"))); }, 0.6f, "Guess Msg");
 
                 }, 0.2f, "Trial Kill");
             }
@@ -252,7 +253,7 @@ public static class Judge
             GameObject template = pva.Buttons.transform.Find("CancelButton").gameObject;
             GameObject targetBox = UnityEngine.Object.Instantiate(template, pva.transform);
             targetBox.name = "ShootButton";
-            targetBox.transform.localPosition = new Vector3(-0.95f, 0.03f, -1.31f);
+            targetBox.transform.localPosition = new Vector3(-0.35f, 0.03f, -1.31f);
             SpriteRenderer renderer = targetBox.GetComponent<SpriteRenderer>();
             renderer.sprite = CustomButton.Get("JudgeIcon");
             PassiveButton button = targetBox.GetComponent<PassiveButton>();

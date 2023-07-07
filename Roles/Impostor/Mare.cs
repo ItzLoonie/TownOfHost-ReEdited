@@ -10,15 +10,15 @@ public static class Mare
     public static List<byte> playerIdList = new();
 
     private static OptionItem KillCooldownInLightsOut;
-    private static OptionItem SpeedInLightsOut;
+  //  private static OptionItem SpeedInLightsOut;
     private static bool idAccelerated = false;  //加速済みかフラグ
 
 
     public static void SetupCustomOption()
     {
         SetupRoleOptions(Id, TabGroup.ImpostorRoles, CustomRoles.Mare);
-        SpeedInLightsOut = FloatOptionItem.Create(Id + 10, "MareAddSpeedInLightsOut", new(0.1f, 0.5f, 0.1f), 0.3f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Mare])
-            .SetValueFormat(OptionFormat.Multiplier);
+     //   SpeedInLightsOut = FloatOptionItem.Create(Id + 10, "MareAddSpeedInLightsOut", new(0.1f, 0.5f, 0.1f), 0.3f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Mare])
+      //      .SetValueFormat(OptionFormat.Multiplier);
         KillCooldownInLightsOut = FloatOptionItem.Create(Id + 11, "MareKillCooldownInLightsOut", new(0f, 180f, 2.5f), 15f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Mare])
             .SetValueFormat(OptionFormat.Seconds);
     }
@@ -38,12 +38,12 @@ public static class Mare
         if (Utils.IsActive(SystemTypes.Electrical) && !idAccelerated)
         { //停電中で加速済みでない場合
             idAccelerated = true;
-            Main.AllPlayerSpeed[playerId] += SpeedInLightsOut.GetFloat();//Mareの速度を加算
+        //    Main.AllPlayerSpeed[playerId] += SpeedInLightsOut.GetFloat();//Mareの速度を加算
         }
         else if (!Utils.IsActive(SystemTypes.Electrical) && idAccelerated)
         { //停電中ではなく加速済みになっている場合
             idAccelerated = false;
-            Main.AllPlayerSpeed[playerId] -= SpeedInLightsOut.GetFloat();//Mareの速度を減算
+          //  Main.AllPlayerSpeed[playerId] -= SpeedInLightsOut.GetFloat();//Mareの速度を減算
         }
     }
 

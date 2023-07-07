@@ -64,8 +64,10 @@ enum CustomRPC
     SetGangsterRecruitLimit,
     SetGhostPlayer,
     SetDarkHiderKillCount,
+    SetEvilDiviner,
     SetGreedierOE,
     SetCursedWolfSpellCount,
+    SetJinxSpellCount,
     SetCollectorVotes,
     SetQuickShooterShotLimit,
     SetEraseLimit,
@@ -76,8 +78,10 @@ enum CustomRPC
     SetHackerHackLimit,
     SyncPsychicRedList,
     SetMorticianArrow,
+    SetTracefinderArrow,
     Judge,
     Guess,
+    MeetingKill,
     MafiaRevenge,
     RetributionistRevenge,
     SetSwooperTimer,
@@ -86,17 +90,21 @@ enum CustomRPC
     SyncTotocalcioTargetAndTimes,
     SetSuccubusCharmLimit,
     SetInfectiousBiteLimit,
+    SetCursedSoulCurseLimit,
     SetMonarchKnightLimit,
+    SetDeputyHandcuffLimit,
     SetVirusInfectLimit,
     SetRevealedPlayer,
     SetCurrentRevealTarget,
     SetJackalRecruitLimit,
     SetBloodhoundArrow,
+    SetVultureArrow,
 
     //SoloKombat
     SyncKBPlayer,
     SyncKBBackCountdown,
     SyncKBNameNotify,
+    SetRitualist,
 }
 public enum Sounds
 {
@@ -111,7 +119,7 @@ public enum Sounds
 internal class RPCHandlerPatch
 {
     public static bool TrustedRpc(byte id)
-    => (CustomRPC)id is CustomRPC.VersionCheck or CustomRPC.RequestRetryVersionCheck or CustomRPC.AntiBlackout or CustomRPC.Judge or CustomRPC.Guess or CustomRPC.MafiaRevenge or CustomRPC.RetributionistRevenge;
+    => (CustomRPC)id is CustomRPC.VersionCheck or CustomRPC.RequestRetryVersionCheck or CustomRPC.AntiBlackout or CustomRPC.Judge or CustomRPC.MeetingKill or CustomRPC.Guess or CustomRPC.MafiaRevenge or CustomRPC.RetributionistRevenge;
     public static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader)
     {
         var rpcType = (RpcCalls)callId;
@@ -290,7 +298,7 @@ internal class RPCHandlerPatch
                 byte FarseerId = reader.ReadByte();
                 byte RevealId = reader.ReadByte();
                 bool revealed = reader.ReadBoolean();
-                Main.isDraw[(FarseerId, RevealId)] = revealed;
+                Main.isRevealed[(FarseerId, RevealId)] = revealed;
                 break;
             case CustomRPC.SetNameColorData:
                 NameColorManager.ReceiveRPC(reader);
@@ -389,6 +397,14 @@ internal class RPCHandlerPatch
                 else
                     Main.CursedWolfSpellCount.Add(CursedWolfId, Options.GuardSpellTimes.GetInt());
                 break;
+            case CustomRPC.SetJinxSpellCount:
+                byte JinxId = reader.ReadByte();
+                int JinxGuardNum = reader.ReadInt32();
+                if (Main.JinxSpellCount.ContainsKey(JinxId))
+                    Main.JinxSpellCount[JinxId] = JinxGuardNum;
+                else
+                    Main.JinxSpellCount.Add(JinxId, Jinx.JinxSpellTimes.GetInt());
+                break;
             case CustomRPC.SetCollectorVotes:
                 Collector.ReceiveRPC(reader);
                 break;
@@ -439,11 +455,17 @@ internal class RPCHandlerPatch
             case CustomRPC.SetMorticianArrow:
                 Mortician.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetTracefinderArrow:
+                Tracefinder.ReceiveRPC(reader);
+                break;
             case CustomRPC.SyncNameNotify:
                 NameNotifyManager.ReceiveRPC(reader);
                 break;
             case CustomRPC.Judge:
                 Judge.ReceiveRPC(reader, __instance);
+                break;
+            case CustomRPC.MeetingKill:
+                Councillor.ReceiveRPC(reader, __instance);
                 break;
             case CustomRPC.Guess:
                 GuessManager.ReceiveRPC(reader, __instance);
@@ -469,11 +491,23 @@ internal class RPCHandlerPatch
             case CustomRPC.SetSuccubusCharmLimit:
                 Succubus.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetCursedSoulCurseLimit:
+                CursedSoul.ReceiveRPC(reader);
+                break;
             case CustomRPC.SetInfectiousBiteLimit:
                 Infectious.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetMonarchKnightLimit:
                 Monarch.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetEvilDiviner:
+                EvilDiviner.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetRitualist:
+                Ritualist.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetDeputyHandcuffLimit:
+                Deputy.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetVirusInfectLimit:
                 Virus.ReceiveRPC(reader);
@@ -484,6 +518,9 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetBloodhoundArrow:
                 Bloodhound.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetVultureArrow:
+                Vulture.ReceiveRPC(reader);
                 break;
         }
     }
@@ -680,6 +717,9 @@ internal static class RPC
             case CustomRoles.Executioner:
                 Executioner.Add(targetId);
                 break;
+            case CustomRoles.Farseer:
+                Farseer.Add(targetId);
+                break;
             case CustomRoles.Lawyer:
                 Lawyer.Add(targetId);
                 break;
@@ -735,11 +775,17 @@ internal static class RPC
             case CustomRoles.Gangster:
                 Gangster.Add(targetId);
                 break;
+            case CustomRoles.EvilDiviner:
+                EvilDiviner.Add(targetId);
+                break;
             case CustomRoles.Medicaler:
                 Medicaler.Add(targetId);
                 break;
             case CustomRoles.Divinator:
                 Divinator.Add(targetId);
+                break;
+            case CustomRoles.Oracle:
+                Oracle.Add(targetId);
                 break;
             case CustomRoles.Gamer:
                 Gamer.Add(targetId);
@@ -758,6 +804,10 @@ internal static class RPC
                 break;
             case CustomRoles.CursedWolf:
                 Main.CursedWolfSpellCount[targetId] = Options.GuardSpellTimes.GetInt();
+                break;
+            case CustomRoles.Jinx:
+                Main.JinxSpellCount[targetId] = Jinx.JinxSpellTimes.GetInt();
+                Jinx.Add(targetId);
                 break;
             case CustomRoles.Eraser:
                 Eraser.Add(targetId);
@@ -783,8 +833,14 @@ internal static class RPC
             case CustomRoles.Judge:
                 Judge.Add(targetId);
                 break;
+            case CustomRoles.Councillor:
+                Councillor.Add(targetId);
+                break;
             case CustomRoles.Mortician:
                 Mortician.Add(targetId);
+                break;
+            case CustomRoles.Tracefinder:
+                Tracefinder.Add(targetId);
                 break;
             case CustomRoles.Mediumshiper:
                 Mediumshiper.Add(targetId);
@@ -807,6 +863,9 @@ internal static class RPC
             case CustomRoles.Succubus:
                 Succubus.Add(targetId);
                 break;
+            case CustomRoles.CursedSoul:
+                CursedSoul.Add(targetId);
+                break;
             case CustomRoles.DovesOfNeace:
                 Main.DovesOfNeaceNumOfUsed.Add(targetId, Options.DovesOfNeaceMaxOfUseage.GetInt());
                 break;
@@ -816,11 +875,17 @@ internal static class RPC
             case CustomRoles.Monarch:
                 Monarch.Add(targetId);
                 break;
+            case CustomRoles.Deputy:
+                Deputy.Add(targetId);
+                break;
             case CustomRoles.Virus:
                 Virus.Add(targetId);
                 break;
             case CustomRoles.Bloodhound:
                 Bloodhound.Add(targetId); 
+                break;
+            case CustomRoles.Vulture:
+                Vulture.Add(targetId); 
                 break;
             case CustomRoles.Tracker:
                 Tracker.Add(targetId);
@@ -830,6 +895,30 @@ internal static class RPC
                 break;
             case CustomRoles.NSerialKiller:
                 NSerialKiller.Add(targetId);
+                break;
+            case CustomRoles.Traitor:
+                Traitor.Add(targetId);
+                break;
+            case CustomRoles.NWitch:
+                NWitch.Add(targetId);
+                break;
+            case CustomRoles.Maverick:
+                Maverick.Add(targetId);
+                break;
+            case CustomRoles.Dazzler:
+                Dazzler.Add(targetId);
+                break;
+            case CustomRoles.Addict:
+                Addict.Add(targetId);
+                break;
+            case CustomRoles.Deathpact:
+                Deathpact.Add(targetId);
+                break;
+            case CustomRoles.Devourer:
+                Devourer.Add(targetId);
+                break;
+            case CustomRoles.Spiritualist:
+                Spiritualist.Add(targetId);
                 break;
         }
         HudManager.Instance.SetHudActive(true);
@@ -922,6 +1011,13 @@ internal static class RPC
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetCursedWolfSpellCount, SendOption.Reliable, -1);
         writer.Write(playerId);
         writer.Write(Main.CursedWolfSpellCount[playerId]);
+        AmongUsClient.Instance.FinishRpcImmediately(writer);
+    }
+    public static void SendRPCJinxSpellCount(byte playerId)
+    {
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetJinxSpellCount, SendOption.Reliable, -1);
+        writer.Write(playerId);
+        writer.Write(Main.JinxSpellCount[playerId]);
         AmongUsClient.Instance.FinishRpcImmediately(writer);
     }
     public static void ResetCurrentDousingTarget(byte arsonistId) => SetCurrentDousingTarget(arsonistId, 255);

@@ -92,14 +92,14 @@ public static class Gamer
         {
             PlayerHealth.Remove(target.PlayerId);
             killer.RpcMurderPlayerV3(target);
-            Utils.NotifyRoles(killer);
+            Utils.NotifyRoles(SpecifySeer: killer);
             return false;
         }
 
         PlayerHealth[target.PlayerId] -= Damage.GetInt();
         SendRPC(target.PlayerId);
         RPC.PlaySoundRPC(killer.PlayerId, Sounds.KillSound);
-        Utils.NotifyRoles(killer);
+        Utils.NotifyRoles(SpecifySeer: killer);
 
         Logger.Info($"{killer.GetNameWithRole()} 对玩家 {target.GetNameWithRole()} 造成了 {Damage.GetInt()} 点伤害", "Gamer");
         return true;
@@ -111,7 +111,7 @@ public static class Gamer
         if (GamerHealth[target.PlayerId] - SelfDamage.GetInt() < 1)
         {
             GamerHealth.Remove(target.PlayerId);
-            Utils.NotifyRoles(target);
+            Utils.NotifyRoles(SpecifySeer: target);
             return true;
         }
 
@@ -121,7 +121,7 @@ public static class Gamer
         SendRPC(target.PlayerId);
         RPC.PlaySoundRPC(target.PlayerId, Sounds.KillSound);
         killer.RpcGuardAndKill(target);
-        Utils.NotifyRoles(target);
+        Utils.NotifyRoles(SpecifySeer: target);
 
         Logger.Info($"{killer.GetNameWithRole()} 对玩家 {target.GetNameWithRole()} 造成了 {SelfDamage.GetInt()} 点伤害", "Gamer");
         return false;
