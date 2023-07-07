@@ -69,6 +69,9 @@ namespace TOHE.Roles.Crewmate
                 return;
             }
 
+            if (SpiritualistTarget != byte.MaxValue)
+                RemoveTarget();
+
             SpiritualistTarget = target.PlayerId;
         }
 
@@ -113,6 +116,16 @@ namespace TOHE.Roles.Crewmate
                 return Utils.ColorString(seer.GetRoleColor(), TargetArrow.GetArrows(seer, SpiritualistTarget)); 
             }
             return "";
+        }
+
+        public static void RemoveTarget()
+        {
+            foreach (var spiritualist in playerIdList)
+            {
+                TargetArrow.Remove(spiritualist, SpiritualistTarget);
+            }
+
+            SpiritualistTarget = byte.MaxValue;
         }
     }
 }
