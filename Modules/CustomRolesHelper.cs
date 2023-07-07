@@ -613,7 +613,18 @@ internal static class CustomRolesHelper
             CustomRoles.Virus or
             CustomRoles.Succubus;
     }
-    
+    public static bool IsEvilAddOns(this CustomRoles role)
+    {
+        return role is
+            CustomRoles.Madmate or
+            CustomRoles.Egoist or
+            CustomRoles.Charmed or
+            CustomRoles.Infected or
+            CustomRoles.Contagious or
+            CustomRoles.Rogue or
+            CustomRoles.Rascal or
+            CustomRoles.Soulless;
+    }
     public static bool IsMadmate(this CustomRoles role)
     {
         return role is

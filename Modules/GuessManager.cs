@@ -352,14 +352,14 @@ public static class GuessManager
                     }
                 }
 
-                if ((pc.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoleTypes.Impostor) && !Options.ImpCanGuessImp.GetBool()) && Options.GuesserMode.GetBool())
+                if ((pc.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoleTypes.Impostor) && !target.GetCustomRole().IsEvilAddOns() && !Options.ImpCanGuessImp.GetBool()) && Options.GuesserMode.GetBool())
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessImpRole"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessImpRole"));
                     return true;
 
                 }
-                if ((pc.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoleTypes.Crewmate) && !target.Is(CustomRoles.Madmate) && !target.Is(CustomRoles.Egoist) && !Options.CrewCanGuessCrew.GetBool()) && Options.GuesserMode.GetBool())
+                if ((pc.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoleTypes.Crewmate) && !target.GetCustomRole().IsEvilAddOns() && !Options.CrewCanGuessCrew.GetBool()) && Options.GuesserMode.GetBool())
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessCrewRole"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessCrewRole"));
