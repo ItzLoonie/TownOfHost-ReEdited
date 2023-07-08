@@ -82,7 +82,7 @@ public static class ParityCop
         int operate = 0; // 1:ID 2:猜测
         msg = msg.ToLower().TrimStart().TrimEnd();
         if (CheckCommond(ref msg, "id|guesslist|gl编号|玩家编号|玩家id|id列表|玩家列表|列表|所有id|全部id")) operate = 1;
-        else if (CheckCommond(ref msg, "shoot|guess|bet|st|gs|bt|猜|赌|sp|jj|tl|trial|审判|判|审|cp", false)) operate = 2;
+        else if (CheckCommond(ref msg, "compare|cp|cmp|比较", false)) operate = 2;
         else return false;
 
         if (!pc.IsAlive())
@@ -99,7 +99,7 @@ public static class ParityCop
         else if (operate == 2)
         {
 
-            if (TryHideMsg.GetBool()) GuessManager.TryHideMsg();
+            if (TryHideMsg.GetBool()) TryHideMsgForCompare();
             else if (pc.AmOwner) Utils.SendMessage(originMsg, 255, pc.GetRealName());
 
             if (!MsgToPlayerAndRole(msg, out byte targetId1, out byte targetId2, out string error))
@@ -212,7 +212,6 @@ public static class ParityCop
             id2 = Convert.ToByte(num2);
         }
 
-        //判断选择的玩家是否合理
         PlayerControl target1 = Utils.GetPlayerById(id1);
         PlayerControl target2 = Utils.GetPlayerById(id2);
         if (target1 == null || target1.Data.IsDead || target2 == null || target2.Data.IsDead)
@@ -243,5 +242,40 @@ public static class ParityCop
             }
         }
         return false;
+    }
+    public static void TryHideMsgForCompare()
+    {
+        ChatUpdatePatch.DoBlockChat = true;
+        List<CustomRoles> roles = Enum.GetValues(typeof(CustomRoles)).Cast<CustomRoles>().Where(x => x is not CustomRoles.NotAssigned and not CustomRoles.KB_Normal).ToList();
+        var rd = IRandom.Instance;
+        string msg;
+        string[] command = new string[] { "cp", "cmp", "compare", "比较" };
+        for (int i = 0; i < 20; i++)
+        {
+            msg = "/";
+            if (rd.Next(1, 100) < 20)
+            {
+                msg += "id";
+            }
+            else
+            {
+                msg += command[rd.Next(0, command.Length - 1)];
+                msg += " ";
+                msg += rd.Next(0, 15).ToString();
+                msg +=  " ";
+                msg += rd.Next(0, 15).ToString();
+
+            }
+            var player = Main.AllAlivePlayerControls.ToArray()[rd.Next(0, Main.AllAlivePlayerControls.Count())];
+            DestroyableSingleton<HudManager>.Instance.Chat.AddChat(player, msg);
+            var writer = CustomRpcSender.Create("MessagesToSend", SendOption.None);
+            writer.StartMessage(-1);
+            writer.StartRpc(player.NetId, (byte)RpcCalls.SendChat)
+                .Write(msg)
+                .EndRpc();
+            writer.EndMessage();
+            writer.SendMessage();
+        }
+        ChatUpdatePatch.DoBlockChat = false;
     }
 }

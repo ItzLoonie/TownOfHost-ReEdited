@@ -139,10 +139,14 @@ public static class Vulture
     {
         BodyReportCount[pc.PlayerId]++;
         AbilityLeftInRound[pc.PlayerId]--;
-        foreach (var apc in playerIdList)
+        Logger.Msg($"target.object {target.Object}, is null? {target.Object == null}","VultureNull");
+        if (target.Object != null)
         {
-            LocateArrow.Remove(apc, target.Object.transform.position);
-            SendRPC(apc, false);
+            foreach (var apc in playerIdList)
+            {
+                LocateArrow.Remove(apc, target.Object.transform.position);
+                SendRPC(apc, false);
+            }
         }
 
         pc.Notify(GetString("VultureBodyReported"));
