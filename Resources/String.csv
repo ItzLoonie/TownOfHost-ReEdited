@@ -851,6 +851,7 @@
 "AutoDisplayLastResult","结束后自动显示最终结果","Auto Display Last Result","Отображать результат последней игры в чате","結束後自動顯示最終結果","结束后自动显示最终结果"
 "EnableYTPlan","启用创作者保护计划","Enable Youtuber Plan","Активировать Ютуб План","启用创作者保护计划",""
 "KickLowLevelPlayer","踢出没有达到指定等级的玩家","Kick players whose level is lower than","Выгнать игроков с уровнем ниже","踢出沒有達到指定等級的玩家","踢出没有达到指定等级的玩家"
+"ApplyAllowList"," ","Turn on Allow list"," "," "," "
 "AutoKickStart","踢出催开始的人","Kick players that say start","Кикнуть игрока который пишет start (Только англ)","踢出催開始的人","踢出催开始的人"
 "AutoKickStartTimes","踢出前警告次数","Number of warnings before kick","Количество предупреждений до кика","踢出前警告次數","踢出前警告次数"
 "AutoKickStartAsBan","踢出时封禁该玩家","Block a player after they're kicked","Заблокировать игрока после его кика","踢出時封禁該玩家","踢出时封禁该玩家"
@@ -1368,13 +1369,47 @@
 
 "## Moderation for Auto-Hosters"
 "ApplyModeratorList","","Apply Moderator List","Применить список модераторов","",""
+"AllowSayCommand","","Allow moderators to use /say command"," ","",""
+
+"ApplyReminderMsg","","Turn On Reminder Message","","",""
+"TimeForReminder","","Time interval between each reminder message.","","",""
+"ReminderMessage","【 ★A Gentle Reminder ★ 】","【 ★ A Gentle Reminder ★ 】","【 ★ A Gentle Reminder ★ 】","【 ★ A Gentle Reminder ★ 】","【 ★ A Gentle Reminder ★ 】"
+
 "KickCommandDisabled","","The kick command is currently disabled.","Команда кика в настоящее время отключена","",""
 "KickCommandNoAccess","","You do not have access to the kick command.","У вас нет доступа к команде кика","",""
-"KickCommandInvalidID","","Invalid player ID specified.\nPlease use '/kick [playerID]' to kick a player.","Указан неверный идентификатор игрока.\nИспользуйте '/kick [playerID]', чтобы кикнуть игрока.","",""
+"KickCommandInvalidID","","Invalid player ID specified.\nPlease use '/kick [playerID] [reseaon]' to kick a player.\nExample :- /kick 5 not following rules","Указан неверный идентификатор игрока.\nИспользуйте '/kick [playerID] [reason]', чтобы кикнуть игрока.","",""
 "KickCommandKickHost","","You are not permitted to kick the host.","Вам не разрешено кикать Хоста.","",""
 "KickCommandKickMod","","You are not permitted to kick other moderators.","Вам не разрешено кикать других модераторов.","",""
-"KickCommandKicked","","was kicked from the game.","был кикнут из игры.","",""
+"KickCommandKicked","","was kicked from the game by ","","",""
 "KickCommandKickedRole","","Their role was","Их роль была","",""
+
+"BanCommandDisabled","","The ban command is currently disabled.","","",""
+"BanCommandNoAccess","","You do not have access to the ban command.","","",""
+"BanCommandInvalidID","","Invalid player ID specified.\nPlease use '/ban [playerID] [reason]' to ban a player.\nExample :- /ban 5 not following rules ","","",""
+"BanCommandBanHost","","You are not permitted to ban the host.","","",""
+"BanCommandBanMod","","You are not permitted to ban other moderators.","","",""
+"BanCommandBanned","","was banned from the game by ","","",""
+"BanCommandBannedRole","","Their role was","","",""
+"BanCommandNoReason","","No reason specified.\nPlease use '/ban [playerID] [reason]\nExample :- /ban 5 not following rules","","",""
+
+"ColorCommandDisabled","","The modcolor command is currently disabled.","","",""
+"ColorCommandNoAccess","","You do not have access to the modcolor command.","","",""
+"ColorCommandNoLobby","","You can only use modcolor command in Lobby when the game hasn't started.","","",""
+"ColorInvalidHexCode","","Invalid hexcode specified.\nPlease use '/modcolor [hexcode]' to change color of MOD♥.\nExample :- /modcolor 8BBEE0","","",""
+
+"midCommandDisabled","","The mid command is currently disabled.","","",""
+"midCommandNoAccess","","You do not have access to the mid command."," ","",""
+
+"WarnCommandDisabled","","The warn command is currently disabled."," ","",""
+"WarnCommandNoAccess","","You do not have access to the warn command."," ","",""
+"WarnCommandInvalidID","","Invalid player ID specified.\nPlease use '/warn [playerID] [reason]' to warn a player. \nExample :- /warn 5 lava chatting"," ","",""
+"WarnCommandWarnHost","","You are not permitted to warn the host."," ","",""
+"WarnCommandWarnMod","","You are not permitted to warn other moderators."," ","",""
+"WarnCommandWarned","","has been warned. There will be no more warnings given and appropriate action will be taken \n "," ","",""
+
+"SayCommandDisabled","","The say command is currently disabled.","","",""
+"MessageFromModerator","","【 ★ Moderator Message ★ 】","","",""
+
 
 "## 死因 / Death Reasons"
 "DeathReason.Kill","被杀","Kill","Убит","被殺","被杀"

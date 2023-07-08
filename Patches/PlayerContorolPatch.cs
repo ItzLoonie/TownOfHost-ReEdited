@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -1260,11 +1261,56 @@ class FixedUpdatePatch
     private static StringBuilder Suffix = new(120);
     private static int LevelKickBufferTime = 10;
     private static Dictionary<byte, int> BufferTime = new();
+    private static bool reminderSent = false;
+    private static long lastReminderTime = 0;
+    private static bool CheckAllowList(string friendcode)
+    {
+        var allowListFilePath = @"./TOHE_DATA/AllowList.txt";
+        if (!File.Exists(allowListFilePath)) File.Create(allowListFilePath).Close();
+        var friendcodes = File.ReadAllLines(allowListFilePath);
+        return friendcodes.Contains(friendcode);
+    }
+    private static void SendReminderMsg()
+    {
+        if (!GameStates.IsLobby) return;
+        if (Options.ApplyReminderMsg.GetBool() && GameStates.IsLobby)
+        { 
+            string reminderFile = @"./TOHE_DATA/Reminder.txt";
+            if (!File.Exists(reminderFile)) File.Create(reminderFile).Close();
+            long now = Utils.GetTimeStamp();
+
+            if (now - lastReminderTime >= (long)Options.TimeForReminder.GetInt()) 
+            { 
+                reminderSent = false;
+                Logger.Msg("Reminder set to false", "reminderMsg");
+            }   
+            
+            if (!reminderSent && ((now - lastReminderTime) % (long)Options.TimeForReminder.GetInt()) == 0)
+            {
+                string reminderMsg = File.ReadAllText(reminderFile);
+                if (reminderMsg.Trim() == "") reminderMsg = "This is TOHE Lobby. Please refrain from saying start and type /t rules to check all the rules.\n||discord.gg/tohe||";
+                Utils.SendMessage(reminderMsg, title: $"<color=#B7DDB4>{GetString("ReminderMessage")}</color>");
+                Logger.Info("reminder message sent", "reminderMsg");
+                lastReminderTime = now;
+                reminderSent = true;
+                return;
+            }
+        }
+        else
+        {
+            Logger.Msg($"apply {Options.ApplyReminderMsg}, gamestar {GameStates.IsLobby}","reminderMsg");
+            reminderSent = false;
+            lastReminderTime = 0;
+            return;
+        }
+
+    }
     public static void Postfix(PlayerControl __instance)
     {
         var player = __instance;
 
         if (!GameStates.IsModHost) return;
+        SendReminderMsg();
 
         bool lowLoad = false;
         if (Options.LowLoadMode.GetBool())
@@ -1297,21 +1343,28 @@ class FixedUpdatePatch
                 Logger.Info($"{__instance.GetNameWithRole()}:通報可能になったため通報処理を行います", "ReportDeadbody");
                 __instance.ReportDeadBody(info);
             }
-
-            //踢出低等级的人
-            if (!lowLoad && GameStates.IsLobby && !player.AmOwner && Options.KickLowLevelPlayer.GetInt() != 0 && (
-                (player.Data.PlayerLevel != 0 && player.Data.PlayerLevel < Options.KickLowLevelPlayer.GetInt()) ||
-                player.Data.FriendCode == ""
-                ))
+            bool PlayerinAllowList = false;
+            if (Options.ApplyAllowList.GetBool())
+                PlayerinAllowList = CheckAllowList(player.FriendCode);
+            else
+                PlayerinAllowList = false;
+            if (!PlayerinAllowList)
             {
-                LevelKickBufferTime--;
-                if (LevelKickBufferTime <= 0)
+                //踢出低等级的人
+                if (!lowLoad && GameStates.IsLobby && !player.AmOwner && Options.KickLowLevelPlayer.GetInt() != 0 && (
+                    (player.Data.PlayerLevel != 0 && player.Data.PlayerLevel < Options.KickLowLevelPlayer.GetInt()) ||
+                    player.Data.FriendCode == ""
+                    ))
                 {
-                    LevelKickBufferTime = 20;
-                    AmongUsClient.Instance.KickPlayer(player.GetClientId(), false);
-                    string msg = string.Format(GetString("KickBecauseLowLevel"), player.GetRealName().RemoveHtmlTags());
-                    Logger.SendInGame(msg);
-                    Logger.Info(msg, "LowLevel Kick");
+                    LevelKickBufferTime--;
+                    if (LevelKickBufferTime <= 0)
+                    {
+                        LevelKickBufferTime = 20;
+                        AmongUsClient.Instance.KickPlayer(player.GetClientId(), false);
+                        string msg = string.Format(GetString("KickBecauseLowLevel"), player.GetRealName().RemoveHtmlTags());
+                        Logger.SendInGame(msg);
+                        Logger.Info(msg, "LowLevel Kick");
+                    }
                 }
             }
 

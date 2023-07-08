@@ -97,14 +97,18 @@ public static class Vulture
         foreach (var apc in playerIdList)
         {
             AbilityLeftInRound[apc] = MaxEaten.GetInt();
-            LastReport[apc] = Utils.GetTimeStamp();
-            new LateTask(() =>
+            var player = Utils.GetPlayerById(apc);
+            if (player.IsAlive())
             {
-                Utils.GetPlayerById(apc).RpcGuardAndKill(Utils.GetPlayerById(apc));
-                Utils.GetPlayerById(apc).Notify(GetString("VultureCooldownUp"));
-                return;
-            }, Vulture.VultureReportCD.GetFloat(), "Vulture CD");
-            SendRPC(apc, false);
+                LastReport[apc] = Utils.GetTimeStamp();
+                new LateTask(() =>
+                {
+                    Utils.GetPlayerById(apc).RpcGuardAndKill(Utils.GetPlayerById(apc));
+                    Utils.GetPlayerById(apc).Notify(GetString("VultureCooldownUp"));
+                    return;
+                }, Vulture.VultureReportCD.GetFloat(), "Vulture CD");
+            }
+            SendRPC(apc, false);            
         }
     }
 

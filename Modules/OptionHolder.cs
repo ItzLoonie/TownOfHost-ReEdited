@@ -576,8 +576,13 @@ public static class Options
     public static OptionItem ApplyDenyNameList;
     public static OptionItem KickPlayerFriendCodeNotExist;
     public static OptionItem KickLowLevelPlayer;
+    public static OptionItem ApplyAllowList;
     public static OptionItem ApplyBanList;
     public static OptionItem ApplyModeratorList;
+    public static OptionItem AllowSayCommand;
+    public static OptionItem ApplyReminderMsg;
+    public static OptionItem TimeForReminder;
+
     public static OptionItem AutoWarnStopWords;
 
     public static OptionItem DIYGameSettings;
@@ -1494,11 +1499,18 @@ public static class Options
         KickLowLevelPlayer = IntegerOptionItem.Create(6090074, "KickLowLevelPlayer", new(0, 100, 1), 0, TabGroup.SystemSettings, false)
             .SetValueFormat(OptionFormat.Level)
             .SetHeader(true);
+        ApplyAllowList = BooleanOptionItem.Create(6090075, "ApplyAllowList", false, TabGroup.SystemSettings, false);
+
         KickAndroidPlayer = BooleanOptionItem.Create(6090071, "KickAndroidPlayer", false, TabGroup.SystemSettings, false);
         KickPlayerFriendCodeNotExist = BooleanOptionItem.Create(1_000_101, "KickPlayerFriendCodeNotExist", false, TabGroup.SystemSettings, true);
         ApplyDenyNameList = BooleanOptionItem.Create(1_000_100, "ApplyDenyNameList", true, TabGroup.SystemSettings, true);
         ApplyBanList = BooleanOptionItem.Create(1_000_110, "ApplyBanList", true, TabGroup.SystemSettings, true);
         ApplyModeratorList = BooleanOptionItem.Create(6090072, "ApplyModeratorList", false, TabGroup.SystemSettings, false);
+        AllowSayCommand = BooleanOptionItem.Create(6090072_1, "AllowSayCommand", false, TabGroup.SystemSettings, false)
+            .SetParent(ApplyModeratorList);
+        ApplyReminderMsg = BooleanOptionItem.Create(6090073, "ApplyReminderMsg", false, TabGroup.SystemSettings, false);
+        TimeForReminder = IntegerOptionItem.Create(6090073_1,"TimeForReminder",new(20,600,5),30,TabGroup.SystemSettings, false)
+            .SetParent (ApplyReminderMsg);
         AutoKickStart = BooleanOptionItem.Create(1_000_010, "AutoKickStart", false, TabGroup.SystemSettings, false);
         AutoKickStartTimes = IntegerOptionItem.Create(1_000_024, "AutoKickStartTimes", new(0, 99, 1), 1, TabGroup.SystemSettings, false)
         .SetParent(AutoKickStart)
