@@ -87,5 +87,5 @@ internal static class QuickShooter
         ShotLimit[killer.PlayerId] = Math.Max(ShotLimit[killer.PlayerId], 0);
         SendRPC(killer.PlayerId);
     }
-    public static string GetShotLimit(byte playerId) => Utils.ColorString(ShotLimit[playerId] > 0 ? Utils.GetRoleColor(CustomRoles.QuickShooter) : Color.gray, ShotLimit.TryGetValue(playerId, out var shotLimit) ? $"({shotLimit})" : "Invalid");
+    public static string GetShotLimit(byte playerId) => ShotLimit.ContainsKey(playerId) && Utils.ColorString(ShotLimit[playerId] > 0 ? Utils.GetRoleColor(CustomRoles.QuickShooter) : Color.gray, ShotLimit.TryGetValue(playerId, out var shotLimit) ? $"({shotLimit})" : "Invalid");
 }
