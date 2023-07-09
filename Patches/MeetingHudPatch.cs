@@ -87,6 +87,9 @@ class CheckForEndVotingPatch
                             case CustomRoles.Divinator:
                                 Divinator.OnVote(pc, voteTarget);
                                 break;
+                            case CustomRoles.Oracle:
+                                Oracle.OnVote(pc, voteTarget);
+                                break;
                             case CustomRoles.Eraser:
                                 Eraser.OnVote(pc, voteTarget);
                                 break;
@@ -165,6 +168,8 @@ class CheckForEndVotingPatch
                 if (CheckRole(ps.TargetPlayerId, CustomRoles.Eraser) && Eraser.HideVote.GetBool()) continue;
 
                 if (CheckRole(ps.TargetPlayerId, CustomRoles.Tracker) && Tracker.HideVote.GetBool()) continue;
+
+                if (CheckRole(ps.TargetPlayerId, CustomRoles.Oracle) && Oracle.HideVote.GetBool()) continue;
 
                 //主动叛变模式下自票无效
                 if (ps.TargetPlayerId == ps.VotedFor && Options.MadmateSpawnMode.GetInt() == 2) continue;
@@ -315,12 +320,12 @@ class CheckForEndVotingPatch
         var coloredRole = Utils.GetDisplayRoleName(exileId, true);
         if (Options.ConfirmEgoistOnEject.GetBool() && player.Is(CustomRoles.Egoist))
             coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Egoist), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
-        if (Options.ConfirmRogueOnEject.GetBool() && player.Is(CustomRoles.Rogue))
-            coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Rogue), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
         if (Options.ConfirmSidekickOnEject.GetBool() && player.Is(CustomRoles.Sidekick))
             coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Sidekick), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
         if (Options.ConfirmLoversOnEject.GetBool() && player.Is(CustomRoles.Lovers))
             coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lovers), GetRoleString("Temp.Blank") + coloredRole.RemoveHtmlTags());
+        if (Options.RascalAppearAsMadmate.GetBool() && player.Is(CustomRoles.Rascal))
+            coloredRole = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Madmate), GetRoleString("Mad-") + coloredRole.RemoveHtmlTags());
         var name = "";
         int impnum = 0;
         int neutralnum = 0;
@@ -525,6 +530,8 @@ static class ExtendedMeetingHud
                 //窃票者附加票数
                 if (CheckForEndVotingPatch.CheckRole(ps.TargetPlayerId, CustomRoles.TicketsStealer))
                     VoteNum += (int)(Main.AllPlayerControls.Count(x => x.GetRealKiller()?.PlayerId == ps.TargetPlayerId) * Options.TicketsPerKill.GetFloat());
+                if (CheckForEndVotingPatch.CheckRole(ps.TargetPlayerId, CustomRoles.Pickpocket))
+                    VoteNum += (int)(Main.AllPlayerControls.Count(x => x.GetRealKiller()?.PlayerId == ps.TargetPlayerId) * Pickpocket.VotesPerKill.GetFloat());
 
                 // 主动叛变模式下自票无效
                 if (ps.TargetPlayerId == ps.VotedFor && Options.MadmateSpawnMode.GetInt() == 2) VoteNum = 0;
@@ -689,6 +696,7 @@ class MeetingHudStartPatch
             roleTextMeeting.enabled =
                 pc.AmOwner || //対象がLocalPlayer
                 (Main.VisibleTasksCount && PlayerControl.LocalPlayer.Data.IsDead && Options.GhostCanSeeOtherRoles.GetBool()) || //LocalPlayerが死亡していて幽霊が他人の役職を見れるとき
+                (PlayerControl.LocalPlayer.Is(CustomRoles.Mimic) && Main.VisibleTasksCount && pc.Data.IsDead && Options.MimicCanSeeDeadRoles.GetBool()) || //LocalPlayerが死亡していて幽霊が他人の役職を見れるとき
                 (pc.Is(CustomRoles.Lovers) && PlayerControl.LocalPlayer.Is(CustomRoles.Lovers) && Options.LoverKnowRoles.GetBool() && Amor.IsLoverPair(pc, PlayerControl.LocalPlayer)) ||
                 (pc.Is(CustomRoleTypes.Impostor) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Impostor) && Options.ImpKnowAlliesRole.GetBool()) ||
                 (pc.Is(CustomRoleTypes.Impostor) && PlayerControl.LocalPlayer.Is(CustomRoles.Madmate) && Options.MadmateKnowWhosImp.GetBool()) ||
@@ -696,14 +704,20 @@ class MeetingHudStartPatch
                 (pc.Is(CustomRoleTypes.Impostor) && PlayerControl.LocalPlayer.Is(CustomRoles.Crewpostor) && Options.AlliesKnowCrewpostor.GetBool()) ||
                 (pc.Is(CustomRoles.Crewpostor) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Impostor) && Options.CrewpostorKnowsAllies.GetBool()) ||
                 (pc.Is(CustomRoles.Madmate) && PlayerControl.LocalPlayer.Is(CustomRoles.Madmate) && Options.MadmateKnowWhosMadmate.GetBool()) ||
+                (pc.Is(CustomRoles.Rogue) && PlayerControl.LocalPlayer.Is(CustomRoles.Rogue) && Options.RogueKnowEachOther.GetBool() && Options.RogueKnowEachOtherRoles.GetBool()) ||
                 (pc.Is(CustomRoles.Jackal) && PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick)) ||
                 (pc.Is(CustomRoles.Sidekick) && PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick) && Options.SidekickKnowOtherSidekick.GetBool() && Options.SidekickKnowOtherSidekickRole.GetBool()) ||
                 (pc.Is(CustomRoles.Sidekick) && PlayerControl.LocalPlayer.Is(CustomRoles.Jackal)) ||
                 (pc.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) ||
+                (pc.Is(CustomRoles.Doctor) && Options.DoctorVisibleToEveryone.GetBool()) ||
+                (pc.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && pc.AllTasksCompleted()) ||
                 (Totocalcio.KnowRole(PlayerControl.LocalPlayer, pc)) ||
+                (EvilDiviner.IsShowTargetRole(PlayerControl.LocalPlayer, pc)) ||
+                (Ritualist.IsShowTargetRole(PlayerControl.LocalPlayer, pc)) ||
                 (Lawyer.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (Executioner.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (Succubus.KnowRole(PlayerControl.LocalPlayer, pc)) ||
+                (CursedSoul.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (Infectious.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (Virus.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (Amor.KnowRole(PlayerControl.LocalPlayer, pc)) ||
@@ -777,10 +791,10 @@ class MeetingHudStartPatch
             // Guesser Mode //
             if (Options.GuesserMode.GetBool())
             {
-                if (Options.CrewmatesCanGuess.GetBool() && seer.GetCustomRole().IsCrewmate())
+                if (Options.CrewmatesCanGuess.GetBool() && seer.GetCustomRole().IsCrewmate() && !seer.Is(CustomRoles.Judge) && !seer.Is(CustomRoles.Retributionist))
                     if (!seer.Data.IsDead && !target.Data.IsDead)
                     pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + pva.NameText.text;
-                if (Options.ImpostorsCanGuess.GetBool() && seer.GetCustomRole().IsImpostor())
+                if (Options.ImpostorsCanGuess.GetBool() && seer.GetCustomRole().IsImpostor() && !seer.Is(CustomRoles.Councillor))
                     if (!seer.Data.IsDead && !target.Data.IsDead)
                     pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + pva.NameText.text;
                 if (Options.NeutralKillersCanGuess.GetBool() && seer.GetCustomRole().IsNK())
@@ -842,6 +856,9 @@ class MeetingHudStartPatch
                 case CustomRoles.Infectious:
                 case CustomRoles.Virus:
                 case CustomRoles.Succubus:
+                case CustomRoles.Pickpocket:
+                case CustomRoles.Ritualist:
+                case CustomRoles.Traitor:
                     sb.Append(Snitch.GetWarningMark(seer, target));
                     break;
                 case CustomRoles.Jackal:
@@ -849,10 +866,10 @@ class MeetingHudStartPatch
                     sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jackal), " ♥")); //変更対象にSnitchマークをつける
                     sb.Append(Snitch.GetWarningMark(seer, target));
                     break;
-                case CustomRoles.Monarch:
+       /*         case CustomRoles.Monarch:
                     if (target.Is(CustomRoles.Knighted))
                     sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Knighted), " 亗")); //変更対象にSnitchマークをつける
-                    break;
+                    break; */
                 case CustomRoles.EvilTracker:
                     sb.Append(EvilTracker.GetTargetMark(seer, target));
                     break;
@@ -881,6 +898,11 @@ class MeetingHudStartPatch
                 case CustomRoles.Judge:
                     if (!seer.Data.IsDead && !target.Data.IsDead)
                         pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Judge), target.PlayerId.ToString()) + " " + pva.NameText.text;
+
+                    break;
+                case CustomRoles.Councillor:
+                    if (!seer.Data.IsDead && !target.Data.IsDead)
+                        pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Councillor), target.PlayerId.ToString()) + " " + pva.NameText.text;
 
                     break;
                 case CustomRoles.Medicaler:
@@ -1009,7 +1031,7 @@ class MeetingHudUpdatePatch
             __instance.playerStates.Where(x => (!Main.PlayerStates.TryGetValue(x.TargetPlayerId, out var ps) || ps.IsDead) && !x.AmDead).Do(x => x.SetDead(x.DidReport, true));
 
             //若玩家死亡则销毁技能按钮
-            if (myRole is CustomRoles.NiceGuesser or CustomRoles.EvilGuesser or CustomRoles.Judge or CustomRoles.Guesser && !PlayerControl.LocalPlayer.IsAlive())
+            if (myRole is CustomRoles.NiceGuesser or CustomRoles.EvilGuesser or CustomRoles.Judge or CustomRoles.Councillor or CustomRoles.Guesser && !PlayerControl.LocalPlayer.IsAlive())
                 ClearShootButton(__instance, true);
 
             //若黑手党死亡则创建技能按钮

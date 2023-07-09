@@ -91,6 +91,8 @@ public class PlayerState
             SubRoles.Remove(CustomRoles.Infected);
             SubRoles.Remove(CustomRoles.Contagious);
             SubRoles.Remove(CustomRoles.Rogue);
+            SubRoles.Remove(CustomRoles.Rascal);
+            SubRoles.Remove(CustomRoles.Soulless);
         }
         if (role == CustomRoles.Charmed)
         {
@@ -106,6 +108,8 @@ public class PlayerState
             SubRoles.Remove(CustomRoles.Infected);
             SubRoles.Remove(CustomRoles.Contagious);
             SubRoles.Remove(CustomRoles.Rogue);
+            SubRoles.Remove(CustomRoles.Rascal);
+            SubRoles.Remove(CustomRoles.Soulless);
         }
         if (role == CustomRoles.Sidekick)
         {
@@ -121,6 +125,8 @@ public class PlayerState
             SubRoles.Remove(CustomRoles.Infected);
             SubRoles.Remove(CustomRoles.Contagious);
             SubRoles.Remove(CustomRoles.Rogue);
+            SubRoles.Remove(CustomRoles.Rascal);
+            SubRoles.Remove(CustomRoles.Soulless);
         }
         if (role == CustomRoles.Infected)
         {
@@ -130,6 +136,8 @@ public class PlayerState
             SubRoles.Remove(CustomRoles.Charmed);
             SubRoles.Remove(CustomRoles.Rogue);
             SubRoles.Remove(CustomRoles.Contagious);
+            SubRoles.Remove(CustomRoles.Rascal);
+            SubRoles.Remove(CustomRoles.Soulless);
         }
         if (role == CustomRoles.Contagious)
         {
@@ -145,6 +153,8 @@ public class PlayerState
             SubRoles.Remove(CustomRoles.Rogue);
             SubRoles.Remove(CustomRoles.Charmed);
             SubRoles.Remove(CustomRoles.Infected);
+            SubRoles.Remove(CustomRoles.Rascal);
+            SubRoles.Remove(CustomRoles.Soulless);
         }
         if (role == CustomRoles.Rogue)
         {
@@ -154,6 +164,19 @@ public class PlayerState
             SubRoles.Remove(CustomRoles.Charmed);
             SubRoles.Remove(CustomRoles.Infected);
             SubRoles.Remove(CustomRoles.Contagious);
+            SubRoles.Remove(CustomRoles.Rascal);
+            SubRoles.Remove(CustomRoles.Soulless);
+        }
+        if (role == CustomRoles.Soulless)
+        {
+            countTypes = CountTypes.OutOfGame;
+            SubRoles.Remove(CustomRoles.Madmate);
+            SubRoles.Remove(CustomRoles.Sidekick);
+            SubRoles.Remove(CustomRoles.Charmed);
+            SubRoles.Remove(CustomRoles.Infected);
+            SubRoles.Remove(CustomRoles.Contagious);
+            SubRoles.Remove(CustomRoles.Rascal);
+            SubRoles.Remove(CustomRoles.Rogue);
         }
     }
     public void RemoveSubRole(CustomRoles role)
@@ -211,6 +234,7 @@ public class PlayerState
         LossOfHead,
         Trialed,
         Infected,
+        Jinx,
 
         etc = -1
     }

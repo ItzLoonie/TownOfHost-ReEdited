@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using static TOHE.Translator;
+using Object = UnityEngine.Object;
 
 namespace TOHE;
 
