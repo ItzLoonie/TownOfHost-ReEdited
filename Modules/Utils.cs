@@ -1380,7 +1380,7 @@ public static class Utils
                         (seer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Sidekick)) ||
                         (seer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Jackal))||
                         (target.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) ||
-                        (target.Is(CustomRoles.Doctor) && !target.Is(CustomRoles.Madmate) && Options.DoctorVisibleToEveryone.GetBool()) ||
+                        (target.Is(CustomRoles.Doctor) && !target.GetCustomRole().IsEvilAddons() && Options.DoctorVisibleToEveryone.GetBool()) ||
                         (target.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && target.AllTasksCompleted()) ||
                         (Totocalcio.KnowRole(seer, target)) ||
                         (Lawyer.KnowRole(seer, target)) ||
