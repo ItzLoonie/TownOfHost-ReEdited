@@ -715,7 +715,7 @@ class MeetingHudStartPatch
                 (pc.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) ||
                 (pc.Is(CustomRoles.Doctor) && !pc.GetCustomRole().IsEvilAddons() && Options.DoctorVisibleToEveryone.GetBool()) ||
                 (pc.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && pc.GetPlayerTaskState().IsTaskFinished) ||
-                (pc.Is(CustomRoles.Marshall) && pc.GetPlayerTaskState().IsTaskFinished) ||
+                (pc.Is(CustomRoles.Marshall) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Crewmate) && pc.GetPlayerTaskState().IsTaskFinished) ||
                 (Totocalcio.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (EvilDiviner.IsShowTargetRole(PlayerControl.LocalPlayer, pc)) ||
                 (Ritualist.IsShowTargetRole(PlayerControl.LocalPlayer, pc)) ||
