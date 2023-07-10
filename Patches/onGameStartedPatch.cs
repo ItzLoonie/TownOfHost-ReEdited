@@ -62,6 +62,7 @@ internal class ChangeRoleSettings
             Main.BoobyTrapBody = new();
             Main.KillerOfBoobyTrapBody = new();
             Main.CleanerBodies = new();
+            Main.MedusaBodies = new();
             Main.InfectedBodies = new();
             Main.VirusNotify = new();
 
@@ -177,6 +178,7 @@ internal class ChangeRoleSettings
             Executioner.Init();
             Lawyer.Init();
             Jackal.Init();
+            Sidekick.Init();
             Sheriff.Init();
             SwordsMan.Init();
             EvilTracker.Init();
@@ -241,6 +243,12 @@ internal class ChangeRoleSettings
             Traitor.Init();
             Spiritualist.Init();
             Vulture.Init();
+            Chameleon.Init();
+            Wildling.Init();
+            Morphling.Init();
+            ParityCop.Init(); // *giggle* party cop
+            Baker.Init();
+
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
@@ -472,8 +480,13 @@ internal class SelectRolesPatch
                         Lawyer.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Jackal:
-                 //   case CustomRoles.Sidekick:
                         Jackal.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Sidekick:
+                        Sidekick.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Baker:
+                        Baker.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Poisoner:
                         Poisoner.Add(pc.PlayerId);
@@ -602,6 +615,9 @@ internal class SelectRolesPatch
                     case CustomRoles.Wraith:
                         Wraith.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.Chameleon:
+                        Chameleon.Add(pc.PlayerId);
+                        break;
                     case CustomRoles.BloodKnight:
                         BloodKnight.Add(pc.PlayerId);
                         break;
@@ -662,6 +678,9 @@ internal class SelectRolesPatch
                     case CustomRoles.Deathpact:
                         Deathpact.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.Morphling:
+                        Morphling.Add(pc.PlayerId);
+                        break;
                     case CustomRoles.Devourer:
                         Devourer.Add(pc.PlayerId);
                         break;
@@ -670,6 +689,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Vulture:
                         Vulture.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.ParityCop:
+                        ParityCop.Add(pc.PlayerId);
                         break;
                     
                 }
@@ -723,7 +745,7 @@ internal class SelectRolesPatch
             }
 
             // ResetCamが必要なプレイヤーのリストにクラス化が済んでいない役職のプレイヤーを追加
-            Main.ResetCamPlayerList.AddRange(Main.AllPlayerControls.Where(p => p.GetCustomRole() is CustomRoles.Arsonist or CustomRoles.NWitch or CustomRoles.Revolutionist or CustomRoles.Farseer or CustomRoles.KB_Normal).Select(p => p.PlayerId));
+            Main.ResetCamPlayerList.AddRange(Main.AllPlayerControls.Where(p => p.GetCustomRole() is CustomRoles.Arsonist or CustomRoles.NWitch or CustomRoles.Revolutionist or CustomRoles.Farseer or CustomRoles.Sidekick or CustomRoles.KB_Normal).Select(p => p.PlayerId));
             Utils.CountAlivePlayers(true);
             Utils.SyncAllSettings();
             SetColorPatch.IsAntiGlitchDisabled = false;
