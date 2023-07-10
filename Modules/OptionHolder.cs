@@ -1220,7 +1220,7 @@ public static class Options
         Traitor.SetupCustomOption();
         Virus.SetupCustomOption();
         Wraith.SetupCustomOption();
-
+        Spiritcaller.SetupCustomOption();
 
 
 

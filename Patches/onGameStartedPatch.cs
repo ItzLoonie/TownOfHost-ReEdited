@@ -249,7 +249,7 @@ internal class ChangeRoleSettings
             Morphling.Init();
             ParityCop.Init(); // *giggle* party cop
             Baker.Init();
-
+            Spiritcaller.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
@@ -694,7 +694,9 @@ internal class SelectRolesPatch
                     case CustomRoles.ParityCop:
                         ParityCop.Add(pc.PlayerId);
                         break;
-                    
+                    case CustomRoles.Spiritcaller:
+                        Spiritcaller.Add(pc.PlayerId);
+                        break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())
                 {

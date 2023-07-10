@@ -7,6 +7,7 @@ using AmongUs.GameOptions;
 using HarmonyLib;
 using Hazel;
 using InnerNet;
+using MS.Internal.Xml.XPath;
 using TOHE.Modules;
 using TOHE.Roles.AddOns.Crewmate;
 using TOHE.Roles.Crewmate;
@@ -24,6 +25,22 @@ class CheckProtectPatch
     {
         if (!AmongUsClient.Instance.AmHost) return false;
         Logger.Info("CheckProtect発生: " + __instance.GetNameWithRole() + "=>" + target.GetNameWithRole(), "CheckProtect");
+
+        if (__instance.Is(CustomRoles.EvilSpirit))
+        {
+            if (target.Is(CustomRoles.Spiritcaller))
+            {
+                Spiritcaller.ProtectSpiritcaller();
+            }
+            else
+            {
+                Spiritcaller.HauntPlayer(target);
+            }
+
+            __instance.RpcResetAbilityCooldown();
+            return true;
+        }
+
         if (__instance.Is(CustomRoles.Sheriff))
         {
             if (__instance.Data.IsDead)
@@ -353,11 +370,9 @@ class CheckMurderPatch
         if (Merchant.OnClientMurder(killer, target)) return false;
 
 
-        // Don't infect when Shielded
-        if (killer.Is(CustomRoles.Virus))
-        {
-            Virus.OnCheckMurder(killer, target);
-        }
+        if (killer.Is(CustomRoles.Virus)) Virus.OnCheckMurder(killer, target);
+        else if (killer.Is(CustomRoles.Spiritcaller)) Spiritcaller.OnCheckMurder(target);
+
         // Consigliere
         if (killer.Is(CustomRoles.EvilDiviner))
         {
@@ -579,6 +594,14 @@ class CheckMurderPatch
                     killer.RpcGuardAndKill(target);
                     target.RpcGuardAndKill();
                     target.Notify(GetString("BKOffsetKill"));
+                    return false;
+                }
+                break;
+            case CustomRoles.Spiritcaller:
+                if (Spiritcaller.InProtect(target))
+                {
+                    killer.RpcGuardAndKill(target);
+                    target.RpcGuardAndKill();
                     return false;
                 }
                 break;
@@ -1573,6 +1596,7 @@ class FixedUpdatePatch
                 Wraith.OnFixedUpdate(player);
                 Chameleon.OnFixedUpdate(player);
                 BloodKnight.OnFixedUpdate(player);
+                Spiritcaller.OnFixedUpdate(player);
 
                 if (GameStates.IsInTask && player.IsAlive() && Options.LadderDeath.GetBool()) FallFromLadder.FixedUpdate(player);
 
@@ -2391,7 +2415,11 @@ class PlayerControlSetRolePatch
             {
                 var self = seer.PlayerId == target.PlayerId;
                 var seerIsKiller = seer.Is(CustomRoleTypes.Impostor) || Main.ResetCamPlayerList.Contains(seer.PlayerId);
-                if ((self && targetIsKiller) || (!seerIsKiller && (target.Is(CustomRoleTypes.Impostor) || Main.ResetCamPlayerList.Contains(target.PlayerId))))
+                if (target.Is(CustomRoles.EvilSpirit))
+                {
+                    ghostRoles[seer] = RoleTypes.GuardianAngel;
+                }
+                else if((self && targetIsKiller) || (!seerIsKiller && (target.Is(CustomRoleTypes.Impostor) || Main.ResetCamPlayerList.Contains(target.PlayerId))))
                 {
                     ghostRoles[seer] = RoleTypes.ImpostorGhost;
                 }
@@ -2400,7 +2428,11 @@ class PlayerControlSetRolePatch
                     ghostRoles[seer] = RoleTypes.CrewmateGhost;
                 }
             }
-            if (ghostRoles.All(kvp => kvp.Value == RoleTypes.CrewmateGhost))
+            if (target.Is(CustomRoles.EvilSpirit))
+            {
+                roleType = RoleTypes.GuardianAngel;
+            }
+            else if (ghostRoles.All(kvp => kvp.Value == RoleTypes.CrewmateGhost))
             {
                 roleType = RoleTypes.CrewmateGhost;
             }

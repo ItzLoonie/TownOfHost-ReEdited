@@ -366,6 +366,8 @@ public class Main : BasePlugin
                 {CustomRoles.Medusa, "#9900CC"},
                 {CustomRoles.Baker, "#b58428"},
                 {CustomRoles.Famine, "#cb4d4d"},
+                {CustomRoles.Spiritcaller, "#003366"},
+                {CustomRoles.EvilSpirit, "#003366"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -631,7 +633,8 @@ public enum CustomRoles
     Sidekick,
     Baker,
     Famine,
-
+    Spiritcaller,
+    
     //SoloKombat
     KB_Normal,
 
@@ -680,6 +683,7 @@ public enum CustomRoles
     Lazy,
     Autopsy,
     Pessimist,
+    EvilSpirit
 }
 //WinData
 public enum CustomWinner
@@ -729,6 +733,7 @@ public enum CustomWinner
     Vulture = CustomRoles.Vulture,
     Medusa = CustomRoles.Medusa,
     Famine = CustomRoles.Famine,
+    Spiritcaller = CustomRoles.Spiritcaller
 }
 public enum AdditionalWinners
 {
