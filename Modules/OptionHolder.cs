@@ -1266,12 +1266,12 @@ public static class Options
         TrapperBlockMoveTime = FloatOptionItem.Create(20810, "TrapperBlockMoveTime", new(1f, 180f, 1f), 5f, TabGroup.Addons, false)
         .SetParent(CustomRoleSpawnChances[CustomRoles.Trapper])
             .SetValueFormat(OptionFormat.Seconds);
-        SetupAdtRoleOptions(6050677, CustomRoles.DoubleShot, canSetNum: false, canSetChance: true); // Double Shot is designed only for 1 player for the whole game
+        SetupAdtRoleOptions(6050655, CustomRoles.DoubleShot, canSetNum: true);
         ImpCanBeDoubleShot = BooleanOptionItem.Create(6050700, "ImpCanBeDoubleShot", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.DoubleShot]);
-        CrewCanBeDoubleShot = BooleanOptionItem.Create(6050701, "CrewCanBeDoubleShot", true, TabGroup.Addons, false)
+        CrewCanBeDoubleShot = BooleanOptionItem.Create(6050702, "CrewCanBeDoubleShot", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.DoubleShot]);
-        NeutralCanBeDoubleShot = BooleanOptionItem.Create(6050702, "NeutralCanBeDoubleShot", true, TabGroup.Addons, false)
+        NeutralCanBeDoubleShot = BooleanOptionItem.Create(6050704, "NeutralCanBeDoubleShot", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.DoubleShot]);
         SetupAdtRoleOptions(6055320, CustomRoles.Gravestone, canSetNum: true);
         ImpCanBeGravestone = BooleanOptionItem.Create(6055323, "ImpCanBeGravestone", true, TabGroup.Addons, false)

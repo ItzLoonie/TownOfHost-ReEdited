@@ -927,24 +927,195 @@ public static class Utils
         try { color = int.Parse(text); } catch { color = -1; }
         switch (text)
         {
-            case "0": case "红": case "紅": case "red": color = 0; break;
-            case "1": case "蓝": case "藍": case "深蓝": case "blue": color = 1; break;
-            case "2": case "绿": case "綠": case "深绿": case "green": color = 2; break;
-            case "3": case "粉红": case "pink": color = 3; break;
-            case "4": case "橘": case "orange": color = 4; break;
-            case "5": case "黄": case "黃": case "yellow": color = 5; break;
-            case "6": case "黑": case "black": color = 6; break;
-            case "7": case "白": case "white": color = 7; break;
-            case "8": case "紫": case "purple": color = 8; break;
-            case "9": case "棕": case "brown": color = 9; break;
-            case "10": case "青": case "cyan": color = 10; break;
-            case "11": case "黄绿": case "黃綠": case "浅绿": case "lime": color = 11; break;
-            case "12": case "红褐": case "紅褐": case "深红": case "maroon": color = 12; break;
-            case "13": case "玫红": case "玫紅": case "浅粉": case "rose": color = 13; break;
-            case "14": case "焦黄": case "焦黃": case "淡黄": case "banana": color = 14; break;
-            case "15": case "灰": case "gray": color = 15; break;
-            case "16": case "茶": case "tan": color = 16; break;
-            case "17": case "珊瑚": case "coral": color = 17; break;
+            case "0":
+            case "红":
+            case "紅":
+            case "red":
+            case "Red":
+            case "крас":
+            case "Крас":
+            case "красн":
+            case "Красн":
+            case "красный":
+            case "Красный":
+                color = 0; break;
+            case "1":
+            case "蓝":
+            case "藍":
+            case "深蓝":
+            case "blue":
+            case "Blue":
+            case "син":
+            case "Син":
+            case "синий":
+            case "Синий":
+                color = 1; break;
+            case "2":
+            case "绿":
+            case "綠":
+            case "深绿":
+            case "green":
+            case "Green":
+            case "Зел":
+            case "зел":
+            case "Зелёный":
+            case "Зеленый":
+            case "зелёный":
+            case "зеленый":
+                color = 2; break;
+            case "3":
+            case "粉红":
+            case "pink":
+            case "Pink":
+            case "Роз":
+            case "роз":
+            case "Розовый":
+            case "розовый":
+                color = 3; break;
+            case "4":
+            case "橘":
+            case "orange":
+            case "Orange":
+            case "оранж":
+            case "Оранж":
+            case "оранжевый":
+            case "Оранжевый":
+                color = 4; break;
+            case "5":
+            case "黄":
+            case "黃":
+            case "yellow":
+            case "Yellow":
+            case "Жёлт":
+            case "Желт":
+            case "жёлт":
+            case "желт":
+            case "Жёлтый":
+            case "Желтый":
+            case "жёлтый":
+            case "желтый":
+                color = 5; break;
+            case "6":
+            case "黑":
+            case "black":
+            case "Black":
+            case "Чёрный":
+            case "Черный":
+            case "чёрный":
+            case "черный":
+                color = 6; break;
+            case "7":
+            case "白":
+            case "white":
+            case "White":
+            case "Белый":
+            case "белый":
+                color = 7; break;
+            case "8":
+            case "紫":
+            case "purple":
+            case "Purple":
+            case "Фиол":
+            case "фиол":
+            case "Фиолетовый":
+            case "фиолетовый":
+                color = 8; break;
+            case "9":
+            case "棕":
+            case "brown":
+            case "Brown":
+            case "Корич":
+            case "корич":
+            case "Коричневый":
+            case "коричевый":
+                color = 9; break;
+            case "10":
+            case "青":
+            case "cyan":
+            case "Cyan":
+            case "Голуб":
+            case "голуб":
+            case "Голубой":
+            case "голубой":
+                color = 10; break;
+            case "11":
+            case "黄绿":
+            case "黃綠":
+            case "浅绿":
+            case "lime":
+            case "Lime":
+            case "Лайм":
+            case "лайм":
+            case "Лаймовый":
+            case "лаймовый":
+                color = 11; break;
+            case "12":
+            case "红褐":
+            case "紅褐":
+            case "深红":
+            case "maroon":
+            case "Maroon":
+            case "Борд":
+            case "борд":
+            case "Бордовый":
+            case "бордовый":
+                color = 12; break;
+            case "13":
+            case "玫红":
+            case "玫紅":
+            case "浅粉":
+            case "rose":
+            case "Rose":
+            case "Светло роз":
+            case "светло роз":
+            case "Светло розовый":
+            case "светло розовый":
+            case "Сирень":
+            case "сирень":
+            case "Сиреневый":
+            case "сиреневый":
+                color = 13; break;
+            case "14":
+            case "焦黄":
+            case "焦黃":
+            case "淡黄":
+            case "banana":
+            case "Banana":
+            case "Банан":
+            case "банан":
+            case "Банановый":
+            case "банановый":
+                color = 14; break;
+            case "15":
+            case "灰":
+            case "gray":
+            case "Gray":
+            case "Сер":
+            case "сер":
+            case "Серый":
+            case "серый":
+                color = 15; break;
+            case "16":
+            case "茶":
+            case "tan":
+            case "Tan":
+            case "Загар":
+            case "загар":
+            case "Загаровый":
+            case "загаровый":
+                color = 16; break;
+            case "17":
+            case "珊瑚":
+            case "coral":
+            case "Coral":
+            case "Корал":
+            case "корал":
+            case "Коралл":
+            case "коралл":
+            case "Коралловый":
+            case "коралловый":
+                color = 17; break;
+
             case "18": case "隐藏": case "?": color = 18; break;
         }
         return !isHost && color == 18 ? byte.MaxValue : color is < 0 or > 18 ? byte.MaxValue : Convert.ToByte(color);
@@ -1380,8 +1551,9 @@ public static class Utils
                         (seer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Sidekick)) ||
                         (seer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Jackal))||
                         (target.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) ||
-                        (target.Is(CustomRoles.Doctor) && !target.Is(CustomRoles.Madmate) && Options.DoctorVisibleToEveryone.GetBool()) ||
-                        (target.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && target.AllTasksCompleted()) ||
+                        (target.Is(CustomRoles.Doctor) && !target.GetCustomRole().IsEvilAddons() && Options.DoctorVisibleToEveryone.GetBool()) ||
+                        (target.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && target.GetPlayerTaskState().IsTaskFinished) ||
+                        (seer.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoles.Marshall) && target.GetPlayerTaskState().IsTaskFinished) ||
                         (Totocalcio.KnowRole(seer, target)) ||
                         (Lawyer.KnowRole(seer, target)) ||
                         (EvilDiviner.IsShowTargetRole(seer, target)) ||
@@ -1510,9 +1682,9 @@ public static class Utils
 
                 if (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Snitch) && target.Is(CustomRoles.Madmate) && target.GetPlayerTaskState().IsTaskFinished)
                     TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Impostor), "★"));
-       /*         if (seer.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoles.Marshall) && target.GetPlayerTaskState().IsTaskFinished)
+                if (seer.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoles.Marshall) && target.GetPlayerTaskState().IsTaskFinished)
                     TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Marshall), "★"));
-                if (seer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Sidekick))
+                /*if (seer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Sidekick))
                     TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Jackal), " ♥"));
     //            if (seer.Is(CustomRoles.Monarch) && target.Is(CustomRoles.Knighted))
      //               TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Knighted), " 亗"));
