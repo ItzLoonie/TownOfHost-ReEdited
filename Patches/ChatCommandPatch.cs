@@ -45,6 +45,7 @@ internal class ChatCommands
         if (text.Length >= 4) if (text[..3] == "/up") args[0] = "/up";
         if (GuessManager.GuesserMsg(PlayerControl.LocalPlayer, text)) goto Canceled;
         if (Judge.TrialMsg(PlayerControl.LocalPlayer, text)) goto Canceled;
+        if (ParityCop.ParityCheckMsg(PlayerControl.LocalPlayer, text)) goto Canceled;
         if (Councillor.MurderMsg(PlayerControl.LocalPlayer, text)) goto Canceled;
         if (Mediumshiper.MsMsg(PlayerControl.LocalPlayer, text)) goto Canceled;
         if (MafiaRevengeManager.MafiaMsgCheck(PlayerControl.LocalPlayer, text)) goto Canceled;
@@ -181,18 +182,6 @@ internal class ChatCommands
                         Utils.SendMessage(string.Format(GetString("Message.YTPlanDisabled"), GetString("EnableYTPlan")));
                         break;
                     }
-                    if (!GameStates.IsLobby)
-                    {
-                        Utils.SendMessage(GetString("Message.OnlyCanUseInLobby"));
-                        break;
-                    }
-                    SendRolesInfo(subArgs, PlayerControl.LocalPlayer.PlayerId, isUp: true);
-                    break;
-                case "/setrole":
-                    canceled = true;
-                    subArgs = text.Remove(0, 3);
-                    if (!PlayerControl.LocalPlayer.FriendCode.GetEditedDevUser().IsUp) break;
-
                     if (!GameStates.IsLobby)
                     {
                         Utils.SendMessage(GetString("Message.OnlyCanUseInLobby"));
@@ -700,13 +689,14 @@ internal class ChatCommands
         canceled = false;
         if (!AmongUsClient.Instance.AmHost) return;
         if (text.StartsWith("\n")) text = text[1..];
-        if (SpamManager.CheckSpam(player, text)) return;
         if (!text.StartsWith("/")) return;
         string[] args = text.Split(' ');
         string subArgs = "";
         if (text.Length >= 3) if (text[..2] == "/r" && text[..3] != "/rn") args[0] = "/r";
+        else if (SpamManager.CheckSpam(player, text)) return;
         if (GuessManager.GuesserMsg(player, text)) { canceled = true; return; }
         if (Judge.TrialMsg(player, text)) { canceled = true; return; }
+        if (ParityCop.ParityCheckMsg(player, text)) { canceled = true; return; }
         if (Councillor.MurderMsg(player, text)) { canceled = true; return; }
         if (Mediumshiper.MsMsg(player, text)) return;
         if (MafiaRevengeManager.MafiaMsgCheck(player, text)) return;
