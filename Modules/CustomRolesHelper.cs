@@ -351,6 +351,7 @@ internal static class CustomRolesHelper
             CustomRoles.Ritualist or
             CustomRoles.Pickpocket or
             CustomRoles.Traitor or
+            CustomRoles.Medusa or
             CustomRoles.Gamer or
             CustomRoles.Pelican or
             CustomRoles.Virus or
