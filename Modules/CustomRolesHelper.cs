@@ -137,6 +137,8 @@ internal static class CustomRolesHelper
                 CustomRoles.Guardian => CustomRoles.Crewmate,
                 CustomRoles.Addict => CustomRoles.Engineer,
                 CustomRoles.Chameleon => CustomRoles.Engineer,
+                CustomRoles.Spiritcaller => CustomRoles.Impostor,
+                CustomRoles.EvilSpirit => CustomRoles.GuardianAngel,
                 CustomRoles.Lurker => CustomRoles.Impostor,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
@@ -235,6 +237,7 @@ internal static class CustomRolesHelper
             CustomRoles.Ritualist => RoleTypes.Impostor,
             CustomRoles.Pickpocket => RoleTypes.Impostor,
             CustomRoles.Traitor => RoleTypes.Impostor,
+            CustomRoles.Spiritcaller => RoleTypes.Impostor,
             _ => RoleTypes.GuardianAngel
         };
     }
@@ -280,7 +283,8 @@ internal static class CustomRolesHelper
             CustomRoles.Rogue or
             CustomRoles.Unreportable or
             CustomRoles.Lucky or
-            CustomRoles.DoubleShot;
+            CustomRoles.DoubleShot or
+            CustomRoles.EvilSpirit;
     }
     public static bool IsNonNK(this CustomRoles role) // ROLE ASSIGNING, NOT NEUTRAL TYPE
     {
@@ -332,7 +336,8 @@ internal static class CustomRolesHelper
             CustomRoles.Pickpocket or
             CustomRoles.Traitor or
             CustomRoles.Virus or
-            CustomRoles.BloodKnight;
+            CustomRoles.BloodKnight or
+            CustomRoles.Spiritcaller;
     }
     public static bool IsSnitchTarget(this CustomRoles role) // �Ƿ��������
     {
@@ -357,7 +362,8 @@ internal static class CustomRolesHelper
             CustomRoles.Pelican or
             CustomRoles.Virus or
             CustomRoles.Succubus or
-            CustomRoles.BloodKnight;
+            CustomRoles.BloodKnight or
+            CustomRoles.Spiritcaller;
     }
     public static bool IsNE(this CustomRoles role) // �Ƿ�����
     {
@@ -427,7 +433,8 @@ internal static class CustomRolesHelper
             CustomRoles.BloodKnight or
             CustomRoles.Infectious or
             CustomRoles.Virus or
-            CustomRoles.Succubus;
+            CustomRoles.Succubus or
+            CustomRoles.Spiritcaller;
     }
     public static bool IsCK(this CustomRoles role) // �Ƿ������Ա
     {
@@ -553,7 +560,8 @@ internal static class CustomRolesHelper
             CustomRoles.BloodKnight or
             CustomRoles.Totocalcio or
             CustomRoles.Virus or
-            CustomRoles.Succubus;
+            CustomRoles.Succubus or
+            CustomRoles.Spiritcaller;
     }
 
         public static bool IsAbleToBeSidekicked(this CustomRoles role)
@@ -641,7 +649,8 @@ internal static class CustomRolesHelper
             CustomRoles.BloodKnight or
             CustomRoles.Totocalcio or
             CustomRoles.Virus or
-            CustomRoles.Succubus;
+            CustomRoles.Succubus or
+            CustomRoles.Spiritcaller;
     }
     
     public static bool IsEvilAddons(this CustomRoles role)
@@ -902,6 +911,7 @@ internal static class CustomRolesHelper
           // CustomRoles.Phantom => CountTypes.OutOfGame,
         //   CustomRoles.CursedSoul => CountTypes.OutOfGame, // if they count as OutOfGame, it prevents them from winning lmao
            
+           CustomRoles.Spiritcaller => CountTypes.Spiritcaller,
            _ => role.IsImpostorTeam() ? CountTypes.Impostor : CountTypes.Crew,
        };
 
@@ -941,4 +951,5 @@ public enum CountTypes
     Pickpocket,
     Traitor,
     Medusa,
+    Spiritcaller
 }

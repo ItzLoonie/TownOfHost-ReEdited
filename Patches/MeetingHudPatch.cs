@@ -866,6 +866,7 @@ class MeetingHudStartPatch
                 case CustomRoles.Pickpocket:
                 case CustomRoles.Ritualist:
                 case CustomRoles.Traitor:
+                case CustomRoles.Spiritcaller:
                     sb.Append(Snitch.GetWarningMark(seer, target));
                     break;
                 case CustomRoles.Jackal:

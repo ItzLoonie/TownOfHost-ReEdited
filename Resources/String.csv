@@ -256,6 +256,7 @@
 "Medusa","","Medusa","Медуза","",""
 "Baker","","Baker","Пекарь","",""
 "Famine","","Famine","Голод","",""
+"Spiritcaller","","Spiritcaller","","",""
 
 "# 附加职业 / Add-ons"
 "LastImpostor","绝境者","Last Impostor","Последний Предатель","絕境者","绝境者"
@@ -297,6 +298,7 @@
 "Lazy","","Lazy","Ленивый","",""
 "Autopsy","","Autopsy","Вскрытый","",""
 "Pessimist","","Pessimist","Пессимист","",""
+"EvilSpirit","","Evil Spirit","","",""
 
 "## 附加职业作为前缀时 / Prefixes for Add-ons"
 
@@ -333,6 +335,7 @@
 "Prefix.Lazy","","Lazy ","Ленивый ","",""
 "Prefix.Autopsy","","Autopsy ","Вскрытый ","",""
 "Prefix.Pessimist","","Pessimist ","Пессимист ","",""
+"Prefix.EvilSpirit","","Evil Spirit ","Удачливый ","",""
 
 "## 附加职业作为前缀时 / Prefixes for Add-ons But With Brackets"
 
@@ -369,6 +372,7 @@
 "PrefixB.Lazy","","<color=#ffffff>(</color>Lazy<color=#ffffff>)</color> ","<color=#ffffff>(</color>Ленивый<color=#ffffff>)</color> ","",""
 "PrefixB.Autopsy","","<color=#ffffff>(</color>Autopsy<color=#ffffff>)</color> ","<color=#ffffff>(</color>Вскрытый<color=#ffffff>)</color> ","",""
 "PrefixB.Pessimist","","<color=#ffffff>(</color>Pessimist<color=#ffffff>)</color> ","<color=#ffffff>(</color>Пессимист<color=#ffffff>)</color> ","",""
+"PrefixB.EvilSpirit","","<color=#ffffff>(</color>Evil Spirit<color=#ffffff>)</color> ","","",""
 
 "BracketAddons","BracketAddons","Add Brackets To Add-ons","Добавить скобки к Атрибутам","BracketAddons","BracketAddons"
 
@@ -530,6 +534,7 @@
 "MedusaInfo","","Stone bodies by reporting them","Трупы становятся камнями при вашем репорте"","",""
 "BakerInfo","","Complete your tasks to poison your bread","Выполните задания, чтобы отравить свой хлеб","",""
 "FamineInfo","","Give out your poisoned bread","Отдай свой отравленный хлеб","",""
+"SpiritcallerInfo","","Turn Players into Evil Spirits","","",""
 
 "# 附加职业 / Add-ons descriptions"
 "LoversInfo","最重要的是，记得照顾好你的另一半","Stay alive and win together","Выживите со своим Любовником","你墜入了愛河","最重要的是，记得照顾好你的另一半"
@@ -567,6 +572,7 @@
 "LazyInfo","","You're too lazy","Ты слишком ленив","",""
 "AutopsyInfo","","You see how others died","Вы видите, как другие умирают","",""
 "PessimistInfo","","If you die, you can't win","Если ты умрешь, ты не сможешь победить","",""
+"EvilSpirit","","You are an evil Spirit","","",""
 
 "# 其它 / Other descriptions"
 "GMInfo","开局死的冤魂隔岸观火","Spectate the chaos!","Вы Мастер Игры, наслаждайтесь хаосом!","當吃瓜群眾在一旁看戲吧","开局死的冤魂隔岸观火"
@@ -732,7 +738,7 @@
 "MedusaInfoLong","","(Neutrals):\nAs the Medusa, you can stone bodies much like cleaning a body.\nStoned bodies cannot be reported.\n\nKill everyone to win.","(Злой - Нейтрал):\nМедуза может нажать кнопку репорта и превратить труп в камень.\nЭтот труп нельзя будет зарепортить.\nУбейте всех, чтобы победить","",""
 "BakerInfoLong","","(Neutrals):\nAs the Baker, you give out bread.\nAt the beginning of each meeting, messages will be given out.\n\nIf you finish your tasks, you become Famine when a meeting is called.","(Добрый - Нейтрал):\nПекар раздает хлеб.\nВ начале каждой встречи будут появляться сообщения.\n\nЕсли он закончит свои задания, то станет Голодом в начале встречи","",""
 "FamineInfoLong","","(Neutrals):\nAs the Famine, you give out poisoned bread.\nPlayers with poisoned bread die at the end of the meeting if the Famine is not exiled.\n\nIf the Famine is alive at the end of the game, they steal the win.","(Злой - Нейтрал):\nГолод раздаёт отравленный хлеб.\nИгроки с отравленным хлебом умирают в конце встречи, если Голод не будет изгнан.\n\nЕсли Голод останется жив в конце игры, то он украдёт победу чьей-то коамнды","",""
-
+"SpiritcallerInfoLong","","(Neutrals):\nAs the Spiritcaller, your victims become Evil Spirits after they die. These spirits can help you win by freezing other players for a short time and/or blocking their vision. Alternatively, the spirits can give you a shield that protects you briefly from an attempted kill.","","",""
 
 "# 附加职业 / Add-ons descriptions"
 "LastImpostorInfoLong","(附加职业):\n这个效果在内鬼仅剩一人时赋予该内鬼。使其击杀冷却缩短。","(Add-ons):\nThis effect is given to the last surviving Impostor. Reduces their kill cooldown.","(Атрибут):\nАтрибут, присваивается последнему Предателю. \nВремя отката убийства становится меньше, чем обычно. \nНе назначается Охотнику за головами, Серийному убийце или Вампиру.","(附加職業):\n這個效果只在偽裝者陣營只剩下一人時賦予該玩家，被賦予效果的玩家殺人冷卻將會縮短。","(附加职业):\n这个效果在内鬼仅剩一人时赋予该内鬼。使其击杀冷却缩短。"
@@ -774,6 +780,7 @@
 "LazyInfoLong","","(Add-ons):\nAs the Lazy, you are assigned a single short task and are immune to Warlocks, Puppeteers, and Gangters.\nThe Witch can still control you.","(Атрибут):\nУ Ленивого будет лишь одно короткое задание, он не будет невосприимчивы к Колдунам, Кукловодам и Гангстерам.\nВедьма по-прежнему может им управлять.","",""
 "AutopsyInfoLong","","(Add-ons):\nAs the Autopsy, you can see how people died.\n\nCannot be assigned to Doctor, Tracefinder, Scientist, or Sunnyboy.","(Атрибут):\nВскрытый может видеть причину смерти игроков.\n\nНе будет назначен Доктору, Искателю, Ученому или Солнечному Мальчику.","",""
 "PessimistInfoLong","","(Add-ons):\nAs the Pessimist, you can only win if you're alive.\nIf you're dead, you can no longer win.\n\nCannot be assigned to neutrals.\nRemoved when a betrayal add-on (eg Sidekick or Charmed) is assigned to you.","(Атрибут):\nПессимист может выиграть, только если он жив.\nЕсли он мертв, он не сможет победить ни с какой-либо командой.\n\nНе может быть назначен Нейтралам.","",""
+"EvilSpiritInfoLong","","(Neutrals):\nAs Evil Spirit, it's your job to help the Spiritcaller to victory. You can use your Haunt button to freeze players and reduce their vision. Alternatively, you can use your Haunt button to temporarily give the Spiritcaller a shield against a kill attempt.","","",""
 
 "# 其它 / Other long description"
 "GMInfoLong","(房主):\n看我干啥，我只是个开局就死的冤魂，静静地吃瓜而已。","(None):\nThe Game Master is an observer role.\nTheir presence has no effect on the game, and all players know who the Game Master is. The Game Master role will be assigned to the host, who will automatically become a ghost at the start of the game.","(Никто):\nGM (Мастер Игры) — это роль, которая наблюдает за игрой в роле призрака. \nОн не влияет на игру, и все игроки всегда знают кто Мастер Игры. Всегда назначается только хосту лобби и становится призраком в самом начале игры.","(房主):\n看我幹嘛，我只是開始遊戲時就在冥界吃瓜而已。","(房主):\n看我干啥，我只是个开局就死的冤魂，静静地吃瓜而已。"
@@ -1637,6 +1644,7 @@
 "BribedByMerchant2","","You cannot guess the Merchant after he bribed you.","Вы не можете угадать Торговца после того, как он подкупил вас.","",""
 "MerchantKillAttemptBribed","","An attempted killing was averted by bribery","Покушение на убийство было предотвращено с помощью взятки","",""
 "TrapOnlyWorksOnTheBodyBoobyTrap","","Trap works only on body <color=#ff1919>Trapster</color>","Ловушка рабоатет только на трупе <color=#ff1919>Ловца</color>","",""
+"HauntedByEvilSpirit","","Haunted by an Evil Spirit","","",""
 
 "MonarchKnightCooldown","","Knight Cooldown","Откат посвящения","",""
 "MonarchKnightMax","","Maximum Knights","Максимум просвящений","",""
@@ -1646,6 +1654,8 @@
 "VirusNoticeTitle","","【 Infected Corpse! 】","【 Зараженный труп! 】","",""
 "VirusNoticeMessage","","The body your reported was infected by the Virus! You are now part of Team Virus. Help the Virus win the game.","Труп который вы зарепортили, был заражён вирусом! Теперь вы являетесь частью команды Вируса. Помогите Вирусу выиграть игру","",""
 "VirusNoticeMessage2","","The body your reported was infected by the Virus! Vote the Virus out this meeting or you will die.","Труп который вы зарепортили, был заражён вирусом! Голосуйте против Вируса на этой встрече, иначе вы умрёте.","",""
+"SpiritcallerNoticeTitle","","【 You turned into an Evil Spirit! 】","","",""
+"SpiritcallerNoticeMessage","","The Spiritcaller has killed you and turned you into an Evil Spirit. Your task now is to help the Spiritcaller to victory by using your spook button to hinder other players or to protect the Spiritcaller. Use /m for more information.","","",""
 "FarseerRevealCooldown","","<color=#BA55D3>Reveal</color> Cooldown","Откат раскрытия","",""
 "FarseerRevealTime","","<color=#BA55D3>Reveal</color> Time","Время раскрытия","",""
 "FarseerVision","","<color=#BA55D3>Overseer</color> Vision","Обзор <color=#BA55D3>Смотрителя</color>","",""
@@ -1662,6 +1672,12 @@
 "MerchantSellExperimental","","Can sell <color=#76b8e0>experimental</color> Add-ons","Может продавать <<color=#76b8e0>Экспериментальные</color> Атрибуты","",""
 "MerchantSellHarmfulToEvil","","Can sell <color=#ff1919>Harmful</color> Add-ons only to <color=#ff1919>Evil</color>","Может продавать <color=#ff1919>Вредные</color> Атрибуты только <color=#ff1919>Злым</color> ролям","",""
 "MerchantSellHelpfulToCrew","","Can sell <color=#8cffff>Helpful</color> Add-ons only to <color=#8cffff>Crew</color>","Может продавать <color=#8cffff>Полезные</color> Атрибуты только <color=#8cffff>Экипажу</color>","",""
+"SpiritcallerSpiritMax","","Maximum number of <color=#003366>Evil Spirits</color>","","",""
+"SpiritcallerSpiritAbilityCooldown","","<color=#003366>Evil Spirit</color> ability cooldown","","",""
+"SpiritcallerFreezeTime","","<color=#003366>Evil Spirit</color> ability freeze time","","",""
+"SpiritcallerProtectTime","","<color=#003366>Evil Spirit</color> ability protect time","","",""
+"SpiritcallerCauseVision","","<color=#003366>Evil Spirit</color> ability caused vision","","",""
+"SpiritcallerCauseVisionTime","","<color=#003366>Evil Spirit</color> ability caused vision time","","",""
 
 "## 信息 / Message"
 "Message.SetToSeconds","信息发送冷却时间为【{0}】秒","Set to 【{0}】 seconds.","Установлен на 【{0}】 секунды","訊息傳送冷卻時間設為【{0}】秒","信息发送冷却时间为【{0}】秒"

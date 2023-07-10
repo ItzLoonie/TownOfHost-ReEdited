@@ -249,6 +249,7 @@ internal class ChangeRoleSettings
             Morphling.Init();
             ParityCop.Init(); // *giggle* party cop
             Baker.Init();
+            Spiritcaller.Init();
             Lurker.Init();
 
             SoloKombatManager.Init();
@@ -693,6 +694,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.ParityCop:
                         ParityCop.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Spiritcaller:
+                        Spiritcaller.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Lurker:
                         Lurker.Add(pc.PlayerId);

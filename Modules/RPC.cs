@@ -99,6 +99,7 @@ enum CustomRPC
     SetJackalRecruitLimit,
     SetBloodhoundArrow,
     SetVultureArrow,
+    SetSpiritcallerSpiritLimit,
 
     //SoloKombat
     SyncKBPlayer,
@@ -530,7 +531,9 @@ internal class RPCHandlerPatch
             case CustomRPC.DoPoison:
                 Baker.ReceiveRPC(reader);
                 break;
-
+            case CustomRPC.SetSpiritcallerSpiritLimit:
+                Spiritcaller.ReceiveRPC(reader);
+                break;
         }
     }
 }
@@ -945,6 +948,9 @@ internal static class RPC
                 break;
             case CustomRoles.Spiritualist:
                 Spiritualist.Add(targetId);
+                break;
+            case CustomRoles.Spiritcaller:
+                Spiritcaller.Add(targetId);
                 break;
             case CustomRoles.Lurker:
                 Lurker.Add(targetId);
