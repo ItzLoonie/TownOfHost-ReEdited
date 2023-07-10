@@ -534,6 +534,7 @@ public enum CustomRoles
     EvilDiviner,
     Morphling,
     Twister,
+    Lurker,
     //Crewmate(Vanilla)
     Engineer,
     GuardianAngel,

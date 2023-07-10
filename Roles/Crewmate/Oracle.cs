@@ -116,7 +116,8 @@ public static class Oracle
             CustomRoles.Dazzler or
             CustomRoles.Deathpact or
             CustomRoles.Devourer or
-            CustomRoles.Camouflager
+            CustomRoles.Camouflager or
+            CustomRoles.Lurker
                 => "Imp",
             
             CustomRoles.Jester or

@@ -162,6 +162,7 @@
 "EvilDiviner","","Consigliere","Советник","",""
 "Morphling","","Morphling","Морфлинг","",""
 "Twister","","Twister","Твистер","",""
+"Lurker","","Lurker","","",""
 
 
 "# 船员阵营 / Crewmates"
@@ -439,6 +440,7 @@
 "EvilDivinerInfo","","Discover the roles of other players","Узнайте роли других игроков","",""
 "MorphlingInfo","","You can only kill while shapeshifted","Вы можете убивать только в Морфе","",""
 "TwisterInfo","","Swap all player positions","Поменяйте местами всех игроков","",""
+"LurkerInfo","","Reduce your kill cooldown by venting","","",""
 
 "# 船员阵营 / Crewmate descriptions"
 "LuckeyInfo","你擅长治疗内鬼的低血压","Dodge attacks","Уклоняйтесь от атак","是生是死，看你是歐還是非","你擅长治疗内鬼的低血压"
@@ -643,6 +645,7 @@
 "EvilDivinerInfoLong","","(Impostors):\nAs the Consigiliere, you can reveal the roles of other players using your kill button.\n\nSingle click: Reveal role\nDouble click: Kill\n\nIf you run out of reveal uses, your kill button functions normally.","(Предатель):\nСоветник может раскрыть роль других игроков с помощью кнопки убийства.\n\nОдин щелчок: раскрыть роль игрока\nДвойной щелчок: убить игрока\n\nЕсли количество раскрытий закончится, то кнопка убийства будет работать как обычно.","",""
 "MorphlingInfoLong","","(Impostors):\nAs the Morphling, you are a Shapeshifter but cannot kill while not shapeshift.","(Предатель):\nМорфлинг может убивать только во время Морфа","",""
 "TwisterInfoLong","","(Impostors):\nAs the Twister, you can use shape-shifting to randomly swap the position of all players. The swap happens twice, once when you start your shape shift and once when you return to your original appearance.\nThe Twister itself will not swap places with anyone and players who are in vents cannot be teleported.","(Предатель):\nТвистер может морфиться, чтобы случайным образом поменять местами всех игроков. Обмен происходит дважды: один раз, когда вы начинаете морфиться, и второй раз, когда вы возвращаетесь к своему первоначальному облику.\nСам Твистер не будет телепортируется, а игроки находящиеся в вентиляции не могут быть телепортированы.","",""
+"LurkerInfoLong","","(Impostors):\nAs a lurker, you can jump into a vent to reduce your cooldown by a certain number of seconds. After you kill, your cooldown is reset to its original value.","","",""
 
 "# 船员阵营 / Crewmates descriptions"
 "LuckeyInfoLong","(船员阵营):\n幸运儿被击杀时，有概率抵挡这次死亡，具体概率根据房主设定。抵挡生效时凶手会看到幸运儿的身上出现护盾破碎的效果，但幸运儿自己什么都不会知道。","(Crewmates):\nWhen a player attempts to kill the Luckey, there is a probability for the Luckey to evade the kill, and the specific probability is set by the host. When the evasion takes effect, the killer will see the shield-animation on Luckey's body, but Luckey themselves will not know anything.","(Член Экипажа):\nУ Удачника будет возникать определенная вероятность того, что Убийца не сможет убить Удачника, вероятность устанавливается в зависимости от настроек Хоста. Убийца увидит эффект разрушения щита ангела на теле Удачника, но сам Удачник при этом ничего не узнает.","(船員陣營):\n幸運兒被嘗試殺死時，有機率抵擋這次死亡，具體機率依房主設定。抵擋生效時兇手會看到幸運兒身上出現盾牌破碎的效果，但幸運兒自己甚麼都不知道。此外，如果幸運兒被劊子手絞殺，那麼技能將不會生效。","(船员阵营):\n幸运儿被击杀时，有概率抵挡这次死亡，具体概率根据房主设定。抵挡生效时凶手会看到幸运儿的身上出现护盾破碎的效果，但幸运儿自己什么都不会知道。"
