@@ -184,10 +184,22 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("GuessWorkaholic"));
                     return true;
                 }
-                if (target.Is(CustomRoles.Doctor) && Options.DoctorVisibleToEveryone.GetBool())
+                if (target.Is(CustomRoles.Doctor) && Options.DoctorVisibleToEveryone.GetBool() && !target.Is(CustomRoles.Madmate))
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessDoctor"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessDoctor"));
+                    return true;
+                }
+                if (role == CustomRoles.Monarch && target.Is(CustomRoles.Monarch) && CustomRoles.Knighted.RoleExist())
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessMonarch"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessMonarch"));
+                    return true;
+                }
+                if (role == CustomRoles.Knighted && pc.Is(CustomRoles.Monarch))
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessKnighted"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessKnighted"));
                     return true;
                 }
                 if (Options.MayorRevealWhenDoneTasks.GetBool())
@@ -264,7 +276,7 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("GuessMarshallTask"));
                     return true;
                 }
-                if (role == CustomRoles.Guardian || target.Is(CustomRoles.Guardian) && target.AllTasksCompleted())
+                if (role == CustomRoles.Guardian && target.Is(CustomRoles.Guardian) && target.AllTasksCompleted())
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessGuardianTask"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessGuardianTask"));
@@ -354,20 +366,20 @@ public static class GuessManager
                     }
                 }
 
-                if ((pc.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoleTypes.Impostor) && !Options.ImpCanGuessImp.GetBool()) && Options.GuesserMode.GetBool())
+         /*       if ((pc.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoleTypes.Impostor) && !Options.ImpCanGuessImp.GetBool()) && Options.GuesserMode.GetBool())
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessImpRole"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessImpRole"));
                     return true;
 
                 }
-                if ((pc.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoleTypes.Crewmate) && !Options.CrewCanGuessCrew.GetBool()) && Options.GuesserMode.GetBool())
+                if ((role == CustomRoles.Phantom && pc.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoleTypes.Crewmate) && !Options.CrewCanGuessCrew.GetBool()) && Options.GuesserMode.GetBool())
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessCrewRole"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessCrewRole"));
                     return true;
 
-                }
+                } */
                 if (target.Is(CustomRoles.Merchant) && Merchant.IsBribedKiller(pc, target))
                 {
                     if (!isUI) Utils.SendMessage(GetString("BribedByMerchant2"), pc.PlayerId);
@@ -939,6 +951,9 @@ public static class GuessManager
                 if ( role is CustomRoles.GM 
                     or CustomRoles.SpeedBooster
                     or CustomRoles.Engineer
+                    or CustomRoles.Pessimist
+                    or CustomRoles.Oblivious
+                    or CustomRoles.Rogue
                     or CustomRoles.Scientist
                     or CustomRoles.Impostor
                     or CustomRoles.Shapeshifter

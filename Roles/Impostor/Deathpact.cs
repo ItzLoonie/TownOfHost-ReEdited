@@ -223,7 +223,7 @@ namespace TOHE.Roles.Impostor
 
         public static bool IsInDeathpact(byte deathpact, PlayerControl target)
         {
-            return PlayersInDeathpact[deathpact].Any(a => a.PlayerId == target.PlayerId);
+            return PlayersInDeathpact.ContainsKey(deathpact) && PlayersInDeathpact[deathpact].Any(a => a.PlayerId == target.PlayerId);
         }
 
         public static string GetDeathpactString(PlayerControl player)

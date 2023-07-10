@@ -125,7 +125,7 @@ class OnPlayerLeftPatch
             if (data.Character.Is(CustomRoles.Pelican))
                 Pelican.OnPelicanDied(data.Character.PlayerId);
             if (Spiritualist.SpiritualistTarget == data.Character.PlayerId)
-                Spiritualist.SpiritualistTarget = 0;
+                Spiritualist.RemoveTarget();
             if (Main.PlayerStates[data.Character.PlayerId].deathReason == PlayerState.DeathReason.etc) //死因が設定されていなかったら
             {
                 Main.PlayerStates[data.Character.PlayerId].deathReason = PlayerState.DeathReason.Disconnected;
@@ -280,17 +280,6 @@ class CreatePlayerPatch
                     {
                         Main.isChatCommand = true;
                    //     Utils.SendMessage($"{GetString("Message.YTPlanNotice")} {PlayerControl.LocalPlayer.FriendCode.GetDevUser().UpName}", client.Character.PlayerId);
-                    }
-                }, 3.3f, "DisplayUpWarnning");
-            }
-            if (PlayerControl.LocalPlayer.FriendCode.GetEditedDevUser().IsUp)
-            {
-                new LateTask(() =>
-                {
-                    if (!AmongUsClient.Instance.IsGameStarted && client.Character != null)
-                    {
-                        Main.isChatCommand = true;
-                     //   Utils.SendMessage($"{GetString("Message.YTPlanNotice")} {PlayerControl.LocalPlayer.FriendCode.GetEditedDevUser().UpName}", client.Character.PlayerId);
                     }
                 }, 3.3f, "DisplayUpWarnning");
             }
