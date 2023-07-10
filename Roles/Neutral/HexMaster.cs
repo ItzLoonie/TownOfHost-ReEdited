@@ -103,7 +103,7 @@ public static class HexMaster
     }
     public static bool IsHexMode(byte playerId)
     {
-        return HexMode[playerId];
+        return HexMode.ContainsKey(playerId) && HexMode[playerId];
     }
     public static void SwitchHexMode(byte playerId, bool kill)
     {

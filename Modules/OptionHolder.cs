@@ -1130,7 +1130,7 @@ public static class Options
         Lawyer.SetupCustomOption();
         Maverick.SetupCustomOption();
         SetupRoleOptions(50100, TabGroup.NeutralRoles, CustomRoles.Opportunist);
-        OppoImmuneToAttacksWhenTasksDone = BooleanOptionItem.Create(50103, "ImmuneToAttacksWhenTasksDone", false, TabGroup.ImpostorRoles, false)
+        OppoImmuneToAttacksWhenTasksDone = BooleanOptionItem.Create(50103, "ImmuneToAttacksWhenTasksDone", false, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Opportunist]);
         OpportunistTasks = OverrideTasksData.Create(50104, TabGroup.NeutralRoles, CustomRoles.Opportunist);
 
