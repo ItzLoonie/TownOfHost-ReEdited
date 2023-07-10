@@ -1167,7 +1167,7 @@ public static class Options
         TextOptionItem.Create(909094_2, "RoleType.NeutralChaos", TabGroup.NeutralRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(127, 140, 141, byte.MaxValue));
-        Baker.SetupCustomOption();
+     //   Baker.SetupCustomOption();
         Collector.SetupCustomOption();
         Succubus.SetupCustomOption();
         SetupRoleOptions(5050850, TabGroup.NeutralRoles, CustomRoles.FFF);
