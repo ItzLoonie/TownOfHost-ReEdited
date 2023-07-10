@@ -431,7 +431,7 @@
 "CouncillorInfo","","Kill off crewmates during meetings","","",""
 "DazzlerInfo","","Reduce the vision of the crew","","",""
 "DeathpactInfo","","Assign players to a death pact","","",""
-"DevourerInfo","","Comsume the skin of the crew","","",""
+"DevourerInfo","","Consume the skin of the crew","","",""
 "EvilDivinerInfo","","Discover the roles of other players","","",""
 "MorphlingInfo","","You can only kill while shapeshifted","","",""
 "TwisterInfo","","Swap all player positions","","",""
@@ -727,7 +727,7 @@
 "TraitorInfoLong","","(Neutrals):\nAs the Traitor, you were an Impostor that betrayed the Impostors.\nYou know the Impostors but they don't know you.\nThe twist? They can kill you but you can't kill them.\n\nEliminate the Impostors by other means, then kill everyone else to win!","","",""
 "VultureInfoLong","","(Neutrals):\nAs the Vulture, you do not report bodies normally.\nInstead, reporting a body causes you to eat it, making it unreportable.\n\nEat enough bodies to win!","","",""
 "MedusaInfoLong","","(Neutrals):\nAs the Medusa, you can stone bodies much like cleaning a body.\nStoned bodies cannot be reported.\n\nKill everyone to win.","","",""
-"BakerInfoLong","","(Neutrals):\nAs the Baker, you give out bread.\nAt the beginning of each meeting, messages will be given out.\n\nDuring the match, the Baker has a low probability to turn into Famine.","","",""
+"BakerInfoLong","","(Neutrals):\nAs the Baker, you give out bread.\nAt the beginning of each meeting, messages will be given out.\n\nIf you finish your tasks, you become Famine when a meeting is called.","","",""
 "FamineInfoLong","","(Neutrals):\nAs the Famine, you give out poisoned bread.\nPlayers with poisoned bread die at the end of the meeting if the Famine is not exiled.\n\nIf the Famine is alive at the end of the game, they steal the win.","","",""
 
 
