@@ -451,11 +451,13 @@ static class ExtendedPlayerControl
             CustomRoles.Revolutionist => !pc.IsDrawDone(),
             CustomRoles.SwordsMan => pc.IsAlive(),
             CustomRoles.Jackal => pc.IsAlive(),
+            CustomRoles.Sidekick => pc.IsAlive(),
             CustomRoles.HexMaster => pc.IsAlive(),
             CustomRoles.Poisoner => pc.IsAlive(),
             CustomRoles.Juggernaut => pc.IsAlive(),
             CustomRoles.Ritualist => pc.IsAlive(),
             CustomRoles.NSerialKiller => pc.IsAlive(),
+            CustomRoles.Medusa => pc.IsAlive(),
             CustomRoles.Traitor => pc.IsAlive(),
             CustomRoles.Pickpocket => pc.IsAlive(),
             CustomRoles.Maverick => pc.IsAlive(),
@@ -464,9 +466,11 @@ static class ExtendedPlayerControl
             CustomRoles.NWitch => pc.IsAlive(),
             CustomRoles.Wraith => pc.IsAlive(),
             CustomRoles.Bomber => false,
+      //      CustomRoles.Chameleon => false,
             CustomRoles.Innocent => pc.IsAlive(),
             CustomRoles.Counterfeiter => Counterfeiter.CanUseKillButton(pc.PlayerId),
             CustomRoles.Pursuer => Pursuer.CanUseKillButton(pc.PlayerId),
+            CustomRoles.Morphling => Morphling.CanUseKillButton(pc.PlayerId),
             CustomRoles.FFF => pc.IsAlive(),
             CustomRoles.Medicaler => Medicaler.CanUseKillButton(pc.PlayerId),
             CustomRoles.Gamer => pc.IsAlive(),
@@ -512,9 +516,10 @@ static class ExtendedPlayerControl
             => false,
 
             CustomRoles.Jackal => Jackal.CanVent.GetBool(),
-       //     CustomRoles.Sidekick => Jackal.CanVent.GetBool(),
+            CustomRoles.Sidekick => Jackal.CanVent.GetBool(),
             CustomRoles.Poisoner => Poisoner.CanVent.GetBool(),
             CustomRoles.NSerialKiller => NSerialKiller.CanVent.GetBool(),
+            CustomRoles.Medusa => Medusa.CanVent.GetBool(),
             CustomRoles.Traitor => Traitor.CanVent.GetBool(),
             CustomRoles.NWitch => NWitch.CanVent.GetBool(),
             CustomRoles.Maverick => Maverick.CanVent.GetBool(),
@@ -530,6 +535,7 @@ static class ExtendedPlayerControl
             CustomRoles.Pickpocket => Pickpocket.CanVent.GetBool(),
             CustomRoles.HexMaster => true,
             CustomRoles.Wraith => true,
+         //   CustomRoles.Chameleon => true,
             CustomRoles.Parasite => true,
             CustomRoles.Spiritcaller => Spiritcaller.CanVent.GetBool(),
 
@@ -601,6 +607,9 @@ static class ExtendedPlayerControl
             case CustomRoles.EvilDiviner:
                 EvilDiviner.SetKillCooldown(player.PlayerId);
                 break;
+            case CustomRoles.Morphling:
+                Morphling.SetKillCooldown(player.PlayerId);
+                break;
             case CustomRoles.Ritualist:
                 Ritualist.SetKillCooldown(player.PlayerId);
                 break;
@@ -618,8 +627,10 @@ static class ExtendedPlayerControl
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.RevolutionistCooldown.GetFloat();
                 break;
             case CustomRoles.Jackal:
-          //case CustomRoles.Sidekick:
                 Jackal.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Sidekick:
+                Sidekick.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.HexMaster:
             case CustomRoles.Wraith:
@@ -683,6 +694,10 @@ static class ExtendedPlayerControl
             case CustomRoles.FFF:
                 Main.AllPlayerKillCooldown[player.PlayerId] = 0f;
                 break;
+            case CustomRoles.Medusa:
+                Medusa.SetKillCooldown(player.PlayerId);
+                break;
+
             case CustomRoles.Cleaner:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.CleanerKillCooldown.GetFloat();
                 break;
@@ -868,9 +883,9 @@ static class ExtendedPlayerControl
     public static bool IsNonNeutralKiller(this PlayerControl player) => player.GetCustomRole().IsNonNK();
     public static bool IsSnitchTarget(this PlayerControl player) => player.GetCustomRole().IsSnitchTarget();
     public static bool KnowDeathReason(this PlayerControl seer, PlayerControl target)
-        => (seer.Is(CustomRoles.Doctor)
+        => (seer.Is(CustomRoles.Doctor) || seer.Is(CustomRoles.Autopsy)
         || (seer.Data.IsDead && Options.GhostCanSeeDeathReason.GetBool()))
-        && target.Data.IsDead;
+        && target.Data.IsDead || target.Is(CustomRoles.Gravestone) && target.Data.IsDead;
     public static bool KnowDeadTeam(this PlayerControl seer, PlayerControl target)
         => (seer.Is(CustomRoles.Necroview))
         && target.Data.IsDead;
