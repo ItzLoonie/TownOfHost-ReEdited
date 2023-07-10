@@ -1552,7 +1552,8 @@ public static class Utils
                         (seer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Jackal))||
                         (target.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) ||
                         (target.Is(CustomRoles.Doctor) && !target.GetCustomRole().IsEvilAddons() && Options.DoctorVisibleToEveryone.GetBool()) ||
-                        (target.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && target.AllTasksCompleted()) ||
+                        (target.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && target.GetPlayerTaskState().IsTaskFinished) ||
+                        (target.Is(CustomRoles.Marshall) && target.GetPlayerTaskState().IsTaskFinished) ||
                         (Totocalcio.KnowRole(seer, target)) ||
                         (Lawyer.KnowRole(seer, target)) ||
                         (EvilDiviner.IsShowTargetRole(seer, target)) ||
@@ -1681,9 +1682,9 @@ public static class Utils
 
                 if (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Snitch) && target.Is(CustomRoles.Madmate) && target.GetPlayerTaskState().IsTaskFinished)
                     TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Impostor), "★"));
-       /*         if (seer.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoles.Marshall) && target.GetPlayerTaskState().IsTaskFinished)
+                if (seer.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoles.Marshall) && target.GetPlayerTaskState().IsTaskFinished)
                     TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Marshall), "★"));
-                if (seer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Sidekick))
+                /*if (seer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Sidekick))
                     TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Jackal), " ♥"));
     //            if (seer.Is(CustomRoles.Monarch) && target.Is(CustomRoles.Knighted))
      //               TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Knighted), " 亗"));

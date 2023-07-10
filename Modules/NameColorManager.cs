@@ -89,7 +89,8 @@ public static class NameColorManager
             || (target.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool())
             || (target.Is(CustomRoles.Doctor) && !target.GetCustomRole().IsEvilAddons() && Options.DoctorVisibleToEveryone.GetBool())
             || (target.Is(CustomRoles.Gravestone) && Main.PlayerStates[target.Data.PlayerId].IsDead)
-            || (target.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && target.AllTasksCompleted())
+            || (target.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && target.GetPlayerTaskState().IsTaskFinished)
+            || (target.Is(CustomRoles.Marshall) && target.GetPlayerTaskState().IsTaskFinished)
             || Mare.KnowTargetRoleColor(target, isMeeting)
             || EvilDiviner.IsShowTargetRole(seer, target)
             || Ritualist.IsShowTargetRole(seer, target);
