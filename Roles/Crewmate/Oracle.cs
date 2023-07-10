@@ -135,6 +135,8 @@ public static class Oracle
             CustomRoles.Lawyer or
             CustomRoles.Arsonist or
             CustomRoles.Jackal or
+            CustomRoles.Maverick or
+            CustomRoles.Sidekick or
             CustomRoles.God or
             CustomRoles.Innocent or
             CustomRoles.Pursuer or

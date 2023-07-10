@@ -30,7 +30,6 @@ public static class DevManager
 {
     public static DevUser DefaultDevUser = new();
     public static List<DevUser> DevUserList = new();
-    public static List<DevUser> EditedDevUserList = new();
     public static void Init()
     {
         // Dev
@@ -62,6 +61,8 @@ public static class DevManager
         DevUserList.Add(new(code: "spoonkey#0792", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, upName: "没好康的"));
         DevUserList.Add(new(code: "beakedmire#6099", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, upName: "茄-au"));
         DevUserList.Add(new(code: "doggedsize#7892", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, upName: "TronAndRey"));
+        DevUserList.Add(new(code: "openlanded#9533", color: "#FFFF00", tag: "discord.gg/tohe", isUp: true, isDev: false, deBug: false, upName: "ryuk"));
+        DevUserList.Add(new(code: "unlikecity#4086", color: "#eD2F91", tag: "Ward", isUp: true, isDev: false, deBug: false, upName: "Ward"));
 
         DevUserList.Add(new(code: "neatnet#5851", color: "#FFFF00", tag: "The 200IQ guy", isUp: true, isDev: false, deBug: false, upName: "The 200IQ guy"));
         DevUserList.Add(new(code: "contenthue#0404", color: "#FFFF00", tag: "The 200IQ guy", isUp: true, isDev: false, deBug: false, upName: "The 200IQ guy"));
@@ -86,12 +87,7 @@ public static class DevManager
         DevUserList.Add(new(code: "caseeast#7194", color: "#1c2451", tag: "disc.gg/maul", isUp: false, isDev: false, deBug: false, upName: null)); //laikrai
         // lol hi go away
         DevUserList.Add(new(code: "gnuedaphic#7196", color: "#ffc0cb", tag: "Main Developer", isUp: true, isDev: true, deBug: false, upName: "Loonie")); //Loonie
-        // SolarLoonie
-        EditedDevUserList.Add(new(code: "honestsofa#2870", color: "#D381D9", tag: "Discord: SolarFlare#0700", isUp: true, isDev: false, deBug: false, upName: "SolarFlare")); //SolarFlare
-        EditedDevUserList.Add(new(code: "gnuedaphic#7196", color: "#ffc0cb", tag: "Main Developer", isUp: true, isDev: true, deBug: false, upName: "Loonie")); //Loonie
     }
     public static bool IsDevUser(this string code) => DevUserList.Any(x => x.Code == code);
-    public static bool IsEditedDevUser(this string code) => DevUserList.Any(x => x.Code == code);
     public static DevUser GetDevUser(this string code) => code.IsDevUser() ? DevUserList.Find(x => x.Code == code) : DefaultDevUser;
-    public static DevUser GetEditedDevUser(this string code) => code.IsEditedDevUser() ? EditedDevUserList.Find(x => x.Code == code) : DefaultDevUser;
 }

@@ -10,13 +10,12 @@ using TOHE.Roles.Crewmate;
 using TOHE.Roles.AddOns.Impostor;
 using UnityEngine;
 using static TOHE.Translator;
+using TOHE.Roles.AddOns.Common;
 
 namespace TOHE;
 
 public static class GuessManager
 {
-
-    private static PlayerControl tempPC = null;
     public static string GetFormatString()
     {
         string text = GetString("PlayerIdList");
@@ -184,15 +183,27 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("GuessWorkaholic"));
                     return true;
                 }
-                if (target.Is(CustomRoles.Doctor) && Options.DoctorVisibleToEveryone.GetBool())
+                if (target.Is(CustomRoles.Doctor) && Options.DoctorVisibleToEveryone.GetBool() && !target.GetCustomRole().IsEvilAddons())
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessDoctor"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessDoctor"));
                     return true;
                 }
+                if (role == CustomRoles.Monarch && target.Is(CustomRoles.Monarch) && CustomRoles.Knighted.RoleExist())
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessMonarch"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessMonarch"));
+                    return true;
+                }
+                if (role == CustomRoles.Knighted && pc.Is(CustomRoles.Monarch))
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessKnighted"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessKnighted"));
+                    return true;
+                }
                 if (Options.MayorRevealWhenDoneTasks.GetBool())
                 {
-                        if (target.Is(CustomRoles.Mayor) && target.AllTasksCompleted())
+                    if (target.Is(CustomRoles.Mayor) && target.GetPlayerTaskState().IsTaskFinished)
                     {
                         if (!isUI) Utils.SendMessage(GetString("GuessMayor"), pc.PlayerId);
                         else pc.ShowPopUp(GetString("GuessMayor"));
@@ -252,19 +263,19 @@ public static class GuessManager
                     Utils.SendMessage(GetString("GuessMarshall"), pc.PlayerId);
                     return true;
                 } */
-                if (target.Is(CustomRoles.Snitch) && target.AllTasksCompleted())
+                if (target.Is(CustomRoles.Snitch) && target.GetPlayerTaskState().IsTaskFinished)
                 {
                     if (!isUI) Utils.SendMessage(GetString("EGGuessSnitchTaskDone"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("EGGuessSnitchTaskDone"));
                     return true;
                 }
-                if (target.Is(CustomRoles.Marshall) && target.AllTasksCompleted())
+                if (target.Is(CustomRoles.Marshall) && target.GetPlayerTaskState().IsTaskFinished)
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessMarshallTask"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessMarshallTask"));
                     return true;
                 }
-                if (role == CustomRoles.Guardian || target.Is(CustomRoles.Guardian) && target.AllTasksCompleted())
+                if (role == CustomRoles.Guardian && target.Is(CustomRoles.Guardian) && target.GetPlayerTaskState().IsTaskFinished)
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessGuardianTask"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessGuardianTask"));
@@ -354,20 +365,20 @@ public static class GuessManager
                     }
                 }
 
-                if ((pc.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoleTypes.Impostor) && !Options.ImpCanGuessImp.GetBool()) && Options.GuesserMode.GetBool())
+         /*       if ((pc.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoleTypes.Impostor) && !Options.ImpCanGuessImp.GetBool()) && Options.GuesserMode.GetBool())
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessImpRole"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessImpRole"));
                     return true;
 
                 }
-                if ((pc.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoleTypes.Crewmate) && !Options.CrewCanGuessCrew.GetBool()) && Options.GuesserMode.GetBool())
+                if ((role == CustomRoles.Phantom && pc.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoleTypes.Crewmate) && !Options.CrewCanGuessCrew.GetBool()) && Options.GuesserMode.GetBool())
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessCrewRole"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessCrewRole"));
                     return true;
 
-                }
+                } */
                 if (target.Is(CustomRoles.Merchant) && Merchant.IsBribedKiller(pc, target))
                 {
                     if (!isUI) Utils.SendMessage(GetString("BribedByMerchant2"), pc.PlayerId);
@@ -377,14 +388,11 @@ public static class GuessManager
 
                 if (pc.PlayerId == target.PlayerId)
                 {
-                    if (pc.Is(CustomRoles.DoubleShot) && DoubleShot.DoubleShotIsActive)
+                    if (pc.Is(CustomRoles.DoubleShot) && !DoubleShot.IsActive.Contains(pc.PlayerId))
                     {
-                        DoubleShot.DoubleShotIsActive = false;
+                        DoubleShot.IsActive.Add(pc.PlayerId);
 
-                        if (tempPC == null)
-                            tempPC = pc;
-
-                        Logger.Msg($"{DoubleShot.DoubleShotIsActive}", "guesserDoubleShotIsActive");
+                        Logger.Msg($"{pc.PlayerId}", "GuesserDoubleShotIsActive-1");
 
                         if (!isUI) Utils.SendMessage(GetString("GuessDoubleShot"), pc.PlayerId);
                         else pc.ShowPopUp(GetString("GuessDoubleShot"));
@@ -392,6 +400,9 @@ public static class GuessManager
                     }
                     else
                     {
+                        if (pc.Is(CustomRoles.DoubleShot) && DoubleShot.IsActive.Contains(pc.PlayerId))
+                            DoubleShot.IsActive.Remove(pc.PlayerId);
+
                         if (!isUI) Utils.SendMessage(GetString("LaughToWhoGuessSelf"), pc.PlayerId, Utils.ColorString(Color.cyan, GetString("MessageFromKPD")));
                         else pc.ShowPopUp(Utils.ColorString(Color.cyan, GetString("MessageFromKPD")) + "\n" + GetString("LaughToWhoGuessSelf"));
                         guesserSuicide = true;
@@ -399,14 +410,11 @@ public static class GuessManager
                 }
                 else if (pc.Is(CustomRoles.NiceGuesser) && target.Is(CustomRoleTypes.Crewmate) && !Options.GGCanGuessCrew.GetBool() && !pc.Is(CustomRoles.Madmate)) 
                 {
-                    if (pc.Is(CustomRoles.DoubleShot) && DoubleShot.DoubleShotIsActive)
+                    if (pc.Is(CustomRoles.DoubleShot) && !DoubleShot.IsActive.Contains(pc.PlayerId))
                     {
-                        DoubleShot.DoubleShotIsActive = false;
+                        DoubleShot.IsActive.Add(pc.PlayerId);
 
-                        if (tempPC == null)
-                            tempPC = pc;
-
-                        Logger.Msg($"{DoubleShot.DoubleShotIsActive}", "guesserDoubleShotIsActive");
+                        Logger.Msg($"{pc.PlayerId}", "GuesserDoubleShotIsActive-2");
 
                         if (!isUI) Utils.SendMessage(GetString("GuessDoubleShot"), pc.PlayerId);
                         else pc.ShowPopUp(GetString("GuessDoubleShot"));
@@ -414,20 +422,20 @@ public static class GuessManager
                     }
                     else
                     {
+                        if (pc.Is(CustomRoles.DoubleShot) && DoubleShot.IsActive.Contains(pc.PlayerId))
+                            DoubleShot.IsActive.Remove(pc.PlayerId);
+
                         guesserSuicide = true;
                         Logger.Msg($"{guesserSuicide}", "guesserSuicide1");
                     }
                 }
                 else if (pc.Is(CustomRoles.EvilGuesser) && target.Is(CustomRoleTypes.Impostor) && !Options.EGCanGuessImp.GetBool()) 
                 {
-                    if (pc.Is(CustomRoles.DoubleShot) && DoubleShot.DoubleShotIsActive)
+                    if (pc.Is(CustomRoles.DoubleShot) && !DoubleShot.IsActive.Contains(pc.PlayerId))
                     {
-                        DoubleShot.DoubleShotIsActive = false;
+                        DoubleShot.IsActive.Add(pc.PlayerId);
 
-                        if (tempPC == null)
-                            tempPC = pc;
-
-                        Logger.Msg($"{DoubleShot.DoubleShotIsActive}", "guesserDoubleShotIsActive");
+                        Logger.Msg($"{pc.PlayerId}", "GuesserDoubleShotIsActive-3");
 
                         if (!isUI) Utils.SendMessage(GetString("GuessDoubleShot"), pc.PlayerId);
                         else pc.ShowPopUp(GetString("GuessDoubleShot"));
@@ -435,6 +443,9 @@ public static class GuessManager
                     }
                     else
                     {
+                        if (pc.Is(CustomRoles.DoubleShot) && DoubleShot.IsActive.Contains(pc.PlayerId))
+                            DoubleShot.IsActive.Remove(pc.PlayerId);
+
                         guesserSuicide = true;
                         Logger.Msg($"{guesserSuicide}", "guesserSuicide2");
                     }
@@ -443,14 +454,11 @@ public static class GuessManager
                 //   else if (pc.Is(CustomRoles.Guesser)/* && role.IsCrewmate() && !pc.Is(CustomRoles.Madmate) && !Options.GCanGuessCrew.GetBool() */) guesserSuicide = true;
                 else if (!target.Is(role)) 
                 {
-                    if (pc.Is(CustomRoles.DoubleShot) && DoubleShot.DoubleShotIsActive)
+                    if (pc.Is(CustomRoles.DoubleShot) && !DoubleShot.IsActive.Contains(pc.PlayerId))
                     {
-                        DoubleShot.DoubleShotIsActive = false;
+                        DoubleShot.IsActive.Add(pc.PlayerId);
 
-                        if (tempPC == null)
-                            tempPC = pc;
-
-                        Logger.Msg($"{DoubleShot.DoubleShotIsActive}", "guesserDoubleShotIsActive");
+                        Logger.Msg($"{pc.PlayerId}", "GuesserDoubleShotIsActive-4");
 
                         if (!isUI) Utils.SendMessage(GetString("GuessDoubleShot"), pc.PlayerId);
                         else pc.ShowPopUp(GetString("GuessDoubleShot"));
@@ -458,6 +466,9 @@ public static class GuessManager
                     }
                     else
                     {
+                        if (pc.Is(CustomRoles.DoubleShot) && DoubleShot.IsActive.Contains(pc.PlayerId))
+                            DoubleShot.IsActive.Remove(pc.PlayerId);
+
                         guesserSuicide = true;
                         Logger.Msg($"{guesserSuicide}", "guesserSuicide3");
                     }
@@ -468,7 +479,7 @@ public static class GuessManager
                 var dp = guesserSuicide ? pc : target;
                 target = dp;
 
-                Logger.Info($"赌场事件：{target.GetNameWithRole()} 死亡", "Guesser");
+                Logger.Info($"Player：{target.GetNameWithRole()} was guessed", "Guesser");
 
                 string Name = dp.GetRealName();
 
@@ -481,12 +492,6 @@ public static class GuessManager
                     Main.PlayerStates[dp.PlayerId].deathReason = PlayerState.DeathReason.Gambled;
                     dp.SetRealKiller(pc);
                     RpcGuesserMurderPlayer(dp);
-
-                    if (dp == tempPC)
-                    {
-                        DoubleShot.DoubleShotIsActive = true;
-                        tempPC = null;
-                    }
 
                     //死者检查
                     Utils.AfterPlayerDeathTasks(dp, true);
@@ -939,6 +944,9 @@ public static class GuessManager
                 if ( role is CustomRoles.GM 
                     or CustomRoles.SpeedBooster
                     or CustomRoles.Engineer
+                    or CustomRoles.Pessimist
+                    or CustomRoles.Oblivious
+                    or CustomRoles.Rogue
                     or CustomRoles.Scientist
                     or CustomRoles.Impostor
                     or CustomRoles.Shapeshifter

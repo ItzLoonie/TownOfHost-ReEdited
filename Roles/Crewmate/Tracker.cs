@@ -47,7 +47,7 @@
         }
         public static bool IsEnable => playerIdList.Count > 0;
 
-        public static string GetTargetMark(PlayerControl seer, PlayerControl target) => TrackerTarget[seer.PlayerId] == target.PlayerId ? Utils.ColorString(seer.GetRoleColor(), "◀") : "";
+        public static string GetTargetMark(PlayerControl seer, PlayerControl target) => TrackerTarget.ContainsKey(seer.PlayerId) && TrackerTarget[seer.PlayerId] == target.PlayerId ? Utils.ColorString(seer.GetRoleColor(), "◀") : "";
 
         public static void OnReportDeadBody()
         {

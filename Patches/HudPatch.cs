@@ -2,6 +2,7 @@ using HarmonyLib;
 using Il2CppSystem.Text;
 using System.Collections.Generic;
 using System.Linq;
+using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
@@ -155,6 +156,9 @@ class HudManagerPatch
                     case CustomRoles.Bomber:
                         __instance.AbilityButton.OverrideText(GetString("BomberShapeshiftText"));
                         break;
+                    case CustomRoles.Twister:
+                        __instance.AbilityButton.OverrideText(GetString("TwisterButtonText"));
+                        break;
                     case CustomRoles.ImperiusCurse:
                         __instance.AbilityButton.OverrideText(GetString("ImperiusCurseButtonText"));
                         break;
@@ -184,6 +188,9 @@ class HudManagerPatch
                     case CustomRoles.Cleaner:
                         __instance.ReportButton.OverrideText(GetString("CleanerReportButtonText"));
                         break;
+                    case CustomRoles.Medusa:
+                        __instance.ReportButton.OverrideText(GetString("MedusaReportButtonText"));
+                        break;
                     case CustomRoles.Vulture:
                         __instance.ReportButton.OverrideText(GetString("VultureEatButtonText"));
                         break;
@@ -192,6 +199,9 @@ class HudManagerPatch
                         break;
                     case CustomRoles.Wraith:
                         __instance.ImpostorVentButton.OverrideText(GetString(Wraith.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "WraithRevertVentButtonText" : "WraithVentButtonText"));
+                        break;
+                    case CustomRoles.Chameleon:
+                        __instance.AbilityButton.OverrideText(GetString(Chameleon.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "ChameleonRevertDisguise" : "ChameleonDisguise"));
                         break;
                     case CustomRoles.Mario:
                         __instance.AbilityButton.buttonLabelText.text = GetString("MarioVentButtonText");
@@ -232,6 +242,11 @@ class HudManagerPatch
                         break;
                     case CustomRoles.Deputy:
                         __instance.KillButton.OverrideText(GetString("DeputyHandcuffText"));
+                        break;
+                    case CustomRoles.Sidekick:
+                        __instance.KillButton.OverrideText(GetString("KillButtonText"));
+                        __instance.ImpostorVentButton.OverrideText(GetString("ReportButtonText"));
+                        __instance.SabotageButton.OverrideText(GetString("SabotageButtonText"));
                         break;
                     case CustomRoles.Addict:
                         __instance.AbilityButton.OverrideText(GetString("AddictVentButtonText"));
@@ -289,6 +304,10 @@ class HudManagerPatch
                 else if (player.Is(CustomRoles.Wraith))
                 {
                     LowerInfoText.text = Wraith.GetHudText(player);
+                }
+                else if (player.Is(CustomRoles.Chameleon))
+                {
+                    LowerInfoText.text = Chameleon.GetHudText(player);
                 }
                 else if (player.Is(CustomRoles.BloodKnight))
                 {
@@ -446,6 +465,9 @@ class SetHudActivePatch
             case CustomRoles.Jackal:
                 Jackal.SetHudActive(__instance, isActive);
                 break;
+            case CustomRoles.Sidekick:
+                Sidekick.SetHudActive(__instance, isActive);
+                break;
             case CustomRoles.Traitor:
                 Traitor.SetHudActive(__instance, isActive);
                 break;
@@ -475,7 +497,7 @@ class VentButtonDoClickPatch
     {
         var pc = PlayerControl.LocalPlayer;
         {
-            if (!pc.Is(CustomRoles.Swooper) || !pc.Is(CustomRoles.Wraith) || pc.inVent || __instance.currentTarget == null || !pc.CanMove || !__instance.isActiveAndEnabled) return true;
+            if (!pc.Is(CustomRoles.Swooper) || !pc.Is(CustomRoles.Wraith) || !pc.Is(CustomRoles.Chameleon) || pc.inVent || __instance.currentTarget == null || !pc.CanMove || !__instance.isActiveAndEnabled) return true;
             pc?.MyPhysics?.RpcEnterVent(__instance.currentTarget.Id);
             return false;
         }

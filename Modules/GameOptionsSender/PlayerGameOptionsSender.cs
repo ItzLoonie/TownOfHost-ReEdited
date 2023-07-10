@@ -97,6 +97,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Phantom:
             case CustomRoles.Crewpostor:
             case CustomRoles.Jester:
+            case CustomRoles.Chameleon:
                 AURoleOptions.EngineerCooldown = 0f;
                 AURoleOptions.EngineerInVentMaxTime = 0f;
                 break;
@@ -181,8 +182,10 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 AURoleOptions.ShapeshifterDuration = Wildling.ShapeshiftDur.GetFloat();
                 break;
             case CustomRoles.Jackal:
-       //     case CustomRoles.Sidekick:
                 Jackal.ApplyGameOptions(opt);
+                break;
+            case CustomRoles.Sidekick:
+                Sidekick.ApplyGameOptions(opt);
                 break;
             case CustomRoles.Poisoner:
                 Poisoner.ApplyGameOptions(opt);
@@ -205,6 +208,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.NSerialKiller:
                 NSerialKiller.ApplyGameOptions(opt);
                 break;
+            case CustomRoles.Morphling:
+                Morphling.ApplyGameOptions();
+                break;
             case CustomRoles.Traitor:
                 Traitor.ApplyGameOptions(opt);
                 break;
@@ -213,6 +219,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
             case CustomRoles.Maverick:
                 Maverick.ApplyGameOptions(opt);
+                break;
+            case CustomRoles.Medusa:
+                Medusa.ApplyGameOptions(opt);
                 break;
             case CustomRoles.Jinx:
                 Jinx.ApplyGameOptions(opt);
@@ -238,6 +247,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 opt.SetVision(true);
                 //Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
                 break;
+        /*    case CustomRoles.Chameleon:
+                opt.SetVision(false);
+                break; */
             
             case CustomRoles.Gamer:
                 Gamer.ApplyGameOptions(opt);
@@ -303,6 +315,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
             case CustomRoles.Deathpact:
                 Deathpact.ApplyGameOptions();
+                break;
+            case CustomRoles.Twister:
+                Twister.ApplyGameOptions();
                 break;
         }
 

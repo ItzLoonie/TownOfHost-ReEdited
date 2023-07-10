@@ -123,6 +123,7 @@ class ExileControllerWrapUpPatch
                 CustomRoles.Addict or
                 CustomRoles.ShapeshifterTOHE or
                 CustomRoles.Wildling or
+                CustomRoles.Twister or
                 CustomRoles.Deathpact or
                 CustomRoles.Dazzler or
                 CustomRoles.Devourer or

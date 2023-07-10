@@ -105,6 +105,8 @@ enum CustomRPC
     SyncKBBackCountdown,
     SyncKBNameNotify,
     SetRitualist,
+    SetChameleonTimer,
+    DoPoison,
 }
 public enum Sounds
 {
@@ -482,6 +484,9 @@ internal class RPCHandlerPatch
             case CustomRPC.SetWraithTimer:
                 Wraith.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetChameleonTimer:
+                Chameleon.ReceiveRPC(reader);
+                break;
             case CustomRPC.SetBKTimer:
                 BloodKnight.ReceiveRPC(reader);
                 break;
@@ -522,6 +527,10 @@ internal class RPCHandlerPatch
             case CustomRPC.SetVultureArrow:
                 Vulture.ReceiveRPC(reader);
                 break;
+            case CustomRPC.DoPoison:
+                Baker.ReceiveRPC(reader);
+                break;
+
         }
     }
 }
@@ -727,8 +736,10 @@ internal static class RPC
                 HexMaster.Add(targetId);
                 break;
             case CustomRoles.Jackal:
-        //    case CustomRoles.Sidekick:
                 Jackal.Add(targetId);
+                break;
+            case CustomRoles.Sidekick:
+                Sidekick.Add(targetId);
                 break;
             case CustomRoles.Poisoner:
                 Poisoner.Add(targetId);
@@ -833,6 +844,12 @@ internal static class RPC
             case CustomRoles.Judge:
                 Judge.Add(targetId);
                 break;
+            case CustomRoles.ParityCop:
+                ParityCop.Add(targetId);
+                break;
+            case CustomRoles.Baker:
+                Baker.Add(targetId);
+                break;
             case CustomRoles.Councillor:
                 Councillor.Add(targetId);
                 break;
@@ -853,6 +870,9 @@ internal static class RPC
                 break;
             case CustomRoles.Wraith:
                 Wraith.Add(targetId);
+                break;
+            case CustomRoles.Chameleon:
+                Chameleon.Add(targetId);
                 break;
             case CustomRoles.BloodKnight:
                 BloodKnight.Add(targetId);
@@ -913,6 +933,12 @@ internal static class RPC
                 break;
             case CustomRoles.Deathpact:
                 Deathpact.Add(targetId);
+                break;
+            case CustomRoles.Wildling:
+                Wildling.Add(targetId);
+                break;
+            case CustomRoles.Morphling:
+                Morphling.Add(targetId);
                 break;
             case CustomRoles.Devourer:
                 Devourer.Add(targetId);
