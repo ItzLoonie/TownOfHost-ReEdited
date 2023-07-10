@@ -93,7 +93,7 @@ public static class Witch
     }
     public static bool IsSpellMode(byte playerId)
     {
-        return SpellMode[playerId];
+        return SpellMode.ContainsKey(playerId) && SpellMode[playerId];
     }
     public static void SwitchSpellMode(byte playerId, bool kill)
     {
