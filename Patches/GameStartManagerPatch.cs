@@ -9,6 +9,7 @@ using TMPro;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using static TOHE.Translator;
+using TOHE.Roles.Neutral;
 
 namespace TOHE;
 
@@ -68,6 +69,8 @@ public class GameStartManagerPatch
             AURoleOptions.SetOpt(Main.NormalOptions.Cast<IGameOptions>());
             if (AURoleOptions.ShapeshifterCooldown == 0f)
                 AURoleOptions.ShapeshifterCooldown = Main.LastShapeshifterCooldown.Value;
+
+            AURoleOptions.GuardianAngelCooldown = Spiritcaller.SpiritAbilityCooldown.GetFloat();
         }
     }
 

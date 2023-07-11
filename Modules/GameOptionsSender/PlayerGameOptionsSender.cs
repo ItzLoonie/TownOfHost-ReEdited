@@ -319,9 +319,6 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Twister:
                 Twister.ApplyGameOptions();
                 break;
-            case CustomRoles.EvilSpirit:
-                AURoleOptions.GuardianAngelCooldown = Spiritcaller.SpiritAbilityCooldown.GetFloat();
-                break;
             case CustomRoles.Spiritcaller:
                 opt.SetVision(Spiritcaller.ImpostorVision.GetBool());
                 break;
