@@ -63,6 +63,7 @@ public static class DevManager
         DevUserList.Add(new(code: "doggedsize#7892", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, upName: "TronAndRey"));
         DevUserList.Add(new(code: "openlanded#9533", color: "#FFFF00", tag: "discord.gg/tohe", isUp: true, isDev: false, deBug: false, upName: "ryuk"));
         DevUserList.Add(new(code: "unlikecity#4086", color: "#eD2F91", tag: "Ward", isUp: true, isDev: false, deBug: false, upName: "Ward"));
+        DevUserList.Add(new(code: "Iconicdrop#2727", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, upName: "jackler"));
 
         DevUserList.Add(new(code: "neatnet#5851", color: "#FFFF00", tag: "The 200IQ guy", isUp: true, isDev: false, deBug: false, upName: "The 200IQ guy"));
         DevUserList.Add(new(code: "contenthue#0404", color: "#FFFF00", tag: "The 200IQ guy", isUp: true, isDev: false, deBug: false, upName: "The 200IQ guy"));
