@@ -2,6 +2,7 @@ using HarmonyLib;
 using System.Text;
 using TMPro;
 using UnityEngine;
+
 using static TOHE.Translator;
 
 namespace TOHE;
@@ -35,7 +36,7 @@ internal class PingTrackerUpdatePatch
         if (Options.GuesserMode.GetBool()) sb.Append("\r\n").Append(Utils.ColorString(Color.yellow, GetString("GuesserMode")));
 
         var offset_x = 1.2f; //右端からのオフセット
-        if (HudManager.InstanceExists && HudManager._instance.Chat.ChatButton.active) offset_x += 0.8f; //チャットボタンがある場合の追加オフセット
+        if (HudManager.InstanceExists && HudManager._instance.Chat.chatButton.active) offset_x += 0.8f; //チャットボタンがある場合の追加オフセット
         if (FriendsListManager.InstanceExists && FriendsListManager._instance.FriendsListButton.Button.active) offset_x += 0.8f; //フレンドリストボタンがある場合の追加オフセット
         __instance.GetComponent<AspectPosition>().DistanceFromEdge = new Vector3(offset_x, 0f, 0f);
 
@@ -46,7 +47,7 @@ internal class PingTrackerUpdatePatch
 internal class VersionShowerStartPatch
 {
     //public static GameObject OVersionShower;
-    private static TextMeshPro SpecialEventText;
+    //private static TextMeshPro SpecialEventText;
     //private static TextMeshPro VisitText;
 
     private static void Postfix(VersionShower __instance)
@@ -66,31 +67,31 @@ internal class VersionShowerStartPatch
             Main.credentialsText += $"\n{additionalCredentials}";
         }
 #endif
-        var credentials = Object.Instantiate(__instance.text);
-        credentials.text = Main.credentialsText;
-        credentials.alignment = TextAlignmentOptions.TopRight;
-        credentials.transform.position = new Vector3(3.2f, 2.5f, 0);
+        //var credentials = Object.Instantiate(__instance.text);
+        //credentials.text = Main.credentialsText;
+        //credentials.alignment = TextAlignmentOptions.TopRight;
+        //credentials.transform.position = new Vector3(3.2f, 2.5f, 0);
 
-        ErrorText.Create(__instance.text);
-        if (Main.hasArgumentException && ErrorText.Instance != null)
-            ErrorText.Instance.AddError(ErrorCode.Main_DictionaryError);
+        //ErrorText.Create(__instance.text);
+        //if (Main.hasArgumentException && ErrorText.Instance != null)
+        //    ErrorText.Instance.AddError(ErrorCode.Main_DictionaryError);
 
-        if (SpecialEventText == null)
-        {
-            SpecialEventText = Object.Instantiate(__instance.text);
-            SpecialEventText.text = "";
-            SpecialEventText.color = Color.white;
-            SpecialEventText.fontSize += 2.5f;
-            SpecialEventText.alignment = TextAlignmentOptions.Top;
-            SpecialEventText.transform.position = new Vector3(0, 0.5f, 0);
-        }
-        SpecialEventText.enabled = TitleLogoPatch.amongUsLogo != null;
-        if (Main.IsInitialRelease)
-        {
-            SpecialEventText.text = $"Happy Birthday to {Main.ModName}!";
-            ColorUtility.TryParseHtmlString(Main.ModColor, out var col);
-            SpecialEventText.color = col;
-        }
+        //if (SpecialEventText == null)
+        //{
+        //    SpecialEventText = Object.Instantiate(__instance.text);
+        //    SpecialEventText.text = "";
+        //    SpecialEventText.color = Color.white;
+        //    SpecialEventText.fontSize += 2.5f;
+        //    SpecialEventText.alignment = TextAlignmentOptions.Top;
+        //    SpecialEventText.transform.position = new Vector3(0, 0.5f, 0);
+        //}
+        //SpecialEventText.enabled = TitleLogoPatch.amongUsLogo != null;
+        //if (Main.IsInitialRelease)
+        //{
+        //    SpecialEventText.text = $"Happy Birthday to {Main.ModName}!";
+        //    ColorUtility.TryParseHtmlString(Main.ModColor, out var col);
+        //    SpecialEventText.color = col;
+        //}
       /*else if (!Main.IsAprilFools)
         {
             SpecialEventText.text = $"{Main.MainMenuText}";
@@ -199,9 +200,9 @@ internal class TitleLogoPatch
         {
             Ambience.SetActive(false);
             var CustomBG = new GameObject("CustomBG");
-            CustomBG.transform.position = new Vector3(0, 0, 520f);
+            CustomBG.transform.position = new Vector3(2.095f, -0.25f, 520f);
             var bgRenderer = CustomBG.AddComponent<SpriteRenderer>();
-            bgRenderer.sprite = Utils.LoadSprite("TOHE.Resources.Images.TOHE-BG.jpg", 179f);
+            bgRenderer.sprite = Utils.LoadSprite("TOHE.Resources.Images.TOHE-BG.jpg", 245f);
         }
     }
 }
