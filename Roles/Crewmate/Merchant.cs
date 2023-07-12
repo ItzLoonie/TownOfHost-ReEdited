@@ -82,11 +82,11 @@ namespace TOHE.Roles.Crewmate
             OptionCanSellHelpful = BooleanOptionItem.Create(Id + 9, "MerchantSellHelpful", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
             OptionCanSellHarmful = BooleanOptionItem.Create(Id + 10, "MerchantSellHarmful", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
             OptionCanSellNeutral = BooleanOptionItem.Create(Id + 11, "MerchantSellNeutral", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
-            OptionCanSellExperimental = BooleanOptionItem.Create(Id + 15, "MerchantSellExperimental", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
-            OptionSellOnlyHarmfulToEvil = BooleanOptionItem.Create(Id + 12, "MerchantSellHarmfulToEvil", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
-            OptionSellOnlyHelpfulToCrew = BooleanOptionItem.Create(Id + 13, "MerchantSellHelpfulToCrew", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
+            OptionCanSellExperimental = BooleanOptionItem.Create(Id + 12, "MerchantSellExperimental", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
+            OptionSellOnlyHarmfulToEvil = BooleanOptionItem.Create(Id + 13, "MerchantSellHarmfulToEvil", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
+            OptionSellOnlyHelpfulToCrew = BooleanOptionItem.Create(Id + 14, "MerchantSellHelpfulToCrew", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Merchant]);
 
-            OverrideTasksData.Create(Id + 14, TabGroup.CrewmateRoles, CustomRoles.Merchant);
+            OverrideTasksData.Create(Id + 15, TabGroup.CrewmateRoles, CustomRoles.Merchant);
         }
         public static void Init()
         {
