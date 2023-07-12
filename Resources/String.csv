@@ -729,7 +729,7 @@
 "PursuerInfoLong","","(Neutrals):\nAs the Pursuer, you can use your ability on someone to make them misfire when they try to kill.\n\nTo win, just survive to the end of the game.","(Добрый - Нейтрал):\nПреследователь может использовать свою способность на ком-то, чтобы заставить его убиться, когда он попытается кого-то убить.\n\nЧтобы победить, просто доживите до конца игры","",""
 "PhantomInfoLong","","(Neutrals):\nAs the Phantom, your job is to get killed and finish your tasks.\nYou can do your tasks while alive.\nYou cannot win if you're alive.\nIf you get killed, you win with the winning team if your tasks are completed.","(Добрый/Злой - Нейтрал):\nФантому быть убитым и завершить свои задания.\nОн может выполнять свои задания даже когда он жив.\nНо не сможет победить, если он жив.\nЕсли вас убьют, вы выиграете вместе с какой-либо командой, если его задания были завершенны","",""
 "JinxInfoLong","","(Neutrals):\nAs the Jinx, whenever you are attacked, you jinx them, resulting in them dying to a jinx.\nThis has limited uses.\n\nKill off everyone to win.","(Злой - Нейтрал):\nВсякий раз когда Джинкс подвергается нападению, он накладывает на них порчу, в результате чего они умирают от проклятия.\nЭта способность имеет ограниченное применение.\n\nУбейте всех, чтобы победить","",""
-"MaverickInfoLong","","(Neutrals):\nAs the Maverick, you can kill much like a Serial Killer.\n\nHowever, you win with the winning team rather than alone.\nIf you die, you lose.","(Злой - Нейтрал):\nБродяга может убивать так же, как Маньяк.\n\nОднако он побеждает вместе с победившей командой, а не в одиночку.\nЕсли он умирёт, то проигрывает","",""
+"MaverickInfoLong","","(Neutrals):\nAs the Maverick, you can kill much like a Serial Killer.\n\nHowever, you win with the winning team rather than alone.\nIf you die, you lose.","(Злой - Нейтрал):\nБродяга может убивать так же, как Маньяк.\n\nОднако он побеждает вместе с победившей командой, а не в одиночку.\nЕсли он умрёт, то он проиграет","",""
 "CursedSoulInfoLong","","(Neutrals):\nAs the Cursed Soul, you snatch the victory if you survive to the end of the game.\n\nYou can snatch the win from a Jester or Executioner.\n\nAdditionally, you can snatch the souls of other players.\nSoulless players win with you and count as dead.","(Злой - Нейтрал):\nЗаклинателя вырвает победу, если доживет до конца игры.\n\nОн можкт вырвать победу даже у Шута или Палача.\n\nКроме того он может вырвать душу у других игроков.\nБездушные игроки победят вместе с ним, но будут считатся как мертвыми","",""
 "RitualistInfoLong","","(Neutrals):\nAs the Ritualist, you can reveal the roles of other players using your kill button.\n\nSingle click: Reveal role\nDouble click: Kill\n\nIf you run out of reveal uses, your kill button functions normally.","(Злой - Нейтрал):\nРитуальщик может раскрыть роли других игроков, используя кнопку убийства.\n\nОдин щелчок: раскрыть роль игрока\nДвойной щелчок: убить игрока\n\nЕсли количество раскрытий закончится, то кнопка убийства будет работать как обычно.","",""
 "PickpocketInfoLong","","(Neutrals):\nAs the Pickpocket, you steal votes from your kills.\nThese votes are hidden.\n\nKill everyone to win.","(Злой - Нейтрал):\nКарманник крадет голоса после каждого его убийства.\nЭти голоса скрыты.\n\nКогда он убьёт всех, он победит.","",""
@@ -1410,7 +1410,7 @@
 "ImpCanBeDoubleShot","","<color=#ff1919>Impostors</color> can have <color=#19fa8d>Double Shot</color>","У <color=#ff1919>Предателей</color> может быть <color=#19fa8d>Второй Шанс</color>","",""
 "CrewCanBeDoubleShot","","<color=#8cffff>Crewmates</color> can have <color=#19fa8d>Double Shot</color>","У <color=#8cffff>Членов Экипажа</color> может быть <color=#19fa8d>Второй Шанс</color>","",""
 "NeutralCanBeDoubleShot","","<color=#7f8c8d>Neutrals</color> can have <color=#19fa8d>Double Shot</color>","У <color=#7f8c8d>Нейтралов</color> может быть <color=#19fa8d>Второй Шанс</color>","",""
-"MimicCanSeeDeadRoles","","<color=#ff1919>Mimic</color> can see the roles of dead players","","",""
+"MimicCanSeeDeadRoles","","<color=#ff1919>Mimic</color> can see the roles of dead players","<color=#ff1919>Мимик</color> может видеть роли мёртвых игроков","",""
 "CanBeSoldByMerchant","","Can be sold by <color=#D27D2D>Merchant</color>","Может быть продан <color=#D27D2D>Торговцу</color>","",""
 "CanBeGuessed","","Can be guessed","Может быть угадан","",""
 "GuessTaskDone","","Sorry, you can't guess someone who has finished their tasks.","К сожалению, вы не можете угадать роль игрока, который выполнил все задания","",""
@@ -2064,7 +2064,7 @@
 "PanAlive","","The Baker has given out bread.","Пекарь раздал хлеб","",""
 
 "## Opportunist Text Strings"
-"ImmuneToAttacksWhenTasksDone","","Immune to attacks on task completion",""Невосприимчим к атакам после завершения задач"",""
+"ImmuneToAttacksWhenTasksDone","","Immune to attacks on task completion","Невосприимчим к атакам после завершения задач","",""
 
 "## Twister Text Strings"
 "TwisterCooldown","","Twist Cooldown","Откат телеорта","",""
@@ -2123,7 +2123,7 @@
 "GanFarseerCanBeMadmate","","<color=#BA55D3>Overseer</color> can be converted","<color=#BA55D3>Смотритель</color> может быть превращен","",""
 
 "## Rascal Text Strings"
-"RascalAppearAsMadmate","","Appear As <color=#ff1919>Madmate</color> On Ejection","","",""
+"RascalAppearAsMadmate","","Appear As <color=#ff1919>Madmate</color> On Ejection","Отображать как <color=#ff1919>Безумца</color> при изгнании","",""
 
 "## Councillor Text Strings"
 "CouncillorDead","","Sorry, you can't murder from the dead.","Извините, вы не можете убить из мертвых","",""
