@@ -21,7 +21,7 @@ public static class HexMaster
         "TriggerKill", "TriggerVent","TriggerDouble"
     };
 
-    private static readonly int Id = 155500;
+    private static readonly int Id = 11900;
     private static Color RoleColorHex = Utils.GetRoleColor(CustomRoles.HexMaster);
     private static Color RoleColorImp = Utils.GetRoleColor(CustomRoles.Impostor);
 

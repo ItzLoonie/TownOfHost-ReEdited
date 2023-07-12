@@ -10,7 +10,7 @@ namespace TOHE.Roles.Neutral
 {
     public static class Spiritcaller
     {
-        private static readonly int Id = 6123470;
+        private static readonly int Id = 13400;
         private static List<byte> playerIdList = new();
         private static int SpiritLimit = new();
 

@@ -2,7 +2,7 @@ namespace TOHE.Roles.AddOns.Impostor;
 
 public static class LastImpostor
 {
-    private static readonly int Id = 80000;
+    private static readonly int Id = 15900;
     public static byte currentId = byte.MaxValue;
     public static OptionItem KillCooldown;
     public static void SetupCustomOption()

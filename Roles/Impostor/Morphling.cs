@@ -9,7 +9,7 @@ namespace TOHE.Roles.Impostor;
 
 public static class Morphling
 {
-    private static readonly int Id = 651523;
+    private static readonly int Id = 3000;
     public static List<byte> playerIdList = new();
 
     public static OptionItem KillCooldown;

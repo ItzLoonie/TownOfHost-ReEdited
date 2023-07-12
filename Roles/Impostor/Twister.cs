@@ -10,7 +10,7 @@ namespace TOHE.Roles.Impostor
 {
     public static class Twister
     {
-        private static readonly int Id = 180001;
+        private static readonly int Id = 4400;
 
         private static OptionItem ShapeshiftCooldown;
     //    private static OptionItem ShapeshiftDuration;

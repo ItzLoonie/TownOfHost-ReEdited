@@ -8,7 +8,7 @@ namespace TOHE;
 // 来源：https://github.com/Yumenopai/TownOfHost_Y
 public static class DarkHide
 {
-    public static readonly int Id = 60200;
+    public static readonly int Id = 12900;
     public static List<byte> playerIdList = new();
 
     public static OptionItem KillCooldown;

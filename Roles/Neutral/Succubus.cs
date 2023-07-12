@@ -8,7 +8,7 @@ namespace TOHE.Roles.Neutral;
 
 public static class Succubus
 {
-    private static readonly int Id = 5052222;
+    private static readonly int Id = 11200;
     private static List<byte> playerIdList = new();
 
     public static OptionItem CharmCooldown;

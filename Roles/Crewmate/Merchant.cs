@@ -8,7 +8,7 @@ namespace TOHE.Roles.Crewmate
 {
     internal class Merchant
     {
-        private static readonly int Id = 830900;
+        private static readonly int Id = 7300;
         private static readonly List<byte> playerIdList = new();
 
         private static Dictionary<byte, int> addonsSold = new();

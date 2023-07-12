@@ -8,7 +8,7 @@ namespace TOHE.Roles.Neutral;
 
 public static class NSerialKiller
 {
-    private static readonly int Id = 5756900;
+    private static readonly int Id = 12800;
     public static List<byte> playerIdList = new();
 
     private static OptionItem KillCooldown;

@@ -11,7 +11,7 @@ namespace TOHE.Roles.Impostor
 {
     public static class Deathpact
     {
-        private static readonly int Id = 9334634;
+        private static readonly int Id = 1100;
         public static List<byte> playerIdList = new();
 
         public static Dictionary<byte, List<PlayerControl>> PlayersInDeathpact = new();

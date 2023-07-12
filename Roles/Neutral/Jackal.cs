@@ -11,7 +11,7 @@ namespace TOHE.Roles.Neutral;
 
 public static class Jackal
 {
-    private static readonly int Id = 50900;
+    private static readonly int Id = 12100;
     public static List<byte> playerIdList = new();
 
     public static OptionItem KillCooldown;

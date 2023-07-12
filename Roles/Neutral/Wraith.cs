@@ -10,7 +10,7 @@ namespace TOHE.Roles.Neutral;
 
 public static class Wraith
 {
-    private static readonly int Id = 1004444;
+    private static readonly int Id = 13300;
     private static List<byte> playerIdList = new();
 
     private static OptionItem WraithCooldown;

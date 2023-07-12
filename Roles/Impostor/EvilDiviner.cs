@@ -9,7 +9,7 @@ namespace TOHE.Roles.Impostor
 {
     public static class EvilDiviner
     {
-        private static readonly int Id = 3600;
+        private static readonly int Id = 2700;
         public static List<byte> playerIdList = new();
 
         private static OptionItem KillCooldown;

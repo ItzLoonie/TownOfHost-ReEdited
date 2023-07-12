@@ -8,7 +8,7 @@ namespace TOHE.Roles.Neutral;
 
 public static class Infectious
 {
-    private static readonly int Id = 7052222;
+    private static readonly int Id = 12000;
     private static List<byte> playerIdList = new();
 
     public static OptionItem BiteCooldown;

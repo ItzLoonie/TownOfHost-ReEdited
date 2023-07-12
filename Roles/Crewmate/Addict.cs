@@ -13,7 +13,7 @@ namespace TOHE.Roles.Crewmate
 
     public static class Addict
     {
-        private static readonly int Id = 4204204;
+        private static readonly int Id = 5200;
         private static List<byte> playerIdList = new();
 
         public static OptionItem VentCooldown;

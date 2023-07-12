@@ -7,7 +7,7 @@ namespace TOHE.Roles.Impostor;
 
 internal static class QuickShooter
 {
-    private static readonly int Id = 902522;
+    private static readonly int Id = 1800;
     public static List<byte> playerIdList = new();
     private static OptionItem KillCooldown;
     private static OptionItem MeetingReserved;

@@ -8,7 +8,7 @@ namespace TOHE.Roles.Crewmate;
 
 public static class Snitch
 {
-    private static readonly int Id = 20500;
+    private static readonly int Id = 8000;
     private static readonly List<byte> playerIdList = new();
     private static Color RoleColor = Utils.GetRoleColor(CustomRoles.Snitch);
 

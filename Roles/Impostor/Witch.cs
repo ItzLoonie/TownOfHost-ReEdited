@@ -21,7 +21,7 @@ public static class Witch
         "TriggerKill", "TriggerVent","TriggerDouble"
     };
 
-    private static readonly int Id = 1500;
+    private static readonly int Id = 2000;
     public static List<byte> playerIdList = new();
 
     public static Dictionary<byte, bool> SpellMode = new();

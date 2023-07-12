@@ -8,7 +8,7 @@ namespace TOHE.Roles.Crewmate;
 
 public static class Monarch
 {
-    private static readonly int Id = 7055522;
+    private static readonly int Id = 9600;
     private static List<byte> playerIdList = new();
 
     public static OptionItem KnightCooldown;

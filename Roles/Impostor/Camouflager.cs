@@ -2,7 +2,7 @@
 {
     public static class Camouflager
     {
-        private static readonly int Id = 903534;
+        private static readonly int Id = 2500;
 
         private static OptionItem CamouflageCooldown;
         private static OptionItem CamouflageDuration;

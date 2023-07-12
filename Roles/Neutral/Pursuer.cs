@@ -7,7 +7,7 @@ namespace TOHE.Roles.Neutral;
 
 public static class Pursuer
 {
-    private static readonly int Id = 8535600;
+    private static readonly int Id = 10200;
     private static List<byte> playerIdList = new();
     private static Dictionary<byte, List<byte>> clientList = new();
     private static List<byte> notActiveList = new();

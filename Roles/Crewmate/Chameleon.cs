@@ -10,7 +10,7 @@ namespace TOHE.Roles.Crewmate;
 
 public static class Chameleon
 {
-    private static readonly int Id = 1006666;
+    private static readonly int Id = 6300;
     private static List<byte> playerIdList = new();
 
     private static OptionItem ChameleonCooldown;

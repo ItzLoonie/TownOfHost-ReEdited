@@ -8,7 +8,7 @@ namespace TOHE.Roles.Neutral
 {
     public static class Baker
     {
-        private static readonly int Id = 35000;
+        private static readonly int Id = 11000;
         public static List<byte> playerIdList = new();
         public static List<byte> NplayerIdList = new();
 

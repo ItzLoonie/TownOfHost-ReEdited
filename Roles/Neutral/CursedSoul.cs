@@ -8,7 +8,7 @@ namespace TOHE.Roles.Neutral;
 
 public static class CursedSoul
 {
-    private static readonly int Id = 5052442;
+    private static readonly int Id = 10500;
     private static List<byte> playerIdList = new();
 
     public static OptionItem CurseCooldown;

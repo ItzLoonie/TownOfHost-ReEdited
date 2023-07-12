@@ -13,7 +13,7 @@ using static TOHE.Translator;
 namespace TOHE.Roles.Crewmate;
 public static class ParityCop
 {
-    private static readonly int Id = 888420;
+    private static readonly int Id = 6900;
     private static List<byte> playerIdList = new();
     private static Dictionary<byte, int> MaxCheckLimit = new();
     private static Dictionary<byte, int> RoundCheckLimit = new();
