@@ -7,7 +7,7 @@ namespace TOHE.Roles.Neutral;
 
 public static class Gamer
 {
-    private static readonly int Id = 5060956;
+    private static readonly int Id = 10600;
     public static List<byte> playerIdList = new();
 
     private static Dictionary<byte, int> PlayerHealth;

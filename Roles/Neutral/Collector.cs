@@ -6,7 +6,7 @@ namespace TOHE.Roles.Neutral;
 
 public static class Collector
 {
-    private static readonly int Id = 5051123;
+    private static readonly int Id = 11100;
     public static OptionItem CollectorCollectAmount;
     private static List<byte> playerIdList = new();
     public static Dictionary<byte, byte> CollectorVoteFor = new();

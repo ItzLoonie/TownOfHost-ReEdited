@@ -33,7 +33,7 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = " ";
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "2.4.3.4";
+    public const string PluginVersion = "2.5.0";
     public const int PluginCreate = 3;
     public const bool Canary = false;
 
@@ -270,6 +270,7 @@ public class Main : BasePlugin
                 {CustomRoles.Scientist, "#8cffff"},
                 {CustomRoles.GuardianAngel, "#ffffff"},
                 // Vanilla Remakes
+                {CustomRoles.CrewmateTOHE, "#8cffff"},
                 {CustomRoles.EngineerTOHE, "#FF6A00"},
                 {CustomRoles.ScientistTOHE, "#8ee98e"},
                 {CustomRoles.GuardianAngelTOHE, "#77e6d1"},
@@ -368,6 +369,7 @@ public class Main : BasePlugin
                 {CustomRoles.Famine, "#cb4d4d"},
                 {CustomRoles.Spiritcaller, "#003366"},
                 {CustomRoles.EvilSpirit, "#003366"},
+                {CustomRoles.Convict, "#ff1919"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -411,7 +413,9 @@ public class Main : BasePlugin
                 {CustomRoles.Gravestone, "#2EA8E7"},
                 {CustomRoles.Lazy, "#a4dffe"},
                 {CustomRoles.Autopsy, "#80ffdd"},
-                {CustomRoles.Pessimist, "#B71556"},
+                {CustomRoles.Loyal, "#B71556"},
+                {CustomRoles.Parasight, "#ff1919"},
+             //   {CustomRoles.QuickFix, "#3333ff"},
 
 
                 //SoloKombat
@@ -535,11 +539,13 @@ public enum CustomRoles
     Morphling,
     Twister,
     Lurker,
+    Convict,
     //Crewmate(Vanilla)
     Engineer,
     GuardianAngel,
     Scientist,
     // Vanilla Remakes
+    CrewmateTOHE,
     EngineerTOHE,
     GuardianAngelTOHE,
     ScientistTOHE,
@@ -683,8 +689,10 @@ public enum CustomRoles
     Gravestone,
     Lazy,
     Autopsy,
-    Pessimist,
-    EvilSpirit
+    Loyal,
+    EvilSpirit,
+    Parasight,
+   // QuickFix
 }
 //WinData
 public enum CustomWinner

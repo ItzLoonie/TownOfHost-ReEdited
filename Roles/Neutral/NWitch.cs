@@ -8,7 +8,7 @@ namespace TOHE.Roles.Neutral;
 
 public static class NWitch
 {
-    private static readonly int Id = 6050530;
+    private static readonly int Id = 10300;
     public static List<byte> playerIdList = new();
 
     private static OptionItem ControlCooldown;

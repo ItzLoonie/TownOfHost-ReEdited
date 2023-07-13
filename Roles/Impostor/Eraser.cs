@@ -7,7 +7,7 @@ namespace TOHE.Roles.Impostor;
 
 internal static class Eraser
 {
-    private static readonly int Id = 905553;
+    private static readonly int Id = 16800;
     public static List<byte> playerIdList = new();
 
     private static OptionItem EraseLimitOpt;

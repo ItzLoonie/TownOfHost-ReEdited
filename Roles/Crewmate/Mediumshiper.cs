@@ -6,7 +6,7 @@ namespace TOHE.Roles.Crewmate;
 
 public static class Mediumshiper
 {
-    private static readonly int Id = 8021812;
+    private static readonly int Id = 7200;
     public static List<byte> playerIdList = new();
 
     private static OptionItem ContactLimitOpt;

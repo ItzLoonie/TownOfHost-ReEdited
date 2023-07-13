@@ -5,7 +5,7 @@ namespace TOHE.Roles.Impostor;
 
 public static class Hangman
 {
-    private static readonly int Id = 905367;
+    private static readonly int Id = 1400;
     private static List<byte> playerIdList = new();
 
     private static OptionItem ShapeshiftCooldown;

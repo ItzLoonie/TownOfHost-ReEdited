@@ -7,7 +7,7 @@ namespace TOHE.Roles.Impostor;
 
 public static class Gangster
 {
-    private static readonly int Id = 5054525;
+    private static readonly int Id = 2900;
     private static List<byte> playerIdList = new();
 
     private static OptionItem RecruitLimitOpt;
@@ -120,6 +120,7 @@ public static class Gangster
             pc.Is(CustomRoles.Snitch) ||
             pc.Is(CustomRoles.Needy) ||
             pc.Is(CustomRoles.Lazy) ||
+            pc.Is(CustomRoles.Loyal) ||
             pc.Is(CustomRoles.CyberStar) ||
             pc.Is(CustomRoles.Egoist)
             );

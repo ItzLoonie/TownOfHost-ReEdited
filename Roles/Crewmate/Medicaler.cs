@@ -9,7 +9,7 @@ namespace TOHE.Roles.Crewmate;
 
 public static class Medicaler
 {
-    private static readonly int Id = 8021866;
+    private static readonly int Id = 7100;
     public static List<byte> playerIdList = new();
     public static List<byte> ProtectList = new();
     public static Dictionary<byte, int> ProtectLimit = new();

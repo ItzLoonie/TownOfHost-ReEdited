@@ -4,7 +4,7 @@ namespace TOHE.Roles.Crewmate;
 
 public static class SabotageMaster
 {
-    private static readonly int Id = 20300;
+    private static readonly int Id = 7000;
     public static List<byte> playerIdList = new();
 
     public static OptionItem SkillLimit;

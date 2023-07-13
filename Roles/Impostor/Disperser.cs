@@ -8,7 +8,7 @@ namespace TOHE.Roles.Impostor;
 
 public static class Disperser
 {
-    private static readonly int Id = 170005;
+    private static readonly int Id = 17000;
 
     private static OptionItem DisperserShapeshiftCooldown;
     private static OptionItem DisperserShapeshiftDuration;

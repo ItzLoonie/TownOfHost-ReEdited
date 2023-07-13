@@ -6,7 +6,7 @@ namespace TOHE;
 
 public static class Juggernaut
 {
-    private static readonly int Id = 952055;
+    private static readonly int Id = 12300;
     public static List<byte> playerIdList = new();
 
     private static OptionItem DefaultKillCooldown;

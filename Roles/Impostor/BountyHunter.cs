@@ -8,7 +8,7 @@ namespace TOHE.Roles.Impostor;
 
 public static class BountyHunter
 {
-    private static readonly int Id = 1000;
+    private static readonly int Id = 800;
     private static List<byte> playerIdList = new();
 
     private static OptionItem OptionTargetChangeTime;

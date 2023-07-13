@@ -10,7 +10,7 @@ namespace TOHE.Roles.Neutral
 {
     public static class Ritualist
     {
-        private static readonly int Id = 5600;
+        private static readonly int Id = 13000;
         public static List<byte> playerIdList = new();
 
         private static OptionItem KillCooldown;

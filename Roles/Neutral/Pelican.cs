@@ -5,7 +5,7 @@ namespace TOHE.Roles.Neutral;
 
 public static class Pelican
 {
-    private static readonly int Id = 5053175;
+    private static readonly int Id = 12500;
     private static List<byte> playerIdList = new();
     private static Dictionary<byte, List<byte>> eatenList = new();
     private static readonly Dictionary<byte, float> originalSpeed = new();

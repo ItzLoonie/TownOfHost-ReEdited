@@ -6,7 +6,7 @@ namespace TOHE;
 
 public static class Sans
 {
-    private static readonly int Id = 902055;
+    private static readonly int Id = 600;
     public static List<byte> playerIdList = new();
 
     private static OptionItem DefaultKillCooldown;

@@ -8,7 +8,7 @@ namespace TOHE.Roles.Neutral;
 
 public static class Jinx
 {
-    private static readonly int Id = 5756960;
+    private static readonly int Id = 12200;
     public static List<byte> playerIdList = new();
 
     private static OptionItem KillCooldown;

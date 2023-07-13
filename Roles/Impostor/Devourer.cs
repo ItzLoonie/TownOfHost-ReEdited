@@ -17,7 +17,7 @@ namespace TOHE.Roles.Impostor
         static GameData.PlayerOutfit ConsumedOutfit = new GameData.PlayerOutfit().Set("", 15, "", "", "visor_Crack", "");
         private static Dictionary<byte, GameData.PlayerOutfit> OriginalPlayerSkins = new();
 
-        private static readonly int Id = 903634;
+        private static readonly int Id = 3550;
         public static List<byte> playerIdList = new();
 
         private static OptionItem DefaultKillCooldown;

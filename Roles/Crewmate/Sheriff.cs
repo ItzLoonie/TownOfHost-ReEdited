@@ -9,7 +9,7 @@ namespace TOHE.Roles.Crewmate;
 
 public static class Sheriff
 {
-    private static readonly int Id = 20400;
+    private static readonly int Id = 8800;
     public static List<byte> playerIdList = new();
 
     private static OptionItem KillCooldown;

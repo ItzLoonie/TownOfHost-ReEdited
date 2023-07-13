@@ -15,7 +15,7 @@ namespace TOHE.Roles.Impostor
 {
     public static class Dazzler
     {
-        private static readonly int Id = 914634;
+        private static readonly int Id = 3500;
         public static List<byte> playerIdList = new();
 
         public static Dictionary<byte, List<byte>> PlayersDazzled = new();

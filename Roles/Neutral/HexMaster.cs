@@ -21,9 +21,9 @@ public static class HexMaster
         "TriggerKill", "TriggerVent","TriggerDouble"
     };
 
-    private static readonly int Id = 155500;
+    private static readonly int Id = 11900;
     private static Color RoleColorHex = Utils.GetRoleColor(CustomRoles.HexMaster);
-    private static Color RoleColorImp = Utils.GetRoleColor(CustomRoles.Impostor);
+    private static Color RoleColorSpell = Utils.GetRoleColor(CustomRoles.Impostor);
 
     public static List<byte> playerIdList = new();
 
@@ -222,11 +222,11 @@ public static class HexMaster
         {
             if (!HexesLookLikeSpells.GetBool())
             {
-            return Utils.ColorString(RoleColorHex, "†");
+            return Utils.ColorString(RoleColorHex, "乂");
             }
             if (HexesLookLikeSpells.GetBool())
             {
-            return Utils.ColorString(RoleColorImp, "†");
+            return Utils.ColorString(RoleColorSpell, "†");
             }
         }
         return "";

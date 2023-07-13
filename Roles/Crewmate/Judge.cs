@@ -12,7 +12,7 @@ namespace TOHE.Roles.Crewmate;
 
 public static class Judge
 {
-    private static readonly int Id = 8035678;
+    private static readonly int Id = 9300;
     private static List<byte> playerIdList = new();
     private static OptionItem TrialLimitPerMeeting;
     private static OptionItem TryHideMsg;

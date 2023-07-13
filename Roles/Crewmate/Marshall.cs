@@ -8,7 +8,7 @@ namespace TOHE.Roles.Crewmate;
 
 public static class Marshall
 {
-    private static readonly int Id = 220500;
+    private static readonly int Id = 9400;
     private static readonly List<byte> playerIdList = new();
     private static Color RoleColor = Utils.GetRoleColor(CustomRoles.Marshall);
 

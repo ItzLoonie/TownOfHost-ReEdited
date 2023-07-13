@@ -10,7 +10,7 @@ namespace TOHE.Roles.Neutral
 {
     public static class Virus
     {
-        private static readonly int Id = 6052269;
+        private static readonly int Id = 13200;
         private static List<byte> playerIdList = new();
         private static int InfectLimit = new();
         public static List<byte> InfectedPlayer = new();
@@ -170,7 +170,7 @@ namespace TOHE.Roles.Neutral
 
         public static bool CanBeInfected(this PlayerControl pc)
         {
-            return true && !pc.Is(CustomRoles.Virus) && !pc.Is(CustomRoles.Contagious);
+            return true && !pc.Is(CustomRoles.Virus) && !pc.Is(CustomRoles.Contagious) && !pc.Is(CustomRoles.Loyal);
         }
     }
 }

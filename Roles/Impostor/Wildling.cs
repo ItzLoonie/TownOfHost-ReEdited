@@ -9,7 +9,7 @@ namespace TOHE.Roles.Impostor;
 
 public static class Wildling
 {
-    private static readonly int Id = 650923;
+    private static readonly int Id = 4700;
     public static List<byte> playerIdList = new();
 
     private static OptionItem ProtectDuration;

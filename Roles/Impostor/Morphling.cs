@@ -9,7 +9,7 @@ namespace TOHE.Roles.Impostor;
 
 public static class Morphling
 {
-    private static readonly int Id = 651523;
+    private static readonly int Id = 3000;
     public static List<byte> playerIdList = new();
 
     public static OptionItem KillCooldown;
@@ -20,7 +20,7 @@ public static class Morphling
     public static void SetupCustomOption()
     {
         SetupRoleOptions(Id, TabGroup.ImpostorRoles, CustomRoles.Morphling);
-        KillCooldown = FloatOptionItem.Create(Id + 14, "KillCooldown", new(1f, 999f, 1f), 15f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Morphling])
+        KillCooldown = FloatOptionItem.Create(Id + 14, "KillCooldown", new(0f, 180f, 2.5f), 25f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Morphling])
             .SetValueFormat(OptionFormat.Seconds);
         ShapeshiftCD = FloatOptionItem.Create(Id + 15, "ShapeshiftCooldown", new(1f, 999f, 1f), 10f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Morphling])
             .SetValueFormat(OptionFormat.Seconds);

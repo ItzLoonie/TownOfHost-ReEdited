@@ -20,7 +20,7 @@ public static class Poisoner
         }
     }
 
-    private static readonly int Id = 51300;
+    private static readonly int Id = 12700;
     public static List<byte> playerIdList = new();
     private static OptionItem OptionKillDelay;
     private static float KillDelay;

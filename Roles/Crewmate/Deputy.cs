@@ -8,7 +8,7 @@ namespace TOHE.Roles.Crewmate;
 
 public static class Deputy
 {
-    private static readonly int Id = 7059522;
+    private static readonly int Id = 6500;
     private static List<byte> playerIdList = new();
 
     public static OptionItem HandcuffCooldown;

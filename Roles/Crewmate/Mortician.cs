@@ -6,7 +6,7 @@ using static TOHE.Options;
 namespace TOHE.Roles.Crewmate;
 public static class Mortician
 {
-    private static readonly int Id = 8021150;
+    private static readonly int Id = 7400;
     private static List<byte> playerIdList = new();
 
     private static Dictionary<byte, string> lastPlayerName = new();

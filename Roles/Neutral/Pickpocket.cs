@@ -8,7 +8,7 @@ namespace TOHE.Roles.Neutral;
 
 public static class Pickpocket
 {
-    private static readonly int Id = 5696900;
+    private static readonly int Id = 12600;
     public static List<byte> playerIdList = new();
 
     private static OptionItem KillCooldown;

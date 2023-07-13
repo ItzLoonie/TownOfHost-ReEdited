@@ -6,7 +6,7 @@ namespace TOHE.Roles.Crewmate;
 
 public static class Oracle
 {
-    private static readonly int Id = 2022560;
+    private static readonly int Id = 7600;
     private static List<byte> playerIdList = new();
 
     private static OptionItem CheckLimitOpt;
@@ -135,6 +135,7 @@ public static class Oracle
             CustomRoles.Lawyer or
             CustomRoles.Arsonist or
             CustomRoles.Jackal or
+            CustomRoles.Medusa or
             CustomRoles.Maverick or
             CustomRoles.Sidekick or
             CustomRoles.God or
