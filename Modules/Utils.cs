@@ -1465,13 +1465,13 @@ public static class Utils
                 if (seer.Is(CustomRoles.Necroview))
                 {
                     if (target.Is(CustomRoleTypes.Crewmate) && !target.GetCustomRole().IsEvilAddons() && target.Data.IsDead)
-                            TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Bait), "★"));
+                        TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Bait), "★"));
 
                     if ((target.Is(CustomRoleTypes.Impostor) || target.Is(CustomRoles.Madmate) || target.Is(CustomRoles.Rascal) || target.Is(CustomRoles.Parasite) || target.Is(CustomRoles.Crewpostor)) && target.Data.IsDead)
-                            TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Impostor), "★"));
+                        TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Impostor), "★"));
 
-                    if (target.Is(CustomRoleTypes.Neutral) && target.Data.IsDead)
-                            TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Executioner), "★"));
+                    if ((target.Is(CustomRoleTypes.Neutral) || target.Is(CustomRoles.Rogue) || target.Is(CustomRoles.Contagious) || target.Is(CustomRoles.Charmed) || target.Is(CustomRoles.Infected) || target.Is(CustomRoles.Egoist) || target.Is(CustomRoles.Soulless)) && target.Data.IsDead)
+                        TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Executioner), "★"));
                 }
 
 

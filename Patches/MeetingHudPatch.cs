@@ -826,7 +826,7 @@ class MeetingHudStartPatch
                 if (target.Is(CustomRoleTypes.Impostor) || target.Is(CustomRoles.Madmate) || target.Is(CustomRoles.Rascal) || target.Is(CustomRoles.Parasite) || target.Is(CustomRoles.Crewpostor))
                     sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Impostor), "★"));
                 
-                if (target.Is(CustomRoleTypes.Neutral))
+                if (target.Is(CustomRoleTypes.Neutral) || target.Is(CustomRoles.Rogue) || target.Is(CustomRoles.Contagious) || target.Is(CustomRoles.Charmed) || target.Is(CustomRoles.Infected) || target.Is(CustomRoles.Egoist) || target.Is(CustomRoles.Soulless))
                     sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Executioner), "★"));
             }
             //インポスター表示
