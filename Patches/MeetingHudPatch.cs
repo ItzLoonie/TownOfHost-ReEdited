@@ -823,7 +823,7 @@ class MeetingHudStartPatch
                 if (target.Is(CustomRoleTypes.Crewmate) && !target.GetCustomRole().IsEvilAddons())
                     sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Bait), "★"));
                 
-                if (target.Is(CustomRoleTypes.Impostor) && (target.Is(CustomRoles.Madmate) || target.Is(CustomRoles.Parasite) || target.Is(CustomRoles.Crewpostor) || target.Is(CustomRoles.Rascal)))
+                if (target.Is(CustomRoleTypes.Impostor) || target.Is(CustomRoles.Madmate) || target.Is(CustomRoles.Parasite) || target.Is(CustomRoles.Crewpostor) || target.Is(CustomRoles.Rascal))
                     sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Impostor), "★"));
                 
                 if (target.Is(CustomRoleTypes.Neutral))
