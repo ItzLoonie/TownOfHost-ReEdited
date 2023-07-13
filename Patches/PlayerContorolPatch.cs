@@ -744,7 +744,7 @@ class MurderPlayerPatch
         switch (killer.GetCustomRole())
         {
             case CustomRoles.BoobyTrap:
-              //  if (!Options.TrapOnlyWorksOnTheBodyBoobyTrap.GetBool() && killer != target)
+                if (!Options.TrapOnlyWorksOnTheBodyBoobyTrap.GetBool() && killer != target)
                 {
                     if (!Main.BoobyTrapBody.Contains(target.PlayerId)) Main.BoobyTrapBody.Add(target.PlayerId);
                     if (!Main.KillerOfBoobyTrapBody.ContainsKey(target.PlayerId)) Main.KillerOfBoobyTrapBody.Add(target.PlayerId, killer.PlayerId);
@@ -1145,7 +1145,7 @@ class ReportDeadBodyPatch
                 // 报告了诡雷尸体
                 if (Main.BoobyTrapBody.Contains(target.PlayerId) && __instance.IsAlive())
                 {
-                 //   if (!Options.TrapOnlyWorksOnTheBodyBoobyTrap.GetBool())
+                    if (!Options.TrapOnlyWorksOnTheBodyBoobyTrap.GetBool())
                     {
                         var killerID = Main.KillerOfBoobyTrapBody[target.PlayerId];
                         Main.PlayerStates[__instance.PlayerId].deathReason = PlayerState.DeathReason.Bombed;
@@ -1158,7 +1158,7 @@ class ReportDeadBodyPatch
                         if (!Main.KillerOfBoobyTrapBody.ContainsKey(__instance.PlayerId)) Main.KillerOfBoobyTrapBody.Add(__instance.PlayerId, killerID);
                         return false;
                     }
-                /*    else
+                    else
                     {
                         var killerID2 = target.PlayerId;
                         Main.PlayerStates[__instance.PlayerId].deathReason = PlayerState.DeathReason.Bombed;
@@ -1167,7 +1167,7 @@ class ReportDeadBodyPatch
                         __instance.RpcMurderPlayerV3(__instance);
                         RPC.PlaySoundRPC(killerID2, Sounds.KillSound);
                         return false;
-                    } */
+                    } 
                 }
 
                 if (target.Object.Is(CustomRoles.Unreportable)) return false;
@@ -2038,7 +2038,7 @@ class FixedUpdatePatch
                 }*/
                 bool targetDevoured = Devourer.HideNameOfConsumedPlayer.GetBool() && Devourer.PlayerSkinsCosumed.Any(a => a.Value.Contains(target.PlayerId));
                 if ((Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive || targetDevoured)
-                    RealName = $"<size=0>{RealName}</size> ";
+                    RealName = GetString("DevouredName");
 
                 string DeathReason = seer.Data.IsDead && seer.KnowDeathReason(target) ? $"({Utils.ColorString(Utils.GetRoleColor(CustomRoles.Doctor), Utils.GetVitalText(target.PlayerId))})" : "";
                 //Mark・Suffixの適用

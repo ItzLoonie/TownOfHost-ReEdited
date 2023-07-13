@@ -59,7 +59,7 @@ class OnGameJoinedPatch
         }
     }
 }
-[HarmonyPatch(typeof(InnerNetClient), nameof(InnerNetClient.DisconnectInternal))]
+/*[HarmonyPatch(typeof(InnerNetClient), nameof(InnerNetClient.DisconnectInternal))]
 class DisconnectInternalPatch
 {
     public static void Prefix(InnerNetClient __instance, DisconnectReasons reason, string stringReason)
@@ -72,7 +72,7 @@ class DisconnectInternalPatch
         ErrorText.Instance.Clear();
         Cloud.StopConnect();
     }
-}
+} */
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnPlayerJoined))]
 class OnPlayerJoinedPatch
 {

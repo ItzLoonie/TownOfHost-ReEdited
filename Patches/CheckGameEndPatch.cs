@@ -479,6 +479,7 @@ class GameEndChecker
                 CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Impostor);
                 CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Parasite);
                 CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Crewpostor);
+                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Convict);
             }
             else if (Imp == 0 && Pel == 0 && Traitor == 0 && Med == 0 && Rit == 0 && PP == 0 && Gam == 0 && Vamp == 0 && DH == 0 && Rogue == 0 && Wraith == 0 && Juggy == 0 && Jinx == 0 && SK == 0 && Hex == 0 && BK == 0 && Pois == 0 && Virus == 0 && SC == 0 && CM == 0 && Crew <= Jackal) //豺狼胜利
             {

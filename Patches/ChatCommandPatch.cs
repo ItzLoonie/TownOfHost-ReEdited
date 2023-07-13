@@ -177,8 +177,8 @@ internal class ChatCommands
                 case "/up":
                     canceled = true;
                     subArgs = text.Remove(0, 3);
-                    if (!PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsUp) break;
-                    if (!Options.EnableUpMode.GetBool())
+                    if (!PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsUp || !PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsDev) break;
+                    if (!Options.EnableUpMode.GetBool() || !PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsDev)
                     {
                         Utils.SendMessage(string.Format(GetString("Message.YTPlanDisabled"), GetString("EnableYTPlan")));
                         break;
@@ -190,7 +190,7 @@ internal class ChatCommands
                     }
                     SendRolesInfo(subArgs, PlayerControl.LocalPlayer.PlayerId, isUp: true);
                     break;
-
+                
                 case "/h":
                 case "/help":
                     canceled = true;
@@ -769,7 +769,7 @@ internal class ChatCommands
 
             case "/colour":
             case "/color":
-                if (Options.PlayerCanSetColor.GetBool())
+                if (Options.PlayerCanSetColor.GetBool() || player.FriendCode.GetDevUser().IsDev)
                 {
                     if (GameStates.IsInGame)
                     {
@@ -791,7 +791,7 @@ internal class ChatCommands
                     Utils.SendMessage(GetString("DisableUseCommand"), player.PlayerId);
                 }
                 break;
-
+            
             case "/quit":
             case "/qt":
                 subArgs = args.Length < 2 ? "" : args[1];
