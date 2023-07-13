@@ -816,16 +816,18 @@ class MeetingHudStartPatch
 
             if (seer.KnowDeathReason(target))
                 sb.Append($"({Utils.ColorString(Utils.GetRoleColor(CustomRoles.Doctor), Utils.GetVitalText(target.PlayerId))})");
+
+            //Necroview
             if (seer.KnowDeadTeam(target))
             {
-                if (target.Is(CustomRoleTypes.Crewmate) && !target.Is(CustomRoles.Madmate) && target.Data.IsDead)
-                        sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.SpeedBooster), "★")); //Necroview
-                if (target.Is(CustomRoleTypes.Impostor) && target.Data.IsDead || target.Is(CustomRoles.Madmate) && target.Data.IsDead || target.Is(CustomRoles.Parasite) && target.Data.IsDead || target.Is(CustomRoles.Crewpostor) && target.Data.IsDead || target.Is(CustomRoles.Rascal) && target.Data.IsDead)
-                        sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Impostor), "★")); //Necroview
-                if (target.Is(CustomRoleTypes.Neutral) && target.Data.IsDead)
-                        sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Executioner), "★")); //Necroview
-
-
+                if (target.Is(CustomRoleTypes.Crewmate) && !target.GetCustomRole().IsEvilAddons())
+                    sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Bait), "★"));
+                
+                if (target.Is(CustomRoleTypes.Impostor) && (target.Is(CustomRoles.Madmate) || target.Is(CustomRoles.Parasite) || target.Is(CustomRoles.Crewpostor) || target.Is(CustomRoles.Rascal)))
+                    sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Impostor), "★"));
+                
+                if (target.Is(CustomRoleTypes.Neutral))
+                    sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Executioner), "★"));
             }
             //インポスター表示
             switch (seer.GetCustomRole().GetCustomRoleTypes())

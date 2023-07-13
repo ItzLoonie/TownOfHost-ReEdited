@@ -890,7 +890,7 @@ static class ExtendedPlayerControl
         || (seer.Data.IsDead && Options.GhostCanSeeDeathReason.GetBool()))
         && target.Data.IsDead || target.Is(CustomRoles.Gravestone) && target.Data.IsDead;
     public static bool KnowDeadTeam(this PlayerControl seer, PlayerControl target)
-        => (seer.Is(CustomRoles.Necroview))
+        => seer.Is(CustomRoles.Necroview)
         && target.Data.IsDead;
     public static string GetRoleInfo(this PlayerControl player, bool InfoLong = false)
     {

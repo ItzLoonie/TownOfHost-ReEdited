@@ -1463,14 +1463,16 @@ public static class Utils
 
                 // Necroview
                 if (seer.Is(CustomRoles.Necroview))
-                    {
-                if (target.Is(CustomRoleTypes.Crewmate) && !target.Is(CustomRoles.Madmate) && target.Data.IsDead)
-                        TargetMark.Append(ColorString(GetRoleColor(CustomRoles.SpeedBooster), "★"));
-                if (target.Is(CustomRoleTypes.Impostor) && target.Data.IsDead || target.Is(CustomRoles.Madmate) && target.Data.IsDead || target.Is(CustomRoles.Parasite) && target.Data.IsDead || target.Is(CustomRoles.Crewpostor) && target.Data.IsDead || target.Is(CustomRoles.Rascal) && target.Data.IsDead)
-                        TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Impostor), "★"));
-                if (target.Is(CustomRoleTypes.Neutral) && target.Data.IsDead)
-                        TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Executioner), "★"));
-                    }
+                {
+                    if (target.Is(CustomRoleTypes.Crewmate) && !target.GetCustomRole().IsEvilAddons() && target.Data.IsDead)
+                            TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Bait), "★"));
+
+                    if ((target.Is(CustomRoleTypes.Impostor) && target.Data.IsDead) && (target.Is(CustomRoles.Madmate) || target.Is(CustomRoles.Parasite) || target.Is(CustomRoles.Crewpostor) || target.Is(CustomRoles.Rascal)))
+                            TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Impostor), "★"));
+
+                    if (target.Is(CustomRoleTypes.Neutral) && target.Data.IsDead)
+                            TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Executioner), "★"));
+                }
 
 
                 //球状闪电提示
