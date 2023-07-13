@@ -64,6 +64,7 @@ internal static class CustomRolesHelper
                 CustomRoles.EvilTracker => CustomRoles.Shapeshifter,
                 CustomRoles.Paranoia => CustomRoles.Engineer,
                 CustomRoles.EngineerTOHE => CustomRoles.Engineer,
+                CustomRoles.CrewmateTOHE => CustomRoles.Crewmate,
                 CustomRoles.Miner => CustomRoles.Shapeshifter,
                 CustomRoles.Psychic => CustomRoles.Crewmate,
                 CustomRoles.Needy => CustomRoles.Crewmate,
@@ -150,45 +151,46 @@ internal static class CustomRolesHelper
             ? role
             : role switch
             {
-                CustomRoles.Tracker => CustomRoles.Crewmate,
-                CustomRoles.Mayor => Options.MayorHasPortableButton.GetBool() ? CustomRoles.EngineerTOHE : CustomRoles.Crewmate,
-                CustomRoles.Observer => CustomRoles.Crewmate,
+                CustomRoles.Tracker => CustomRoles.CrewmateTOHE,
+                CustomRoles.Mayor => Options.MayorHasPortableButton.GetBool() ? CustomRoles.EngineerTOHE : CustomRoles.CrewmateTOHE,
+                CustomRoles.Observer => CustomRoles.CrewmateTOHE,
                 CustomRoles.DovesOfNeace => CustomRoles.EngineerTOHE,
-                CustomRoles.Judge => CustomRoles.Crewmate,
-                CustomRoles.Mortician => CustomRoles.Crewmate,
-                CustomRoles.Mediumshiper => CustomRoles.Crewmate,
-                CustomRoles.Glitch => CustomRoles.Crewmate,
-                CustomRoles.Bodyguard => CustomRoles.Crewmate,
-                CustomRoles.ParityCop => CustomRoles.Crewmate,
+                CustomRoles.Judge => CustomRoles.CrewmateTOHE,
+                CustomRoles.Mortician => CustomRoles.CrewmateTOHE,
+                CustomRoles.Mediumshiper => CustomRoles.CrewmateTOHE,
+                CustomRoles.Glitch => CustomRoles.CrewmateTOHE,
+                CustomRoles.Bodyguard => CustomRoles.CrewmateTOHE,
+                CustomRoles.ParityCop => CustomRoles.CrewmateTOHE,
                 CustomRoles.Grenadier => CustomRoles.EngineerTOHE,
-                CustomRoles.Transporter => CustomRoles.Crewmate,
-                CustomRoles.Veteran => CustomRoles.Engineer,
+                CustomRoles.Transporter => CustomRoles.CrewmateTOHE,
+                CustomRoles.Veteran => CustomRoles.CrewmateTOHE,
                 CustomRoles.GuardianAngelTOHE => CustomRoles.GuardianAngel,
-                CustomRoles.Detective => CustomRoles.Crewmate,
-                CustomRoles.NiceGuesser => CustomRoles.Crewmate,
-                CustomRoles.Luckey => CustomRoles.Crewmate,
-                CustomRoles.CyberStar => CustomRoles.Crewmate,
-                CustomRoles.Psychic => CustomRoles.Crewmate,
-                CustomRoles.Needy => CustomRoles.Crewmate,
-                CustomRoles.SuperStar => CustomRoles.Crewmate,
+                CustomRoles.Detective => CustomRoles.CrewmateTOHE,
+                CustomRoles.NiceGuesser => CustomRoles.CrewmateTOHE,
+                CustomRoles.Luckey => CustomRoles.CrewmateTOHE,
+                CustomRoles.CyberStar => CustomRoles.CrewmateTOHE,
+                CustomRoles.Psychic => CustomRoles.CrewmateTOHE,
+                CustomRoles.Needy => CustomRoles.CrewmateTOHE,
+                CustomRoles.SuperStar => CustomRoles.CrewmateTOHE,
                 CustomRoles.Paranoia => CustomRoles.EngineerTOHE,
                 CustomRoles.EngineerTOHE => CustomRoles.EngineerTOHE,
+                CustomRoles.CrewmateTOHE => CustomRoles.CrewmateTOHE,
                 CustomRoles.Doctor => CustomRoles.ScientistTOHE,
                 CustomRoles.ScientistTOHE => CustomRoles.ScientistTOHE,
                 CustomRoles.Tracefinder => CustomRoles.ScientistTOHE,
-                CustomRoles.SpeedBooster => CustomRoles.Crewmate,
-                CustomRoles.Dictator => CustomRoles.Crewmate,
-                CustomRoles.Snitch => CustomRoles.Crewmate,
-                CustomRoles.Marshall => CustomRoles.Crewmate,
+                CustomRoles.SpeedBooster => CustomRoles.CrewmateTOHE,
+                CustomRoles.Dictator => CustomRoles.CrewmateTOHE,
+                CustomRoles.Snitch => CustomRoles.CrewmateTOHE,
+                CustomRoles.Marshall => CustomRoles.CrewmateTOHE,
                 CustomRoles.SabotageMaster => CustomRoles.EngineerTOHE,
                 CustomRoles.Retributionist => CustomRoles.Crewmate,
-                CustomRoles.Monarch => CustomRoles.Crewmate,
-                CustomRoles.Deputy => CustomRoles.Crewmate,
-                CustomRoles.Guardian => CustomRoles.Crewmate,
+                CustomRoles.Monarch => CustomRoles.CrewmateTOHE,
+                CustomRoles.Deputy => CustomRoles.CrewmateTOHE,
+                CustomRoles.Guardian => CustomRoles.CrewmateTOHE,
                 CustomRoles.Addict => CustomRoles.EngineerTOHE,
                 CustomRoles.Oracle => CustomRoles.EngineerTOHE,
                 CustomRoles.Chameleon => CustomRoles.EngineerTOHE,
-                _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
+                _ => role.IsImpostor() ? CustomRoles.ImpostorTOHE : CustomRoles.CrewmateTOHE,
             };
     }
 
@@ -263,10 +265,11 @@ internal static class CustomRolesHelper
             CustomRoles.Fool or
             CustomRoles.Autopsy or
             CustomRoles.Necroview or
+            CustomRoles.Parasight or
             CustomRoles.Avanger or
             CustomRoles.Youtuber or
             CustomRoles.Soulless or
-            CustomRoles.Pessimist or
+            CustomRoles.Loyal or
             CustomRoles.Egoist or
             CustomRoles.TicketsStealer or
             CustomRoles.DualPersonality or
@@ -306,7 +309,7 @@ internal static class CustomRolesHelper
             CustomRoles.Gamer or
             CustomRoles.FFF or
             CustomRoles.Workaholic or
-            CustomRoles.Pelican or
+        //    CustomRoles.Pelican or
             CustomRoles.Collector or
             CustomRoles.Sunnyboy or
             CustomRoles.Maverick or
@@ -681,8 +684,18 @@ internal static class CustomRolesHelper
         CustomRoles.Monarch or
         CustomRoles.Farseer or
         CustomRoles.SwordsMan or
-      //  CustomRoles.Chameleon or
         CustomRoles.Deputy;
+    }
+        public static bool IsTaskBasedCrewmate(this CustomRoles role)
+    {
+        return role is
+        CustomRoles.Snitch or
+        CustomRoles.Divinator or
+        CustomRoles.Marshall or
+        CustomRoles.Guardian or
+        CustomRoles.Merchant or
+        CustomRoles.Mayor or
+        CustomRoles.Transporter;
     }
 
     public static bool IsNotKnightable(this CustomRoles role)
@@ -705,17 +718,18 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Ntr && (pc.Is(CustomRoles.Lovers) || pc.Is(CustomRoles.FFF) || pc.Is(CustomRoles.GuardianAngelTOHE))) return false;
         if (role is CustomRoles.Lovers && pc.Is(CustomRoles.FFF)) return false;
         if (role is CustomRoles.Guesser && ((pc.GetCustomRole().IsCrewmate() && (!Options.CrewCanBeGuesser.GetBool() || pc.Is(CustomRoles.NiceGuesser) || pc.Is(CustomRoles.Judge))) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeGuesser.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeGuesser.GetBool() || pc.Is(CustomRoles.EvilGuesser)) || pc.Is(CustomRoles.Mafia) || pc.Is(CustomRoles.Councillor) || pc.Is(CustomRoles.GuardianAngelTOHE))) return false;
-        if (role is CustomRoles.Madmate && !Utils.CanBeMadmate(pc)) return false;
+        if (role is CustomRoles.Madmate && (!Utils.CanBeMadmate(pc))) return false;
         if (role is CustomRoles.Oblivious && (pc.Is(CustomRoles.Detective) || pc.Is(CustomRoles.Cleaner) || pc.Is(CustomRoles.Medusa) || pc.Is(CustomRoles.Mortician) || pc.Is(CustomRoles.Mediumshiper) || pc.Is(CustomRoles.GuardianAngelTOHE))) return false;
         if (role is CustomRoles.Avanger && pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeAvanger.GetBool() || pc.Is(CustomRoles.GuardianAngelTOHE)) return false;
         if (role is CustomRoles.Brakar && pc.Is(CustomRoles.Dictator) || pc.Is(CustomRoles.GuardianAngelTOHE)) return false;
         if (role is CustomRoles.Youtuber && (!pc.GetCustomRole().IsCrewmate() || pc.Is(CustomRoles.Madmate) || pc.Is(CustomRoles.Sheriff) || pc.Is(CustomRoles.GuardianAngelTOHE))) return false;
         if (role is CustomRoles.Egoist && (pc.GetCustomRole().IsNeutral() || pc.Is(CustomRoles.Madmate))) return false;
-        if (role is CustomRoles.Lazy && (pc.GetCustomRole().IsNeutral() || pc.GetCustomRole().IsImpostor() || pc.GetCustomRole().IsTasklessCrewmate() && !Options.TasklessCrewCanBeLazy.GetBool()) || pc.Is(CustomRoles.Needy) || pc.Is(CustomRoles.Snitch) || pc.Is(CustomRoles.Marshall) || pc.Is(CustomRoles.Transporter) || pc.Is(CustomRoles.Guardian)) return false;
+        if (role is CustomRoles.Lazy && (pc.GetCustomRole().IsNeutral() || pc.GetCustomRole().IsImpostor() || pc.GetCustomRole().IsTasklessCrewmate() && !Options.TasklessCrewCanBeLazy.GetBool() || pc.GetCustomRole().IsTaskBasedCrewmate() && !Options.TaskBasedCrewCanBeLazy.GetBool()) || pc.Is(CustomRoles.Needy) || pc.Is(CustomRoles.Snitch) || pc.Is(CustomRoles.Marshall) || pc.Is(CustomRoles.Transporter) || pc.Is(CustomRoles.Guardian)) return false;
         if (role is CustomRoles.Egoist && pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeEgoist.GetBool()) return false;
         if (role is CustomRoles.Egoist && pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeEgoist.GetBool() || pc.Is(CustomRoles.GuardianAngelTOHE)) return false;
-        if (role is CustomRoles.TicketsStealer or CustomRoles.Mimic && !pc.GetCustomRole().IsImpostor()) return false;
+        if (role is CustomRoles.TicketsStealer or CustomRoles.Mimic or CustomRoles.Parasight && !pc.GetCustomRole().IsImpostor()) return false;
         if (role is CustomRoles.TicketsStealer && (pc.Is(CustomRoles.Bomber) || pc.Is(CustomRoles.BoobyTrap) || pc.Is(CustomRoles.Capitalism))) return false;
+        if (role is CustomRoles.Parasight && pc.Is(CustomRoles.Necroview)) return false;
         if (role is CustomRoles.Mimic && pc.Is(CustomRoles.Mafia)) return false;
         if (role is CustomRoles.Rascal && !pc.GetCustomRole().IsCrewmate()) return false;
         if (role is CustomRoles.Needy && pc.GetCustomRole().IsAdditionRole()) return false;
@@ -723,15 +737,20 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.DualPersonality && ((!pc.GetCustomRole().IsImpostor() && !pc.GetCustomRole().IsCrewmate()) || pc.Is(CustomRoles.Madmate))) return false;
         if (role is CustomRoles.DualPersonality && pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeDualPersonality.GetBool()) return false;
         if (role is CustomRoles.DualPersonality && pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeDualPersonality.GetBool() || pc.Is(CustomRoles.GuardianAngelTOHE)) return false;
-        if (role is CustomRoles.Pessimist && ((!pc.GetCustomRole().IsImpostor() && !pc.GetCustomRole().IsCrewmate()) || pc.Is(CustomRoles.Madmate))) return false;
-        if (role is CustomRoles.Pessimist && pc.GetCustomRole().IsImpostor() && !Options.ImpCanBePessimist.GetBool()) return false;
-        if (role is CustomRoles.Pessimist && pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBePessimist.GetBool() || pc.Is(CustomRoles.GuardianAngelTOHE)) return false;
+        if (role is CustomRoles.Loyal && ((!pc.GetCustomRole().IsImpostor() && !pc.GetCustomRole().IsCrewmate()) || pc.Is(CustomRoles.Madmate))) return false;
+        if (role is CustomRoles.Loyal && pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeLoyal.GetBool()) return false;
+        if (role is CustomRoles.Loyal && pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeLoyal.GetBool() || pc.Is(CustomRoles.GuardianAngelTOHE)) return false;
         if (role is CustomRoles.Seer && ((pc.GetCustomRole().IsCrewmate() && (!Options.CrewCanBeSeer.GetBool() || pc.Is(CustomRoles.Mortician))) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeSeer.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeSeer.GetBool()) || pc.Is(CustomRoles.GuardianAngelTOHE))) return false;
         if (role is CustomRoles.Necroview && pc.Is(CustomRoles.Doctor) || pc.Is(CustomRoles.God) || pc.Is(CustomRoles.GuardianAngelTOHE)) return false;
         if (role is CustomRoles.Bait && ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeBait.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeBait.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeBait.GetBool()))) return false;
         if (role is CustomRoles.Autopsy && ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeAutopsy.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeAutopsy.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeAutopsy.GetBool()))) return false;
         if (role is CustomRoles.Trapper && ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeTrapper.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeTrapper.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeTrapper.GetBool()))) return false;
         if (role is CustomRoles.Sidekick && (pc.Is(CustomRoles.Madmate))) return false;
+        if (role is CustomRoles.Onbound && (pc.Is(CustomRoles.SuperStar))) return false;
+        if (role is CustomRoles.Rascal && (pc.Is(CustomRoles.SuperStar))) return false;
+        if (role is CustomRoles.Madmate && (pc.Is(CustomRoles.SuperStar))) return false;
+        if (role is CustomRoles.Gravestone && (pc.Is(CustomRoles.SuperStar))) return false;
+//        if (role is CustomRoles.SuperStar && (pc.Is(CustomRoles.Madmate) || pc.Is(CustomRoles.Rascal) || pc.Is(CustomRoles.Onbound))) return false;
         if (role is CustomRoles.Autopsy && (pc.Is(CustomRoles.Doctor)) || pc.Is(CustomRoles.Tracefinder) || pc.Is(CustomRoles.Scientist)  || pc.Is(CustomRoles.ScientistTOHE)  || pc.Is(CustomRoles.Sunnyboy) ) return false;
         if (role is CustomRoles.Sidekick && pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeSidekick.GetBool()) return false;
         if (role is CustomRoles.Sidekick && pc.GetCustomRole().IsCrewmate() && !Options.CrewmateCanBeSidekick.GetBool()) return false;

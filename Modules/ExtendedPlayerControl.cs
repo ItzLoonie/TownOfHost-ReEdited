@@ -632,6 +632,9 @@ static class ExtendedPlayerControl
             case CustomRoles.Sidekick:
                 Sidekick.SetKillCooldown(player.PlayerId);
                 break;
+            case CustomRoles.Councillor:
+                Councillor.SetKillCooldown(player.PlayerId);
+                break;
             case CustomRoles.HexMaster:
             case CustomRoles.Wraith:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.DefaultKillCooldown;
@@ -892,6 +895,10 @@ static class ExtendedPlayerControl
     public static bool KnowDeadTeam(this PlayerControl seer, PlayerControl target)
         => (seer.Is(CustomRoles.Necroview))
         && target.Data.IsDead;
+
+    public static bool KnowLivingTeam(this PlayerControl seer, PlayerControl target)
+        => (seer.Is(CustomRoles.Parasight))
+        && !target.Data.IsDead;
     public static string GetRoleInfo(this PlayerControl player, bool InfoLong = false)
     {
         var role = player.GetCustomRole();

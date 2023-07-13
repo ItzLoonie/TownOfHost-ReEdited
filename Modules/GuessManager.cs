@@ -944,7 +944,8 @@ public static class GuessManager
                 if ( role is CustomRoles.GM 
                     or CustomRoles.SpeedBooster
                     or CustomRoles.Engineer
-                    or CustomRoles.Pessimist
+                    or CustomRoles.Crewmate
+                 //   or CustomRoles.Loyal
                     or CustomRoles.Oblivious
                     or CustomRoles.Rogue
                     or CustomRoles.Scientist
