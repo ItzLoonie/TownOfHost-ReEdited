@@ -1735,8 +1735,11 @@ public static class Utils
                 if (seer.KnowDeathReason(target))
                     TargetDeathReason = $"({ColorString(GetRoleColor(CustomRoles.Doctor), GetVitalText(target.PlayerId))})";
 
+                if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive) && !CamouflageIsForMeeting)
+                    TargetPlayerName = $"<size=0%>{TargetPlayerName}</size>";
+
                 bool targetDevoured = Devourer.HideNameOfConsumedPlayer.GetBool() && Devourer.PlayerSkinsCosumed.Any(a => a.Value.Contains(target.PlayerId));
-                if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive || targetDevoured) && !CamouflageIsForMeeting)
+                if (targetDevoured && !CamouflageIsForMeeting)
                     TargetPlayerName = GetString("DevouredName");
 
                 //全てのテキストを合成します。
