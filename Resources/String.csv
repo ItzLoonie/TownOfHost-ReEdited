@@ -2121,6 +2121,9 @@
 "ParityCheckNull","","Please select an ID of a living player to check their team","Пожалуйста, выберите номер живого игрока, чтобы проверить его команду","",""
 "EgoistCountMode.Original","","Original","Оригинал","",""
 "EgoistCountMode.Neutral","","Neutral","Нейтрал","",""
+"ParityCheckBaitCountMode","","<color=#00f7ff>Bait</color> count as revealing role if <color=#00f7ff>Bait</color> reveal on first meeting is on","","",""
+"ParityCheckRevealTarget","","When tasks done, target knows team of other target","","",""
+"ParityCopTargetReveal",""," Looks like【{0}】is aligned with team 【{1}】","","",""
 
 "## Autopsy Text Strings"
 "ImpCanBeAutopsy","","<color=#ff1919>Impostors</color> can become <color=#80ffdd>Autopsy</color>","<color=#ff1919>Предатели</color> могут стать <color=#80ffdd>Врачом</color>","",""
