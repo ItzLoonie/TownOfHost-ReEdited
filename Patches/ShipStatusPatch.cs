@@ -60,13 +60,13 @@ class RepairSystemPatch
             SystemTypes.Electrical))
         { return false; }
 
-        if (player.Is(CustomRoles.Madmate) && !Options.MadmateCanFixSabotage.GetBool() && 
+      /*if (player.Is(CustomRoles.Madmate) && !Options.MadmateCanFixSabotage.GetBool() && 
             (systemType is
             SystemTypes.Reactor or
             SystemTypes.LifeSupp or
             SystemTypes.Comms or
             SystemTypes.Electrical))
-        { return false; }
+        { return false; }*/
 
         //SabotageMaster
         if (player.Is(CustomRoles.SabotageMaster))
@@ -88,6 +88,8 @@ class RepairSystemPatch
         {
             if (player.Is(CustomRoleTypes.Impostor) && !player.Is(CustomRoles.Minimalism) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
             if (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) return true;
+            if (player.Is(CustomRoles.Sidekick) && Jackal.CanUseSabotage.GetBool()) return true;
+            if (player.Is(CustomRoles.Traitor) && Traitor.CanUseSabotage.GetBool()) return true;
             if (player.Is(CustomRoles.Parasite) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
             return false;
         }

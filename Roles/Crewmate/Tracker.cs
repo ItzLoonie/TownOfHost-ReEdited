@@ -7,7 +7,7 @@
 
     public static class Tracker
     {
-        private static readonly int Id = 9041812;
+        private static readonly int Id = 8300;
 
         private static List<byte> playerIdList = new();
 
@@ -47,7 +47,7 @@
         }
         public static bool IsEnable => playerIdList.Count > 0;
 
-        public static string GetTargetMark(PlayerControl seer, PlayerControl target) => TrackerTarget[seer.PlayerId] == target.PlayerId ? Utils.ColorString(seer.GetRoleColor(), "◀") : "";
+        public static string GetTargetMark(PlayerControl seer, PlayerControl target) => TrackerTarget.ContainsKey(seer.PlayerId) && TrackerTarget[seer.PlayerId] == target.PlayerId ? Utils.ColorString(seer.GetRoleColor(), "◀") : "";
 
         public static void OnReportDeadBody()
         {
@@ -101,6 +101,7 @@
             if (!seer.Is(CustomRoles.Tracker)) return "";
             if (target != null && seer.PlayerId != target.PlayerId) return "";
             if (GameStates.IsMeeting) return "";
+            if (!TrackerTarget.ContainsKey(seer.PlayerId)) return "";
             return Utils.ColorString(Color.white, TargetArrow.GetArrows(seer, TrackerTarget[seer.PlayerId]));
         }
 

@@ -20,7 +20,7 @@ public static class Vampire
         }
     }
 
-    private static readonly int Id = 1300;
+    private static readonly int Id = 4500;
     private static readonly List<byte> PlayerIdList = new();
     private static OptionItem OptionKillDelay;
     private static float KillDelay;

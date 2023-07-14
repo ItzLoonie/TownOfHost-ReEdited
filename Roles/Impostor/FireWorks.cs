@@ -18,7 +18,7 @@ public static class FireWorks
         CanUseKill = Initial | FireEnd
     }
 
-    private static readonly int Id = 1700;
+    private static readonly int Id = 2800;
     private static OptionItem FireWorksCount;
     private static OptionItem FireWorksRadius;
     public static OptionItem CanKill;

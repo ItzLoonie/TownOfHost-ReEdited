@@ -21,9 +21,9 @@ public static class HexMaster
         "TriggerKill", "TriggerVent","TriggerDouble"
     };
 
-    private static readonly int Id = 155500;
+    private static readonly int Id = 11900;
     private static Color RoleColorHex = Utils.GetRoleColor(CustomRoles.HexMaster);
-    private static Color RoleColorImp = Utils.GetRoleColor(CustomRoles.Impostor);
+    private static Color RoleColorSpell = Utils.GetRoleColor(CustomRoles.Impostor);
 
     public static List<byte> playerIdList = new();
 
@@ -53,6 +53,11 @@ public static class HexMaster
         NowSwitchTrigger = (SwitchTrigger)ModeSwitchAction.GetValue();
         var pc = Utils.GetPlayerById(playerId);
         pc.AddDoubleTrigger();
+
+            if (!AmongUsClient.Instance.AmHost) return;
+                if (!Main.ResetCamPlayerList.Contains(playerId))
+                Main.ResetCamPlayerList.Add(playerId);
+
 
     }
     public static bool IsEnable => playerIdList.Count > 0;
@@ -98,7 +103,7 @@ public static class HexMaster
     }
     public static bool IsHexMode(byte playerId)
     {
-        return HexMode[playerId];
+        return HexMode.ContainsKey(playerId) && HexMode[playerId];
     }
     public static void SwitchHexMode(byte playerId, bool kill)
     {
@@ -217,11 +222,11 @@ public static class HexMaster
         {
             if (!HexesLookLikeSpells.GetBool())
             {
-            return Utils.ColorString(RoleColorHex, "†");
+            return Utils.ColorString(RoleColorHex, "乂");
             }
             if (HexesLookLikeSpells.GetBool())
             {
-            return Utils.ColorString(RoleColorImp, "†");
+            return Utils.ColorString(RoleColorSpell, "†");
             }
         }
         return "";
@@ -242,7 +247,7 @@ public static class HexMaster
         }
         if (NowSwitchTrigger == SwitchTrigger.DoubleTrigger)
         {
-            str.Append(GetString("WitchModeDouble"));
+            str.Append(GetString("HexMasterModeDouble"));
         }
         else
         {

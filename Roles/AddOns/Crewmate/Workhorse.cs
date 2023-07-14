@@ -6,7 +6,7 @@ namespace TOHE.Roles.AddOns.Crewmate;
 
 public static class Workhorse
 {
-    private static readonly int Id = 80100;
+    private static readonly int Id = 15700;
     public static Color RoleColor = Utils.GetRoleColor(CustomRoles.Workhorse);
     public static List<byte> playerIdList = new();
 
@@ -47,6 +47,7 @@ public static class Workhorse
     {
         if (!pc.IsAlive() || IsThisRole(pc.PlayerId)) return false;
         if (pc.Is(CustomRoles.Needy)) return false;
+        if (pc.Is(CustomRoles.Lazy)) return false;
         var taskState = pc.GetPlayerTaskState();
         if (taskState.CompletedTasksCount + 1 < taskState.AllTasksCount) return false;
         if (AssignOnlyToCrewmate) //クルーメイトのみ

@@ -6,7 +6,7 @@ namespace TOHE.Roles.Impostor;
 
 public static class SerialKiller
 {
-    private static readonly int Id = 1100;
+    private static readonly int Id = 1700;
     public static List<byte> playerIdList = new();
 
     private static OptionItem KillCooldown;

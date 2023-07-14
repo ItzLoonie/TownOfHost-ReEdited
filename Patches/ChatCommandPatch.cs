@@ -11,6 +11,7 @@ using TOHE.Modules;
 using TOHE.Roles.Crewmate;
 using UnityEngine;
 using static TOHE.Translator;
+using TOHE.Roles.Impostor;
 using AmongUs.Data.Player;
 using Rewired;
 
@@ -31,9 +32,9 @@ internal class ChatCommands
 
     public static bool Prefix(ChatController __instance)
     {
-        if (__instance.TextArea.text == "") return false;
-        __instance.TimeSinceLastMessage = 3f;
-        var text = __instance.TextArea.text;
+        if (__instance.freeChatField.textArea.text == "") return false;
+        __instance.timeSinceLastMessage = 3f;
+        var text = __instance.freeChatField.textArea.text;
         if (ChatHistory.Count == 0 || ChatHistory[^1] != text) ChatHistory.Add(text);
         ChatControllerUpdatePatch.CurrentHistorySelection = ChatHistory.Count;
         string[] args = text.Split(' ');
@@ -46,8 +47,11 @@ internal class ChatCommands
         if (text.Length >= 4) if (text[..3] == "/up") args[0] = "/up";
         if (GuessManager.GuesserMsg(PlayerControl.LocalPlayer, text)) goto Canceled;
         if (Judge.TrialMsg(PlayerControl.LocalPlayer, text)) goto Canceled;
+        if (ParityCop.ParityCheckMsg(PlayerControl.LocalPlayer, text)) goto Canceled;
+        if (Councillor.MurderMsg(PlayerControl.LocalPlayer, text)) goto Canceled;
         if (Mediumshiper.MsMsg(PlayerControl.LocalPlayer, text)) goto Canceled;
         if (MafiaRevengeManager.MafiaMsgCheck(PlayerControl.LocalPlayer, text)) goto Canceled;
+        if (RetributionistRevengeManager.RetributionistMsgCheck(PlayerControl.LocalPlayer, text)) goto Canceled;
         switch (args[0])
         {
             case "/dump":
@@ -231,19 +235,7 @@ internal class ChatCommands
                     }
                     SendRolesInfo(subArgs, PlayerControl.LocalPlayer.PlayerId, isUp: true);
                     break;
-                case "/setrole":
-                    canceled = true;
-                    subArgs = text.Remove(0, 3);
-                    //if (!PlayerControl.LocalPlayer.FriendCode.GetEditedDevUser().IsUp) break;
-
-                    if (!GameStates.IsLobby)
-                    {
-                        Utils.SendMessage(GetString("Message.OnlyCanUseInLobby"));
-                        break;
-                    }
-                    SendRolesInfo(subArgs, PlayerControl.LocalPlayer.PlayerId, isUp: true);
-                    break;
-
+                
                 case "/h":
                 case "/help":
                     canceled = true;
@@ -539,9 +531,8 @@ internal class ChatCommands
         {
 
             Logger.Info("Command Canceled", "ChatCommand");
-            __instance.TextArea.Clear();
-            __instance.TextArea.SetText(cancelVal);
-            __instance.quickChatMenu.ResetGlyphs();
+            __instance.freeChatField.textArea.Clear();
+            __instance.freeChatField.textArea.SetText(cancelVal);
         }
         return !canceled;
 
@@ -664,6 +655,7 @@ internal class ChatCommands
             "分散机" => GetString("Disperser"),
             "和平之鸽" or "和平之鴿" or "和平的鸽子" or "和平" => GetString("DovesOfNeace"),
             "持槍" or "持械" or "手长" => GetString("Reach"),
+            "monarch" => GetString("Monarch"),
             _ => text,
         };
     }
@@ -778,15 +770,18 @@ internal class ChatCommands
         canceled = false;
         if (!AmongUsClient.Instance.AmHost) return;
         if (text.StartsWith("\n")) text = text[1..];
-        if (SpamManager.CheckSpam(player, text)) return;
         if (!text.StartsWith("/")) return;
         string[] args = text.Split(' ');
         string subArgs = "";
         if (text.Length >= 3) if (text[..2] == "/r" && text[..3] != "/rn") args[0] = "/r";
+        else if (SpamManager.CheckSpam(player, text)) return;
         if (GuessManager.GuesserMsg(player, text)) { canceled = true; return; }
         if (Judge.TrialMsg(player, text)) { canceled = true; return; }
+        if (ParityCop.ParityCheckMsg(player, text)) { canceled = true; return; }
+        if (Councillor.MurderMsg(player, text)) { canceled = true; return; }
         if (Mediumshiper.MsMsg(player, text)) return;
         if (MafiaRevengeManager.MafiaMsgCheck(player, text)) return;
+        if (RetributionistRevengeManager.RetributionistMsgCheck(player, text)) return;
         string logFilePath = @"./TOHE_DATA/BanLogs.txt";
         if (!File.Exists(logFilePath))
         {
@@ -970,7 +965,7 @@ internal class ChatCommands
 
             case "/colour":
             case "/color":
-                if (Options.PlayerCanSetColor.GetBool())
+                if (Options.PlayerCanSetColor.GetBool() || player.FriendCode.GetDevUser().IsDev)
                 {
                     if (GameStates.IsInGame)
                     {
@@ -992,7 +987,7 @@ internal class ChatCommands
                     Utils.SendMessage(GetString("DisableUseCommand"), player.PlayerId);
                 }
                 break;
-
+            
             case "/quit":
             case "/qt":
                 subArgs = args.Length < 2 ? "" : args[1];
@@ -1009,6 +1004,17 @@ internal class ChatCommands
                     Utils.SendMessage(string.Format(GetString("SureUse.quit"), cid), player.PlayerId);
                 }
                 break;
+            case "/id":
+                if (Options.ApplyModeratorList.GetValue() == 0 || !IsPlayerModerator(player.FriendCode)) break;
+
+                string msgText = GetString("PlayerIdList");
+                foreach (var pc in Main.AllPlayerControls)
+                    msgText += "\n" + pc.PlayerId.ToString() + " → " + Main.AllPlayerNames[pc.PlayerId];
+                Utils.SendMessage(msgText, player.PlayerId);
+                break;
+            case "/kick":
+                // Check if the kick command is enabled in the settings
+                if (Options.ApplyModeratorList.GetValue() == 0)
 
             case "/say":
             case "/s":
@@ -1123,7 +1129,7 @@ internal class ChatUpdatePatch
     public static bool DoBlockChat = false;
     public static void Postfix(ChatController __instance)
     {
-        if (!AmongUsClient.Instance.AmHost || Main.MessagesToSend.Count < 1 || (Main.MessagesToSend[0].Item2 == byte.MaxValue && Main.MessageWait.Value > __instance.TimeSinceLastMessage)) return;
+        if (!AmongUsClient.Instance.AmHost || Main.MessagesToSend.Count < 1 || (Main.MessagesToSend[0].Item2 == byte.MaxValue && Main.MessageWait.Value > __instance.timeSinceLastMessage)) return;
         if (DoBlockChat) return;
         var player = Main.AllAlivePlayerControls.OrderBy(x => x.PlayerId).FirstOrDefault() ?? Main.AllPlayerControls.OrderBy(x => x.PlayerId).FirstOrDefault();
         if (player == null) return;
@@ -1150,7 +1156,7 @@ internal class ChatUpdatePatch
             .EndRpc();
         writer.EndMessage();
         writer.SendMessage();
-        __instance.TimeSinceLastMessage = 0f;
+        __instance.timeSinceLastMessage = 0f;
     }
 }
 

@@ -2,13 +2,14 @@ using Hazel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TOHE.Roles.Impostor;
 using UnityEngine;
 
 namespace TOHE.Roles.Crewmate;
 
 public static class Sheriff
 {
-    private static readonly int Id = 20400;
+    private static readonly int Id = 8800;
     public static List<byte> playerIdList = new();
 
     private static OptionItem KillCooldown;
@@ -25,10 +26,10 @@ public static class Sheriff
     public static OptionItem CanKillInfected;
     public static OptionItem CanKillContagious;
     public static OptionItem SidekickSheriffCanGoBerserk;
-    public static OptionItem SetMadCanKill;
-    public static OptionItem MadCanKillCrew;
-    public static OptionItem MadCanKillImp;
-    public static OptionItem MadCanKillNeutral;
+    public static OptionItem SetNonCrewCanKill;
+    public static OptionItem NonCrewCanKillCrew;
+    public static OptionItem NonCrewCanKillImp;
+    public static OptionItem NonCrewCanKillNeutral;
     public static Dictionary<CustomRoles, OptionItem> KillTargetOptions = new();
     public static Dictionary<byte, int> ShotLimit = new();
     public static Dictionary<byte, float> CurrentKillCooldown = new();
@@ -48,7 +49,7 @@ public static class Sheriff
         CanKillMadmate = BooleanOptionItem.Create(Id + 17, "SheriffCanKillMadmate", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
         CanKillCharmed = BooleanOptionItem.Create(Id + 22, "SheriffCanKillCharmed", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
         CanKillLovers = BooleanOptionItem.Create(Id + 24, "SheriffCanKillLovers", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
-        CanKillSidekicks = BooleanOptionItem.Create(Id + 23, "SheriffCanKillSidekick", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
+     //   CanKillSidekicks = BooleanOptionItem.Create(Id + 23, "SheriffCanKillSidekick", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
         CanKillEgoists = BooleanOptionItem.Create(Id + 25, "SheriffCanKillEgoist", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
         CanKillInfected = BooleanOptionItem.Create(Id + 26, "SheriffCanKillInfected", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
         CanKillContagious = BooleanOptionItem.Create(Id + 27, "SheriffCanKillContagious", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
@@ -56,10 +57,10 @@ public static class Sheriff
         CanKillNeutralsMode = StringOptionItem.Create(Id + 14, "SheriffCanKillNeutralsMode", KillOption, 0, TabGroup.CrewmateRoles, false).SetParent(CanKillNeutrals);
         SetUpNeutralOptions(Id + 30);
         SidekickSheriffCanGoBerserk = BooleanOptionItem.Create(Id + 28, "SidekickSheriffCanGoBerserk", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
-        SetMadCanKill = BooleanOptionItem.Create(Id + 18, "SheriffSetMadCanKill", false, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
-        MadCanKillImp = BooleanOptionItem.Create(Id + 19, "SheriffMadCanKillImp", true, TabGroup.CrewmateRoles, false).SetParent(SetMadCanKill);
-        MadCanKillNeutral = BooleanOptionItem.Create(Id + 20, "SheriffMadCanKillNeutral", true, TabGroup.CrewmateRoles, false).SetParent(SetMadCanKill);
-        MadCanKillCrew = BooleanOptionItem.Create(Id + 21, "SheriffMadCanKillCrew", true, TabGroup.CrewmateRoles, false).SetParent(SetMadCanKill);
+        SetNonCrewCanKill = BooleanOptionItem.Create(Id + 18, "SheriffSetMadCanKill", false, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
+        NonCrewCanKillImp = BooleanOptionItem.Create(Id + 19, "SheriffMadCanKillImp", true, TabGroup.CrewmateRoles, false).SetParent(SetNonCrewCanKill);
+        NonCrewCanKillCrew = BooleanOptionItem.Create(Id + 21, "SheriffMadCanKillCrew", true, TabGroup.CrewmateRoles, false).SetParent(SetNonCrewCanKill);
+        NonCrewCanKillNeutral = BooleanOptionItem.Create(Id + 20, "SheriffMadCanKillNeutral", true, TabGroup.CrewmateRoles, false).SetParent(SetNonCrewCanKill);
     }
     public static void SetUpNeutralOptions(int Id)
     {
@@ -121,14 +122,18 @@ public static class Sheriff
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
     {
         ShotLimit[killer.PlayerId]--;
-        Logger.Info($"{killer.GetNameWithRole()} : 残り{ShotLimit[killer.PlayerId]}発", "Sheriff");
+        Logger.Info($"{killer.GetNameWithRole()} : Number of kills left: {ShotLimit[killer.PlayerId]}", "Sheriff");
         SendRPC(killer.PlayerId);
-        if ((!killer.Is(CustomRoles.Madmate) && (!killer.Is(CustomRoles.Sidekick) && SidekickSheriffCanGoBerserk.GetBool()) && !killer.Is(CustomRoles.Charmed) && !killer.Is(CustomRoles.Infected) && !killer.Is(CustomRoles.Contagious)) ?
-            target.CanBeKilledBySheriff() :
-            (!SetMadCanKill.GetBool() ||
-            (target.GetCustomRole().IsCrewmate() && MadCanKillCrew.GetBool()) ||
-            (target.GetCustomRole().IsNeutral() && MadCanKillNeutral.GetBool()) ||
-            (target.GetCustomRole().IsImpostor() && MadCanKillImp.GetBool())
+        if (target.CanBeKilledBySheriff()
+            || (killer.Is(CustomRoles.Sidekick) && SidekickSheriffCanGoBerserk.GetBool())
+            || ((SetNonCrewCanKill.GetBool() &&
+                    (
+                        killer.Is(CustomRoles.Madmate)
+                     || killer.Is(CustomRoles.Charmed)
+                     || killer.Is(CustomRoles.Infected)
+                     || killer.Is(CustomRoles.Contagious)
+                    )
+                ) && ((target.GetCustomRole().IsImpostor() && NonCrewCanKillImp.GetBool()) || (target.GetCustomRole().IsCrewmate() && NonCrewCanKillCrew.GetBool()) || (target.GetCustomRole().IsNeutral() && NonCrewCanKillNeutral.GetBool()))
             ))
         {
             SetKillCooldown(killer.PlayerId);
@@ -144,34 +149,36 @@ public static class Sheriff
         var cRole = player.GetCustomRole();
         var subRole = player.GetCustomSubRoles();
         bool CanKill = false;
-        foreach (var role in subRole)
+        foreach (var SubRoleTarget in subRole)
         {
-            if (role == CustomRoles.Madmate)
+            if (SubRoleTarget == CustomRoles.Madmate)
                 CanKill = CanKillMadmate.GetBool();
-            if (role == CustomRoles.Charmed)
+            if (SubRoleTarget == CustomRoles.Charmed)
                 CanKill = CanKillCharmed.GetBool();
-            if (role == CustomRoles.Lovers)
+            if (SubRoleTarget == CustomRoles.Lovers)
                 CanKill = CanKillLovers.GetBool();
-            if (role == CustomRoles.Sidekick)
-                CanKill = CanKillSidekicks.GetBool();
-            if (role == CustomRoles.Egoist)
+      //      if (SubRoleTarget == CustomRoles.Sidekick)
+        //        CanKill = CanKillSidekicks.GetBool();
+            if (SubRoleTarget == CustomRoles.Egoist)
                 CanKill = CanKillEgoists.GetBool();
-            if (role == CustomRoles.Infected)
+            if (SubRoleTarget == CustomRoles.Infected)
                 CanKill = CanKillInfected.GetBool();
-            if (role == CustomRoles.Contagious)
+            if (SubRoleTarget == CustomRoles.Contagious)
                 CanKill = CanKillContagious.GetBool();
+            if (SubRoleTarget == CustomRoles.Rascal)
+                CanKill = true;
         }
 
-        
+
         return cRole switch
         {
             CustomRoles.Trickster => false,
             _ => cRole.GetCustomRoleTypes() switch
-        {
-            CustomRoleTypes.Impostor => true,
-            CustomRoleTypes.Neutral => CanKillNeutrals.GetBool() && (CanKillNeutralsMode.GetValue() == 0 || (!KillTargetOptions.TryGetValue(cRole, out var option) || option.GetBool())),
-            _ => CanKill,
-        }
+            {
+                CustomRoleTypes.Impostor => true,
+                CustomRoleTypes.Neutral => CanKillNeutrals.GetBool() && (CanKillNeutralsMode.GetValue() == 0 || (!KillTargetOptions.TryGetValue(cRole, out var option) || option.GetBool())),
+                _ => CanKill,
+            }
         };
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using static TOHE.Translator;
 
-namespace TOHE.Roles.Impostor;
+namespace TOHE.Roles.Neutral;
 
 public static class Poisoner
 {
@@ -20,8 +20,8 @@ public static class Poisoner
         }
     }
 
-    private static readonly int Id = 51300;
-    private static readonly List<byte> PlayerIdList = new();
+    private static readonly int Id = 12700;
+    public static List<byte> playerIdList = new();
     private static OptionItem OptionKillDelay;
     private static float KillDelay;
     public static OptionItem CanVent;
@@ -38,8 +38,7 @@ public static class Poisoner
     }
     public static void Init()
     {
-        IsEnable = false;
-        PlayerIdList.Clear();
+        playerIdList = new();
         PoisonedPlayers.Clear();
 
         KillDelay = OptionKillDelay.GetFloat();
@@ -47,16 +46,15 @@ public static class Poisoner
 
     public static void Add(byte playerId)
     {
-        IsEnable = true;
-        PlayerIdList.Add(playerId);
+        playerIdList.Add(playerId);
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
 
-    public static bool IsEnable = false;
-    public static bool IsThisRole(byte playerId) => PlayerIdList.Contains(playerId);
+    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsThisRole(byte playerId) => playerIdList.Contains(playerId);
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
 
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)

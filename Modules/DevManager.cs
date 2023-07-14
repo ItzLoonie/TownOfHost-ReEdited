@@ -30,12 +30,9 @@ public static class DevManager
 {
     public static DevUser DefaultDevUser = new();
     public static List<DevUser> DevUserList = new();
-    public static List<DevUser> EditedDevUserList = new();
     public static void Init()
     {
     }
     public static bool IsDevUser(this string code) => DevUserList.Any(x => x.Code == code);
-    public static bool IsEditedDevUser(this string code) => DevUserList.Any(x => x.Code == code);
     public static DevUser GetDevUser(this string code) => code.IsDevUser() ? DevUserList.Find(x => x.Code == code) : DefaultDevUser;
-    public static DevUser GetEditedDevUser(this string code) => code.IsEditedDevUser() ? EditedDevUserList.Find(x => x.Code == code) : DefaultDevUser;
 }

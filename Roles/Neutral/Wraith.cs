@@ -6,11 +6,11 @@ using System.Text;
 using static TOHE.Options;
 using static TOHE.Translator;
 
-namespace TOHE.Roles.Impostor;
+namespace TOHE.Roles.Neutral;
 
 public static class Wraith
 {
-    private static readonly int Id = 1004444;
+    private static readonly int Id = 13300;
     private static List<byte> playerIdList = new();
 
     public static OptionItem WraithKillCooldown;
@@ -40,6 +40,11 @@ public static class Wraith
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+
+                    if (!AmongUsClient.Instance.AmHost) return;
+                if (!Main.ResetCamPlayerList.Contains(playerId))
+                Main.ResetCamPlayerList.Add(playerId);
+
     }
     public static bool IsEnable => playerIdList.Count > 0;
     private static void SendRPC(PlayerControl pc)

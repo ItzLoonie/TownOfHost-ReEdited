@@ -6,6 +6,7 @@ using InnerNet;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TOHE.Modules;
+using TOHE.Roles.Crewmate;
 using TOHE.Roles.Neutral;
 using static TOHE.Translator;
 
@@ -47,7 +48,7 @@ class OnGameJoinedPatch
         }
     }
 }
-[HarmonyPatch(typeof(InnerNetClient), nameof(InnerNetClient.DisconnectInternal))]
+/*[HarmonyPatch(typeof(InnerNetClient), nameof(InnerNetClient.DisconnectInternal))]
 class DisconnectInternalPatch
 {
     public static void Prefix(InnerNetClient __instance, DisconnectReasons reason, string stringReason)
@@ -60,7 +61,7 @@ class DisconnectInternalPatch
         ErrorText.Instance.Clear();
         Cloud.StopConnect();
     }
-}
+} */
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnPlayerJoined))]
 class OnPlayerJoinedPatch
 {
@@ -73,7 +74,7 @@ class OnPlayerJoinedPatch
             Logger.SendInGame(string.Format(GetString("Message.KickedByNoFriendCode"), client.PlayerName));
             Logger.Info($"フレンドコードがないプレイヤーを{client?.PlayerName}をキックしました。", "Kick");
         }
-        if (AmongUsClient.Instance.AmHost && client.PlatformData.Platform == Platforms.Android && Options.KickAndroidPlayer.GetBool())
+        if (AmongUsClient.Instance.AmHost && client.PlatformData.Platform == (Platforms.Android | Platforms.IPhone) && Options.KickAndroidPlayer.GetBool())
         {
             AmongUsClient.Instance.KickPlayer(client.Id, false);
             string msg = string.Format(GetString("KickAndriodPlayer"), client?.PlayerName);
@@ -124,6 +125,8 @@ class OnPlayerLeftPatch
                 Lawyer.ChangeRoleByTarget(data.Character);
             if (data.Character.Is(CustomRoles.Pelican))
                 Pelican.OnPelicanDied(data.Character.PlayerId);
+            if (Spiritualist.SpiritualistTarget == data.Character.PlayerId)
+                Spiritualist.RemoveTarget();
             if (Main.PlayerStates[data.Character.PlayerId].deathReason == PlayerState.DeathReason.etc) //死因が設定されていなかったら
             {
                 Main.PlayerStates[data.Character.PlayerId].deathReason = PlayerState.DeathReason.Disconnected;

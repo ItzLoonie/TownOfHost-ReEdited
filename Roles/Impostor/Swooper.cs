@@ -10,7 +10,7 @@ namespace TOHE.Roles.Impostor;
 
 public static class Swooper
 {
-    private static readonly int Id = 904444;
+    private static readonly int Id = 4200;
     private static List<byte> playerIdList = new();
 
     private static OptionItem SwooperCooldown;

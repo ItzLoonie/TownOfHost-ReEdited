@@ -8,7 +8,7 @@ namespace TOHE.Roles.Neutral;
 
 public static class BloodKnight
 {
-    private static readonly int Id = 50923;
+    private static readonly int Id = 11800;
     public static List<byte> playerIdList = new();
 
     private static OptionItem KillCooldown;

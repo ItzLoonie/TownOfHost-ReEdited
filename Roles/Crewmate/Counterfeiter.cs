@@ -7,7 +7,7 @@ namespace TOHE.Roles.Crewmate;
 
 public static class Counterfeiter
 {
-    private static readonly int Id = 8035600;
+    private static readonly int Id = 8500;
     private static List<byte> playerIdList = new();
     private static Dictionary<byte, List<byte>> clientList = new();
     private static List<byte> notActiveList = new();
@@ -80,7 +80,7 @@ public static class Counterfeiter
         notActiveList.Add(pc.PlayerId);
         pc.SetKillCooldown();
         pc.RPCPlayCustomSound("Bet");
-        Utils.NotifyRoles(pc);
+        Utils.NotifyRoles(SpecifySeer: pc);
         Logger.Info($"赝品商 {pc.GetRealName()} 将赝品卖给了 {target.GetRealName()}", "Counterfeiter");
     }
     public static bool OnClientMurder(PlayerControl pc)

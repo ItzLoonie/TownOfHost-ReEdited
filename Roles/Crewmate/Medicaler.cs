@@ -9,7 +9,7 @@ namespace TOHE.Roles.Crewmate;
 
 public static class Medicaler
 {
-    private static readonly int Id = 8021866;
+    private static readonly int Id = 7100;
     public static List<byte> playerIdList = new();
     public static List<byte> ProtectList = new();
     public static Dictionary<byte, int> ProtectLimit = new();
@@ -99,8 +99,8 @@ public static class Medicaler
         if (TargetCanSeeProtect.GetBool())
             target.RPCPlayCustomSound("Shield");
 
-        Utils.NotifyRoles(killer);
-        Utils.NotifyRoles(target);
+        Utils.NotifyRoles(SpecifySeer: killer);
+        Utils.NotifyRoles(SpecifySeer: target);
 
         Logger.Info($"{killer.GetNameWithRole()} : 剩余{ProtectLimit[killer.PlayerId]}个护盾", "Medicaler");
     }
@@ -115,11 +115,11 @@ public static class Medicaler
         if (TargetCanSeeProtect.GetBool())
             target.RpcGuardAndKill(target);
         killer.SetKillCooldown();
-        Utils.NotifyRoles(target);
+        Utils.NotifyRoles(SpecifySeer: target);
         if (KnowTargetShieldBroken.GetBool())
             Main.AllPlayerControls.Where(x => playerIdList.Contains(x.PlayerId)).Do(x => x.Notify(Translator.GetString("MedicalerTargetShieldBroken")));
         else
-            Main.AllPlayerControls.Where(x => playerIdList.Contains(x.PlayerId)).Do(x => Utils.NotifyRoles(x));
+            Main.AllPlayerControls.Where(x => playerIdList.Contains(x.PlayerId)).Do(x => Utils.NotifyRoles(SpecifySeer: x));
 
         Logger.Info($"{target.GetNameWithRole()} : 来自医生的盾破碎", "Medicaler");
         return true;

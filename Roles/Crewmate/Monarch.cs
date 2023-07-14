@@ -8,7 +8,7 @@ namespace TOHE.Roles.Crewmate;
 
 public static class Monarch
 {
-    private static readonly int Id = 7055522;
+    private static readonly int Id = 9600;
     private static List<byte> playerIdList = new();
 
     public static OptionItem KnightCooldown;
@@ -67,7 +67,7 @@ public static class Monarch
 
             killer.ResetKillCooldown();
             killer.SetKillCooldown();
-            killer.RpcGuardAndKill(target);
+      //      killer.RpcGuardAndKill(target);
             target.RpcGuardAndKill(killer);
             target.RpcGuardAndKill(target);
 
