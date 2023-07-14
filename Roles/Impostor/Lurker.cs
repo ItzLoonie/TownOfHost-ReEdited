@@ -34,7 +34,13 @@ namespace TOHE.Roles.Impostor
         {
             if (!pc.Is(CustomRoles.Lurker)) return;
 
-            Main.AllPlayerKillCooldown[pc.PlayerId] -= ReduceKillCooldown.GetFloat();
+            float newCd = Main.AllPlayerKillCooldown[pc.PlayerId] - ReduceKillCooldown.GetFloat();
+            if (newCd <= 0)
+            {
+                return;
+            }
+
+            Main.AllPlayerKillCooldown[pc.PlayerId] = newCd;
             pc.SyncSettings();
         }
 
