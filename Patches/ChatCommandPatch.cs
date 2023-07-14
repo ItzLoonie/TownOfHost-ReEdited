@@ -30,10 +30,9 @@ internal class ChatCommands
 
     public static bool Prefix(ChatController __instance)
     {
-        //Logger.Info($"{__instance.freeChatField.Text}", "TestChatGame28");
-        if (__instance.freeChatField.Text == "") return false;
+        if (__instance.freeChatField.textArea.text == "") return false;
         __instance.timeSinceLastMessage = 3f;
-        var text = __instance.freeChatField.Text;
+        var text = __instance.freeChatField.textArea.text;
         if (ChatHistory.Count == 0 || ChatHistory[^1] != text) ChatHistory.Add(text);
         ChatControllerUpdatePatch.CurrentHistorySelection = ChatHistory.Count;
         string[] args = text.Split(' ');
@@ -461,10 +460,8 @@ internal class ChatCommands
         {
 
             Logger.Info("Command Canceled", "ChatCommand");
-            __instance.freeChatField.Clear();
-            __instance.sendRateMessageText.SetText(cancelVal);
-            //__instance.quickChatMenu.ResetGlyphs();
-            //__instance.quickChatMenu.closeButtonGlyph;
+            __instance.freeChatField.textArea.Clear();
+            __instance.freeChatField.textArea.SetText(cancelVal);
         }
         return !canceled;
     }
