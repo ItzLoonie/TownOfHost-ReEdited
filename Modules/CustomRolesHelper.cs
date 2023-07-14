@@ -567,7 +567,7 @@ internal static class CustomRolesHelper
             CustomRoles.Spiritcaller;
     }
 
-        public static bool IsAbleToBeSidekicked(this CustomRoles role)
+    public static bool IsAbleToBeSidekicked(this CustomRoles role)
     {
         return role is
         CustomRoles.BloodKnight or
@@ -659,14 +659,14 @@ internal static class CustomRolesHelper
     public static bool IsEvilAddons(this CustomRoles role)
     {
         return role is
-        CustomRoles.Madmate or
-        CustomRoles.Egoist or
-        CustomRoles.Charmed or
-        CustomRoles.Infected or
-        CustomRoles.Contagious or
-        CustomRoles.Rogue or
-        CustomRoles.Rascal or
-        CustomRoles.Soulless;
+            CustomRoles.Madmate or
+            CustomRoles.Egoist or
+            CustomRoles.Charmed or
+            CustomRoles.Infected or
+            CustomRoles.Contagious or
+            CustomRoles.Rogue or
+            CustomRoles.Rascal or
+            CustomRoles.Soulless;
     }
 
     public static bool IsMadmate(this CustomRoles role)
@@ -675,7 +675,7 @@ internal static class CustomRolesHelper
         CustomRoles.Crewpostor or
         CustomRoles.Parasite;
     }
-        public static bool IsTasklessCrewmate(this CustomRoles role)
+    public static bool IsTasklessCrewmate(this CustomRoles role)
     {
         return role is
         CustomRoles.Sheriff or
@@ -686,7 +686,7 @@ internal static class CustomRolesHelper
         CustomRoles.SwordsMan or
         CustomRoles.Deputy;
     }
-        public static bool IsTaskBasedCrewmate(this CustomRoles role)
+    public static bool IsTaskBasedCrewmate(this CustomRoles role)
     {
         return role is
         CustomRoles.Snitch or

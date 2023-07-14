@@ -818,7 +818,7 @@ class MeetingHudStartPatch
                 sb.Append($"({Utils.ColorString(Utils.GetRoleColor(CustomRoles.Doctor), Utils.GetVitalText(target.PlayerId))})");
             if (seer.KnowDeadTeam(target))
             {
-                if (target.Is(CustomRoleTypes.Crewmate) && !target.GetCustomRole().IsEvilAddons())
+                if (target.Is(CustomRoleTypes.Crewmate) && !(target.Is(CustomRoles.Madmate) || target.Is(CustomRoles.Egoist) || target.Is(CustomRoles.Charmed) || target.Is(CustomRoles.Infected) || target.Is(CustomRoles.Contagious) || target.Is(CustomRoles.Rogue) || target.Is(CustomRoles.Rascal) || target.Is(CustomRoles.Soulless)))
                     sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Bait), "★"));
 
                 if (target.Is(CustomRoleTypes.Impostor) || target.Is(CustomRoles.Madmate) || target.Is(CustomRoles.Rascal) || target.Is(CustomRoles.Parasite) || target.Is(CustomRoles.Crewpostor) || target.Is(CustomRoles.Convict))
@@ -826,13 +826,10 @@ class MeetingHudStartPatch
 
                 if (target.Is(CustomRoleTypes.Neutral) || target.Is(CustomRoles.Rogue) || target.Is(CustomRoles.Contagious) || target.Is(CustomRoles.Charmed) || target.Is(CustomRoles.Infected) || target.Is(CustomRoles.Egoist) || target.Is(CustomRoles.Soulless))
                     sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Executioner), "★"));
-
-
-
             }
             if (seer.KnowLivingTeam(target))
             {
-                if (target.Is(CustomRoleTypes.Crewmate) && !target.GetCustomRole().IsEvilAddons())
+                if (target.Is(CustomRoleTypes.Crewmate) && !(target.Is(CustomRoles.Madmate) || target.Is(CustomRoles.Egoist) || target.Is(CustomRoles.Charmed) || target.Is(CustomRoles.Infected) || target.Is(CustomRoles.Contagious) || target.Is(CustomRoles.Rogue) || target.Is(CustomRoles.Rascal) || target.Is(CustomRoles.Soulless)))
                     sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Bait), "★"));
 
                 if (target.Is(CustomRoleTypes.Impostor) || target.Is(CustomRoles.Madmate) || target.Is(CustomRoles.Rascal) || target.Is(CustomRoles.Parasite) || target.Is(CustomRoles.Crewpostor) || target.Is(CustomRoles.Convict))
@@ -840,9 +837,6 @@ class MeetingHudStartPatch
 
                 if (target.Is(CustomRoleTypes.Neutral) || target.Is(CustomRoles.Rogue) || target.Is(CustomRoles.Contagious) || target.Is(CustomRoles.Charmed) || target.Is(CustomRoles.Infected) || target.Is(CustomRoles.Egoist) || target.Is(CustomRoles.Soulless))
                     sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Executioner), "★"));
-
-
-
             }
             //インポスター表示
             switch (seer.GetCustomRole().GetCustomRoleTypes())
