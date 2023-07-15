@@ -312,7 +312,7 @@ public static class GuessManager
                     // Guesser Mode Can Guess Addons
                     if (Options.CanGuessAddons.GetBool() && (pc.Is(CustomRoles.EvilGuesser) || pc.Is(CustomRoles.NiceGuesser) || pc.Is(CustomRoles.Guesser)))
                     {
-                        // Evil Guesser Cant Guess Addons
+                        // Assassin Cant Guess Addons
                         if (role.IsAdditionRole() && (pc.Is(CustomRoles.EvilGuesser) && !Options.EGCanGuessAdt.GetBool()))
                         {
                             if (!isUI) Utils.SendMessage(GetString("GuessAdtRole"), pc.PlayerId);
@@ -340,7 +340,7 @@ public static class GuessManager
                 // Guesser Mode Off, Cant Guess Addon
                 else
                 {
-                    // Evil Guesser Cant Guess Addons
+                    // Assassin Cant Guess Addons
                     if (role.IsAdditionRole() && pc.Is(CustomRoles.EvilGuesser) && !Options.EGCanGuessAdt.GetBool())
                     {
                         if (!isUI) Utils.SendMessage(GetString("GuessAdtRole"), pc.PlayerId);
@@ -947,6 +947,8 @@ public static class GuessManager
                     or CustomRoles.Crewmate
                  //   or CustomRoles.Loyal
                     or CustomRoles.Oblivious
+                    or CustomRoles.Baker
+                    or CustomRoles.Famine
                     or CustomRoles.Rogue
                     or CustomRoles.Scientist
                     or CustomRoles.Impostor

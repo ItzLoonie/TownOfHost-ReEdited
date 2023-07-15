@@ -465,8 +465,7 @@ static class ExtendedPlayerControl
             CustomRoles.Parasite => pc.IsAlive(),
             CustomRoles.NWitch => pc.IsAlive(),
             CustomRoles.Wraith => pc.IsAlive(),
-            CustomRoles.Bomber => false,
-      //      CustomRoles.Chameleon => false,
+            CustomRoles.Bomber => (Options.BomberCanKill.GetBool() && pc.IsAlive()),
             CustomRoles.Innocent => pc.IsAlive(),
             CustomRoles.Counterfeiter => Counterfeiter.CanUseKillButton(pc.PlayerId),
             CustomRoles.Pursuer => Pursuer.CanUseKillButton(pc.PlayerId),
@@ -516,7 +515,7 @@ static class ExtendedPlayerControl
             => false,
 
             CustomRoles.Jackal => Jackal.CanVent.GetBool(),
-            CustomRoles.Sidekick => Jackal.CanVent.GetBool(),
+            CustomRoles.Sidekick => Jackal.CanVentSK.GetBool(),
             CustomRoles.Poisoner => Poisoner.CanVent.GetBool(),
             CustomRoles.NSerialKiller => NSerialKiller.CanVent.GetBool(),
             CustomRoles.Medusa => Medusa.CanVent.GetBool(),
@@ -680,6 +679,9 @@ static class ExtendedPlayerControl
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.ScavengerKillCooldown.GetFloat();
                 break;
             case CustomRoles.Bomber:
+                if (Options.BomberCanKill.GetBool())
+                Main.AllPlayerKillCooldown[player.PlayerId] = Options.BomberKillCD.GetFloat();
+                else
                 Main.AllPlayerKillCooldown[player.PlayerId] = 300f;
                 break;
             case CustomRoles.Capitalism:
@@ -897,7 +899,7 @@ static class ExtendedPlayerControl
         && target.Data.IsDead;
 
     public static bool KnowLivingTeam(this PlayerControl seer, PlayerControl target)
-        => (seer.Is(CustomRoles.Parasight))
+        => (seer.Is(CustomRoles.Visionary))
         && !target.Data.IsDead;
     public static string GetRoleInfo(this PlayerControl player, bool InfoLong = false)
     {

@@ -176,6 +176,10 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 AURoleOptions.ShapeshifterCooldown = Options.ShapeshiftCD.GetFloat();
                 AURoleOptions.ShapeshifterDuration = Options.ShapeshiftDur.GetFloat();
                 break;
+            case CustomRoles.Bomber:
+                AURoleOptions.ShapeshifterCooldown = Options.BombCooldown.GetFloat();
+                AURoleOptions.ShapeshifterDuration = 3f;
+                break;
             case CustomRoles.Mafia:
                 AURoleOptions.ShapeshifterCooldown = Options.MafiaShapeshiftCD.GetFloat();
                 AURoleOptions.ShapeshifterDuration = Options.MafiaShapeshiftDur.GetFloat();
@@ -252,7 +256,6 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.HexMaster:
             case CustomRoles.Parasite:
                 opt.SetVision(true);
-                //Main.NormalOptions.KillCooldown = Options.DefaultKillCooldown;
                 break;
         /*    case CustomRoles.Chameleon:
                 opt.SetVision(false);

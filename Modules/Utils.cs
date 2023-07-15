@@ -1467,7 +1467,7 @@ public static class Utils
                 // Necroview
                 if (seer.Is(CustomRoles.Necroview) && isForMeeting)
                 {
-                    if (target.Is(CustomRoleTypes.Crewmate) && !target.GetCustomRole().IsEvilAddons() && target.Data.IsDead)
+                    if (target.Is(CustomRoleTypes.Crewmate) && !(target.Is(CustomRoles.Madmate) || target.Is(CustomRoles.Egoist) || target.Is(CustomRoles.Charmed) || target.Is(CustomRoles.Infected) || target.Is(CustomRoles.Contagious) || target.Is(CustomRoles.Rogue) || target.Is(CustomRoles.Rascal) || target.Is(CustomRoles.Soulless)) && target.Data.IsDead)
                         TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Bait), "★"));
 
                     if ((target.Is(CustomRoleTypes.Impostor) || target.Is(CustomRoles.Madmate) || target.Is(CustomRoles.Rascal) || target.Is(CustomRoles.Parasite) || target.Is(CustomRoles.Crewpostor) || target.Is(CustomRoles.Convict)) && target.Data.IsDead)
@@ -1476,10 +1476,10 @@ public static class Utils
                     if ((target.Is(CustomRoleTypes.Neutral) || target.Is(CustomRoles.Rogue) || target.Is(CustomRoles.Contagious) || target.Is(CustomRoles.Charmed) || target.Is(CustomRoles.Infected) || target.Is(CustomRoles.Egoist) || target.Is(CustomRoles.Soulless)) && target.Data.IsDead)
                         TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Executioner), "★"));
                 }
-                // Parasight
-                if (seer.Is(CustomRoles.Parasight) && isForMeeting)
+                // Visionary
+                if (seer.Is(CustomRoles.Visionary) && isForMeeting)
                 {
-                    if (target.Is(CustomRoleTypes.Crewmate) && !target.GetCustomRole().IsEvilAddons() && !target.Data.IsDead)
+                    if (target.Is(CustomRoleTypes.Crewmate) && !(target.Is(CustomRoles.Madmate) || target.Is(CustomRoles.Egoist) || target.Is(CustomRoles.Charmed) || target.Is(CustomRoles.Infected) || target.Is(CustomRoles.Contagious) || target.Is(CustomRoles.Rogue) || target.Is(CustomRoles.Rascal) || target.Is(CustomRoles.Soulless)) && !target.Data.IsDead)
                         TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Bait), "★"));
 
                     if ((target.Is(CustomRoleTypes.Impostor) || target.Is(CustomRoles.Madmate) || target.Is(CustomRoles.Rascal) || target.Is(CustomRoles.Parasite) || target.Is(CustomRoles.Crewpostor) || target.Is(CustomRoles.Convict)) && !target.Data.IsDead)
@@ -1946,7 +1946,8 @@ public static class Utils
             ? "INVALID"
             : disableColor ? summary.RemoveHtmlTags() : summary;
     }
-    public static string RemoveHtmlTags(this string str) => Regex.Replace(str, "<[^>]*?>", "");
+    public static string RemoveHtmlTags(this string str) => Regex.Replace(str, "", "");
+   // public static string RemoveHtmlTags(this string str) => Regex.Replace(str, "<[^>]*?>", "");
     public static bool CanMafiaKill()
     {
         if (Main.PlayerStates == null) return false;
