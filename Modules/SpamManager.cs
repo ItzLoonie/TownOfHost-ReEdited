@@ -240,7 +240,7 @@ public static class SpamManager
         if (text == "kai") return true;
         if (text == "kaishi") return true;
 
-        if (text.Length >= 3) return false;
+        //if (text.Length >= 3) return false;
         if (text.Contains("start")) return true;
         if (text.Contains("s t a r t")) return true;
         if (text.Contains("begin")) return true;
