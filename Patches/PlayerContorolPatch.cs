@@ -221,8 +221,8 @@ class CheckMurderPatch
                     killer.RpcGuardAndKill(killer);
                     killer.SetKillCooldown();
                     return false;
-                case CustomRoles.Bomber:
-                    return false;
+           /*     case CustomRoles.Bomber:
+                    return false; */
                 case CustomRoles.Gangster:
                     if (Gangster.OnCheckMurder(killer, target))
                         return false;

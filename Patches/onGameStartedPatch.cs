@@ -865,7 +865,7 @@ internal class SelectRolesPatch
             Main.LoversPlayers.Clear();
             Main.isLoversDead = false;
             //ランダムに2人選出
-            AssignLoversRoles(2);
+            AssignLoversRoles();
         }
     }
     private static void AssignLoversRoles(int RawCount = -1)
@@ -873,7 +873,18 @@ internal class SelectRolesPatch
         var allPlayers = new List<PlayerControl>();
         foreach (var pc in Main.AllPlayerControls)
         {
-            if (pc.Is(CustomRoles.GM) || (pc.HasSubRole() && pc.GetCustomSubRoles().Count >= Options.NoLimitAddonsNumMax.GetInt()) || pc.Is(CustomRoles.Ntr) || pc.Is(CustomRoles.God) || pc.Is(CustomRoles.FFF)) continue;
+            if (pc.Is(CustomRoles.GM) 
+                || (pc.HasSubRole() && pc.GetCustomSubRoles().Count >= Options.NoLimitAddonsNumMax.GetInt()) 
+                || pc.Is(CustomRoles.Ntr) 
+                || pc.Is(CustomRoles.Dictator) 
+                || pc.Is(CustomRoles.God) 
+                || pc.Is(CustomRoles.FFF) 
+                || pc.Is(CustomRoles.Bomber) 
+                || pc.Is(CustomRoles.Provocateur)
+                || (pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeInLove.GetBool())
+                || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeInLove.GetBool())
+                || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeInLove.GetBool()))
+                continue;
             allPlayers.Add(pc);
         }
         var role = CustomRoles.Lovers;
