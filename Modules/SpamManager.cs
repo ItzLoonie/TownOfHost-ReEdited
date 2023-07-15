@@ -245,12 +245,6 @@ public static class SpamManager
         if (text.Contains("s t a r t")) return true;
         if (text.Contains("begin")) return true;
 
-        if (text.Contains("started")) return false;
-        if (text.Contains("starter")) return false;
-        if (text.Contains("Starting")) return false;
-        if (text.Contains("starting")) return false;
-        if (text.Contains("beginner")) return false;
-        if (text.Contains("beginned")) return false;
         if (text.Contains("了")) return false;
         if (text.Contains("没")) return false;
         if (text.Contains("吗")) return false;
