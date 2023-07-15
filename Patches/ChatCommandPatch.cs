@@ -176,8 +176,8 @@ internal class ChatCommands
                 case "/up":
                     canceled = true;
                     subArgs = text.Remove(0, 3);
-                    if (!PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsUp || !PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsDev) break;
-                    if (!Options.EnableUpMode.GetBool() || !PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsDev)
+                    if (!(PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsUp || PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsDev)) break;
+                    if (!(Options.EnableUpMode.GetBool() || PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsDev))
                     {
                         Utils.SendMessage(string.Format(GetString("Message.YTPlanDisabled"), GetString("EnableYTPlan")));
                         break;
