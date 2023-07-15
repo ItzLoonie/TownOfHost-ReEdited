@@ -1354,6 +1354,10 @@ public static class Utils
             {
                 SelfSuffix.Append(Vulture.GetTargetArrow(seer));
             }
+            if (Amnesiac.playerIdList.Contains(seer.PlayerId) && Amnesiac.ArrowsPointingToDeadBody.GetBool() && !isForMeeting)
+            {
+                SelfSuffix.Append(Amnesiac.GetTargetArrow(seer));
+            }
             if (seer.Is(CustomRoles.FireWorks) && !isForMeeting)
             {
                 string stateText = FireWorks.GetStateText(seer);

@@ -791,6 +791,7 @@ class MurderPlayerPatch
         Bloodhound.OnPlayerDead(target);
         Tracefinder.OnPlayerDead(target);
         Vulture.OnPlayerDead(target);
+        Amnesiac.OnPlayerDead(target);
 
         Utils.AfterPlayerDeathTasks(target);
 
@@ -1062,9 +1063,10 @@ class ReportDeadBodyPatch
             }
             if (target != null) //拍灯事件
             {
+                if (Vulture.UnreportablePlayers.Contains(target.PlayerId)) return false;
                 if (Bloodhound.UnreportablePlayers.Contains(target.PlayerId)) return false;
 
-                if (__instance.Is(CustomRoles.Bloodhound))
+                if (__instance.Is(CustomRoles.Bloodhound) && !Amnesiac.playerIdList.Contains(__instance.PlayerId))
                 {
                     if (killer != null)
                     {
@@ -1077,7 +1079,21 @@ class ReportDeadBodyPatch
                     
                     return false;
                 }
-                if (Vulture.UnreportablePlayers.Contains(target.PlayerId)) return false;
+                
+                
+                if (Amnesiac.playerIdList.Contains(__instance.PlayerId))
+                {
+                    var tpc = Utils.GetPlayerById(target.PlayerId);
+
+                    Logger.Info($"{__instance.GetNameWithRole()} tried to copy the {tpc.GetNameWithRole()}", "AmnesiacBodyReport");
+                    if (!tpc.Is(CustomRoleTypes.Impostor) && (tpc.GetCustomRole().GetRoleTypes() != RoleTypes.Impostor) && (tpc.GetCustomRole().GetDYRole() != RoleTypes.Impostor))
+                    { 
+                        Amnesiac.OnReportDeadBody(__instance, target);
+                        return false;
+                    }
+
+                }
+                
 
                 if (__instance.Is(CustomRoles.Vulture))
                 {
@@ -1248,6 +1264,7 @@ class ReportDeadBodyPatch
         Oracle.didVote.Clear();
         Bloodhound.Clear();
         Vulture.Clear();
+        Amnesiac.Clear();
 
         Camouflager.OnReportDeadBody();
         Psychic.OnReportDeadBody();
@@ -2015,6 +2032,8 @@ class FixedUpdatePatch
 
                 if (Vulture.ArrowsPointingToDeadBody.GetBool())
                     Suffix.Append(Vulture.GetTargetArrow(seer, target));
+                if (Amnesiac.ArrowsPointingToDeadBody.GetBool())
+                    Suffix.Append(Amnesiac.GetTargetArrow(seer, target));
 
                 Suffix.Append(Tracefinder.GetTargetArrow(seer, target));
 

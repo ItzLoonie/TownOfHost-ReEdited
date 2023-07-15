@@ -99,6 +99,7 @@ enum CustomRPC
     SetJackalRecruitLimit,
     SetBloodhoundArrow,
     SetVultureArrow,
+    SetAmnesiacArrow,
     SetSpiritcallerSpiritLimit,
 
     //SoloKombat
@@ -528,6 +529,9 @@ internal class RPCHandlerPatch
             case CustomRPC.SetVultureArrow:
                 Vulture.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetAmnesiacArrow:
+                Amnesiac.ReceiveRPC(reader);
+                break;
             case CustomRPC.DoPoison:
                 Baker.ReceiveRPC(reader);
                 break;
@@ -728,6 +732,9 @@ internal static class RPC
                 break;
             case CustomRoles.Executioner:
                 Executioner.Add(targetId);
+                break;
+            case CustomRoles.Amnesiac:
+                Amnesiac.Add(targetId);
                 break;
             case CustomRoles.Farseer:
                 Farseer.Add(targetId);
