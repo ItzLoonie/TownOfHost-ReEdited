@@ -218,8 +218,6 @@ public static class SpamManager
         if (text == "н а ч и н а й") return true;
         if (text == "Н а ч и н а й") return true;
 
-        if (text == "Го") return true;
-        if (text == "го") return true;
         if (text == "пж го") return true;
         if (text == "пжго") return true;
         if (text == "Пж Го") return true;

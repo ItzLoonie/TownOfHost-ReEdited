@@ -932,7 +932,7 @@
 "AutoDisplayLastResult","结束后自动显示最终结果","Auto Display Last Result","Отображать результат последней игры в чате","結束後自動顯示最終結果","结束后自动显示最终结果"
 "EnableYTPlan","启用创作者保护计划","Enable Youtuber Plan","Активировать Ютуб План","启用创作者保护计划",""
 "KickLowLevelPlayer","踢出没有达到指定等级的玩家","Kick players whose level is lower than","Выгнать игроков с уровнем ниже","踢出沒有達到指定等級的玩家","踢出没有达到指定等级的玩家"
-"AutoKickStart","踢出催开始的人","Kick players that say start","Кикнуть игрока который пишет старт","踢出催開始的人","踢出催开始的人"
+"AutoKickStart","踢出催开始的人","Kick players that say start","Кикнуть игрока который пишет старт/го","踢出催開始的人","踢出催开始的人"
 "AutoKickStartTimes","踢出前警告次数","Number of warnings before kick","Количество предупреждений до кика","踢出前警告次數","踢出前警告次数"
 "AutoKickStartAsBan","踢出时封禁该玩家","Block a player after they're kicked","Заблокировать игрока после его кика","踢出時封禁該玩家","踢出时封禁该玩家"
 "AutoKickStopWords","踢出使用违禁词的人","Kick players who write banned words","Кикать игроков которые пишут запрещенные слова","踢出使用違禁詞的人","踢出使用违禁词的人"
