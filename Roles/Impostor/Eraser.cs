@@ -7,7 +7,7 @@ namespace TOHE.Roles.Impostor;
 
 internal static class Eraser
 {
-    private static readonly int Id = 905553;
+    private static readonly int Id = 16800;
     public static List<byte> playerIdList = new();
 
     private static OptionItem EraseLimitOpt;
@@ -82,7 +82,7 @@ internal static class Eraser
 
         Utils.SendMessage(string.Format(GetString("EraserEraseNotice"), target.GetRealName()), player.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Eraser), GetString("EraserEraseMsgTitle")));
 
-        Utils.NotifyRoles(player);
+        Utils.NotifyRoles(SpecifySeer: player);
     }
     public static void OnReportDeadBody()
     {

@@ -2,13 +2,14 @@ using Hazel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TOHE.Roles.Impostor;
 using UnityEngine;
 
 namespace TOHE.Roles.Crewmate;
 
 public static class Sheriff
 {
-    private static readonly int Id = 20400;
+    private static readonly int Id = 8800;
     public static List<byte> playerIdList = new();
 
     private static OptionItem KillCooldown;
@@ -48,7 +49,7 @@ public static class Sheriff
         CanKillMadmate = BooleanOptionItem.Create(Id + 17, "SheriffCanKillMadmate", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
         CanKillCharmed = BooleanOptionItem.Create(Id + 22, "SheriffCanKillCharmed", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
         CanKillLovers = BooleanOptionItem.Create(Id + 24, "SheriffCanKillLovers", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
-        CanKillSidekicks = BooleanOptionItem.Create(Id + 23, "SheriffCanKillSidekick", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
+     //   CanKillSidekicks = BooleanOptionItem.Create(Id + 23, "SheriffCanKillSidekick", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
         CanKillEgoists = BooleanOptionItem.Create(Id + 25, "SheriffCanKillEgoist", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
         CanKillInfected = BooleanOptionItem.Create(Id + 26, "SheriffCanKillInfected", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
         CanKillContagious = BooleanOptionItem.Create(Id + 27, "SheriffCanKillContagious", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
@@ -156,14 +157,16 @@ public static class Sheriff
                 CanKill = CanKillCharmed.GetBool();
             if (SubRoleTarget == CustomRoles.Lovers)
                 CanKill = CanKillLovers.GetBool();
-            if (SubRoleTarget == CustomRoles.Sidekick)
-                CanKill = CanKillSidekicks.GetBool();
+      //      if (SubRoleTarget == CustomRoles.Sidekick)
+        //        CanKill = CanKillSidekicks.GetBool();
             if (SubRoleTarget == CustomRoles.Egoist)
                 CanKill = CanKillEgoists.GetBool();
             if (SubRoleTarget == CustomRoles.Infected)
                 CanKill = CanKillInfected.GetBool();
             if (SubRoleTarget == CustomRoles.Contagious)
                 CanKill = CanKillContagious.GetBool();
+            if (SubRoleTarget == CustomRoles.Rascal)
+                CanKill = true;
         }
 
 

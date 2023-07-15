@@ -10,7 +10,7 @@ namespace TOHE.Roles.Impostor;
 
 public static class BallLightning
 {
-    private static readonly int Id = 901533;
+    private static readonly int Id = 16700;
     public static List<byte> playerIdList = new();
 
     private static OptionItem KillCooldown;

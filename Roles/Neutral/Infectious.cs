@@ -8,7 +8,7 @@ namespace TOHE.Roles.Neutral;
 
 public static class Infectious
 {
-    private static readonly int Id = 7052222;
+    private static readonly int Id = 12000;
     private static List<byte> playerIdList = new();
 
     public static OptionItem BiteCooldown;
@@ -109,7 +109,7 @@ public static class Infectious
     public static string GetBiteLimit() => Utils.ColorString(BiteLimit >= 1 ? Utils.GetRoleColor(CustomRoles.Infectious) : Color.gray, $"({BiteLimit})");
     public static bool CanBeBitten(this PlayerControl pc)
     {
-        return pc != null && (pc.GetCustomRole().IsCrewmate() || pc.GetCustomRole().IsImpostor() || pc.GetCustomRole().IsNK()) && !pc.Is(CustomRoles.Infected)
+        return pc != null && (pc.GetCustomRole().IsCrewmate() || pc.GetCustomRole().IsImpostor() || pc.GetCustomRole().IsNK()) && !pc.Is(CustomRoles.Infected) && !pc.Is(CustomRoles.Loyal)
         && !(
             false
             );

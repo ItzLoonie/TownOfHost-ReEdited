@@ -1,4 +1,4 @@
-﻿using Hazel;
+using Hazel;
 using System.Collections.Generic;
 using TOHE.Modules;
 using UnityEngine;
@@ -7,7 +7,7 @@ namespace TOHE.Roles.Neutral;
 
 public static class Pursuer
 {
-    private static readonly int Id = 8535600;
+    private static readonly int Id = 10200;
     private static List<byte> playerIdList = new();
     private static Dictionary<byte, List<byte>> clientList = new();
     private static List<byte> notActiveList = new();
@@ -80,7 +80,7 @@ public static class Pursuer
         notActiveList.Add(pc.PlayerId);
         pc.SetKillCooldownV2();
         pc.RPCPlayCustomSound("Bet");
-        Utils.NotifyRoles(pc);
+        Utils.NotifyRoles(SpecifySeer: pc);
         Logger.Info($"赝品商 {pc.GetRealName()} 将赝品卖给了 {target.GetRealName()}", "Pursuer");
     }
     public static bool OnClientMurder(PlayerControl pc)

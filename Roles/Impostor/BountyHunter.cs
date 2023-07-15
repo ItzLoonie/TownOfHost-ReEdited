@@ -8,7 +8,7 @@ namespace TOHE.Roles.Impostor;
 
 public static class BountyHunter
 {
-    private static readonly int Id = 1000;
+    private static readonly int Id = 800;
     private static List<byte> playerIdList = new();
 
     private static OptionItem OptionTargetChangeTime;
@@ -74,7 +74,11 @@ public static class BountyHunter
         if (ShowTargetArrow) TargetArrow.Add(bountyId, targetId);
     }
     //public static void SetKillCooldown(byte id, float amount) => Main.AllPlayerKillCooldown[id] = amount;
-    public static void ApplyGameOptions() => AURoleOptions.ShapeshifterCooldown = TargetChangeTime;
+    public static void ApplyGameOptions()
+    {
+        AURoleOptions.ShapeshifterCooldown = TargetChangeTime;
+        AURoleOptions.ShapeshifterDuration = 1f;
+    }
 
     public static void OnCheckMurder(PlayerControl killer, PlayerControl target)
     {

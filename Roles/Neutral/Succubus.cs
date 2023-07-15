@@ -8,7 +8,7 @@ namespace TOHE.Roles.Neutral;
 
 public static class Succubus
 {
-    private static readonly int Id = 5052222;
+    private static readonly int Id = 11200;
     private static List<byte> playerIdList = new();
 
     public static OptionItem CharmCooldown;
@@ -108,6 +108,6 @@ public static class Succubus
     public static bool CanBeCharmed(this PlayerControl pc)
     {
         return pc != null && (pc.GetCustomRole().IsCrewmate() || pc.GetCustomRole().IsImpostor() || 
-            (CanCharmNeutral.GetBool() && (pc.GetCustomRole().IsNeutral() || pc.GetCustomRole().IsNeutralKilling()))) && !pc.Is(CustomRoles.Charmed);
+            (CanCharmNeutral.GetBool() && (pc.GetCustomRole().IsNeutral() || pc.GetCustomRole().IsNeutralKilling()))) && !pc.Is(CustomRoles.Charmed) && !pc.Is(CustomRoles.Loyal);
     }
 }

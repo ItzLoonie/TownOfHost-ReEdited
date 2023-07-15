@@ -6,7 +6,7 @@ namespace TOHE.Roles.Crewmate;
 
 public static class Divinator
 {
-    private static readonly int Id = 8022560;
+    private static readonly int Id = 6700;
     private static List<byte> playerIdList = new();
 
     private static OptionItem CheckLimitOpt;
@@ -18,12 +18,12 @@ public static class Divinator
 
     public static void SetupCustomOption()
     {
-        SetupRoleOptions(Id, TabGroup.CrewmateRoles, CustomRoles.Divinator);
-        CheckLimitOpt = IntegerOptionItem.Create(Id + 10, "DivinatorSkillLimit", new(1, 990, 1), 5, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Divinator])
+        SetupRoleOptions(Id, TabGroup.OtherRoles, CustomRoles.Divinator);
+        CheckLimitOpt = IntegerOptionItem.Create(Id + 10, "DivinatorSkillLimit", new(1, 990, 1), 5, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Divinator])
             .SetValueFormat(OptionFormat.Times);
-        AccurateCheckMode = BooleanOptionItem.Create(Id + 12, "AccurateCheckMode", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Divinator]);
-        HideVote = BooleanOptionItem.Create(Id + 14, "DivinatorHideVote", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Divinator]);
-        OverrideTasksData.Create(Id + 20, TabGroup.CrewmateRoles, CustomRoles.Divinator);
+        AccurateCheckMode = BooleanOptionItem.Create(Id + 12, "AccurateCheckMode", false, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Divinator]);
+        HideVote = BooleanOptionItem.Create(Id + 14, "DivinatorHideVote", false, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Divinator]);
+        OverrideTasksData.Create(Id + 20, TabGroup.OtherRoles, CustomRoles.Divinator);
     }
     public static void Init()
     {
@@ -192,7 +192,8 @@ public static class Divinator
                 CustomRoles.CursedWolf or
                 CustomRoles.OverKiller or
                 CustomRoles.Hangman or
-                CustomRoles.Mortician
+                CustomRoles.Mortician or
+                CustomRoles.Spiritcaller
                 => "Disturbed",
 
                 CustomRoles.Glitch or

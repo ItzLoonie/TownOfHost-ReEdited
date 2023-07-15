@@ -8,7 +8,7 @@ namespace TOHE.Roles.Impostor;
 
 public static class Hacker
 {
-    private static readonly int Id = 901585;
+    private static readonly int Id = 2200;
     private static List<byte> playerIdList = new();
 
     private static OptionItem HackLimitOpt;
@@ -74,7 +74,7 @@ public static class Hacker
     }
     public static void OnShapeshift(PlayerControl pc, bool shapeshifting, PlayerControl ssTarget)
     {
-        if (!shapeshifting || !HackLimit.TryGetValue(pc.PlayerId, out var x) || x < 1 || ssTarget == null || ssTarget.Is(CustomRoles.Needy)) return;
+        if (!shapeshifting || !HackLimit.TryGetValue(pc.PlayerId, out var x) || x < 1 || ssTarget == null || ssTarget.Is(CustomRoles.Needy) || ssTarget.Is(CustomRoles.Lazy)) return;
         HackLimit[pc.PlayerId]--;
         SendRPC(pc.PlayerId);
 

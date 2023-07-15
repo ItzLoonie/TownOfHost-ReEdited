@@ -2,6 +2,7 @@ using HarmonyLib;
 using System.Text;
 using TMPro;
 using UnityEngine;
+
 using static TOHE.Translator;
 
 namespace TOHE;
@@ -46,7 +47,7 @@ internal class PingTrackerUpdatePatch
 internal class VersionShowerStartPatch
 {
     //public static GameObject OVersionShower;
-    private static TextMeshPro SpecialEventText;
+    //private static TextMeshPro SpecialEventText;
     //private static TextMeshPro VisitText;
 
     private static void Postfix(VersionShower __instance)
@@ -63,31 +64,31 @@ internal class VersionShowerStartPatch
         Main.credentialsText = $"\r\n<color={Main.ModColor}>{Main.ModName}</color> v{Main.PluginVersion}";
         Main.credentialsText += $"\r\n<color=#a54aff>Continued by </color><color=#ff3b6f>Loonie</color>";
 #endif
-        var credentials = Object.Instantiate(__instance.text);
-        credentials.text = Main.credentialsText;
-        credentials.alignment = TextAlignmentOptions.TopRight;
-        credentials.transform.position = new Vector3(3.2f, 2.5f, 0);
+        //var credentials = Object.Instantiate(__instance.text);
+        //credentials.text = Main.credentialsText;
+        //credentials.alignment = TextAlignmentOptions.TopRight;
+        //credentials.transform.position = new Vector3(3.2f, 2.5f, 0);
 
-        ErrorText.Create(__instance.text);
-        if (Main.hasArgumentException && ErrorText.Instance != null)
-            ErrorText.Instance.AddError(ErrorCode.Main_DictionaryError);
+        //ErrorText.Create(__instance.text);
+        //if (Main.hasArgumentException && ErrorText.Instance != null)
+        //    ErrorText.Instance.AddError(ErrorCode.Main_DictionaryError);
 
-        if (SpecialEventText == null)
-        {
-            SpecialEventText = Object.Instantiate(__instance.text);
-            SpecialEventText.text = "";
-            SpecialEventText.color = Color.white;
-            SpecialEventText.fontSize += 2.5f;
-            SpecialEventText.alignment = TextAlignmentOptions.Top;
-            SpecialEventText.transform.position = new Vector3(0, 0.5f, 0);
-        }
-        SpecialEventText.enabled = TitleLogoPatch.amongUsLogo != null;
-        if (Main.IsInitialRelease)
-        {
-            SpecialEventText.text = $"Happy Birthday to {Main.ModName}!";
-            ColorUtility.TryParseHtmlString(Main.ModColor, out var col);
-            SpecialEventText.color = col;
-        }
+        //if (SpecialEventText == null)
+        //{
+        //    SpecialEventText = Object.Instantiate(__instance.text);
+        //    SpecialEventText.text = "";
+        //    SpecialEventText.color = Color.white;
+        //    SpecialEventText.fontSize += 2.5f;
+        //    SpecialEventText.alignment = TextAlignmentOptions.Top;
+        //    SpecialEventText.transform.position = new Vector3(0, 0.5f, 0);
+        //}
+        //SpecialEventText.enabled = TitleLogoPatch.amongUsLogo != null;
+        //if (Main.IsInitialRelease)
+        //{
+        //    SpecialEventText.text = $"Happy Birthday to {Main.ModName}!";
+        //    ColorUtility.TryParseHtmlString(Main.ModColor, out var col);
+        //    SpecialEventText.color = col;
+        //}
       /*else if (!Main.IsAprilFools)
         {
             SpecialEventText.text = $"{Main.MainMenuText}";
@@ -184,6 +185,14 @@ internal class TitleLogoPatch
             BottomButtons.transform.position = new Vector3(0f, -2.71f, 0f);
         }*/
 
+     /*   if ((Ambience = GameObject.Find("Ambience")) != null)
+        {
+            Ambience.SetActive(false);
+            var CustomBG = new GameObject("CustomBG");
+            CustomBG.transform.position = new Vector3(2.095f, -0.25f, 520f);
+            var bgRenderer = CustomBG.AddComponent<SpriteRenderer>();
+            bgRenderer.sprite = Utils.LoadSprite("TOHE.Resources.Images.TOHE-BG.jpg", 245f);
+        } */
         if ((Ambience = GameObject.Find("Ambience")) != null)
         {
             Ambience.SetActive(false);

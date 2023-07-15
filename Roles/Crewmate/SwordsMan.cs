@@ -6,7 +6,7 @@ namespace TOHE.Roles.Crewmate;
 
 public static class SwordsMan
 {
-    private static readonly int Id = 8021075;
+    private static readonly int Id = 9000;
     public static List<byte> playerIdList = new();
     //public static bool isKilled = false;
     public static List<byte> killed = new();

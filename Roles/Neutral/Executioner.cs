@@ -8,7 +8,7 @@ namespace TOHE.Roles.Neutral;
 
 public static class Executioner
 {
-    private static readonly int Id = 50700;
+    private static readonly int Id = 10700;
     public static List<byte> playerIdList = new();
     public static byte WinnerID;
 
@@ -30,11 +30,17 @@ public static class Executioner
         "Role.Crewmate",
         "Role.Jester",
         "Role.Opportunist",
+        "Role.Convict",
+        "Role.Celebrity",
+        "Role.Bodyguard",
+        "Role.Dictator",
+        "Role.Mayor",
+        "Role.Doctor",
      //   CustomRoles.Crewmate.ToString(), CustomRoles.Jester.ToString(), CustomRoles.Opportunist.ToString(),
     };
     public static readonly CustomRoles[] CRoleChangeRoles =
     {
-        CustomRoles.Crewmate, CustomRoles.Jester, CustomRoles.Opportunist,
+        CustomRoles.CrewmateTOHE, CustomRoles.Jester, CustomRoles.Opportunist, CustomRoles.Convict, CustomRoles.CyberStar, CustomRoles.Bodyguard, CustomRoles.Dictator, CustomRoles.Mayor, CustomRoles.Doctor,
     };
 
     public static void SetupCustomOption()

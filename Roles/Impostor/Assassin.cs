@@ -9,7 +9,7 @@ namespace TOHE.Roles.Impostor;
 
 internal static class Assassin
 {
-    private static readonly int Id = 901455;
+    private static readonly int Id = 700;
     public static List<byte> playerIdList = new();
 
     private static OptionItem MarkCooldown;

@@ -18,7 +18,7 @@ namespace TOHE.Roles.Crewmate
 {
     public static class Farseer
     {
-        private static readonly int Id = 7052269;
+        private static readonly int Id = 9700;
 
         private static readonly string fontSize = "1.5";
 
@@ -39,7 +39,8 @@ namespace TOHE.Roles.Crewmate
             CustomRoles.SabotageMaster,
             CustomRoles.Snitch,
             CustomRoles.Marshall,
-            CustomRoles.SpeedBooster,
+            CustomRoles.ParityCop,
+       //     CustomRoles.SpeedBooster,
             CustomRoles.Dictator,
             CustomRoles.Doctor,
             CustomRoles.Detective,
@@ -50,6 +51,8 @@ namespace TOHE.Roles.Crewmate
             CustomRoles.Bodyguard,
             CustomRoles.Grenadier,
             CustomRoles.Divinator,
+            CustomRoles.Oracle,
+            CustomRoles.Tracefinder,
             CustomRoles.Glitch,
             CustomRoles.Judge,
             CustomRoles.Mortician,
@@ -57,6 +60,9 @@ namespace TOHE.Roles.Crewmate
             CustomRoles.Observer,
             CustomRoles.DovesOfNeace,
             CustomRoles.Bloodhound,
+            CustomRoles.Retributionist,
+            CustomRoles.Guardian,
+            CustomRoles.Spiritualist,
             CustomRoles.Tracker,
         };
 
@@ -72,6 +78,14 @@ namespace TOHE.Roles.Crewmate
             Vision = FloatOptionItem.Create(Id + 12, "FarseerVision", new(0f, 5f, 0.05f), 0.25f, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Farseer])
                 .SetValueFormat(OptionFormat.Multiplier);
         }
+        public static void Add(byte playerId)
+        {
+
+        if (!AmongUsClient.Instance.AmHost) return;
+        if (!Main.ResetCamPlayerList.Contains(playerId))
+            Main.ResetCamPlayerList.Add(playerId);
+        }
+
 
         public static void SetCooldown(byte id) => Main.AllPlayerKillCooldown[id] = FarseerCooldown.GetFloat();
 
@@ -82,7 +96,7 @@ namespace TOHE.Roles.Crewmate
                 if (!player.IsAlive() || Pelican.IsEaten(player.PlayerId))
                 {
                     Main.FarseerTimer.Remove(player.PlayerId);
-                    NotifyRoles(player);
+                    NotifyRoles(SpecifySeer: player);
                     RPC.ResetCurrentRevealTarget(player.PlayerId);
                 }
                 else
@@ -99,7 +113,7 @@ namespace TOHE.Roles.Crewmate
                         Main.FarseerTimer.Remove(player.PlayerId);//塗が完了したのでDictionaryから削除
                         Main.isRevealed[(player.PlayerId, ar_target.PlayerId)] = true;//塗り完了
                         player.RpcSetRevealtPlayer(ar_target, true);
-                        NotifyRoles(player);//名前変更
+                        NotifyRoles(SpecifySeer: player);//名前変更
                         RPC.ResetCurrentRevealTarget(player.PlayerId);
                     }
                     else
@@ -114,7 +128,7 @@ namespace TOHE.Roles.Crewmate
                         else//それ以外は削除
                         {
                             Main.FarseerTimer.Remove(player.PlayerId);
-                            NotifyRoles(player);
+                            NotifyRoles(SpecifySeer: player);
                             RPC.ResetCurrentRevealTarget(player.PlayerId);
 
                             Logger.Info($"Canceled: {player.GetNameWithRole()}", "Arsonist");

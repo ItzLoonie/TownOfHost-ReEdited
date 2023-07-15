@@ -6,6 +6,7 @@ using InnerNet;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TOHE.Modules;
+using TOHE.Roles.Crewmate;
 using TOHE.Roles.Neutral;
 using static TOHE.Translator;
 
@@ -48,7 +49,7 @@ class OnGameJoinedPatch
         }
     }
 }
-[HarmonyPatch(typeof(InnerNetClient), nameof(InnerNetClient.DisconnectInternal))]
+/*[HarmonyPatch(typeof(InnerNetClient), nameof(InnerNetClient.DisconnectInternal))]
 class DisconnectInternalPatch
 {
     public static void Prefix(InnerNetClient __instance, DisconnectReasons reason, string stringReason)
@@ -61,7 +62,7 @@ class DisconnectInternalPatch
         ErrorText.Instance.Clear();
         Cloud.StopConnect();
     }
-}
+} */
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnPlayerJoined))]
 class OnPlayerJoinedPatch
 {
@@ -127,6 +128,8 @@ class OnPlayerLeftPatch
                 Lawyer.ChangeRoleByTarget(data.Character);
             if (data.Character.Is(CustomRoles.Pelican))
                 Pelican.OnPelicanDied(data.Character.PlayerId);
+            if (Spiritualist.SpiritualistTarget == data.Character.PlayerId)
+                Spiritualist.RemoveTarget();
             if (Main.PlayerStates[data.Character.PlayerId].deathReason == PlayerState.DeathReason.etc) //死因が設定されていなかったら
             {
                 Main.PlayerStates[data.Character.PlayerId].deathReason = PlayerState.DeathReason.Disconnected;
@@ -288,17 +291,6 @@ class CreatePlayerPatch
                     }
                 }, 3.3f, "DisplayUpWarnning");
             }
-          /*  if (PlayerControl.LocalPlayer.FriendCode.GetEditedDevUser().IsUp)
-            {
-                new LateTask(() =>
-                {
-                    if (!AmongUsClient.Instance.IsGameStarted && client.Character != null)
-                    {
-                        Main.isChatCommand = true;
-                        Utils.SendMessage($"{GetString("Message.YTPlanNotice")} {PlayerControl.LocalPlayer.FriendCode.GetEditedDevUser().UpName}", client.Character.PlayerId);
-                    }
-                }, 3.3f, "DisplayUpWarnning");
-            }*/
         }
     }
 }

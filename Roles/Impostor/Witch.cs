@@ -21,7 +21,7 @@ public static class Witch
         "TriggerKill", "TriggerVent","TriggerDouble"
     };
 
-    private static readonly int Id = 1500;
+    private static readonly int Id = 2000;
     public static List<byte> playerIdList = new();
 
     public static Dictionary<byte, bool> SpellMode = new();
@@ -93,7 +93,7 @@ public static class Witch
     }
     public static bool IsSpellMode(byte playerId)
     {
-        return SpellMode[playerId];
+        return SpellMode.ContainsKey(playerId) && SpellMode[playerId];
     }
     public static void SwitchSpellMode(byte playerId, bool kill)
     {

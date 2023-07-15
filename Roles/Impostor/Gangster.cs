@@ -7,7 +7,7 @@ namespace TOHE.Roles.Impostor;
 
 public static class Gangster
 {
-    private static readonly int Id = 5054525;
+    private static readonly int Id = 2900;
     private static List<byte> playerIdList = new();
 
     private static OptionItem RecruitLimitOpt;
@@ -16,6 +16,9 @@ public static class Gangster
     public static OptionItem MayorCanBeMadmate;
     public static OptionItem NGuesserCanBeMadmate;
     public static OptionItem JudgeCanBeMadmate;
+    public static OptionItem MarshallCanBeMadmate;
+    public static OptionItem FarseerCanBeMadmate;
+    public static OptionItem RetributionistCanBeMadmate;
 
     public static Dictionary<byte, int> RecruitLimit = new();
 
@@ -31,6 +34,9 @@ public static class Gangster
         MayorCanBeMadmate = BooleanOptionItem.Create(Id + 15, "GanMayorCanBeMadmate", false, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Gangster]);
         NGuesserCanBeMadmate = BooleanOptionItem.Create(Id + 16, "GanNGuesserCanBeMadmate", false, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Gangster]);
         JudgeCanBeMadmate = BooleanOptionItem.Create(Id + 17, "GanJudgeCanBeMadmate", false, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Gangster]);
+        MarshallCanBeMadmate = BooleanOptionItem.Create(Id + 18, "GanMarshallCanBeMadmate", false, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Gangster]);
+        FarseerCanBeMadmate = BooleanOptionItem.Create(Id + 19, "GanFarseerCanBeMadmate", false, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Gangster]);
+        RetributionistCanBeMadmate = BooleanOptionItem.Create(Id + 20, "GanRetributionistCanBeMadmate", false, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Gangster]);
 
     }
     public static void Init()
@@ -108,8 +114,13 @@ public static class Gangster
             (pc.Is(CustomRoles.Mayor) && !MayorCanBeMadmate.GetBool()) ||
             (pc.Is(CustomRoles.NiceGuesser) && !NGuesserCanBeMadmate.GetBool()) ||
             (pc.Is(CustomRoles.Judge) && !JudgeCanBeMadmate.GetBool()) ||
+            (pc.Is(CustomRoles.Marshall) && !MarshallCanBeMadmate.GetBool()) ||
+            (pc.Is(CustomRoles.Farseer) && !FarseerCanBeMadmate.GetBool()) ||
+            (pc.Is(CustomRoles.Retributionist) && !RetributionistCanBeMadmate.GetBool()) ||
             pc.Is(CustomRoles.Snitch) ||
             pc.Is(CustomRoles.Needy) ||
+            pc.Is(CustomRoles.Lazy) ||
+            pc.Is(CustomRoles.Loyal) ||
             pc.Is(CustomRoles.CyberStar) ||
             pc.Is(CustomRoles.Egoist)
             );

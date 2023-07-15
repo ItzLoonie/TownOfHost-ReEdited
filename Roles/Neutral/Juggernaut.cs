@@ -6,7 +6,7 @@ namespace TOHE;
 
 public static class Juggernaut
 {
-    private static readonly int Id = 952055;
+    private static readonly int Id = 12300;
     public static List<byte> playerIdList = new();
 
     private static OptionItem DefaultKillCooldown;
@@ -38,6 +38,10 @@ public static class Juggernaut
     {
         playerIdList.Add(playerId);
         NowCooldown.TryAdd(playerId, DefaultKillCooldown.GetFloat());
+
+            if (!AmongUsClient.Instance.AmHost) return;
+                if (!Main.ResetCamPlayerList.Contains(playerId))
+                Main.ResetCamPlayerList.Add(playerId);
     }
     public static bool IsEnable => playerIdList.Count > 0;
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = NowCooldown[id];
