@@ -23,16 +23,16 @@ public static class Sidekick
             Main.ResetCamPlayerList.Add(playerId);
     }
     public static bool IsEnable => playerIdList.Count > 0;
-    public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = Jackal.KillCooldown.GetFloat();
+    public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = Jackal.KillCooldownSK.GetFloat();
     public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(Jackal.HasImpostorVision.GetBool());
     public static void SetHudActive(HudManager __instance, bool isActive)
     {
-        __instance.SabotageButton.ToggleVisible(isActive && Jackal.CanUseSabotage.GetBool());
+        __instance.SabotageButton.ToggleVisible(isActive && Jackal.CanUseSabotageSK.GetBool());
     }
 
     public static void CanUseVent(PlayerControl player)
     {
-        bool Sidekick_canUse = Jackal.CanVent.GetBool();
+        bool Sidekick_canUse = Jackal.CanVentSK.GetBool();
         DestroyableSingleton<HudManager>.Instance.ImpostorVentButton.ToggleVisible(Sidekick_canUse && !player.Data.IsDead);
         player.Data.Role.CanVent = Sidekick_canUse;
     }

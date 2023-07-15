@@ -33,7 +33,7 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = " ";
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "2.5.0";
+    public const string PluginVersion = "2.5.1.2";
     public const int PluginCreate = 3;
     public const bool Canary = false;
 
@@ -290,8 +290,8 @@ public class Main : BasePlugin
                 {CustomRoles.Doctor, "#80ffdd"},
                 {CustomRoles.Dictator, "#df9b00"},
                 {CustomRoles.Detective, "#7160e8" },
-                {CustomRoles.SwordsMan, "#f0e68c"},
-                {CustomRoles.NiceGuesser, "#eede26"},
+                {CustomRoles.NiceGuesser, "#f0e68c"},
+                {CustomRoles.SwordsMan, "#AAAAAA"},
                 {CustomRoles.Transporter, "#42D1FF"},
                 {CustomRoles.TimeManager, "#6495ed"},
                 {CustomRoles.Veteran, "#a77738"},
@@ -414,7 +414,7 @@ public class Main : BasePlugin
                 {CustomRoles.Lazy, "#a4dffe"},
                 {CustomRoles.Autopsy, "#80ffdd"},
                 {CustomRoles.Loyal, "#B71556"},
-                {CustomRoles.Parasight, "#ff1919"},
+                {CustomRoles.Visionary, "#ff1919"},
              //   {CustomRoles.QuickFix, "#3333ff"},
 
 
@@ -540,6 +540,7 @@ public enum CustomRoles
     Twister,
     Lurker,
     Convict,
+    Visionary,
     //Crewmate(Vanilla)
     Engineer,
     GuardianAngel,
@@ -691,7 +692,6 @@ public enum CustomRoles
     Autopsy,
     Loyal,
     EvilSpirit,
-    Parasight,
    // QuickFix
 }
 //WinData

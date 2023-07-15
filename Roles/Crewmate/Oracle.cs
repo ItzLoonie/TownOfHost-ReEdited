@@ -117,6 +117,7 @@ public static class Oracle
             CustomRoles.Deathpact or
             CustomRoles.Devourer or
             CustomRoles.Camouflager or
+            CustomRoles.Twister or
             CustomRoles.Lurker
                 => "Imp",
             
@@ -159,6 +160,7 @@ public static class Oracle
             CustomRoles.BloodKnight or
             CustomRoles.Totocalcio or
             CustomRoles.Virus or
+            CustomRoles.Medusa or
             CustomRoles.Succubus
                 => "Neut",
 

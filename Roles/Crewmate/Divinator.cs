@@ -21,7 +21,7 @@ public static class Divinator
         SetupRoleOptions(Id, TabGroup.OtherRoles, CustomRoles.Divinator);
         CheckLimitOpt = IntegerOptionItem.Create(Id + 10, "DivinatorSkillLimit", new(1, 990, 1), 5, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Divinator])
             .SetValueFormat(OptionFormat.Times);
-        AccurateCheckMode = BooleanOptionItem.Create(Id + 12, "AccurateCheckMode", false, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Divinator]);
+      //  AccurateCheckMode = BooleanOptionItem.Create(Id + 12, "AccurateCheckMode", false, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Divinator]);
         HideVote = BooleanOptionItem.Create(Id + 14, "DivinatorHideVote", false, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Divinator]);
         OverrideTasksData.Create(Id + 20, TabGroup.OtherRoles, CustomRoles.Divinator);
     }
@@ -63,7 +63,149 @@ public static class Divinator
             msg = string.Format(GetString("DivinatorCheck.TaskDone"), target.GetRealName(), GetString(target.GetCustomRole().ToString()));
         }
         else
+        // Investigator
         {
+            string text = target.GetCustomRole() switch
+            {
+                
+
+                CustomRoles.Veteran or
+                CustomRoles.CursedWolf or
+                CustomRoles.Jinx
+                => "Reflect",
+
+                CustomRoles.SuperStar or
+                CustomRoles.Farseer or
+                CustomRoles.Ritualist or
+                CustomRoles.EvilDiviner or
+                CustomRoles.Divinator
+                => "Reveal",
+
+                CustomRoles.ShapeshifterTOHE or
+                CustomRoles.ShapeMaster or
+                CustomRoles.Chameleon or
+                CustomRoles.Wraith or
+                CustomRoles.Morphling or
+                CustomRoles.Swooper
+                => "Conceal",
+
+                CustomRoles.Sidekick or
+                CustomRoles.QuickShooter or
+                CustomRoles.Miner or
+                CustomRoles.Escapee or
+                CustomRoles.Glitch or
+                CustomRoles.CyberStar or
+                CustomRoles.Bard or
+                CustomRoles.Provocateur or
+                CustomRoles.Parasite or
+                CustomRoles.God or
+                CustomRoles.Convict or
+                CustomRoles.Jester
+                => "Special",
+
+                CustomRoles.Doctor or
+                CustomRoles.Sheriff or
+                CustomRoles.Medicaler or
+                CustomRoles.Wildling or
+                CustomRoles.Guardian or
+                CustomRoles.BloodKnight
+                => "Protect",
+
+                CustomRoles.Phantom or
+                CustomRoles.Terrorist or
+                CustomRoles.Retributionist or
+                CustomRoles.Mafia
+                => "Death",
+
+                CustomRoles.Opportunist or
+                CustomRoles.NWitch or
+                CustomRoles.Sunnyboy or
+                CustomRoles.Pursuer
+                => "Careless",
+
+                CustomRoles.Witch or
+                CustomRoles.HexMaster or
+                CustomRoles.Vampire or
+                CustomRoles.Sniper or
+                CustomRoles.Warlock or
+                CustomRoles.Poisoner or
+                CustomRoles.Puppeteer
+                => "IndirectKill",
+
+                CustomRoles.EvilGuesser or
+                CustomRoles.NiceGuesser or
+                CustomRoles.Judge or
+                CustomRoles.Tracker or
+                CustomRoles.EvilTracker or
+                CustomRoles.Oracle or
+                CustomRoles.Councillor
+                => "Meeting",
+
+                CustomRoles.EngineerTOHE or
+                CustomRoles.SabotageMaster or
+                CustomRoles.Mario or
+                CustomRoles.Lurker
+                => "Vent",
+
+                CustomRoles.Mediumshiper or
+                CustomRoles.Mortician or
+                CustomRoles.Bloodhound or
+                CustomRoles.Vulture or
+                CustomRoles.Detective or
+                CustomRoles.Tracefinder or
+                CustomRoles.Monarch
+                => "Body",
+
+                CustomRoles.Mayor or
+                CustomRoles.Vindicator or
+                CustomRoles.Pickpocket or
+                CustomRoles.Monarch
+                => "Vote",
+
+                CustomRoles.Transporter or
+                CustomRoles.Twister or
+                CustomRoles.Dazzler or
+                CustomRoles.Devourer
+                => "Chaos",
+
+                CustomRoles.Snitch or
+                CustomRoles.Marshall or
+                CustomRoles.Workaholic or
+                CustomRoles.Crewpostor
+                => "Task",
+
+                CustomRoles.Totocalcio or
+                CustomRoles.BountyHunter or
+                CustomRoles.Lawyer or
+                CustomRoles.Executioner
+                => "Target",
+
+                CustomRoles.Sheriff or
+                CustomRoles.SwordsMan or
+                CustomRoles.Camouflager
+                => "Kill",
+
+                CustomRoles.Dictator or
+                CustomRoles.Sans or
+                CustomRoles.Minimalism or
+                CustomRoles.Juggernaut
+                => "Power",
+
+
+                CustomRoles.Jackal or
+                CustomRoles.Infectious or
+                CustomRoles.Gangster or
+                CustomRoles.CursedSoul or
+                CustomRoles.Virus or
+                CustomRoles.Succubus
+                => "Recruit",
+
+                _ => "Basic",
+            };
+            msg = string.Format(GetString("DivinatorCheck." + text), target.GetRealName());
+        }
+        // Fortune Teller
+     /*   {
             string text = target.GetCustomRole() switch
             {
                 CustomRoles.TimeThief or
@@ -208,7 +350,7 @@ public static class Divinator
                 _ => "None",
             };
             msg = string.Format(GetString("DivinatorCheck." + text), target.GetRealName());
-        }
+        }*/
 
         Utils.SendMessage(GetString("DivinatorCheck") + "\n" + msg + "\n\n" + string.Format(GetString("DivinatorCheckLimit"), CheckLimit[player.PlayerId]), player.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Divinator), GetString("DivinatorCheckMsgTitle")));
     }

@@ -93,12 +93,14 @@ public static class Tracefinder
             LocateArrow.Add(pc, target.transform.position);
             SendRPC(pc, true, target.transform.position);
         }
+
+        Utils.NotifyRoles();
     }
     public static string GetTargetArrow(PlayerControl seer, PlayerControl target = null)
     {
         if (!seer.Is(CustomRoles.Tracefinder)) return "";
         if (target != null && seer.PlayerId != target.PlayerId) return "";
-        if (GameStates.IsMeeting) return "";
+    //    if (GameStates.IsMeeting) return "";
         return Utils.ColorString(Color.white, LocateArrow.GetArrows(seer));
     }
 }
