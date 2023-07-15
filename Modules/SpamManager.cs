@@ -177,6 +177,11 @@ public static class SpamManager
         if (text == "s t a r t e d") return true;
         if (text == "S t a r t e d") return true;
 
+        if (text == "Го") return true;
+        if (text == "гО") return true;
+        if (text == "го") return true;
+        if (text == "Гоу") return true;
+        if (text == "гоу") return true;
         if (text == "Старт") return true;
         if (text == "старт") return true;
         if (text == "/Старт") return true;
@@ -203,6 +208,8 @@ public static class SpamManager
         if (text == "с т а р т") return true;
         if (text == "С т а р т") return true;
 
+        if (text == "начни") return true;
+        if (text == "Начни") return true;
         if (text == "начинай") return true;
         if (text == "начинай уже") return true;
         if (text == "Начинай") return true;
