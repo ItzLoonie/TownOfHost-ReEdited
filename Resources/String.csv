@@ -2374,7 +2374,7 @@
 "WinnerRoleText.Vulture","","Vulture Wins!","Стервятник Победил!","",""
 "WinnerRoleText.Medusa","","Medusa Wins!","Медуза Победила!","",""
 "WinnerRoleText.Famine","","Famine Wins!","Голод Победил!","",""
-
+"WinnerRoleText.Spiritcaller","","Spiritcaller Wins!","Призыватель Победил!","",""
 
 "## Additional Winner Text"
 "AdditionalWinnerRoleText.Sidekick","","Sidekick","Союзник","",""
