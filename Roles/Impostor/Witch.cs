@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TOHE.Modules;
+using TOHE.Roles.Crewmate;
 using static TOHE.Options;
 using static TOHE.Translator;
 
@@ -157,6 +158,8 @@ public static class Witch
     }
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
     {
+        if (Medic.ProtectList.Contains(target.PlayerId)) return false;
+
         if (NowSwitchTrigger == SwitchTrigger.DoubleTrigger)
         {
             return killer.CheckDoubleTrigger(target, () => { SetSpelled(killer, target); });

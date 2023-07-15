@@ -2,6 +2,7 @@ using AmongUs.GameOptions;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TOHE.Roles.Crewmate;
 using static TOHE.Translator;
 
 namespace TOHE.Roles.Neutral;
@@ -61,6 +62,7 @@ public static class Poisoner
     {
         if (!IsThisRole(killer.PlayerId)) return true;
         if (target.Is(CustomRoles.Bait)) return true;
+        if (Medic.ProtectList.Contains(target.PlayerId)) return false;
 
         killer.SetKillCooldown();
 
@@ -105,6 +107,7 @@ public static class Poisoner
             Main.PlayerStates[target.PlayerId].deathReason = PlayerState.DeathReason.Poison;
             target.SetRealKiller(poisoner);
             target.RpcMurderPlayerV3(target);
+            Medic.IsDead(target);
             Logger.Info($"Poisonerに噛まれている{target.name}を自爆させました。", "Poisoner");
             if (!isButton && poisoner.IsAlive())
             {

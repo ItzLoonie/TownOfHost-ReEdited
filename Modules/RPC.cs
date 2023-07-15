@@ -372,7 +372,7 @@ internal class RPCHandlerPatch
                 Pursuer.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetMedicalerProtectLimit:
-                Medicaler.ReceiveRPC(reader);
+                Medic.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetGangsterRecruitLimit:
                 Gangster.ReceiveRPC(reader);
@@ -428,7 +428,7 @@ internal class RPCHandlerPatch
                 Assassin.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetMedicalerProtectList:
-                Medicaler.ReceiveRPCForProtectList(reader);
+                Medic.ReceiveRPCForProtectList(reader);
                 break;
             case CustomRPC.SetHackerHackLimit:
                 Hacker.ReceiveRPC(reader);
@@ -792,8 +792,8 @@ internal static class RPC
             case CustomRoles.EvilDiviner:
                 EvilDiviner.Add(targetId);
                 break;
-            case CustomRoles.Medicaler:
-                Medicaler.Add(targetId);
+            case CustomRoles.Medic:
+                Medic.Add(targetId);
                 break;
             case CustomRoles.Divinator:
                 Divinator.Add(targetId);

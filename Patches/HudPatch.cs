@@ -144,7 +144,7 @@ class HudManagerPatch
                     case CustomRoles.FFF:
                         __instance.KillButton.OverrideText(GetString("FFFButtonText"));
                         break;
-                    case CustomRoles.Medicaler:
+                    case CustomRoles.Medic:
                         __instance.KillButton.OverrideText(GetString("MedicalerButtonText"));
                         break;
                     case CustomRoles.Gamer:
@@ -443,7 +443,7 @@ class SetHudActivePatch
             case CustomRoles.Pelican:
             case CustomRoles.Revolutionist:
             case CustomRoles.FFF:
-            case CustomRoles.Medicaler:
+            case CustomRoles.Medic:
             case CustomRoles.Gamer:
             case CustomRoles.DarkHide:
             case CustomRoles.Provocateur:

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TOHE.Modules;
 using UnityEngine;
+using TOHE.Roles.Crewmate;
 using static TOHE.Translator;
 
 namespace TOHE.Roles.Impostor;
@@ -53,6 +54,7 @@ public static class Vampire
     {
         if (!IsThisRole(killer.PlayerId)) return true;
         if (target.Is(CustomRoles.Bait)) return true;
+        if (Medic.ProtectList.Contains(target.PlayerId)) return false;
 
         killer.SetKillCooldown();
         killer.RPCPlayCustomSound("Bite");
@@ -98,6 +100,7 @@ public static class Vampire
             Main.PlayerStates[target.PlayerId].deathReason = PlayerState.DeathReason.Bite;
             target.SetRealKiller(vampire);
             target.RpcMurderPlayerV3(target);
+            Medic.IsDead(target);
             Logger.Info($"Vampireに噛まれている{target.name}を自爆させました。", "Vampire");
             if (!isButton && vampire.IsAlive())
             {

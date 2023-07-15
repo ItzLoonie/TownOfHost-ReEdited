@@ -137,6 +137,99 @@ public static class SpamManager
 
         if (text == "Start") return true;
         if (text == "start") return true;
+        if (text == "/Start") return true;
+        if (text == "/Start/") return true;
+        if (text == "Start/") return true;
+        if (text == "/start") return true;
+        if (text == "/start/") return true;
+        if (text == "start/") return true;
+
+        if (text == "plsstart") return true;
+        if (text == "pls start") return true;
+        if (text == "please start") return true;
+        if (text == "pleasestart") return true;
+
+        if (text == "Plsstart") return true;
+        if (text == "Pls start") return true;
+        if (text == "Please start") return true;
+        if (text == "Pleasestart") return true;
+
+        if (text == "plsStart") return true;
+        if (text == "pls Start") return true;
+        if (text == "please Start") return true;
+        if (text == "pleaseStart") return true;
+
+        if (text == "PlsStart") return true;
+        if (text == "Pls Start") return true;
+        if (text == "Please Start") return true;
+        if (text == "PleaseStart") return true;
+
+        if (text == "sTart") return true;
+        if (text == "stArt") return true;
+        if (text == "staRt") return true;
+        if (text == "starT") return true;
+
+        if (text == "s t a r t") return true;
+        if (text == "S t a r t") return true;
+
+        if (text == "started") return true;
+        if (text == "Started") return true;
+        if (text == "s t a r t e d") return true;
+        if (text == "S t a r t e d") return true;
+
+        if (text == "Го") return true;
+        if (text == "гО") return true;
+        if (text == "го") return true;
+        if (text == "Гоу") return true;
+        if (text == "гоу") return true;
+        if (text == "Старт") return true;
+        if (text == "старт") return true;
+        if (text == "/Старт") return true;
+        if (text == "/Старт/") return true;
+        if (text == "Старт/") return true;
+        if (text == "/старт") return true;
+        if (text == "/старт/") return true;
+        if (text == "старт/") return true;
+
+        if (text == "пжстарт") return true;
+        if (text == "пж старт") return true;
+        if (text == "пжСтарт") return true;
+        if (text == "пж Старт") return true;
+        if (text == "Пжстарт") return true;
+        if (text == "Пж старт") return true;
+        if (text == "ПжСтарт") return true;
+        if (text == "Пж Старт") return true;
+
+        if (text == "сТарт") return true;
+        if (text == "стАрт") return true;
+        if (text == "стаРт") return true;
+        if (text == "старТ") return true;
+
+        if (text == "с т а р т") return true;
+        if (text == "С т а р т") return true;
+
+        if (text == "начни") return true;
+        if (text == "Начни") return true;
+        if (text == "начинай") return true;
+        if (text == "начинай уже") return true;
+        if (text == "Начинай") return true;
+        if (text == "Начинай уже") return true;
+        if (text == "Начинай Уже") return true;
+        if (text == "н а ч и н а й") return true;
+        if (text == "Н а ч и н а й") return true;
+
+        if (text == "пж го") return true;
+        if (text == "пжго") return true;
+        if (text == "Пж Го") return true;
+        if (text == "Пж го") return true;
+        if (text == "пж Го") return true;
+        if (text == "ПжГо") return true;
+        if (text == "Пжго") return true;
+        if (text == "пжГо") return true;
+        if (text == "ГоПж") return true;
+        if (text == "гоПж") return true;
+        if (text == "Гопж") return true;
+
         if (text == "开") return true;
         if (text == "快开") return true;
         if (text == "开始") return true;
@@ -144,12 +237,12 @@ public static class SpamManager
         if (text == "开阿") return true;
         if (text == "kai") return true;
         if (text == "kaishi") return true;
-        if (text.Contains("started")) return false;
-        if (text.Contains("starter")) return false;
-        if (text.Contains("Starting")) return false;
-        if (text.Contains("starting")) return false;
-        if (text.Contains("beginner")) return false;
-        if (text.Contains("beginned")) return false;
+
+        //if (text.Length >= 3) return false;
+        if (text.Contains("start")) return true;
+        if (text.Contains("s t a r t")) return true;
+        if (text.Contains("begin")) return true;
+
         if (text.Contains("了")) return false;
         if (text.Contains("没")) return false;
         if (text.Contains("吗")) return false;
@@ -179,10 +272,7 @@ public static class SpamManager
         if (text.Contains("《")) return false;
         if (text.Contains("?")) return false;
         if (text.Contains("？")) return false;
-        if (text.Length >= 3) return false;
-        if (text.Contains("start")) return true;
-        if (text.Contains("s t a r t")) return true;
-        if (text.Contains("begin")) return true;
+
         return text.Contains("开") || text.Contains("kai");
     }
 }

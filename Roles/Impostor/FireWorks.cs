@@ -1,6 +1,8 @@
 using Hazel;
 using System.Collections.Generic;
 using System.Linq;
+using TOHE.Roles.Crewmate;
+using TOHE.Roles.Neutral;
 using UnityEngine;
 using static TOHE.Translator;
 
@@ -96,7 +98,7 @@ public static class FireWorks
     public static void ShapeShiftState(PlayerControl pc, bool shapeshifting)
     {
         Logger.Info($"FireWorks ShapeShift", "FireWorks");
-        if (pc == null || pc.Data.IsDead || !shapeshifting) return;
+        if (pc == null || pc.Data.IsDead || !shapeshifting || Pelican.IsEaten(pc.PlayerId) || Medic.ProtectList.Contains(pc.PlayerId)) return;
         switch (state[pc.PlayerId])
         {
             case FireWorksState.Initial:
@@ -128,6 +130,7 @@ public static class FireWorks
                             Main.PlayerStates[target.PlayerId].deathReason = PlayerState.DeathReason.Bombed;
                             target.SetRealKiller(pc);
                             target.RpcMurderPlayerV3(target);
+                            Medic.IsDead(target);
                         }
                     }
                 }

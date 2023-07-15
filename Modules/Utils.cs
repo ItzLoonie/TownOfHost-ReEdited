@@ -436,7 +436,7 @@ public static class Utils
             case CustomRoles.Collector:
             case CustomRoles.ImperiusCurse:
             case CustomRoles.Provocateur:
-            case CustomRoles.Medicaler:
+            case CustomRoles.Medic:
             case CustomRoles.BloodKnight:
             case CustomRoles.Camouflager:
             case CustomRoles.Totocalcio:
@@ -590,8 +590,8 @@ public static class Utils
             case CustomRoles.Gangster:
                 ProgressText.Append(Gangster.GetRecruitLimit(playerId));
                 break;
-            case CustomRoles.Medicaler:
-                ProgressText.Append(Medicaler.GetSkillLimit(playerId));
+            case CustomRoles.Medic:
+                ProgressText.Append(Medic.GetSkillLimit(playerId));
                 break;
             case CustomRoles.CursedWolf:
                 int SpellCount = Main.CursedWolfSpellCount[playerId];
@@ -1327,7 +1327,8 @@ public static class Utils
                 SelfMark.Append(ColorString(GetRoleColor(CustomRoles.BallLightning), "■"));
 
             //医生护盾提示
-            SelfMark.Append(Medicaler.GetSheildMark(seer));
+            if ((Medic.InProtect(seer.PlayerId) || Medic.TempMarkProtected == seer.PlayerId) && !seer.Is(CustomRoles.Medic) && (Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 2))
+                SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Medic), " ●"));
 
             //玩家自身血量提示
             SelfMark.Append(Gamer.TargetMark(seer, seer));
@@ -1719,7 +1720,14 @@ public static class Utils
 
                 TargetMark.Append(Gamer.TargetMark(seer, target));
 
-                TargetMark.Append(Medicaler.TargetMark(seer, target));
+                if (seer.Is(CustomRoles.Medic) && (Medic.InProtect(target.PlayerId) || Medic.TempMarkProtected == target.PlayerId) && (Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 1))
+                {
+                    TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Medic), " ●"));
+                }
+                else if (seer.Data.IsDead && Medic.InProtect(target.PlayerId))
+                {
+                    TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Medic), " ●"));
+                }
 
                 TargetMark.Append(Totocalcio.TargetMark(seer, target));
                 TargetMark.Append(Lawyer.LawyerMark(seer, target));

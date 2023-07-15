@@ -194,7 +194,7 @@ class BeginCrewmatePatch
                 break;
 
             case CustomRoles.Doctor:
-            case CustomRoles.Medicaler:
+            case CustomRoles.Medic:
                 PlayerControl.LocalPlayer.Data.Role.IntroSound = GetIntroSound(RoleTypes.Scientist);
                 break;
 
@@ -319,7 +319,7 @@ class BeginImpostorPatch
             __instance.overlayHandle.color = Palette.ImpostorRed;
             return true;
         }
-        else if (role is CustomRoles.Sheriff or CustomRoles.SwordsMan or CustomRoles.Medicaler)
+        else if (role is CustomRoles.Sheriff or CustomRoles.SwordsMan or CustomRoles.Medic)
         {
             yourTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             yourTeam.Add(PlayerControl.LocalPlayer);

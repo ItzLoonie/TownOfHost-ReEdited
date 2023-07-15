@@ -198,7 +198,7 @@ class CheckMurderPatch
                     if (!HexMaster.OnCheckMurder(killer, target)) return false;
                     break;
                 case CustomRoles.Puppeteer:
-                    if (target.Is(CustomRoles.Needy) || target.Is(CustomRoles.Lazy)) return false;
+                    if (target.Is(CustomRoles.Needy) || target.Is(CustomRoles.Lazy) || Medic.ProtectList.Contains(target.PlayerId)) return false;
                     Main.PuppeteerList[target.PlayerId] = killer.PlayerId;
                     killer.SetKillCooldown();
                     killer.RPCPlayCustomSound("Line");
@@ -353,8 +353,8 @@ class CheckMurderPatch
                     if (!SwordsMan.OnCheckMurder(killer))
                         return false;
                     break;
-                case CustomRoles.Medicaler:
-                    Medicaler.OnCheckMurderFormedicaler(killer, target);
+                case CustomRoles.Medic:
+                    Medic.OnCheckMurderFormedicaler(killer, target);
                     return false;
                 case CustomRoles.Counterfeiter:
                     if (Counterfeiter.CanBeClient(target) && Counterfeiter.CanSeel(killer.PlayerId))
@@ -427,7 +427,7 @@ class CheckMurderPatch
 
                     if (target.Is(CustomRoles.Avanger))
                     {
-                        var pcList = Main.AllAlivePlayerControls.Where(x => x.PlayerId != target.PlayerId).ToList();
+                        var pcList = Main.AllAlivePlayerControls.Where(x => x.PlayerId != target.PlayerId || Pelican.IsEaten(x.PlayerId) || Medic.ProtectList.Contains(x.PlayerId)).ToList();
                         var rp = pcList[IRandom.Instance.Next(0, pcList.Count)];
                         Main.PlayerStates[rp.PlayerId].deathReason = PlayerState.DeathReason.Revenge;
                         rp.SetRealKiller(target);
@@ -502,8 +502,11 @@ class CheckMurderPatch
 
 
         //医生护盾检查
-        if (Medicaler.OnCheckMurder(killer, target))
+        if (Medic.OnCheckMurder(killer, target))
             return false;
+
+        if (target.Is(CustomRoles.Medic))
+            Medic.IsDead(target);
 
         if (Jackal.ResetKillCooldownWhenSbGetKilled.GetBool() && !killer.Is(CustomRoles.Sidekick) && !target.Is(CustomRoles.Sidekick) && !killer.Is(CustomRoles.Jackal) && !target.Is(CustomRoles.Jackal) && !GameStates.IsMeeting)
             Jackal.AfterPlayerDiedTask(killer);
@@ -864,6 +867,7 @@ class ShapeshiftPatch
                             if (p.PlayerId == cp.PlayerId) continue;
                             if (!Options.WarlockCanKillSelf.GetBool() && p.PlayerId == shapeshifter.PlayerId) continue;
                             if (!Options.WarlockCanKillAllies.GetBool() && p.GetCustomRole().IsImpostor()) continue;
+                            if (Pelican.IsEaten(p.PlayerId) || Medic.ProtectList.Contains(p.PlayerId)) continue;
                             dis = Vector2.Distance(cppos, p.transform.position);
                             cpdistance.Add(p, dis);
                             Logger.Info($"{p?.Data?.PlayerName}の位置{dis}", "Warlock");
@@ -928,13 +932,14 @@ class ShapeshiftPatch
                         var pos = shapeshifter.transform.position;
                         var dis = Vector2.Distance(pos, tg.transform.position);
 
-                        if (!tg.IsAlive() || Pelican.IsEaten(tg.PlayerId)) continue;
+                        if (!tg.IsAlive() || Pelican.IsEaten(tg.PlayerId) || Medic.ProtectList.Contains(tg.PlayerId)) continue;
                         if (dis > Options.BomberRadius.GetFloat()) continue;
                         if (tg.PlayerId == shapeshifter.PlayerId) continue;
 
                         Main.PlayerStates[tg.PlayerId].deathReason = PlayerState.DeathReason.Bombed;
                         tg.SetRealKiller(shapeshifter);
                         tg.RpcMurderPlayerV3(tg);
+                        Medic.IsDead(tg);
                     }
                     new LateTask(() =>
                     {
@@ -1941,7 +1946,14 @@ class FixedUpdatePatch
 
                 Mark.Append(Gamer.TargetMark(seer, target));
 
-                Mark.Append(Medicaler.TargetMark(seer, target));
+                if (seer.PlayerId == target.PlayerId && (Medic.InProtect(seer.PlayerId) || Medic.TempMarkProtected == seer.PlayerId) && (Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 2))
+                    Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Medic)}> ●</color>");
+
+                if (seer.Is(CustomRoles.Medic) && (Medic.InProtect(target.PlayerId) || Medic.TempMarkProtected == target.PlayerId) && (Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 1))
+                    Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Medic)}> ●</color>");
+
+                if (seer.Data.IsDead && Medic.InProtect(target.PlayerId))
+                    Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Medic)}> ●</color>");
 
                 Mark.Append(Totocalcio.TargetMark(seer, target));
                 Mark.Append(Lawyer.LawyerMark(seer, target));

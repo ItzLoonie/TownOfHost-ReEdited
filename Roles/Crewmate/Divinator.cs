@@ -10,7 +10,7 @@ public static class Divinator
     private static List<byte> playerIdList = new();
 
     private static OptionItem CheckLimitOpt;
-    private static OptionItem AccurateCheckMode;
+    //private static OptionItem AccurateCheckMode;
     public static OptionItem HideVote;
 
     public static List<byte> didVote = new();
@@ -58,7 +58,7 @@ public static class Divinator
 
         string msg;
 
-        if (player.AllTasksCompleted() || AccurateCheckMode.GetBool())
+        if (player.AllTasksCompleted()) // || AccurateCheckMode.GetBool()
         {
             msg = string.Format(GetString("DivinatorCheck.TaskDone"), target.GetRealName(), GetString(target.GetCustomRole().ToString()));
         }
@@ -105,7 +105,7 @@ public static class Divinator
 
                 CustomRoles.Doctor or
                 CustomRoles.Sheriff or
-                CustomRoles.Medicaler or
+                CustomRoles.Medic or
                 CustomRoles.Wildling or
                 CustomRoles.Guardian or
                 CustomRoles.BloodKnight

@@ -471,7 +471,7 @@ static class ExtendedPlayerControl
             CustomRoles.Pursuer => Pursuer.CanUseKillButton(pc.PlayerId),
             CustomRoles.Morphling => Morphling.CanUseKillButton(pc.PlayerId),
             CustomRoles.FFF => pc.IsAlive(),
-            CustomRoles.Medicaler => Medicaler.CanUseKillButton(pc.PlayerId),
+            CustomRoles.Medic => Medic.CanUseKillButton(pc.PlayerId),
             CustomRoles.Gamer => pc.IsAlive(),
             CustomRoles.DarkHide => DarkHide.CanUseKillButton(pc),
             CustomRoles.Provocateur => pc.IsAlive(),
@@ -503,7 +503,7 @@ static class ExtendedPlayerControl
             CustomRoles.Innocent or
         //    CustomRoles.SwordsMan or
             CustomRoles.FFF or
-            CustomRoles.Medicaler or
+            CustomRoles.Medic or
       //      CustomRoles.NWitch or
             CustomRoles.DarkHide or
             CustomRoles.Monarch or
@@ -706,8 +706,8 @@ static class ExtendedPlayerControl
             case CustomRoles.Cleaner:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.CleanerKillCooldown.GetFloat();
                 break;
-            case CustomRoles.Medicaler:
-                Medicaler.SetKillCooldown(player.PlayerId);
+            case CustomRoles.Medic:
+                Medic.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.Gamer:
                 Gamer.SetKillCooldown(player.PlayerId);

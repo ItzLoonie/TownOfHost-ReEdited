@@ -189,6 +189,12 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("GuessDoctor"));
                     return true;
                 }
+                if (Medic.ProtectList.Contains(target.PlayerId) && !Medic.ShieldedCanBeGuessed.GetBool())
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessShielded"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessShielded"));
+                    return true;
+                }
                 if (role == CustomRoles.Monarch && target.Is(CustomRoles.Monarch) && CustomRoles.Knighted.RoleExist())
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessMonarch"), pc.PlayerId);
@@ -497,6 +503,9 @@ public static class GuessManager
                     Utils.AfterPlayerDeathTasks(dp, true);
 
                     Utils.NotifyRoles(isForMeeting: false, NoCache: true);
+
+                    if (dp.Is(CustomRoles.Medic))
+                        Medic.IsDead(dp);
 
                     new LateTask(() => { Utils.SendMessage(string.Format(GetString("GuessKill"), Name), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.NiceGuesser), GetString("GuessKillTitle"))); }, 0.6f, "Guess Msg");
 

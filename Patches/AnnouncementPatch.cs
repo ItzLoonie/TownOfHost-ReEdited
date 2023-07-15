@@ -45,15 +45,16 @@ public class ModNewsHistory
     // 
     public static void Init()
     {
+        // When creating new news, you can not delete old news
         {
             // TOHE v2.4.3
             var news = new ModNews
             {
-                Number = 100001, // 100001
+                Number = 100001,
                 Title = "TownOfHostEdited v2.5.0",
                 SubTitle = "★★★★Another big update, maybe bigger?★★★★",
                 ShortTitle = "★TOHE v2.5.0",
-                Text = "<size=150%>Welcome to TOHE v2.5.0.</size>\n\n<size=125%>Support for Among Us v2023.7.11.</size>\n"
+                Text = "<size=150%>Welcome to TOHE v2.5.0.</size>\n\n<size=125%>Support for Among Us v2023.7.11 and v2023.7.12</size>\n"
 
                     + "\n【Base】\n - Base on TOH v4.1.2\r\n"
                     + "\n【Fixes】\n - Various bug fixes\n\r"
@@ -70,7 +71,6 @@ public class ModNewsHistory
         }   
 
         {
-            // When creating new news, you can not delete old news
             // TOHE v2.4.2
             var news = new ModNews
             {
