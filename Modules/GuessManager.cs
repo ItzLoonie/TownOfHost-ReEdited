@@ -189,7 +189,7 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("GuessDoctor"));
                     return true;
                 }
-                if (Medic.ProtectList.Contains(target.PlayerId) && !Medic.ShieldedCanBeGuessed.GetBool())
+                if (Medic.ProtectList.Contains(target.PlayerId) && !Medic.GuesserIgnoreShield.GetBool())
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessShielded"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessShielded"));
