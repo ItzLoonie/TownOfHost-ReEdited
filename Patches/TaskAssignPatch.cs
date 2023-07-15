@@ -71,7 +71,7 @@ class AddTasksFromListPatch
             if (task.TaskType == TaskTypes.EmptyGarbage && Options.DisableEmptyGarbage.GetBool()) disabledTasks.Add(task);//EmptyGarbage task
             if (task.TaskType == TaskTypes.FuelEngines && Options.DisableFuelEngines.GetBool()) disabledTasks.Add(task);//FuelEngines task
             if (task.TaskType == TaskTypes.DivertPower && Options.DisableDivertPower.GetBool()) disabledTasks.Add(task);//DivertPower task v1.0a
-            if (task.TaskType == TaskTypes.ActivateWeatherNodes && Options.DisableActivateWeatherNodes.GetBool()) disabledTasks.Add(task);//ActivateWeatherNodes task
+            if (task.TaskType == TaskTypes.FixWeatherNode && Options.DisableActivateWeatherNodes.GetBool()) disabledTasks.Add(task);//FixWeatherNode task
         }
         foreach (var task in disabledTasks)
         {

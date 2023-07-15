@@ -661,6 +661,7 @@ class MeetingHudStartPatch
     public static void Postfix(MeetingHud __instance)
     {
         SoundManager.Instance.ChangeAmbienceVolume(0f);
+        DiscordRP.Update(true);
         if (!GameStates.IsModHost) return;
 
         //提前储存赌怪游戏组件的模板

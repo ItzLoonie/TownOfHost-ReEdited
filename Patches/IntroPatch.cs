@@ -336,6 +336,15 @@ class BeginImpostorPatch
         BeginCrewmatePatch.Postfix(__instance, ref yourTeam);
     }
 }
+/* //TODO:: See if its needed or not.
+ [HarmonyPatch(typeof(Constants), nameof(Constants.GetBroadcastVersion))]
+class Patch
+{
+    static void Postfix(ref int __result)
+    {
+        __result = Constants.GetVersion(2222, 0, 0, 0);
+    }
+}*/
 [HarmonyPatch(typeof(IntroCutscene), nameof(IntroCutscene.OnDestroy))]
 class IntroCutsceneDestroyPatch
 {
@@ -378,5 +387,6 @@ class IntroCutsceneDestroyPatch
             }
         }
         Logger.Info("OnDestroy", "IntroCutscene");
+        DiscordRP.Update(false);
     }
 }

@@ -17,6 +17,7 @@ class OnGameJoinedPatch
     public static void Postfix(AmongUsClient __instance)
     {
         while (!Options.IsLoaded) System.Threading.Tasks.Task.Delay(1);
+        DiscordRP.Update();
         Logger.Info($"{__instance.GameId} 加入房间", "OnGameJoined");
         Main.playerVersion = new Dictionary<byte, PlayerVersion>();
         if (!Main.VersionCheat.Value) RPC.RpcVersionCheck();
@@ -67,6 +68,7 @@ class OnPlayerJoinedPatch
     public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] ClientData client)
     {
         Logger.Info($"{client.PlayerName}(ClientID:{client.Id}/FriendCode:{client.FriendCode}) 加入房间", "Session");
+        DiscordRP.Update(true);
         if (AmongUsClient.Instance.AmHost && client.FriendCode == "" && Options.KickPlayerFriendCodeNotExist.GetBool())
         {
             AmongUsClient.Instance.KickPlayer(client.Id, false);
@@ -105,6 +107,7 @@ class OnPlayerLeftPatch
     {
         //            Logger.info($"RealNames[{data.Character.PlayerId}]を削除");
         //            main.RealNames.Remove(data.Character.PlayerId);
+        DiscordRP.Update(true);
         if (GameStates.IsInGame)
         {
             if (data.Character.Is(CustomRoles.Lovers) && !data.Character.Data.IsDead)

@@ -31,9 +31,9 @@ internal class ChatCommands
 
     public static bool Prefix(ChatController __instance)
     {
-        if (__instance.TextArea.text == "") return false;
-        __instance.TimeSinceLastMessage = 3f;
-        var text = __instance.TextArea.text;
+        if (__instance.freeChatField.Text == "") return false;
+        __instance.timeSinceLastMessage = 3f;
+        var text = __instance.freeChatField.Text;
         if (ChatHistory.Count == 0 || ChatHistory[^1] != text) ChatHistory.Add(text);
         ChatControllerUpdatePatch.CurrentHistorySelection = ChatHistory.Count;
         string[] args = text.Split(' ');
@@ -540,9 +540,9 @@ internal class ChatCommands
         {
 
             Logger.Info("Command Canceled", "ChatCommand");
-            __instance.TextArea.Clear();
-            __instance.TextArea.SetText(cancelVal);
-            __instance.quickChatMenu.ResetGlyphs();
+            __instance.freeChatField.Clear();
+            __instance.sendRateMessageText.SetText(cancelVal);
+            //__instance.quickChatMenu.ResetGlyphs();
         }
         return !canceled;
 
@@ -1132,7 +1132,7 @@ internal class ChatUpdatePatch
     public static bool DoBlockChat = false;
     public static void Postfix(ChatController __instance)
     {
-        if (!AmongUsClient.Instance.AmHost || Main.MessagesToSend.Count < 1 || (Main.MessagesToSend[0].Item2 == byte.MaxValue && Main.MessageWait.Value > __instance.TimeSinceLastMessage)) return;
+        if (!AmongUsClient.Instance.AmHost || Main.MessagesToSend.Count < 1 || (Main.MessagesToSend[0].Item2 == byte.MaxValue && Main.MessageWait.Value > __instance.timeSinceLastMessage)) return;
         if (DoBlockChat) return;
         var player = Main.AllAlivePlayerControls.OrderBy(x => x.PlayerId).FirstOrDefault() ?? Main.AllPlayerControls.OrderBy(x => x.PlayerId).FirstOrDefault();
         if (player == null) return;
@@ -1159,7 +1159,7 @@ internal class ChatUpdatePatch
             .EndRpc();
         writer.EndMessage();
         writer.SendMessage();
-        __instance.TimeSinceLastMessage = 0f;
+        __instance.timeSinceLastMessage = 0f;
     }
 }
 

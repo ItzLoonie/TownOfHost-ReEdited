@@ -197,7 +197,7 @@ public class Main : BasePlugin
         Instance = this;
 
         //Client Options
-        HideName = Config.Bind("Client Options", "Hide Game Code Name", "TOHE");
+        HideName = Config.Bind("Client Options", "Hide Game Code Name", "xV");
         HideColor = Config.Bind("Client Options", "Hide Game Code Color", $"{ModColor}");
         DebugKeyInput = Config.Bind("Authentication", "Debug Key", "");
         AutoStart = Config.Bind("Client Options", "AutoStart", false);
@@ -237,6 +237,7 @@ public class Main : BasePlugin
             TOHE.Logger.Disable("PlayerControl.RpcSetRole");
             TOHE.Logger.Disable("SyncCustomSettings");
         }
+
         //TOHE.Logger.isDetail = true;
 
         // 認証関連-初期化
@@ -414,6 +415,7 @@ public class Main : BasePlugin
         SpamManager.Init();
         DevManager.Init();
         Cloud.Init();
+        DiscordRP.Initialize();
 
         IRandom.SetInstance(new NetRandomWrapper());
 
@@ -433,7 +435,6 @@ public class Main : BasePlugin
 
         if (!DebugModeManager.AmDebugger) ConsoleManager.DetachConsole();
         else ConsoleManager.CreateConsole();
-
         TOHE.Logger.Msg("========= TOHE loaded! =========", "Plugin Load");
     }
 }

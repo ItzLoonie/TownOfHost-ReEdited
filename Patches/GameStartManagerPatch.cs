@@ -77,8 +77,26 @@ public class GameStartManagerPatch
         private static bool update = false;
         private static string currentText = "";
         public static float exitTimer = -1f;
+        private static List<int> secondsTriggered = new();
         public static void Prefix(GameStartManager __instance)
         {
+            if (GameStates.IsCountDown)
+            {
+                List<int> RPUpdateSeconds = new() { 8, 4, 2 };
+                int timeLeft = Mathf.CeilToInt(__instance.countDownTimer);
+				if (RPUpdateSeconds.Contains(timeLeft) && !secondsTriggered.Contains(timeLeft))
+                {
+					// If there is 8, 4 or 2 seconds left, update the rich presence and put it into seconds that don't trigger an update
+					DiscordRP.Update(true);
+                    secondsTriggered.Add(timeLeft);
+				}
+            }
+            else
+            {
+                if (secondsTriggered.Count > 0)
+                    // If we have elements in the list, clear them because we are no longer in a countdown
+                    secondsTriggered.Clear();
+            }
             // Lobby code
             if (DataManager.Settings.Gameplay.StreamerMode)
             {

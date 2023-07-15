@@ -597,7 +597,9 @@ class MurderPlayerPatch
     public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] PlayerControl target)
     {
         if (target.AmOwner) RemoveDisableDevicesPatch.UpdateDisableDevices();
-        if (!target.Data.IsDead || !AmongUsClient.Instance.AmHost) return;
+        if (!target.Data.IsDead) return;
+        DiscordRP.Update(true);
+        if (!AmongUsClient.Instance.AmHost) return;
 
         if (Main.OverDeadPlayerList.Contains(target.PlayerId)) return;
 
@@ -2286,4 +2288,10 @@ class PlayerControlSetRolePatch
         }
         return true;
     }
+}
+[HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.Die /* Called on <PlayerControl>.Exiled() */))]
+class PlayerControlDiePatch
+{
+    public static void Postfix()
+        => DiscordRP.Update(true);
 }
