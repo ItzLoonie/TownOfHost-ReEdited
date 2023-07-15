@@ -135,9 +135,6 @@ public static class SpamManager
         }
         if (stNum >= 3) return true;
 
-        Logger.Info($"{text.Contains("start")}", "Test");
-        Logger.Info($"{text.Contains("s t a r t")}", "Test");
-
         if (text == "Start") return true;
         if (text == "start") return true;
         if (text == "/Start") return true;
