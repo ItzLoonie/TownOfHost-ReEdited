@@ -1,11 +1,11 @@
 using Hazel;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using static TOHE.Options;
 using static TOHE.Translator;
-using UnityEngine;
-
+using TOHE.Roles.Crewmate;
 namespace TOHE.Roles.Neutral;
 
 public static class HexMaster
@@ -167,6 +167,8 @@ public static class HexMaster
     }
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
     {
+        if (Medic.ProtectList.Contains(target.PlayerId)) return false;
+
         if (NowSwitchTrigger == SwitchTrigger.DoubleTrigger)
         {
             return killer.CheckDoubleTrigger(target, () => { SetHexed(killer, target); });

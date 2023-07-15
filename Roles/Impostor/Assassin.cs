@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TOHE.Modules;
 using TOHE.Roles.Neutral;
+using TOHE.Roles.Crewmate;
 using static TOHE.Options;
 using static TOHE.Translator;
 
@@ -82,7 +83,7 @@ internal static class Assassin
     }
     public static void OnShapeshift(PlayerControl pc, bool shapeshifting)
     {
-        if (!pc.IsAlive() || Pelican.IsEaten(pc.PlayerId)) return;
+        if (!pc.IsAlive() || Pelican.IsEaten(pc.PlayerId) || Medic.ProtectList.Contains(pc.PlayerId)) return;
         if (!shapeshifting)
         {
             pc.SetKillCooldown();

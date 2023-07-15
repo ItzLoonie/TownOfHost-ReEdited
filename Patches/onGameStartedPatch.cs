@@ -197,7 +197,7 @@ internal class ChangeRoleSettings
             Counterfeiter.Init();
             Pursuer.Init();
             Gangster.Init();
-            Medicaler.Init();
+            Medic.Init();
             Gamer.Init();
             BallLightning.Init();
             DarkHide.Init();
@@ -535,8 +535,8 @@ internal class SelectRolesPatch
                     case CustomRoles.Gangster:
                         Gangster.Add(pc.PlayerId);
                         break;
-                    case CustomRoles.Medicaler:
-                        Medicaler.Add(pc.PlayerId);
+                    case CustomRoles.Medic:
+                        Medic.Add(pc.PlayerId);
                         break;
                     case CustomRoles.EvilDiviner:
                         EvilDiviner.Add(pc.PlayerId);

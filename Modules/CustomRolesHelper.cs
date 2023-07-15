@@ -217,7 +217,7 @@ internal static class CustomRolesHelper
             CustomRoles.Pursuer => RoleTypes.Impostor,
             CustomRoles.Revolutionist => RoleTypes.Impostor,
             CustomRoles.FFF => RoleTypes.Impostor,
-            CustomRoles.Medicaler => RoleTypes.Impostor,
+            CustomRoles.Medic => RoleTypes.Impostor,
             CustomRoles.Gamer => RoleTypes.Impostor,
             CustomRoles.HexMaster => RoleTypes.Impostor,
             CustomRoles.Wraith => RoleTypes.Impostor,
@@ -578,7 +578,7 @@ internal static class CustomRolesHelper
         CustomRoles.Traitor or
         CustomRoles.HexMaster or
         CustomRoles.Sheriff or
-        CustomRoles.Medicaler or
+        CustomRoles.Medic or
         CustomRoles.Deputy or
         CustomRoles.Ritualist or
         CustomRoles.Pickpocket or
@@ -680,7 +680,7 @@ internal static class CustomRolesHelper
     {
         return role is
         CustomRoles.Sheriff or
-        CustomRoles.Medicaler or
+        CustomRoles.Medic or
         CustomRoles.Counterfeiter or
         CustomRoles.Monarch or
         CustomRoles.Farseer or

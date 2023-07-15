@@ -2,6 +2,7 @@ using Hazel;
 using System.Collections.Generic;
 using System.Linq;
 using TOHE.Modules;
+using TOHE.Roles.Crewmate;
 using TOHE.Roles.Neutral;
 using UnityEngine;
 using static TOHE.Translator;
@@ -214,7 +215,7 @@ public static class Sniper
         bulletCount[sniperId]--;
 
         //命中判定はホストのみ行う
-        if (!AmongUsClient.Instance.AmHost || Pelican.IsEaten(pc.PlayerId)) return;
+        if (!AmongUsClient.Instance.AmHost || Pelican.IsEaten(pc.PlayerId) || Medic.ProtectList.Contains(pc.PlayerId)) return;
 
         sniper.RPCPlayCustomSound("AWP");
 

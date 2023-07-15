@@ -1074,7 +1074,7 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Grenadier]);
         ParityCop.SetupCustomOption();
         SabotageMaster.SetupCustomOption(); //Mechanic
-        Medicaler.SetupCustomOption();
+        Medic.SetupCustomOption();
         Mediumshiper.SetupCustomOption();
         Merchant.SetupCustomOption();
         Mortician.SetupCustomOption();

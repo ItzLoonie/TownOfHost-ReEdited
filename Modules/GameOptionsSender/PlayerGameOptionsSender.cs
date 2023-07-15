@@ -133,7 +133,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Innocent:
             case CustomRoles.Pelican:
             case CustomRoles.Revolutionist:
-            case CustomRoles.Medicaler:
+            case CustomRoles.Medic:
             case CustomRoles.Provocateur:
             case CustomRoles.Monarch:
             case CustomRoles.Deputy:
@@ -328,9 +328,6 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
             case CustomRoles.Twister:
                 Twister.ApplyGameOptions();
-                break;
-            case CustomRoles.EvilSpirit:
-                AURoleOptions.GuardianAngelCooldown = Spiritcaller.SpiritAbilityCooldown.GetFloat();
                 break;
             case CustomRoles.Spiritcaller:
                 opt.SetVision(Spiritcaller.ImpostorVision.GetBool());

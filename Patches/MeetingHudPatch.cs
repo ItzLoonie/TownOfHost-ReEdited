@@ -414,6 +414,8 @@ class CheckForEndVotingPatch
 
     EndOfSession:
 
+        Medic.OnCheckMark();
+
         name += "<size=0>";
         new LateTask(() =>
         {
@@ -936,9 +938,7 @@ class MeetingHudStartPatch
                         pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Councillor), target.PlayerId.ToString()) + " " + pva.NameText.text;
 
                     break;
-                case CustomRoles.Medicaler:
-                    sb.Append(Medicaler.TargetMark(seer, target));
-                    break;
+
                 case CustomRoles.Gamer:
                     sb.Append(Gamer.TargetMark(seer, target));
                     sb.Append(Snitch.GetWarningMark(seer, target));
@@ -997,8 +997,14 @@ class MeetingHudStartPatch
                 sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.BallLightning), "■"));
 
             //医生护盾提示
-            if (seer.PlayerId == target.PlayerId)
-                sb.Append(Medicaler.GetSheildMark(seer));
+            if (seer.PlayerId == target.PlayerId && (Medic.InProtect(seer.PlayerId) || Medic.TempMarkProtected == seer.PlayerId) && (Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 2))
+                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Medic), " ●"));
+
+            if (seer.Is(CustomRoles.Medic) && (Medic.InProtect(target.PlayerId) || Medic.TempMarkProtected == target.PlayerId) && (Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 1))
+                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Medic), " ●"));
+
+            if (seer.Data.IsDead && Medic.InProtect(target.PlayerId))
+                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Medic), " ●"));
 
             //赌徒提示
             sb.Append(Totocalcio.TargetMark(seer, target));
