@@ -60,14 +60,13 @@ public static class Tracefinder
         else
             LocateArrow.RemoveAllTarget(playerId);
     }
-        public static void OnReportDeadBody(PlayerControl pc, GameData.PlayerInfo target)
+    public static void OnReportDeadBody(PlayerControl pc, GameData.PlayerInfo target)
     {
         foreach (var apc in playerIdList)
         {
             LocateArrow.RemoveAllTarget(apc);
             SendRPC(apc, false);
         }
-
     }
 
     public static void OnPlayerDead(PlayerControl target)
@@ -93,12 +92,13 @@ public static class Tracefinder
             LocateArrow.Add(pc, target.transform.position);
             SendRPC(pc, true, target.transform.position);
         }
+
+        Utils.NotifyRoles();
     }
     public static string GetTargetArrow(PlayerControl seer, PlayerControl target = null)
     {
         if (!seer.Is(CustomRoles.Tracefinder)) return "";
         if (target != null && seer.PlayerId != target.PlayerId) return "";
-        if (GameStates.IsMeeting) return "";
         return Utils.ColorString(Color.white, LocateArrow.GetArrows(seer));
     }
 }
