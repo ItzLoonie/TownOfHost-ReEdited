@@ -19,9 +19,9 @@ public static class Medic
     public static OptionItem WhoCanSeeProtect;
     private static OptionItem KnowShieldBroken;
     private static OptionItem ShieldDeactivatesWhenMedicDies;
-    private static OptionItem ShielDeactivationIsVisible;
+    private static OptionItem ShieldDeactivationIsVisible;
     private static OptionItem ResetCooldown;
-    public static OptionItem ShieldedCanBeGuessed;
+    public static OptionItem GuesserIgnoreShield;
 
     public static readonly string[] MedicWhoCanSeeProtectName =
     {
@@ -39,7 +39,7 @@ public static class Medic
         "SeeNoone",
     };
 
-    public static readonly string[] ShielDeactivationIsVisibleOption =
+    public static readonly string[] ShieldDeactivationIsVisibleOption =
     {
         "DeactivationImmediately",
         "DeactivationAfterMeeting",
@@ -55,12 +55,12 @@ public static class Medic
            .SetParent(Options.CustomRoleSpawnChances[CustomRoles.Medic]);
         ShieldDeactivatesWhenMedicDies = BooleanOptionItem.Create(Id + 24, "MedicShieldDeactivatesWhenMedicDies", true, TabGroup.CrewmateRoles, false)
             .SetParent(Options.CustomRoleSpawnChances[CustomRoles.Medic]);
-        ShielDeactivationIsVisible = StringOptionItem.Create(Id + 25, "MedicShielDeactivationIsVisible", ShielDeactivationIsVisibleOption, 0, TabGroup.CrewmateRoles, false)
+        ShieldDeactivationIsVisible = StringOptionItem.Create(Id + 25, "MedicShielDeactivationIsVisible", ShieldDeactivationIsVisibleOption, 0, TabGroup.CrewmateRoles, false)
             .SetParent(ShieldDeactivatesWhenMedicDies);
         ResetCooldown = FloatOptionItem.Create(Id + 30, "MedicResetCooldown", new(0f, 120f, 1f), 10f, TabGroup.CrewmateRoles, false)
             .SetParent(Options.CustomRoleSpawnChances[CustomRoles.Medic])
             .SetValueFormat(OptionFormat.Seconds);
-        ShieldedCanBeGuessed = BooleanOptionItem.Create(Id + 32, "MedicShieldedCanBeGuessed", false, TabGroup.CrewmateRoles, false)
+        GuesserIgnoreShield = BooleanOptionItem.Create(Id + 32, "MedicShieldedCanBeGuessed", false, TabGroup.CrewmateRoles, false)
             .SetParent(Options.CustomRoleSpawnChances[CustomRoles.Medic]);
     }
     public static void Init()
@@ -195,7 +195,7 @@ public static class Medic
     {
         if (!ShieldDeactivatesWhenMedicDies.GetBool()) return;
 
-        if (ShielDeactivationIsVisible.GetInt() == 1)
+        if (ShieldDeactivationIsVisible.GetInt() == 1)
         {
             TempMarkProtected = byte.MaxValue;
             Utils.NotifyRoles();
@@ -209,7 +209,7 @@ public static class Medic
         ProtectList.Clear();
         Logger.Info($"{target.GetNameWithRole()} : Medic is dead", "Medic");
 
-        if (ShielDeactivationIsVisible.GetInt() == 0)
+        if (ShieldDeactivationIsVisible.GetInt() == 0)
         {
             TempMarkProtected = byte.MaxValue;
         }
