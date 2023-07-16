@@ -98,6 +98,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
         {
             case CustomRoles.Terrorist:
             case CustomRoles.Vulture:
+            case CustomRoles.Amnesiac:
             case CustomRoles.SabotageMaster:
             case CustomRoles.Mario:
             case CustomRoles.EngineerTOHE:

@@ -1166,6 +1166,7 @@ public static class Options
         TextOptionItem.Create(100010, "RoleType.NeutralBenign", TabGroup.NeutralRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(127, 140, 141, byte.MaxValue));
+        Amnesiac.SetupCustomOption();
         Totocalcio.SetupCustomOption();
         Lawyer.SetupCustomOption();
         Maverick.SetupCustomOption();

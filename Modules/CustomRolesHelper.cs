@@ -26,6 +26,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Mafia => Options.LegacyMafia.GetBool() ? CustomRoles.Shapeshifter : CustomRoles.Impostor,
                 CustomRoles.Terrorist => CustomRoles.Engineer,
                 CustomRoles.Executioner => CustomRoles.Crewmate,
+                CustomRoles.Amnesiac => CustomRoles.Engineer,
                 CustomRoles.Juggernaut => CustomRoles.Impostor,
                 CustomRoles.Lawyer => CustomRoles.Crewmate,
                 CustomRoles.Vampire => CustomRoles.Impostor,
@@ -297,6 +298,7 @@ internal static class CustomRolesHelper
             CustomRoles.Opportunist or
             CustomRoles.Arsonist or
             CustomRoles.Executioner or
+            CustomRoles.Amnesiac or
             CustomRoles.Mario or
             CustomRoles.Lawyer or
             CustomRoles.God or
@@ -387,6 +389,7 @@ internal static class CustomRolesHelper
             CustomRoles.Pursuer or
             CustomRoles.Sunnyboy or
             CustomRoles.Maverick or
+            CustomRoles.Amnesiac or
             CustomRoles.Totocalcio;
     }
     public static bool IsNC(this CustomRoles role) // �Ƿ�����
@@ -532,6 +535,7 @@ internal static class CustomRolesHelper
             CustomRoles.Parasite or
             CustomRoles.Terrorist or
             CustomRoles.Executioner or
+            CustomRoles.Amnesiac or
             CustomRoles.Juggernaut or
             CustomRoles.Jinx or
             CustomRoles.Lawyer or
@@ -623,6 +627,7 @@ internal static class CustomRolesHelper
             CustomRoles.Parasite or
             CustomRoles.Terrorist or
             CustomRoles.Executioner or
+            CustomRoles.Amnesiac or
             CustomRoles.Medusa or
             CustomRoles.Juggernaut or
             CustomRoles.Vulture or
@@ -791,6 +796,8 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Oblivious && pc.Is(CustomRoles.Bloodhound)) return false;
         if (role is CustomRoles.Oblivious && pc.Is(CustomRoles.Vulture)) return false;
         if (role is CustomRoles.Vulture && pc.Is(CustomRoles.Oblivious)) return false;
+        if (role is CustomRoles.Oblivious && pc.Is(CustomRoles.Amnesiac)) return false;
+        if (role is CustomRoles.Amnesiac && pc.Is(CustomRoles.Oblivious)) return false;
         if (role is CustomRoles.Brakar && pc.Is(CustomRoles.Dictator)) return false;
         if (role is CustomRoles.Lucky && pc.Is(CustomRoles.Luckey)) return false;
         if (role is CustomRoles.Fool && ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeFool.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeFool.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeFool.GetBool()) || pc.Is(CustomRoles.SabotageMaster) || pc.Is(CustomRoles.GuardianAngelTOHE))) return false;
@@ -826,7 +833,7 @@ internal static class CustomRolesHelper
     {
 
         return (role is CustomRoles.Charmed ||
-                role is CustomRoles.Sidekick ||
+                //role is CustomRoles.Sidekick ||
                 role is CustomRoles.Infected ||
                 role is CustomRoles.Contagious ||
                 role is CustomRoles.Lovers ||

@@ -177,6 +177,7 @@ internal class ChangeRoleSettings
             HexMaster.Init();
             SabotageMaster.Init();
             Executioner.Init();
+            Amnesiac.Init();
             Lawyer.Init();
             Jackal.Init();
             Sidekick.Init();
@@ -477,6 +478,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Executioner:
                         Executioner.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Amnesiac:
+                        Amnesiac.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Lawyer:
                         Lawyer.Add(pc.PlayerId);

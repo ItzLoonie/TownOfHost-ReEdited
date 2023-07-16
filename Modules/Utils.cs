@@ -501,6 +501,7 @@ public static class Utils
                     hasTasks &= !ForRecompute;
                     break;
             }
+        if (Amnesiac.playerIdList.Contains(p.PlayerId) && ForRecompute) hasTasks = false;
 
         return hasTasks;
     }
@@ -1354,6 +1355,10 @@ public static class Utils
             if (seer.Is(CustomRoles.Vulture) && Vulture.ArrowsPointingToDeadBody.GetBool() && !isForMeeting)
             {
                 SelfSuffix.Append(Vulture.GetTargetArrow(seer));
+            }
+            if (Amnesiac.playerIdList.Contains(seer.PlayerId) && Amnesiac.ArrowsPointingToDeadBody.GetBool() && !isForMeeting)
+            {
+                SelfSuffix.Append(Amnesiac.GetTargetArrow(seer));
             }
             if (seer.Is(CustomRoles.FireWorks) && !isForMeeting)
             {
