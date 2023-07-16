@@ -1724,7 +1724,7 @@ public static class Utils
                 {
                     TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Medic), " ●"));
                 }
-                else if (seer.Data.IsDead && Medic.InProtect(target.PlayerId))
+                else if (seer.Data.IsDead && Medic.InProtect(target.PlayerId) && !seer.Is(CustomRoles.Medic))
                 {
                     TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Medic), " ●"));
                 }
