@@ -1226,6 +1226,7 @@
 "SansReduceKillCooldown","击杀成功减少冷却时间","Reduce kill cooldown by","Сократить откат убийства на","殺人成功減少的冷卻時間","击杀成功减少冷却时间"
 "SansMinKillCooldown","击杀冷却时间下限","Minimum kill cooldown","Минимальный откат убийства","殺人冷卻時間下限","击杀冷却时间下限"
 "BomberRadius","爆炸范围（5x能炸半个食堂）","Bomb radius (5x is about half a Cafeteria)","Радиус бомбы (5x примерно как половина столовой)","爆炸範圍 (5x能炸半個餐廳)","爆炸范围（5x能炸半个食堂）"
+"PuppeteerCanShapeshift","","PuppeteerCanShapeshift","","",""
 "NotifyGodAlive","如果神存活则在会议上通知所有人","Inform players at meetings that God is still alive","Сообщать игрокам на встрече что Дьявол ещё жив","若神存活則在會議上通知所有人","如果神存活则在会议上通知所有人"
 "TransporterTeleportMax","传送次数上限","Max number of teleports","Максимальное колличество телепортов","傳送次數上限","传送次数上限"
 "TriggerKill","击杀","Kill","Убийство","殺死","击杀"
