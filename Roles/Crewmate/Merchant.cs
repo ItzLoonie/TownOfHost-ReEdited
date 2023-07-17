@@ -11,8 +11,8 @@ namespace TOHE.Roles.Crewmate
         private static readonly int Id = 7300;
         private static readonly List<byte> playerIdList = new();
 
-        private static Dictionary<byte, int> addonsSold = new();
-        private static Dictionary<byte, List<byte>> bribedKiller = new();
+        public static Dictionary<byte, int> addonsSold = new();
+        public static Dictionary<byte, List<byte>> bribedKiller = new();
 
         private static List<CustomRoles> addons = new();
 

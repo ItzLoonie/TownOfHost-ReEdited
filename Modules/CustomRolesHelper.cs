@@ -203,6 +203,7 @@ internal static class CustomRolesHelper
             CustomRoles.KB_Normal => RoleTypes.Impostor,
             //Standard
             CustomRoles.Sheriff => RoleTypes.Impostor,
+            CustomRoles.Amnesiac => RoleTypes.Impostor,
             CustomRoles.CursedSoul => RoleTypes.Impostor,
             CustomRoles.Monarch => RoleTypes.Impostor,
             CustomRoles.Deputy => RoleTypes.Impostor,
@@ -448,6 +449,7 @@ internal static class CustomRolesHelper
             CustomRoles.NiceGuesser or
             CustomRoles.Counterfeiter or
             CustomRoles.Retributionist or
+            CustomRoles.Amnesiac or
             CustomRoles.Sheriff;
     }
     public static bool IsImpostor(this CustomRoles role) // IsImp
@@ -680,6 +682,7 @@ internal static class CustomRolesHelper
     {
         return role is
         CustomRoles.Sheriff or
+        CustomRoles.Amnesiac or
         CustomRoles.Medic or
         CustomRoles.Counterfeiter or
         CustomRoles.Monarch or
@@ -791,6 +794,10 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Oblivious && pc.Is(CustomRoles.Bloodhound)) return false;
         if (role is CustomRoles.Oblivious && pc.Is(CustomRoles.Vulture)) return false;
         if (role is CustomRoles.Vulture && pc.Is(CustomRoles.Oblivious)) return false;
+        if (role is CustomRoles.Guesser && pc.Is(CustomRoles.Amnesiac)) return false;
+        if (role is CustomRoles.Amnesiac && pc.Is(CustomRoles.Guesser)) return false;
+        if (role is CustomRoles.DoubleShot && pc.Is(CustomRoles.Amnesiac)) return false;
+        if (role is CustomRoles.Amnesiac && pc.Is(CustomRoles.DoubleShot)) return false;
         if (role is CustomRoles.Brakar && pc.Is(CustomRoles.Dictator)) return false;
         if (role is CustomRoles.Lucky && pc.Is(CustomRoles.Luckey)) return false;
         if (role is CustomRoles.Fool && ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeFool.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeFool.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeFool.GetBool()) || pc.Is(CustomRoles.SabotageMaster) || pc.Is(CustomRoles.GuardianAngelTOHE))) return false;
@@ -826,7 +833,7 @@ internal static class CustomRolesHelper
     {
 
         return (role is CustomRoles.Charmed ||
-                role is CustomRoles.Sidekick ||
+                //role is CustomRoles.Sidekick ||
                 role is CustomRoles.Infected ||
                 role is CustomRoles.Contagious ||
                 role is CustomRoles.Lovers ||

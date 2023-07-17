@@ -24,8 +24,8 @@ public static class Snitch
     private static bool CanFindMadmate;
     private static int RemainingTasksToBeFound;
 
-    private static readonly Dictionary<byte, bool> IsExposed = new();
-    private static readonly Dictionary<byte, bool> IsComplete = new();
+    public static readonly Dictionary<byte, bool> IsExposed = new();
+    public static readonly Dictionary<byte, bool> IsComplete = new();
 
     private static readonly HashSet<byte> TargetList = new();
     private static readonly Dictionary<byte, Color> TargetColorlist = new();

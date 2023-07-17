@@ -349,6 +349,10 @@ class CheckMurderPatch
                     if (!Sheriff.OnCheckMurder(killer, target))
                         return false;
                     break;
+                case CustomRoles.Amnesiac:
+                    if (!Amnesiac.OnCheckMurder(killer, target))
+                        return false;
+                    break;
                 case CustomRoles.SwordsMan:
                     if (!SwordsMan.OnCheckMurder(killer))
                         return false;

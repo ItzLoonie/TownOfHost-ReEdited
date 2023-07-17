@@ -181,6 +181,7 @@ internal class ChangeRoleSettings
             Jackal.Init();
             Sidekick.Init();
             Sheriff.Init();
+            Amnesiac.Init();
             SwordsMan.Init();
             EvilTracker.Init();
             Snitch.Init();
@@ -496,6 +497,10 @@ internal class SelectRolesPatch
                     case CustomRoles.Sheriff:
                         Sheriff.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.Amnesiac:
+                        Amnesiac.Add(pc.PlayerId);
+                        break;
+
                     case CustomRoles.QuickShooter:
                         QuickShooter.Add(pc.PlayerId);
                         break;

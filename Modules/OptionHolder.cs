@@ -1103,6 +1103,7 @@ public static class Options
         TextOptionItem.Create(100008, "RoleType.CrewKilling", TabGroup.CrewmateRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(140, 255, 255, byte.MaxValue));
+        Amnesiac.SetupCustomOption();
         SetupRoleOptions(8400, TabGroup.CrewmateRoles, CustomRoles.Bodyguard);
         BodyguardProtectRadius = FloatOptionItem.Create(8410, "BodyguardProtectRadius", new(0.5f, 5f, 0.5f), 1.5f, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Bodyguard])

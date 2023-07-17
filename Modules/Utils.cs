@@ -501,6 +501,7 @@ public static class Utils
                     hasTasks &= !ForRecompute;
                     break;
             }
+        if (Amnesiac.playerIdList.Contains(p.PlayerId) && ForRecompute) hasTasks = false;
 
         return hasTasks;
     }
@@ -552,6 +553,9 @@ public static class Utils
                 break;
             case CustomRoles.Sheriff:
                 ProgressText.Append(Sheriff.GetShotLimit(playerId));
+                break;
+            case CustomRoles.Amnesiac:
+                ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Amnesiac).ShadeColor(0.25f), $"({(Amnesiac.MiscopyLimit.TryGetValue(playerId, out var count2) ? count2 : 0)})"));
                 break;
             case CustomRoles.Sniper:
                 ProgressText.Append(Sniper.GetBulletCount(playerId));
@@ -1783,6 +1787,7 @@ public static class Utils
         Spiritualist.AfterMeetingTasks();
         Vulture.AfterMeetingTasks();
         Baker.AfterMeetingTasks();
+        Amnesiac.AfterMeetingTasks();
 
         if (Options.AirshipVariableElectrical.GetBool())
             AirshipElectricalDoors.Initialize();
