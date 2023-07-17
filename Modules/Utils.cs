@@ -554,6 +554,9 @@ public static class Utils
             case CustomRoles.Sheriff:
                 ProgressText.Append(Sheriff.GetShotLimit(playerId));
                 break;
+            case CustomRoles.Amnesiac:
+                ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Amnesiac).ShadeColor(0.25f), $"({(Amnesiac.MiscopyLimit.TryGetValue(playerId, out var count2) ? count2 : 0)})"));
+                break;
             case CustomRoles.Sniper:
                 ProgressText.Append(Sniper.GetBulletCount(playerId));
                 break;
@@ -1356,10 +1359,6 @@ public static class Utils
             {
                 SelfSuffix.Append(Vulture.GetTargetArrow(seer));
             }
-            if (Amnesiac.playerIdList.Contains(seer.PlayerId) && Amnesiac.ArrowsPointingToDeadBody.GetBool() && !isForMeeting)
-            {
-                SelfSuffix.Append(Amnesiac.GetTargetArrow(seer));
-            }
             if (seer.Is(CustomRoles.FireWorks) && !isForMeeting)
             {
                 string stateText = FireWorks.GetStateText(seer);
@@ -1788,6 +1787,7 @@ public static class Utils
         Spiritualist.AfterMeetingTasks();
         Vulture.AfterMeetingTasks();
         Baker.AfterMeetingTasks();
+        Amnesiac.AfterMeetingTasks();
 
         if (Options.AirshipVariableElectrical.GetBool())
             AirshipElectricalDoors.Initialize();

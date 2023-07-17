@@ -12,9 +12,9 @@ public static class Sheriff
     private static readonly int Id = 8800;
     public static List<byte> playerIdList = new();
 
-    private static OptionItem KillCooldown;
+    public static OptionItem KillCooldown;
     private static OptionItem MisfireKillsTarget;
-    private static OptionItem ShotLimitOpt;
+    public static OptionItem ShotLimitOpt;
     private static OptionItem CanKillAllAlive;
     public static OptionItem CanKillNeutrals;
     public static OptionItem CanKillNeutralsMode;

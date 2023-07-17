@@ -27,6 +27,7 @@ enum CustomRPC
     SetKillOrSpell,
     SetKillOrHex,
     SetSheriffShotLimit,
+    SetAmnesiacMiscopyLimit,
     SetDousedPlayer,
     SetNameColorData,
     DoSpell,
@@ -100,7 +101,7 @@ enum CustomRPC
     SetBloodhoundArrow,
     SetVultureArrow,
     SetSpiritcallerSpiritLimit,
-    SetAmnesiacArrow,
+    //SetAmnesiacArrow,
 
     //SoloKombat
     SyncKBPlayer,
@@ -285,6 +286,9 @@ internal class RPCHandlerPatch
 
             case CustomRPC.SetSheriffShotLimit:
                 Sheriff.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetAmnesiacMiscopyLimit:
+                Amnesiac.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetDousedPlayer:
                 byte ArsonistId = reader.ReadByte();
@@ -528,9 +532,6 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetVultureArrow:
                 Vulture.ReceiveRPC(reader);
-                break;
-            case CustomRPC.SetAmnesiacArrow:
-                Amnesiac.ReceiveRPC(reader);
                 break;
             case CustomRPC.DoPoison:
                 Baker.ReceiveRPC(reader);

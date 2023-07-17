@@ -159,6 +159,12 @@ public static class GuessManager
             {
                 bool guesserSuicide = false;
                 if (!Main.GuesserGuessed.ContainsKey(pc.PlayerId)) Main.GuesserGuessed.Add(pc.PlayerId, 0);
+                if (Amnesiac.playerIdList.Contains(pc.PlayerId))
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessDisabled"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessDisabled"));
+                    return true;
+                }
                 if (pc.Is(CustomRoles.NiceGuesser) && Main.GuesserGuessed[pc.PlayerId] >= Options.GGCanGuessTime.GetInt())
                 {
                     if (!isUI) Utils.SendMessage(GetString("GGGuessMax"), pc.PlayerId);

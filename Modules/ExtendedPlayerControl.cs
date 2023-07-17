@@ -479,6 +479,7 @@ static class ExtendedPlayerControl
             CustomRoles.BloodKnight => pc.IsAlive(),
             CustomRoles.Crewpostor => false,
             CustomRoles.Totocalcio => Totocalcio.CanUseKillButton(pc),
+            CustomRoles.Amnesiac => pc.IsAlive(),
             CustomRoles.Succubus => Succubus.CanUseKillButton(pc),
             CustomRoles.CursedSoul => CursedSoul.CanUseKillButton(pc),
             //CustomRoles.Warlock => !Main.isCurseAndKill.TryGetValue(pc.PlayerId, out bool wcs) || !wcs,
@@ -494,6 +495,7 @@ static class ExtendedPlayerControl
     public static bool CanUseImpostorVentButton(this PlayerControl pc)
     {
         if (!pc.IsAlive() || pc.Data.Role.Role == RoleTypes.GuardianAngel) return false;
+        if (Amnesiac.playerIdList.Contains(pc.PlayerId)) return true;
 
         return pc.GetCustomRole() switch
         {
@@ -661,6 +663,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Sheriff:
                 Sheriff.SetKillCooldown(player.PlayerId); //シェリフはシェリフのキルクールに。
+                break;
+            case CustomRoles.Amnesiac:
+                Amnesiac.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.Minimalism:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.MNKillCooldown.GetFloat();

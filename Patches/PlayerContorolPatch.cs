@@ -349,6 +349,10 @@ class CheckMurderPatch
                     if (!Sheriff.OnCheckMurder(killer, target))
                         return false;
                     break;
+                case CustomRoles.Amnesiac:
+                    if (!Amnesiac.OnCheckMurder(killer,target))
+                        return false;
+                    break;
                 case CustomRoles.SwordsMan:
                     if (!SwordsMan.OnCheckMurder(killer))
                         return false;
@@ -794,7 +798,6 @@ class MurderPlayerPatch
         Bloodhound.OnPlayerDead(target);
         Tracefinder.OnPlayerDead(target);
         Vulture.OnPlayerDead(target);
-        Amnesiac.OnPlayerDead(target);
 
         Utils.AfterPlayerDeathTasks(target);
 
@@ -1071,7 +1074,7 @@ class ReportDeadBodyPatch
                 if (Bloodhound.UnreportablePlayers.Contains(target.PlayerId)) return false;
                 if (Vulture.UnreportablePlayers.Contains(target.PlayerId)) return false;
 
-                if (__instance.Is(CustomRoles.Bloodhound) && !Amnesiac.playerIdList.Contains(__instance.PlayerId))
+                if (__instance.Is(CustomRoles.Bloodhound))
                 {
                     if (killer != null)
                     {
@@ -1085,18 +1088,20 @@ class ReportDeadBodyPatch
                     return false;
                 }
 
-                if (Amnesiac.playerIdList.Contains(__instance.PlayerId))
-                {
-                    var tpc = Utils.GetPlayerById(target.PlayerId);
+                //if (Amnesiac.playerIdList.Contains(__instance.PlayerId))
+                //{
+                //    var tpc = Utils.GetPlayerById(target.PlayerId);
 
-                    Logger.Info($"{__instance.GetNameWithRole()} tried to copy the {tpc.GetNameWithRole()}", "AmnesiacBodyReport");
-                    if (!tpc.Is(CustomRoleTypes.Impostor) && (tpc.GetCustomRole().GetRoleTypes() != RoleTypes.Impostor) && (tpc.GetCustomRole().GetDYRole() != RoleTypes.Impostor))
-                    {
-                        Amnesiac.OnReportDeadBody(__instance, target);
-                        return false;
-                    }
+                //    Logger.Info($"{__instance.GetNameWithRole()} tried to copy the {tpc.GetNameWithRole()}", "AmnesiacBodyReport");
+                //    Amnesiac.OnReportDeadBody(__instance, target);
+                //    return false;
+                //    //if (!tpc.Is(CustomRoleTypes.Impostor) && (tpc.GetCustomRole().GetRoleTypes() != RoleTypes.Impostor) && (tpc.GetCustomRole().GetDYRole() != RoleTypes.Impostor))
+                //    //{
+                //    //    Amnesiac.OnReportDeadBody(__instance, target);
+                //    //    return false;
+                //    //}
 
-                }
+                //}
 
 
                 if (__instance.Is(CustomRoles.Vulture))
@@ -1268,7 +1273,6 @@ class ReportDeadBodyPatch
         Oracle.didVote.Clear();
         Bloodhound.Clear();
         Vulture.Clear();
-        Amnesiac.Clear();
 
         Camouflager.OnReportDeadBody();
         Psychic.OnReportDeadBody();
@@ -2043,8 +2047,6 @@ class FixedUpdatePatch
 
                 if (Vulture.ArrowsPointingToDeadBody.GetBool())
                     Suffix.Append(Vulture.GetTargetArrow(seer, target));
-                if (Amnesiac.ArrowsPointingToDeadBody.GetBool())
-                    Suffix.Append(Amnesiac.GetTargetArrow(seer, target));
 
                 Suffix.Append(Tracefinder.GetTargetArrow(seer, target));
 
