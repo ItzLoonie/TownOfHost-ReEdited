@@ -319,6 +319,7 @@ public class Main : BasePlugin
                 {CustomRoles.Spiritualist, "#669999"},
                 {CustomRoles.Chameleon, "#01C895"},
                 {CustomRoles.ParityCop, "#0D57AF"},
+                {CustomRoles.Reverie, "#00BFFF"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Jester, "#ec62a5"},
@@ -596,6 +597,7 @@ public enum CustomRoles
     Spiritualist,
     Chameleon,
     ParityCop,
+    Reverie,
     //Neutral
     Arsonist,
     HexMaster,
