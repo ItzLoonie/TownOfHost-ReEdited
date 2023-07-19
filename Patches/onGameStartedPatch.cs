@@ -245,6 +245,7 @@ internal class ChangeRoleSettings
             Spiritualist.Init();
             Vulture.Init();
             Chameleon.Init();
+            Reverie.Init();
             Wildling.Init();
             Morphling.Init();
             ParityCop.Init(); // *giggle* party cop
@@ -694,6 +695,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.ParityCop:
                         ParityCop.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Reverie:
+                        Reverie.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Spiritcaller:
                         Spiritcaller.Add(pc.PlayerId);
