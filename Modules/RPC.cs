@@ -934,6 +934,9 @@ internal static class RPC
             case CustomRoles.Addict:
                 Addict.Add(targetId);
                 break;
+            case CustomRoles.Reverie:
+                Reverie.Add(targetId);
+                break;
             case CustomRoles.Deathpact:
                 Deathpact.Add(targetId);
                 break;

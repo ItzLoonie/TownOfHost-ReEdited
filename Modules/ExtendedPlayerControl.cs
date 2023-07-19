@@ -487,6 +487,7 @@ static class ExtendedPlayerControl
             CustomRoles.Deputy => Deputy.CanUseKillButton(pc),
             CustomRoles.Virus => pc.IsAlive(),
             CustomRoles.Farseer => pc.IsAlive(),
+            CustomRoles.Reverie => pc.IsAlive(),
             CustomRoles.Spiritcaller => pc.IsAlive(),
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
@@ -500,6 +501,7 @@ static class ExtendedPlayerControl
             CustomRoles.Minimalism or
             CustomRoles.Sheriff or
             CustomRoles.Deputy or
+            CustomRoles.Reverie or
             CustomRoles.Innocent or
         //    CustomRoles.SwordsMan or
             CustomRoles.FFF or
@@ -702,12 +704,14 @@ static class ExtendedPlayerControl
             case CustomRoles.Medusa:
                 Medusa.SetKillCooldown(player.PlayerId);
                 break;
-
             case CustomRoles.Cleaner:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.CleanerKillCooldown.GetFloat();
                 break;
             case CustomRoles.Medic:
                 Medic.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Reverie:
+                Reverie.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.Gamer:
                 Gamer.SetKillCooldown(player.PlayerId);

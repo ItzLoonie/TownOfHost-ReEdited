@@ -58,7 +58,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Doctor => CustomRoles.Scientist,
                 CustomRoles.ScientistTOHE => CustomRoles.Scientist,
                 CustomRoles.Tracefinder => CustomRoles.Scientist,
-                CustomRoles.Puppeteer => Options.PuppeteerCanShapeshift.GetBool() ? CustomRoles.Shapeshifter : CustomRoles.Impostor,
+                CustomRoles.Puppeteer => CustomRoles.Impostor,
                 CustomRoles.NWitch => CustomRoles.Impostor,
                 CustomRoles.TimeThief => CustomRoles.Impostor,
                 CustomRoles.EvilTracker => CustomRoles.Shapeshifter,
@@ -91,7 +91,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Scavenger => CustomRoles.Impostor,
                 CustomRoles.Transporter => CustomRoles.Crewmate,
                 CustomRoles.Veteran => CustomRoles.Engineer,
-                CustomRoles.Capitalism => CustomRoles.Shapeshifter,
+                CustomRoles.Capitalism => CustomRoles.Impostor,
                 CustomRoles.Bodyguard => CustomRoles.Crewmate,
                 CustomRoles.Grenadier => CustomRoles.Engineer,
                 CustomRoles.Gangster => CustomRoles.Impostor,
@@ -191,6 +191,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Addict => CustomRoles.EngineerTOHE,
                 CustomRoles.Oracle => CustomRoles.EngineerTOHE,
                 CustomRoles.Chameleon => CustomRoles.EngineerTOHE,
+                CustomRoles.Reverie => CustomRoles.CrewmateTOHE,
                 _ => role.IsImpostor() ? CustomRoles.ImpostorTOHE : CustomRoles.CrewmateTOHE,
             };
     }
@@ -237,6 +238,7 @@ internal static class CustomRolesHelper
             CustomRoles.Infectious => RoleTypes.Impostor,
             CustomRoles.Virus => RoleTypes.Impostor,
             CustomRoles.Farseer => RoleTypes.Impostor,
+            CustomRoles.Reverie => RoleTypes.Impostor,
             CustomRoles.Ritualist => RoleTypes.Impostor,
             CustomRoles.Pickpocket => RoleTypes.Impostor,
             CustomRoles.Traitor => RoleTypes.Impostor,
@@ -578,6 +580,7 @@ internal static class CustomRolesHelper
         CustomRoles.Traitor or
         CustomRoles.HexMaster or
         CustomRoles.Sheriff or
+        CustomRoles.Reverie or
         CustomRoles.Medic or
         CustomRoles.Deputy or
         CustomRoles.Ritualist or
@@ -680,6 +683,7 @@ internal static class CustomRolesHelper
     {
         return role is
         CustomRoles.Sheriff or
+        CustomRoles.Reverie or
         CustomRoles.Medic or
         CustomRoles.Counterfeiter or
         CustomRoles.Monarch or

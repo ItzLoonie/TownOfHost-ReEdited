@@ -447,6 +447,7 @@ public static class Utils
             case CustomRoles.Deputy:
             case CustomRoles.Virus:
             case CustomRoles.Farseer:
+            case CustomRoles.Reverie:
             case CustomRoles.Counterfeiter:
             case CustomRoles.Pursuer:
             case CustomRoles.Spiritcaller:
@@ -1724,7 +1725,7 @@ public static class Utils
                 {
                     TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Medic), " ●"));
                 }
-                else if (seer.Data.IsDead && Medic.InProtect(target.PlayerId))
+                else if (seer.Data.IsDead && Medic.InProtect(target.PlayerId) && !seer.Is(CustomRoles.Medic))
                 {
                     TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Medic), " ●"));
                 }
