@@ -320,6 +320,7 @@ public class Main : BasePlugin
                 {CustomRoles.Chameleon, "#01C895"},
                 {CustomRoles.ParityCop, "#0D57AF"},
                 {CustomRoles.Reverie, "#00BFFF"},
+                {CustomRoles.PizzaDelivery, "#FF8000"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Jester, "#ec62a5"},
@@ -598,6 +599,7 @@ public enum CustomRoles
     Chameleon,
     ParityCop,
     Reverie,
+    PizzaDelivery,
     //Neutral
     Arsonist,
     HexMaster,
