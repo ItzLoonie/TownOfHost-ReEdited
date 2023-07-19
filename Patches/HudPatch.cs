@@ -243,6 +243,9 @@ class HudManagerPatch
                     case CustomRoles.Deputy:
                         __instance.KillButton.OverrideText(GetString("DeputyHandcuffText"));
                         break;
+                    case CustomRoles.PizzaDelivery:
+                        __instance.KillButton.OverrideText(GetString("PizzaDeliveryPizzaText"));
+                        break;
                     case CustomRoles.Sidekick:
                         __instance.KillButton.OverrideText(GetString("KillButtonText"));
                         __instance.ImpostorVentButton.OverrideText(GetString("ReportButtonText"));

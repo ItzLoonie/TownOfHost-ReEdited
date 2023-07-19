@@ -645,6 +645,9 @@ internal class SelectRolesPatch
                     case CustomRoles.Deputy:
                         Deputy.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.PizzaDelivery:
+                        PizzaDelivery.Add(pc.PlayerId);
+                        break;
                     case CustomRoles.Virus:
                         Virus.Add(pc.PlayerId);
                         break;
