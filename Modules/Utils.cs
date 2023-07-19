@@ -445,6 +445,7 @@ public static class Utils
             case CustomRoles.Infectious:
             case CustomRoles.Monarch:
             case CustomRoles.Deputy:
+            case CustomRoles.PizzaDelivery:
             case CustomRoles.Virus:
             case CustomRoles.Farseer:
             case CustomRoles.Reverie:
@@ -631,6 +632,9 @@ public static class Utils
                 break;
             case CustomRoles.Deputy:
                 ProgressText.Append(Deputy.GetHandcuffLimit());
+                break;
+            case CustomRoles.PizzaDelivery:
+                ProgressText.Append(PizzaDelivery.GetPizzaLimit());
                 break;
             case CustomRoles.Virus:
                 ProgressText.Append(Virus.GetInfectLimit());

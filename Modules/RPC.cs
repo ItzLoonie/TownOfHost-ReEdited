@@ -93,6 +93,7 @@ enum CustomRPC
     SetCursedSoulCurseLimit,
     SetMonarchKnightLimit,
     SetDeputyHandcuffLimit,
+    SetPizzaLimit,
     SetVirusInfectLimit,
     SetRevealedPlayer,
     SetCurrentRevealTarget,
@@ -515,6 +516,9 @@ internal class RPCHandlerPatch
             case CustomRPC.SetDeputyHandcuffLimit:
                 Deputy.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetPizzaLimit:
+                PizzaDelivery.ReceiveRPC(reader);
+                break;
             case CustomRPC.SetVirusInfectLimit:
                 Virus.ReceiveRPC(reader);
                 break;
@@ -900,6 +904,9 @@ internal static class RPC
                 break;
             case CustomRoles.Deputy:
                 Deputy.Add(targetId);
+                break;
+            case CustomRoles.PizzaDelivery:
+                PizzaDelivery.Add(targetId);
                 break;
             case CustomRoles.Virus:
                 Virus.Add(targetId);

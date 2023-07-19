@@ -187,6 +187,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Retributionist => CustomRoles.Crewmate,
                 CustomRoles.Monarch => CustomRoles.CrewmateTOHE,
                 CustomRoles.Deputy => CustomRoles.CrewmateTOHE,
+                CustomRoles.PizzaDelivery => CustomRoles.CrewmateTOHE,
                 CustomRoles.Guardian => CustomRoles.CrewmateTOHE,
                 CustomRoles.Addict => CustomRoles.EngineerTOHE,
                 CustomRoles.Oracle => CustomRoles.EngineerTOHE,
@@ -207,6 +208,7 @@ internal static class CustomRolesHelper
             CustomRoles.CursedSoul => RoleTypes.Impostor,
             CustomRoles.Monarch => RoleTypes.Impostor,
             CustomRoles.Deputy => RoleTypes.Impostor,
+            CustomRoles.PizzaDelivery => RoleTypes.Impostor,
             CustomRoles.Arsonist => RoleTypes.Impostor,
             CustomRoles.Jackal => RoleTypes.Impostor,
             CustomRoles.Medusa => RoleTypes.Impostor,
@@ -583,6 +585,7 @@ internal static class CustomRolesHelper
         CustomRoles.Reverie or
         CustomRoles.Medic or
         CustomRoles.Deputy or
+        CustomRoles.PizzaDelivery or
         CustomRoles.Ritualist or
         CustomRoles.Pickpocket or
         CustomRoles.Poisoner or
@@ -689,6 +692,7 @@ internal static class CustomRolesHelper
         CustomRoles.Monarch or
         CustomRoles.Farseer or
         CustomRoles.SwordsMan or
+        CustomRoles.PizzaDelivery or
         CustomRoles.Deputy;
     }
         public static bool IsTaskBasedCrewmate(this CustomRoles role)
