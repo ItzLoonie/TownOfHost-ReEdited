@@ -583,6 +583,7 @@ internal static class CustomRolesHelper
         CustomRoles.Reverie or
         CustomRoles.Medic or
         CustomRoles.Deputy or
+        CustomRoles.Reverie or
         CustomRoles.Ritualist or
         CustomRoles.Pickpocket or
         CustomRoles.Poisoner or
