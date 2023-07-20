@@ -54,6 +54,7 @@ public static class Vampire
     {
         if (!IsThisRole(killer.PlayerId)) return true;
         if (target.Is(CustomRoles.Bait)) return true;
+        if (target.Is(CustomRoles.Glitch)) return true;
         if (Medic.ProtectList.Contains(target.PlayerId)) return false;
 
         killer.SetKillCooldown();

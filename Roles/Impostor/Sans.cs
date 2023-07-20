@@ -12,6 +12,7 @@ public static class Sans
     private static OptionItem DefaultKillCooldown;
     private static OptionItem ReduceKillCooldown;
     private static OptionItem MinKillCooldown;
+    public static OptionItem BardChance;
 
     private static Dictionary<byte, float> NowCooldown;
 
@@ -24,6 +25,9 @@ public static class Sans
             .SetValueFormat(OptionFormat.Seconds);
         MinKillCooldown = FloatOptionItem.Create(Id + 12, "SansMinKillCooldown", new(0f, 180f, 2.5f), 2.5f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Sans])
             .SetValueFormat(OptionFormat.Seconds);
+        BardChance = IntegerOptionItem.Create(Id + 13, "BardChance", new(0, 100, 5), 0, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Sans])
+            .SetValueFormat(OptionFormat.Percent);
     }
     public static void Init()
     {

@@ -10,7 +10,7 @@ public static class Divinator
     private static List<byte> playerIdList = new();
 
     private static OptionItem CheckLimitOpt;
-    //private static OptionItem AccurateCheckMode;
+    private static OptionItem AccurateCheckMode;
     public static OptionItem HideVote;
 
     public static List<byte> didVote = new();
@@ -21,7 +21,7 @@ public static class Divinator
         SetupRoleOptions(Id, TabGroup.OtherRoles, CustomRoles.Divinator);
         CheckLimitOpt = IntegerOptionItem.Create(Id + 10, "DivinatorSkillLimit", new(1, 990, 1), 5, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Divinator])
             .SetValueFormat(OptionFormat.Times);
-      //  AccurateCheckMode = BooleanOptionItem.Create(Id + 12, "AccurateCheckMode", false, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Divinator]);
+        AccurateCheckMode = BooleanOptionItem.Create(Id + 12, "AccurateCheckMode", false, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Divinator]);
         HideVote = BooleanOptionItem.Create(Id + 14, "DivinatorHideVote", false, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Divinator]);
         OverrideTasksData.Create(Id + 20, TabGroup.OtherRoles, CustomRoles.Divinator);
     }
@@ -58,7 +58,7 @@ public static class Divinator
 
         string msg;
 
-        if (player.AllTasksCompleted()) // || AccurateCheckMode.GetBool()
+        if (player.AllTasksCompleted() || AccurateCheckMode.GetBool())
         {
             msg = string.Format(GetString("DivinatorCheck.TaskDone"), target.GetRealName(), GetString(target.GetCustomRole().ToString()));
         }
@@ -70,6 +70,7 @@ public static class Divinator
                 
 
                 CustomRoles.Veteran or
+                CustomRoles.Glitch or
                 CustomRoles.CursedWolf or
                 CustomRoles.Jinx
                 => "Reflect",
@@ -93,18 +94,17 @@ public static class Divinator
                 CustomRoles.QuickShooter or
                 CustomRoles.Miner or
                 CustomRoles.Escapee or
-                CustomRoles.Glitch or
                 CustomRoles.CyberStar or
                 CustomRoles.Bard or
                 CustomRoles.Provocateur or
                 CustomRoles.Parasite or
+                CustomRoles.Refugee or
                 CustomRoles.God or
                 CustomRoles.Convict or
                 CustomRoles.Jester
                 => "Special",
 
                 CustomRoles.Doctor or
-                CustomRoles.Sheriff or
                 CustomRoles.Medic or
                 CustomRoles.Wildling or
                 CustomRoles.Guardian or
@@ -127,6 +127,8 @@ public static class Divinator
                 CustomRoles.HexMaster or
                 CustomRoles.Vampire or
                 CustomRoles.Sniper or
+                CustomRoles.Bomber or
+                CustomRoles.Nuker or
                 CustomRoles.Warlock or
                 CustomRoles.Poisoner or
                 CustomRoles.Puppeteer
@@ -196,6 +198,7 @@ public static class Divinator
                 CustomRoles.Infectious or
                 CustomRoles.Gangster or
                 CustomRoles.CursedSoul or
+                CustomRoles.Admirer or
                 CustomRoles.Virus or
                 CustomRoles.Succubus
                 => "Recruit",

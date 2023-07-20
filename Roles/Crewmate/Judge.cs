@@ -117,7 +117,7 @@ public static class Judge
                 }
                 else if (pc.Is(CustomRoles.Madmate)) judgeSuicide = false;
                 else if (pc.Is(CustomRoles.Charmed)) judgeSuicide = false;
-                else if (pc.Is(CustomRoles.Sidekick)) judgeSuicide = false;
+                else if (pc.Is(CustomRoles.Recruit)) judgeSuicide = false;
                 else if (pc.Is(CustomRoles.Infected)) judgeSuicide = false;
                 else if (pc.Is(CustomRoles.Contagious)) judgeSuicide = false;
                 else if (target.Is(CustomRoles.Rascal)) judgeSuicide = false;
@@ -129,6 +129,7 @@ public static class Judge
                 else if (target.GetCustomRole().IsNE() && CanTrialNeutralE.GetBool()) judgeSuicide = false;
                 else if (target.GetCustomRole().IsNC() && CanTrialNeutralC.GetBool()) judgeSuicide = false;
                 else if (target.GetCustomRole().IsImpostor()) judgeSuicide = false;
+                else if (target.GetCustomRole().IsMadmate() && CanTrialMadmate.GetBool()) judgeSuicide = false;
                 else judgeSuicide = true;
 
                 var dp = judgeSuicide ? pc : target;

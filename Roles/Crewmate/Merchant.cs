@@ -18,7 +18,7 @@ namespace TOHE.Roles.Crewmate
 
         private static readonly List<CustomRoles> helpfulAddons = new List<CustomRoles>
         {
-            {CustomRoles.Watcher},
+            CustomRoles.Watcher,
             CustomRoles.Seer,
             CustomRoles.Bait,
             CustomRoles.Trapper,
@@ -26,6 +26,10 @@ namespace TOHE.Roles.Crewmate
             CustomRoles.Knighted,
             CustomRoles.Necroview,
             CustomRoles.Onbound,
+            CustomRoles.Glow,
+            CustomRoles.Gravestone,
+            CustomRoles.Autopsy,
+            CustomRoles.Lucky,
             CustomRoles.DualPersonality 
         };
 
@@ -33,7 +37,8 @@ namespace TOHE.Roles.Crewmate
         {
        //     CustomRoles.Oblivious,
             CustomRoles.Bewilder,
-            CustomRoles.Unreportable
+            CustomRoles.Unreportable,
+            CustomRoles.Avanger
         };
 
         private static readonly List<CustomRoles> neutralAddons = new List<CustomRoles>

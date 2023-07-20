@@ -97,6 +97,7 @@ public static class Oracle
             CustomRoles.AntiAdminer or
             CustomRoles.Sans or
             CustomRoles.Bomber or
+            CustomRoles.Nuker or
             CustomRoles.Scavenger or
             CustomRoles.BoobyTrap or
             CustomRoles.Capitalism or
@@ -129,6 +130,7 @@ public static class Oracle
             CustomRoles.NWitch or
             CustomRoles.Wraith or
             CustomRoles.Parasite or
+            CustomRoles.Refugee or
             CustomRoles.Terrorist or
             CustomRoles.Executioner or
             CustomRoles.Juggernaut or

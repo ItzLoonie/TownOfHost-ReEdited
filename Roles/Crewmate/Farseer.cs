@@ -53,7 +53,7 @@ namespace TOHE.Roles.Crewmate
             CustomRoles.Divinator,
             CustomRoles.Oracle,
             CustomRoles.Tracefinder,
-            CustomRoles.Glitch,
+      //      CustomRoles.Glitch,
             CustomRoles.Judge,
             CustomRoles.Mortician,
             CustomRoles.Mediumshiper,
