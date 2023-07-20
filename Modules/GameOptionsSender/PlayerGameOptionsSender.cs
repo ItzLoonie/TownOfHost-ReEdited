@@ -97,7 +97,6 @@ public class PlayerGameOptionsSender : GameOptionsSender
         switch (role)
         {
             case CustomRoles.Terrorist:
-            case CustomRoles.Vulture:
             case CustomRoles.SabotageMaster:
             case CustomRoles.Mario:
             case CustomRoles.EngineerTOHE:
@@ -206,6 +205,11 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
             case CustomRoles.Sidekick:
                 Sidekick.ApplyGameOptions(opt);
+                break;
+            case CustomRoles.Vulture:
+                Vulture.ApplyGameOptions(opt);
+                AURoleOptions.EngineerCooldown = 0f;
+                AURoleOptions.EngineerInVentMaxTime = 0f;
                 break;
             case CustomRoles.Poisoner:
                 Poisoner.ApplyGameOptions(opt);

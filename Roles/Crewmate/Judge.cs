@@ -14,7 +14,7 @@ public static class Judge
 {
     private static readonly int Id = 9300;
     private static List<byte> playerIdList = new();
-    private static OptionItem TrialLimitPerMeeting;
+    public static OptionItem TrialLimitPerMeeting;
     private static OptionItem TryHideMsg;
     private static OptionItem CanTrialMadmate;
     private static OptionItem CanTrialCharmed;
@@ -26,7 +26,7 @@ public static class Judge
     private static OptionItem CanTrialNeutralK;
     private static OptionItem CanTrialNeutralE;
     private static OptionItem CanTrialNeutralC;
-    private static Dictionary<byte, int> TrialLimit;
+    public static Dictionary<byte, int> TrialLimit;
 
     public static void SetupCustomOption()
     {

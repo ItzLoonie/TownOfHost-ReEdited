@@ -27,7 +27,9 @@ enum CustomRPC
     SetKillOrSpell,
     SetKillOrHex,
     SetSheriffShotLimit,
+    SetCopyCatMiscopyLimit,
     SetDousedPlayer,
+    setPlaguedPlayer,
     SetNameColorData,
     DoSpell,
     DoHex,
@@ -287,11 +289,17 @@ internal class RPCHandlerPatch
             case CustomRPC.SetSheriffShotLimit:
                 Sheriff.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetCopyCatMiscopyLimit:
+                CopyCat.ReceiveRPC(reader);
+                break;
             case CustomRPC.SetDousedPlayer:
                 byte ArsonistId = reader.ReadByte();
                 byte DousedId = reader.ReadByte();
                 bool doused = reader.ReadBoolean();
                 Main.isDoused[(ArsonistId, DousedId)] = doused;
+                break;
+            case CustomRPC.setPlaguedPlayer:
+                PlagueBearer.receiveRPC(reader);
                 break;
             case CustomRPC.SetDrawPlayer:
                 byte RevolutionistId = reader.ReadByte();
@@ -758,6 +766,9 @@ internal static class RPC
             case CustomRoles.Sheriff:
                 Sheriff.Add(targetId);
                 break;
+            case CustomRoles.CopyCat:
+                CopyCat.Add(targetId);
+                break;
             case CustomRoles.QuickShooter:
                 QuickShooter.Add(targetId);
                 break;
@@ -923,6 +934,9 @@ internal static class RPC
                 break;
             case CustomRoles.Vulture:
                 Vulture.Add(targetId); 
+                break;
+            case CustomRoles.PlagueBearer:
+                PlagueBearer.Add(targetId);
                 break;
             case CustomRoles.Tracker:
                 Tracker.Add(targetId);

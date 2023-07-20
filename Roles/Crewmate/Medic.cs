@@ -14,7 +14,7 @@ public static class Medic
     public static List<byte> ProtectList = new();
     public static byte TempMarkProtected;
     public static Dictionary<byte, int> ProtectLimit = new();
-    private static int SkillLimit;
+    public static int SkillLimit;
 
     public static OptionItem WhoCanSeeProtect;
     private static OptionItem KnowShieldBroken;

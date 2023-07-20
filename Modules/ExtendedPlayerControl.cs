@@ -446,6 +446,7 @@ static class ExtendedPlayerControl
             CustomRoles.Saboteur => Utils.IsActive(SystemTypes.Electrical) || Utils.IsActive(SystemTypes.Laboratory) || Utils.IsActive(SystemTypes.Comms) || Utils.IsActive(SystemTypes.LifeSupp) || Utils.IsActive(SystemTypes.Reactor),
             CustomRoles.Sniper => Sniper.CanUseKillButton(pc),
             CustomRoles.Sheriff => Sheriff.CanUseKillButton(pc.PlayerId),
+            CustomRoles.CopyCat => pc.IsAlive(),
             CustomRoles.Pelican => pc.IsAlive(),
             CustomRoles.Arsonist => !pc.IsDouseDone(),
             CustomRoles.Revolutionist => !pc.IsDrawDone(),
@@ -493,12 +494,16 @@ static class ExtendedPlayerControl
             CustomRoles.Virus => pc.IsAlive(),
             CustomRoles.Farseer => pc.IsAlive(),
             CustomRoles.Spiritcaller => pc.IsAlive(),
+            CustomRoles.PlagueBearer => pc.IsAlive(),
+            CustomRoles.Pestilence => pc.IsAlive(),
+
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
     }
     public static bool CanUseImpostorVentButton(this PlayerControl pc)
     {
         if (!pc.IsAlive() || pc.Data.Role.Role == RoleTypes.GuardianAngel) return false;
+        if (CopyCat.playerIdList.Contains(pc.PlayerId)) return true;
 
         return pc.GetCustomRole() switch
         {
@@ -640,6 +645,13 @@ static class ExtendedPlayerControl
             case CustomRoles.Sidekick:
                 Sidekick.SetKillCooldown(player.PlayerId);
                 break;
+            case CustomRoles.PlagueBearer:
+                PlagueBearer.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Pestilence:
+                PlagueBearer.SetKillCooldownPestilence(player.PlayerId);
+                break;
+
             case CustomRoles.Councillor:
                 Councillor.SetKillCooldown(player.PlayerId);
                 break;
@@ -676,6 +688,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Sheriff:
                 Sheriff.SetKillCooldown(player.PlayerId); //シェリフはシェリフのキルクールに。
+                break;
+            case CustomRoles.CopyCat:
+                CopyCat.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.Minimalism:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.MNKillCooldown.GetFloat();
