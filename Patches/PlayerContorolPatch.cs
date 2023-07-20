@@ -342,9 +342,6 @@ class CheckMurderPatch
                 case CustomRoles.Deputy:
                     Deputy.OnCheckMurder(killer, target);
                     return false;
-                case CustomRoles.PizzaDelivery:
-                    PizzaDelivery.OnCheckMurder(killer, target);
-                    return false;
                 case CustomRoles.Jackal:
                     if (Jackal.OnCheckMurder(killer, target))
                         return false;
