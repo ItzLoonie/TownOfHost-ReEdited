@@ -140,7 +140,12 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Counterfeiter:
             case CustomRoles.Succubus:
             case CustomRoles.CursedSoul:
+            case CustomRoles.Admirer:
+            case CustomRoles.Amnesiac:
                 opt.SetVision(false);
+                break;
+            case CustomRoles.Refugee:
+                opt.SetVision(true);
                 break;
             case CustomRoles.Virus:
                 opt.SetVision(Virus.ImpostorVision.GetBool());
@@ -178,7 +183,11 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
             case CustomRoles.Bomber:
                 AURoleOptions.ShapeshifterCooldown = Options.BombCooldown.GetFloat();
-                AURoleOptions.ShapeshifterDuration = 3f;
+                AURoleOptions.ShapeshifterDuration = 2f;
+                break;
+            case CustomRoles.Nuker:
+                AURoleOptions.ShapeshifterCooldown = Options.NukeCooldown.GetFloat();
+                AURoleOptions.ShapeshifterDuration = 2f;
                 break;
             case CustomRoles.Mafia:
                 AURoleOptions.ShapeshifterCooldown = Options.MafiaShapeshiftCD.GetFloat();
@@ -224,6 +233,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
             case CustomRoles.Traitor:
                 Traitor.ApplyGameOptions(opt);
+                break;
+            case CustomRoles.Glitch:
+                Glitch.ApplyGameOptions(opt);
                 break;
             case CustomRoles.NWitch:
                 NWitch.ApplyGameOptions(opt);

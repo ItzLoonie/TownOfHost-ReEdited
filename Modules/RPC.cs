@@ -108,6 +108,8 @@ enum CustomRPC
     SetRitualist,
     SetChameleonTimer,
     DoPoison,
+    SetAdmireLimit,
+    SetRememberLimit,
 }
 public enum Sounds
 {
@@ -379,6 +381,12 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetJackalRecruitLimit:
                 Jackal.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetAdmireLimit:
+                Admirer.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetRememberLimit:
+                Amnesiac.ReceiveRPC(reader);
                 break;
             case CustomRPC.PlayCustomSound:
                 CustomSoundsManager.ReceiveRPC(reader);
@@ -888,6 +896,12 @@ internal static class RPC
                 break;
             case CustomRoles.CursedSoul:
                 CursedSoul.Add(targetId);
+                break;
+            case CustomRoles.Admirer:
+                Admirer.Add(targetId);
+                break;
+            case CustomRoles.Amnesiac:
+                Amnesiac.Add(targetId);
                 break;
             case CustomRoles.DovesOfNeace:
                 Main.DovesOfNeaceNumOfUsed.Add(targetId, Options.DovesOfNeaceMaxOfUseage.GetInt());

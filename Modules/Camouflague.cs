@@ -46,9 +46,21 @@ public static class Camouflage
     {
         if (!(AmongUsClient.Instance.AmHost && (Options.CommsCamouflage.GetBool() || CustomRoles.Camouflager.IsEnable()))) return;
 
-        CamouflageOutfit = Options.KPDCamouflageMode.GetBool() ?
-        new GameData.PlayerOutfit().Set("", 13, "hat_pk05_Plant", "", "visor_BubbleBumVisor", "") :
-        new GameData.PlayerOutfit().Set("", 15, "", "", "", "");
+   //     CamouflageOutfit = Options.KPDCamouflageMode.GetValue() ?
+        if (Options.KPDCamouflageMode.GetValue() == 0) // Default
+        CamouflageOutfit = new GameData.PlayerOutfit().Set("", 15, "", "", "", "");
+
+        if (Options.KPDCamouflageMode.GetValue() == 1) // Karpe
+        CamouflageOutfit = new GameData.PlayerOutfit().Set("", 13, "hat_pk05_Plant", "", "visor_BubbleBumVisor", "");
+
+        if (Options.KPDCamouflageMode.GetValue() == 2) // Loonie
+        CamouflageOutfit = new GameData.PlayerOutfit().Set("", 12, "hat_pkHW01_Wolf", "skin_scarfskin", "visor_Carrot", "pet_Pusheen");
+
+        if (Options.KPDCamouflageMode.GetValue() == 3) // Lauryn
+        CamouflageOutfit = new GameData.PlayerOutfit().Set("", 13, "hat_rabbitEars", "skin_Bananaskin", "visor_BubbleBumVisor", "pet_Pusheen");
+
+        if (Options.KPDCamouflageMode.GetValue() == 4) // Moe
+        CamouflageOutfit = new GameData.PlayerOutfit().Set("", 4, "hat_mira_headset_yellow", "skin_SuitB", "visor_lollipopCrew", "pet_EmptyPet");
 
         var oldIsCamouflage = IsCamouflage;
 

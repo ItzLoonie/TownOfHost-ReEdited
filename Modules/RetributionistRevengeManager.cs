@@ -23,7 +23,15 @@ public static class RetributionistRevengeManager
             else pc.ShowPopUp(GetString("RetributionistKillDisable"));
             return true;
         }
-
+        if (Options.CanOnlyRetributeWithTasksDone.GetBool())
+        {
+            if (!pc.GetPlayerTaskState().IsTaskFinished && pc.Data.IsDead)
+            {
+                if (!isUI) Utils.SendMessage(GetString("RetributionistKillDisable"), pc.PlayerId);
+                else pc.ShowPopUp(GetString("RetributionistKillDisable"));
+                return true;
+            }
+        }
         if (!pc.Data.IsDead)
         {
             Utils.SendMessage(GetString("RetributionistAliveKill"), pc.PlayerId);

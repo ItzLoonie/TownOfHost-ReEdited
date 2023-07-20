@@ -231,13 +231,20 @@ internal class CustomRoleSelector
     EndOfAssign:
 
         // 隐藏职业
-        if (!Options.DisableSunnyboy.GetBool())
         {
-            if (rd.Next(0, 100) < 3 && rolesToAssign.Remove(CustomRoles.Jester)) rolesToAssign.Add(CustomRoles.Sunnyboy);
+            if (rd.Next(0, 100) < Options.SunnyboyChance.GetInt() && rolesToAssign.Remove(CustomRoles.Jester)) rolesToAssign.Add(CustomRoles.Sunnyboy);
         }
-        if (!Options.DisableBard.GetBool())
         {
-            if (rd.Next(0, 100) < 5 && rolesToAssign.Remove(CustomRoles.Sans)) rolesToAssign.Add(CustomRoles.Bard);
+            if (rd.Next(0, 100) < Sans.BardChance.GetInt() && rolesToAssign.Remove(CustomRoles.Sans)) rolesToAssign.Add(CustomRoles.Bard);
+        }
+        {
+            if (rd.Next(0, 100) < Options.NukerChance.GetInt() && rolesToAssign.Remove(CustomRoles.Bomber)) rolesToAssign.Add(CustomRoles.Nuker);
+        }
+        {
+          /*  if (!rolesToAssign.Contains(CustomRoles.Lovers) && rolesToAssign.Contains(CustomRoles.FFF) || !rolesToAssign.Contains(CustomRoles.Ntr) && rolesToAssign.Contains(CustomRoles.FFF))
+                rolesToAssign.Remove(CustomRoles.FFF); 
+                rolesToAssign.Add(CustomRoles.Jester); */
+
         }
      /*   if (!Options.DisableSaboteur.GetBool()) // no longer hidden
         {
