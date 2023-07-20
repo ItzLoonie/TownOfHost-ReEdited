@@ -181,6 +181,7 @@ internal class ChangeRoleSettings
             Jackal.Init();
             Sidekick.Init();
             Sheriff.Init();
+            CopyCat.Init();
             SwordsMan.Init();
             EvilTracker.Init();
             Snitch.Init();
@@ -253,6 +254,7 @@ internal class ChangeRoleSettings
             Baker.Init();
             Spiritcaller.Init();
             Lurker.Init();
+            PlagueBearer.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
@@ -498,6 +500,9 @@ internal class SelectRolesPatch
                     case CustomRoles.Sheriff:
                         Sheriff.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.CopyCat:
+                        CopyCat.Add(pc.PlayerId);
+                        break;
                     case CustomRoles.QuickShooter:
                         QuickShooter.Add(pc.PlayerId);
                         break;
@@ -700,6 +705,10 @@ internal class SelectRolesPatch
                     case CustomRoles.Vulture:
                         Vulture.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.PlagueBearer:
+                        PlagueBearer.Add(pc.PlayerId);
+                        break;
+
                     case CustomRoles.ParityCop:
                         ParityCop.Add(pc.PlayerId);
                         break;

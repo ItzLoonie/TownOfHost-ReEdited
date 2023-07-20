@@ -15,8 +15,8 @@ public static class ParityCop
 {
     private static readonly int Id = 6900;
     private static List<byte> playerIdList = new();
-    private static Dictionary<byte, int> MaxCheckLimit = new();
-    private static Dictionary<byte, int> RoundCheckLimit = new();
+    public static Dictionary<byte, int> MaxCheckLimit = new();
+    public static Dictionary<byte, int> RoundCheckLimit = new();
     public static readonly string[] pcEgoistCountMode =
     {
         "EgoistCountMode.Original",
@@ -26,8 +26,8 @@ public static class ParityCop
 
 
     private static OptionItem TryHideMsg;
-    private static OptionItem ParityCheckLimitMax;
-    private static OptionItem ParityCheckLimitPerMeeting;
+    public static OptionItem ParityCheckLimitMax;
+    public static OptionItem ParityCheckLimitPerMeeting;
     private static OptionItem ParityCheckTargetKnow;
     private static OptionItem ParityCheckOtherTargetKnow;
     public static OptionItem ParityCheckEgoistCountType;

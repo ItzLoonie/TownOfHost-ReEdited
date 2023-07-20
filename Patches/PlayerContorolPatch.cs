@@ -255,6 +255,11 @@ class CheckMurderPatch
                     break;
 
                 //==========中立阵营==========//
+                case CustomRoles.PlagueBearer:
+                    if (!PlagueBearer.OnCheckMurder(killer, target))
+                        return false;
+                    break;
+
                 case CustomRoles.Arsonist:
                     killer.SetKillCooldown(Options.ArsonistDouseTime.GetFloat());
                     if (!Main.isDoused[(killer.PlayerId, target.PlayerId)] && !Main.ArsonistTimer.ContainsKey(killer.PlayerId))
@@ -353,6 +358,11 @@ class CheckMurderPatch
                     if (!Sheriff.OnCheckMurder(killer, target))
                         return false;
                     break;
+                                    case CustomRoles.CopyCat:
+                    if (!CopyCat.OnCheckMurder(killer, target))
+                        return false;
+                    break;
+
                 case CustomRoles.SwordsMan:
                     if (!SwordsMan.OnCheckMurder(killer))
                         return false;
@@ -525,6 +535,8 @@ class CheckMurderPatch
 
         if (target.Is(CustomRoles.Medic))
             Medic.IsDead(target);
+        if (PlagueBearer.OnCheckMurderPestilence(killer, target))
+            return false;
 
         if (Jackal.ResetKillCooldownWhenSbGetKilled.GetBool() && !killer.Is(CustomRoles.Sidekick) && !target.Is(CustomRoles.Sidekick) && !killer.Is(CustomRoles.Jackal) && !target.Is(CustomRoles.Jackal) && !GameStates.IsMeeting)
             Jackal.AfterPlayerDiedTask(killer);
@@ -1446,6 +1458,18 @@ class FixedUpdatePatch
             Poisoner.OnFixedUpdate(player);
             BountyHunter.FixedUpdate(player);
             SerialKiller.FixedUpdate(player);
+            if (GameStates.IsInTask)
+                if (player.Is(CustomRoles.PlagueBearer) && PlagueBearer.IsPlaguedAll(player))
+                {
+                    player.RpcSetCustomRole(CustomRoles.Pestilence);
+                    player.Notify(GetString("PlagueBearerToPestilence"));
+                    player.RpcGuardAndKill(player);
+                    if (!PlagueBearer.PestilenceList.Contains(player.PlayerId))
+                        PlagueBearer.PestilenceList.Add(player.PlayerId);
+                    PlagueBearer.SetKillCooldownPestilence(player.PlayerId);
+                    PlagueBearer.playerIdList.Remove(player.PlayerId);
+                }
+
 
             #region 女巫处理
             if (GameStates.IsInTask && Main.WarlockTimer.ContainsKey(player.PlayerId))//処理を1秒遅らせる
@@ -1954,6 +1978,14 @@ class FixedUpdatePatch
                 //インポスター/キル可能なニュートラルがタスクが終わりそうなSnitchを確認できる
                 Mark.Append(Snitch.GetWarningMark(seer, target));
                 Mark.Append(Marshall.GetWarningMark(seer, target));
+                if (seer.Is(CustomRoles.PlagueBearer))
+                {
+                    if (PlagueBearer.isPlagued(seer.PlayerId, target.PlayerId))
+                    {
+                        Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.PlagueBearer)}>●</color>");
+                        PlagueBearer.SendRPC(seer, target);
+                    }
+                }
 
                 if (seer.Is(CustomRoles.Arsonist))
                 {

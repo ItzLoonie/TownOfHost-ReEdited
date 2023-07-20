@@ -464,6 +464,8 @@ public static class Utils
             case CustomRoles.Counterfeiter:
             case CustomRoles.Pursuer:
             case CustomRoles.Spiritcaller:
+            case CustomRoles.PlagueBearer:
+            case CustomRoles.Pestilence:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:
@@ -516,6 +518,7 @@ public static class Utils
                     hasTasks &= !ForRecompute;
                     break;
             }
+        if (CopyCat.playerIdList.Contains(p.PlayerId) && ForRecompute) hasTasks = false;
 
         return hasTasks;
     }
@@ -568,6 +571,14 @@ public static class Utils
             case CustomRoles.Sheriff:
                 ProgressText.Append(Sheriff.GetShotLimit(playerId));
                 break;
+            case CustomRoles.CopyCat:
+                ProgressText.Append(ColorString(GetRoleColor(CustomRoles.CopyCat).ShadeColor(0.25f), $"({(CopyCat.MiscopyLimit.TryGetValue(playerId, out var count2) ? count2 : 0)})"));
+                break;
+            case CustomRoles.PlagueBearer:
+                var plagued = PlagueBearer.PlaguedPlayerCount(playerId);
+                ProgressText.Append(ColorString(GetRoleColor(CustomRoles.PlagueBearer).ShadeColor(0.25f), $"({plagued.Item1}/{plagued.Item2})"));
+                break;
+
             case CustomRoles.Sniper:
                 ProgressText.Append(Sniper.GetBulletCount(playerId));
                 break;
@@ -1435,6 +1446,16 @@ public static class Utils
             string SelfRoleName = $"<size={fontSize}>{seer.GetDisplayRoleName()}{SelfTaskText}</size>";
             string SelfDeathReason = seer.KnowDeathReason(seer) ? $"({ColorString(GetRoleColor(CustomRoles.Doctor), GetVitalText(seer.PlayerId))})" : "";
             string SelfName = $"{ColorString(seer.GetRoleColor(), SeerRealName)}{SelfDeathReason}{SelfMark}";
+            if (seer.Is(CustomRoles.PlagueBearer) && PlagueBearer.IsPlaguedAll(seer))
+            {
+                seer.RpcSetCustomRole(CustomRoles.Pestilence);
+                seer.Notify(GetString("PlagueBearerToPestilence"));
+                seer.RpcGuardAndKill(seer);
+                if (!PlagueBearer.PestilenceList.Contains(seer.PlayerId))
+                    PlagueBearer.PestilenceList.Add(seer.PlayerId);
+                PlagueBearer.SetKillCooldownPestilence(seer.PlayerId);
+                PlagueBearer.playerIdList.Remove(seer.PlayerId);
+            }
 
             if (seer.Is(CustomRoles.Arsonist) && seer.IsDouseDone())
                 SelfName = $"{ColorString(seer.GetRoleColor(), GetString("EnterVentToWin"))}";
@@ -1529,6 +1550,15 @@ public static class Utils
                 else if (target.Is(CustomRoles.Ntr) || seer.Is(CustomRoles.Ntr))
                 {
                     TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♡</color>");
+                }
+
+                if (seer.Is(CustomRoles.PlagueBearer))
+                {
+                    if (PlagueBearer.isPlagued(seer.PlayerId, target.PlayerId))
+                    {
+                        TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.PlagueBearer)}>●</color>");
+                        PlagueBearer.SendRPC(seer, target);
+                    }
                 }
 
                 if (seer.Is(CustomRoles.Arsonist))//seerがアーソニストの時
@@ -1805,6 +1835,7 @@ public static class Utils
         Spiritualist.AfterMeetingTasks();
         Vulture.AfterMeetingTasks();
         Baker.AfterMeetingTasks();
+        CopyCat.AfterMeetingTasks();
 
         if (Options.AirshipVariableElectrical.GetBool())
             AirshipElectricalDoors.Initialize();
