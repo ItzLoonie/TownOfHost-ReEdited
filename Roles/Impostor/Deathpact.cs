@@ -188,10 +188,11 @@ namespace TOHE.Roles.Impostor
             target.RpcMurderPlayerV3(target);
         }
 
-        public static string GetDeathpactPlayerArrow(PlayerControl seer)
+        public static string GetDeathpactPlayerArrow(PlayerControl seer, PlayerControl target = null)
         {
             if (GameStates.IsMeeting) return "";
             if (!ShowArrowsToOtherPlayersInPact.GetBool()) return "";
+            if (target != null && seer.PlayerId != target.PlayerId) return "";
             if (!IsInActiveDeathpact(seer)) return "";
 
             string arrows = string.Empty;
