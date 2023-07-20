@@ -136,8 +136,6 @@ class CheckMurderPatch
             return false;
 
         //阻止对活死人的操作
-        if (target.Is(CustomRoles.Glitch))
-            return false;
 
         // 赝品检查
         if (Counterfeiter.OnClientMurder(killer)) return false;
@@ -330,6 +328,12 @@ class CheckMurderPatch
                 case CustomRoles.CursedSoul:
                     CursedSoul.OnCheckMurder(killer, target);
                     return false;
+                case CustomRoles.Admirer:
+                    Admirer.OnCheckMurder(killer, target);
+                    return false;
+                case CustomRoles.Amnesiac:
+                    Amnesiac.OnCheckMurder(killer, target);
+                    return false;
                 case CustomRoles.Infectious:
                     Infectious.OnCheckMurder(killer, target);
                     return false;
@@ -460,6 +464,11 @@ class CheckMurderPatch
         //Sidekick can kill Jackal
         if (killer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Jackal) && !Options.SidekickCanKillJackal.GetBool())
             return false;
+        if (killer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Recruit) && !Options.JackalCanKillSidekick.GetBool())
+            return false;
+        //Sidekick can kill Jackal
+        if (killer.Is(CustomRoles.Recruit) && target.Is(CustomRoles.Jackal) && !Options.SidekickCanKillJackal.GetBool())
+            return false;
         //禁止内鬼刀叛徒
         if (killer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Madmate) && !Options.ImpCanKillMadmate.GetBool())
             return false;
@@ -498,6 +507,15 @@ class CheckMurderPatch
             return false;
         //Sidekick can kill Sidekick
         if (killer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Sidekick) && !Options.SidekickCanKillSidekick.GetBool())
+            return false;
+        //Recruit can kill Recruit
+        if (killer.Is(CustomRoles.Recruit) && target.Is(CustomRoles.Recruit) && !Options.SidekickCanKillSidekick.GetBool())
+            return false;
+        //Sidekick can kill Sidekick
+        if (killer.Is(CustomRoles.Recruit) && target.Is(CustomRoles.Sidekick) && !Options.SidekickCanKillSidekick.GetBool())
+            return false;
+        //Recruit can kill Recruit
+        if (killer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Recruit) && !Options.SidekickCanKillSidekick.GetBool())
             return false;
 
 
@@ -545,9 +563,10 @@ class CheckMurderPatch
                 killer.RpcGuardAndKill(target);
                 target.RpcGuardAndKill(target);
                 Main.CursedWolfSpellCount[target.PlayerId] -= 1;
+                killer.SetRealKiller(target);
                 RPC.SendRPCCursedWolfSpellCount(target.PlayerId);
                 Logger.Info($"{target.GetNameWithRole()} : {Main.CursedWolfSpellCount[target.PlayerId]}回目", "CursedWolf");
-                Main.PlayerStates[killer.PlayerId].deathReason = PlayerState.DeathReason.Spell;
+                Main.PlayerStates[killer.PlayerId].deathReason = PlayerState.DeathReason.Curse;
                 killer.RpcMurderPlayerV3(killer);
                 return false;
             case CustomRoles.Jinx:
@@ -555,6 +574,7 @@ class CheckMurderPatch
                 killer.RpcGuardAndKill(target);
                 target.RpcGuardAndKill(target);
                 Main.JinxSpellCount[target.PlayerId] -= 1;
+                killer.SetRealKiller(target);
                 RPC.SendRPCJinxSpellCount(target.PlayerId);
                 Logger.Info($"{target.GetNameWithRole()} : {Main.JinxSpellCount[target.PlayerId]}回目", "Jinx");
                 Main.PlayerStates[killer.PlayerId].deathReason = PlayerState.DeathReason.Jinx;
@@ -571,6 +591,12 @@ class CheckMurderPatch
                         return false;
                     }
                 break;
+            case CustomRoles.Glitch:
+                    killer.SetRealKiller(target);
+                    target.RpcMurderPlayerV3(killer);
+                    Logger.Info($"{target.GetRealName()} 老兵反弹击杀：{killer.GetRealName()}", "Glitch Kill");
+                    Main.PlayerStates[killer.PlayerId].deathReason = PlayerState.DeathReason.Hack;
+                    return false;             
             //检查明星附近是否有人
             case CustomRoles.SuperStar:
                 if (Main.AllAlivePlayerControls.Where(x =>
@@ -867,6 +893,7 @@ class ShapeshiftPatch
                             if (p.PlayerId == cp.PlayerId) continue;
                             if (!Options.WarlockCanKillSelf.GetBool() && p.PlayerId == shapeshifter.PlayerId) continue;
                             if (!Options.WarlockCanKillAllies.GetBool() && p.GetCustomRole().IsImpostor()) continue;
+                            if (p.Is(CustomRoles.Glitch)) continue;
                             if (Pelican.IsEaten(p.PlayerId) || Medic.ProtectList.Contains(p.PlayerId)) continue;
                             dis = Vector2.Distance(cppos, p.transform.position);
                             cpdistance.Add(p, dis);
@@ -932,7 +959,7 @@ class ShapeshiftPatch
                         var pos = shapeshifter.transform.position;
                         var dis = Vector2.Distance(pos, tg.transform.position);
 
-                        if (!tg.IsAlive() || Pelican.IsEaten(tg.PlayerId) || Medic.ProtectList.Contains(tg.PlayerId)) continue;
+                        if (!tg.IsAlive() || Pelican.IsEaten(tg.PlayerId) || Medic.ProtectList.Contains(tg.PlayerId) || (tg.Is(CustomRoleTypes.Impostor) && Options.ImpostorsSurviveBombs.GetBool()) || tg.inVent || tg.Is(CustomRoles.Glitch)) continue;
                         if (dis > Options.BomberRadius.GetFloat()) continue;
                         if (tg.PlayerId == shapeshifter.PlayerId) continue;
 
@@ -945,13 +972,52 @@ class ShapeshiftPatch
                     {
                         var totalAlive = Main.AllAlivePlayerControls.Count();
                         //自分が最後の生き残りの場合は勝利のために死なない
-                        if (totalAlive > 0 && !GameStates.IsEnded)
+                        if (Options.BomberDiesInExplosion.GetBool())
                         {
-                            Main.PlayerStates[shapeshifter.PlayerId].deathReason = PlayerState.DeathReason.Misfire;
-                            shapeshifter.RpcMurderPlayerV3(shapeshifter);
+                                if (totalAlive > 0 && !GameStates.IsEnded)
+                            {
+                                Main.PlayerStates[shapeshifter.PlayerId].deathReason = PlayerState.DeathReason.Bombed;
+                                shapeshifter.RpcMurderPlayerV3(shapeshifter);
+                            }
                         }
                         Utils.NotifyRoles();
                     }, 1.5f, "Bomber Suiscide");
+                }
+                break;
+            case CustomRoles.Nuker:
+                if (shapeshifting)
+                {
+                    Logger.Info("炸弹爆炸了", "Boom");
+                    CustomSoundsManager.RPCPlayCustomSoundAll("Boom");
+                    foreach (var tg in Main.AllPlayerControls)
+                    {
+                        if (!tg.IsModClient()) tg.KillFlash();
+                        var pos = shapeshifter.transform.position;
+                        var dis = Vector2.Distance(pos, tg.transform.position);
+
+                        if (!tg.IsAlive() || Pelican.IsEaten(tg.PlayerId) || Medic.ProtectList.Contains(tg.PlayerId) || tg.inVent || tg.Is(CustomRoles.Glitch)) continue;
+                        if (dis > Options.NukeRadius.GetFloat()) continue;
+                        if (tg.PlayerId == shapeshifter.PlayerId) continue;
+
+                        Main.PlayerStates[tg.PlayerId].deathReason = PlayerState.DeathReason.Bombed;
+                        tg.SetRealKiller(shapeshifter);
+                        tg.RpcMurderPlayerV3(tg);
+                        Medic.IsDead(tg);
+                    }
+                    new LateTask(() =>
+                    {
+                        var totalAlive = Main.AllAlivePlayerControls.Count();
+                        //自分が最後の生き残りの場合は勝利のために死なない
+                    //    if (Options.BomberDiesInExplosion.GetBool())
+                        {
+                                if (totalAlive > 0 && !GameStates.IsEnded)
+                            {
+                                Main.PlayerStates[shapeshifter.PlayerId].deathReason = PlayerState.DeathReason.Bombed;
+                                shapeshifter.RpcMurderPlayerV3(shapeshifter);
+                            }
+                        }
+                        Utils.NotifyRoles();
+                    }, 1.5f, "Nuke");
                 }
                 break;
             case CustomRoles.Assassin:
@@ -1624,17 +1690,9 @@ class FixedUpdatePatch
                         float dis;
                         foreach (var target in Main.AllAlivePlayerControls)
                         {
-                            if (player.Is(CustomRoles.Sidekick))
+                            
                             {
-                                if (target.PlayerId != player.PlayerId && !target.Is(CustomRoles.Sidekick) && !target.Is(CustomRoles.Jackal))
-                                {
-                                    dis = Vector2.Distance(puppeteerPos, target.transform.position);
-                                    targetDistance.Add(target.PlayerId, dis);
-                                }
-                            }
-                            if (!player.Is(CustomRoles.Sidekick))
-                            {
-                                if (target.PlayerId != player.PlayerId && !target.Is(CustomRoleTypes.Impostor))
+                                if (target.PlayerId != player.PlayerId && !target.Is(CustomRoleTypes.Impostor) && !target.Is(CustomRoles.Glitch))
                                 {
                                     dis = Vector2.Distance(puppeteerPos, target.transform.position);
                                     targetDistance.Add(target.PlayerId, dis);
@@ -1675,17 +1733,9 @@ class FixedUpdatePatch
                         float dis;
                         foreach (var target in Main.AllAlivePlayerControls)
                         {
-                            if (player.Is(CustomRoles.Sidekick))
+                           
                             {
-                                if (target.PlayerId != player.PlayerId && !target.Is(CustomRoles.NWitch) && !target.Is(CustomRoles.Sidekick) && !target.Is(CustomRoles.Jackal))
-                                {
-                                    dis = Vector2.Distance(puppeteerPos, target.transform.position);
-                                    targetDistance.Add(target.PlayerId, dis);
-                                }
-                            }
-                            if (!player.Is(CustomRoles.Sidekick))
-                            {
-                                if (target.PlayerId != player.PlayerId && !target.Is(CustomRoles.NWitch))
+                                if (target.PlayerId != player.PlayerId && !target.Is(CustomRoles.NWitch) && !target.Is(CustomRoles.Glitch))
                                 {
                                     dis = Vector2.Distance(puppeteerPos, target.transform.position);
                                     targetDistance.Add(target.PlayerId, dis);
@@ -1782,6 +1832,7 @@ class FixedUpdatePatch
                 else if (PlayerControl.LocalPlayer.Is(CustomRoles.Mimic) && Main.VisibleTasksCount && __instance.Data.IsDead && Options.MimicCanSeeDeadRoles.GetBool()) RoleText.enabled = true; //他プレイヤーでVisibleTasksCountが有効なおかつ自分が死んでいるならロールを表示
                 else if (__instance.Is(CustomRoles.Mimic) && Main.VisibleTasksCount && __instance.Data.IsDead) RoleText.enabled = true; //他プレイヤーでVisibleTasksCountが有効なおかつ自分が死んでいるならロールを表示
                 else if (__instance.Is(CustomRoles.Lovers) && PlayerControl.LocalPlayer.Is(CustomRoles.Lovers) && Options.LoverKnowRoles.GetBool()) RoleText.enabled = true;
+                else if (__instance.Is(CustomRoles.Ntr) && Options.LoverKnowRoles.GetBool()) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoleTypes.Impostor) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Impostor) && Options.ImpKnowAlliesRole.GetBool()) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoleTypes.Impostor) && PlayerControl.LocalPlayer.Is(CustomRoles.Madmate) && Options.MadmateKnowWhosImp.GetBool()) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Madmate) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Impostor) && Options.ImpKnowWhosMadmate.GetBool()) RoleText.enabled = true;
@@ -1791,6 +1842,7 @@ class FixedUpdatePatch
                 else if (__instance.Is(CustomRoles.Rogue) && PlayerControl.LocalPlayer.Is(CustomRoles.Rogue) && Options.RogueKnowEachOther.GetBool() && Options.RogueKnowEachOtherRoles.GetBool()) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Sidekick) && PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick)) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Jackal) && PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick)) RoleText.enabled = true;
+                else if (__instance.Is(CustomRoles.Jackal) && PlayerControl.LocalPlayer.Is(CustomRoles.Recruit)) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Sidekick) && PlayerControl.LocalPlayer.Is(CustomRoles.Jackal)) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Doctor) && !__instance.GetCustomRole().IsEvilAddons() && Options.DoctorVisibleToEveryone.GetBool()) RoleText.enabled = true;
@@ -1803,6 +1855,8 @@ class FixedUpdatePatch
                 else if (Executioner.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (Succubus.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (CursedSoul.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
+                else if (Admirer.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
+                else if (Amnesiac.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (Infectious.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (Virus.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (PlayerControl.LocalPlayer.IsRevealedPlayer(__instance)) RoleText.enabled = true;
@@ -2439,7 +2493,7 @@ class PlayerControlSetRolePatch
                 {
                     ghostRoles[seer] = RoleTypes.GuardianAngel;
                 }
-                else if((self && targetIsKiller) || (!seerIsKiller && (target.Is(CustomRoleTypes.Impostor) || Main.ResetCamPlayerList.Contains(target.PlayerId))))
+                else if((self && targetIsKiller) || (!seerIsKiller && (target.Is(CustomRoleTypes.Impostor) || Main.ResetCamPlayerList.Contains(target.PlayerId) || (target.Is(CustomRoles.Pickpocket)) || (target.Is(CustomRoles.Medusa)) || (target.Is(CustomRoles.Amnesiac)) || (target.Is(CustomRoles.Refugee)))))
                 {
                     ghostRoles[seer] = RoleTypes.ImpostorGhost;
                 }

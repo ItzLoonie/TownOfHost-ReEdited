@@ -224,6 +224,8 @@ internal class ChangeRoleSettings
             Totocalcio.Init();
             Succubus.Init();
             CursedSoul.Init();
+            Admirer.Init();
+            Amnesiac.Init();
             Infectious.Init();
             Monarch.Init();
             Virus.Init();
@@ -632,6 +634,12 @@ internal class SelectRolesPatch
                     case CustomRoles.CursedSoul:
                         CursedSoul.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.Admirer:
+                        Admirer.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Amnesiac:
+                        Amnesiac.Add(pc.PlayerId);
+                        break;
                     case CustomRoles.DovesOfNeace:
                         Main.DovesOfNeaceNumOfUsed.Add(pc.PlayerId, Options.DovesOfNeaceMaxOfUseage.GetInt());
                         break;
@@ -879,7 +887,8 @@ internal class SelectRolesPatch
                 || pc.Is(CustomRoles.Dictator) 
                 || pc.Is(CustomRoles.God) 
                 || pc.Is(CustomRoles.FFF) 
-                || pc.Is(CustomRoles.Bomber) 
+                || pc.Is(CustomRoles.Bomber)
+                || pc.Is(CustomRoles.Nuker) 
                 || pc.Is(CustomRoles.Provocateur)
                 || (pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeInLove.GetBool())
                 || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeInLove.GetBool())

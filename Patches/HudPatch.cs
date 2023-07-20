@@ -141,6 +141,24 @@ class HudManagerPatch
                     case CustomRoles.Gangster:
                         Gangster.SetKillButtonText(player.PlayerId);
                         break;
+                    case CustomRoles.NSerialKiller:
+                    case CustomRoles.Juggernaut:
+                    case CustomRoles.Jackal:
+                    case CustomRoles.Virus:
+                    case CustomRoles.BloodKnight:
+                    case CustomRoles.SwordsMan:
+                    case CustomRoles.Parasite:
+                    case CustomRoles.Refugee:
+                    case CustomRoles.Traitor:
+                    case CustomRoles.Ritualist:
+                    case CustomRoles.Spiritcaller:
+                    case CustomRoles.DarkHide:
+                    case CustomRoles.Maverick:
+                        __instance.KillButton.OverrideText(GetString("KillButtonText"));
+                        break;
+                    case CustomRoles.Glitch:
+                        __instance.SabotageButton.OverrideText(GetString("HackButtonText"));
+                        break;
                     case CustomRoles.FFF:
                         __instance.KillButton.OverrideText(GetString("FFFButtonText"));
                         break;
@@ -154,6 +172,7 @@ class HudManagerPatch
                         __instance.KillButton.OverrideText(GetString("BallLightningButtonText"));
                         break;
                     case CustomRoles.Bomber:
+                    case CustomRoles.Nuker:
                         __instance.AbilityButton.OverrideText(GetString("BomberShapeshiftText"));
                         break;
                     case CustomRoles.Twister:
@@ -189,6 +208,7 @@ class HudManagerPatch
                         __instance.ReportButton.OverrideText(GetString("CleanerReportButtonText"));
                         break;
                     case CustomRoles.Medusa:
+                        __instance.KillButton.OverrideText(GetString("KillButtonText"));
                         __instance.ReportButton.OverrideText(GetString("MedusaReportButtonText"));
                         break;
                     case CustomRoles.Vulture:
@@ -198,6 +218,7 @@ class HudManagerPatch
                         __instance.ImpostorVentButton.OverrideText(GetString(Swooper.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "SwooperRevertVentButtonText" : "SwooperVentButtonText"));
                         break;
                     case CustomRoles.Wraith:
+                        __instance.KillButton.OverrideText(GetString("KillButtonText"));
                         __instance.ImpostorVentButton.OverrideText(GetString(Wraith.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "WraithRevertVentButtonText" : "WraithVentButtonText"));
                         break;
                     case CustomRoles.Chameleon:
@@ -230,6 +251,12 @@ class HudManagerPatch
                         break;
                     case CustomRoles.CursedSoul:
                         __instance.KillButton.OverrideText(GetString("CursedSoulKillButtonText"));
+                        break;
+                    case CustomRoles.Admirer:
+                        __instance.KillButton.OverrideText(GetString("AdmireButtonText"));
+                        break;
+                    case CustomRoles.Amnesiac:
+                        __instance.KillButton.OverrideText(GetString("RememberButtonText"));
                         break;
                     case CustomRoles.DovesOfNeace:
                         __instance.AbilityButton.buttonLabelText.text = GetString("DovesOfNeaceVentButtonText");
@@ -460,6 +487,7 @@ class SetHudActivePatch
                 __instance.ReportButton.ToggleVisible(false);
                 break;
             case CustomRoles.Parasite:
+            case CustomRoles.Refugee:
                 __instance.SabotageButton.ToggleVisible(true);
                 break;
             case CustomRoles.Jackal:
@@ -471,10 +499,10 @@ class SetHudActivePatch
             case CustomRoles.Traitor:
                 Traitor.SetHudActive(__instance, isActive);
                 break;
-            
-            case CustomRoles.Bomber:
-                __instance.KillButton.ToggleVisible(false);
+            case CustomRoles.Glitch:
+                Glitch.SetHudActive(__instance, isActive);
                 break;
+            
         }
 
         foreach (var subRole in Main.PlayerStates[player.PlayerId].SubRoles)
@@ -513,7 +541,7 @@ class MapBehaviourShowPatch
         if (opts.Mode is MapOptions.Modes.Normal or MapOptions.Modes.Sabotage)
         {
             var player = PlayerControl.LocalPlayer;
-            if (player.Is(CustomRoleTypes.Impostor) || (player.Is(CustomRoles.Parasite)) || (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) || (player.Is(CustomRoles.Traitor) && Traitor.CanUseSabotage.GetBool()))
+            if (player.Is(CustomRoleTypes.Impostor) || (player.Is(CustomRoles.Parasite)) || (player.Is(CustomRoles.Glitch)) || (player.Is(CustomRoles.Refugee)) || (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) || (player.Is(CustomRoles.Traitor) && Traitor.CanUseSabotage.GetBool()))
                 opts.Mode = MapOptions.Modes.Sabotage;
             else
                 opts.Mode = MapOptions.Modes.Normal;

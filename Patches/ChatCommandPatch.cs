@@ -766,7 +766,7 @@ internal class ChatCommands
 
             case "/colour":
             case "/color":
-                if (Options.PlayerCanSetColor.GetBool() || player.FriendCode.GetDevUser().IsDev)
+                if (Options.PlayerCanSetColor.GetBool() || player.FriendCode.GetDevUser().IsDev || player.FriendCode.GetDevUser().ColorCmd)
                 {
                     if (GameStates.IsInGame)
                     {

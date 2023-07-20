@@ -200,7 +200,7 @@ class SetEverythingUpPatch
         if (CustomWinnerHolder.WinnerTeam is not CustomWinner.Draw and not CustomWinner.None and not CustomWinner.Error)
         {
             if (AdditionalWinnerText == "") WinnerText.text = $"<size=100%><color={CustomWinnerColor}>{CustomWinnerText}</color></size>";
-            else WinnerText.text = $"<size=100%><color={CustomWinnerColor}>{CustomWinnerText}</color></size>\n<size=50%>{AdditionalWinnerText}</size>";
+            else WinnerText.text = $"<size=100%><color={CustomWinnerColor}>{CustomWinnerText}</color></size>\n<size=75%>{AdditionalWinnerText}</size>";
         }
 
         static string GetWinnerRoleName(CustomRoles role)
