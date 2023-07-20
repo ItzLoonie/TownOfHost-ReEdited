@@ -708,7 +708,6 @@ internal class SelectRolesPatch
                     case CustomRoles.PlagueBearer:
                         PlagueBearer.Add(pc.PlayerId);
                         break;
-
                     case CustomRoles.ParityCop:
                         ParityCop.Add(pc.PlayerId);
                         break;

@@ -301,7 +301,7 @@ internal class RPCHandlerPatch
             case CustomRPC.setPlaguedPlayer:
                 PlagueBearer.receiveRPC(reader);
                 break;
-s            case CustomRPC.SetDrawPlayer:
+            case CustomRPC.SetDrawPlayer:
                 byte RevolutionistId = reader.ReadByte();
                 byte DrawId = reader.ReadByte();
                 bool drawed = reader.ReadBoolean();
