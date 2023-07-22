@@ -2159,7 +2159,7 @@
 
 "## Camouflage Appearance"
 "CamouflageMode.Default","Default","Default","","",""
-"CamouflageMode.Karpe","咔皮呆","KARPED1EM","","",""
+"CamouflageMode.Karpe","KARPED1EM","KARPED1EM","","",""
 "CamouflageMode.Loonie","Loonie","Loonie","","",""
 "CamouflageMode.Lauryn","Lauryn","Lauryn","","",""
 "CamouflageMode.Moe","Moe","Moe","","",""
@@ -2168,7 +2168,7 @@
 "GlowVision","<color=#d9f67d>光辉</color>视野","<color=#d9f67d>Glow</color> Vision","","",""
 "ImpCanBeGlow","<color=#ff1919>内鬼</color>可以成为<color=#d9f67d>光辉</color>","<color=#ff1919>Impostors</color> can become <color=#d9f67d>Glow</color>","","",""
 "CrewCanBeGlow","<color=#8cffff>船员</color>可以成为<color=#d9f67d>光辉</color>","<color=#8cffff>Crewmates</color> can become <color=#d9f67d>Glow</color>","","",""
-"NeutralCanBeGlow","<color=#7f8c8d>中立</color>可以成为color=#d9f67d>光辉</color>","<color=#7f8c8d>Neutrals</color> can become <color=#d9f67d>Glow</color>","","",""
+"NeutralCanBeGlow","<color=#7f8c8d>中立</color>可以成为<color=#d9f67d>光辉</color>","<color=#7f8c8d>Neutrals</color> can become <color=#d9f67d>Glow</color>","","",""
 
 "## Glitch Text Strings"
 "HackButtonText","黑客入侵","Hack","","",""
