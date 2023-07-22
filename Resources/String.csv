@@ -2158,8 +2158,13 @@
 "NukerChance","<color=#ff1919>核武器</color>概率","<color=#ff1919>Nuker</color> Chance","","",""
 
 "## Camouflage Appearance"
+<<<<<<< HEAD
 "CamouflageMode.Default","默认","Default","","",""
 "CamouflageMode.Karpe","咔皮呆","KARPED1EM","","",""
+=======
+"CamouflageMode.Default","Default","Default","","",""
+"CamouflageMode.Karpe","KARPED1EM","KARPED1EM","","",""
+>>>>>>> 9de56a5eb03c5fd550570a89c1a6057486a36658
 "CamouflageMode.Loonie","Loonie","Loonie","","",""
 "CamouflageMode.Lauryn","Lauryn","Lauryn","","",""
 "CamouflageMode.Moe","Moe","Moe","","",""
