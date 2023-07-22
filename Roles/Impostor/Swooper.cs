@@ -3,6 +3,7 @@ using Hazel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TOHE.Roles.Crewmate;
 using static TOHE.Options;
 using static TOHE.Translator;
 
@@ -174,6 +175,7 @@ public static class Swooper
 
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
     {
+        if (Medic.ProtectList.Contains(target.PlayerId)) return true;
         if (!IsInvis(killer.PlayerId)) return true;
         killer.SetKillCooldown();
         target.RpcCheckAndMurder(target);
