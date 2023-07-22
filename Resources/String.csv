@@ -2215,7 +2215,7 @@
 "PanAlive","面包师分发了面包","The Baker has given out bread.","Пекарь раздал хлеб","",""
 
 "## Opportunist Text Strings"
-"ImmuneToAttacksWhenTasksDone","对任务完成攻击免疫","Immune to attacks on task completion","Невосприимчим к атакам после завершения задач","",""
+"ImmuneToAttacksWhenTasksDone","对任务完成的投机者的击杀免疫","Immune to attacks on task completion","Невосприимчим к атакам после завершения задач","",""
 
 "## Merchant Add-on Text Strings"
 "OptionWatcher","可以出售窥视者","Can sell Watcher","","",""
@@ -2541,7 +2541,7 @@
 "WinnerRoleText.Medusa","美杜莎胜利！","Medusa Wins!","Медуза Победила!","",""
 "WinnerRoleText.Famine","饥荒胜利！","Famine Wins!","Голод Победил!","",""
 "WinnerRoleText.Spiritcaller","灵魂召唤者胜利！","Spiritcaller Wins!","Призыватель Победил!","",""
-"WinnerRoleText.Glitch","缺点者胜利","Glitch Wins!","","",""
+"WinnerRoleText.Glitch","缺点者胜利！","Glitch Wins!","","",""
 
 
 "## Additional Winner Text"
