@@ -11,7 +11,7 @@ public static class Doomsayer
 
     public static int GuessesCount = 0;
     public static int GuessesCountPerMeeting = 0;
-    public static bool HideGuesserUI = false;
+    public static bool CantGuess = false;
 
     public static OptionItem DoomsayerAmountOfGuessesToWin;
     public static OptionItem DCanGuessImpostors;
@@ -60,7 +60,7 @@ public static class Doomsayer
         playerIdList = new();
         GuessesCount = 0;
         GuessesCountPerMeeting = 0;
-        HideGuesserUI = false;
+        CantGuess = false;
     }
     public static void Add(byte playerId)
     {
@@ -85,12 +85,19 @@ public static class Doomsayer
 
         return (doomsayerguess, GuessesToWin);
     }
-    public static void CheckCountGuess(PlayerControl pirate)
+    public static void CheckCountGuess(PlayerControl doomsayer)
     {
         if (!(GuessesCount >= DoomsayerAmountOfGuessesToWin.GetInt())) return;
 
         GuessesCount = DoomsayerAmountOfGuessesToWin.GetInt();
         CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Doomsayer);
-        CustomWinnerHolder.WinnerIds.Add(pirate.PlayerId);
+        CustomWinnerHolder.WinnerIds.Add(doomsayer.PlayerId);
+    }
+    public static void OnReportDeadBody()
+    {
+        if (!(IsEnable && AdvancedSettings.GetBool())) return;
+
+        CantGuess = false;
+        GuessesCountPerMeeting = 0;
     }
 }
