@@ -111,6 +111,33 @@ class CheckMurderPatch
             return false;
         }
         TimeSinceLastKill[killer.PlayerId] = 0f;
+        if (target.Is(CustomRoles.Diseased))
+        {
+            if (Main.KilledDiseased.ContainsKey(killer.PlayerId))
+            {
+                // Key already exists, update the value
+                Main.KilledDiseased[killer.PlayerId] += 1;
+            }
+            else
+            {
+                // Key doesn't exist, add the key-value pair
+                Main.KilledDiseased.Add(killer.PlayerId, 1);
+            }
+        }
+        if (target.Is(CustomRoles.Antidote))
+        {
+            if (Main.KilledAntidote.ContainsKey(killer.PlayerId))
+            {
+                // Key already exists, update the value
+                Main.KilledAntidote[killer.PlayerId] += 1;// Main.AllPlayerKillCooldown.TryGetValue(killer.PlayerId, out float kcd) ? (kcd - Options.AntidoteCDOpt.GetFloat() > 0 ? kcd - Options.AntidoteCDOpt.GetFloat() : 0f) : 0f;
+            }
+            else
+            {
+                // Key doesn't exist, add the key-value pair
+                Main.KilledAntidote.Add(killer.PlayerId, 1);// Main.AllPlayerKillCooldown.TryGetValue(killer.PlayerId, out float kcd) ? (kcd - Options.AntidoteCDOpt.GetFloat() > 0 ? kcd - Options.AntidoteCDOpt.GetFloat() : 0f) : 0f);
+            }
+
+        }
 
         killer.ResetKillCooldown();
 
@@ -594,14 +621,14 @@ class CheckMurderPatch
                 return false;
             }
         }
-        if (target.Is(CustomRoles.Diseased))
-        {
+      //  if (target.Is(CustomRoles.Diseased))
+      //  {
             
-      //      killer.RpcGuardAndKill(killer);
-         //   killer.SetKillCooldownV3(Main.AllPlayerKillCooldown[killer.PlayerId] *= Options.DiseasedMultiplier.GetFloat());
-         //   killer.ResetKillCooldown();
-        //    killer.SyncSettings();
-        }
+      ////      killer.RpcGuardAndKill(killer);
+      //   //   killer.SetKillCooldownV3(Main.AllPlayerKillCooldown[killer.PlayerId] *= Options.DiseasedMultiplier.GetFloat());
+      //   //   killer.ResetKillCooldown();
+      //  //    killer.SyncSettings();
+      //  }
         if (Main.ForCrusade.Contains(target.PlayerId))
         {
             foreach (var player in Main.AllPlayerControls)

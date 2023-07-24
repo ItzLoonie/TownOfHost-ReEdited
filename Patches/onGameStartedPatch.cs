@@ -62,6 +62,7 @@ internal class ChangeRoleSettings
             Main.KillGhoul = new();
             Main.CyberStarDead = new();
             Main.KilledDiseased = new();
+            Main.KilledAntidote = new();
             Main.WorkaholicAlive = new();
             Main.BaitAlive = new();
             Main.BoobyTrapBody = new();

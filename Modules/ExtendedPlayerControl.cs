@@ -843,6 +843,18 @@ static class ExtendedPlayerControl
         }
         if (player.PlayerId == LastImpostor.currentId)
             LastImpostor.SetKillCooldown();
+        if (Main.KilledDiseased.ContainsKey(player.PlayerId))
+        {
+            Main.AllPlayerKillCooldown[player.PlayerId] = Main.AllPlayerKillCooldown[player.PlayerId] + Main.KilledDiseased[player.PlayerId] * Options.DiseasedCDOpt.GetFloat();
+            Logger.Info($"kill cd of player set to {Main.AllPlayerKillCooldown[player.PlayerId]}", "Diseased");
+        }
+        if (Main.KilledAntidote.ContainsKey(player.PlayerId))
+        {
+            var kcd = Main.AllPlayerKillCooldown[player.PlayerId] - Main.KilledAntidote[player.PlayerId] * Options.AntidoteCDOpt.GetFloat();
+            if (kcd < 0) kcd = 0;
+            Main.AllPlayerKillCooldown[player.PlayerId] = kcd;
+            Logger.Info($"kill cd of player set to {Main.AllPlayerKillCooldown[player.PlayerId]}", "Antidote");
+        }
     }
     public static void TrapperKilled(this PlayerControl killer, PlayerControl target)
     {
