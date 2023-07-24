@@ -1394,6 +1394,18 @@ public static class Options
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 154, 206, byte.MaxValue));
 
+        SetupAdtRoleOptions(222420, CustomRoles.Antidote, canSetNum: true);
+        ImpCanBeAntidote = BooleanOptionItem.Create(222421, "ImpCanBeAntidote", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Antidote]);
+        CrewCanBeAntidote = BooleanOptionItem.Create(222422, "CrewCanBeAntidote", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Antidote]);
+        NeutralCanBeAntidote = BooleanOptionItem.Create(222423, "NeutralCanBeAntidote", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Antidote]);
+        AntidoteCDOpt = FloatOptionItem.Create(222424, "AntidoteCDOpt", new(0f, 999f, 1f), 5f, TabGroup.Addons, false)
+            .SetParent(Options.CustomRoleSpawnChances[CustomRoles.Antidote])
+            .SetValueFormat(OptionFormat.Seconds);
+        AntidoteCDReset = BooleanOptionItem.Create(222425, "AntidoteCDReset", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Antidote]);
         SetupAdtRoleOptions(13600, CustomRoles.Autopsy, canSetNum: true);
         ImpCanBeAutopsy = BooleanOptionItem.Create(13610, "ImpCanBeAutopsy", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Autopsy]);
@@ -1540,6 +1552,18 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Diseased]);
         NeutralCanBeDiseased = BooleanOptionItem.Create(15362, "NeutralCanBeDiseased", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Diseased]); */
+        SetupAdtRoleOptions(111420, CustomRoles.Diseased, canSetNum: true);
+        ImpCanBeDiseased = BooleanOptionItem.Create(111421, "ImpCanBeDiseased", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Diseased]);
+        CrewCanBeDiseased = BooleanOptionItem.Create(111422, "CrewCanBeDiseased", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Diseased]);
+        NeutralCanBeDiseased = BooleanOptionItem.Create(111423, "NeutralCanBeDiseased", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Diseased]);
+        DiseasedCDOpt = FloatOptionItem.Create(111424, "DiseasedCDOpt", new(0f, 999f, 1f), 45f, TabGroup.Addons, false)
+            .SetParent(Options.CustomRoleSpawnChances[CustomRoles.Diseased])
+            .SetValueFormat(OptionFormat.Seconds);
+        DiseasedCDReset = BooleanOptionItem.Create(111425, "DiseasedCDReset", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Diseased]);
         SetupAdtRoleOptions(15300, CustomRoles.Unreportable, canSetNum: true);
         ImpCanBeUnreportable = BooleanOptionItem.Create(15310, "ImpCanBeUnreportable", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Unreportable]);
@@ -1637,31 +1661,9 @@ public static class Options
             .SetColor(new Color32(127, 140, 141, byte.MaxValue));
         SetupLoversRoleOptionsToggle(16200);
 
-        SetupAdtRoleOptions(111420, CustomRoles.Diseased, canSetNum: true);
-        ImpCanBeDiseased = BooleanOptionItem.Create(111421, "ImpCanBeDiseased", true, TabGroup.Addons, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Diseased]);
-        CrewCanBeDiseased = BooleanOptionItem.Create(111422, "CrewCanBeDiseased", true, TabGroup.Addons, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Diseased]);
-        NeutralCanBeDiseased = BooleanOptionItem.Create(111423, "NeutralCanBeDiseased", true, TabGroup.Addons, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Diseased]);
-        DiseasedCDOpt = FloatOptionItem.Create(111424, "DiseasedCDOpt", new(0f, 999f, 1f), 5f, TabGroup.Addons, false)
-            .SetParent(Options.CustomRoleSpawnChances[CustomRoles.Diseased])
-            .SetValueFormat(OptionFormat.Seconds);
-        DiseasedCDReset = BooleanOptionItem.Create(111425, "DiseasedCDReset", true, TabGroup.Addons, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Diseased]);
+        
 
-        SetupAdtRoleOptions(222420, CustomRoles.Antidote, canSetNum: true);
-        ImpCanBeAntidote = BooleanOptionItem.Create(222421, "ImpCanBeAntidote", true, TabGroup.Addons, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Antidote]);
-        CrewCanBeAntidote = BooleanOptionItem.Create(222422, "CrewCanBeAntidote", true, TabGroup.Addons, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Antidote]);
-        NeutralCanBeAntidote = BooleanOptionItem.Create(222423, "NeutralCanBeAntidote", true, TabGroup.Addons, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Antidote]);
-        AntidoteCDOpt = FloatOptionItem.Create(222424, "AntidoteCDOpt", new(0f, 999f, 1f), 5f, TabGroup.Addons, false)
-            .SetParent(Options.CustomRoleSpawnChances[CustomRoles.Antidote])
-            .SetValueFormat(OptionFormat.Seconds);
-        AntidoteCDReset = BooleanOptionItem.Create(222425, "AntidoteCDReset", true, TabGroup.Addons, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Antidote]);
+        
 
         /*   SetupAdtRoleOptions(6050900, CustomRoles.Rogue, canSetNum: true);
            ImpCanBeRogue = BooleanOptionItem.Create(6050903, "ImpCanBeRogue", true, TabGroup.Addons, false)
