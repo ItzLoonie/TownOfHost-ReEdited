@@ -18,6 +18,9 @@ class CheckForEndVotingPatch
     public static bool Prefix(MeetingHud __instance)
     {
         if (!AmongUsClient.Instance.AmHost) return true;
+
+        if (Medic.IsEnable) Medic.OnCheckMark();
+
         //Meeting Skip with vote counting on keystroke (m + delete)
         var shouldSkip = false;
         if (Input.GetKeyDown(KeyCode.F6)) 
@@ -416,14 +419,6 @@ class CheckForEndVotingPatch
         }
 
     EndOfSession:
-
-        if (Medic.IsEnable) Medic.OnCheckMark();
-
-        if (Doomsayer.IsEnable && Doomsayer.AdvancedSettings.GetBool())
-        {
-            Doomsayer.HideGuesserUI = false;
-            Doomsayer.GuessesCountPerMeeting = 0;
-        }
 
         name += "<size=0>";
         new LateTask(() =>
