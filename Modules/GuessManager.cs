@@ -1210,11 +1210,12 @@ public static class GuessManager
         }
     }
 
+    // Modded non-host client guess role/add-on
     private static void SendRPC(int playerId, CustomRoles role)
     {
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.Guess, SendOption.Reliable, -1);
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (int)CustomRPC.Guess, SendOption.Reliable, -1);
         writer.Write(playerId);
-        writer.Write((byte)role);
+        writer.Write((int)role);
         AmongUsClient.Instance.FinishRpcImmediately(writer);
     }
     public static void ReceiveRPC(MessageReader reader, PlayerControl pc)
@@ -1225,8 +1226,8 @@ public static class GuessManager
         int PlayerId = reader.ReadInt32();
         Logger.Msg($"{PlayerId}", "Player Id");
 
-        CustomRoles role = (CustomRoles)reader.ReadUInt32();
-        Logger.Msg($"{role}", "Role UInt32");
+        CustomRoles role = (CustomRoles)reader.ReadInt32();
+        Logger.Msg($"{role}", "Role Int32");
         Logger.Msg($"{GetString(role.ToString())}", "Role String");
 
         GuesserMsg(pc, $"/bt {PlayerId} {GetString(role.ToString())}", true);
