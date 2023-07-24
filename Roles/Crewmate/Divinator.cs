@@ -68,144 +68,230 @@ public static class Divinator
             string text = target.GetCustomRole() switch
             {
                 
+                CustomRoles.CrewmateTOHE or
+                CustomRoles.EngineerTOHE or
+                CustomRoles.ScientistTOHE or
+                CustomRoles.ImpostorTOHE or
+                CustomRoles.ShapeshifterTOHE
+                => "Result0",
 
-                CustomRoles.Veteran or
-                CustomRoles.Glitch or
-                CustomRoles.CursedWolf or
-                CustomRoles.Jinx
-                => "Reflect",
-
-                CustomRoles.SuperStar or
-                CustomRoles.Farseer or
-                CustomRoles.Ritualist or
-                CustomRoles.EvilDiviner or
-                CustomRoles.Divinator
-                => "Reveal",
-
-                CustomRoles.ShapeshifterTOHE or
-                CustomRoles.ShapeMaster or
-                CustomRoles.Chameleon or
-                CustomRoles.Wraith or
-                CustomRoles.Morphling or
-                CustomRoles.Swooper
-                => "Disguise",
-
-                CustomRoles.Sidekick or
-                CustomRoles.QuickShooter or
-                CustomRoles.Miner or
-                CustomRoles.Escapee or
-                CustomRoles.CyberStar or
-                CustomRoles.Bard or
-                CustomRoles.Provocateur or
-                CustomRoles.Parasite or
-                CustomRoles.Refugee or
-                CustomRoles.God or
-                CustomRoles.Convict or
+                CustomRoles.Amnesiac or
                 CustomRoles.CopyCat or
-                CustomRoles.Jester
-                => "Special",
+                CustomRoles.Eraser or
+                CustomRoles.Refugee or
+                CustomRoles.AntiAdminer or
+                CustomRoles.Dazzler or
+                CustomRoles.Grenadier
+                => "Result1",
 
-                CustomRoles.Doctor or
-                CustomRoles.Medic or
-                CustomRoles.Wildling or
+                CustomRoles.Crusader or
+                CustomRoles.Farseer or
+                CustomRoles.Arsonist or
+                CustomRoles.Assassin or
+                CustomRoles.BallLightning or
+                CustomRoles.Collector
+                => "Result2",
+
+                CustomRoles.Capitalism or
+                CustomRoles.Counterfeiter or
+                CustomRoles.Greedier or
+                CustomRoles.Merchant or
+                CustomRoles.Trickster
+                => "Result3",
+
+                CustomRoles.Pestilence or
+                CustomRoles.PlagueBearer or
+                CustomRoles.Observer or
+                CustomRoles.BloodKnight or
                 CustomRoles.Guardian or
-                CustomRoles.BloodKnight
-                => "Protect",
+                CustomRoles.Wildling
+                => "Result4",
 
-                CustomRoles.Phantom or
-                CustomRoles.Terrorist or
-                CustomRoles.Retributionist or
-                CustomRoles.Masochist or
-                CustomRoles.Mafia
-                => "Death",
+                CustomRoles.Bard or
+                CustomRoles.Juggernaut or
+                CustomRoles.Reverie or
+                CustomRoles.Sans or
+                CustomRoles.Minimalism or
+                CustomRoles.OverKiller
+                => "Result5",
 
-                CustomRoles.Opportunist or
-                CustomRoles.NWitch or
-                CustomRoles.Sunnyboy or
-                CustomRoles.Pursuer
-                => "Careless",
+                CustomRoles.Bloodhound or
+                CustomRoles.EvilTracker or
+                CustomRoles.Mortician or
+                CustomRoles.Tracefinder or
+                CustomRoles.Tracker
+                => "Result6",
 
-                CustomRoles.Witch or
-                CustomRoles.HexMaster or
-                CustomRoles.Vampire or
-                CustomRoles.Sniper or
+
+                CustomRoles.Bodyguard or
                 CustomRoles.Bomber or
-                CustomRoles.Nuker or
-                CustomRoles.Warlock or
-                CustomRoles.Poisoner or
-                CustomRoles.Puppeteer
-                => "IndirectKill",
+                CustomRoles.FireWorks or
+                CustomRoles.Nuker
+                => "Result7",
+
+                CustomRoles.BountyHunter or
+                CustomRoles.Detective or
+                CustomRoles.FFF or
+                CustomRoles.Cleaner or
+                CustomRoles.Medusa or
+                CustomRoles.Psychic
+                => "Result8",
+
+                CustomRoles.Convict or
+                CustomRoles.Executioner or
+                CustomRoles.Lawyer or
+                CustomRoles.Snitch or
+                CustomRoles.Disperser or
+                CustomRoles.Doctor
+                => "Result9",
+
+                CustomRoles.Councillor or
+                CustomRoles.Dictator or
+                CustomRoles.Judge or
+                CustomRoles.CursedSoul or
+                CustomRoles.CursedWolf
+                => "Result10",
+
+                CustomRoles.Addict or
+                CustomRoles.Escapee or
+                CustomRoles.Miner or
+                CustomRoles.Morphling
+                => "Result11",
+
+                CustomRoles.Gamer or
+                CustomRoles.Zombie or
+                CustomRoles.CyberStar or
+                CustomRoles.SuperStar or
+                CustomRoles.Deathpact or
+                CustomRoles.Devourer
+                => "Result12",
+
+                CustomRoles.God or
+                CustomRoles.Oracle or
+                CustomRoles.Visionary or
+                CustomRoles.ParityCop
+                => "Result13",
+
+                CustomRoles.Hacker or
+                CustomRoles.Mayor or
+                CustomRoles.Paranoia or
+                CustomRoles.Pickpocket or
+                CustomRoles.Vindicator
+                => "Result14",
+
+                CustomRoles.Infectious or
+                CustomRoles.Virus or
+                CustomRoles.Monarch or
+                CustomRoles.Revolutionist or
+                CustomRoles.Succubus
+                => "Result15",
+
+                CustomRoles.Innocent or
+                CustomRoles.Masochist or
+                CustomRoles.Inhibitor or
+                CustomRoles.SabotageMaster or
+                CustomRoles.Saboteur
+                => "Result16",
+
+                CustomRoles.Medic or
+                CustomRoles.Mario or
+                CustomRoles.Jester or
+                CustomRoles.Lurker or
+                CustomRoles.Sunnyboy
+                => "Result17",
+
+                CustomRoles.Mafia or
+                CustomRoles.Retributionist or
+                CustomRoles.Gangster or
+                CustomRoles.Glitch or
+                CustomRoles.Luckey or
+                CustomRoles.Underdog
+                => "Result18",
 
                 CustomRoles.EvilGuesser or
                 CustomRoles.NiceGuesser or
-                CustomRoles.Judge or
-                CustomRoles.Tracker or
-                CustomRoles.EvilTracker or
-                CustomRoles.Oracle or
-                CustomRoles.Councillor
-                => "Meeting",
-
-                CustomRoles.EngineerTOHE or
-                CustomRoles.SabotageMaster or
-                CustomRoles.Mario or
-                CustomRoles.Lurker
-                => "Vent",
-
-                CustomRoles.Mediumshiper or
-                CustomRoles.Mortician or
-                CustomRoles.Bloodhound or
-                CustomRoles.Vulture or
-                CustomRoles.Detective or
-                CustomRoles.Tracefinder
-                => "Body",
-
-                CustomRoles.Mayor or
-                CustomRoles.Vindicator or
-                CustomRoles.Pickpocket or
-                CustomRoles.Monarch
-                => "Vote",
-
-                CustomRoles.Transporter or
-                CustomRoles.Twister or
-                CustomRoles.Dazzler or
-                CustomRoles.Devourer
-                => "Chaos",
-
-                CustomRoles.Snitch or
-                CustomRoles.Marshall or
-                CustomRoles.Workaholic or
-                CustomRoles.Crewpostor
-                => "Task",
-
-                CustomRoles.Totocalcio or
-                CustomRoles.BountyHunter or
-                CustomRoles.Lawyer or
-                CustomRoles.Executioner
-                => "Target",
-
-                CustomRoles.Sheriff or
-                CustomRoles.SwordsMan or
-                CustomRoles.Camouflager
-                => "Kill",
-
-                CustomRoles.Dictator or
-                CustomRoles.Sans or
-                CustomRoles.Pestilence or
-                CustomRoles.Minimalism or
-                CustomRoles.Juggernaut
-                => "Power",
-
+                CustomRoles.DarkHide or
+                CustomRoles.Mare or
+                CustomRoles.Camouflager or
+                CustomRoles.Chameleon
+                => "Result19",
 
                 CustomRoles.Jackal or
-                CustomRoles.Infectious or
-                CustomRoles.Gangster or
-                CustomRoles.CursedSoul or
-                CustomRoles.Admirer or
-                CustomRoles.Virus or
-                CustomRoles.Succubus
-                => "Recruit",
+                CustomRoles.Sidekick or
+                CustomRoles.Maverick or
+                CustomRoles.Opportunist or
+                CustomRoles.Pursuer or
+                CustomRoles.Provocateur
+                => "Result20",
 
-                _ => "Basic",
+                CustomRoles.Poisoner or
+                CustomRoles.Vampire or
+                CustomRoles.DovesOfNeace or
+                CustomRoles.ImperiusCurse or
+                CustomRoles.Traitor
+                => "Result21",
+
+                CustomRoles.BoobyTrap or
+                CustomRoles.QuickShooter or
+                CustomRoles.NSerialKiller or
+                CustomRoles.Sheriff or
+                CustomRoles.Admirer or
+                CustomRoles.Warlock
+                => "Result22",
+
+                CustomRoles.Divinator or
+                CustomRoles.EvilDiviner or
+                CustomRoles.Ritualist or
+                CustomRoles.HexMaster or
+                CustomRoles.Witch
+                => "Result23",
+
+                CustomRoles.Needy or
+                CustomRoles.Totocalcio or
+                CustomRoles.Pelican or
+                CustomRoles.Scavenger or
+                CustomRoles.Vulture
+                => "Result24",
+
+                CustomRoles.Jinx or
+                CustomRoles.SwordsMan or
+                CustomRoles.Veteran or
+                CustomRoles.Hangman
+                => "Result25",
+
+                CustomRoles.Mediumshiper or
+                CustomRoles.Spiritcaller or
+                CustomRoles.Spiritualist or
+                CustomRoles.Parasite or
+                CustomRoles.Swooper or
+                CustomRoles.Wraith
+                => "Result26",
+
+                CustomRoles.TimeManager or
+                CustomRoles.TimeMaster or
+                CustomRoles.TimeThief or
+                CustomRoles.ShapeMaster or
+                CustomRoles.Sniper
+                => "Result27",
+
+                CustomRoles.Puppeteer or
+                CustomRoles.NWitch or
+                CustomRoles.Deputy or
+                CustomRoles.Transporter or
+                CustomRoles.Twister or
+                CustomRoles.SerialKiller
+                => "Result28",
+
+                CustomRoles.Crewpostor or
+                CustomRoles.Marshall or
+                CustomRoles.Workaholic or
+                CustomRoles.Phantom or
+                CustomRoles.Terrorist
+                => "Result29",
+
+
+
+                _ => "Null",
             };
             msg = string.Format(GetString("DivinatorCheck." + text), target.GetRealName());
         }
