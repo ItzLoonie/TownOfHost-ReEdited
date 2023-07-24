@@ -21,7 +21,7 @@ public static class AntiBlackout
     ///<summary>
     ///AntiBlackout内の処理が必要であるかどうか
     ///</summary>
-    public static bool IsRequired => Options.NoGameEnd.GetBool() || Jackal.IsEnable || Pelican.IsEnable || Gamer.IsEnable || BloodKnight.IsEnable || Succubus.IsEnable || Poisoner.IsEnable || Infectious.IsEnable || Juggernaut.IsEnable || Ritualist.IsEnable() || Virus.IsEnable || Wraith.IsEnable || HexMaster.IsEnable || Traitor.IsEnable || Pickpocket.IsEnable || NSerialKiller.IsEnable || NWitch.IsEnable  || Maverick.IsEnable || Jinx.IsEnable || Medusa.IsEnable || Spiritcaller.IsEnable || CustomRoles.Sidekick.RoleExist();
+    public static bool IsRequired => Options.NoGameEnd.GetBool() || Jackal.IsEnable || Pelican.IsEnable || Gamer.IsEnable || BloodKnight.IsEnable || Succubus.IsEnable || Poisoner.IsEnable || Infectious.IsEnable || Juggernaut.IsEnable || Ritualist.IsEnable() || Virus.IsEnable || Wraith.IsEnable || HexMaster.IsEnable || Traitor.IsEnable || Pickpocket.IsEnable || NSerialKiller.IsEnable || NWitch.IsEnable  || Maverick.IsEnable || Jinx.IsEnable || Medusa.IsEnable || Spiritcaller.IsEnable || PlagueBearer.IsEnable || CustomRoles.Sidekick.RoleExist() || CustomRoles.Pestilence.RoleExist() || CustomRoles.Arsonist.RoleExist();
     ///<summary>
     ///インポスター以外の人数とインポスターの人数の差
     ///</summary>

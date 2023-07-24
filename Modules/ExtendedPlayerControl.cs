@@ -432,6 +432,7 @@ static class ExtendedPlayerControl
     }
     public static bool CanUseKillButton(this PlayerControl pc)
     {
+        int playerCount = Main.AllAlivePlayerControls.Count();
         if (!pc.IsAlive() || pc.Data.Role.Role == RoleTypes.GuardianAngel || Pelican.IsEaten(pc.PlayerId)) return false;
 
         return pc.GetCustomRole() switch
@@ -442,10 +443,12 @@ static class ExtendedPlayerControl
             CustomRoles.FireWorks => FireWorks.CanUseKillButton(pc),
             CustomRoles.Mafia => Utils.CanMafiaKill(),
             CustomRoles.Mare => pc.IsAlive(),
+            CustomRoles.Underdog => playerCount <= Options.UnderdogMaximumPlayersNeededToKill.GetInt(),
             CustomRoles.Inhibitor => !Utils.IsActive(SystemTypes.Electrical) && !Utils.IsActive(SystemTypes.Laboratory) && !Utils.IsActive(SystemTypes.Comms) && !Utils.IsActive(SystemTypes.LifeSupp) && !Utils.IsActive(SystemTypes.Reactor),
             CustomRoles.Saboteur => Utils.IsActive(SystemTypes.Electrical) || Utils.IsActive(SystemTypes.Laboratory) || Utils.IsActive(SystemTypes.Comms) || Utils.IsActive(SystemTypes.LifeSupp) || Utils.IsActive(SystemTypes.Reactor),
             CustomRoles.Sniper => Sniper.CanUseKillButton(pc),
             CustomRoles.Sheriff => Sheriff.CanUseKillButton(pc.PlayerId),
+            CustomRoles.Crusader => Crusader.CanUseKillButton(pc.PlayerId),
             CustomRoles.CopyCat => pc.IsAlive(),
             CustomRoles.Pelican => pc.IsAlive(),
             CustomRoles.Arsonist => !pc.IsDouseDone(),
@@ -456,6 +459,7 @@ static class ExtendedPlayerControl
             CustomRoles.HexMaster => pc.IsAlive(),
             CustomRoles.Poisoner => pc.IsAlive(),
             CustomRoles.Juggernaut => pc.IsAlive(),
+            CustomRoles.Reverie => pc.IsAlive(),
             CustomRoles.Ritualist => pc.IsAlive(),
             CustomRoles.NSerialKiller => pc.IsAlive(),
             CustomRoles.Medusa => pc.IsAlive(),
@@ -521,9 +525,11 @@ static class ExtendedPlayerControl
             CustomRoles.Totocalcio or
             CustomRoles.Succubus or
             CustomRoles.CursedSoul or
+            CustomRoles.PlagueBearer or
             CustomRoles.Admirer or
             CustomRoles.Amnesiac or
             CustomRoles.Glitch or
+            CustomRoles.Crusader or
             CustomRoles.Wildling
             => false,
 
@@ -531,6 +537,7 @@ static class ExtendedPlayerControl
             CustomRoles.Sidekick => Jackal.CanVentSK.GetBool(),
             CustomRoles.Poisoner => Poisoner.CanVent.GetBool(),
             CustomRoles.NSerialKiller => NSerialKiller.CanVent.GetBool(),
+            CustomRoles.Pestilence => PlagueBearer.PestilenceCanVent.GetBool(),
             CustomRoles.Medusa => Medusa.CanVent.GetBool(),
             CustomRoles.Traitor => Traitor.CanVent.GetBool(),
             CustomRoles.NWitch => NWitch.CanVent.GetBool(),
@@ -638,6 +645,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Revolutionist:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.RevolutionistCooldown.GetFloat();
+                break;
+            case CustomRoles.Underdog:
+                Main.AllPlayerKillCooldown[player.PlayerId] = Options.UnderdogKillCooldown.GetFloat();
                 break;
             case CustomRoles.Jackal:
                 Jackal.SetKillCooldown(player.PlayerId);
@@ -767,6 +777,9 @@ static class ExtendedPlayerControl
             case CustomRoles.Juggernaut:
                 Juggernaut.SetKillCooldown(player.PlayerId);
                 break;
+            case CustomRoles.Reverie:
+                Reverie.SetKillCooldown(player.PlayerId);
+                break;
             case CustomRoles.Hacker:
                 Hacker.SetKillCooldown(player.PlayerId);
                 break;
@@ -823,6 +836,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Lurker:
                 Lurker.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Crusader:
+                Crusader.SetKillCooldown(player.PlayerId);
                 break;
         }
         if (player.PlayerId == LastImpostor.currentId)

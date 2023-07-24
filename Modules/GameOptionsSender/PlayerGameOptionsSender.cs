@@ -133,6 +133,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Pelican:
             case CustomRoles.Revolutionist:
             case CustomRoles.Medic:
+            case CustomRoles.Crusader:
             case CustomRoles.Provocateur:
             case CustomRoles.Monarch:
             case CustomRoles.Deputy:
@@ -142,6 +143,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Admirer:
             case CustomRoles.Amnesiac:
                 opt.SetVision(false);
+                break;
+            case CustomRoles.Pestilence:
+                opt.SetVision(PlagueBearer.PestilenceHasImpostorVision.GetBool());
                 break;
             case CustomRoles.Refugee:
                 opt.SetVision(true);
@@ -225,6 +229,14 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 AURoleOptions.EngineerCooldown = Options.GrenadierSkillCooldown.GetFloat();
                 AURoleOptions.EngineerInVentMaxTime = 1;
                 break;
+     /*       case CustomRoles.Flashbang:
+                AURoleOptions.ShapeshifterCooldown = Options.FlashbangSkillCooldown.GetFloat();
+                AURoleOptions.ShapeshifterDuration = Options.FlashbangSkillDuration.GetFloat();
+                break; */
+            case CustomRoles.TimeMaster:
+                AURoleOptions.EngineerCooldown = Options.TimeMasterSkillCooldown.GetFloat();
+                AURoleOptions.EngineerInVentMaxTime = 1;
+                break;
             case CustomRoles.FFF:
             case CustomRoles.Pursuer:
                 opt.SetVision(true);
@@ -261,6 +273,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
             case CustomRoles.Juggernaut:
                 opt.SetVision(Juggernaut.HasImpostorVision.GetBool());
+                break;
+            case CustomRoles.Reverie:
+                opt.SetVision(false);
                 break;
             case CustomRoles.Infectious:
                 opt.SetVision(Infectious.HasImpostorVision.GetBool());
@@ -357,6 +372,17 @@ public class PlayerGameOptionsSender : GameOptionsSender
             opt.SetFloat(FloatOptionNames.CrewLightMod, Options.BewilderVision.GetFloat());
             opt.SetFloat(FloatOptionNames.ImpostorLightMod, Options.BewilderVision.GetFloat());
         }
+        if (Main.AllPlayerControls.Where(x => x.Is(CustomRoles.Ghoul) && !x.IsAlive() && x.GetRealKiller()?.PlayerId == player.PlayerId).Count() > 0)
+        {
+            Main.KillGhoul.Add(player.PlayerId);
+        }
+   /*     if (Main.AllPlayerControls.Where(x => x.Is(CustomRoles.Diseased) && !x.IsAlive() && x.GetRealKiller()?.PlayerId == player.PlayerId).Count() > 0)
+        {
+            Main.AllPlayerKillCooldown[player.PlayerId] *= Options.DiseasedMultiplier.GetFloat();
+            player.SetKillCooldownV3();
+            player.ResetKillCooldown();
+        //    player.SyncSettings();
+        } */
 
         // Ͷ��ɵ�ϵ�������������
         if (
@@ -373,6 +399,12 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 opt.SetFloat(FloatOptionNames.ImpostorLightMod, Options.GrenadierCauseVision.GetFloat());
             }
         }
+   /*     if ((Main.FlashbangInProtect.Count >= 1 && Main.ForFlashbang.Contains(player.PlayerId) && (!player.GetCustomRole().IsCrewmate())))  
+        {
+                opt.SetVision(false);
+                opt.SetFloat(FloatOptionNames.CrewLightMod, Options.FlashbangVision.GetFloat());
+                opt.SetFloat(FloatOptionNames.ImpostorLightMod, Options.FlashbangVision.GetFloat());
+        } */
 
         Dazzler.SetDazzled(player, opt);
         Deathpact.SetDeathpactVision(player, opt);
@@ -390,7 +422,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
                     Main.AllPlayerSpeed[player.PlayerId] = Options.FlashmanSpeed.GetFloat();
                     break;
                 case CustomRoles.Lighter:
-                    opt.SetVision(false);
+                    opt.SetVision(true);
                     opt.SetFloat(FloatOptionNames.CrewLightMod, Options.LighterVision.GetFloat());
                     opt.SetFloat(FloatOptionNames.ImpostorLightMod, Options.LighterVision.GetFloat());
                     break;
@@ -398,6 +430,11 @@ public class PlayerGameOptionsSender : GameOptionsSender
                     opt.SetVision(false);
                     opt.SetFloat(FloatOptionNames.CrewLightMod, Options.BewilderVision.GetFloat());
                     opt.SetFloat(FloatOptionNames.ImpostorLightMod, Options.BewilderVision.GetFloat());
+                    break;
+                case CustomRoles.Sunglasses:
+                    opt.SetVision(false);
+                    opt.SetFloat(FloatOptionNames.CrewLightMod, Options.SunglassesVision.GetFloat());
+                    opt.SetFloat(FloatOptionNames.ImpostorLightMod, Options.SunglassesVision.GetFloat());
                     break;
                 case CustomRoles.Reach:
                     opt.SetInt(Int32OptionNames.KillDistance, 2);

@@ -404,6 +404,39 @@ public class TaskState
                     player.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Impostor), string.Format(Translator.GetString("ErrorTeleport"), player.GetRealName())));
                 }
             }
+            if (player.Is(CustomRoles.Unlucky) && player.IsAlive())
+            {
+                var Ue = IRandom.Instance;
+                if (Ue.Next(0, 100) < Options.UnluckyTaskSuicideChance.GetInt())
+                {
+                    player.RpcMurderPlayerV3(player);
+                    Main.PlayerStates[player.PlayerId].deathReason = PlayerState.DeathReason.Suicide;
+
+                }
+            }
+
+            if (player.Is(CustomRoles.Ghoul) && (CompletedTasksCount + 1) >= AllTasksCount && player.IsAlive())
+            new LateTask(() =>
+            {
+                player.RpcMurderPlayerV3(player);
+                Main.PlayerStates[player.PlayerId].deathReason = PlayerState.DeathReason.Suicide;
+            }, 0.2f, "Ghoul Suicide");
+            if (player.Is(CustomRoles.Ghoul) && (CompletedTasksCount + 1) >= AllTasksCount && !player.IsAlive())
+            {
+                foreach (var pc in Main.AllPlayerControls)
+                {
+                    if (!pc.Is(CustomRoles.Pestilence))
+                    {
+                        if (Main.KillGhoul.Contains(pc.PlayerId) && player.PlayerId != pc.PlayerId && pc.IsAlive())
+                        {
+                            player.RpcMurderPlayerV3(pc);
+                            Main.PlayerStates[pc.PlayerId].deathReason = PlayerState.DeathReason.Kill;                        
+                        }
+                    }
+
+                }
+
+            }
 
             //工作狂做完了
             if (player.Is(CustomRoles.Workaholic) && (CompletedTasksCount + 1) >= AllTasksCount
