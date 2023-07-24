@@ -112,7 +112,9 @@ public class Main : BasePlugin
     public static List<byte> BaitAlive = new();
     public static List<byte> BoobyTrapBody = new();
     public static List<byte> BoobyTrapKiller = new();
-    public static List<byte> KilledDiseased = new();
+    //public static List<byte> KilledDiseased = new();
+    public static Dictionary<byte, int> KilledDiseased = new();
+    public static Dictionary<byte, int> KilledAntidote = new();
     //public static List<byte> ForFlashbang = new();
     public static Dictionary<byte, byte> KillerOfBoobyTrapBody = new();
     public static Dictionary<byte, string> DetectiveNotify = new();
@@ -441,6 +443,8 @@ public class Main : BasePlugin
                 {CustomRoles.Admired, "#ee43c3"},
                 {CustomRoles.Glow, "#E2F147"},
                 {CustomRoles.Diseased, "#AAAAAA"},
+                {CustomRoles.Antidote,"#FF9876"},
+
                 {CustomRoles.Swift, "#ff1919"},
                 {CustomRoles.Ghoul, "#B22222"},
              //   {CustomRoles.QuickFix, "#3333ff"},
@@ -740,6 +744,7 @@ public enum CustomRoles
     Admired,
     Glow,
     Diseased,
+    Antidote,
     Swift,
     Ghoul,
     // QuickFix
