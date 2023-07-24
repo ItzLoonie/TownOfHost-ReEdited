@@ -2,6 +2,7 @@
 using Hazel;
 using Rewired.UI.ControlMapper;
 using System;
+using System.Linq;
 using TOHE.Modules;
 using UnityEngine;
 using static TOHE.Translator;
@@ -22,6 +23,19 @@ public static class RetributionistRevengeManager
             if (!isUI) Utils.SendMessage(GetString("RetributionistKillDisable"), pc.PlayerId);
             else pc.ShowPopUp(GetString("RetributionistKillDisable"));
             return true;
+        }
+        int playerCount = Main.AllAlivePlayerControls.Count();
+        {
+            if (playerCount <= Options.MinimumPlayersAliveToRetri.GetInt())
+            {
+            if (pc.Data.IsDead)
+                {
+                    if (!isUI) Utils.SendMessage(GetString("RetributionistKillTooManyDead"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("RetributionistKillTooManyDead"));
+                    return true;
+                }
+            }
+         
         }
         if (Options.CanOnlyRetributeWithTasksDone.GetBool())
         {
@@ -79,6 +93,12 @@ public static class RetributionistRevengeManager
         {
             if (!isUI) Utils.SendMessage(GetString("RetributionistKillDead"), pc.PlayerId);
             else pc.ShowPopUp(GetString("RetributionistKillDead"));
+            return true;
+        }
+        if (target.Is(CustomRoles.Pestilence))
+        {
+            if (!isUI) Utils.SendMessage(GetString("PestilenceImmune"), pc.PlayerId);
+            else pc.ShowPopUp(GetString("PestilenceImmune"));
             return true;
         }
 

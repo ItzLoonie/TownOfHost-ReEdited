@@ -94,7 +94,7 @@ public static class DevManager
         DevUserList.Add(new(code: "straymovie#6453", color: "#F6B05E", tag: "Website Developer", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: "Moe")); //Moe
         DevUserList.Add(new(code: "singlesign#1823", color: "#ffb6cd", tag: "Princess", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: "Lauryn")); //Lauryn
         // Other
-        DevUserList.Add(new(code: "peakcrown#8292", color: null, tag: null, isUp: true, isDev: false, deBug: false, colorCmd: true, upName: null)); //Hakaka
+        DevUserList.Add(new(code: "peakcrown#8292", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: null)); //Hakaka
 
     }
     public static bool IsDevUser(this string code) => DevUserList.Any(x => x.Code == code);

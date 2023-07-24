@@ -730,6 +730,9 @@ internal static class RPC
             case CustomRoles.Sniper:
                 Sniper.Add(targetId);
                 break;
+            case CustomRoles.Crusader:
+                Crusader.Add(targetId);
+                break;
             case CustomRoles.Mare:
                 Mare.Add(targetId);
                 break;
@@ -853,6 +856,9 @@ internal static class RPC
                 break;
             case CustomRoles.Juggernaut:
                 Juggernaut.Add(targetId);
+                break;
+            case CustomRoles.Reverie:
+                Reverie.Add(targetId);
                 break;
             case CustomRoles.Hacker:
                 Hacker.Add(targetId);

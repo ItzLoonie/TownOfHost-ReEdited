@@ -16,7 +16,7 @@ public static class CopyCat
     private static readonly int Id = 666420;
     public static List<byte> playerIdList = new();
     public static Dictionary<byte, float> CurrentKillCooldown = new();
-    public static Dictionary<byte, float> MiscopyLimit = new();
+    public static Dictionary<byte, int> MiscopyLimit = new();
 
     public static OptionItem KillCooldown;
     public static OptionItem CanKill;

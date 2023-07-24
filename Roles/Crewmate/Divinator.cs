@@ -18,12 +18,12 @@ public static class Divinator
 
     public static void SetupCustomOption()
     {
-        SetupRoleOptions(Id, TabGroup.OtherRoles, CustomRoles.Divinator);
-        CheckLimitOpt = IntegerOptionItem.Create(Id + 10, "DivinatorSkillLimit", new(1, 990, 1), 5, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Divinator])
+        SetupRoleOptions(Id, TabGroup.CrewmateRoles, CustomRoles.Divinator);
+        CheckLimitOpt = IntegerOptionItem.Create(Id + 10, "DivinatorSkillLimit", new(1, 990, 1), 5, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Divinator])
             .SetValueFormat(OptionFormat.Times);
-        AccurateCheckMode = BooleanOptionItem.Create(Id + 12, "AccurateCheckMode", false, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Divinator]);
-        HideVote = BooleanOptionItem.Create(Id + 14, "DivinatorHideVote", false, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Divinator]);
-        OverrideTasksData.Create(Id + 20, TabGroup.OtherRoles, CustomRoles.Divinator);
+        AccurateCheckMode = BooleanOptionItem.Create(Id + 12, "AccurateCheckMode", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Divinator]);
+        HideVote = BooleanOptionItem.Create(Id + 14, "DivinatorHideVote", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Divinator]);
+        OverrideTasksData.Create(Id + 20, TabGroup.CrewmateRoles, CustomRoles.Divinator);
     }
     public static void Init()
     {
@@ -88,7 +88,7 @@ public static class Divinator
                 CustomRoles.Wraith or
                 CustomRoles.Morphling or
                 CustomRoles.Swooper
-                => "Conceal",
+                => "Disguise",
 
                 CustomRoles.Sidekick or
                 CustomRoles.QuickShooter or
@@ -101,6 +101,7 @@ public static class Divinator
                 CustomRoles.Refugee or
                 CustomRoles.God or
                 CustomRoles.Convict or
+                CustomRoles.CopyCat or
                 CustomRoles.Jester
                 => "Special",
 
@@ -114,6 +115,7 @@ public static class Divinator
                 CustomRoles.Phantom or
                 CustomRoles.Terrorist or
                 CustomRoles.Retributionist or
+                CustomRoles.Masochist or
                 CustomRoles.Mafia
                 => "Death",
 
@@ -154,8 +156,7 @@ public static class Divinator
                 CustomRoles.Bloodhound or
                 CustomRoles.Vulture or
                 CustomRoles.Detective or
-                CustomRoles.Tracefinder or
-                CustomRoles.Monarch
+                CustomRoles.Tracefinder
                 => "Body",
 
                 CustomRoles.Mayor or
@@ -189,6 +190,7 @@ public static class Divinator
 
                 CustomRoles.Dictator or
                 CustomRoles.Sans or
+                CustomRoles.Pestilence or
                 CustomRoles.Minimalism or
                 CustomRoles.Juggernaut
                 => "Power",

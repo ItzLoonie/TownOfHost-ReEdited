@@ -73,6 +73,12 @@ public static class MafiaRevengeManager
             else pc.ShowPopUp(GetString("MafiaKillDead"));
             return true;
         }
+        if (target.Is(CustomRoles.Pestilence))
+        {
+            if (!isUI) Utils.SendMessage(GetString("PestilenceImmune"), pc.PlayerId);
+            else pc.ShowPopUp(GetString("PestilenceImmune"));
+            return true;
+        }
 
         Logger.Info($"{pc.GetNameWithRole()} 复仇了 {target.GetNameWithRole()}", "Mafia");
 

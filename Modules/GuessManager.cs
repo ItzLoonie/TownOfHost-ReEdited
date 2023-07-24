@@ -217,6 +217,12 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("GuessKnighted"));
                     return true;
                 }
+                if (pc.Is(CustomRoles.Masochist))
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessMasochistBlocked"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessMasochistBlocked"));
+                    return true;
+                }
                 if (Options.MayorRevealWhenDoneTasks.GetBool())
                 {
                     if (target.Is(CustomRoles.Mayor) && target.GetPlayerTaskState().IsTaskFinished)
@@ -268,11 +274,36 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("GuessOnbound"));
                     return true;
                 }
+                if (target.Is(CustomRoles.Pestilence))
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessPestilence"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessPestilence"));
+                    guesserSuicide = true;
+                }
                 if (role == CustomRoles.Phantom && target.Is(CustomRoles.Phantom))
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessPhantom"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessPhantom"));
                     return true;
+                }
+                if (target.Is(CustomRoles.Masochist))
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessMasochist"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessMasochist"));
+                    Main.MasochistKillMax[target.PlayerId]++;
+                    
+                    if (Main.MasochistKillMax[target.PlayerId] >= Options.MasochistKillMax.GetInt())
+                    {
+                        CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Masochist);
+                        CustomWinnerHolder.WinnerIds.Add(target.PlayerId);
+                    }
+                    return true;
+                }
+                if (pc.Is(CustomRoles.Masochist) && target.PlayerId == pc.PlayerId)
+                {
+                    if (!isUI) Utils.SendMessage(GetString("SelfGuessMasochist"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("SelfGuessMasochist"));
+                    guesserSuicide = true;
                 }
                 
                 if (role == CustomRoles.GM || target.Is(CustomRoles.GM))

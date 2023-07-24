@@ -88,6 +88,12 @@ class HudManagerPatch
                     case CustomRoles.Miner:
                         __instance.AbilityButton.OverrideText(GetString("MinerTeleButtonText"));
                         break;
+                    case CustomRoles.Pestilence:
+                        __instance.KillButton.OverrideText(GetString("KillButtonText"));
+                        break;
+                    case CustomRoles.PlagueBearer:
+                        __instance.KillButton.OverrideText(GetString("InfectiousKillButtonText"));
+                        break;
                     case CustomRoles.Witch:
                         Witch.GetAbilityButtonText(__instance);
                         break;
@@ -102,11 +108,11 @@ class HudManagerPatch
                         break;
                     case CustomRoles.Arsonist:
                         __instance.KillButton.OverrideText(GetString("ArsonistDouseButtonText"));
-                        __instance.ImpostorVentButton.buttonLabelText.text = GetString("ArsonistVetnButtonText");
+                        __instance.ImpostorVentButton.buttonLabelText.text = GetString("ArsonistVentButtonText");
                         break;
                     case CustomRoles.Revolutionist:
                         __instance.KillButton.OverrideText(GetString("RevolutionistDrawButtonText"));
-                        __instance.ImpostorVentButton.buttonLabelText.text = GetString("RevolutionistVetnButtonText");
+                        __instance.ImpostorVentButton.buttonLabelText.text = GetString("RevolutionistVentButtonText");
                         break;
                     case CustomRoles.Farseer:
                         __instance.KillButton.OverrideText(GetString("FarseerKillButtonText"));
@@ -229,19 +235,25 @@ class HudManagerPatch
                         __instance.AbilityButton.SetUsesRemaining(Options.MarioVentNumWin.GetInt() - (Main.MarioVentCount.TryGetValue(PlayerControl.LocalPlayer.PlayerId, out var mx) ? mx : 0));
                         break;
                     case CustomRoles.Veteran:
-                        __instance.AbilityButton.buttonLabelText.text = GetString("VeteranVetnButtonText");
+                        __instance.AbilityButton.buttonLabelText.text = GetString("VeteranVentButtonText");
+                        break;
+                    case CustomRoles.TimeMaster:
+                        __instance.AbilityButton.buttonLabelText.text = GetString("TimeMasterVentButtonText");
                         break;
                     case CustomRoles.Grenadier:
-                        __instance.AbilityButton.buttonLabelText.text = GetString("GrenadierVetnButtonText");
+                        __instance.AbilityButton.buttonLabelText.text = GetString("GrenadierVentButtonText");
                         break;
                     case CustomRoles.Mayor:
-                        __instance.AbilityButton.buttonLabelText.text = GetString("MayorVetnButtonText");
+                        __instance.AbilityButton.buttonLabelText.text = GetString("MayorVentButtonText");
                         break;
                     case CustomRoles.Paranoia:
-                        __instance.AbilityButton.buttonLabelText.text = GetString("ParanoiaVetnButtonText");
+                        __instance.AbilityButton.buttonLabelText.text = GetString("ParanoiaVentButtonText");
                         break;
                     case CustomRoles.Sheriff:
                         __instance.KillButton.OverrideText(GetString("SheriffKillButtonText"));
+                        break;
+                    case CustomRoles.Crusader:
+                        __instance.KillButton.OverrideText(GetString("CrusaderKillButtonText"));
                         break;
                     case CustomRoles.Totocalcio:
                         __instance.KillButton.OverrideText(GetString("TotocalcioKillButtonText"));
@@ -464,9 +476,12 @@ class SetHudActivePatch
         {
             case CustomRoles.Sheriff:
             case CustomRoles.SwordsMan:
+            case CustomRoles.Deputy:
+            case CustomRoles.Monarch:
             case CustomRoles.Arsonist:
             case CustomRoles.NWitch:
             case CustomRoles.Innocent:
+            case CustomRoles.Reverie:
             case CustomRoles.Pelican:
             case CustomRoles.Revolutionist:
             case CustomRoles.FFF:
@@ -475,6 +490,7 @@ class SetHudActivePatch
             case CustomRoles.DarkHide:
             case CustomRoles.Provocateur:
             case CustomRoles.Farseer:
+            case CustomRoles.Crusader:
                 __instance.SabotageButton.ToggleVisible(false);
                 __instance.AbilityButton.ToggleVisible(false);
                 __instance.ImpostorVentButton.ToggleVisible(false);

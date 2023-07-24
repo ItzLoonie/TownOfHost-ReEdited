@@ -133,6 +133,6 @@ namespace TOHE.Roles.Neutral
             player.Data.Role.CanVent = canUse;
         }
 
-        public static string GetRitualCount(byte playerId) => Utils.ColorString(RitualCount[playerId] > 0 ? Color.magenta : Color.gray, RitualCount.TryGetValue(playerId, out var shotLimit) ? $"({shotLimit})" : "Invalid");
+        public static string GetRitualCount(byte playerId) => Utils.ColorString(RitualCount[playerId] > 0 ? Utils.GetRoleColor(CustomRoles.Ritualist).ShadeColor(0.25f) : Color.gray, RitualCount.TryGetValue(playerId, out var shotLimit) ? $"({shotLimit})" : "Invalid");
     }
 }

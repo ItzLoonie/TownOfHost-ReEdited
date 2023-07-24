@@ -176,6 +176,8 @@ public static class Swooper
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
     {
         if (Medic.ProtectList.Contains(target.PlayerId)) return true;
+        if (target.Is(CustomRoles.Bait)) return true;
+
         if (!IsInvis(killer.PlayerId)) return true;
         killer.SetKillCooldown();
         target.RpcCheckAndMurder(target);
