@@ -11,6 +11,7 @@ using TOHE.Roles.AddOns.Impostor;
 using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
+using static AmongUs.QuickChat.QuickChatPhraseBuilderResult;
 using static TOHE.Translator;
 namespace TOHE;
 
@@ -102,6 +103,7 @@ enum CustomRPC
     SetBloodhoundArrow,
     SetVultureArrow,
     SetSpiritcallerSpiritLimit,
+    SetDoomsayerProgress,
 
     //SoloKombat
     SyncKBPlayer,
@@ -371,6 +373,9 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetPelicanEtenNum:
                 Pelican.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetDoomsayerProgress:
+                Doomsayer.ReceiveRPC();
                 break;
             case CustomRPC.SwordsManKill:
                 SwordsMan.ReceiveRPC(reader);
@@ -988,6 +993,9 @@ internal static class RPC
                 break;
             case CustomRoles.Lurker:
                 Lurker.Add(targetId);
+                break;
+            case CustomRoles.Doomsayer:
+                Doomsayer.Add(targetId);
                 break;
         }
         HudManager.Instance.SetHudActive(true);

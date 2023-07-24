@@ -261,6 +261,7 @@ internal class ChangeRoleSettings
             Lurker.Init();
             PlagueBearer.Init();
             Reverie.Init();
+            Doomsayer.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();

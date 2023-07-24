@@ -18,6 +18,7 @@ using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
+using static AmongUs.QuickChat.QuickChatPhraseBuilderResult;
 using static TOHE.Translator;
 using static UnityEngine.GraphicsBuffer;
 
@@ -469,6 +470,7 @@ public static class Utils
             case CustomRoles.PlagueBearer:
             case CustomRoles.Pestilence:
             case CustomRoles.Masochist:
+            case CustomRoles.Doomsayer:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:
@@ -583,6 +585,10 @@ public static class Utils
             case CustomRoles.PlagueBearer:
                 var plagued = PlagueBearer.PlaguedPlayerCount(playerId);
                 ProgressText.Append(ColorString(GetRoleColor(CustomRoles.PlagueBearer).ShadeColor(0.25f), $"({plagued.Item1}/{plagued.Item2})"));
+                break;
+            case CustomRoles.Doomsayer:
+                var doomsayerguess = Doomsayer.GuessedPlayerCount();
+                ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Doomsayer).ShadeColor(0.25f), $"({doomsayerguess.Item1}/{doomsayerguess.Item2})"));
                 break;
 
             case CustomRoles.Sniper:
@@ -1769,14 +1775,14 @@ public static class Utils
                     {
                         TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
                     }
-                    if (seer.IsAlive() && target.IsAlive() && GuesserIsForMeeting && Options.PassiveNeutralsCanGuess.GetBool() && seer.GetCustomRole().IsNonNK())
+                    if (seer.IsAlive() && target.IsAlive() && GuesserIsForMeeting && Options.PassiveNeutralsCanGuess.GetBool() && seer.GetCustomRole().IsNonNK() && !seer.Is(CustomRoles.Doomsayer))
                     {
                         TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
                     }
                 }
                 else // Off Guesser Mode ID
                 {
-                    if (seer.Is(CustomRoles.NiceGuesser) || seer.Is(CustomRoles.EvilGuesser) || seer.Is(CustomRoles.Guesser))
+                    if (seer.Is(CustomRoles.NiceGuesser) || seer.Is(CustomRoles.EvilGuesser) || seer.Is(CustomRoles.Doomsayer) || seer.Is(CustomRoles.Guesser))
                     {
                         if (seer.IsAlive() && target.IsAlive() && GuesserIsForMeeting)
                         {
