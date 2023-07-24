@@ -737,6 +737,9 @@ internal class SelectRolesPatch
                     case CustomRoles.Lurker:
                         Lurker.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.Doomsayer:
+                        Doomsayer.Add(pc.PlayerId);
+                        break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())
                 {

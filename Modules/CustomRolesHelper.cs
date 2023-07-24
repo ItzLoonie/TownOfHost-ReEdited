@@ -146,6 +146,8 @@ internal static class CustomRolesHelper
                 CustomRoles.Spiritcaller => CustomRoles.Impostor,
                 CustomRoles.EvilSpirit => CustomRoles.GuardianAngel,
                 CustomRoles.Lurker => CustomRoles.Impostor,
+                CustomRoles.PlagueBearer => CustomRoles.Impostor,
+                CustomRoles.Pestilence => CustomRoles.Impostor,
                 CustomRoles.Doomsayer => CustomRoles.Crewmate,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
