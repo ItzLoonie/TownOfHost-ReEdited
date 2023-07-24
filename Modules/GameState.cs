@@ -68,6 +68,17 @@ public class PlayerState
                 countTypes = CountTypes.Crew;
             }
         }
+        if (role == CustomRoles.Arsonist)
+        {
+            if (Options.ArsonistKeepsGameGoing.GetBool())
+            {
+                countTypes = CountTypes.Arsonist;
+            }
+            if (!Options.ArsonistKeepsGameGoing.GetBool())
+            {
+                countTypes = CountTypes.Crew;
+            }
+        }
     }
     public void SetSubRole(CustomRoles role, bool AllReplace = false)
     {
@@ -87,13 +98,14 @@ public class PlayerState
                 _ => throw new NotImplementedException()
             };
             SubRoles.Remove(CustomRoles.Charmed);
-        //    SubRoles.Remove(CustomRoles.Sidekick);
+            SubRoles.Remove(CustomRoles.Recruit);
             SubRoles.Remove(CustomRoles.Infected);
             SubRoles.Remove(CustomRoles.Contagious);
             SubRoles.Remove(CustomRoles.Rogue);
             SubRoles.Remove(CustomRoles.Rascal);
             SubRoles.Remove(CustomRoles.Soulless);
             SubRoles.Remove(CustomRoles.Loyal);
+            SubRoles.Remove(CustomRoles.Admired);
         }
         if (role == CustomRoles.Charmed)
         {
@@ -105,15 +117,16 @@ public class PlayerState
                 _ => throw new NotImplementedException()
             };
             SubRoles.Remove(CustomRoles.Madmate);
-         //   SubRoles.Remove(CustomRoles.Sidekick);
+            SubRoles.Remove(CustomRoles.Recruit);
             SubRoles.Remove(CustomRoles.Infected);
             SubRoles.Remove(CustomRoles.Contagious);
             SubRoles.Remove(CustomRoles.Rogue);
             SubRoles.Remove(CustomRoles.Rascal);
             SubRoles.Remove(CustomRoles.Soulless);
             SubRoles.Remove(CustomRoles.Loyal);
+            SubRoles.Remove(CustomRoles.Admired);
         }
-   /*     if (role == CustomRoles.Sidekick)
+        if (role == CustomRoles.Recruit)
         {
             countTypes = Jackal.SidekickCountMode.GetInt() switch
             {
@@ -131,18 +144,20 @@ public class PlayerState
             SubRoles.Remove(CustomRoles.Soulless);
             SubRoles.Remove(CustomRoles.Loyal);
             SubRoles.Remove(CustomRoles.Loyal);
-        } */
+            SubRoles.Remove(CustomRoles.Admired);
+        } 
         if (role == CustomRoles.Infected)
         {
             countTypes = CountTypes.Infectious;
             SubRoles.Remove(CustomRoles.Madmate);
-      //      SubRoles.Remove(CustomRoles.Sidekick);
+            SubRoles.Remove(CustomRoles.Recruit);
             SubRoles.Remove(CustomRoles.Charmed);
             SubRoles.Remove(CustomRoles.Rogue);
             SubRoles.Remove(CustomRoles.Contagious);
             SubRoles.Remove(CustomRoles.Rascal);
             SubRoles.Remove(CustomRoles.Soulless);
             SubRoles.Remove(CustomRoles.Loyal);
+            SubRoles.Remove(CustomRoles.Admired);
         }
         if (role == CustomRoles.Contagious)
         {
@@ -154,37 +169,53 @@ public class PlayerState
                 _ => throw new NotImplementedException()
             };
             SubRoles.Remove(CustomRoles.Madmate);
-        //    SubRoles.Remove(CustomRoles.Sidekick);
+            SubRoles.Remove(CustomRoles.Recruit);
             SubRoles.Remove(CustomRoles.Rogue);
             SubRoles.Remove(CustomRoles.Charmed);
             SubRoles.Remove(CustomRoles.Infected);
             SubRoles.Remove(CustomRoles.Rascal);
             SubRoles.Remove(CustomRoles.Soulless);
             SubRoles.Remove(CustomRoles.Loyal);
+            SubRoles.Remove(CustomRoles.Admired);
         }
         if (role == CustomRoles.Rogue)
         {
             countTypes = CountTypes.Rogue;
             SubRoles.Remove(CustomRoles.Madmate);
-        //    SubRoles.Remove(CustomRoles.Sidekick);
+            SubRoles.Remove(CustomRoles.Recruit);
             SubRoles.Remove(CustomRoles.Charmed);
             SubRoles.Remove(CustomRoles.Infected);
             SubRoles.Remove(CustomRoles.Contagious);
             SubRoles.Remove(CustomRoles.Rascal);
             SubRoles.Remove(CustomRoles.Soulless);
             SubRoles.Remove(CustomRoles.Loyal);
+            SubRoles.Remove(CustomRoles.Admired);
+        }
+        if (role == CustomRoles.Admired)
+        {
+            countTypes = CountTypes.Crew;
+            SubRoles.Remove(CustomRoles.Madmate);
+            SubRoles.Remove(CustomRoles.Recruit);
+            SubRoles.Remove(CustomRoles.Charmed);
+            SubRoles.Remove(CustomRoles.Infected);
+            SubRoles.Remove(CustomRoles.Contagious);
+            SubRoles.Remove(CustomRoles.Rascal);
+            SubRoles.Remove(CustomRoles.Soulless);
+            SubRoles.Remove(CustomRoles.Loyal);
+            SubRoles.Remove(CustomRoles.Rogue);
         }
         if (role == CustomRoles.Soulless)
         {
             countTypes = CountTypes.OutOfGame;
             SubRoles.Remove(CustomRoles.Madmate);
-        //    SubRoles.Remove(CustomRoles.Sidekick);
+            SubRoles.Remove(CustomRoles.Recruit);
             SubRoles.Remove(CustomRoles.Charmed);
             SubRoles.Remove(CustomRoles.Infected);
             SubRoles.Remove(CustomRoles.Contagious);
             SubRoles.Remove(CustomRoles.Rascal);
             SubRoles.Remove(CustomRoles.Rogue);
             SubRoles.Remove(CustomRoles.Loyal);
+            SubRoles.Remove(CustomRoles.Admired);
         }
     }
     public void RemoveSubRole(CustomRoles role)
@@ -217,6 +248,7 @@ public class PlayerState
         Vote,
         Suicide,
         Spell,
+        Curse,
         Hex,
         FollowingSuicide,
         Bite,
@@ -243,8 +275,9 @@ public class PlayerState
         Trialed,
         Infected,
         Jinx,
+        Hack,
 
-        etc = -1
+        etc = -1,
     }
     public byte GetRealKiller()
         => IsDead && RealKiller.Item1 != DateTime.MinValue ? RealKiller.Item2 : byte.MaxValue;
@@ -370,6 +403,39 @@ public class TaskState
                 {
                     player.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Impostor), string.Format(Translator.GetString("ErrorTeleport"), player.GetRealName())));
                 }
+            }
+            if (player.Is(CustomRoles.Unlucky) && player.IsAlive())
+            {
+                var Ue = IRandom.Instance;
+                if (Ue.Next(0, 100) < Options.UnluckyTaskSuicideChance.GetInt())
+                {
+                    player.RpcMurderPlayerV3(player);
+                    Main.PlayerStates[player.PlayerId].deathReason = PlayerState.DeathReason.Suicide;
+
+                }
+            }
+
+            if (player.Is(CustomRoles.Ghoul) && (CompletedTasksCount + 1) >= AllTasksCount && player.IsAlive())
+            new LateTask(() =>
+            {
+                player.RpcMurderPlayerV3(player);
+                Main.PlayerStates[player.PlayerId].deathReason = PlayerState.DeathReason.Suicide;
+            }, 0.2f, "Ghoul Suicide");
+            if (player.Is(CustomRoles.Ghoul) && (CompletedTasksCount + 1) >= AllTasksCount && !player.IsAlive())
+            {
+                foreach (var pc in Main.AllPlayerControls)
+                {
+                    if (!pc.Is(CustomRoles.Pestilence))
+                    {
+                        if (Main.KillGhoul.Contains(pc.PlayerId) && player.PlayerId != pc.PlayerId && pc.IsAlive())
+                        {
+                            player.RpcMurderPlayerV3(pc);
+                            Main.PlayerStates[pc.PlayerId].deathReason = PlayerState.DeathReason.Kill;                        
+                        }
+                    }
+
+                }
+
             }
 
             //工作狂做完了

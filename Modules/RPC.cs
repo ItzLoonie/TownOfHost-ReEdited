@@ -27,7 +27,9 @@ enum CustomRPC
     SetKillOrSpell,
     SetKillOrHex,
     SetSheriffShotLimit,
+    SetCopyCatMiscopyLimit,
     SetDousedPlayer,
+    setPlaguedPlayer,
     SetNameColorData,
     DoSpell,
     DoHex,
@@ -100,6 +102,7 @@ enum CustomRPC
     SetBloodhoundArrow,
     SetVultureArrow,
     SetSpiritcallerSpiritLimit,
+    SetDoomsayerProgress,
 
     //SoloKombat
     SyncKBPlayer,
@@ -107,7 +110,10 @@ enum CustomRPC
     SyncKBNameNotify,
     SetRitualist,
     SetChameleonTimer,
+    SetEtherealTimer,
     DoPoison,
+    SetAdmireLimit,
+    SetRememberLimit,
 }
 public enum Sounds
 {
@@ -285,11 +291,17 @@ internal class RPCHandlerPatch
             case CustomRPC.SetSheriffShotLimit:
                 Sheriff.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetCopyCatMiscopyLimit:
+                CopyCat.ReceiveRPC(reader);
+                break;
             case CustomRPC.SetDousedPlayer:
                 byte ArsonistId = reader.ReadByte();
                 byte DousedId = reader.ReadByte();
                 bool doused = reader.ReadBoolean();
                 Main.isDoused[(ArsonistId, DousedId)] = doused;
+                break;
+            case CustomRPC.setPlaguedPlayer:
+                PlagueBearer.receiveRPC(reader);
                 break;
             case CustomRPC.SetDrawPlayer:
                 byte RevolutionistId = reader.ReadByte();
@@ -362,6 +374,9 @@ internal class RPCHandlerPatch
             case CustomRPC.SetPelicanEtenNum:
                 Pelican.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetDoomsayerProgress:
+                Doomsayer.ReceiveRPC();
+                break;
             case CustomRPC.SwordsManKill:
                 SwordsMan.ReceiveRPC(reader);
                 break;
@@ -379,6 +394,12 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetJackalRecruitLimit:
                 Jackal.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetAdmireLimit:
+                Admirer.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetRememberLimit:
+                Amnesiac.ReceiveRPC(reader);
                 break;
             case CustomRPC.PlayCustomSound:
                 CustomSoundsManager.ReceiveRPC(reader);
@@ -487,6 +508,9 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetChameleonTimer:
                 Chameleon.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetEtherealTimer:
+                Ethereal.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetBKTimer:
                 BloodKnight.ReceiveRPC(reader);
@@ -714,6 +738,9 @@ internal static class RPC
             case CustomRoles.Sniper:
                 Sniper.Add(targetId);
                 break;
+            case CustomRoles.Crusader:
+                Crusader.Add(targetId);
+                break;
             case CustomRoles.Mare:
                 Mare.Add(targetId);
                 break;
@@ -749,6 +776,9 @@ internal static class RPC
                 break;
             case CustomRoles.Sheriff:
                 Sheriff.Add(targetId);
+                break;
+            case CustomRoles.CopyCat:
+                CopyCat.Add(targetId);
                 break;
             case CustomRoles.QuickShooter:
                 QuickShooter.Add(targetId);
@@ -835,6 +865,9 @@ internal static class RPC
             case CustomRoles.Juggernaut:
                 Juggernaut.Add(targetId);
                 break;
+            case CustomRoles.Reverie:
+                Reverie.Add(targetId);
+                break;
             case CustomRoles.Hacker:
                 Hacker.Add(targetId);
                 break;
@@ -877,6 +910,9 @@ internal static class RPC
             case CustomRoles.Chameleon:
                 Chameleon.Add(targetId);
                 break;
+            case CustomRoles.Ethereal:
+                Ethereal.Add(targetId);
+                break;
             case CustomRoles.BloodKnight:
                 BloodKnight.Add(targetId);
                 break;
@@ -888,6 +924,12 @@ internal static class RPC
                 break;
             case CustomRoles.CursedSoul:
                 CursedSoul.Add(targetId);
+                break;
+            case CustomRoles.Admirer:
+                Admirer.Add(targetId);
+                break;
+            case CustomRoles.Amnesiac:
+                Amnesiac.Add(targetId);
                 break;
             case CustomRoles.DovesOfNeace:
                 Main.DovesOfNeaceNumOfUsed.Add(targetId, Options.DovesOfNeaceMaxOfUseage.GetInt());
@@ -909,6 +951,9 @@ internal static class RPC
                 break;
             case CustomRoles.Vulture:
                 Vulture.Add(targetId); 
+                break;
+            case CustomRoles.PlagueBearer:
+                PlagueBearer.Add(targetId);
                 break;
             case CustomRoles.Tracker:
                 Tracker.Add(targetId);
@@ -934,9 +979,6 @@ internal static class RPC
             case CustomRoles.Addict:
                 Addict.Add(targetId);
                 break;
-            case CustomRoles.Reverie:
-                Reverie.Add(targetId);
-                break;
             case CustomRoles.Deathpact:
                 Deathpact.Add(targetId);
                 break;
@@ -957,6 +999,9 @@ internal static class RPC
                 break;
             case CustomRoles.Lurker:
                 Lurker.Add(targetId);
+                break;
+            case CustomRoles.Doomsayer:
+                Doomsayer.Add(targetId);
                 break;
         }
         HudManager.Instance.SetHudActive(true);
