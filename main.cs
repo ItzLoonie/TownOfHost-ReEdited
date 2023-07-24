@@ -331,7 +331,7 @@ public class Main : BasePlugin
                 {CustomRoles.Tracefinder, "#0066CC"},
                 {CustomRoles.Oracle, "#6666FF"},
                 {CustomRoles.Spiritualist, "#669999"},
-                {CustomRoles.Chameleon, "#01C895"},
+                {CustomRoles.Chameleon, "#01C834"},
                 {CustomRoles.ParityCop, "#0D57AF"},
                 {CustomRoles.Admirer, "#ee43c3"},
                 {CustomRoles.TimeMaster, "#44baff"},
