@@ -646,7 +646,9 @@ public static class GuessManager
                         Doomsayer.GuessesCount++;
                         Doomsayer.SendRPC(pc, dp);
                         Doomsayer.CheckCountGuess(pc);
-                        Doomsayer.GuessedRoles.Add(role);
+
+                        if (!Doomsayer.GuessedRoles.Contains(role))
+                            Doomsayer.GuessedRoles.Add(role);
                     }
 
                     //死者检查
