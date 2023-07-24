@@ -2526,7 +2526,8 @@ class EnterVentPatch
         {
             Main.TimeMasterInProtect.Remove(pc.PlayerId);
             Main.TimeMasterInProtect.Add(pc.PlayerId, Utils.GetTimeStamp());
-            if (!pc.IsModClient()) pc.RpcGuardAndKill(pc);
+            if (!pc.IsModClient()) 
+            pc.RpcGuardAndKill(pc);
             pc.Notify(GetString("TimeMasterOnGuard"), Options.TimeMasterSkillDuration.GetFloat());
                 foreach (var player in Main.AllPlayerControls)
                 {
@@ -2534,6 +2535,8 @@ class EnterVentPatch
                     {
                          var position = Main.TimeMasterBackTrack[player.PlayerId];
                     Utils.TP(player.NetTransform, position);
+                    if (pc != player)
+                    player?.MyPhysics?.RpcBootFromVent(player.PlayerId);
                     Main.TimeMasterBackTrack.Remove(player.PlayerId);
                     }
                     else
