@@ -413,6 +413,7 @@ public static class Utils
             case CustomRoles.GM:
             case CustomRoles.Sheriff:
             case CustomRoles.Arsonist:
+            case CustomRoles.Ethereal:
             case CustomRoles.Jackal:
             case CustomRoles.Sidekick:
             case CustomRoles.Poisoner:
@@ -476,7 +477,6 @@ public static class Utils
             case CustomRoles.Sunnyboy:
             case CustomRoles.Convict:
             case CustomRoles.Opportunist:
-            case CustomRoles.Ethereal:
             case CustomRoles.Phantom:
             case CustomRoles.Baker:
          //   case CustomRoles.Famine:
