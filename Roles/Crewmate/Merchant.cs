@@ -35,10 +35,11 @@ namespace TOHE.Roles.Crewmate
 
         private static readonly List<CustomRoles> harmfulAddons = new List<CustomRoles>
         {
-       //     CustomRoles.Oblivious,
+            CustomRoles.Oblivious,
             CustomRoles.Bewilder,
             CustomRoles.Unreportable,
-            CustomRoles.Avanger
+            CustomRoles.Avanger,
+            CustomRoles.Unlucky
         };
 
         private static readonly List<CustomRoles> neutralAddons = new List<CustomRoles>

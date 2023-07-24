@@ -121,6 +121,8 @@ public static class Judge
                 else if (pc.Is(CustomRoles.Infected)) judgeSuicide = false;
                 else if (pc.Is(CustomRoles.Contagious)) judgeSuicide = false;
                 else if (target.Is(CustomRoles.Rascal)) judgeSuicide = false;
+                else if (target.Is(CustomRoles.Pestilence)) judgeSuicide = true;
+                else if (target.Is(CustomRoles.Trickster)) judgeSuicide = true;
                 else if (target.Is(CustomRoles.Madmate) && CanTrialMadmate.GetBool()) judgeSuicide = false;
                 else if (target.Is(CustomRoles.Charmed) && CanTrialCharmed.GetBool()) judgeSuicide = false;
                 else if (target.GetCustomRole().IsCK() && CanTrialCrewKilling.GetBool()) judgeSuicide = false;

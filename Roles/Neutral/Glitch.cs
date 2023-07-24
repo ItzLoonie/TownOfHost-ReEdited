@@ -8,7 +8,7 @@ namespace TOHE.Roles.Neutral;
 
 public static class Glitch
 {
-    private static readonly int Id = 18110;
+    private static readonly int Id = 18125;
     public static List<byte> playerIdList = new();
 
     private static OptionItem KillCooldown;

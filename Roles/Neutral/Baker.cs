@@ -12,7 +12,7 @@ namespace TOHE.Roles.Neutral
         public static List<byte> playerIdList = new();
         public static List<byte> NplayerIdList = new();
 
-        public static Dictionary<byte, PlayerControl> PoisonPlayer = new();
+    //    public static Dictionary<byte, PlayerControl> PoisonPlayer = new();
      //   public static OptionItem BakerChangeChances;
      public static OverrideTasksData BakerTasks;
 
@@ -28,12 +28,12 @@ namespace TOHE.Roles.Neutral
         {
             playerIdList = new();
             NplayerIdList = new();
-            PoisonPlayer = new();
+     //       PoisonPlayer = new();
         }
         public static void Add(byte playerId)
         {
             playerIdList.Add(playerId);
-            PoisonPlayer.Add(playerId, null);
+       //     PoisonPlayer.Add(playerId, null);
         }
         public static bool IsEnable()
         {
@@ -63,17 +63,17 @@ namespace TOHE.Roles.Neutral
         {
             var BakerId = reader.ReadByte();
             var targetId = reader.ReadByte();
-            if (targetId != byte.MaxValue)
+      /*      if (targetId != byte.MaxValue)
             {
                 PoisonPlayer[BakerId].PlayerId = targetId;
             }
             else
             {
                 PoisonPlayer[BakerId] = null;
-            }
+            } */
         }
 
-        public static bool HavePoisonedPlayer()
+    /*    public static bool HavePoisonedPlayer()
         {
             foreach (var BakerId in NplayerIdList)
             {
@@ -83,12 +83,12 @@ namespace TOHE.Roles.Neutral
                 }
             }
             return false;
-        }
+        } */
         public static bool IsPoisoned(PlayerControl target)
         {
             foreach (var BakerId in NplayerIdList)
             {
-                if (PoisonPlayer[BakerId] == target)
+              //  if (PoisonPlayer[BakerId] == target)
                 {
                     return true;
                 }
@@ -96,7 +96,7 @@ namespace TOHE.Roles.Neutral
             return false;
         }
 
-        public static void OnCheckForEndVoting(byte exiled)
+   /*     public static void OnCheckForEndVoting(byte exiled)
         {
             foreach (var BakerId in NplayerIdList)
             {
@@ -116,7 +116,7 @@ namespace TOHE.Roles.Neutral
 
                 if (!BakerPc.IsAlive()) NplayerIdList.Remove(BakerId);
             }
-        }
+        } */
         public static void AfterMeetingTasks()
         {
             if (!IsNAlive()) return;
@@ -132,20 +132,20 @@ namespace TOHE.Roles.Neutral
             foreach (var BakerId in NplayerIdList)
             {
                 var PoisonedPlayer = targetList[rand.Next(targetList.Count)];
-                PoisonPlayer[BakerId] = PoisonedPlayer;
+          //      PoisonPlayer[BakerId] = PoisonedPlayer;
                 SendRPC(BakerId, PoisonedPlayer.PlayerId);
-                Logger.Info($"{Utils.GetPlayerById(BakerId).GetNameWithRole()}の次ターン配布先：{PoisonedPlayer.GetNameWithRole()}", "Famine");
+           //     Logger.Info($"{Utils.GetPlayerById(BakerId).GetNameWithRole()}の次ターン配布先：{PoisonedPlayer.GetNameWithRole()}", "Famine");
             }
         }
 
         public static void FamineKilledTasks(byte BakerId)
         {
-            PoisonPlayer[BakerId] = null;
+       //     PoisonPlayer[BakerId] = null;
             SendRPC(BakerId);
             Logger.Info($"{Utils.GetPlayerById(BakerId).GetNameWithRole()}の配布毒パン回収", "Famine");
         }
 
-        public static string GetPoisonMark(PlayerControl target, bool isMeeting)
+   /*     public static string GetPoisonMark(PlayerControl target, bool isMeeting)
         {
             if (isMeeting && IsNAlive() && IsPoisoned(target))
             {
@@ -153,20 +153,14 @@ namespace TOHE.Roles.Neutral
                     return Utils.ColorString(Utils.GetRoleColor(CustomRoles.Famine), "θ");
             }
             return "";
-        }
+        } */
         public static void SendAliveMessage(PlayerControl pc)
         {
             if (pc.Is(CustomRoles.Famine) && !pc.Data.IsDead && !pc.Data.Disconnected)
             {
-                if (PoisonPlayer[pc.PlayerId].IsAlive())
+             //   if (PoisonPlayer[pc.PlayerId].IsAlive())
                 {
                     Utils.SendMessage(GetString("BakerChangeNow"), title: $"<color={Utils.GetRoleColorCode(CustomRoles.Baker)}>{GetString("PanAliveMessageTitle")}</color>");
-                }
-                else
-                {
-                    PoisonPlayer[pc.PlayerId] = null;
-                    SendRPC(pc.PlayerId);
-                    Utils.SendMessage(GetString("BakerChangeNONE"), title: $"<color={Utils.GetRoleColorCode(CustomRoles.Baker)}>{GetString("PanAliveMessageTitle")}</color>");
                 }
             }
             if (pc.Is(CustomRoles.Baker) && !pc.Data.IsDead && !pc.Data.Disconnected)

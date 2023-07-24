@@ -420,6 +420,9 @@ public static class Amnesiac
         if (player.Is(CustomRoles.Virus) && target.Is(CustomRoles.Virus)) return true;
         if (player.Is(CustomRoles.Spiritcaller) && target.Is(CustomRoles.Spiritcaller)) return true;
         if (player.Is(CustomRoles.Succubus) && target.Is(CustomRoles.Succubus)) return true;
+        if (player.Is(CustomRoles.Poisoner) && target.Is(CustomRoles.Poisoner)) return true;
+        if (player.Is(CustomRoles.Refugee) && target.Is(CustomRoleTypes.Impostor)) return true;
+        if (player.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Refugee)) return true;
         return false;
     }
 

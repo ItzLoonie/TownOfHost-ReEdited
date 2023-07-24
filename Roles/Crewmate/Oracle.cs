@@ -142,6 +142,9 @@ public static class Oracle
             CustomRoles.Maverick or
             CustomRoles.Sidekick or
             CustomRoles.God or
+            CustomRoles.PlagueBearer or
+            CustomRoles.Pestilence or
+            CustomRoles.Masochist or
             CustomRoles.Innocent or
             CustomRoles.Pursuer or
             CustomRoles.Poisoner or
