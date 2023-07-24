@@ -88,6 +88,12 @@ class HudManagerPatch
                     case CustomRoles.Miner:
                         __instance.AbilityButton.OverrideText(GetString("MinerTeleButtonText"));
                         break;
+                    case CustomRoles.Pestilence:
+                        __instance.KillButton.OverrideText(GetString("KillButtonText"));
+                        break;
+                    case CustomRoles.PlagueBearer:
+                        __instance.KillButton.OverrideText(GetString("InfectiousKillButtonText"));
+                        break;
                     case CustomRoles.Witch:
                         Witch.GetAbilityButtonText(__instance);
                         break;
@@ -102,11 +108,11 @@ class HudManagerPatch
                         break;
                     case CustomRoles.Arsonist:
                         __instance.KillButton.OverrideText(GetString("ArsonistDouseButtonText"));
-                        __instance.ImpostorVentButton.buttonLabelText.text = GetString("ArsonistVetnButtonText");
+                        __instance.ImpostorVentButton.buttonLabelText.text = GetString("ArsonistVentButtonText");
                         break;
                     case CustomRoles.Revolutionist:
                         __instance.KillButton.OverrideText(GetString("RevolutionistDrawButtonText"));
-                        __instance.ImpostorVentButton.buttonLabelText.text = GetString("RevolutionistVetnButtonText");
+                        __instance.ImpostorVentButton.buttonLabelText.text = GetString("RevolutionistVentButtonText");
                         break;
                     case CustomRoles.Farseer:
                         __instance.KillButton.OverrideText(GetString("FarseerKillButtonText"));
@@ -141,6 +147,24 @@ class HudManagerPatch
                     case CustomRoles.Gangster:
                         Gangster.SetKillButtonText(player.PlayerId);
                         break;
+                    case CustomRoles.NSerialKiller:
+                    case CustomRoles.Juggernaut:
+                    case CustomRoles.Jackal:
+                    case CustomRoles.Virus:
+                    case CustomRoles.BloodKnight:
+                    case CustomRoles.SwordsMan:
+                    case CustomRoles.Parasite:
+                    case CustomRoles.Refugee:
+                    case CustomRoles.Traitor:
+                    case CustomRoles.Ritualist:
+                    case CustomRoles.Spiritcaller:
+                    case CustomRoles.DarkHide:
+                    case CustomRoles.Maverick:
+                        __instance.KillButton.OverrideText(GetString("KillButtonText"));
+                        break;
+                    case CustomRoles.Glitch:
+                        __instance.SabotageButton.OverrideText(GetString("HackButtonText"));
+                        break;
                     case CustomRoles.FFF:
                         __instance.KillButton.OverrideText(GetString("FFFButtonText"));
                         break;
@@ -154,6 +178,7 @@ class HudManagerPatch
                         __instance.KillButton.OverrideText(GetString("BallLightningButtonText"));
                         break;
                     case CustomRoles.Bomber:
+                    case CustomRoles.Nuker:
                         __instance.AbilityButton.OverrideText(GetString("BomberShapeshiftText"));
                         break;
                     case CustomRoles.Twister:
@@ -189,6 +214,7 @@ class HudManagerPatch
                         __instance.ReportButton.OverrideText(GetString("CleanerReportButtonText"));
                         break;
                     case CustomRoles.Medusa:
+                        __instance.KillButton.OverrideText(GetString("KillButtonText"));
                         __instance.ReportButton.OverrideText(GetString("MedusaReportButtonText"));
                         break;
                     case CustomRoles.Vulture:
@@ -198,29 +224,39 @@ class HudManagerPatch
                         __instance.ImpostorVentButton.OverrideText(GetString(Swooper.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "SwooperRevertVentButtonText" : "SwooperVentButtonText"));
                         break;
                     case CustomRoles.Wraith:
+                        __instance.KillButton.OverrideText(GetString("KillButtonText"));
                         __instance.ImpostorVentButton.OverrideText(GetString(Wraith.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "WraithRevertVentButtonText" : "WraithVentButtonText"));
                         break;
                     case CustomRoles.Chameleon:
                         __instance.AbilityButton.OverrideText(GetString(Chameleon.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "ChameleonRevertDisguise" : "ChameleonDisguise"));
+                        break;
+                    case CustomRoles.Ethereal:
+                        __instance.AbilityButton.OverrideText(GetString(Ethereal.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "EtherealRevertDisguise" : "EtherealDisguise"));
                         break;
                     case CustomRoles.Mario:
                         __instance.AbilityButton.buttonLabelText.text = GetString("MarioVentButtonText");
                         __instance.AbilityButton.SetUsesRemaining(Options.MarioVentNumWin.GetInt() - (Main.MarioVentCount.TryGetValue(PlayerControl.LocalPlayer.PlayerId, out var mx) ? mx : 0));
                         break;
                     case CustomRoles.Veteran:
-                        __instance.AbilityButton.buttonLabelText.text = GetString("VeteranVetnButtonText");
+                        __instance.AbilityButton.buttonLabelText.text = GetString("VeteranVentButtonText");
+                        break;
+                    case CustomRoles.TimeMaster:
+                        __instance.AbilityButton.buttonLabelText.text = GetString("TimeMasterVentButtonText");
                         break;
                     case CustomRoles.Grenadier:
-                        __instance.AbilityButton.buttonLabelText.text = GetString("GrenadierVetnButtonText");
+                        __instance.AbilityButton.buttonLabelText.text = GetString("GrenadierVentButtonText");
                         break;
                     case CustomRoles.Mayor:
-                        __instance.AbilityButton.buttonLabelText.text = GetString("MayorVetnButtonText");
+                        __instance.AbilityButton.buttonLabelText.text = GetString("MayorVentButtonText");
                         break;
                     case CustomRoles.Paranoia:
-                        __instance.AbilityButton.buttonLabelText.text = GetString("ParanoiaVetnButtonText");
+                        __instance.AbilityButton.buttonLabelText.text = GetString("ParanoiaVentButtonText");
                         break;
                     case CustomRoles.Sheriff:
                         __instance.KillButton.OverrideText(GetString("SheriffKillButtonText"));
+                        break;
+                    case CustomRoles.Crusader:
+                        __instance.KillButton.OverrideText(GetString("CrusaderKillButtonText"));
                         break;
                     case CustomRoles.Totocalcio:
                         __instance.KillButton.OverrideText(GetString("TotocalcioKillButtonText"));
@@ -230,6 +266,12 @@ class HudManagerPatch
                         break;
                     case CustomRoles.CursedSoul:
                         __instance.KillButton.OverrideText(GetString("CursedSoulKillButtonText"));
+                        break;
+                    case CustomRoles.Admirer:
+                        __instance.KillButton.OverrideText(GetString("AdmireButtonText"));
+                        break;
+                    case CustomRoles.Amnesiac:
+                        __instance.KillButton.OverrideText(GetString("RememberButtonText"));
                         break;
                     case CustomRoles.DovesOfNeace:
                         __instance.AbilityButton.buttonLabelText.text = GetString("DovesOfNeaceVentButtonText");
@@ -308,6 +350,10 @@ class HudManagerPatch
                 else if (player.Is(CustomRoles.Chameleon))
                 {
                     LowerInfoText.text = Chameleon.GetHudText(player);
+                }
+                else if (player.Is(CustomRoles.Ethereal))
+                {
+                    LowerInfoText.text = Ethereal.GetHudText(player);
                 }
                 else if (player.Is(CustomRoles.BloodKnight))
                 {
@@ -437,9 +483,12 @@ class SetHudActivePatch
         {
             case CustomRoles.Sheriff:
             case CustomRoles.SwordsMan:
+            case CustomRoles.Deputy:
+            case CustomRoles.Monarch:
             case CustomRoles.Arsonist:
             case CustomRoles.NWitch:
             case CustomRoles.Innocent:
+            case CustomRoles.Reverie:
             case CustomRoles.Pelican:
             case CustomRoles.Revolutionist:
             case CustomRoles.FFF:
@@ -448,6 +497,7 @@ class SetHudActivePatch
             case CustomRoles.DarkHide:
             case CustomRoles.Provocateur:
             case CustomRoles.Farseer:
+            case CustomRoles.Crusader:
                 __instance.SabotageButton.ToggleVisible(false);
                 __instance.AbilityButton.ToggleVisible(false);
                 __instance.ImpostorVentButton.ToggleVisible(false);
@@ -460,6 +510,7 @@ class SetHudActivePatch
                 __instance.ReportButton.ToggleVisible(false);
                 break;
             case CustomRoles.Parasite:
+            case CustomRoles.Refugee:
                 __instance.SabotageButton.ToggleVisible(true);
                 break;
             case CustomRoles.Jackal:
@@ -471,10 +522,10 @@ class SetHudActivePatch
             case CustomRoles.Traitor:
                 Traitor.SetHudActive(__instance, isActive);
                 break;
-            
-            case CustomRoles.Bomber:
-                __instance.KillButton.ToggleVisible(false);
+            case CustomRoles.Glitch:
+                Glitch.SetHudActive(__instance, isActive);
                 break;
+            
         }
 
         foreach (var subRole in Main.PlayerStates[player.PlayerId].SubRoles)
@@ -497,7 +548,7 @@ class VentButtonDoClickPatch
     {
         var pc = PlayerControl.LocalPlayer;
         {
-            if (!pc.Is(CustomRoles.Swooper) || !pc.Is(CustomRoles.Wraith) || !pc.Is(CustomRoles.Chameleon) || pc.inVent || __instance.currentTarget == null || !pc.CanMove || !__instance.isActiveAndEnabled) return true;
+            if (!pc.Is(CustomRoles.Swooper) || !pc.Is(CustomRoles.Wraith) || !pc.Is(CustomRoles.Ethereal) || !pc.Is(CustomRoles.Chameleon) || pc.inVent || __instance.currentTarget == null || !pc.CanMove || !__instance.isActiveAndEnabled) return true;
             pc?.MyPhysics?.RpcEnterVent(__instance.currentTarget.Id);
             return false;
         }
@@ -513,7 +564,7 @@ class MapBehaviourShowPatch
         if (opts.Mode is MapOptions.Modes.Normal or MapOptions.Modes.Sabotage)
         {
             var player = PlayerControl.LocalPlayer;
-            if (player.Is(CustomRoleTypes.Impostor) || (player.Is(CustomRoles.Parasite)) || (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) || (player.Is(CustomRoles.Traitor) && Traitor.CanUseSabotage.GetBool()))
+            if (player.Is(CustomRoleTypes.Impostor) || (player.Is(CustomRoles.Parasite)) || (player.Is(CustomRoles.Glitch)) || (player.Is(CustomRoles.Refugee)) || (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) || (player.Is(CustomRoles.Traitor) && Traitor.CanUseSabotage.GetBool()))
                 opts.Mode = MapOptions.Modes.Sabotage;
             else
                 opts.Mode = MapOptions.Modes.Normal;

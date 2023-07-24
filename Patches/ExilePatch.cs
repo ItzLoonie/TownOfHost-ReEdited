@@ -127,6 +127,7 @@ class ExileControllerWrapUpPatch
                 CustomRoles.Deathpact or
                 CustomRoles.Dazzler or
                 CustomRoles.Devourer or
+                CustomRoles.Nuker or
                 CustomRoles.Bomber
                 ) pc.RpcResetAbilityCooldown();
         }

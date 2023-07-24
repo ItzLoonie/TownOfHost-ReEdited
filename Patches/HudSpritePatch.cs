@@ -53,6 +53,7 @@ public static class HudSpritePatch
                 }
                 break;
             case CustomRoles.Bomber:
+            case CustomRoles.Nuker:
                 newAbilityButton = CustomButton.Get("Bomb");
                 break;
             case CustomRoles.Camouflager:

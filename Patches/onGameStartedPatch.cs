@@ -48,6 +48,8 @@ internal class ChangeRoleSettings
             Main.RevolutionistStart = new();
             Main.RevolutionistLastTime = new();
             Main.RevolutionistCountdown = new();
+            Main.TimeMasterBackTrack = new();
+            Main.TimeMasterNum = new();
             Main.FarseerTimer = new();
             Main.CursedPlayers = new();
             Main.MafiaRevenged = new();
@@ -57,7 +59,10 @@ internal class ChangeRoleSettings
             Main.PuppeteerList = new();
             Main.TaglockedList = new();
             Main.DetectiveNotify = new();
+            Main.KillGhoul = new();
             Main.CyberStarDead = new();
+            Main.KilledDiseased = new();
+            Main.KilledAntidote = new();
             Main.WorkaholicAlive = new();
             Main.BaitAlive = new();
             Main.BoobyTrapBody = new();
@@ -181,6 +186,7 @@ internal class ChangeRoleSettings
             Jackal.Init();
             Sidekick.Init();
             Sheriff.Init();
+            CopyCat.Init();
             SwordsMan.Init();
             EvilTracker.Init();
             Snitch.Init();
@@ -224,6 +230,8 @@ internal class ChangeRoleSettings
             Totocalcio.Init();
             Succubus.Init();
             CursedSoul.Init();
+            Admirer.Init();
+            Amnesiac.Init();
             Infectious.Init();
             Monarch.Init();
             Virus.Init();
@@ -245,13 +253,16 @@ internal class ChangeRoleSettings
             Spiritualist.Init();
             Vulture.Init();
             Chameleon.Init();
-            Reverie.Init();
+            Ethereal.Init();
             Wildling.Init();
             Morphling.Init();
             ParityCop.Init(); // *giggle* party cop
             Baker.Init();
             Spiritcaller.Init();
             Lurker.Init();
+            PlagueBearer.Init();
+            Reverie.Init();
+            Doomsayer.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
@@ -429,6 +440,9 @@ internal class SelectRolesPatch
                     case CustomRoles.BountyHunter:
                         BountyHunter.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.Reverie:
+                        Reverie.Add(pc.PlayerId);
+                        break;
                     case CustomRoles.SerialKiller:
                         SerialKiller.Add(pc.PlayerId);
                         break;
@@ -437,6 +451,10 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.HexMaster:
                         HexMaster.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Crusader:
+                        Crusader.Add(pc.PlayerId);
+                        Crusader.CrusaderLimit[pc.PlayerId] = Crusader.SkillLimitOpt.GetInt();
                         break;
                     case CustomRoles.Warlock:
                         Main.CursedPlayers.Add(pc.PlayerId, null);
@@ -497,11 +515,20 @@ internal class SelectRolesPatch
                     case CustomRoles.Sheriff:
                         Sheriff.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.CopyCat:
+                        CopyCat.Add(pc.PlayerId);
+                        break;
                     case CustomRoles.QuickShooter:
                         QuickShooter.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Mayor:
                         Main.MayorUsedButtonCount[pc.PlayerId] = 0;
+                        break;
+                    case CustomRoles.TimeMaster:
+                        Main.TimeMasterNum[pc.PlayerId] = 0;
+                        break;
+                    case CustomRoles.Masochist:
+                        Main.MasochistKillMax[pc.PlayerId] = 0;
                         break;
                     case CustomRoles.Paranoia:
                         Main.ParaUsedButtonCount[pc.PlayerId] = 0;
@@ -621,6 +648,9 @@ internal class SelectRolesPatch
                     case CustomRoles.Chameleon:
                         Chameleon.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.Ethereal:
+                        Ethereal.Add(pc.PlayerId);
+                        break;
                     case CustomRoles.BloodKnight:
                         BloodKnight.Add(pc.PlayerId);
                         break;
@@ -632,6 +662,12 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.CursedSoul:
                         CursedSoul.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Admirer:
+                        Admirer.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Amnesiac:
+                        Amnesiac.Add(pc.PlayerId);
                         break;
                     case CustomRoles.DovesOfNeace:
                         Main.DovesOfNeaceNumOfUsed.Add(pc.PlayerId, Options.DovesOfNeaceMaxOfUseage.GetInt());
@@ -693,17 +729,20 @@ internal class SelectRolesPatch
                     case CustomRoles.Vulture:
                         Vulture.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.PlagueBearer:
+                        PlagueBearer.Add(pc.PlayerId);
+                        break;
                     case CustomRoles.ParityCop:
                         ParityCop.Add(pc.PlayerId);
-                        break;
-                    case CustomRoles.Reverie:
-                        Reverie.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Spiritcaller:
                         Spiritcaller.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Lurker:
                         Lurker.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Doomsayer:
+                        Doomsayer.Add(pc.PlayerId);
                         break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())
@@ -883,7 +922,8 @@ internal class SelectRolesPatch
                 || pc.Is(CustomRoles.Dictator) 
                 || pc.Is(CustomRoles.God) 
                 || pc.Is(CustomRoles.FFF) 
-                || pc.Is(CustomRoles.Bomber) 
+                || pc.Is(CustomRoles.Bomber)
+                || pc.Is(CustomRoles.Nuker) 
                 || pc.Is(CustomRoles.Provocateur)
                 || (pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeInLove.GetBool())
                 || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeInLove.GetBool())

@@ -60,6 +60,19 @@ class RepairSystemPatch
             SystemTypes.Electrical))
         { return false; }
 
+        if (player.Is(CustomRoles.Unlucky) && player.IsAlive() && 
+            (systemType is
+            SystemTypes.Doors))
+                {
+                    var Ue = IRandom.Instance;
+                    if (Ue.Next(0, 100) < Options.UnluckySabotageSuicideChance.GetInt())
+                    {
+                        player.RpcMurderPlayerV3(player);
+                        Main.PlayerStates[player.PlayerId].deathReason = PlayerState.DeathReason.Suicide;
+                        return false;
+                    }
+                }
+
       /*if (player.Is(CustomRoles.Madmate) && !Options.MadmateCanFixSabotage.GetBool() && 
             (systemType is
             SystemTypes.Reactor or
@@ -90,7 +103,9 @@ class RepairSystemPatch
             if (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) return true;
             if (player.Is(CustomRoles.Sidekick) && Jackal.CanUseSabotageSK.GetBool()) return true;
             if (player.Is(CustomRoles.Traitor) && Traitor.CanUseSabotage.GetBool()) return true;
-            if (player.Is(CustomRoles.Parasite) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
+            if (player.Is(CustomRoles.Parasite) && (player.IsAlive())) return true;
+            if (player.Is(CustomRoles.Refugee) && (player.IsAlive())) return true;
+            if (player.Is(CustomRoles.Glitch) && (player.IsAlive())) return true;
             return false;
         }
       /*if (systemType == SystemTypes.Doors && AmongUsClient.Instance.NetworkMode != NetworkModes.FreePlay)
