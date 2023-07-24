@@ -22,7 +22,8 @@ namespace TOHE.Roles.Crewmate
             CustomRoles.Seer,
             CustomRoles.Bait,
             CustomRoles.Trapper,
-            CustomRoles.Brakar,
+            CustomRoles.Antidote,
+            CustomRoles.Brakar, // Tiebreaker
             CustomRoles.Knighted,
             CustomRoles.Necroview,
             CustomRoles.Onbound,
@@ -30,15 +31,16 @@ namespace TOHE.Roles.Crewmate
             CustomRoles.Gravestone,
             CustomRoles.Autopsy,
             CustomRoles.Lucky,
-            CustomRoles.DualPersonality 
+            CustomRoles.DualPersonality // Schizophrenic
         };
 
         private static readonly List<CustomRoles> harmfulAddons = new List<CustomRoles>
         {
             CustomRoles.Oblivious,
             CustomRoles.Bewilder,
-            CustomRoles.Unreportable,
-            CustomRoles.Avanger,
+            CustomRoles.Unreportable, // Disregarded
+            CustomRoles.Avanger, // Avenger
+            CustomRoles.Diseased,
             CustomRoles.Unlucky
         };
 
@@ -51,7 +53,7 @@ namespace TOHE.Roles.Crewmate
         {
         //    CustomRoles.Flashman,
             CustomRoles.Egoist,
-            CustomRoles.Ntr,
+            CustomRoles.Ntr, // Neptune
             CustomRoles.Guesser,
             CustomRoles.Fool
         };
