@@ -48,6 +48,8 @@ internal class ChangeRoleSettings
             Main.RevolutionistStart = new();
             Main.RevolutionistLastTime = new();
             Main.RevolutionistCountdown = new();
+            Main.TimeMasterBackTrack = new();
+            Main.TimeMasterNum = new();
             Main.FarseerTimer = new();
             Main.CursedPlayers = new();
             Main.MafiaRevenged = new();
@@ -57,7 +59,9 @@ internal class ChangeRoleSettings
             Main.PuppeteerList = new();
             Main.TaglockedList = new();
             Main.DetectiveNotify = new();
+            Main.KillGhoul = new();
             Main.CyberStarDead = new();
+            Main.KilledDiseased = new();
             Main.WorkaholicAlive = new();
             Main.BaitAlive = new();
             Main.BoobyTrapBody = new();
@@ -255,6 +259,7 @@ internal class ChangeRoleSettings
             Spiritcaller.Init();
             Lurker.Init();
             PlagueBearer.Init();
+            Reverie.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
@@ -432,6 +437,9 @@ internal class SelectRolesPatch
                     case CustomRoles.BountyHunter:
                         BountyHunter.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.Reverie:
+                        Reverie.Add(pc.PlayerId);
+                        break;
                     case CustomRoles.SerialKiller:
                         SerialKiller.Add(pc.PlayerId);
                         break;
@@ -440,6 +448,10 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.HexMaster:
                         HexMaster.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Crusader:
+                        Crusader.Add(pc.PlayerId);
+                        Crusader.CrusaderLimit[pc.PlayerId] = Crusader.SkillLimitOpt.GetInt();
                         break;
                     case CustomRoles.Warlock:
                         Main.CursedPlayers.Add(pc.PlayerId, null);
@@ -508,6 +520,12 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Mayor:
                         Main.MayorUsedButtonCount[pc.PlayerId] = 0;
+                        break;
+                    case CustomRoles.TimeMaster:
+                        Main.TimeMasterNum[pc.PlayerId] = 0;
+                        break;
+                    case CustomRoles.Masochist:
+                        Main.MasochistKillMax[pc.PlayerId] = 0;
                         break;
                     case CustomRoles.Paranoia:
                         Main.ParaUsedButtonCount[pc.PlayerId] = 0;
