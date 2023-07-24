@@ -2621,9 +2621,10 @@
 "DoomsayerMisguessRolePrevGuessRoleUntilNextMeeting","猜错身份会阻止在下次会议之前猜身份","Misguessing role prevents guessing roles until next meeting","При ошибке не сможет угадывать роли до следующей встречи","",""
 "DoomsayerTryHideMsg","<color=#14f786>末日赌怪</color>","Hide <color=#14f786>Doomsayer</color>'s commands","Спрятать команду <color=#14f786>Предсказателя</color>","",""
 "DoomsayerCantGuess","抱歉，您只能猜测下一次会议中的身份","Sorry, you can only guess the roles in the next meeting.","К сожалению, вы cможете угадывать роли только на следующей встрече","",""
-"DoomsayerCorrectlyGuessRole","你猜对了这个身份！\n但玩家没有死，因为房主设置不允许他死","You guessed the role correctly!\nBut the player didn't die because the Host settings don't allow him to die","Вы правильно угадали роль!\nНо игрок не умер, потому что настройки Хоста не позволяют ему умереть","",""
+"DoomsayerCorrectlyGuessRole","你猜对了这个身份！\n但玩家没有死，因为房主设置不允许他死","You guessed the role correctly!\nBut the player didn't die because the Host settings don't allow them to die","Вы правильно угадали роль!\nНо игрок не умер, потому что настройки Хоста не позволяют ему умереть","",""
 "DoomsayerNotCorrectlyGuessRole","你没有猜对这个身份！\n但你没有死，因为房主的设置不允许你死","You didn't correctly guess the role!\nBut you didn't die because the Host's settings don't allow you to die","Вы не правильно угадали роль!\nНо вы не умерли, потому что настройки Хоста не позволяют вам умереть","",""
-"DoomsayerGuessCountMsg","您猜对了【{0}】个身份","You guessed correctly 【{0}】 roles","Вы правильно угадали 【{0}】 роли","",""
+"DoomsayerGuessCountMsg","您猜对了【{0}】个身份","You guessed correctly【{0}】roles","Вы правильно угадали【{0}】роли","",""
+"DoomsayerGuessSameRoleAgainMsg","","You tried to guess the same role or add-on that you guessed before","Вы попытались угадать ту же самую роль или атрибут которую угадывали до этого","",""
 "DoomsayerGuessCountTitle","【★ 末日赌怪 ★】","【 ★ Doomsayer ★ 】","【 ★ Предсказатель ★ 】","",""
 
 "## 模组信息 / Mod Info"
