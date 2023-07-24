@@ -7,7 +7,7 @@ namespace TOHE;
 
 internal static class CustomRolesHelper
 {
-    public static CustomRoles GetVNRole(this CustomRoles role) // ��Ӧԭ��ְҵ
+    public static CustomRoles GetVNRole(this CustomRoles role)
     {
         return role.IsVanilla()
             ? role
@@ -146,11 +146,14 @@ internal static class CustomRolesHelper
                 CustomRoles.Spiritcaller => CustomRoles.Impostor,
                 CustomRoles.EvilSpirit => CustomRoles.GuardianAngel,
                 CustomRoles.Lurker => CustomRoles.Impostor,
+                CustomRoles.PlagueBearer => CustomRoles.Impostor,
+                CustomRoles.Pestilence => CustomRoles.Impostor,
+                CustomRoles.Doomsayer => CustomRoles.Crewmate,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
     }
 
-        public static CustomRoles GetErasedRole(this CustomRoles role) // ��Ӧԭ��ְҵ
+        public static CustomRoles GetErasedRole(this CustomRoles role)
     {
         return role.IsVanilla()
             ? role
@@ -201,7 +204,7 @@ internal static class CustomRolesHelper
             };
     }
 
-    public static RoleTypes GetDYRole(this CustomRoles role) // ��Ӧԭ��ְҵ����ְҵ��
+    public static RoleTypes GetDYRole(this CustomRoles role)
     {
         return role switch
         {
@@ -258,7 +261,7 @@ internal static class CustomRolesHelper
             _ => RoleTypes.GuardianAngel
         };
     }
-    public static bool IsAdditionRole(this CustomRoles role) // �Ƿ񸽼�
+    public static bool IsAdditionRole(this CustomRoles role)
     {
         return role is
             CustomRoles.Lovers or
@@ -341,6 +344,7 @@ internal static class CustomRolesHelper
             CustomRoles.CursedSoul or
             CustomRoles.Phantom or
             CustomRoles.Totocalcio or
+            CustomRoles.Doomsayer or
             CustomRoles.Succubus;
     }
 
@@ -377,13 +381,14 @@ internal static class CustomRolesHelper
             CustomRoles.Phantom or
             CustomRoles.DarkHide or
             CustomRoles.Ritualist or
+            CustomRoles.Doomsayer or
        //     CustomRoles.Juggernaut or
             CustomRoles.Jinx or
        //     CustomRoles.Poisoner or
        //     CustomRoles.HexMaster or
             CustomRoles.Totocalcio;
     }
-    public static bool IsAmneNK(this CustomRoles role) // �Ƿ��������
+    public static bool IsAmneNK(this CustomRoles role)
     {
         return role is
             CustomRoles.Sidekick or
@@ -402,7 +407,7 @@ internal static class CustomRolesHelper
             CustomRoles.Succubus;
     }
 
-    public static bool IsNK(this CustomRoles role) // �Ƿ��������
+    public static bool IsNK(this CustomRoles role)
     {
         return role is
             CustomRoles.Jackal or
@@ -430,7 +435,7 @@ internal static class CustomRolesHelper
             CustomRoles.PlagueBearer or
             CustomRoles.Pestilence;
     }
-    public static bool IsSnitchTarget(this CustomRoles role) // �Ƿ��������
+    public static bool IsSnitchTarget(this CustomRoles role)
     {
         return role is
             CustomRoles.Jackal or
@@ -459,7 +464,7 @@ internal static class CustomRolesHelper
             CustomRoles.PlagueBearer or
             CustomRoles.Pestilence;
     }
-    public static bool IsNE(this CustomRoles role) // �Ƿ�����
+    public static bool IsNE(this CustomRoles role)
     {
         return role is
             CustomRoles.Jester or
@@ -467,9 +472,10 @@ internal static class CustomRolesHelper
             CustomRoles.Masochist or
             CustomRoles.Arsonist or
             CustomRoles.Executioner or
+            CustomRoles.Doomsayer or
             CustomRoles.Innocent;
     }
-    public static bool IsNB(this CustomRoles role) // �Ƿ�����
+    public static bool IsNB(this CustomRoles role)
     {
         return role is
             CustomRoles.Opportunist or
@@ -483,7 +489,7 @@ internal static class CustomRolesHelper
             CustomRoles.Maverick or
             CustomRoles.Totocalcio;
     }
-    public static bool IsNC(this CustomRoles role) // �Ƿ�����
+    public static bool IsNC(this CustomRoles role)
     {
         return role is
             CustomRoles.Mario or
@@ -498,7 +504,7 @@ internal static class CustomRolesHelper
             CustomRoles.Collector or
             CustomRoles.Provocateur;
     }
-    public static bool IsNeutralKilling(this CustomRoles role) //�Ƿ�а������������򵥶�ʤ����������
+    public static bool IsNeutralKilling(this CustomRoles role)
     {
         return role is
             CustomRoles.Terrorist or
@@ -535,7 +541,7 @@ internal static class CustomRolesHelper
             CustomRoles.PlagueBearer or
             CustomRoles.Pestilence;
     }
-    public static bool IsCK(this CustomRoles role) // �Ƿ������Ա
+    public static bool IsCK(this CustomRoles role)
     {
         return role is
             CustomRoles.SwordsMan or
@@ -613,7 +619,7 @@ internal static class CustomRolesHelper
             CustomRoles.Twister or
             CustomRoles.Lurker;
     }
-    public static bool IsNeutral(this CustomRoles role) // �Ƿ�����
+    public static bool IsNeutral(this CustomRoles role)
     {
         return role is
             //SoloKombat
@@ -673,6 +679,7 @@ internal static class CustomRolesHelper
             CustomRoles.Totocalcio or
             CustomRoles.Virus or
             CustomRoles.Succubus or
+            CustomRoles.Doomsayer or
             CustomRoles.Spiritcaller;
     }
 
@@ -720,12 +727,11 @@ internal static class CustomRolesHelper
             CustomRoles.Amnesiac or
             CustomRoles.Monarch or
         CustomRoles.Parasite or
-        CustomRoles.PlagueBearer or
         CustomRoles.PlagueBearer;
 
     }
 
-    public static bool IsNeutralWithGuessAccess(this CustomRoles role) // �Ƿ�����
+    public static bool IsNeutralWithGuessAccess(this CustomRoles role)
     {
         return role is
             //SoloKombat
@@ -773,6 +779,7 @@ internal static class CustomRolesHelper
             CustomRoles.Virus or
             CustomRoles.Succubus or
             CustomRoles.Spiritcaller or
+            CustomRoles.Doomsayer or
             CustomRoles.PlagueBearer or
             CustomRoles.Pestilence;
     }
@@ -799,7 +806,7 @@ internal static class CustomRolesHelper
         CustomRoles.Refugee or
         CustomRoles.Parasite;
     }
-        public static bool IsTasklessCrewmate(this CustomRoles role)
+    public static bool IsTasklessCrewmate(this CustomRoles role)
     {
         return role is
         CustomRoles.Sheriff or
@@ -813,7 +820,7 @@ internal static class CustomRolesHelper
         CustomRoles.SwordsMan or
         CustomRoles.Deputy;
     }
-        public static bool IsTaskBasedCrewmate(this CustomRoles role)
+    public static bool IsTaskBasedCrewmate(this CustomRoles role)
     {
         return role is
         CustomRoles.Snitch or
@@ -940,7 +947,7 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Oblivious && pc.Is(CustomRoles.Bloodhound)) return false;
         if (role is CustomRoles.Oblivious && pc.Is(CustomRoles.Vulture)) return false;
         if (role is CustomRoles.Vulture && pc.Is(CustomRoles.Oblivious)) return false;
-        if (role is CustomRoles.Guesser && pc.Is(CustomRoles.CopyCat)) return false;
+        if (role is CustomRoles.Guesser && (pc.Is(CustomRoles.CopyCat) || pc.Is(CustomRoles.Doomsayer))) return false;
         if (role is CustomRoles.CopyCat && pc.Is(CustomRoles.Guesser)) return false;
         if (role is CustomRoles.DoubleShot && pc.Is(CustomRoles.CopyCat)) return false;
         if (role is CustomRoles.CopyCat && pc.Is(CustomRoles.DoubleShot)) return false;

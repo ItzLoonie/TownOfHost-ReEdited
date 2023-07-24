@@ -1298,6 +1298,7 @@ public static class Options
         CursedSoul.SetupCustomOption();
         Gamer.SetupCustomOption();
         Executioner.SetupCustomOption();
+        Doomsayer.SetupCustomOption();
         SetupRoleOptions(10800, TabGroup.NeutralRoles, CustomRoles.Innocent);
         InnocentCanWinByImp = BooleanOptionItem.Create(10810, "InnocentCanWinByImp", false, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Innocent]);

@@ -392,6 +392,7 @@ public class Main : BasePlugin
                 {CustomRoles.EvilSpirit, "#003366"},
                 {CustomRoles.Convict, "#ff1919"},
                 {CustomRoles.Amnesiac, "#7FBFFF"},
+                {CustomRoles.Doomsayer, "#14f786"},
                 {CustomRoles.Masochist, "#684405"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
@@ -687,6 +688,7 @@ public enum CustomRoles
     Famine,
     Spiritcaller,
     Amnesiac,
+    Doomsayer,
     Masochist,
    // Flux,
     
@@ -803,6 +805,7 @@ public enum CustomWinner
     Glitch = CustomRoles.Glitch,
     Plaguebearer = CustomRoles.PlagueBearer,
     Masochist = CustomRoles.Masochist,
+    Doomsayer = CustomRoles.Doomsayer,
 }
 public enum AdditionalWinners
 {

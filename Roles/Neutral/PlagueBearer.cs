@@ -1,21 +1,13 @@
 ﻿using System.Collections.Generic;
 using Hazel;
-using Sentry.Protocol;
-using UnityEngine;
-using static TOHE.Options;
-using static UnityEngine.GraphicsBuffer;
-using static TOHE.Translator;
-using System.Diagnostics;
-using Hazel.Dtls;
-using System.Linq;
-using AmongUs.GameOptions;
-using MS.Internal.Xml.XPath;
 using TOHE.Roles.Impostor;
+using static TOHE.Options;
+using static TOHE.Translator;
 
 namespace TOHE.Roles.Neutral;
 public static class PlagueBearer
 {
-    private static readonly int Id = 555420;
+    private static readonly int Id = 26000;
     public static List<byte> playerIdList = new();
     public static Dictionary<byte, List<byte>> PlaguedList = new();
     public static Dictionary<byte, float> PlagueBearerCD = new();
@@ -77,7 +69,6 @@ public static class PlagueBearer
     }
     public static void receiveRPC(MessageReader reader)
     {
-
         byte PlagueBearerId = reader.ReadByte();
         byte PlaguedId = reader.ReadByte();
         PlaguedList[PlagueBearerId].Add(PlaguedId);
@@ -142,6 +133,4 @@ public static class PlagueBearer
         target.RpcMurderPlayerV3(killer);
         return true;
     }
-
-
 }

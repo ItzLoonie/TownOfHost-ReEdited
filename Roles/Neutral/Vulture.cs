@@ -1,14 +1,9 @@
-using System.Collections.Generic;
 using Hazel;
-using Sentry.Protocol;
 using UnityEngine;
-using static TOHE.Options;
-using static UnityEngine.GraphicsBuffer;
-using static TOHE.Translator;
-using System.Diagnostics;
-using Hazel.Dtls;
-using System.Linq;
 using AmongUs.GameOptions;
+using System.Collections.Generic;
+using static TOHE.Options;
+using static TOHE.Translator;
 
 namespace TOHE.Roles.Neutral;
 

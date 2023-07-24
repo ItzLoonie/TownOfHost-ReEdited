@@ -299,6 +299,7 @@
 "Spiritcaller","灵魂召唤者","Spiritcaller","Призыватель","",""
 "Amnesiac","","Amnesiac","","",""
 "Masochist","","Masochist","","",""
+"Doomsayer","","Doomsayer","Предсказатель","",""
 
 "# 附加职业 / Add-ons"
 "LastImpostor","绝境者","Last Impostor","Последний Предатель","絕境者","绝境者"
@@ -615,6 +616,7 @@
 "SpiritcallerInfo","将玩家变成恶灵","Turn Players into Evil Spirits","Превращайте игроков в Злых Духов","",""
 "AmnesiacInfo","","Remember the role of a player","","",""
 "MasochistInfo","","Get attacked a few times to win!","","",""
+"DoomsayerInfo","","Successfully guess players to win","Успешно угадайте роли игроков чтобы победить","",""
 
 "# 附加职业 / Add-ons descriptions"
 "LoversInfo","最重要的是，记得照顾好你的另一半","Stay alive and win together","Выживите со своим Любовником","你墜入了愛河","最重要的是，记得照顾好你的另一半"
@@ -843,6 +845,7 @@
 "SpiritcallerInfoLong","(中立阵营):\n灵魂召唤者可以把玩家被击杀后变成恶灵\n这些恶灵可以通过短时间冻结其他玩家\n或者阻挡他们的视线来帮助灵魂召唤者获胜\n再或者，恶灵可以给灵魂召唤者一个护盾，短暂地保护灵魂召唤者免受被击杀","(Neutrals):\nAs the Spiritcaller, your victims become Evil Spirits after they die. These spirits can help you win by freezing other players for a short time and/or blocking their vision. Alternatively, the spirits can give you a shield that protects you briefly from an attempted kill.","(Злой - Нейтрал):\nКогда Призыватель убивает игроков, они становятся Злыми Духами. Эти духи могут помочь ему победить, заморозив других игроков на короткое время и/или уменьшить их дальность обзора. Кроме того, Злые Духи могут дать ему щит, который ненадолго защитит его от попытки убийства.","",""
 "AmnesiacInfoLong","","(Neutrals):\nAs the Amnesiac, use your kill button on a player to remember their role.\n\nIf the target was an Impostor, you'll become a <b><color=#ff1919>Refugee</color></b>.\nIf the target was a crewmate, you'll become a <b><color=#FFB347>Sheriff</color></b>.\nIf the target was a passive neutral or a neutral killer not specified, you'll become the role defined in the settings.\nIf the target was a neutral killer of a select few, you'll become the role they are.","","",""
 "MasochistInfoLong","","(Neutrals):\nAs the Masochist, your goal is to get attacked a few times to win.\n\nYou cannot be guessed, as that adds to your attack count.","","",""
+"DoomsayerInfoLong","","(Neutrals):\nThe Doomsayer can guess the role of a certain player during the meeting. If it is correct, the target dies, and if it is wrong, the Doomsayer dies.\nIf the Doomsayer guesses a certain number of roles (the number depends on the host settings) then he wins.\nThe guessing command is: /bt [player id] [role]\nYou can see the player's id before the player's name, or use the /id command to view the id of all players.","(Злой - Нейтрал):\nПредсказатель может угадывать роли определённых игроков во время встречи. Если он угадает роль правильно, то он убьет эту цель, а если неправильно, то он совершит самоубийство.\nЕсли он угадает определённое количество ролей, то он победит (Количество зависит от настроек Хоста).\nКоманда для угадываний: '/bt [Номер игрока] [Название Роли]'' \nПример: /bt 3 Стукач \nВы можете увидеть номер игрока перед его никнеймом, или же для просмотра номеров всех игроков нужно использовать команду ''/id''.","",""
 
 "# 附加职业 / Add-ons descriptions"
 "LastImpostorInfoLong","(附加职业):\n这个效果在内鬼仅剩一人时赋予该内鬼。使其击杀冷却缩短。","(Add-ons):\nThis effect is given to the last surviving Impostor. Reduces their kill cooldown.","(Атрибут):\nАтрибут, присваивается последнему Предателю. \nВремя отката убийства становится меньше, чем обычно. \nНе назначается Охотнику за головами, Серийному убийце или Вампиру.","(附加職業):\n這個效果只在偽裝者陣營只剩下一人時賦予該玩家，被賦予效果的玩家殺人冷卻將會縮短。","(附加职业):\n这个效果在内鬼仅剩一人时赋予该内鬼。使其击杀冷却缩短。"
@@ -2601,6 +2604,24 @@
 "GuessPestilence","","You just tried to guess Pestilence!\n\nSorry, Pestilence killed you.","","",""
 "PestilenceImmune","","You can't kill Pestilence.","","",""
 
+"## Doomsayer Text Strings"
+"DoomsayerAmountOfGuessesToWin","","Amount of Guesses to win","Количество угадываний для победы","",""
+"DCanGuessImpostors","","Can Guess <color=#ff1919>Impostors</color>","Может угадывать <color=#ff1919>Предателей</color>","",""
+"DCanGuessCrewmates","","Can Guess <color=#8cffff>Crewmates</color>","Может угадывать <color=#8cffff>Членов Экипажа</color>","",""
+"DCanGuessNeutrals","","Can Guess <color=#7f8c8d>Neutrals</color>","Может угадывать <color=#7f8c8d>Нейтралов</color>","",""
+"DCanGuessAdt","","Can Guess Add-Ons","Может угадывать Атрибуты","",""
+"DoomsayerAdvancedSettings","","Advanced Settings","Расширенные настройки","",""
+"DoomsayerMaxNumberOfGuessesPerMeeting","","Max number of guesses per meeting","Максимальное количество угадываний на встречу","",""
+"DoomsayerKillCorrectlyGuessedPlayers","","Kill correctly guessed players","Правильно угаданные игроки умирают","",""
+"DoomsayerDoesNotSuicideWhenMisguessing","","<color=#14f786>Doomsayer</color> does not suicide when misguessing","<color=#14f786>Предсказатель</color> не умирает при не правильном угадывании","",""
+"DoomsayerMisguessRolePrevGuessRoleUntilNextMeeting","","Misguessing role prevents guessing roles until next meeting","При ошибке не сможет угадывать роли до следующей встречи","",""
+"DoomsayerTryHideMsg","","Hide <color=#14f786>Doomsayer</color>'s commands","Спрятать команду <color=#14f786>Предсказателя</color>","",""
+"DoomsayerCantGuess","","Sorry, you can only guess the roles in the next meeting.","К сожалению, вы cможете угадывать роли только на следующей встрече","",""
+"DoomsayerCorrectlyGuessRole","","You guessed the role correctly!\nBut the player didn't die because the Host settings don't allow him to die","Вы правильно угадали роль!\nНо игрок не умер, потому что настройки Хоста не позволяют ему умереть","",""
+"DoomsayerNotCorrectlyGuessRole","","You didn't correctly guess the role!\nBut you didn't die because the Host's settings don't allow you to die","Вы не правильно угадали роль!\nНо вы не умерли, потому что настройки Хоста не позволяют вам умереть","",""
+"DoomsayerGuessCountMsg","","You guessed correctly {0} roles","Вы правильно угадали {0} роли","",""
+"DoomsayerGuessCountTitle","","【 ★ Doomsayer ★ 】","【 ★ Предсказатель ★ 】","",""
+
 "## 模组信息 / Mod Info"
 "Developer","开发者","Developer","Разработчики","開發者","开发者"
 "Sponsor","金主爹爹","Sponsor","Спонсоры","乾爹","金主爹爹"
@@ -2701,6 +2722,7 @@
 "WinnerRoleText.Pestilence","","Pestilence Wins!","","",""
 "WinnerRoleText.PlagueBearer","","Plaguebearer Wins!","","",""
 "WinnerRoleText.Masochist","","Masochist Wins!","","",""
+"WinnerRoleText.Doomsayer","","Doomsayer Wins!","Предсказатель Победил!","",""
 
 
 "## Additional Winner Text"

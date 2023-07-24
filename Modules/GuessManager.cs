@@ -1,16 +1,16 @@
 ﻿using HarmonyLib;
 using Hazel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
 using TMPro;
+using System;
+using UnityEngine;
+using System.Linq;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TOHE.Modules;
 using TOHE.Roles.Crewmate;
-using TOHE.Roles.AddOns.Impostor;
-using UnityEngine;
-using static TOHE.Translator;
+using TOHE.Roles.Neutral;
 using TOHE.Roles.AddOns.Common;
+using static TOHE.Translator;
 
 namespace TOHE;
 
@@ -88,7 +88,7 @@ public static class GuessManager
 
         if (!AmongUsClient.Instance.AmHost) return false;
         if (!GameStates.IsInGame || pc == null) return false;
-        if (!pc.Is(CustomRoles.NiceGuesser) && !pc.Is(CustomRoles.EvilGuesser) && !pc.Is(CustomRoles.Judge) && !pc.Is(CustomRoles.Councillor) && !pc.Is(CustomRoles.Guesser) && !Options.GuesserMode.GetBool()) return false;
+        if (!pc.Is(CustomRoles.NiceGuesser) && !pc.Is(CustomRoles.EvilGuesser) && !pc.Is(CustomRoles.Doomsayer) && !pc.Is(CustomRoles.Judge) && !pc.Is(CustomRoles.Councillor) && !pc.Is(CustomRoles.Guesser) && !Options.GuesserMode.GetBool()) return false;
 
         int operate = 0; // 1:ID 2:猜测
         msg = msg.ToLower().TrimStart().TrimEnd();
@@ -107,7 +107,7 @@ public static class GuessManager
         }
         if (!pc.Is(CustomRoles.NiceGuesser))
         {
-                if (pc.GetCustomRole().IsCrewmate() && !Options.CrewmatesCanGuess.GetBool() && !pc.Is(CustomRoles.Guesser) && !pc.Is(CustomRoles.Judge))
+            if (pc.GetCustomRole().IsCrewmate() && !Options.CrewmatesCanGuess.GetBool() && !pc.Is(CustomRoles.Guesser) && !pc.Is(CustomRoles.Judge))
             {
                 if (!isUI) Utils.SendMessage(GetString("GuessNotAllowed"), pc.PlayerId);
                 else pc.ShowPopUp(GetString("GuessNotAllowed"));
@@ -122,14 +122,35 @@ public static class GuessManager
                 else pc.ShowPopUp(GetString("GuessNotAllowed"));
                 return true;
             }
-        }  
+        }
+        if (!pc.Is(CustomRoles.Doomsayer))
+        {
+            if (pc.GetCustomRole().IsImpostor() && !Doomsayer.DCanGuessImpostors.GetBool())
+            {
+                if (!isUI) Utils.SendMessage(GetString("GuessNotAllowed"), pc.PlayerId);
+                else pc.ShowPopUp(GetString("GuessNotAllowed"));
+                return true;
+            }
+            if (pc.GetCustomRole().IsCrewmate() && !Doomsayer.DCanGuessCrewmates.GetBool())
+            {
+                if (!isUI) Utils.SendMessage(GetString("GuessNotAllowed"), pc.PlayerId);
+                else pc.ShowPopUp(GetString("GuessNotAllowed"));
+                return true;
+            }
+            if (pc.GetCustomRole().IsNeutral() && !Doomsayer.DCanGuessNeutrals.GetBool())
+            {
+                if (!isUI) Utils.SendMessage(GetString("GuessNotAllowed"), pc.PlayerId);
+                else pc.ShowPopUp(GetString("GuessNotAllowed"));
+                return true;
+            }
+        }
         if (pc.GetCustomRole().IsNK() && !Options.NeutralKillersCanGuess.GetBool() && !pc.Is(CustomRoles.Guesser))
         {
             if (!isUI) Utils.SendMessage(GetString("GuessNotAllowed"), pc.PlayerId);
             else pc.ShowPopUp(GetString("GuessNotAllowed"));
             return true;
         }
-        if (pc.GetCustomRole().IsNonNK() && !Options.PassiveNeutralsCanGuess.GetBool() && !pc.Is(CustomRoles.Guesser))
+        if (pc.GetCustomRole().IsNonNK() && !Options.PassiveNeutralsCanGuess.GetBool() && !pc.Is(CustomRoles.Guesser) && !pc.Is(CustomRoles.Doomsayer))
         {
             if (!isUI) Utils.SendMessage(GetString("GuessNotAllowed"), pc.PlayerId);
             else pc.ShowPopUp(GetString("GuessNotAllowed"));
@@ -147,6 +168,7 @@ public static class GuessManager
             if (
             (pc.Is(CustomRoles.NiceGuesser) && Options.GGTryHideMsg.GetBool()) ||
             (pc.Is(CustomRoles.EvilGuesser) && Options.EGTryHideMsg.GetBool()) ||
+            (pc.Is(CustomRoles.Doomsayer) && Doomsayer.DoomsayerTryHideMsg.GetBool()) ||
             (pc.Is(CustomRoles.Guesser) && Options.GTryHideMsg.GetBool() || Options.GuesserMode.GetBool() && Options.HideGuesserCommands.GetBool())
             ) TryHideMsg();
             else if (pc.AmOwner && !isUI) Utils.SendMessage(originMsg, 255, pc.GetRealName());
@@ -332,6 +354,18 @@ public static class GuessManager
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessGuardianTask"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessGuardianTask"));
+                    return true;
+                }
+                if (role.IsAdditionRole() && pc.Is(CustomRoles.Doomsayer) && !Doomsayer.DCanGuessAdt.GetBool())
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessAdtRole"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessAdtRole"));
+                    return true;
+                }
+                if (pc.Is(CustomRoles.Doomsayer) && Doomsayer.HideGuesserUI)
+                {
+                    if (!isUI) Utils.SendMessage(GetString("DoomsayerCantGuess"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("DoomsayerCantGuess"));
                     return true;
                 }
 
@@ -534,10 +568,58 @@ public static class GuessManager
 
                 Logger.Info($"Player：{target.GetNameWithRole()} was guessed", "Guesser");
 
-                string Name = dp.GetRealName();
-
                 Main.GuesserGuessed[pc.PlayerId]++;
 
+                if (pc.Is(CustomRoles.Doomsayer) && Doomsayer.AdvancedSettings.GetBool())
+                {
+                    if (Doomsayer.GuessesCountPerMeeting >= Doomsayer.MaxNumberOfGuessesPerMeeting.GetInt() && pc.PlayerId != dp.PlayerId)
+                    {
+                        if (!isUI) Utils.SendMessage(GetString("DoomsayerCantGuess"), pc.PlayerId);
+                        else pc.ShowPopUp(GetString("DoomsayerCantGuess"));
+                        return true;
+                    }
+                    else
+                    {
+                        Doomsayer.GuessesCountPerMeeting++;
+
+                        if (Doomsayer.GuessesCountPerMeeting >= Doomsayer.MaxNumberOfGuessesPerMeeting.GetInt())
+                            Doomsayer.HideGuesserUI = true;
+                    }
+
+                    if (!Doomsayer.KillCorrectlyGuessedPlayers.GetBool() && pc.PlayerId != dp.PlayerId)
+                    {
+                        if (!isUI) Utils.SendMessage(GetString("DoomsayerCorrectlyGuessRole"), pc.PlayerId);
+                        else pc.ShowPopUp(GetString("DoomsayerCorrectlyGuessRole"));
+
+                        Doomsayer.GuessesCount++;
+                        Doomsayer.SendRPC(pc, dp);
+                        Doomsayer.CheckCountGuess(pc);
+
+                        if (pc.Is(CustomRoles.Doomsayer) && pc.PlayerId != dp.PlayerId)
+                        {
+                            new LateTask(() =>
+                            {
+                                Utils.SendMessage(string.Format(GetString("DoomsayerGuessCountMsg"), Doomsayer.GuessesCount), pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Doomsayer), GetString("DoomsayerGuessCountTitle")));
+                            }, 0.7f, "Doomsayer Guess Msg 1");
+                        }
+
+                        return true;
+                    }
+                    else if (Doomsayer.DoesNotSuicideWhenMisguessing.GetBool() && pc.PlayerId == dp.PlayerId)
+                    {
+                        if (!isUI) Utils.SendMessage(GetString("DoomsayerNotCorrectlyGuessRole"), pc.PlayerId);
+                        else pc.ShowPopUp(GetString("DoomsayerNotCorrectlyGuessRole"));
+
+                        if (Doomsayer.MisguessRolePrevGuessRoleUntilNextMeeting.GetBool())
+                        {
+                            Doomsayer.HideGuesserUI = true;
+                        }
+
+                        return true;
+                    }
+                }
+
+                string Name = dp.GetRealName();
                 CustomSoundsManager.RPCPlayCustomSoundAll("Gunfire");
 
                 new LateTask(() =>
@@ -546,15 +628,30 @@ public static class GuessManager
                     dp.SetRealKiller(pc);
                     RpcGuesserMurderPlayer(dp);
 
-                    //死者检查
-                    Utils.AfterPlayerDeathTasks(dp, true);
-
-                    Utils.NotifyRoles(isForMeeting: false, NoCache: true);
-
                     if (dp.Is(CustomRoles.Medic))
                         Medic.IsDead(dp);
 
+                    if (pc.Is(CustomRoles.Doomsayer) && pc.PlayerId != dp.PlayerId)
+                    {
+                        Doomsayer.GuessesCount++;
+                        Doomsayer.SendRPC(pc, dp);
+                        Doomsayer.CheckCountGuess(pc);
+                    }
+
+                    //死者检查
+                    Utils.AfterPlayerDeathTasks(dp, true);
+
+                    Utils.NotifyRoles(isForMeeting: true, NoCache: true);
+
                     new LateTask(() => { Utils.SendMessage(string.Format(GetString("GuessKill"), Name), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.NiceGuesser), GetString("GuessKillTitle"))); }, 0.6f, "Guess Msg");
+
+                    if (pc.Is(CustomRoles.Doomsayer) && pc.PlayerId != dp.PlayerId)
+                    {
+                        new LateTask(() =>
+                        {
+                            Utils.SendMessage(string.Format(GetString("DoomsayerGuessCountMsg"), Doomsayer.GuessesCount), pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Doomsayer), GetString("DoomsayerGuessCountTitle")));
+                        }, 0.7f, "Doomsayer Guess Msg 2");
+                    }
 
                 }, 0.2f, "Guesser Kill");
             }
@@ -764,6 +861,8 @@ public static class GuessManager
                     CreateGuesserButton(__instance);
                 if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.GetCustomRole().IsNonNK() && Options.PassiveNeutralsCanGuess.GetBool())
                     CreateGuesserButton(__instance);
+                else if (PlayerControl.LocalPlayer.GetCustomRole() is CustomRoles.Doomsayer && !Options.PassiveNeutralsCanGuess.GetBool() && !Doomsayer.HideGuesserUI)
+                    CreateGuesserButton(__instance);
             }
             else
             {
@@ -771,6 +870,9 @@ public static class GuessManager
                     CreateGuesserButton(__instance);
 
                 if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.Is(CustomRoles.NiceGuesser))
+                    CreateGuesserButton(__instance);
+
+                if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.Is(CustomRoles.Doomsayer) && !Doomsayer.HideGuesserUI)
                     CreateGuesserButton(__instance);
 
                 if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.Is(CustomRoles.Guesser))
@@ -887,6 +989,13 @@ public static class GuessManager
                 {
                     if (!Options.GGCanGuessCrew.GetBool() && index == 0) continue;
                     if (!Options.GGCanGuessAdt.GetBool() && index == 3) continue;
+                }
+                else if (PlayerControl.LocalPlayer.Is(CustomRoles.Doomsayer))
+                {
+                    if (!Doomsayer.DCanGuessCrewmates.GetBool() && index == 0) continue;
+                    if (!Doomsayer.DCanGuessImpostors.GetBool() && index == 1) continue;
+                    if (!Doomsayer.DCanGuessNeutrals.GetBool() && index == 2) continue;
+                    if (!Doomsayer.DCanGuessAdt.GetBool() && index == 3) continue;
                 }
                 else if (PlayerControl.LocalPlayer.Is(CustomRoles.Guesser))
                 {
@@ -1101,11 +1210,12 @@ public static class GuessManager
         }
     }
 
+    // Modded non-host client guess role/add-on
     private static void SendRPC(int playerId, CustomRoles role)
     {
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.Guess, SendOption.Reliable, -1);
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (int)CustomRPC.Guess, SendOption.Reliable, -1);
         writer.Write(playerId);
-        writer.Write((byte)role);
+        writer.Write((int)role);
         AmongUsClient.Instance.FinishRpcImmediately(writer);
     }
     public static void ReceiveRPC(MessageReader reader, PlayerControl pc)
@@ -1116,8 +1226,8 @@ public static class GuessManager
         int PlayerId = reader.ReadInt32();
         Logger.Msg($"{PlayerId}", "Player Id");
 
-        CustomRoles role = (CustomRoles)reader.ReadUInt32();
-        Logger.Msg($"{role}", "Role UInt32");
+        CustomRoles role = (CustomRoles)reader.ReadInt32();
+        Logger.Msg($"{role}", "Role Int32");
         Logger.Msg($"{GetString(role.ToString())}", "Role String");
 
         GuesserMsg(pc, $"/bt {PlayerId} {GetString(role.ToString())}", true);
