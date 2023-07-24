@@ -105,7 +105,7 @@ public static class GuessManager
             else pc.ShowPopUp(GetString("GuessDead"));
             return true;
         }
-        if (pc.Is(CustomRoles.NiceGuesser))
+        if (!pc.Is(CustomRoles.NiceGuesser))
         {
             if (pc.GetCustomRole().IsCrewmate() && !Options.CrewmatesCanGuess.GetBool() && !pc.Is(CustomRoles.Guesser) && !pc.Is(CustomRoles.Judge))
             {
@@ -114,7 +114,7 @@ public static class GuessManager
                 return true;
             }
         }
-        if (pc.Is(CustomRoles.EvilGuesser))
+        if (!pc.Is(CustomRoles.EvilGuesser))
         { 
             if (pc.GetCustomRole().IsImpostor() && !Options.ImpostorsCanGuess.GetBool() && !pc.Is(CustomRoles.Guesser) && !pc.Is(CustomRoles.Councillor))
             {
