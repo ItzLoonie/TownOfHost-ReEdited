@@ -173,7 +173,7 @@ public static class Lawyer
         foreach (var kvp in Target.Where(x => x.Value == exiled.PlayerId))
         {
             var lawyer = Utils.GetPlayerById(kvp.Key);
-            if (lawyer == null || !lawyer.IsAlive() || lawyer.Data.Disconnected) continue;
+            if (lawyer == null || lawyer.Data.Disconnected) continue;
             return true;
         }
         return false;

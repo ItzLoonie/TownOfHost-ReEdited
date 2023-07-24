@@ -10,6 +10,7 @@ public static class Mare
     public static List<byte> playerIdList = new();
 
     private static OptionItem KillCooldownInLightsOut;
+    private static OptionItem KillCooldownNormally;
   //  private static OptionItem SpeedInLightsOut;
     private static bool idAccelerated = false;  //加速済みかフラグ
 
@@ -19,7 +20,9 @@ public static class Mare
         SetupRoleOptions(Id, TabGroup.ImpostorRoles, CustomRoles.Mare);
      //   SpeedInLightsOut = FloatOptionItem.Create(Id + 10, "MareAddSpeedInLightsOut", new(0.1f, 0.5f, 0.1f), 0.3f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Mare])
       //      .SetValueFormat(OptionFormat.Multiplier);
-        KillCooldownInLightsOut = FloatOptionItem.Create(Id + 11, "MareKillCooldownInLightsOut", new(0f, 180f, 2.5f), 15f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Mare])
+        KillCooldownInLightsOut = FloatOptionItem.Create(Id + 11, "MareKillCooldownInLightsOut", new(0f, 180f, 2.5f), 7.5f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Mare])
+            .SetValueFormat(OptionFormat.Seconds);
+        KillCooldownNormally = FloatOptionItem.Create(Id + 12, "KillCooldownNormally", new(0f, 180f, 2.5f), 20f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Mare])
             .SetValueFormat(OptionFormat.Seconds);
     }
     public static void Init()
@@ -32,7 +35,13 @@ public static class Mare
     }
     public static bool IsEnable => playerIdList.Count > 0;
     public static float GetKillCooldown => Utils.IsActive(SystemTypes.Electrical) ? KillCooldownInLightsOut.GetFloat() : DefaultKillCooldown;
-    public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = GetKillCooldown;
+    public static void SetKillCooldown(byte id)
+    {
+        if (Utils.IsActive(SystemTypes.Electrical))
+        Main.AllPlayerKillCooldown[id] = KillCooldownInLightsOut.GetFloat();
+        else
+        Main.AllPlayerKillCooldown[id] = KillCooldownNormally.GetFloat();
+    }
     public static void ApplyGameOptions(byte playerId)
     {
         if (Utils.IsActive(SystemTypes.Electrical) && !idAccelerated)

@@ -16,7 +16,6 @@ public static class Reverie
     private static OptionItem DefaultKillCooldown;
     private static OptionItem ReduceKillCooldown;
     private static OptionItem MinKillCooldown;
-    public static OptionItem HasImpostorVision;
 
     private static Dictionary<byte, float> NowCooldown;
 
@@ -29,7 +28,6 @@ public static class Reverie
             .SetValueFormat(OptionFormat.Seconds);
         MinKillCooldown = FloatOptionItem.Create(Id + 12, "SansMinKillCooldown", new(0f, 180f, 2.5f), 2.5f, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Reverie])
             .SetValueFormat(OptionFormat.Seconds);
-        HasImpostorVision = BooleanOptionItem.Create(Id + 13, "ImpostorVision", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Reverie]);
     }
     public static void Init()
     {

@@ -18,7 +18,7 @@ public static class Sniper
     private static OptionItem SniperAimAssist;
     private static OptionItem SniperAimAssistOnshot;
     public static OptionItem CanKillWithBullets;
-    private static Dictionary<byte, byte> snipeTarget = new();
+    public static Dictionary<byte, byte> snipeTarget = new();
     private static Dictionary<byte, Vector3> snipeBasePosition = new();
     private static Dictionary<byte, Vector3> LastPosition = new();
     private static Dictionary<byte, int> bulletCount = new();

@@ -1,21 +1,20 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using Hazel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TOHE.Roles.Crewmate;
 using static TOHE.Options;
 using static TOHE.Translator;
 
-namespace TOHE.Roles.Impostor;
+namespace TOHE.Roles.Neutral;
 
-public static class Swooper
+public static class Ethereal
 {
-    private static readonly int Id = 4200;
+    private static readonly int Id = 6571;
     private static List<byte> playerIdList = new();
 
-    private static OptionItem SwooperCooldown;
-    private static OptionItem SwooperDuration;
+    private static OptionItem EtherealCooldown;
+    private static OptionItem EtherealDuration;
 
     private static Dictionary<byte, long> InvisTime = new();
     private static Dictionary<byte, long> lastTime = new();
@@ -23,10 +22,10 @@ public static class Swooper
 
     public static void SetupCustomOption()
     {
-        SetupRoleOptions(Id, TabGroup.ImpostorRoles, CustomRoles.Swooper);
-        SwooperCooldown = FloatOptionItem.Create(Id + 2, "SwooperCooldown", new(1f, 999f, 1f), 30f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Swooper])
+        SetupRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.Ethereal);        
+        EtherealCooldown = FloatOptionItem.Create(Id + 2, "EtherealCooldown", new(1f, 999f, 1f), 30f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Ethereal])
             .SetValueFormat(OptionFormat.Seconds);
-        SwooperDuration = FloatOptionItem.Create(Id + 4, "SwooperDuration", new(1f, 999f, 1f), 15f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Swooper])
+        EtherealDuration = FloatOptionItem.Create(Id + 4, "EtherealDuration", new(1f, 999f, 1f), 15f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Ethereal])
             .SetValueFormat(OptionFormat.Seconds);
     }
     public static void Init()
@@ -39,12 +38,16 @@ public static class Swooper
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+
+        if (!AmongUsClient.Instance.AmHost) return;
+        if (!Main.ResetCamPlayerList.Contains(playerId))
+            Main.ResetCamPlayerList.Add(playerId);
     }
     public static bool IsEnable => playerIdList.Count > 0;
     private static void SendRPC(PlayerControl pc)
     {
         if (pc.AmOwner) return;
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetSwooperTimer, SendOption.Reliable, pc.GetClientId());
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetEtherealTimer, SendOption.Reliable, pc.GetClientId());
         writer.Write((InvisTime.TryGetValue(pc.PlayerId, out var x) ? x : -1).ToString());
         writer.Write((lastTime.TryGetValue(pc.PlayerId, out var y) ? y : -1).ToString());
         AmongUsClient.Instance.FinishRpcImmediately(writer);
@@ -79,10 +82,10 @@ public static class Swooper
 
         var now = Utils.GetTimeStamp();
 
-        if (lastTime.TryGetValue(player.PlayerId, out var time) && time + (long)SwooperCooldown.GetFloat() < now)
+        if (lastTime.TryGetValue(player.PlayerId, out var time) && time + (long)EtherealCooldown.GetFloat() < now)
         {
             lastTime.Remove(player.PlayerId);
-            if (!player.IsModClient()) player.Notify(GetString("SwooperCanVent"));
+            if (!player.IsModClient()) player.Notify(GetString("EtherealCanVent"));
             SendRPC(player);
         }
 
@@ -95,18 +98,18 @@ public static class Swooper
             {
                 var pc = Utils.GetPlayerById(it.Key);
                 if (pc == null) continue;
-                var remainTime = it.Value + (long)SwooperDuration.GetFloat() - now;
+                var remainTime = it.Value + (long)EtherealDuration.GetFloat() - now;
                 if (remainTime < 0)
                 {
                     lastTime.Add(pc.PlayerId, now);
                     pc?.MyPhysics?.RpcBootFromVent(ventedId.TryGetValue(pc.PlayerId, out var id) ? id : Main.LastEnteredVent[pc.PlayerId].Id);
-                    NameNotifyManager.Notify(pc, GetString("SwooperInvisStateOut"));
+                    NameNotifyManager.Notify(pc, GetString("EtherealInvisStateOut"));
                     SendRPC(pc);
                     continue;
                 }
                 else if (remainTime <= 10)
                 {
-                    if (!pc.IsModClient()) pc.Notify(string.Format(GetString("SwooperInvisStateCountdown"), remainTime));
+                    if (!pc.IsModClient()) pc.Notify(string.Format(GetString("EtherealInvisStateCountdown"), remainTime));
                 }
                 newList.Add(it.Key, it.Value);
             }
@@ -132,25 +135,25 @@ public static class Swooper
 
                 InvisTime.Add(pc.PlayerId, Utils.GetTimeStamp());
                 SendRPC(pc);
-                NameNotifyManager.Notify(pc, GetString("SwooperInvisState"), SwooperDuration.GetFloat());
+                NameNotifyManager.Notify(pc, GetString("EtherealInvisState"), EtherealDuration.GetFloat());
             }
             else
             {
                 __instance.myPlayer.MyPhysics.RpcBootFromVent(ventId);
-                NameNotifyManager.Notify(pc, GetString("SwooperInvisInCooldown"));
+                NameNotifyManager.Notify(pc, GetString("EtherealInvisInCooldown"));
             }
-        }, 0.5f, "Swooper Vent");
+        }, 0.5f, "Ethereal Vent");
     }
     public static void OnEnterVent(PlayerControl pc, Vent vent)
     {
-        if (!pc.Is(CustomRoles.Swooper) || !IsInvis(pc.PlayerId)) return;
+        if (!pc.Is(CustomRoles.Ethereal) || !IsInvis(pc.PlayerId)) return;
 
         InvisTime.Remove(pc.PlayerId);
         lastTime.Add(pc.PlayerId, Utils.GetTimeStamp());
         SendRPC(pc);
 
         pc?.MyPhysics?.RpcBootFromVent(vent.Id);
-        NameNotifyManager.Notify(pc, GetString("SwooperInvisStateOut"));
+        NameNotifyManager.Notify(pc, GetString("EtherealInvisStateOut"));
     }
     public static string GetHudText(PlayerControl pc)
     {
@@ -158,26 +161,23 @@ public static class Swooper
         var str = new StringBuilder();
         if (IsInvis(pc.PlayerId))
         {
-            var remainTime = InvisTime[pc.PlayerId] + (long)SwooperDuration.GetFloat() - Utils.GetTimeStamp();
-            str.Append(string.Format(GetString("SwooperInvisStateCountdown"), remainTime));
+            var remainTime = InvisTime[pc.PlayerId] + (long)EtherealDuration.GetFloat() - Utils.GetTimeStamp();
+            str.Append(string.Format(GetString("EtherealInvisStateCountdown"), remainTime));
         }
         else if (lastTime.TryGetValue(pc.PlayerId, out var time))
         {
-            var cooldown = time + (long)SwooperCooldown.GetFloat() - Utils.GetTimeStamp();
-            str.Append(string.Format(GetString("SwooperInvisCooldownRemain"), cooldown));
+            var cooldown = time + (long)EtherealCooldown.GetFloat() - Utils.GetTimeStamp();
+            str.Append(string.Format(GetString("EtherealInvisCooldownRemain"), cooldown));
         }
         else
         {
-            str.Append(GetString("SwooperCanVent"));
+            str.Append(GetString("EtherealCanVent"));
         }
         return str.ToString();
     }
 
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
     {
-        if (Medic.ProtectList.Contains(target.PlayerId)) return true;
-        if (target.Is(CustomRoles.Bait)) return true;
-
         if (!IsInvis(killer.PlayerId)) return true;
         killer.SetKillCooldown();
         target.RpcCheckAndMurder(target);

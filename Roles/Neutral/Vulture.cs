@@ -1,13 +1,9 @@
-using System.Collections.Generic;
 using Hazel;
-using Sentry.Protocol;
 using UnityEngine;
+using AmongUs.GameOptions;
+using System.Collections.Generic;
 using static TOHE.Options;
-using static UnityEngine.GraphicsBuffer;
 using static TOHE.Translator;
-using System.Diagnostics;
-using Hazel.Dtls;
-using System.Linq;
 
 namespace TOHE.Roles.Neutral;
 
@@ -26,6 +22,7 @@ public static class Vulture
     public static OptionItem CanVent;
     public static OptionItem VultureReportCD;
     public static OptionItem MaxEaten;
+    public static OptionItem HasImpVision;
 
     public static void SetupCustomOption()
     {
@@ -36,6 +33,7 @@ public static class Vulture
         VultureReportCD = FloatOptionItem.Create(Id + 13, "VultureReportCooldown", new(0f, 180f, 2.5f), 10f, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Vulture])
                 .SetValueFormat(OptionFormat.Seconds);
         MaxEaten = IntegerOptionItem.Create(Id + 14, "VultureMaxEatenInOneRound", new(1, 14, 1), 1, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Vulture]);
+        HasImpVision = BooleanOptionItem.Create(Id + 15, "ImpostorVision", true, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Vulture]);
     }
     public static void Init()
     {
@@ -60,6 +58,8 @@ public static class Vulture
         }, Vulture.VultureReportCD.GetFloat() + 8f, "Vulture CD");  //for some reason that idk vulture cd completes 8s faster when the game starts, so I added 8f for now 
     }
     public static bool IsEnable => playerIdList.Count > 0;
+
+    public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(HasImpVision.GetBool());
 
     private static void SendRPC(byte playerId, bool add, Vector3 loc = new())
     {
@@ -97,15 +97,19 @@ public static class Vulture
     {
         foreach (var apc in playerIdList)
         {
-            AbilityLeftInRound[apc] = MaxEaten.GetInt();
-            LastReport[apc] = Utils.GetTimeStamp();
-            new LateTask(() =>
+            var player = Utils.GetPlayerById(apc);
+            if (player.IsAlive())
             {
-                Utils.GetPlayerById(apc).RpcGuardAndKill(Utils.GetPlayerById(apc));
-                Utils.GetPlayerById(apc).Notify(GetString("VultureCooldownUp"));
-                return;
-            }, Vulture.VultureReportCD.GetFloat(), "Vulture CD");
-            SendRPC(apc, false);
+                AbilityLeftInRound[apc] = MaxEaten.GetInt();
+                LastReport[apc] = Utils.GetTimeStamp();
+                new LateTask(() =>
+                {
+                    Utils.GetPlayerById(apc).RpcGuardAndKill(Utils.GetPlayerById(apc));
+                    Utils.GetPlayerById(apc).Notify(GetString("VultureCooldownUp"));
+                    return;
+                }, Vulture.VultureReportCD.GetFloat(), "Vulture CD");
+                SendRPC(apc, false);
+            }
         }
     }
 

@@ -11,29 +11,37 @@ namespace TOHE.Roles.Crewmate
         private static readonly int Id = 7300;
         private static readonly List<byte> playerIdList = new();
 
-        private static Dictionary<byte, int> addonsSold = new();
-        private static Dictionary<byte, List<byte>> bribedKiller = new();
+        public static Dictionary<byte, int> addonsSold = new();
+        public static Dictionary<byte, List<byte>> bribedKiller = new();
 
         private static List<CustomRoles> addons = new();
 
         private static readonly List<CustomRoles> helpfulAddons = new List<CustomRoles>
         {
-            {CustomRoles.Watcher},
+            CustomRoles.Watcher,
             CustomRoles.Seer,
             CustomRoles.Bait,
             CustomRoles.Trapper,
-            CustomRoles.Brakar,
+            CustomRoles.Antidote,
+            CustomRoles.Brakar, // Tiebreaker
             CustomRoles.Knighted,
             CustomRoles.Necroview,
             CustomRoles.Onbound,
-            CustomRoles.DualPersonality 
+            CustomRoles.Glow,
+            CustomRoles.Gravestone,
+            CustomRoles.Autopsy,
+            CustomRoles.Lucky,
+            CustomRoles.DualPersonality // Schizophrenic
         };
 
         private static readonly List<CustomRoles> harmfulAddons = new List<CustomRoles>
         {
-       //     CustomRoles.Oblivious,
+            CustomRoles.Oblivious,
             CustomRoles.Bewilder,
-            CustomRoles.Unreportable
+            CustomRoles.Unreportable, // Disregarded
+            CustomRoles.Avanger, // Avenger
+            CustomRoles.Diseased,
+            CustomRoles.Unlucky
         };
 
         private static readonly List<CustomRoles> neutralAddons = new List<CustomRoles>
@@ -45,7 +53,7 @@ namespace TOHE.Roles.Crewmate
         {
         //    CustomRoles.Flashman,
             CustomRoles.Egoist,
-            CustomRoles.Ntr,
+            CustomRoles.Ntr, // Neptune
             CustomRoles.Guesser,
             CustomRoles.Fool
         };

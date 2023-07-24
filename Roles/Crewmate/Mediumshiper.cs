@@ -9,7 +9,7 @@ public static class Mediumshiper
     private static readonly int Id = 7200;
     public static List<byte> playerIdList = new();
 
-    private static OptionItem ContactLimitOpt;
+    public static OptionItem ContactLimitOpt;
     public static OptionItem OnlyReceiveMsgFromCrew;
 
     public static Dictionary<byte, byte> ContactPlayer = new();

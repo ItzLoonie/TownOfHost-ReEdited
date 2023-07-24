@@ -12,9 +12,9 @@ public static class Sheriff
     private static readonly int Id = 8800;
     public static List<byte> playerIdList = new();
 
-    private static OptionItem KillCooldown;
+    public static OptionItem KillCooldown;
     private static OptionItem MisfireKillsTarget;
-    private static OptionItem ShotLimitOpt;
+    public static OptionItem ShotLimitOpt;
     private static OptionItem CanKillAllAlive;
     public static OptionItem CanKillNeutrals;
     public static OptionItem CanKillNeutralsMode;
@@ -49,7 +49,7 @@ public static class Sheriff
         CanKillMadmate = BooleanOptionItem.Create(Id + 17, "SheriffCanKillMadmate", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
         CanKillCharmed = BooleanOptionItem.Create(Id + 22, "SheriffCanKillCharmed", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
         CanKillLovers = BooleanOptionItem.Create(Id + 24, "SheriffCanKillLovers", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
-     //   CanKillSidekicks = BooleanOptionItem.Create(Id + 23, "SheriffCanKillSidekick", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
+        CanKillSidekicks = BooleanOptionItem.Create(Id + 23, "SheriffCanKillSidekick", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
         CanKillEgoists = BooleanOptionItem.Create(Id + 25, "SheriffCanKillEgoist", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
         CanKillInfected = BooleanOptionItem.Create(Id + 26, "SheriffCanKillInfected", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
         CanKillContagious = BooleanOptionItem.Create(Id + 27, "SheriffCanKillContagious", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sheriff]);
@@ -64,7 +64,7 @@ public static class Sheriff
     }
     public static void SetUpNeutralOptions(int Id)
     {
-        foreach (var neutral in Enum.GetValues(typeof(CustomRoles)).Cast<CustomRoles>().Where(x => x.IsNeutral() && x is not CustomRoles.KB_Normal))
+        foreach (var neutral in Enum.GetValues(typeof(CustomRoles)).Cast<CustomRoles>().Where(x => x.IsNeutral() && x is not CustomRoles.KB_Normal && x is not CustomRoles.Glitch && x is not CustomRoles.Konan && x is not CustomRoles.Baker && x is not CustomRoles.Famine && x is not CustomRoles.Pestilence && x is not CustomRoles.Glitch))
         {
             SetUpKillTargetOption(neutral, Id, true, CanKillNeutralsMode);
             Id++;
@@ -125,7 +125,7 @@ public static class Sheriff
         Logger.Info($"{killer.GetNameWithRole()} : Number of kills left: {ShotLimit[killer.PlayerId]}", "Sheriff");
         SendRPC(killer.PlayerId);
         if (target.CanBeKilledBySheriff()
-            || (killer.Is(CustomRoles.Sidekick) && SidekickSheriffCanGoBerserk.GetBool())
+            || (killer.Is(CustomRoles.Recruit) && SidekickSheriffCanGoBerserk.GetBool())
             || ((SetNonCrewCanKill.GetBool() &&
                     (
                         killer.Is(CustomRoles.Madmate)
@@ -143,7 +143,7 @@ public static class Sheriff
         killer.RpcMurderPlayerV3(killer);
         return MisfireKillsTarget.GetBool();
     }
-    public static string GetShotLimit(byte playerId) => Utils.ColorString(CanUseKillButton(playerId) ? Color.yellow : Color.gray, ShotLimit.TryGetValue(playerId, out var shotLimit) ? $"({shotLimit})" : "Invalid");
+    public static string GetShotLimit(byte playerId) => Utils.ColorString(CanUseKillButton(playerId) ? Utils.GetRoleColor(CustomRoles.Sheriff).ShadeColor(0.25f) : Color.gray, ShotLimit.TryGetValue(playerId, out var shotLimit) ? $"({shotLimit})" : "Invalid");
     public static bool CanBeKilledBySheriff(this PlayerControl player)
     {
         var cRole = player.GetCustomRole();
@@ -157,8 +157,8 @@ public static class Sheriff
                 CanKill = CanKillCharmed.GetBool();
             if (SubRoleTarget == CustomRoles.Lovers)
                 CanKill = CanKillLovers.GetBool();
-      //      if (SubRoleTarget == CustomRoles.Sidekick)
-        //        CanKill = CanKillSidekicks.GetBool();
+            if (SubRoleTarget == CustomRoles.Recruit)
+                CanKill = CanKillSidekicks.GetBool();
             if (SubRoleTarget == CustomRoles.Egoist)
                 CanKill = CanKillEgoists.GetBool();
             if (SubRoleTarget == CustomRoles.Infected)
@@ -167,12 +167,16 @@ public static class Sheriff
                 CanKill = CanKillContagious.GetBool();
             if (SubRoleTarget == CustomRoles.Rascal)
                 CanKill = true;
+            if (SubRoleTarget == CustomRoles.Admired)
+                CanKill = false;
         }
 
 
         return cRole switch
         {
             CustomRoles.Trickster => false,
+            CustomRoles.Glitch => true,
+            CustomRoles.Pestilence => true,
             _ => cRole.GetCustomRoleTypes() switch
             {
                 CustomRoleTypes.Impostor => true,

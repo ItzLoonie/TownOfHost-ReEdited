@@ -14,7 +14,7 @@ public static class Medic
     public static List<byte> ProtectList = new();
     public static byte TempMarkProtected;
     public static Dictionary<byte, int> ProtectLimit = new();
-    private static int SkillLimit;
+    public static int SkillLimit;
 
     public static OptionItem WhoCanSeeProtect;
     private static OptionItem KnowShieldBroken;
@@ -118,7 +118,7 @@ public static class Medic
         => !Main.PlayerStates[playerId].IsDead
         && (ProtectLimit.TryGetValue(playerId, out var x) ? x : 1) >= 1;
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = CanUseKillButton(id) ? 5f : 300f;
-    public static string GetSkillLimit(byte playerId) => Utils.ColorString(CanUseKillButton(playerId) ? Utils.GetRoleColor(CustomRoles.Medic) : Color.gray, ProtectLimit.TryGetValue(playerId, out var protectLimit) ? $"({protectLimit})" : "Invalid");
+    public static string GetSkillLimit(byte playerId) => Utils.ColorString(CanUseKillButton(playerId) ? Utils.GetRoleColor(CustomRoles.Medic).ShadeColor(0.25f) : Color.gray, ProtectLimit.TryGetValue(playerId, out var protectLimit) ? $"({protectLimit})" : "Invalid");
     public static bool InProtect(byte id) => ProtectList.Contains(id) && Main.PlayerStates.TryGetValue(id, out var ps) && !ps.IsDead;
     public static void OnCheckMurderFormedicaler(PlayerControl killer, PlayerControl target)
     {
