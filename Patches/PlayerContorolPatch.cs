@@ -7,7 +7,6 @@ using AmongUs.GameOptions;
 using HarmonyLib;
 using Hazel;
 using InnerNet;
-using MS.Internal.Xml.XPath;
 using TOHE.Modules;
 using TOHE.Roles.AddOns.Crewmate;
 using TOHE.Roles.Crewmate;
@@ -1505,6 +1504,7 @@ class ReportDeadBodyPatch
         Addict.OnReportDeadBody();
         Deathpact.OnReportDeadBody();
         ParityCop.OnReportDeadBody();
+        Doomsayer.OnReportDeadBody();
 
         Mortician.OnReportDeadBody(player, target);
         Tracefinder.OnReportDeadBody(player, target);
