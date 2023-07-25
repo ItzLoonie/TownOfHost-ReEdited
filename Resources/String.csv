@@ -2604,7 +2604,7 @@
 "PlagueBearerAlreadyPlagued","玩家已经受到瘟疫攻击","Player has already been plagued","","",""
 "PlagueBearerToPestilence","你变成了瘟疫！！","You have turned into Pestilence!!","","",""
 "PestilenceCanVent","<color=#343136>瘟疫</color>可以使用通风口","<color=#343136>Pestilence</color> Can Vent","","",""
-"PestilenceHasImpostorVision","<color=#343136>瘟疫</color>有<color=#ff1919>内鬼</color>视力","<color=#343136>Pestilence</color> Has <color=#ff1919>Impostor</color> Vision","","",""
+"PestilenceHasImpostorVision","<color=#343136>瘟疫</color>拥有<color=#ff1919>内鬼</color>视力","<color=#343136>Pestilence</color> Has <color=#ff1919>Impostor</color> Vision","","",""
 "GuessPestilence","你只是想猜测瘟疫！\n抱歉，瘟疫杀死了你","You just tried to guess Pestilence!\n\nSorry, Pestilence killed you.","","",""
 "PestilenceImmune","你不能杀死瘟疫","You can't kill Pestilence.","","",""
 
