@@ -1523,10 +1523,7 @@ class ReportDeadBodyPatch
         Deathpact.OnReportDeadBody();
         ParityCop.OnReportDeadBody();
         Doomsayer.OnReportDeadBody();
-        if (CustomRoles.BallLightning.IsEnable())
-        {
-            BallLightning.OnReportDeadBody();
-        }
+        BallLightning.OnReportDeadBody();
 
         Mortician.OnReportDeadBody(player, target);
         Tracefinder.OnReportDeadBody(player, target);
