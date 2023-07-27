@@ -1,5 +1,5 @@
 
-<h1 align="center">Town of Host Edited: Restored</h1>
+<h1 align="center">Town of Host Re-Edited</h1>
 
 <br>
 
@@ -17,8 +17,8 @@
 <p align="center">
   
 <a href="https://toher.vercel.app/" target="_blank"><img src="https://img.shields.io/badge/Website%20-%231DA1F2.svg?&style=for-the-badge&logo=vuedotjs&logoColor=white&color=3aa675"/></a>
-<a href="https://discord.gg/tohe" target="_blank"><img src="https://img.shields.io/badge/Discord%20-%231DA1F2.svg?&style=for-the-badge&logo=discord&logoColor=white&color=5662f6"/></a>
-<a href="https://github.com/Loonie-Toons/TOHE-Restored" target="_blank"><img src="https://img.shields.io/badge/Lateset Version%20-%231DA1F2.svg?&style=for-the-badge&logo=github&logoColor=white&color=181717"/></a>
+<a href="https://discord.gg/hkk2p9ggv4" target="_blank"><img src="https://img.shields.io/badge/Discord%20-%231DA1F2.svg?&style=for-the-badge&logo=discord&logoColor=white&color=5662f6"/></a>
+<a href="https://github.com/Loonie-Toons/TownOfHost-ReEdited/releases/latest" target="_blank"><img src="https://img.shields.io/badge/Latest Version%20-%231DA1F2.svg?&style=for-the-badge&logo=github&logoColor=white&color=181717"/></a>
 
 
 
@@ -69,4 +69,8 @@
 >
 > - Provided roles: Shapeshifter, Engineer, Scientist, Marshall, Poisoner, Necroview, Sidekick
 > - Bait and Beartrap as add-ons
-> 
+>
+
+### :star: [Project Lotus](https://github.com/ImaMapleTree/Lotus)
+>
+> - Ideas for some roles (such as Crusader)
