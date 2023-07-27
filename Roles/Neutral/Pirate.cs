@@ -120,15 +120,9 @@ public static class Pirate
     public static bool DuelCheckMsg(PlayerControl pc, string msg, bool isUI = false)
     {
         var originMsg = msg;
-        Logger.Msg("Inside duel check", "Pirate");
-
         if (!AmongUsClient.Instance.AmHost) return false;
-        Logger.Msg("After if 1", "Pirate");
         if (!GameStates.IsInGame || pc == null) return false;
-        Logger.Msg("After if 2", "Pirate");
-
         if (!pc.Is(CustomRoles.Pirate) && PirateTarget != pc.PlayerId) return false;
-        Logger.Msg("After if 3", "Pirate");
 
 
         msg = msg.ToLower().TrimStart().TrimEnd();
@@ -247,12 +241,10 @@ public static class Pirate
             if (msg.StartsWith("/" + comList[i]))
             {
                 msg = msg.Replace("/" + comList[i], string.Empty);
-                Logger.Msg("Checkcommand true", "pirate");
                 return true;
             }
             //}
         }
-        Logger.Msg("Check command false", "pirate");
         return false;
     }
 
