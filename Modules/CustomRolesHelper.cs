@@ -213,6 +213,7 @@ internal static class CustomRolesHelper
             //Standard
             CustomRoles.Sheriff => RoleTypes.Impostor,
             CustomRoles.Crusader => RoleTypes.Impostor,
+            CustomRoles.Pirate => RoleTypes.Impostor,
             CustomRoles.CopyCat => RoleTypes.Impostor,
             CustomRoles.CursedSoul => RoleTypes.Impostor,
             CustomRoles.Admirer => RoleTypes.Impostor,
@@ -383,6 +384,7 @@ internal static class CustomRolesHelper
             CustomRoles.DarkHide or
             CustomRoles.Ritualist or
             CustomRoles.Doomsayer or
+            CustomRoles.Pirate or
        //     CustomRoles.Juggernaut or
             CustomRoles.Jinx or
        //     CustomRoles.Poisoner or
@@ -419,6 +421,7 @@ internal static class CustomRolesHelper
             CustomRoles.Wraith or
             CustomRoles.Medusa or
             CustomRoles.Pelican or
+            CustomRoles.Pirate or
             CustomRoles.DarkHide or
             CustomRoles.Juggernaut or
             CustomRoles.Jinx or
@@ -495,6 +498,7 @@ internal static class CustomRolesHelper
         return role is
             CustomRoles.Mario or
             CustomRoles.Terrorist or
+            CustomRoles.Pirate or
             CustomRoles.Revolutionist or
             CustomRoles.Vulture or
             CustomRoles.Famine or
@@ -654,6 +658,7 @@ internal static class CustomRolesHelper
             CustomRoles.Pursuer or
             CustomRoles.PlagueBearer or
             CustomRoles.Pestilence or
+            CustomRoles.Pirate or
 
         //    CustomRoles.Sidekick or
             CustomRoles.Poisoner or
@@ -781,6 +786,7 @@ internal static class CustomRolesHelper
             CustomRoles.Spiritcaller or
             CustomRoles.Doomsayer or
             CustomRoles.PlagueBearer or
+            CustomRoles.Pirate or
             CustomRoles.Pestilence;
     }
 

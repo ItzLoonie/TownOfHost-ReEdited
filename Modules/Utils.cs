@@ -426,6 +426,7 @@ public static class Utils
             case CustomRoles.Crusader:
             case CustomRoles.Refugee:
             case CustomRoles.Jester:
+            case CustomRoles.Pirate:
          //   case CustomRoles.Baker:
             case CustomRoles.Famine:
             case CustomRoles.NWitch:
@@ -571,6 +572,9 @@ public static class Utils
                 break;
             case CustomRoles.Sheriff:
                 ProgressText.Append(Sheriff.GetShotLimit(playerId));
+                break;
+            case CustomRoles.Pirate:
+                ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Pirate).ShadeColor(0.25f), $"({Pirate.NumWin}/{Pirate.SuccessfulDuelsToWin.GetInt()})"));
                 break;
             case CustomRoles.Crusader:
                 ProgressText.Append(Crusader.GetSkillLimit(playerId));
@@ -842,24 +846,46 @@ public static class Utils
             SendMessage(GetString("Message.HideGameSettings"), PlayerId);
             return;
         }
-        var sb = new StringBuilder(GetString("Roles")).Append(":");
+
+        var sb = new StringBuilder();
         sb.AppendFormat("\n{0}: {1}", GetRoleName(CustomRoles.GM), Options.EnableGM.GetString().RemoveHtmlTags());
-        int headCount = -1;
+
+        var impsb = new StringBuilder();
+        var neutralsb = new StringBuilder();
+        var crewsb = new StringBuilder();
+        var addonsb = new StringBuilder();
+        //int headCount = -1;
         foreach (CustomRoles role in Enum.GetValues(typeof(CustomRoles)))
         {
-            headCount++;
-            if (role.IsImpostor() && headCount == 0) sb.Append("\n\n● " + GetString("TabGroup.ImpostorRoles"));
-            else if (role.IsCrewmate() && headCount == 1) sb.Append("\n\n● " + GetString("TabGroup.CrewmateRoles"));
-            else if (role.IsNeutral() && headCount == 2) sb.Append("\n\n● " + GetString("TabGroup.NeutralRoles"));
-            else if (role.IsAdditionRole() && headCount == 3) sb.Append("\n\n● " + GetString("TabGroup.Addons"));
-            else headCount--;
-
             string mode = role.GetMode() == 1 ? GetString("RoleRateNoColor") : GetString("RoleOnNoColor");
-            if (role.IsEnable()) sb.AppendFormat("\n{0}:{1} x{2}", GetRoleName(role), $"{mode}", role.GetCount());
+            if (role.IsEnable())
+            {
+                var roleDisplay = $"\n{GetRoleName(role)}:{mode} x{role.GetCount()}";
+                if (role.IsAdditionRole()) addonsb.Append(roleDisplay);
+                else if (role.IsCrewmate()) crewsb.Append(roleDisplay);
+                else if (role.IsImpostor() || role.IsMadmate()) impsb.Append(roleDisplay);
+                else if (role.IsNeutral()) neutralsb.Append(roleDisplay);
+            }
+            
+            
+            //headCount++;
+            //if (role.IsImpostor() && headCount == 0) sb.Append("\n\n● " + GetString("TabGroup.ImpostorRoles"));
+            //else if (role.IsCrewmate() && headCount == 1) sb.Append("\n\n● " + GetString("TabGroup.CrewmateRoles"));
+            //else if (role.IsNeutral() && headCount == 2) sb.Append("\n\n● " + GetString("TabGroup.NeutralRoles"));
+            //else if (role.IsAdditionRole() && headCount == 3) sb.Append("\n\n● " + GetString("TabGroup.Addons"));
+            //else headCount--;
+
+            //string mode = role.GetMode() == 1 ? GetString("RoleRateNoColor") : GetString("RoleOnNoColor");
+            //if (role.IsEnable()) sb.AppendFormat("\n{0}:{1} x{2}", GetRoleName(role), $"{mode}", role.GetCount());
         }
-      //  SendMessage(sb.ToString(), PlayerId);
-      foreach (string roleList in sb.ToString().Split("\n\n●"))
-        SendMessage("\n\n●"+roleList+"\n\n.", PlayerId);
+        //  SendMessage(sb.ToString(), PlayerId);
+        SendMessage(sb.Append("\n.").ToString(), PlayerId, "<color=#ff5b70>【 ★ Roles ★ 】</color>");
+        SendMessage(impsb.Append("\n.").ToString(), PlayerId, ColorString(GetRoleColor(CustomRoles.Impostor), "【 ★ Impostor Roles ★ 】"));
+        SendMessage(crewsb.Append("\n.").ToString(), PlayerId, ColorString(Utils.GetRoleColor(CustomRoles.Crewmate), "【 ★ Crewmate Roles ★ 】"));
+        SendMessage(neutralsb.Append("\n.").ToString(), PlayerId, "<color=#7f8c8d>【 ★ Neutral Roles ★ 】</color>");
+        SendMessage(addonsb.Append("\n.").ToString(), PlayerId, "<color=#ff9ace>【 ★ Add-ons ★ 】</color>");
+        //foreach (string roleList in sb.ToString().Split("\n\n●"))
+        //    SendMessage("\n\n●" + roleList + "\n\n.", PlayerId);
     }
     public static void ShowChildrenSettings(OptionItem option, ref StringBuilder sb, int deep = 0, bool command = false)
     {
@@ -1889,6 +1915,8 @@ public static class Utils
         Vulture.AfterMeetingTasks();
         Baker.AfterMeetingTasks();
         CopyCat.AfterMeetingTasks();
+        Pirate.AfterMeetingTask();
+
 
         if (Options.AirshipVariableElectrical.GetBool())
             AirshipElectricalDoors.Initialize();

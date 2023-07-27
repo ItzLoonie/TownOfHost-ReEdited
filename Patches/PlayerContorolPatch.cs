@@ -292,6 +292,10 @@ class CheckMurderPatch
                     if (!PlagueBearer.OnCheckMurder(killer, target))
                         return false;
                     break;
+                case CustomRoles.Pirate:
+                    if (!Pirate.OnCheckMurder(killer, target))
+                        return false;
+                    break;
 
                 case CustomRoles.Arsonist:
                     killer.SetKillCooldown(Options.ArsonistDouseTime.GetFloat());
@@ -1328,8 +1332,11 @@ class ReportDeadBodyPatch
                         {
                             new LateTask(() =>
                             {
-                                __instance.RpcGuardAndKill(__instance);
-                                __instance.Notify(GetString("VultureCooldownUp"));
+                                if (GameStates.IsInTask) 
+                                { 
+                                    __instance.RpcGuardAndKill(__instance);
+                                    __instance.Notify(GetString("VultureCooldownUp"));
+                                }
                                 return;
                             }, Vulture.VultureReportCD.GetFloat(), "Vulture CD");
                         }

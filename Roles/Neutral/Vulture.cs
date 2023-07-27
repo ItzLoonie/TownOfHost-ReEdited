@@ -52,8 +52,11 @@ public static class Vulture
         LastReport[playerId] = Utils.GetTimeStamp();
         new LateTask(() =>
         {
-            Utils.GetPlayerById(playerId).RpcGuardAndKill(Utils.GetPlayerById(playerId));
-            Utils.GetPlayerById(playerId).Notify(GetString("VultureCooldownUp"));
+            if (GameStates.IsInTask)
+            { 
+                Utils.GetPlayerById(playerId).RpcGuardAndKill(Utils.GetPlayerById(playerId));
+                Utils.GetPlayerById(playerId).Notify(GetString("VultureCooldownUp"));
+            }
             return;
         }, Vulture.VultureReportCD.GetFloat() + 8f, "Vulture CD");  //for some reason that idk vulture cd completes 8s faster when the game starts, so I added 8f for now 
     }
@@ -104,8 +107,11 @@ public static class Vulture
                 LastReport[apc] = Utils.GetTimeStamp();
                 new LateTask(() =>
                 {
-                    Utils.GetPlayerById(apc).RpcGuardAndKill(Utils.GetPlayerById(apc));
-                    Utils.GetPlayerById(apc).Notify(GetString("VultureCooldownUp"));
+                    if (GameStates.IsInTask)
+                    {
+                        Utils.GetPlayerById(apc).RpcGuardAndKill(Utils.GetPlayerById(apc));
+                        Utils.GetPlayerById(apc).Notify(GetString("VultureCooldownUp"));
+                    }
                     return;
                 }, Vulture.VultureReportCD.GetFloat(), "Vulture CD");
                 SendRPC(apc, false);

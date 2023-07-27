@@ -672,6 +672,7 @@ class MeetingHudStartPatch
         Main.VirusNotify.Clear();
         Mortician.msgToSend.Clear();
         Tracker.msgToSend.Clear();
+        Pirate.OnMeetingStart();
     }
     public static void Prefix(MeetingHud __instance)
     {
