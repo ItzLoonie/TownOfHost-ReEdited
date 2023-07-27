@@ -442,7 +442,7 @@ static class ExtendedPlayerControl
             //Standard
             CustomRoles.FireWorks => FireWorks.CanUseKillButton(pc),
             CustomRoles.Mafia => Utils.CanMafiaKill(),
-            CustomRoles.Mare => pc.IsAlive(),
+     //       CustomRoles.Mare => pc.IsAlive(),
             CustomRoles.Underdog => playerCount <= Options.UnderdogMaximumPlayersNeededToKill.GetInt(),
             CustomRoles.Inhibitor => !Utils.IsActive(SystemTypes.Electrical) && !Utils.IsActive(SystemTypes.Laboratory) && !Utils.IsActive(SystemTypes.Comms) && !Utils.IsActive(SystemTypes.LifeSupp) && !Utils.IsActive(SystemTypes.Reactor),
             CustomRoles.Saboteur => Utils.IsActive(SystemTypes.Electrical) || Utils.IsActive(SystemTypes.Laboratory) || Utils.IsActive(SystemTypes.Comms) || Utils.IsActive(SystemTypes.LifeSupp) || Utils.IsActive(SystemTypes.Reactor),
@@ -621,9 +621,9 @@ static class ExtendedPlayerControl
             case CustomRoles.TimeThief:
                 TimeThief.SetKillCooldown(player.PlayerId); //タイムシーフはタイムシーフのキルクールに。
                 break;
-            case CustomRoles.Mare:
+        /*    case CustomRoles.Mare:
                 Mare.SetKillCooldown(player.PlayerId);
-                break;
+                break; */
             case CustomRoles.EvilDiviner:
                 EvilDiviner.SetKillCooldown(player.PlayerId);
                 break;
@@ -843,6 +843,9 @@ static class ExtendedPlayerControl
         }
         if (player.PlayerId == LastImpostor.currentId)
             LastImpostor.SetKillCooldown();
+        if (player.Is(CustomRoles.Mare))
+            Main.AllPlayerKillCooldown[player.PlayerId] = Options.MareKillCD.GetFloat();
+        
         if (Main.KilledDiseased.ContainsKey(player.PlayerId))
         {
             Main.AllPlayerKillCooldown[player.PlayerId] = Main.AllPlayerKillCooldown[player.PlayerId] + Main.KilledDiseased[player.PlayerId] * Options.DiseasedCDOpt.GetFloat();

@@ -144,6 +144,9 @@ public static class NameColorManager
         // BEST MOB IN MINECRAFT
         if (target.Is(CustomRoles.Glow) && Utils.IsActive(SystemTypes.Electrical)) color = Main.roleColors[CustomRoles.Glow];
 
+
+        if (target.Is(CustomRoles.Mare) && Utils.IsActive(SystemTypes.Electrical) && !isMeeting) color = Main.roleColors[CustomRoles.Mare];
+
         // Virus
         if (seer.Is(CustomRoles.Contagious) && target.Is(CustomRoles.Virus)) color = Main.roleColors[CustomRoles.Virus];
         if (seer.Is(CustomRoles.Virus) && target.Is(CustomRoles.Contagious)) color = Main.roleColors[CustomRoles.Contagious];
@@ -171,7 +174,7 @@ public static class NameColorManager
             || (target.Is(CustomRoles.Gravestone) && Main.PlayerStates[target.Data.PlayerId].IsDead)
             || (target.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && target.GetPlayerTaskState().IsTaskFinished)
             || (seer.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoles.Marshall) && target.GetPlayerTaskState().IsTaskFinished)
-            || Mare.KnowTargetRoleColor(target, isMeeting)
+         //   || Mare.KnowTargetRoleColor(target, isMeeting)
             || EvilDiviner.IsShowTargetRole(seer, target)
             || Ritualist.IsShowTargetRole(seer, target);
     }

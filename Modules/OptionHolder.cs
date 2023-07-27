@@ -99,6 +99,7 @@ public static class Options
     public static readonly string[] CamouflageMode =
     {
         "CamouflageMode.Default",
+        "CamouflageMode.Host",
         "CamouflageMode.Karpe",
         "CamouflageMode.Loonie",
         "CamouflageMode.Lauryn",
@@ -222,6 +223,7 @@ public static class Options
     public static OptionItem LegacyMafia;
     public static OptionItem NotifyGodAlive;
     public static OptionItem MarioVentNumWin;
+    public static OptionItem MarioVentCD;
     public static OptionItem VeteranSkillCooldown;
     public static OptionItem VeteranSkillDuration;
     public static OptionItem TimeMasterSkillCooldown;
@@ -247,6 +249,11 @@ public static class Options
     public static OptionItem NukerChance;
     public static OptionItem NukeRadius;
     public static OptionItem NukeCooldown;
+
+    public static OptionItem SkeldChance;
+    public static OptionItem MiraChance;
+    public static OptionItem PolusChance;
+    public static OptionItem AirshipChance;
 
     // UNDERDOG
     public static OptionItem UnderdogKillCooldown;
@@ -343,6 +350,9 @@ public static class Options
     public static OptionItem ImpCanBeGravestone;
     public static OptionItem CrewCanBeGravestone;
     public static OptionItem NeutralCanBeGravestone;
+
+    // Mare Add-on
+    public static OptionItem MareKillCD;
 
 
 
@@ -643,7 +653,7 @@ public static class Options
     public static OverrideTasksData OpportunistTasks;
     public static OverrideTasksData MayorTasks;
     public static OverrideTasksData RetributionistTasks;
-    public static OverrideTasksData GhoulTasks;
+    public static OverrideTasksData TimeManagerTasks;
 
     // その他
     public static OptionItem FixFirstKillCooldown;
@@ -707,6 +717,7 @@ public static class Options
     public static OptionItem AddBracketsToAddons;
     public static OptionItem NoLimitAddonsNumMax;
     public static OptionItem BewilderVision;
+    public static OptionItem JesterHasImpostorVision;
     public static OptionItem SunglassesVision;
     public static OptionItem ImpCanBeAvanger;
     public static OptionItem MadmateSpawnMode;
@@ -977,7 +988,7 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Inhibitor])
             .SetValueFormat(OptionFormat.Seconds);
         Lurker.SetupCustomOption();
-        Mare.SetupCustomOption();
+   //     Mare.SetupCustomOption();
         SerialKiller.SetupCustomOption();
         Assassin.SetupCustomOption();
         QuickShooter.SetupCustomOption();
@@ -1307,6 +1318,8 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Jester]);
         JesterCanVent = BooleanOptionItem.Create(10911, "CanVent", false, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Jester]);
+        JesterHasImpostorVision = BooleanOptionItem.Create(10913, "ImpostorVision", false, TabGroup.NeutralRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Jester]);
         SunnyboyChance = IntegerOptionItem.Create(10912, "SunnyboyChance", new(0, 100, 5), 0, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Jester])
             .SetValueFormat(OptionFormat.Percent);
@@ -1573,7 +1586,6 @@ public static class Options
         NeutralCanBeUnreportable = BooleanOptionItem.Create(15312, "NeutralCanBeUnreportable", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Unreportable]);
         SetupAdtRoleOptions(15250, CustomRoles.Ghoul, canSetNum: true);
-     //   GhoulTasks = OverrideTasksData.Create(15351, TabGroup.Addons, CustomRoles.Ghoul);
         SetupAdtRoleOptions(15400, CustomRoles.Oblivious, canSetNum: true);
         ImpCanBeOblivious = BooleanOptionItem.Create(15410, "ImpCanBeOblivious", true, TabGroup.Addons, false)
         .SetParent(CustomRoleSpawnChances[CustomRoles.Oblivious]);
@@ -1648,13 +1660,18 @@ public static class Options
         JudgeCanBeMadmate = BooleanOptionItem.Create(15820, "JudgeCanBeMadmate", false, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Madmate]);
         LastImpostor.SetupCustomOption();
+        SetupAdtRoleOptions(1600, CustomRoles.Mare, canSetNum: true, tab: TabGroup.Addons);        
+        MareKillCD = FloatOptionItem.Create(1605, "KillCooldown", new(0f, 99f, 1f), 10f, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Mare])
+            .SetValueFormat(OptionFormat.Seconds);
         SetupAdtRoleOptions(16000, CustomRoles.Mimic, canSetNum: true, tab: TabGroup.Addons);        
         MimicCanSeeDeadRoles = BooleanOptionItem.Create(16010, "MimicCanSeeDeadRoles", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Mimic]);
-        SetupAdtRoleOptions(16050, CustomRoles.Swift, canSetNum: true, tab: TabGroup.Addons);
         SetupAdtRoleOptions(16100, CustomRoles.TicketsStealer, canSetNum: true, tab: TabGroup.Addons);
         TicketsPerKill = FloatOptionItem.Create(16110, "TicketsPerKill", new(0.1f, 10f, 0.1f), 0.5f, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.TicketsStealer]);
+        SetupAdtRoleOptions(16050, CustomRoles.Swift, canSetNum: true, tab: TabGroup.Addons);
+    //    SetupAdtRoleOptions(16300, CustomRoles.Minimalism, canSetNum: true, tab: TabGroup.Addons);
 
  
         TextOptionItem.Create(100017, "RoleType.Neut", TabGroup.Addons) // NEUTRAL
@@ -1691,7 +1708,7 @@ public static class Options
         SetupRoleOptions(16300, TabGroup.OtherRoles, CustomRoles.Minimalism);
         MNKillCooldown = FloatOptionItem.Create(16310, "KillCooldown", new(2.5f, 999f, 2.5f), 10f, TabGroup.OtherRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Minimalism])
-            .SetValueFormat(OptionFormat.Seconds);
+            .SetValueFormat(OptionFormat.Seconds); 
         SetupRoleOptions(16400, TabGroup.OtherRoles, CustomRoles.Zombie);
         ZombieKillCooldown = FloatOptionItem.Create(16410, "KillCooldown", new(0f, 999f, 2.5f), 5f, TabGroup.OtherRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Zombie])
@@ -1739,9 +1756,12 @@ public static class Options
         GodCanGuess = BooleanOptionItem.Create(18211, "CanGuess", false, TabGroup.OtherRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.God]);
         SetupRoleOptions(18300, TabGroup.OtherRoles, CustomRoles.Mario);
-        MarioVentNumWin = IntegerOptionItem.Create(18310, "MarioVentNumWin", new(5, 900, 5), 55, TabGroup.OtherRoles, false)
+        MarioVentNumWin = IntegerOptionItem.Create(18310, "MarioVentNumWin", new(5, 900, 5), 40, TabGroup.OtherRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Mario])
             .SetValueFormat(OptionFormat.Times);
+        MarioVentCD = FloatOptionItem.Create(18311, "VentCooldown", new(0f, 999f, 1f), 15f, TabGroup.OtherRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Mario])
+            .SetValueFormat(OptionFormat.Seconds);
         SetupRoleOptions(18400, TabGroup.OtherRoles, CustomRoles.Revolutionist);
         RevolutionistDrawTime = FloatOptionItem.Create(18410, "RevolutionistDrawTime", new(0f, 10f, 1f), 3f, TabGroup.OtherRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Revolutionist])
@@ -1958,6 +1978,22 @@ public static class Options
         AddedTheAirship = BooleanOptionItem.Create(19913, "AddedTheAirship", false, TabGroup.GameSettings, false)
             .SetParent(RandomMapsMode);
         // MapDleks = CustomOption.Create(19914, Color.white, "AddedDleks", false, RandomMapMode);
+
+/*
+        SkeldChance = IntegerOptionItem.Create(19910, "SkeldChance", new(0, 100, 5), 0, TabGroup.GameSettings, false)
+            .SetParent(RandomMapsMode)
+            .SetValueFormat(OptionFormat.Percent);
+        MiraChance = IntegerOptionItem.Create(19911, "MiraChance", new(0, 100, 5), 0, TabGroup.GameSettings, false)
+            .SetParent(RandomMapsMode)
+            .SetValueFormat(OptionFormat.Percent);
+        PolusChance = IntegerOptionItem.Create(19912, "PolusChance", new(0, 100, 5), 0, TabGroup.GameSettings, false)
+            .SetParent(RandomMapsMode)
+            .SetValueFormat(OptionFormat.Percent);
+        AirshipChance = IntegerOptionItem.Create(19913, "AirshipChance", new(0, 100, 5), 0, TabGroup.GameSettings, false)
+            .SetParent(RandomMapsMode)
+            .SetValueFormat(OptionFormat.Percent);
+
+*/
 
         // Random Spawn
         RandomSpawn = BooleanOptionItem.Create(22000, "RandomSpawn", false, TabGroup.GameSettings, false)

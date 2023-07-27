@@ -98,11 +98,11 @@ public class PlayerGameOptionsSender : GameOptionsSender
         {
             case CustomRoles.Terrorist:
             case CustomRoles.SabotageMaster:
-            case CustomRoles.Mario:
+       //     case CustomRoles.Mario:
             case CustomRoles.EngineerTOHE:
             case CustomRoles.Phantom:
             case CustomRoles.Crewpostor:
-            case CustomRoles.Jester:
+          //  case CustomRoles.Jester:
             case CustomRoles.Chameleon:
                 AURoleOptions.EngineerCooldown = 0f;
                 AURoleOptions.EngineerInVentMaxTime = 0f;
@@ -128,7 +128,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Sheriff:
             case CustomRoles.SwordsMan:
             case CustomRoles.Arsonist:
-            case CustomRoles.Minimalism:
+       //     case CustomRoles.Minimalism:
             case CustomRoles.Innocent:
             case CustomRoles.Pelican:
             case CustomRoles.Revolutionist:
@@ -174,9 +174,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                     : 300f;
                 AURoleOptions.EngineerInVentMaxTime = 1;
                 break;
-            case CustomRoles.Mare:
+       /*     case CustomRoles.Mare:
                 Mare.ApplyGameOptions(player.PlayerId);
-                break;
+                break; */
             case CustomRoles.EvilTracker:
                 EvilTracker.ApplyGameOptions(player.PlayerId);
                 break;
@@ -277,6 +277,11 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Reverie:
                 opt.SetVision(false);
                 break;
+            case CustomRoles.Jester:
+                AURoleOptions.EngineerCooldown = 0f;
+                AURoleOptions.EngineerInVentMaxTime = 0f;
+                opt.SetVision(Options.JesterHasImpostorVision.GetBool());
+                break;
             case CustomRoles.Infectious:
                 opt.SetVision(Infectious.HasImpostorVision.GetBool());
                 break;
@@ -352,6 +357,10 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
             case CustomRoles.Addict:
                 AURoleOptions.EngineerCooldown = Addict.VentCooldown.GetFloat();
+                AURoleOptions.EngineerInVentMaxTime = 1;
+                break;
+            case CustomRoles.Mario:
+                AURoleOptions.EngineerCooldown = Options.MarioVentCD.GetFloat();
                 AURoleOptions.EngineerInVentMaxTime = 1;
                 break;
             case CustomRoles.Deathpact:

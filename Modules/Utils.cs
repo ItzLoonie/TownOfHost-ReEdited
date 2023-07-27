@@ -508,8 +508,6 @@ public static class Utils
             {
                 case CustomRoles.Madmate:
                 case CustomRoles.Charmed:
-                case CustomRoles.Lovers:
-                case CustomRoles.Ntr:
                 case CustomRoles.Recruit:
                 case CustomRoles.Egoist:
                 case CustomRoles.Infected:
@@ -1351,7 +1349,7 @@ public static class Utils
             SelfMark.Append(Snitch.GetWarningArrow(seer));
 
             //ハートマークを付ける(自分に)
-            if (seer.Is(CustomRoles.Lovers) || CustomRolesHelper.RoleExist(CustomRoles.Ntr)) SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Lovers), "♡"));
+            if (seer.Is(CustomRoles.Lovers) || CustomRolesHelper.RoleExist(CustomRoles.Ntr)) SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Lovers), "♥"));
 
             //呪われている場合
             SelfMark.Append(Witch.GetSpelledMark(seer.PlayerId, isForMeeting));
@@ -1576,16 +1574,16 @@ public static class Utils
                 //ハートマークを付ける(相手に)
                 if (seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers))
                 {
-                    TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♡</color>");
+                    TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
                 }
                 //霊界からラバーズ視認
                 else if (seer.Data.IsDead && !seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers))
                 {
-                    TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♡</color>");
+                    TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
                 }
                 else if (target.Is(CustomRoles.Ntr) || seer.Is(CustomRoles.Ntr))
                 {
-                    TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♡</color>");
+                    TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
                 }
 
                 if (seer.Is(CustomRoles.PlagueBearer))
@@ -1861,6 +1859,25 @@ public static class Utils
     }
     public static void AfterMeetingTasks()
     {
+        if (Options.DiseasedCDReset.GetBool())
+        {
+            foreach (var pid in Main.KilledDiseased.Keys)
+            {
+                Main.KilledDiseased[pid] = 0;
+                Utils.GetPlayerById(pid).ResetKillCooldown();
+            }
+            Main.KilledDiseased.Clear();
+        }
+            //Main.KilledDiseased.Clear();
+        if (Options.AntidoteCDReset.GetBool())
+        {
+            foreach (var pid in Main.KilledAntidote.Keys)
+            {
+                Main.KilledAntidote[pid] = 0;
+                Utils.GetPlayerById(pid).ResetKillCooldown();
+            }
+            Main.KilledAntidote.Clear();
+        }
         Swooper.AfterMeetingTasks();
         Wraith.AfterMeetingTasks();
         Chameleon.AfterMeetingTasks();
@@ -1875,10 +1892,10 @@ public static class Utils
 
         if (Options.AirshipVariableElectrical.GetBool())
             AirshipElectricalDoors.Initialize();
-        if (Options.DiseasedCDReset.GetBool())
+     /*   if (Options.DiseasedCDReset.GetBool())
             Main.KilledDiseased.Clear();
         if (Options.AntidoteCDReset.GetBool())
-            Main.KilledAntidote.Clear();
+            Main.KilledAntidote.Clear(); */
 
     }
     public static void AfterPlayerDeathTasks(PlayerControl target, bool onMeeting = false)

@@ -53,7 +53,7 @@ internal static class CustomRolesHelper
                 CustomRoles.FireWorks => CustomRoles.Shapeshifter,
                 CustomRoles.SpeedBooster => CustomRoles.Crewmate,
                 CustomRoles.Dictator => CustomRoles.Crewmate,
-                CustomRoles.Mare => CustomRoles.Impostor,
+         //       CustomRoles.Mare => CustomRoles.Impostor,
                 CustomRoles.Inhibitor => CustomRoles.Impostor,
                 CustomRoles.Saboteur => CustomRoles.Impostor,
                 CustomRoles.Doctor => CustomRoles.Scientist,
@@ -81,7 +81,7 @@ internal static class CustomRolesHelper
                 CustomRoles.NiceGuesser => CustomRoles.Crewmate,
                 CustomRoles.EvilGuesser => CustomRoles.Impostor,
                 CustomRoles.Detective => CustomRoles.Crewmate,
-                CustomRoles.Minimalism => CustomRoles.Impostor,
+           //     CustomRoles.Minimalism => CustomRoles.Impostor,
                 CustomRoles.God => CustomRoles.Crewmate,
                 CustomRoles.GuardianAngelTOHE => CustomRoles.GuardianAngel,
                 CustomRoles.Zombie => CustomRoles.Impostor,
@@ -279,6 +279,7 @@ internal static class CustomRolesHelper
             CustomRoles.Swift or
             CustomRoles.Gravestone or
             CustomRoles.Trapper or
+            CustomRoles.Mare or
             CustomRoles.Brakar or
             CustomRoles.Oblivious or
             CustomRoles.Bewilder or
@@ -578,7 +579,6 @@ internal static class CustomRolesHelper
             CustomRoles.Miner or
             CustomRoles.Escapee or
             CustomRoles.SerialKiller or
-            CustomRoles.Mare or
             CustomRoles.Underdog or
             CustomRoles.Inhibitor or
             CustomRoles.Councillor or
@@ -826,6 +826,7 @@ internal static class CustomRolesHelper
         CustomRoles.Snitch or
         CustomRoles.Divinator or
         CustomRoles.Marshall or
+        CustomRoles.TimeManager or
         CustomRoles.Guardian or
         CustomRoles.Merchant or
         CustomRoles.Mayor or
@@ -865,8 +866,8 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Ghoul && (pc.GetCustomRole().IsNeutral() || pc.GetCustomRole().IsImpostor() || pc.GetCustomRole().IsTasklessCrewmate() || pc.GetCustomRole().IsTaskBasedCrewmate()) || pc.Is(CustomRoles.Needy) || pc.Is(CustomRoles.Snitch) || pc.Is(CustomRoles.Marshall) || pc.Is(CustomRoles.Transporter) || pc.Is(CustomRoles.Guardian)) return false;
         if (role is CustomRoles.Egoist && pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeEgoist.GetBool()) return false;
         if (role is CustomRoles.Egoist && pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeEgoist.GetBool() || pc.Is(CustomRoles.GuardianAngelTOHE)) return false;
-        if (role is CustomRoles.TicketsStealer or CustomRoles.Mimic or CustomRoles.Swift && !pc.GetCustomRole().IsImpostor()) return false;
-        if (role is CustomRoles.TicketsStealer or CustomRoles.Swift && (pc.Is(CustomRoles.Bomber) || pc.Is(CustomRoles.Nuker) || pc.Is(CustomRoles.BoobyTrap) || pc.Is(CustomRoles.Capitalism))) return false;
+        if (role is CustomRoles.TicketsStealer or CustomRoles.Mimic or CustomRoles.Swift or CustomRoles.Mare && !pc.GetCustomRole().IsImpostor()) return false;
+        if (role is CustomRoles.TicketsStealer or CustomRoles.Swift or CustomRoles.Mare && (pc.Is(CustomRoles.Bomber) || pc.Is(CustomRoles.Nuker) || pc.Is(CustomRoles.BoobyTrap) || pc.Is(CustomRoles.Capitalism))) return false;
         if (role is CustomRoles.Necroview && pc.Is(CustomRoles.Visionary)) return false;
         if (role is CustomRoles.Ghoul && pc.Is(CustomRoles.Lazy)) return false;
         if (role is CustomRoles.Lazy && pc.Is(CustomRoles.Ghoul)) return false;
@@ -875,6 +876,18 @@ internal static class CustomRolesHelper
         if (role is CustomRoles.Rascal && !pc.GetCustomRole().IsCrewmate()) return false;
         if (role is CustomRoles.Needy && pc.GetCustomRole().IsAdditionRole()) return false;
         if (role is CustomRoles.TicketsStealer && pc.Is(CustomRoles.Vindicator)) return false;
+        if (role is CustomRoles.Mare && pc.Is(CustomRoles.Underdog)) return false;
+        if (role is CustomRoles.Mare && pc.Is(CustomRoles.Inhibitor)) return false;
+        if (role is CustomRoles.Mare && pc.Is(CustomRoles.Saboteur)) return false;
+        if (role is CustomRoles.Mare && pc.Is(CustomRoles.Swift)) return false;
+        if (role is CustomRoles.Mare && pc.Is(CustomRoles.Mafia)) return false;
+        if (role is CustomRoles.Mare && pc.Is(CustomRoles.Sniper)) return false;
+        if (role is CustomRoles.Mare && pc.Is(CustomRoles.FireWorks)) return false;
+        if (role is CustomRoles.Mare && pc.Is(CustomRoles.Swooper)) return false;
+        if (role is CustomRoles.Mare && pc.Is(CustomRoles.Vampire)) return false;
+        if (role is CustomRoles.Mare && pc.Is(CustomRoles.Sans)) return false;
+        if (role is CustomRoles.Mare && pc.Is(CustomRoles.LastImpostor)) return false;
+        if (role is CustomRoles.Swift && pc.Is(CustomRoles.Mare)) return false;
         if (role is CustomRoles.DualPersonality && ((!pc.GetCustomRole().IsImpostor() && !pc.GetCustomRole().IsCrewmate()) || pc.Is(CustomRoles.Madmate))) return false;
         if (role is CustomRoles.DualPersonality && pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeDualPersonality.GetBool()) return false;
         if (role is CustomRoles.DualPersonality && pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeDualPersonality.GetBool() || pc.Is(CustomRoles.GuardianAngelTOHE)) return false;

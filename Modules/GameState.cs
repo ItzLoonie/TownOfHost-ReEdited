@@ -126,6 +126,10 @@ public class PlayerState
             SubRoles.Remove(CustomRoles.Loyal);
             SubRoles.Remove(CustomRoles.Admired);
         }
+        if (role == CustomRoles.LastImpostor)
+        {
+            SubRoles.Remove(CustomRoles.Mare);
+        }
         if (role == CustomRoles.Recruit)
         {
             countTypes = Jackal.SidekickCountMode.GetInt() switch
@@ -472,12 +476,24 @@ public class TaskState
                 }
                 else
                 {
-                    list = list.OrderBy(x => Vector2.Distance(player.GetTruePosition(), x.GetTruePosition())).ToList();
-                    var target = list[0];
-                    target.SetRealKiller(player);
-                    target.RpcCheckAndMurder(target);
-                    player.RpcGuardAndKill();
-                    Logger.Info($"船鬼完成任务击杀：{player.GetNameWithRole()} => {target.GetNameWithRole()}", "Crewpostor");
+                    {
+                        list = list.OrderBy(x => Vector2.Distance(player.GetTruePosition(), x.GetTruePosition())).ToList();
+                            var target = list[0];
+                        if (!target.Is(CustomRoles.Pestilence))
+                        {
+                            target.SetRealKiller(player);
+                            target.RpcCheckAndMurder(target);
+                            player.RpcGuardAndKill();
+                            Logger.Info($"船鬼完成任务击杀：{player.GetNameWithRole()} => {target.GetNameWithRole()}", "Crewpostor");
+                        }
+                        if (target.Is(CustomRoles.Pestilence))
+                        {
+                            target.SetRealKiller(player);
+                            target.RpcMurderPlayerV3(player);
+                            player.RpcGuardAndKill();
+                            Logger.Info($"船鬼完成任务击杀：{target.GetNameWithRole()} => {player.GetNameWithRole()}", "Pestilence Reflect");
+                        }
+                    }
                 }
             } 
 

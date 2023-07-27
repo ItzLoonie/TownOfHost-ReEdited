@@ -263,7 +263,7 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("GuessNotifiedBait"));
                     return true;
                 }
-                if (role == CustomRoles.Glow || role == CustomRoles.Necroview || role == CustomRoles.Autopsy || role == CustomRoles.Rascal)
+                if (role == CustomRoles.Glow || role == CustomRoles.LastImpostor || role == CustomRoles.Mare)
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessObviousAddon"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessObviousAddon"));
