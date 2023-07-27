@@ -177,7 +177,7 @@ internal class ChangeRoleSettings
             FireWorks.Init();
             Sniper.Init();
             TimeThief.Init();
-            Mare.Init();
+        //    Mare.Init();
             Witch.Init();
             HexMaster.Init();
             SabotageMaster.Init();
@@ -468,9 +468,9 @@ internal class SelectRolesPatch
                     case CustomRoles.Sniper:
                         Sniper.Add(pc.PlayerId);
                         break;
-                    case CustomRoles.Mare:
+               /*     case CustomRoles.Mare:
                         Mare.Add(pc.PlayerId);
-                        break;
+                        break; */
                     case CustomRoles.Vampire:
                         Vampire.Add(pc.PlayerId);
                         break;

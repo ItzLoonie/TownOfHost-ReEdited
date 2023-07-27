@@ -528,6 +528,10 @@ class SetHudActivePatch
                 case CustomRoles.Oblivious:
                     __instance.ReportButton.ToggleVisible(false);
                     break;
+                case CustomRoles.Mare:
+                    if (!Utils.IsActive(SystemTypes.Electrical))
+                    __instance.KillButton.ToggleVisible(false);
+                    break;
             }
         }
         __instance.KillButton.ToggleVisible(player.CanUseKillButton());

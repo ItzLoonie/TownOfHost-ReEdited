@@ -7,6 +7,7 @@ using AmongUs.GameOptions;
 using HarmonyLib;
 using Hazel;
 using InnerNet;
+using MS.Internal.Xml.XPath;
 using TOHE.Modules;
 using TOHE.Roles.AddOns.Crewmate;
 using TOHE.Roles.Crewmate;
@@ -448,8 +449,17 @@ class CheckMurderPatch
         //    target.RpcGuardAndKill(target);
             target.SetRealKiller(killer);
                 killer.SetKillCooldownV2();
+            RPC.PlaySoundRPC(killer.PlayerId, Sounds.KillSound);
                 return false;
         }
+        if (killer.Is(CustomRoles.Mare) && !Utils.IsActive(SystemTypes.Electrical))
+        {
+            return false;
+        }
+   /*     if (killer.Is(CustomRoles.Minimalism))
+        {
+            return true;
+        } */
 
         if (killer.Is(CustomRoles.Ritualist))
         {
@@ -665,6 +675,7 @@ class CheckMurderPatch
             case CustomRoles.CursedWolf:
                 if (Main.CursedWolfSpellCount[target.PlayerId] <= 0) break;
                 if (killer.Is(CustomRoles.Pestilence)) break;
+                if (killer == target) break;
                 killer.RpcGuardAndKill(target);
                 target.RpcGuardAndKill(target);
                 Main.CursedWolfSpellCount[target.PlayerId] -= 1;
@@ -677,6 +688,7 @@ class CheckMurderPatch
             case CustomRoles.Jinx:
                 if (Main.JinxSpellCount[target.PlayerId] <= 0) break;
                 if (killer.Is(CustomRoles.Pestilence)) break;
+                if (killer == target) break;
                 killer.RpcGuardAndKill(target);
                 target.RpcGuardAndKill(target);
                 Main.JinxSpellCount[target.PlayerId] -= 1;
@@ -696,6 +708,13 @@ class CheckMurderPatch
                         killer.SetRealKiller(target);
                         target.RpcMurderPlayerV3(killer);
                         Logger.Info($"{target.GetRealName()} 老兵反弹击杀：{killer.GetRealName()}", "Veteran Kill");
+                        return false;
+                        }
+                        if (killer.Is(CustomRoles.Pestilence))
+                        {
+                        target.SetRealKiller(killer);
+                        killer.RpcMurderPlayerV3(target);
+                        Logger.Info($"{target.GetRealName()} 老兵反弹击杀：{target.GetRealName()}", "Pestilence Reflect");
                         return false;
                         }
                     }
@@ -1268,7 +1287,7 @@ class ReportDeadBodyPatch
             var killerRole = killer?.GetCustomRole();
 
             //杀戮机器无法报告或拍灯
-            if (__instance.Is(CustomRoles.Minimalism)) return false;
+       //     if (__instance.Is(CustomRoles.Minimalism)) return false;
             //禁止小黑人报告
             if (((Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive) && Options.DisableReportWhenCC.GetBool()) return false;
 
@@ -1493,7 +1512,6 @@ class ReportDeadBodyPatch
         Poisoner.OnStartMeeting();
         Pelican.OnReportDeadBody();
         Counterfeiter.OnReportDeadBody();
-        BallLightning.OnReportDeadBody();
         QuickShooter.OnReportDeadBody();
         Eraser.OnReportDeadBody();
         Hacker.OnReportDeadBody();
@@ -1505,6 +1523,10 @@ class ReportDeadBodyPatch
         Deathpact.OnReportDeadBody();
         ParityCop.OnReportDeadBody();
         Doomsayer.OnReportDeadBody();
+        if (CustomRoles.BallLightning.IsEnable())
+        {
+            BallLightning.OnReportDeadBody();
+        }
 
         Mortician.OnReportDeadBody(player, target);
         Tracefinder.OnReportDeadBody(player, target);
@@ -2234,19 +2256,19 @@ class FixedUpdatePatch
                 //ハートマークを付ける(会議中MOD視点)
                 if (__instance.Is(CustomRoles.Lovers) && PlayerControl.LocalPlayer.Is(CustomRoles.Lovers))
                 {
-                    Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Lovers)}>♡</color>");
+                    Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
                 }
                 else if (__instance.Is(CustomRoles.Lovers) && PlayerControl.LocalPlayer.Data.IsDead)
                 {
-                    Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Lovers)}>♡</color>");
+                    Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
                 }
                 else if (__instance.Is(CustomRoles.Ntr) || PlayerControl.LocalPlayer.Is(CustomRoles.Ntr))
                 {
-                    Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Lovers)}>♡</color>");
+                    Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
                 }
                 else if (__instance == PlayerControl.LocalPlayer && CustomRolesHelper.RoleExist(CustomRoles.Ntr))
                 {
-                    Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Lovers)}>♡</color>");
+                    Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
                 }
 
 

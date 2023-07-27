@@ -99,7 +99,7 @@ class RepairSystemPatch
 
         if (systemType == SystemTypes.Sabotage && AmongUsClient.Instance.NetworkMode != NetworkModes.FreePlay)
         {
-            if (player.Is(CustomRoleTypes.Impostor) && !player.Is(CustomRoles.Minimalism) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
+            if (player.Is(CustomRoleTypes.Impostor) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
             if (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) return true;
             if (player.Is(CustomRoles.Sidekick) && Jackal.CanUseSabotageSK.GetBool()) return true;
             if (player.Is(CustomRoles.Traitor) && Traitor.CanUseSabotage.GetBool()) return true;
@@ -110,7 +110,7 @@ class RepairSystemPatch
         }
       /*if (systemType == SystemTypes.Doors && AmongUsClient.Instance.NetworkMode != NetworkModes.FreePlay)
         {
-            if (player.Is(CustomRoleTypes.Impostor) && !player.Is(CustomRoles.Minimalism) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
+            if (player.Is(CustomRoleTypes.Impostor) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
             if (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) return true;
             if (player.Is(CustomRoles.Parasite) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
             return false;
