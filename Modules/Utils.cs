@@ -18,7 +18,6 @@ using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
-using static AmongUs.QuickChat.QuickChatPhraseBuilderResult;
 using static TOHE.Translator;
 
 namespace TOHE;

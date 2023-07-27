@@ -50,6 +50,9 @@ public static class Pirate
     {
         playerIdList.Add(playerId);
         DuelDone.Add(playerId, false);
+        if (!AmongUsClient.Instance.AmHost) return;
+        if (!Main.ResetCamPlayerList.Contains(playerId))
+            Main.ResetCamPlayerList.Add(playerId);
     }
 
     public static bool IsEnable => playerIdList.Count > 0;
