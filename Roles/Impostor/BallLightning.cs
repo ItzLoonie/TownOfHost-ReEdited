@@ -138,6 +138,8 @@ public static class BallLightning
     }
     public static void OnReportDeadBody()
     {
+        if (!(IsEnable || CustomRoles.BallLightning.IsEnable())) return;
+
         foreach (var ghost in GhostPlayer)
         {
             var gs = Utils.GetPlayerById(ghost);
