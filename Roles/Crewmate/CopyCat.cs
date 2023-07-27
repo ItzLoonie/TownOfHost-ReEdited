@@ -132,6 +132,10 @@ public static class CopyCat
                     Sheriff.CurrentKillCooldown.Remove(player);
                     Sheriff.ShotLimit.Remove(player);
                     break;
+                case CustomRoles.Crusader:
+                    Crusader.CurrentKillCooldown.Remove(player);
+                    Crusader.CrusaderLimit.Remove(player);
+                    break;
                 case CustomRoles.Veteran:
                     Main.VeteranNumOfUsed.Remove(player);
                     break;
@@ -141,6 +145,9 @@ public static class CopyCat
                 case CustomRoles.Mayor:
                     Main.MayorUsedButtonCount.Remove(player);
                     break;
+                case CustomRoles.Divinator:
+                    Divinator.CheckLimit.Remove(pc.PlayerId);
+                break;
             }
             pc.RpcSetCustomRole(CustomRoles.CopyCat);
             SetKillCooldown(player);
@@ -245,6 +252,15 @@ public static class CopyCat
                     if (!Main.ResetCamPlayerList.Contains(pc.PlayerId))
                         Main.ResetCamPlayerList.Add(pc.PlayerId);
                     break;
+                case CustomRoles.Crusader:
+                    Crusader.CurrentKillCooldown.Add(pc.PlayerId, KillCooldown.GetFloat());
+                    Crusader.CrusaderLimit.TryAdd(pc.PlayerId, Sheriff.ShotLimitOpt.GetInt());
+                    Logger.Info($"{Utils.GetPlayerById(pc.PlayerId)?.GetNameWithRole()} : 残り{Crusader.CrusaderLimit[pc.PlayerId]}発", "Crusader");
+
+                    if (!AmongUsClient.Instance.AmHost) break;
+                    if (!Main.ResetCamPlayerList.Contains(pc.PlayerId))
+                        Main.ResetCamPlayerList.Add(pc.PlayerId);
+                    break;
                 //case CustomRoles.Veteran:
                 //    Main.VeteranNumOfUsed.Add(pc.PlayerId, Options.VeteranSkillMaxOfUseage.GetInt());
                 //    break;
@@ -253,6 +269,9 @@ public static class CopyCat
                     break;
                 case CustomRoles.Mayor:
                     Main.MayorUsedButtonCount[pc.PlayerId] = 0;
+                    break;
+                case CustomRoles.Divinator:
+                    Divinator.CheckLimit.TryAdd(pc.PlayerId, 5);
                     break;
             }
 

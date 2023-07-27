@@ -22,7 +22,7 @@ namespace TOHE;
 public class Main : BasePlugin
 {
     // == プログラム設定 / Program Config ==
-    public static readonly string ModName = "TOHE-R";
+    public static readonly string ModName = "Town of Host Re-Edited";
     public static readonly string ModColor = "#ffc0cb";
     public static readonly bool AllowPublicRoom = true;
     public static readonly string ForkId = "TOHE";
@@ -33,8 +33,8 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = " ";
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "2.5.1.14";
-    public const string PluginDisplayVersion = "2.5.1_5";
+    public const string PluginVersion = "2.5.1.22";
+    public const string PluginDisplayVersion = "2.5.1_10";
     public const int PluginCreate = 3;
     public const bool Canary = false;
 
@@ -448,6 +448,7 @@ public class Main : BasePlugin
                 {CustomRoles.Antidote,"#FF9876"},
 
                 {CustomRoles.Swift, "#ff1919"},
+                {CustomRoles.Mare, "#ff1919"},
                 {CustomRoles.Ghoul, "#B22222"},
              //   {CustomRoles.QuickFix, "#3333ff"},
 
@@ -536,7 +537,6 @@ public enum CustomRoles
     Hacker,
     Miner,
     Escapee,
-    Mare,
     Inhibitor,
     Puppeteer,
     TimeThief,
@@ -750,6 +750,7 @@ public enum CustomRoles
     Antidote,
     Swift,
     Ghoul,
+    Mare,
     // QuickFix
 }
 //WinData

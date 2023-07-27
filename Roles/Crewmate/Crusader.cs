@@ -12,6 +12,7 @@ public static class Crusader
     public static Dictionary<byte, int> CrusaderLimit = new();
     public static OptionItem SkillLimitOpt;
     public static OptionItem SkillCooldown;
+    public static Dictionary<byte, float> CurrentKillCooldown = new();
 
     public static void SetupCustomOption()
     {
@@ -30,6 +31,8 @@ public static class Crusader
     {
         playerIdList.Add(playerId);
         CrusaderLimit.TryAdd(playerId, SkillLimitOpt.GetInt());
+        CurrentKillCooldown.Add(playerId, SkillCooldown.GetFloat());
+
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
@@ -58,7 +61,7 @@ public static class Crusader
     public static bool CanUseKillButton(byte playerId)
         => !Main.PlayerStates[playerId].IsDead
         && (CrusaderLimit.TryGetValue(playerId, out var x) ? x : 1) >= 1;
-    public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = CanUseKillButton(id) ? SkillCooldown.GetFloat() : 300f;
+    public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = CanUseKillButton(id) ? CurrentKillCooldown[id] : 0f;
     public static string GetSkillLimit(byte playerId) => Utils.ColorString(CanUseKillButton(playerId) ? Utils.GetRoleColor(CustomRoles.Crusader).ShadeColor(0.25f) : Color.gray, CrusaderLimit.TryGetValue(playerId, out var constableLimit) ? $"({constableLimit})" : "Invalid");
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
     {

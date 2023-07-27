@@ -81,7 +81,7 @@ public static class Oracle
             CustomRoles.Miner or
             CustomRoles.Escapee or
             CustomRoles.SerialKiller or
-            CustomRoles.Mare or
+       //     CustomRoles.Mare or
             CustomRoles.Inhibitor or
             CustomRoles.Councillor or
             CustomRoles.Saboteur or

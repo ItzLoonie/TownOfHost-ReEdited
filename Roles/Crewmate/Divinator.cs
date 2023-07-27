@@ -9,12 +9,12 @@ public static class Divinator
     private static readonly int Id = 6700;
     private static List<byte> playerIdList = new();
 
-    private static OptionItem CheckLimitOpt;
-    private static OptionItem AccurateCheckMode;
+    public static OptionItem CheckLimitOpt;
+    public static OptionItem AccurateCheckMode;
     public static OptionItem HideVote;
 
     public static List<byte> didVote = new();
-    private static Dictionary<byte, int> CheckLimit = new();
+    public static Dictionary<byte, int> CheckLimit = new();
 
     public static void SetupCustomOption()
     {
@@ -211,7 +211,7 @@ public static class Divinator
                 CustomRoles.EvilGuesser or
                 CustomRoles.NiceGuesser or
                 CustomRoles.DarkHide or
-                CustomRoles.Mare or
+         //       CustomRoles.Mare or
                 CustomRoles.Camouflager or
                 CustomRoles.Chameleon
                 => "Result19",
