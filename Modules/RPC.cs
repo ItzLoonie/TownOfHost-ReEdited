@@ -11,6 +11,7 @@ using TOHE.Roles.AddOns.Impostor;
 using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
+using static AmongUs.QuickChat.QuickChatPhraseBuilderResult;
 using static TOHE.Translator;
 namespace TOHE;
 
@@ -995,6 +996,9 @@ internal static class RPC
                 break;
             case CustomRoles.Doomsayer:
                 Doomsayer.Add(targetId);
+                break;
+            case CustomRoles.Pirate:
+                Pirate.Add(targetId);
                 break;
         }
         HudManager.Instance.SetHudActive(true);

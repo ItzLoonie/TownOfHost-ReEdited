@@ -14,6 +14,7 @@ using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
+using static AmongUs.QuickChat.QuickChatPhraseBuilderResult;
 using static TOHE.Translator;
 
 namespace TOHE;
@@ -290,6 +291,10 @@ class CheckMurderPatch
                 //==========中立阵营==========//
                 case CustomRoles.PlagueBearer:
                     if (!PlagueBearer.OnCheckMurder(killer, target))
+                        return false;
+                    break;
+                case CustomRoles.Pirate:
+                    if (!Pirate.OnCheckMurder(killer, target))
                         return false;
                     break;
 

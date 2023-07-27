@@ -166,7 +166,8 @@ public static class Oracle
             CustomRoles.Totocalcio or
             CustomRoles.Virus or
             CustomRoles.Medusa or
-            CustomRoles.Succubus
+            CustomRoles.Succubus or
+            CustomRoles.Pirate
                 => "Neut",
 
                 _ => "Crew",

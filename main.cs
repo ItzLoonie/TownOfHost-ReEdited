@@ -394,6 +394,7 @@ public class Main : BasePlugin
                 {CustomRoles.Amnesiac, "#7FBFFF"},
                 {CustomRoles.Doomsayer, "#14f786"},
                 {CustomRoles.Masochist, "#684405"},
+                {CustomRoles.Pirate,"#EDC240"},
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
                 //サブ役職
@@ -676,6 +677,7 @@ public enum CustomRoles
     Jinx,
     Maverick,
     CursedSoul,
+    Pirate,
     Ritualist,
     Pickpocket,
     Traitor,
@@ -786,6 +788,7 @@ public enum CustomWinner
     HexMaster = CustomRoles.HexMaster,
     Succubus = CustomRoles.Succubus,
     Wraith = CustomRoles.Wraith,
+    Pirate = CustomRoles.Pirate,
     SerialKiller = CustomRoles.NSerialKiller,
     Witch = CustomRoles.NWitch,
     Juggernaut = CustomRoles.Juggernaut,

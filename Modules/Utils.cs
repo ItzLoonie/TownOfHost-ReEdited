@@ -18,6 +18,7 @@ using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
+using static AmongUs.QuickChat.QuickChatPhraseBuilderResult;
 using static TOHE.Translator;
 
 namespace TOHE;
@@ -426,6 +427,7 @@ public static class Utils
             case CustomRoles.Crusader:
             case CustomRoles.Refugee:
             case CustomRoles.Jester:
+            case CustomRoles.Pirate:
          //   case CustomRoles.Baker:
             case CustomRoles.Famine:
             case CustomRoles.NWitch:
@@ -571,6 +573,9 @@ public static class Utils
                 break;
             case CustomRoles.Sheriff:
                 ProgressText.Append(Sheriff.GetShotLimit(playerId));
+                break;
+            case CustomRoles.Pirate:
+                ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Pirate).ShadeColor(0.25f), $"({Pirate.NumWin}/{Pirate.SuccessfulDuelsToWin.GetInt()})"));
                 break;
             case CustomRoles.Crusader:
                 ProgressText.Append(Crusader.GetSkillLimit(playerId));
@@ -1889,6 +1894,8 @@ public static class Utils
         Vulture.AfterMeetingTasks();
         Baker.AfterMeetingTasks();
         CopyCat.AfterMeetingTasks();
+        Pirate.AfterMeetingTask();
+
 
         if (Options.AirshipVariableElectrical.GetBool())
             AirshipElectricalDoors.Initialize();
