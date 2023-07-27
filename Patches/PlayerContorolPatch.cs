@@ -2377,11 +2377,14 @@ class FixedUpdatePatch
                     //生きていて死ぬ予定もない場合は心中
                     if (partnerPlayer.PlayerId != deathId && !partnerPlayer.Data.IsDead)
                     {
-                        Main.PlayerStates[partnerPlayer.PlayerId].deathReason = PlayerState.DeathReason.FollowingSuicide;
+                        if (partnerPlayer.Is(CustomRoles.Lovers))
+                        {
+                         Main.PlayerStates[partnerPlayer.PlayerId].deathReason = PlayerState.DeathReason.FollowingSuicide;
                         if (isExiled)
                             CheckForEndVotingPatch.TryAddAfterMeetingDeathPlayers(PlayerState.DeathReason.FollowingSuicide, partnerPlayer.PlayerId);
                         else
                             partnerPlayer.RpcMurderPlayerV3(partnerPlayer);
+                        }
                     }
                 }
             }
