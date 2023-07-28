@@ -1,12 +1,11 @@
-﻿namespace TOHE.Roles.Crewmate
-{
-    using Hazel;
-    using System.Collections.Generic;
-    using UnityEngine;
-    using static TOHE.Options;
-    using static TOHE.Translator;
-    using static UnityEngine.GraphicsBuffer;
+﻿using Hazel;
+using UnityEngine;
+using System.Collections.Generic;
+using static TOHE.Options;
+using static TOHE.Translator;
 
+namespace TOHE.Roles.Crewmate
+{
     public static class Tracker
     {
         private static readonly int Id = 8300;
