@@ -1,9 +1,11 @@
 ﻿namespace TOHE.Roles.Crewmate
 {
+    using Hazel;
     using System.Collections.Generic;
     using UnityEngine;
     using static TOHE.Options;
     using static TOHE.Translator;
+    using static UnityEngine.GraphicsBuffer;
 
     public static class Tracker
     {
@@ -44,6 +46,27 @@
             playerIdList.Add(playerId);
             TrackLimit.TryAdd(playerId, TrackLimitOpt.GetInt());
             TrackerTarget.Add(playerId, byte.MaxValue);
+        }
+        public static void SendRPC(byte trackerId = byte.MaxValue, byte targetId = byte.MaxValue)
+        {
+            MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetTrackerTarget, SendOption.Reliable, -1);
+            writer.Write(trackerId);
+            writer.Write(targetId);
+            AmongUsClient.Instance.FinishRpcImmediately(writer);
+        }
+        public static void ReceiveRPC(MessageReader reader)
+        {
+            byte trackerId = reader.ReadByte();
+            byte targetId = reader.ReadByte();
+
+            if (TrackerTarget[trackerId] != byte.MaxValue)
+            {
+                TargetArrow.Remove(trackerId, TrackerTarget[trackerId]);
+            }
+
+            TrackerTarget[trackerId] = targetId;
+            TargetArrow.Add(trackerId, targetId);
+
         }
         public static bool IsEnable => playerIdList.Count > 0;
 
@@ -94,6 +117,8 @@
 
             TrackerTarget[player.PlayerId] = target.PlayerId;
             TargetArrow.Add(player.PlayerId, target.PlayerId);
+
+            SendRPC(player.PlayerId, target.PlayerId);
         }
 
         public static string GetTrackerArrow(PlayerControl seer, PlayerControl target = null)

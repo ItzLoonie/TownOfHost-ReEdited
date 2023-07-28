@@ -103,6 +103,7 @@ enum CustomRPC
     SetVultureArrow,
     SetSpiritcallerSpiritLimit,
     SetDoomsayerProgress,
+    SetTrackerTarget,
 
     //SoloKombat
     SyncKBPlayer,
@@ -194,7 +195,7 @@ internal class RPCHandlerPatch
                         RPC.ForceEndGame(CustomWinner.Error);
                     }, 5.5f, "Anti-Black End Game");
                 }
-                else
+                else if (GameStates.IsOnlineGame)
                 {
                     Logger.Fatal($"{__instance?.Data?.PlayerName}({__instance.PlayerId}): Change Role Setting Postfix 错误，根据设定继续游戏", "Anti-black");
                     new LateTask(() =>
@@ -553,6 +554,9 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetSpiritcallerSpiritLimit:
                 Spiritcaller.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetTrackerTarget:
+                Tracker.ReceiveRPC(reader);
                 break;
         }
     }

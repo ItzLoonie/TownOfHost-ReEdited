@@ -11,7 +11,6 @@ public static class Tracefinder
     private static OptionItem VitalsDuration;
     private static OptionItem VitalsCooldown;
 
-
     public static void SetupCustomOption()
     {
         SetupRoleOptions(Id, TabGroup.CrewmateRoles, CustomRoles.Tracefinder);
@@ -49,8 +48,6 @@ public static class Tracefinder
         AURoleOptions.ScientistCooldown = VitalsCooldown.GetFloat();
         AURoleOptions.ScientistBatteryCharge = VitalsDuration.GetFloat();
     }
-
-
     public static void ReceiveRPC(MessageReader reader)
     {
         byte playerId = reader.ReadByte();
@@ -60,7 +57,7 @@ public static class Tracefinder
         else
             LocateArrow.RemoveAllTarget(playerId);
     }
-        public static void OnReportDeadBody(PlayerControl pc, GameData.PlayerInfo target)
+    public static void OnReportDeadBody(PlayerControl pc, GameData.PlayerInfo target)
     {
         foreach (var apc in playerIdList)
         {
@@ -100,7 +97,6 @@ public static class Tracefinder
     {
         if (!seer.Is(CustomRoles.Tracefinder)) return "";
         if (target != null && seer.PlayerId != target.PlayerId) return "";
-    //    if (GameStates.IsMeeting) return "";
         return Utils.ColorString(Color.white, LocateArrow.GetArrows(seer));
     }
 }
