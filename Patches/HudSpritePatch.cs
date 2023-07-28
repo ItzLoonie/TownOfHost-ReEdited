@@ -108,6 +108,18 @@ public static class HudSpritePatch
             case CustomRoles.CursedSoul:
                 newKillButton = CustomButton.Get("Soul");
                 break;
+            case CustomRoles.Amnesiac:
+                newKillButton = CustomButton.Get("Amnesiac");
+                break;
+            case CustomRoles.TimeMaster:
+                newAbilityButton = CustomButton.Get("Time Master");
+                break;
+            case CustomRoles.Deputy:
+                newKillButton = CustomButton.Get("Deputy");
+                break;
+            case CustomRoles.Deathpact:
+                newAbilityButton = CustomButton.Get("Deathpact");
+                break;
             case CustomRoles.Warlock:
                 if (!shapeshifting)
                 {
