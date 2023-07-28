@@ -17,8 +17,8 @@ class CheckForEndVotingPatch
 {
     public static bool Prefix(MeetingHud __instance)
     {
-        if (Medic.IsEnable) Medic.OnCheckMark();
         if (!AmongUsClient.Instance.AmHost) return true;
+        if (Medic.IsEnable) Medic.OnCheckMark();
         //Meeting Skip with vote counting on keystroke (m + delete)
         var shouldSkip = false;
         if (Input.GetKeyDown(KeyCode.F6)) 
