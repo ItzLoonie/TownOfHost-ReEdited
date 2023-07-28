@@ -374,7 +374,7 @@ internal class RPCHandlerPatch
                 Pelican.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetDoomsayerProgress:
-                Doomsayer.ReceiveRPC();
+                Doomsayer.ReceiveRPC(reader);
                 break;
             case CustomRPC.SwordsManKill:
                 SwordsMan.ReceiveRPC(reader);

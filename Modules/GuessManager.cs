@@ -601,8 +601,8 @@ public static class GuessManager
                         }
                         else
                         {
-                            Doomsayer.GuessesCount++;
-                            Doomsayer.SendRPC(pc, dp);
+                            Doomsayer.GuessingToWin[pc.PlayerId]++;
+                            Doomsayer.SendRPC(pc);
                             Doomsayer.GuessedRoles.Add(role);
 
                             new LateTask(() =>
@@ -643,8 +643,8 @@ public static class GuessManager
 
                     if (pc.Is(CustomRoles.Doomsayer) && pc.PlayerId != dp.PlayerId)
                     {
-                        Doomsayer.GuessesCount++;
-                        Doomsayer.SendRPC(pc, dp);
+                        Doomsayer.GuessingToWin[pc.PlayerId]++;
+                        Doomsayer.SendRPC(pc);
 
                         if (!Doomsayer.GuessedRoles.Contains(role))
                             Doomsayer.GuessedRoles.Add(role);
@@ -663,7 +663,7 @@ public static class GuessManager
                     {
                         new LateTask(() =>
                         {
-                            Utils.SendMessage(string.Format(GetString("DoomsayerGuessCountMsg"), Doomsayer.GuessesCount), pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Doomsayer), GetString("DoomsayerGuessCountTitle")));
+                            Utils.SendMessage(string.Format(GetString("DoomsayerGuessCountMsg"), Doomsayer.GuessingToWin[pc.PlayerId]), pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Doomsayer), GetString("DoomsayerGuessCountTitle")));
                         }, 0.7f, "Doomsayer Guess Msg 2");
                     }
 

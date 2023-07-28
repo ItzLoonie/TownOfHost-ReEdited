@@ -9,6 +9,7 @@ public static class Doomsayer
     private static readonly int Id = 27000;
     public static List<byte> playerIdList = new();
     public static List<CustomRoles> GuessedRoles = new();
+    public static Dictionary<byte, int> GuessingToWin = new();
 
     public static int GuessesCount = 0;
     public static int GuessesCountPerMeeting = 0;
@@ -60,6 +61,7 @@ public static class Doomsayer
     {
         playerIdList = new();
         GuessedRoles = new();
+        GuessingToWin = new();
         GuessesCount = 0;
         GuessesCountPerMeeting = 0;
         CantGuess = false;
@@ -67,29 +69,30 @@ public static class Doomsayer
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        GuessingToWin.TryAdd(playerId, GuessesCount);
     }
     public static bool IsEnable => playerIdList.Count > 0;
-    public static void SendRPC(PlayerControl player, PlayerControl target)
+    public static void SendRPC(PlayerControl player)
     {
         MessageWriter writer;
         writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetDoomsayerProgress, SendOption.Reliable, -1);
         writer.Write(player.PlayerId);
-        writer.Write(target.PlayerId);
         AmongUsClient.Instance.FinishRpcImmediately(writer);
     }
-    public static void ReceiveRPC()
+    public static void ReceiveRPC(MessageReader reader)
     {
-        GuessesCount++;
+        byte DoomsayerId = reader.ReadByte();
+        GuessingToWin[DoomsayerId]++;
     }
-    public static (int, int) GuessedPlayerCount()
+    public static (int, int) GuessedPlayerCount(byte doomsayerId)
     {
-        int doomsayerguess = GuessesCount, GuessesToWin = DoomsayerAmountOfGuessesToWin.GetInt();
+        int doomsayerguess = GuessingToWin[doomsayerId], GuessesToWin = DoomsayerAmountOfGuessesToWin.GetInt();
 
         return (doomsayerguess, GuessesToWin);
     }
     public static void CheckCountGuess(PlayerControl doomsayer)
     {
-        if (!(GuessesCount >= DoomsayerAmountOfGuessesToWin.GetInt())) return;
+        if (!(GuessingToWin[doomsayer.PlayerId] >= DoomsayerAmountOfGuessesToWin.GetInt())) return;
 
         GuessesCount = DoomsayerAmountOfGuessesToWin.GetInt();
         CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Doomsayer);

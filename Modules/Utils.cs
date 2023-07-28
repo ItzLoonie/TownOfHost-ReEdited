@@ -587,7 +587,7 @@ public static class Utils
                 ProgressText.Append(ColorString(GetRoleColor(CustomRoles.PlagueBearer).ShadeColor(0.25f), $"({plagued.Item1}/{plagued.Item2})"));
                 break;
             case CustomRoles.Doomsayer:
-                var doomsayerguess = Doomsayer.GuessedPlayerCount();
+                var doomsayerguess = Doomsayer.GuessedPlayerCount(playerId);
                 ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Doomsayer).ShadeColor(0.25f), $"({doomsayerguess.Item1}/{doomsayerguess.Item2})"));
                 break;
 
