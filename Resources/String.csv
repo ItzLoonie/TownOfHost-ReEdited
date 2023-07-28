@@ -2348,7 +2348,7 @@
 "RememberedMaverick","你还记得你是个独行者！","You remembered you were a Maverick!","","",""
 "RememberedWitch","你记得你是个女巫！","You remembered you were a Witch!","","",""
 "RememberedPursuer","你记得你是一个追击者！","You remembered you were a Pursuer!","","",""
-"RememberedFollower","你记得你是一个追随者！","You remembered you were a Follower!","","",""
+"RememberedFollower","你记得你是一个赌徒！","You remembered you were a Follower!","","",""
 "RememberedAmnesiac","你没有记住自己的身份","You failed to remember your role.","","",""
 "RememberedImpostor","你记得你是个内鬼！","You remembered you were an Impostor!","","",""
 "RememberedCrewmate","你记得你是个船员","You remembered you were a crewmate!","","",""
@@ -2395,7 +2395,7 @@
 "OptionNecroview","可以出售死神","Can sell Necroview","","",""
 "OptionGravestone","可以出售墓碑","Can sell Gravestone","","",""
 "OptionGlow","可以出售光辉","Can sell Glow","","",""
-"OptionBewilder","可以出售迷惑","Can sell Bewilder","","",""
+"OptionBewilder","可以出售迷幻者","Can sell Bewilder","","",""
 "OptionAvenger","可以出售复仇者","Can sell Avenger","","",""
 
 "## Twister Text Strings"
