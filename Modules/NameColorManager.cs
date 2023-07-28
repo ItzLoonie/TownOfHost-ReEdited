@@ -155,8 +155,8 @@ public static class NameColorManager
         if (color != "") return true;
         else return seer == target
             || (Main.GodMode.Value && seer.AmOwner)
-            || (Main.PlayerStates[seer.Data.PlayerId].IsDead && seer.Data.IsDead && Main.PlayerStates[seer.PlayerId].deathReason != PlayerState.DeathReason.etc && !seer.IsAlive() && Options.GhostCanSeeOtherRoles.GetBool())
-            || (seer.Is(CustomRoles.Mimic) && Main.PlayerStates[target.Data.PlayerId].IsDead && target.Data.IsDead && Main.PlayerStates[target.PlayerId].deathReason != PlayerState.DeathReason.etc && !target.IsAlive() && Options.MimicCanSeeDeadRoles.GetBool())
+            || (Main.PlayerStates[seer.Data.PlayerId].IsDead && seer.Data.IsDead && !seer.IsAlive() && Options.GhostCanSeeOtherRoles.GetBool())
+            || (seer.Is(CustomRoles.Mimic) && Main.PlayerStates[target.Data.PlayerId].IsDead && target.Data.IsDead && !target.IsAlive() && Options.MimicCanSeeDeadRoles.GetBool())
             || target.Is(CustomRoles.GM)
             || seer.Is(CustomRoles.GM)
             || seer.Is(CustomRoles.God)
