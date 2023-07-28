@@ -94,6 +94,7 @@ public static class Doomsayer
     {
         if (!(GuessingToWin[doomsayer.PlayerId] >= DoomsayerAmountOfGuessesToWin.GetInt())) return;
 
+        GuessingToWin[doomsayer.PlayerId] = DoomsayerAmountOfGuessesToWin.GetInt();
         GuessesCount = DoomsayerAmountOfGuessesToWin.GetInt();
         CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Doomsayer);
         CustomWinnerHolder.WinnerIds.Add(doomsayer.PlayerId);
