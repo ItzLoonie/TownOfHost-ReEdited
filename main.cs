@@ -188,6 +188,7 @@ public class Main : BasePlugin
     public static int BardCreations = 0;
     public static Dictionary<byte, byte> Provoked = new();
     public static Dictionary<byte, int> DovesOfNeaceNumOfUsed = new();
+    public static bool UpdateZoom = true;
 
     public static Dictionary<byte, CustomRoles> DevRole = new();
 

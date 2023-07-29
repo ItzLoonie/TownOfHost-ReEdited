@@ -1593,6 +1593,7 @@ class FixedUpdatePatch
 
         Sniper.OnFixedUpdate(player);
         Zoom.OnFixedUpdate();
+
         if (!lowLoad)
         {
             NameNotifyManager.OnFixedUpdate(player);

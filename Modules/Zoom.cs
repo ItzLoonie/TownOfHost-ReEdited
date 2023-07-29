@@ -13,7 +13,7 @@ public static class Zoom
     public static void Postfix()
     {
         //if (PlayerControl.LocalPlayer.Is(RoleType.Impostor) && Options.OperateVisibilityImpostor.GetBool()) return;
-        if ((GameStates.IsShip) && !GameStates.IsMeeting && GameStates.IsCanMove && PlayerControl.LocalPlayer.Data.IsDead || GameStates.IsLobby && GameStates.IsCanMove)
+        if (GameStates.IsShip && !GameStates.IsMeeting && GameStates.IsCanMove && PlayerControl.LocalPlayer.Data.IsDead || GameStates.IsLobby && GameStates.IsCanMove)
         {
             if (Input.mouseScrollDelta.y > 0)
             {
@@ -63,7 +63,7 @@ public static class Zoom
         }
         DestroyableSingleton<HudManager>.Instance?.ShadowQuad?.gameObject?.SetActive((reset || Camera.main.orthographicSize == 3.0f) && PlayerControl.LocalPlayer.IsAlive());
         // After Zoom was fixed, the chat was instantly closed after opening it
-        //ResolutionManager.ResolutionChanged.Invoke((float)Screen.width / Screen.height, Screen.width, Screen.height, Screen.fullScreen);
+        ResolutionManager.SetResolution(Screen.width, Screen.height, Screen.fullScreen);
     }
 
     public static void OnFixedUpdate()
