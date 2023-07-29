@@ -155,7 +155,7 @@ namespace TOHE.Roles.Crewmate
                         ||
                         (OptionCanTargetImpostor.GetBool() && CustomRolesHelper.IsImpostor(x.GetCustomRole()))
                         ||
-                        (OptionCanTargetNeutral.GetBool() && (CustomRolesHelper.IsNeutral(x.GetCustomRole()) || CustomRolesHelper.IsNeutralKilling(x.GetCustomRole())))
+                        (OptionCanTargetNeutral.GetBool() && (CustomRolesHelper.IsNeutral(x.GetCustomRole())))
                     )
                 ).ToList();
 
@@ -175,8 +175,6 @@ namespace TOHE.Roles.Crewmate
                         CustomRolesHelper.IsImpostor(a.GetCustomRole())
                         ||
                         CustomRolesHelper.IsNeutral(a.GetCustomRole())
-                        ||
-                        CustomRolesHelper.IsNeutralKilling(a.GetCustomRole())
                     ).ToList();
                 }
 

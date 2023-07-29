@@ -347,7 +347,7 @@ class CheckForEndVotingPatch
             var pc_role = pc.GetCustomRole();
             if (pc_role.IsImpostor() && pc != exiledPlayer.Object)
                 impnum++;
-            else if (pc_role.IsNeutralKilling() && pc != exiledPlayer.Object)
+            else if (pc_role.IsNK() && pc != exiledPlayer.Object)
                 neutralnum++;
         }
         switch (Options.CEMode.GetInt())

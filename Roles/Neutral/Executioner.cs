@@ -72,10 +72,10 @@ public static class Executioner
             {
                 if (playerId == target.PlayerId) continue;
                 else if (!CanTargetImpostor.GetBool() && target.Is(CustomRoleTypes.Impostor)) continue;
-                else if (!CanTargetNeutralKiller.GetBool() && target.IsNeutralKiller()) continue;
-                else if (!CanTargetNeutralBenign.GetBool() && target.IsNeutralBenign()) continue;
-                else if (!CanTargetNeutralEvil.GetBool() && target.IsNeutralEvil()) continue;
-                else if (!CanTargetNeutralChaos.GetBool() && target.IsNeutralChaos()) continue;
+                else if (!CanTargetNeutralKiller.GetBool() && target.GetCustomRole().IsNK()) continue;
+                else if (!CanTargetNeutralBenign.GetBool() && target.GetCustomRole().IsNB()) continue;
+                else if (!CanTargetNeutralEvil.GetBool() && target.GetCustomRole().IsNE()) continue;
+                else if (!CanTargetNeutralChaos.GetBool() && target.GetCustomRole().IsNC()) continue;
                 if (target.GetCustomRole() is CustomRoles.GM or CustomRoles.SuperStar) continue;
                 if (Utils.GetPlayerById(playerId).Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers)) continue;
 
