@@ -11,7 +11,6 @@ namespace TOHE;
 public static class Zoom
 {
     private static bool resetTest = false;
-
     public static void Postfix()
     {
         //if (PlayerControl.LocalPlayer.Is(RoleType.Impostor) && Options.OperateVisibilityImpostor.GetBool()) return;
@@ -67,7 +66,7 @@ public static class Zoom
             HudManager.Instance.UICamera.orthographicSize *= size;
         }
         DestroyableSingleton<HudManager>.Instance?.ShadowQuad?.gameObject?.SetActive((reset || Camera.main.orthographicSize == 3.0f) && PlayerControl.LocalPlayer.IsAlive());
-
+        
         if (resetTest)
         {
             ResolutionManager.ResolutionChanged.Invoke((float)Screen.width / Screen.height, Screen.width, Screen.height, Screen.fullScreen);
