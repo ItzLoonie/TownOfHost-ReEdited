@@ -10,14 +10,14 @@ namespace TOHE;
 [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
 public static class Zoom
 {
-    private static bool resetTest = false;
+    private static bool ResetButtons = false;
     public static void Postfix()
     {
         //if (PlayerControl.LocalPlayer.Is(RoleType.Impostor) && Options.OperateVisibilityImpostor.GetBool()) return;
         if (GameStates.IsShip && !GameStates.IsMeeting && GameStates.IsCanMove && PlayerControl.LocalPlayer.Data.IsDead || GameStates.IsLobby && GameStates.IsCanMove)
         {
             if (Camera.main.orthographicSize > 3.0f)
-                resetTest = true;
+                ResetButtons = true;
 
             if (Input.mouseScrollDelta.y > 0)
             {
@@ -67,10 +67,10 @@ public static class Zoom
         }
         DestroyableSingleton<HudManager>.Instance?.ShadowQuad?.gameObject?.SetActive((reset || Camera.main.orthographicSize == 3.0f) && PlayerControl.LocalPlayer.IsAlive());
         
-        if (resetTest)
+        if (ResetButtons)
         {
             ResolutionManager.ResolutionChanged.Invoke((float)Screen.width / Screen.height, Screen.width, Screen.height, Screen.fullScreen);
-            resetTest = false;
+            ResetButtons = false;
         }
     }
 
