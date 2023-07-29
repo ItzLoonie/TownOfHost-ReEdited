@@ -74,11 +74,8 @@ namespace TOHE.Roles.Neutral
                     RitualTarget.Add(playerId, new());
             }
         }
+        public static bool IsEnable => playerIdList.Count > 0;
 
-        public static bool IsEnable()
-        {
-            return playerIdList.Count > 0;
-        }
         public static void SetKillCooldown(byte id)
         {
             Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
