@@ -10,11 +10,16 @@ namespace TOHE;
 [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
 public static class Zoom
 {
+    private static bool resetTest = false;
+
     public static void Postfix()
     {
         //if (PlayerControl.LocalPlayer.Is(RoleType.Impostor) && Options.OperateVisibilityImpostor.GetBool()) return;
         if (GameStates.IsShip && !GameStates.IsMeeting && GameStates.IsCanMove && PlayerControl.LocalPlayer.Data.IsDead || GameStates.IsLobby && GameStates.IsCanMove)
         {
+            if (Camera.main.orthographicSize > 3.0f)
+                resetTest = true;
+
             if (Input.mouseScrollDelta.y > 0)
             {
                 if (Camera.main.orthographicSize > 3.0f)
@@ -62,8 +67,12 @@ public static class Zoom
             HudManager.Instance.UICamera.orthographicSize *= size;
         }
         DestroyableSingleton<HudManager>.Instance?.ShadowQuad?.gameObject?.SetActive((reset || Camera.main.orthographicSize == 3.0f) && PlayerControl.LocalPlayer.IsAlive());
-        // After Zoom was fixed, the chat was instantly closed after opening it
-        ResolutionManager.SetResolution(Screen.width, Screen.height, Screen.fullScreen);
+
+        if (resetTest)
+        {
+            ResolutionManager.ResolutionChanged.Invoke((float)Screen.width / Screen.height, Screen.width, Screen.height, Screen.fullScreen);
+            resetTest = false;
+        }
     }
 
     public static void OnFixedUpdate()
