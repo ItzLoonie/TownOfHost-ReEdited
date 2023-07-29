@@ -59,6 +59,7 @@ internal class ChangeRoleSettings
             Main.PuppeteerList = new();
             Main.TaglockedList = new();
             Main.DetectiveNotify = new();
+            Main.ForCrusade = new();
             Main.KillGhoul = new();
             Main.CyberStarDead = new();
             Main.KilledDiseased = new();
