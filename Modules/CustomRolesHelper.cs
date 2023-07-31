@@ -149,6 +149,8 @@ internal static class CustomRolesHelper
                 CustomRoles.PlagueBearer => CustomRoles.Impostor,
                 CustomRoles.Pestilence => CustomRoles.Impostor,
                 CustomRoles.Doomsayer => CustomRoles.Crewmate,
+                CustomRoles.Godfather => CustomRoles.Impostor,
+
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
     }
@@ -564,6 +566,7 @@ internal static class CustomRolesHelper
     {
         return role is
             CustomRoles.Impostor or
+            CustomRoles.Godfather or
             CustomRoles.Shapeshifter or
             CustomRoles.ShapeshifterTOHE or
             CustomRoles.ImpostorTOHE or

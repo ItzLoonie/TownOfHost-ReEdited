@@ -80,8 +80,15 @@ public class GameStartManagerPatch
         private static bool update = false;
         private static string currentText = "";
         public static float exitTimer = -1f;
+        private static float minWait, maxWait;
+        private static int minPlayer;
         public static void Prefix(GameStartManager __instance)
         {
+            minWait = Options.MinWaitAutoStart.GetFloat();
+            maxWait = Options.MaxWaitAutoStart.GetFloat();
+            minPlayer = Options.PlayerAutoStart.GetInt();
+            minWait = 600f - minWait * 60f;
+            maxWait = maxWait * 60f;
             // Lobby code
             if (DataManager.Settings.Gameplay.StreamerMode)
             {
@@ -102,7 +109,7 @@ public class GameStartManagerPatch
                 if (Main.updateTime >= 50)
                 {
                     Main.updateTime = 0;
-                    if (GameData.Instance.PlayerCount >= 14 && !GameStates.IsCountDown)
+                    if (((GameData.Instance.PlayerCount >= minPlayer && timer <= minWait) || timer <= maxWait) && !GameStates.IsCountDown)
                     {
                         GameStartManager.Instance.startState = GameStartManager.StartingStates.Countdown;
                         GameStartManager.Instance.countDownTimer = 10;
