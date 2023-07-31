@@ -99,8 +99,13 @@ class CheckForEndVotingPatch
                             case CustomRoles.Tracker:
                                 Tracker.OnVote(pc, voteTarget);
                                 break;
+                            case CustomRoles.Godfather:
+                                if (pc == null || voteTarget == null) break;
+                                Main.GodfatherTarget = voteTarget.PlayerId;
+                                break;
                         }
                     }
+                    else if (pc.GetCustomRole() == CustomRoles.Godfather) Main.GodfatherTarget = byte.MaxValue;
                 }
             }
             foreach (var ps in __instance.playerStates)

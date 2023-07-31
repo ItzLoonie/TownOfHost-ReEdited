@@ -875,6 +875,8 @@ class MurderPlayerPatch
         if (Main.OverDeadPlayerList.Contains(target.PlayerId)) return;
 
         PlayerControl killer = __instance; //読み替え変数
+        if (target.PlayerId == Main.GodfatherTarget) killer.RpcSetCustomRole(CustomRoles.Refugee);
+
 
         //実際のキラーとkillerが違う場合の入れ替え処理
         if (Sniper.IsEnable)

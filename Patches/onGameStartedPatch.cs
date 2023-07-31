@@ -102,6 +102,7 @@ internal class ChangeRoleSettings
             Main.MadmateNum = 0;
             Main.BardCreations = 0;
             Main.DovesOfNeaceNumOfUsed = new();
+            Main.GodfatherTarget = byte.MaxValue;
 
             ReportDeadBodyPatch.CanReport = new();
 

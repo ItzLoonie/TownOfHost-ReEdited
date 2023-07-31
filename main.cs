@@ -190,6 +190,8 @@ public class Main : BasePlugin
     public static Dictionary<byte, int> DovesOfNeaceNumOfUsed = new();
 
     public static Dictionary<byte, CustomRoles> DevRole = new();
+    public static byte GodfatherTarget = byte.MaxValue;
+
 
     public static IEnumerable<PlayerControl> AllPlayerControls => PlayerControl.AllPlayerControls.ToArray().Where(p => p != null);
     public static IEnumerable<PlayerControl> AllAlivePlayerControls => PlayerControl.AllPlayerControls.ToArray().Where(p => p != null && p.IsAlive() && !p.Data.Disconnected && !Pelican.IsEaten(p.PlayerId));
@@ -523,6 +525,7 @@ public enum CustomRoles
     BountyHunter,
     FireWorks,
     Mafia,
+    Godfather,
     SerialKiller,
     ShapeMaster,
     Wildling,

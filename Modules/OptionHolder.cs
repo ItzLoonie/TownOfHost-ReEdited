@@ -746,6 +746,9 @@ public static class Options
     public static OptionItem HideDualVotes;
     public static OptionItem ImpCanBeLoyal;
     public static OptionItem CrewCanBeLoyal;
+    public static OptionItem MinWaitAutoStart;
+    public static OptionItem MaxWaitAutoStart;
+    public static OptionItem PlayerAutoStart;
     //public static OptionItem SidekickCountMode;
 
     public static readonly string[] suffixModes =
@@ -1023,6 +1026,7 @@ public static class Options
         AntiAdminer.SetupCustomOption();
         FireWorks.SetupCustomOption();
         Gangster.SetupCustomOption();
+        SetupRoleOptions(555420, TabGroup.ImpostorRoles, CustomRoles.Godfather);
         Morphling.SetupCustomOption();
         SetupRoleOptions(3100, TabGroup.ImpostorRoles, CustomRoles.Mafia);
         MafiaCanKillNum = IntegerOptionItem.Create(3200, "MafiaCanKillNum", new(0, 15, 1), 1, TabGroup.ImpostorRoles, false)
@@ -1876,6 +1880,9 @@ public static class Options
         AutoKickStopWordsAsBan = BooleanOptionItem.Create(19315, "AutoKickStopWordsAsBan", false, TabGroup.SystemSettings, false)
             .SetParent(AutoKickStopWords);
         AutoWarnStopWords = BooleanOptionItem.Create(19316, "AutoWarnStopWords", false, TabGroup.SystemSettings, false);
+        MinWaitAutoStart = FloatOptionItem.Create(44420, "MinWaitAutoStart", new(0f, 10f, 0.5f), 1.5f, TabGroup.SystemSettings, false);
+        MaxWaitAutoStart = FloatOptionItem.Create(44421, "MaxWaitAutoStart", new(0f, 10f, 0.5f), 1.5f, TabGroup.SystemSettings, false);
+        PlayerAutoStart = IntegerOptionItem.Create(44422, "PlayerAutoStart", new(1,15,1), 14, TabGroup.SystemSettings, false);
 
         LowLoadMode = BooleanOptionItem.Create(19317, "LowLoadMode", false, TabGroup.SystemSettings, false)
             .SetHeader(true)
