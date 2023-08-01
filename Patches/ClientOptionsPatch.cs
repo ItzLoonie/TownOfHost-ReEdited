@@ -13,6 +13,7 @@ public static class OptionsMenuBehaviourStartPatch
     private static ClientOptionItem ForceOwnLanguageRoleName;
     private static ClientOptionItem EnableCustomButton;
     private static ClientOptionItem EnableCustomSoundEffect;
+    private static ClientOptionItem ModeForSmallScreen;
     private static ClientOptionItem SwitchVanilla;
     //private static ClientOptionItem VersionCheat;
     //private static ClientOptionItem GodMode;
@@ -65,6 +66,10 @@ public static class OptionsMenuBehaviourStartPatch
         if (EnableCustomSoundEffect == null || EnableCustomSoundEffect.ToggleButton == null)
         {
             EnableCustomSoundEffect = ClientOptionItem.Create("EnableCustomSoundEffect", Main.EnableCustomSoundEffect, __instance);
+        }
+        if (ModeForSmallScreen == null || ModeForSmallScreen.ToggleButton == null)
+        {
+            ModeForSmallScreen = ClientOptionItem.Create("ModeForSmallScreen", Main.ModeForSmallScreen, __instance);
         }
         if (SwitchVanilla == null || SwitchVanilla.ToggleButton == null)
         {
