@@ -110,6 +110,7 @@ public static class GameOptionsMenuPatch
                 if (option.OptionBehaviour == null)
                 {
                     float yoffset = option.IsText ? 300f : 0f;
+                    float xoffset = option.IsText ? 300f : 0.3f;
                     var stringOption = Object.Instantiate(template, tohMenu.transform);
                     scOptions.Add(stringOption);
                     stringOption.OnValueChanged = new Action<OptionBehaviour>((o) => { });
@@ -121,9 +122,9 @@ public static class GameOptionsMenuPatch
                     if (!Main.ModeForSmallScreen.Value)
                     {
                         stringOption.transform.FindChild("Background").localScale = new Vector3(1.6f, 1f, 1f);
-                        stringOption.transform.FindChild("Plus_TMP").localPosition += new Vector3(1.4f, yoffset, 0f);
-                        stringOption.transform.FindChild("Minus_TMP").localPosition += new Vector3(1.0f, yoffset, 0f);
-                        stringOption.transform.FindChild("Value_TMP").localPosition += new Vector3(1.2f, yoffset, 0f);
+                        stringOption.transform.FindChild("Plus_TMP").localPosition += new Vector3(option.IsText ? 300f : 1.4f, yoffset, 0f);
+                        stringOption.transform.FindChild("Minus_TMP").localPosition += new Vector3(option.IsText ? 300f : 1.0f, yoffset, 0f);
+                        stringOption.transform.FindChild("Value_TMP").localPosition += new Vector3(option.IsText ? 300f : 1.2f, yoffset, 0f);
                         stringOption.transform.FindChild("Value_TMP").GetComponent<RectTransform>().sizeDelta = new Vector2(1.6f, 0.26f);
                         stringOption.transform.FindChild("Title_TMP").localPosition += new Vector3(option.IsText ? 0.25f : 0.1f, option.IsText ? -0.1f : 0f, 0f);
                         stringOption.transform.FindChild("Title_TMP").GetComponent<RectTransform>().sizeDelta = new Vector2(5.5f, 0.37f);
@@ -131,9 +132,9 @@ public static class GameOptionsMenuPatch
                     else
                     {
                         stringOption.transform.FindChild("Background").localScale = new Vector3(1.2f, 1f, 1f);
-                        stringOption.transform.FindChild("Plus_TMP").localPosition += new Vector3(0.3f, yoffset, 0f);
-                        stringOption.transform.FindChild("Minus_TMP").localPosition += new Vector3(0.3f, yoffset, 0f);
-                        stringOption.transform.FindChild("Value_TMP").localPosition += new Vector3(0.3f, yoffset, 0f);
+                        stringOption.transform.FindChild("Plus_TMP").localPosition += new Vector3(xoffset, yoffset, 0f);
+                        stringOption.transform.FindChild("Minus_TMP").localPosition += new Vector3(xoffset, yoffset, 0f);
+                        stringOption.transform.FindChild("Value_TMP").localPosition += new Vector3(xoffset, yoffset, 0f);
                         stringOption.transform.FindChild("Title_TMP").localPosition += new Vector3(option.IsText ? 0.3f : 0.15f, option.IsText ? -0.1f : 0f, 0f);
                         stringOption.transform.FindChild("Title_TMP").GetComponent<RectTransform>().sizeDelta = new Vector2(3.5f, 0.37f);
                     }
