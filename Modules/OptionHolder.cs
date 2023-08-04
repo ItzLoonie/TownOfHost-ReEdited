@@ -1300,6 +1300,7 @@ public static class Options
         OpportunistTasks = OverrideTasksData.Create(10111, TabGroup.NeutralRoles, CustomRoles.Opportunist);
 
         Pursuer.SetupCustomOption();
+        SetupRoleOptions(22420, TabGroup.NeutralRoles, CustomRoles.Shaman);
         NWitch.SetupCustomOption();
       /*  SetupSingleRoleOptions(6050530, TabGroup.NeutralRoles, CustomRoles.NWitch, 1, zeroOne: false);
         ControlCooldown = FloatOptionItem.Create(6050532, "ControlCooldown", new(0f, 999f, 2.5f), 30f, TabGroup.NeutralRoles, false)

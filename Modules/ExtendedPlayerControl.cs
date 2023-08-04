@@ -471,6 +471,7 @@ static class ExtendedPlayerControl
             CustomRoles.Parasite => pc.IsAlive(),
             CustomRoles.Refugee => pc.IsAlive(),
             CustomRoles.NWitch => pc.IsAlive(),
+            CustomRoles.Shaman => pc.IsAlive(),
             CustomRoles.Wraith => pc.IsAlive(),
             CustomRoles.Bomber => (Options.BomberCanKill.GetBool() && pc.IsAlive()),
             CustomRoles.Nuker => (Options.BomberCanKill.GetBool() && pc.IsAlive()),

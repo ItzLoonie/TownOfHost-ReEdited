@@ -137,6 +137,15 @@ class CheckMurderPatch
             }
 
         }
+         if (target.Is(CustomRoles.Shaman) && !killer.Is(CustomRoles.NWitch))
+        {
+            if (Main.ShamanTarget != byte.MaxValue && target.IsAlive())
+            { 
+                target = Utils.GetPlayerById(Main.ShamanTarget);
+                Main.ShamanTarget = byte.MaxValue;
+            }
+        }
+
 
         killer.ResetKillCooldown();
 
@@ -388,6 +397,14 @@ class CheckMurderPatch
                     if (Jackal.OnCheckMurder(killer, target))
                         return false;
                     break;
+                case CustomRoles.Shaman:
+                    if (Main.ShamanTarget == byte.MaxValue)
+                    {
+                        Main.ShamanTarget = target.PlayerId;
+                        killer.RpcGuardAndKill(killer);
+                    }
+                    else killer.Notify(GetString("ShamanTargetAlreadySelected"));
+                    return false;
 
                 //==========船员职业==========//
                 case CustomRoles.Sheriff:

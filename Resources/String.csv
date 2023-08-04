@@ -254,6 +254,7 @@
 "# 中立阵营 / Neutrals"
 "Jester","小丑","Jester","Шут","小丑","小丑"
 "Arsonist","纵火犯","Arsonist","Поджигатель","縱火犯","纵火犯"
+"Shaman","","Shaman","","",""
 "Terrorist","恐怖分子","Terrorist","Террорист","恐怖分子","恐怖分子"
 "Executioner","处刑人","Executioner","Палач","暴民","处刑人"
 "Lawyer","律师","Lawyer","Адвокат","",""
@@ -575,6 +576,7 @@
 
 "# 中立阵营 / Neutral descriptions"
 "ArsonistInfo","乖乖站好！","Douse everyone in gasoline and ignite","Облейте всех игроков, а потом подожгите","燒吧，燒吧，燃燒吧","乖乖站好！"
+"ShamanInfo","","Deflect all the attacks on Voodoo doll","","",""
 "JesterInfo","我没有、我不是、我对跳","Get voted out","Заставьте игроков проголосовать за вас","想個辦法讓你被投出去","我没有、我不是、我对跳"
 "OpportunistInfo","苟到最后就是胜利！","Stay alive until the end","Останьтесь в живых","盡你所能地活下去吧!","苟到最后就是胜利！"
 "TerroristInfo","多说不宜 Rush B！","Finish your tasks, THEN die","Умри после выполнения всех заданий","我要開飛船撞Mira總部","多说不宜 Rush B！"
@@ -809,6 +811,8 @@
 
 "# 中立阵营 / Neutrals descriptions"
 "ArsonistInfoLong","(中立阵营):\n纵火犯可以通过对玩家点击击杀按钮并跟随其数秒来完成涂油，开始涂油以及涂油成功时会显示护盾破碎的动画作为提示（仅自己可见）。当所有存活玩家都被纵火犯涂油后，纵火犯可以通过跳通风管来点火，并单独获得胜利。\n\n玩家名显示「△」表示涂油中\n玩家名显示「▲」表示已涂油。","(Neutrals):\nThe Arsonist can douse by clicking the kill button on the player and following them for a few seconds. When the dousing starts and it's successful, a shield animation will be displayed as a reminder (only visible to themselves). When the Arsonist has doused all surviving players, the Arsonist can vent to start the fire and win alone.\n\nIf the player name shows 「△」, that means they are being doused;\nif the player name shows 「▲」, it means they have been completely doused.","(нейтральный): поджигатель может закончить смазку, нажав на кнопку убийства игрока и следуя за ним в течение нескольких секунд, начать мазать, а также показать анимацию разбитого щита, когда она будет успешной (только для себя). После того, как все выжившие игроки были смазаны поджигателем, поджигатель мог воспламенить его, перепрыгнув через вентиляционную трубу и одержать победу в одиночку. \ n что n игрок показыва「△」заяв в смазыва \ что n что игрок показыва「▲」что смазыва.","(中立陣營):\n縱火犯可以通過對玩家使用殺人鍵並跟隨數秒來澆油，開始以及結束澆油時會出現盾牌破碎的效果作為提示。當所有存活玩家都被縱火犯澆上油時，縱火犯可以以跳管道的方式來點火，並單獨獲勝。\n\n玩家名字顯示「△」表示澆油中\n顯示「▲」表示已經澆油。","(中立阵营):\n纵火犯可以通过对玩家点击击杀按钮并跟随其数秒来完成涂油，开始涂油以及涂油成功时会显示护盾破碎的动画作为提示（仅自己可见）。当所有存活玩家都被纵火犯涂油后，纵火犯可以通过跳通风管来点火，并单独获得胜利。\n\n玩家名显示「△」表示涂油中\n玩家名显示「▲」表示已涂油。"
+"ShamanInfoLong","","(Neutrals):\nAs Shaman you can use your kill button to select a voodoo doll once every round. All the interactions with you using kill button will be deflected to the voodoo doll and the voodoo doll will destroy. \n\nSince Witch uses magic too the effect of the voodoo doll will be nullified (voodoo doll wont be destroyed though) and it will take place on shaman itself.\n\nIf you survvive till end, you win with the winning team","","",""
+You survive till end to win with the winning team."
 "JesterInfoLong","(中立阵营):\n小丑被票出则小丑单独游戏胜利。游戏结束时若小丑仍存活则小丑输掉游戏。请注意：小丑、处刑人、冤罪师可以共享胜利。","(Neutrals):\nIf the Jester get voted out, the Jester wins the game alone. If the Jester is still alive at the end of the game, the Jester loses the game. Note: Jester, Executioner, and Innocent can win together.","(Злой - Нейтрал):\nШут сможет выиграть игру, если за него проголосуют во время голосования и он будет изгнан.\nВ противном случае Шут проиграет. \nПримечание: Шут, Палач и Обвинитель могут победить вместе.","(中立陣營):\n如果小丑被票出時則小丑單獨獲勝。如果遊戲結束時小丑仍然存活則失敗。\n請注意: 小丑、暴民、冤罪師可以一同獲勝。","(中立阵营):\n小丑被票出则小丑单独游戏胜利。游戏结束时若小丑仍存活则小丑输掉游戏。请注意：小丑、处刑人、冤罪师可以共享胜利。"
 "TerroristInfoLong","(中立阵营):\n恐怖分子完成所有任务后死亡，则恐怖分子单独获得胜利。（怎么死都行，包括票死，反正死了就行）","(Neutrals):\nIf the Terrorist dies after completing all tasks, the Terrorist wins the game alone. (They can win by either being voted out or killed).","(Злой - Нейтрал):\nТеррорист побеждает в одиночку, если его убивают или изгоняют. \nНо только если все его задания будут выполнены.","(中立陣營):\n當恐怖分子完成所有任務後死亡的話，則恐怖分子單獨獲勝。(只要死了就可以)","(中立阵营):\n恐怖分子完成所有任务后死亡，则恐怖分子单独获得胜利。（怎么死都行，包括票死，反正死了就行）"
 "ExecutionerInfoLong","(中立阵营):\n游戏开始时处刑人会被分配到一个处刑目标，并在其昵称旁用菱形「♦」表示。若处刑目标被击杀，则处刑的职业会根据设置变为船员，小丑或投机者。如果处刑目标在会议中被票出则处刑人胜利。请注意：小丑、处刑人、冤罪师可以共享胜利。","(Neutrals):\nExecutioner has an execution target, which will be indicated by a diamond 「♦」 next to their name. If the execution target is killed, the Executioner will be changed to Crewmate, Jester or Opportunist according to the settings. If the execution target is voted out in the meeting, the Executioner wins. Note: Jester, Executioner, and Innocent can win together.","(Злой - Нейтрал):\nУ Палача есть цель, которая будет обозначена ромбом「♦」рядом с именем цели. Если цель убита, Палач сменит свою роль на Члена Экипажа, Шута или Выжившего в соответствии с настройками. Если его цель будет изгнана на собрании, то победит Палач. Примечание: Шут, Палач и Обвинитель могут победить вместе.","(中立陣營):\n當遊戲開始時暴民會被分配一個處刑目標，並在他的名字旁用「♦」標示。如果處刑目標被殺，那麼暴民的職業會根據設定變為船員、小丑、投機者。如果處刑目標被票出那麼暴民勝利。\n請注意: 小丑、暴民、冤罪師可以一同獲勝。","(中立阵营):\n游戏开始时处刑人会被分配到一个处刑目标，并在其昵称旁用菱形「♦」表示。若处刑目标被击杀，则处刑的职业会根据设置变为船员，小丑或投机者。如果处刑目标在会议中被票出则处刑人胜利。请注意：小丑、处刑人、冤罪师可以共享胜利。"
@@ -2616,6 +2620,9 @@
 "VultureReportCooldown","吃尸体的冷却时间","Eat Cooldown","Откат съедения","",""
 "VultureMaxEatenInOneRound","每回合可能吃掉的最大尸体数","Maximum eaten bodies possible per round","Максимум трупов которые он может съесть","",""
 "VultureCooldownUp","可以继续吃了！","Eat Cooldown finished","Откат съедения завершён","",""
+
+"## Shaman Text Strings"
+"ShamanTargetAlreadySelected","","You have already selected a voodoo doll in this round","","",""
 
 "## Pirate Text Strings"
 "PirateTryHideMsg","","Hide <color=#EDC240>Pirate</color>'s commands","","",""

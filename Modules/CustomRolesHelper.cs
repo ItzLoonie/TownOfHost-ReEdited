@@ -261,6 +261,7 @@ internal static class CustomRolesHelper
             CustomRoles.PlagueBearer => RoleTypes.Impostor,
             CustomRoles.Pestilence => RoleTypes.Impostor,
             CustomRoles.Spiritcaller => RoleTypes.Impostor,
+            CustomRoles.Shaman => RoleTypes.Impostor,
             _ => RoleTypes.GuardianAngel
         };
     }
@@ -349,6 +350,7 @@ internal static class CustomRolesHelper
             CustomRoles.Phantom or
             CustomRoles.Totocalcio or
             CustomRoles.Doomsayer or
+            CustomRoles.Shaman or
             CustomRoles.Succubus;
     }
 
@@ -389,6 +391,7 @@ internal static class CustomRolesHelper
             CustomRoles.Pirate or
        //     CustomRoles.Juggernaut or
             CustomRoles.Jinx or
+            CustomRoles.Shaman or
        //     CustomRoles.Poisoner or
        //     CustomRoles.HexMaster or
             CustomRoles.Totocalcio;
@@ -493,6 +496,7 @@ internal static class CustomRolesHelper
             CustomRoles.FFF or
             CustomRoles.Sunnyboy or
             CustomRoles.Maverick or
+            CustomRoles.Shaman or
             CustomRoles.Totocalcio;
     }
     public static bool IsNC(this CustomRoles role)
@@ -650,6 +654,7 @@ internal static class CustomRolesHelper
             CustomRoles.Terrorist or
             CustomRoles.Executioner or
             CustomRoles.Juggernaut or
+            CustomRoles.Shaman or
             CustomRoles.Refugee or
             CustomRoles.Jinx or
             CustomRoles.Lawyer or
@@ -789,6 +794,7 @@ internal static class CustomRolesHelper
             CustomRoles.Spiritcaller or
             CustomRoles.Doomsayer or
             CustomRoles.PlagueBearer or
+            CustomRoles.Shaman or
             CustomRoles.Pirate or
             CustomRoles.Pestilence;
     }

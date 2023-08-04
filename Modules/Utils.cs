@@ -436,6 +436,7 @@ public static class Utils
             case CustomRoles.SwordsMan:
             case CustomRoles.Innocent:
             case CustomRoles.Pelican:
+            case CustomRoles.Shaman:
             case CustomRoles.Medusa:
             case CustomRoles.Revolutionist:
             case CustomRoles.FFF:
@@ -1916,6 +1917,7 @@ public static class Utils
         Baker.AfterMeetingTasks();
         CopyCat.AfterMeetingTasks();
         Pirate.AfterMeetingTask();
+        Main.ShamanTarget = byte.MaxValue;
 
 
         if (Options.AirshipVariableElectrical.GetBool())

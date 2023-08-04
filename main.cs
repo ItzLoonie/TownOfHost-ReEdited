@@ -191,6 +191,7 @@ public class Main : BasePlugin
 
     public static Dictionary<byte, CustomRoles> DevRole = new();
     public static byte GodfatherTarget = byte.MaxValue;
+    public static byte ShamanTarget = byte.MaxValue;
 
 
     public static IEnumerable<PlayerControl> AllPlayerControls => PlayerControl.AllPlayerControls.ToArray().Where(p => p != null);
@@ -341,6 +342,7 @@ public class Main : BasePlugin
                 {CustomRoles.Reverie, "#00BFFF"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
+                {CustomRoles.Arsonist, "#50c878"},
                 {CustomRoles.PlagueBearer,"#e5f6b4"},
                 {CustomRoles.Pestilence,"#343136"},
                 {CustomRoles.Jester, "#ec62a5"},
@@ -646,6 +648,7 @@ public enum CustomRoles
     //Neutral
     Arsonist,
     HexMaster,
+    Shaman,
     Jester,
     God,
     Opportunist,
@@ -819,6 +822,7 @@ public enum AdditionalWinners
     None = -1,
     Lovers = CustomRoles.Lovers,
     Opportunist = CustomRoles.Opportunist,
+    Shaman = CustomRoles.Shaman,
     Executioner = CustomRoles.Executioner,
     Lawyer = CustomRoles.Lawyer,
     FFF = CustomRoles.FFF,
