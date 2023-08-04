@@ -342,7 +342,7 @@ public class Main : BasePlugin
                 {CustomRoles.Reverie, "#00BFFF"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
-                {CustomRoles.Arsonist, "#50c878"},
+                {CustomRoles.Shaman, "#50c878"},
                 {CustomRoles.PlagueBearer,"#e5f6b4"},
                 {CustomRoles.Pestilence,"#343136"},
                 {CustomRoles.Jester, "#ec62a5"},
