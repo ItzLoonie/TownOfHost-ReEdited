@@ -837,6 +837,9 @@ internal static class RPC
             case CustomRoles.BallLightning:
                 BallLightning.Add(targetId);
                 break;
+            case CustomRoles.Chronomancer:
+                Chronomancer.Add(targetId);
+                break;
             case CustomRoles.DarkHide:
                 DarkHide.Add(targetId);
                 break;

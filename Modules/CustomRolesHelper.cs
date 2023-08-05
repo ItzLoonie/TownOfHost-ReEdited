@@ -21,6 +21,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Vindicator => CustomRoles.Impostor,
                 CustomRoles.Snitch => CustomRoles.Crewmate,
                 CustomRoles.Masochist => CustomRoles.Crewmate,
+                CustomRoles.Chronomancer => CustomRoles.Impostor,
                 CustomRoles.ParityCop => CustomRoles.Crewmate,
                 CustomRoles.Marshall => CustomRoles.Crewmate,
                 CustomRoles.SabotageMaster => CustomRoles.Engineer,
@@ -598,6 +599,7 @@ internal static class CustomRolesHelper
             CustomRoles.TimeThief or
             CustomRoles.Trickster or
             CustomRoles.Mafia or
+            CustomRoles.Chronomancer or
             CustomRoles.Minimalism or
             CustomRoles.FireWorks or
             CustomRoles.Sniper or

@@ -187,6 +187,7 @@
 "Inhibitor","抑郁者","Inhibitor","Тугодум","",""
 "Saboteur","破坏者","Saboteur","Cаботажник","",""
 "Councillor","议员","Councillor","Взяточник","",""
+"Chronomancer","","Chronomancer","","",""
 "Dazzler","眩晕者","Dazzler","Ослепитель","",""
 "Deathpact","死亡契约","Deathpact","Злой Купидон","",""
 "Devourer","吞噬者","Devourer","Пожиратель","",""
@@ -509,6 +510,7 @@
 "InhibitorInfo","球球队友不要破坏","You cannot kill during sabotages","Вы не можете убивать во время саботажей","",""
 "SaboteurInfo","统统给我坏掉吧","You can only kill during sabotages","Вы можете убивать только во время саботажа","",""
 "CouncillorInfo","看谁不顺眼，就谋杀谁","Kill off crewmates during meetings","Убивайте игроков во время встречи","",""
+"ChronomancerInfo","","Kill in Bursts","","",""
 "DazzlerInfo","我好晕啊~","Reduce the vision of the crew","Уменьшайте обзор Членов Экипажа","",""
 "DeathpactInfo","你可以准备去死了","Assign players to a death pact","Назначьте игроков для заключения договора о смерти","",""
 "DevourerInfo","装扮？给我变吧！","Consume the skin of the crew","Пожирайте внешний вид Членов Экипажей","",""
@@ -744,6 +746,7 @@
 "InhibitorInfoLong","(内鬼阵营):\n抑郁者在没有破坏的情况下杀人\n如果有重大破坏（如灯光或反应堆），则不能击杀","(Impostors):\nAs the Inhibitor, you can only kill when there is not a critical sabotage active.\n\nIf a critical sabotage is active (eg Lights or Reactor), you cannot kill.","(Предатель):\nТугодум не может убивать только тогда, когда работает один из критических саботажей.\n\nЕсли активен критический саботаж (например, Свет или Реактор), вы не можете убивать","",""
 "SaboteurInfoLong","(内鬼阵营):\n破坏者在有重大破坏的情况下击杀\n如果有严重的破坏活动（如通信或氧气），你就可以击杀","(Impostors):\nAs the Saboteur, you can only kill when there is a critical sabotage active.\n\nIf a critical sabotage is active (eg Comms or O2), then you can kill.","(Предатель):\nИграя за Cаботажника, вы можете убивать только при активном критическом саботаже (например, связь или O2)","",""
 "CouncillorInfoLong","(内鬼阵营):\n议员可以像法官一样在会议上审判玩家\n议员的击杀称为谋杀\n谋杀指令/tl [玩家 id]\n你可以在玩家名字前看到玩家的id,或使用 /id 查看所有玩家id的命令","(Impostors):\nAs the Councillor, you can kill players during a meeting like a Judge.\nWhen killing in a meeting, those kills will appear as a trial from a Judge.\n\nThe kill command is /tl [player id]\nYou can see the player's id before the player's name, or use the /id command to view the id of all players.","(Предатель):\nКак Взяточник, вы можете убивать игроков во время встречи.\nПри убийстве на встрече эти убийства отображаются как убийство Судьи.\n\nКоманда убийства: /tl [номер игрока]\nВы можете видеть номер игрока перед именем игрока или используйте команду /id для просмотра номеров всех игроков","",""
+"ChronomancerInfoLong","","(Impostors):\nAs Chronomancer, you can charge up your kill button. Once activated the Chronomancer can use their kill button infinitely until they run out of charge.","","",""
 "DazzlerInfoLong","(内鬼阵营):\n眩晕者可以永久地减少变形目标的视野\n当你被驱逐或死亡后，则你变形目标的视野会恢复正常","(Impostors):\nAs the Dazzler, you can reduce the vision of the target of your Shapeshift permanently. When you die, their vision will turn back to normal.","(Предатель):\nОслепитель может навсегда уменьшить дальность обзора цели выбранного при помощи Морфа. Когда вы умрете, их зрение вернется к норме.","",""
 "DeathpactInfoLong","(内鬼阵营):\n死亡契约变形后的目标会被标记为死亡契约\n当有足够的玩家被标记为死亡契约\n被标记的玩家必须在规定的时间内会面；\n他们不这样做，就会暴毙死亡\n当被标记的玩家在死亡契约完成之前死亡，则该契约将被撤销","(Impostors):\nAs the Deathpact, the targets of your shapeshifting are marked for a deathpact.\nIf enough players are marked for a death pact, the marked players must meet within a defined period of time; if they fail to do so, they die.\nIf a marked player dies before the death pact is completed, the pact is withdrawn.","(Предатель):\nЦель выбранная с помощью морфа помечаются для заключения договора о смерти.\nЕсли для заключения договора о смерти отмечено достаточное количество игроков, отмеченные игроки должны встретиться в течение определенного периода времени; если они этого не сделают, они умрут.\nЕсли отмеченный игрок умрет до того, как договор о смерти будет выполнен, договор будет отозван.","",""
 "DevourerInfoLong","(内鬼阵营):\n吞噬者可以使用变形永久改变目标的外观\n当每个玩家的出场时间发生变化时，你的击杀冷却时间会减少一定的秒数\n当吞噬者死亡或驱逐,目标玩家的外观将变回正常外观","(Impostors):\nAs the Devourer, you use your shapeshift to permanently change the appearance of the target of the shapeshift. Additionally, for each player's appearance changed, your kill cooldown is reduced by a defined number of seconds. If the Devourer dies or gets voted out during a meeting, the player's appearance will change back to their normal appearance.","(Предатель):\nПожиратель при ипользовании морфа изменяет внешний вид его цели. Кроме того, при изменении внешности каждого игрока откат убийства сокращается на определенное количество секунд. Если Пожиратель умирает или он будет изгнан во время встречи, внешний вид игроков возвращается к его обычному виду.","",""
@@ -2294,6 +2297,9 @@
 
 "## Underdog Text Strings"
 "UnderdogMaximumPlayersNeededToKill","开始击杀所需的玩家数量上限","Maximum players needed to start killing","","",""
+
+"## Chronomancer Text Strings"
+"ChronomancerKillCooldown","","Time to fully charge the kill button","","",""
 
 "## Unlucky Text Strings"
 "ImpCanBeUnlucky","<color=#ff1919>内鬼</color>可以成为<color=#b8d7a3>倒霉蛋</color>","<color=#ff1919>Impostors</color> can become <color=#b8d7a3>Unlucky</color>","","",""

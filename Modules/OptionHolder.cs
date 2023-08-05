@@ -978,6 +978,7 @@ public static class Options
             .SetParent(NukerChance)
             .SetValueFormat(OptionFormat.Multiplier);
         BountyHunter.SetupCustomOption();
+        Chronomancer.SetupCustomOption();
         Councillor.SetupCustomOption();
         SetupRoleOptions(1000, TabGroup.ImpostorRoles, CustomRoles.CursedWolf); //TOH_Y
         GuardSpellTimes = IntegerOptionItem.Create(1010, "GuardSpellTimes", new(1, 15, 1), 3, TabGroup.ImpostorRoles, false)

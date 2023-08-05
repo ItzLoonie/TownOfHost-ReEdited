@@ -758,6 +758,9 @@ static class ExtendedPlayerControl
             case CustomRoles.BallLightning:
                 BallLightning.SetKillCooldown(player.PlayerId);
                 break;
+            case CustomRoles.Chronomancer:
+                Chronomancer.SetKillCooldown(player.PlayerId);
+                break;
             case CustomRoles.DarkHide:
                 DarkHide.SetKillCooldown(player.PlayerId);
                 break;

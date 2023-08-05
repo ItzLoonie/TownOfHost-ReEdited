@@ -1917,6 +1917,7 @@ public static class Utils
         Baker.AfterMeetingTasks();
         CopyCat.AfterMeetingTasks();
         Pirate.AfterMeetingTask();
+        Chronomancer.AfterMeetingTask();
         Main.ShamanTarget = byte.MaxValue;
 
 

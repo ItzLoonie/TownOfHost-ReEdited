@@ -146,7 +146,8 @@ class CheckMurderPatch
             }
         }
 
-
+        if (killer.Is(CustomRoles.Chronomancer))
+            Chronomancer.OnCheckMurder(killer);
         killer.ResetKillCooldown();
 
         //キル可能判定
@@ -267,6 +268,9 @@ class CheckMurderPatch
                 case CustomRoles.Greedier:
                     Greedier.OnCheckMurder(killer);
                     break;
+                //case CustomRoles.Chronomancer:
+                //    Chronomancer.OnCheckMurder(killer);
+                //    break;
                 case CustomRoles.QuickShooter:
                     QuickShooter.QuickShooterKill(killer);
                     break;

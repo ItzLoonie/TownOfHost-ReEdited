@@ -564,6 +564,7 @@ public enum CustomRoles
     Eraser,
     OverKiller,
     Hangman,
+    Chronomancer,
     Bard,
     Trickster,
     Swooper,

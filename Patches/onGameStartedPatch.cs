@@ -209,6 +209,7 @@ internal class ChangeRoleSettings
             Medic.Init();
             Gamer.Init();
             BallLightning.Init();
+            Chronomancer.Init();
             DarkHide.Init();
             Greedier.Init();
             Collector.Init();
@@ -587,6 +588,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.BallLightning:
                         BallLightning.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Chronomancer:
+                        Chronomancer.Add(pc.PlayerId);
                         break;
                     case CustomRoles.DarkHide:
                         DarkHide.Add(pc.PlayerId);
