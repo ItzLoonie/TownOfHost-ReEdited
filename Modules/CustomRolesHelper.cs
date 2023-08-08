@@ -340,41 +340,6 @@ internal static class CustomRolesHelper
             CustomRoles.Ghoul or
             CustomRoles.EvilSpirit;
     }
-    public static bool IsNonNK(this CustomRoles role) // ROLE ASSIGNING, NOT NEUTRAL TYPE
-    {
-        return role is
-            CustomRoles.Jester or
-            CustomRoles.Terrorist or
-            CustomRoles.Opportunist or
-            CustomRoles.Shaman or
-            CustomRoles.Masochist or
-            CustomRoles.Executioner or
-            CustomRoles.Mario or
-            CustomRoles.Crewpostor or
-            CustomRoles.Lawyer or
-            CustomRoles.God or
-            CustomRoles.Amnesiac or
-            CustomRoles.Innocent or
-            CustomRoles.Vulture or
-            CustomRoles.NWitch or
-            CustomRoles.Pursuer or
-            CustomRoles.Pirate or
-            CustomRoles.Revolutionist or
-            CustomRoles.Provocateur or
-            CustomRoles.Gamer or
-            CustomRoles.FFF or
-            CustomRoles.Workaholic or
-        //    CustomRoles.Pelican or
-            CustomRoles.Collector or
-            CustomRoles.Sunnyboy or
-            CustomRoles.Maverick or
-            CustomRoles.CursedSoul or
-            CustomRoles.Phantom or
-            CustomRoles.Totocalcio or
-            CustomRoles.Doomsayer or
-            CustomRoles.Succubus;
-    }
-
     public static bool IsAmneMaverick(this CustomRoles role) // ROLE ASSIGNING, NOT NEUTRAL TYPE
     {
         return role is
@@ -468,6 +433,82 @@ internal static class CustomRolesHelper
             CustomRoles.PlagueBearer or
             CustomRoles.Pestilence;
     }
+    public static bool IsNonNK(this CustomRoles role) // ROLE ASSIGNING, NOT NEUTRAL TYPE
+    {
+        return role is
+            CustomRoles.Amnesiac or
+            CustomRoles.Totocalcio or
+            CustomRoles.FFF or
+            CustomRoles.Lawyer or
+            CustomRoles.Maverick or
+            CustomRoles.Opportunist or
+            CustomRoles.Pursuer or
+            CustomRoles.Shaman or
+            CustomRoles.NWitch or
+            CustomRoles.CursedSoul or
+            CustomRoles.Gamer or
+            CustomRoles.Doomsayer or
+            CustomRoles.Executioner or
+            CustomRoles.Innocent or
+            CustomRoles.Jester or
+            CustomRoles.Sunnyboy or
+            CustomRoles.Masochist or
+            CustomRoles.Collector or
+            CustomRoles.Succubus or
+            CustomRoles.Phantom or
+            CustomRoles.Pirate or
+            CustomRoles.Terrorist or
+            CustomRoles.Vulture or
+            CustomRoles.Workaholic or
+            CustomRoles.God or
+            CustomRoles.Mario or
+            CustomRoles.Revolutionist or
+            CustomRoles.Famine or
+            CustomRoles.Baker or
+            CustomRoles.Provocateur;
+    }
+    public static bool IsNB(this CustomRoles role)
+    {
+        return role is
+            CustomRoles.Amnesiac or
+            CustomRoles.Totocalcio or
+            CustomRoles.FFF or
+            CustomRoles.Lawyer or
+            CustomRoles.Maverick or
+            CustomRoles.Opportunist or
+            CustomRoles.Pursuer or
+            CustomRoles.Shaman or
+            CustomRoles.NWitch or
+            CustomRoles.God or
+            CustomRoles.Sunnyboy;
+    }
+    public static bool IsNE(this CustomRoles role)
+    {
+        return role is
+            CustomRoles.CursedSoul or
+            CustomRoles.Gamer or
+            CustomRoles.Doomsayer or
+            CustomRoles.Executioner or
+            CustomRoles.Innocent or
+            CustomRoles.Jester or
+            CustomRoles.Masochist;
+    }
+    public static bool IsNC(this CustomRoles role)
+    {
+        return role is
+            CustomRoles.Collector or
+            CustomRoles.Succubus or
+            CustomRoles.Phantom or
+            CustomRoles.Mario or
+            CustomRoles.Pirate or
+            CustomRoles.Terrorist or
+            CustomRoles.Vulture or
+            CustomRoles.Workaholic or
+            CustomRoles.Famine or
+            CustomRoles.Baker or
+            CustomRoles.Revolutionist or
+            CustomRoles.Provocateur;
+    }
     public static bool IsSnitchTarget(this CustomRoles role)
     {
         return role is
@@ -499,86 +540,6 @@ internal static class CustomRolesHelper
             CustomRoles.Virus or
             CustomRoles.Succubus or
             CustomRoles.BloodKnight or
-            CustomRoles.Spiritcaller or
-            CustomRoles.PlagueBearer or
-            CustomRoles.Pestilence;
-    }
-    public static bool IsNE(this CustomRoles role)
-    {
-        return role is
-            CustomRoles.Jester or
-            CustomRoles.Gamer or
-            CustomRoles.Masochist or
-            CustomRoles.Arsonist or
-            CustomRoles.Executioner or
-            CustomRoles.Doomsayer or
-            CustomRoles.Innocent;
-    }
-    public static bool IsNB(this CustomRoles role)
-    {
-        return role is
-            CustomRoles.Opportunist or
-            CustomRoles.Lawyer or
-            CustomRoles.Amnesiac or
-            CustomRoles.Shaman or
-            CustomRoles.NWitch or
-            CustomRoles.God or
-            CustomRoles.Pursuer or
-            CustomRoles.FFF or
-            CustomRoles.Sunnyboy or
-            CustomRoles.Maverick or
-            CustomRoles.Totocalcio;
-    }
-    public static bool IsNC(this CustomRoles role)
-    {
-        return role is
-            CustomRoles.Mario or
-            CustomRoles.Terrorist or
-            CustomRoles.Pirate or
-            CustomRoles.Revolutionist or
-            CustomRoles.Vulture or
-            CustomRoles.Famine or
-            CustomRoles.Baker or
-            CustomRoles.CursedSoul or
-            CustomRoles.Phantom or
-            CustomRoles.Workaholic or
-            CustomRoles.Collector or
-            CustomRoles.Provocateur;
-    }
-    public static bool IsNeutralKilling(this CustomRoles role)
-    {
-        return role is
-            CustomRoles.Terrorist or
-            CustomRoles.Arsonist or
-            CustomRoles.Juggernaut or
-            CustomRoles.Medusa or
-            CustomRoles.Jinx or
-            CustomRoles.Jackal or
-            CustomRoles.Sidekick or
-            CustomRoles.Refugee or
-            CustomRoles.God or
-            CustomRoles.Mario or
-            CustomRoles.Innocent or
-            CustomRoles.Pelican or
-            CustomRoles.Wraith or
-            CustomRoles.HexMaster or
-            CustomRoles.Egoist or
-            CustomRoles.Gamer or
-            CustomRoles.Parasite or
-            CustomRoles.DarkHide or
-            CustomRoles.Workaholic or
-            CustomRoles.Collector or
-            CustomRoles.Werewolf or
-            CustomRoles.Traitor or
-            CustomRoles.Poisoner or
-            CustomRoles.NSerialKiller or
-            CustomRoles.Ritualist or
-            CustomRoles.Pickpocket or
-            CustomRoles.Traitor or
-            CustomRoles.BloodKnight or
-            CustomRoles.Infectious or
-            CustomRoles.Virus or
-            CustomRoles.Succubus or
             CustomRoles.Spiritcaller or
             CustomRoles.PlagueBearer or
             CustomRoles.Pestilence;
