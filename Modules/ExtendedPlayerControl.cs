@@ -12,6 +12,7 @@ using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
+using static ThisAssembly.Git;
 using static TOHE.Translator;
 
 namespace TOHE;
@@ -507,6 +508,8 @@ static class ExtendedPlayerControl
             CustomRoles.PlagueBearer => pc.IsAlive(),
             CustomRoles.Pestilence => pc.IsAlive(),
             CustomRoles.Pirate => pc.IsAlive(),
+            CustomRoles.Seeker => pc.IsAlive(),
+
 
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
@@ -703,9 +706,12 @@ static class ExtendedPlayerControl
             case CustomRoles.TimeThief:
                 TimeThief.SetKillCooldown(player.PlayerId); //タイムシーフはタイムシーフのキルクールに。
                 break;
-        /*    case CustomRoles.Mare:
-                Mare.SetKillCooldown(player.PlayerId);
-                break; */
+            case CustomRoles.Seeker:
+                Seeker.SetKillCooldown(player.PlayerId);
+                break;
+            /*    case CustomRoles.Mare:
+                    Mare.SetKillCooldown(player.PlayerId);
+                    break; */
             case CustomRoles.EvilDiviner:
                 EvilDiviner.SetKillCooldown(player.PlayerId);
                 break;

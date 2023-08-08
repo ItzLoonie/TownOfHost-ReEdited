@@ -13,6 +13,7 @@ using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using static TOHE.Modules.CustomRoleSelector;
 using static TOHE.Translator;
+using static ThisAssembly.Git;
 
 namespace TOHE;
 
@@ -106,8 +107,9 @@ internal class ChangeRoleSettings
             Main.MadmateNum = 0;
             Main.BardCreations = 0;
             Main.DovesOfNeaceNumOfUsed = new();
-            Main.GodfatherTarget = byte.MaxValue;
+            Main.GodfatherTarget = new();
             Main.ShamanTarget = byte.MaxValue;
+            Main.ShamanTargetChoosen = false;
 
             ReportDeadBodyPatch.CanReport = new();
 
@@ -179,6 +181,7 @@ internal class ChangeRoleSettings
             }
             FallFromLadder.Reset();
             BountyHunter.Init();
+            Seeker.Init();
             SerialKiller.Init();
             EvilDiviner.Init();
             FireWorks.Init();
@@ -452,6 +455,9 @@ internal class SelectRolesPatch
                 {
                     case CustomRoles.BountyHunter:
                         BountyHunter.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Seeker:
+                        Seeker.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Reverie:
                         Reverie.Add(pc.PlayerId);

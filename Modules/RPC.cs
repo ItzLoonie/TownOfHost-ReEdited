@@ -11,6 +11,7 @@ using TOHE.Roles.AddOns.Impostor;
 using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
+using static ThisAssembly.Git;
 using static TOHE.Translator;
 namespace TOHE;
 
@@ -24,6 +25,8 @@ enum CustomRPC
     PlaySound,
     SetCustomRole,
     SetBountyTarget,
+    SetSeekerTarget,
+    SetSeekerPoints,
     SetKillOrSpell,
     SetKillOrHex,
     SetSheriffShotLimit,
@@ -283,6 +286,13 @@ internal class RPCHandlerPatch
             case CustomRPC.SetBountyTarget:
                 BountyHunter.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetSeekerTarget:
+                Seeker.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetSeekerPoints:
+                Seeker.ReceiveRPC(reader, setTarget: false);
+                break;
+
             case CustomRPC.SetKillOrSpell:
                 Witch.ReceiveRPC(reader, false);
                 break;
@@ -733,6 +743,9 @@ internal static class RPC
         {
             case CustomRoles.BountyHunter:
                 BountyHunter.Add(targetId);
+                break;
+            case CustomRoles.Seeker:
+                Seeker.Add(targetId);
                 break;
             case CustomRoles.SerialKiller:
                 SerialKiller.Add(targetId);

@@ -9,6 +9,7 @@ using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
+using static ThisAssembly.Git;
 
 namespace TOHE;
 
@@ -803,6 +804,13 @@ public static class Options
     public static OptionItem ImpCanBeLoyal;
     public static OptionItem CrewCanBeLoyal;
     //public static OptionItem SidekickCountMode;
+    public static OptionItem GodfatherChangeOpt;
+    public static readonly string[] GodfatherChangeMode =
+    {
+        "GodfatherCount.Refugee",
+        "GodfatherCount.Madmate"
+    };
+
 
     public static readonly string[] suffixModes =
     {
@@ -1086,6 +1094,7 @@ public static class Options
         FireWorks.SetupCustomOption();
         Gangster.SetupCustomOption();
         SetupRoleOptions(555420, TabGroup.ImpostorRoles, CustomRoles.Godfather);
+        GodfatherChangeOpt = StringOptionItem.Create(555430, "GodfatherTargetCountMode", GodfatherChangeMode, 0, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Godfather]);
         Morphling.SetupCustomOption();
         SetupRoleOptions(3100, TabGroup.ImpostorRoles, CustomRoles.Mafia);
         MafiaCanKillNum = IntegerOptionItem.Create(3200, "MafiaCanKillNum", new(0, 15, 1), 1, TabGroup.ImpostorRoles, false)
@@ -1399,6 +1408,8 @@ public static class Options
         MasochistKillMax = IntegerOptionItem.Create(10955, "MasochistKillMax", new(1, 99, 1), 5, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Masochist])
             .SetValueFormat(OptionFormat.Times);
+        Seeker.SetupCustomOption();
+
 
 
         TextOptionItem.Create(100012, "RoleType.NeutralChaos", TabGroup.NeutralRoles)

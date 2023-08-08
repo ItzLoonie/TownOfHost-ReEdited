@@ -198,8 +198,9 @@ public class Main : BasePlugin
     public static Dictionary<byte, int> DovesOfNeaceNumOfUsed = new();
 
     public static Dictionary<byte, CustomRoles> DevRole = new();
-    public static byte GodfatherTarget = byte.MaxValue;
+    public static List<byte> GodfatherTarget = new();
     public static byte ShamanTarget = byte.MaxValue;
+    public static bool ShamanTargetChoosen = false;
 
 
     public static IEnumerable<PlayerControl> AllPlayerControls => PlayerControl.AllPlayerControls.ToArray().Where(p => p != null);
@@ -355,6 +356,7 @@ public class Main : BasePlugin
                 {CustomRoles.Monitor, "#7223DA"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
+                {CustomRoles.Seeker, "#ffaa00"},
                 {CustomRoles.PlagueBearer,"#e5f6b4"},
                 {CustomRoles.Pestilence,"#343136"},
                 {CustomRoles.Jester, "#ec62a5"},
@@ -681,6 +683,7 @@ public enum CustomRoles
     Monitor,
     //Neutral
     Arsonist,
+    Seeker,
     HexMaster,
     Jester,
     God,
@@ -864,6 +867,7 @@ public enum CustomWinner
     Doomsayer = CustomRoles.Doomsayer,
     Shroud = CustomRoles.Shroud,
     Coven = CustomRoles.CovenLeader,
+    Seeker = CustomRoles.Seeker,
 }
 public enum AdditionalWinners
 {

@@ -224,6 +224,7 @@ internal static class CustomRolesHelper
             //Standard
             CustomRoles.Sheriff => RoleTypes.Impostor,
             CustomRoles.Crusader => RoleTypes.Impostor,
+            CustomRoles.Seeker => RoleTypes.Impostor,
             CustomRoles.Pirate => RoleTypes.Impostor,
             CustomRoles.CopyCat => RoleTypes.Impostor,
             CustomRoles.CursedSoul => RoleTypes.Impostor,
@@ -376,7 +377,9 @@ internal static class CustomRolesHelper
             CustomRoles.Ritualist or
             CustomRoles.Doomsayer or
             CustomRoles.Pirate or
-       //     CustomRoles.Juggernaut or
+            CustomRoles.Seeker or
+
+            //     CustomRoles.Juggernaut or
             CustomRoles.Jinx or
        //     CustomRoles.Poisoner or
        //     CustomRoles.HexMaster or
@@ -440,6 +443,7 @@ internal static class CustomRolesHelper
             CustomRoles.Totocalcio or
             CustomRoles.FFF or
             CustomRoles.Lawyer or
+            CustomRoles.Seeker or
             CustomRoles.Maverick or
             CustomRoles.Opportunist or
             CustomRoles.Pursuer or
@@ -491,6 +495,7 @@ internal static class CustomRolesHelper
             CustomRoles.Executioner or
             CustomRoles.Innocent or
             CustomRoles.Jester or
+            CustomRoles.Seeker or
             CustomRoles.Masochist;
     }
     public static bool IsNC(this CustomRoles role)
@@ -635,6 +640,7 @@ internal static class CustomRolesHelper
             CustomRoles.Mario or
             CustomRoles.Masochist or
             CustomRoles.Amnesiac or
+            CustomRoles.Seeker or
             CustomRoles.Medusa or
             CustomRoles.Famine or
             CustomRoles.Baker or
@@ -816,6 +822,7 @@ internal static class CustomRolesHelper
             CustomRoles.Doomsayer or
             CustomRoles.PlagueBearer or
             CustomRoles.Pirate or
+            CustomRoles.Seeker or
             CustomRoles.Pestilence;
     }
 

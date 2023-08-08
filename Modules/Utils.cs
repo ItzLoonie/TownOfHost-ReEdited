@@ -18,6 +18,7 @@ using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
+using static ThisAssembly.Git;
 using static TOHE.Translator;
 
 namespace TOHE;
@@ -423,6 +424,7 @@ public static class Utils
             case CustomRoles.Sheriff:
             case CustomRoles.CopyCat:
             case CustomRoles.Shaman:
+            case CustomRoles.Seeker:
             case CustomRoles.Arsonist:
             case CustomRoles.Jackal:
             case CustomRoles.Sidekick:
@@ -537,7 +539,7 @@ public static class Utils
                     hasTasks &= !ForRecompute;
                     break;
             }
-        if (CopyCat.playerIdList.Contains(p.PlayerId) && ForRecompute) hasTasks = false;
+        if (CopyCat.playerIdList.Contains(p.PlayerId)) hasTasks = false;
 
         return hasTasks;
     }
@@ -588,6 +590,10 @@ public static class Utils
                 var doused = GetDousedPlayerCount(playerId);
                 ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Arsonist).ShadeColor(0.25f), $"({doused.Item1}/{doused.Item2})"));
                 break;
+            case CustomRoles.Seeker:
+                ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Seeker).ShadeColor(0.25f), $"({Seeker.TotalPoints[playerId]}/{Seeker.PointsToWin.GetInt()})"));
+                break;
+
             case CustomRoles.Sheriff:
                 ProgressText.Append(Sheriff.GetShotLimit(playerId));
                 break;
@@ -2019,6 +2025,7 @@ public static class Utils
         Chameleon.AfterMeetingTasks();
         Eraser.AfterMeetingTasks();
         BountyHunter.AfterMeetingTasks();
+        Seeker.AfterMeetingTasks();
         EvilTracker.AfterMeetingTasks();
         SerialKiller.AfterMeetingTasks();
         Spiritualist.AfterMeetingTasks();
@@ -2028,6 +2035,7 @@ public static class Utils
         Pirate.AfterMeetingTask();
         Chronomancer.AfterMeetingTask();
         Main.ShamanTarget = byte.MaxValue;
+        Main.ShamanTargetChoosen = false;
 
 
         if (Options.AirshipVariableElectrical.GetBool())
