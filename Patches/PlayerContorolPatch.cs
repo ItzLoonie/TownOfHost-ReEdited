@@ -606,15 +606,15 @@ class CheckMurderPatch
         if (target == null) target = killer;
 
         //Jackal can kill Sidekick
-        if (killer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Sidekick) && !Options.JackalCanKillSidekick.GetBool())
+        if (killer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Sidekick) && !Jackal.JackalCanKillSidekick.GetBool())
             return false;
         //Sidekick can kill Jackal
-        if (killer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Jackal) && !Options.SidekickCanKillJackal.GetBool())
+        if (killer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Jackal) && !Jackal.SidekickCanKillJackal.GetBool())
             return false;
-        if (killer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Recruit) && !Options.JackalCanKillSidekick.GetBool())
+        if (killer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Recruit) && !Jackal.JackalCanKillSidekick.GetBool())
             return false;
         //Sidekick can kill Jackal
-        if (killer.Is(CustomRoles.Recruit) && target.Is(CustomRoles.Jackal) && !Options.SidekickCanKillJackal.GetBool())
+        if (killer.Is(CustomRoles.Recruit) && target.Is(CustomRoles.Jackal) && !Jackal.SidekickCanKillJackal.GetBool())
             return false;
         //禁止内鬼刀叛徒
         if (killer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Madmate) && !Options.ImpCanKillMadmate.GetBool())
@@ -707,16 +707,16 @@ class CheckMurderPatch
         if (killer.Is(CustomRoles.Infected) && target.Is(CustomRoles.Infected) && !Infectious.TargetKnowOtherTarget.GetBool())
             return false;
         //Sidekick can kill Sidekick
-        if (killer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Sidekick) && !Options.SidekickCanKillSidekick.GetBool())
+        if (killer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Sidekick) && !Jackal.SidekickCanKillSidekick.GetBool())
             return false;
         //Recruit can kill Recruit
-        if (killer.Is(CustomRoles.Recruit) && target.Is(CustomRoles.Recruit) && !Options.SidekickCanKillSidekick.GetBool())
+        if (killer.Is(CustomRoles.Recruit) && target.Is(CustomRoles.Recruit) && !Jackal.SidekickCanKillSidekick.GetBool())
             return false;
         //Sidekick can kill Sidekick
-        if (killer.Is(CustomRoles.Recruit) && target.Is(CustomRoles.Sidekick) && !Options.SidekickCanKillSidekick.GetBool())
+        if (killer.Is(CustomRoles.Recruit) && target.Is(CustomRoles.Sidekick) && !Jackal.SidekickCanKillSidekick.GetBool())
             return false;
         //Recruit can kill Recruit
-        if (killer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Recruit) && !Options.SidekickCanKillSidekick.GetBool())
+        if (killer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Recruit) && !Jackal.SidekickCanKillSidekick.GetBool())
             return false;
 
 
@@ -2332,10 +2332,9 @@ class FixedUpdatePatch
                 else if (__instance.Is(CustomRoles.Crewpostor) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Impostor) && Options.CrewpostorKnowsAllies.GetBool()) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Madmate) && PlayerControl.LocalPlayer.Is(CustomRoles.Madmate) && Options.MadmateKnowWhosMadmate.GetBool()) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Rogue) && PlayerControl.LocalPlayer.Is(CustomRoles.Rogue) && Options.RogueKnowEachOther.GetBool() && Options.RogueKnowEachOtherRoles.GetBool()) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoles.Sidekick) && PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick)) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoles.Jackal) && PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick)) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoles.Jackal) && PlayerControl.LocalPlayer.Is(CustomRoles.Recruit)) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoles.Sidekick) && PlayerControl.LocalPlayer.Is(CustomRoles.Jackal)) RoleText.enabled = true;
+                else if (__instance.Is(CustomRoles.Jackal) && (PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick) || PlayerControl.LocalPlayer.Is(CustomRoles.Recruit))) RoleText.enabled = true;
+                else if (__instance.Is(CustomRoles.Sidekick) && (PlayerControl.LocalPlayer.Is(CustomRoles.Jackal) || PlayerControl.LocalPlayer.Is(CustomRoles.Recruit) || PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick))) RoleText.enabled = true;
+                else if (__instance.Is(CustomRoles.Recruit) && (PlayerControl.LocalPlayer.Is(CustomRoles.Jackal) || PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick) || PlayerControl.LocalPlayer.Is(CustomRoles.Recruit))) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Doctor) && !__instance.GetCustomRole().IsEvilAddons() && Options.DoctorVisibleToEveryone.GetBool()) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && __instance.GetPlayerTaskState().IsTaskFinished) RoleText.enabled = true;

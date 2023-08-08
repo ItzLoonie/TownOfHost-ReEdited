@@ -1318,42 +1318,43 @@ public static class Utils
             {
                 if (!player.IsModClient()) return;
                 {
-                if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
-                    name = $"<color={GetString("HostColor")}>{GetString("HostText")}</color><color={GetString("IconColor")}>{GetString("Icon")}</color><color={GetString("NameColor")}>{name}</color>";
+                    if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
+                        name = $"<color={GetString("HostColor")}>{GetString("HostText")}</color><color={GetString("IconColor")}>{GetString("Icon")}</color><color={GetString("NameColor")}>{name}</color>";
 
                     //name = $"<color=#902efd>{GetString("HostText")}</color><color=#4bf4ff>♥</color>" + name;
 
-                if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
-                    name = $"<color=#f55252><size=1.7>{GetString("ModeSoloKombat")}</size></color>\r\n" + name;
+                    if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
+                        name = $"<color=#f55252><size=1.7>{GetString("ModeSoloKombat")}</size></color>\r\n" + name;
                 }
             }
             if (player.FriendCode == "gnuedaphic#7196") // Loonie
             {
-                    if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
+                if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
                     name = $"<color=#f34c50>L</color><color=#ef484c>o</color><color=#e74146>o</color><color=#df3a3e>n</color><color=#d73238>i</color><color=#cf2b30>e</color>";
             
             }
             if (player.FriendCode == "loonietoons") // Loonie
             {
-                    if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
+                if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
                     name = $"<color=#f34c50>L</color><color=#ef484c>o</color><color=#e74146>o</color><color=#df3a3e>n</color><color=#d73238>i</color><color=#cf2b30>e</color>";
             
             }
             if (player.FriendCode == "dovebliss#9271") // Cake
             {
-                    if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
+                if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
                     name = $"<color=#bd7269>C</color><color=#ba7068>a</color><color=#aa5f5e>k</color><color=#a05559>e</color>";
             
             }
             if (player.FriendCode == "croaktense#0572") // Eevee (duh)
             {
-                    if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
+                if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
                     name = $"<color=#AAAAAA>" + "Eevee" + "</color>";
             
             }
             if (!name.Contains('\r') && player.FriendCode.GetDevUser().HasTag())
                 name = player.FriendCode.GetDevUser().GetTag() + name;
-            else
+            else if (player.AmOwner)
+            {
                 name = Options.GetSuffixMode() switch
                 {
                     SuffixModes.TOHE => name += $"\r\n<color={Main.ModColor}>TOHE-R v{Main.PluginDisplayVersion}</color>",
@@ -1366,6 +1367,7 @@ public static class Utils
                     SuffixModes.AutoHost => name += $"\r\n<size=1.7><color={Main.ModColor}>{GetString("SuffixModeText.AutoHost")}</color></size>",
                     _ => name
                 };
+            }
         }
         if (name != player.name && player.CurrentOutfitType == PlayerOutfitType.Default)
             player.RpcSetName(name);
@@ -1763,10 +1765,9 @@ public static class Utils
                         (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Crewpostor) && Options.AlliesKnowCrewpostor.GetBool()) ||
                         (seer.Is(CustomRoles.Madmate) && target.Is(CustomRoles.Madmate) && Options.MadmateKnowWhosMadmate.GetBool()) ||
                         (seer.Is(CustomRoles.Rogue) && target.Is(CustomRoles.Rogue) && Options.RogueKnowEachOther.GetBool() && Options.RogueKnowEachOtherRoles.GetBool()) ||
-                        (seer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Sidekick)) ||
-                        (seer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Sidekick)) ||
-                        (seer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Jackal))||
-                        (seer.Is(CustomRoles.Recruit) && target.Is(CustomRoles.Jackal))||
+                        (seer.Is(CustomRoles.Jackal) && (target.Is(CustomRoles.Sidekick) || target.Is(CustomRoles.Recruit))) ||
+                        (seer.Is(CustomRoles.Sidekick) && (target.Is(CustomRoles.Jackal) || target.Is(CustomRoles.Recruit) || target.Is(CustomRoles.Sidekick))) ||
+                        (seer.Is(CustomRoles.Recruit) && (target.Is(CustomRoles.Jackal) || target.Is(CustomRoles.Sidekick) || target.Is(CustomRoles.Recruit))) ||
                         (target.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) ||
                         (target.Is(CustomRoles.Doctor) && !target.GetCustomRole().IsEvilAddons() && Options.DoctorVisibleToEveryone.GetBool()) ||
                         (target.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && target.GetPlayerTaskState().IsTaskFinished) ||

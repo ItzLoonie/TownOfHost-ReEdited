@@ -1010,7 +1010,6 @@
 "DisableCalibrateDistributor","禁用校准分电器任务","Disable Calibrate Distributor Task","Отключить Задание ''Откалибровать Распределитель''","",""
 "DisableChartCourse","禁用标出航线任务","Disable Chart Course Task","Отключить Задание ''Проложить Маршрут''","",""
 "DisableStabilizeSteering","禁用稳定航向任务","Disable Stabilize Steering Task","Отключить Задание ''Выровнять Курс''","",""
-"DisableCleanO2Filter","禁用清理树叶任务","Disable Clean O2 Filter Task","Отключить Задание ''Очистить Фильтр O2''","",""
 "DisableCleanO2Filter","禁用清理氧气过滤器任务","Disable Clean O2 Filter Task","Отключить Задание ''Очистить Фильтр O2''","",""
 "DisableUnlockManifolds","禁用解锁歧管任务","Disable Unlock Manifolds Task","Отключить Задание ''Открыть Коллекторы''","",""
 "DisablePrimeShields","禁用开启护盾任务","Disable Prime Shields Task","Отключить Задание ''Запустить Щиты''","",""

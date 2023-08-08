@@ -172,11 +172,6 @@ public static class Options
     //public static OptionItem MadmateCanFixSabotage;
     public static OptionItem ImpCanKillMadmate;
     public static OptionItem MadmateCanKillImp;
-    public static OptionItem JackalCanKillSidekick;
-    public static OptionItem SidekickCanKillJackal;
-    public static OptionItem SidekickKnowOtherSidekick;
-    public static OptionItem SidekickKnowOtherSidekickRole;
-    public static OptionItem SidekickCanKillSidekick;
 
     public static OptionItem ShapeMasterShapeshiftDuration;
     public static OptionItem EGCanGuessImp;
@@ -745,9 +740,9 @@ public static class Options
     public static OptionItem AutoKickStopWordsAsBan;
     public static OptionItem AutoKickStopWordsTimes;
     public static OptionItem KickAndroidPlayer;
-    public static OptionItem KickXboxPlayer;
-    public static OptionItem KickPlayStationPlayer;
-    public static OptionItem KickNintendoPlayer;
+    //public static OptionItem KickXboxPlayer;
+    //public static OptionItem KickPlayStationPlayer;
+    //public static OptionItem KickNintendoPlayer;
     public static OptionItem ApplyDenyNameList;
     public static OptionItem KickPlayerFriendCodeNotExist;
     public static OptionItem KickLowLevelPlayer;

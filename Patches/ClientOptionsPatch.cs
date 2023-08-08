@@ -17,7 +17,7 @@ public static class OptionsMenuBehaviourStartPatch
     private static ClientOptionItem ShowTextOverlay;
     private static ClientOptionItem EnableGM;
     private static ClientOptionItem SwitchVanilla;
-    private static ClientOptionItem VersionCheat;
+    //private static ClientOptionItem VersionCheat;
     //private static ClientOptionItem GodMode;
 
     public static void Postfix(OptionsMenuBehaviour __instance)
