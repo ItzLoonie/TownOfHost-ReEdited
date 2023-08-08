@@ -9,7 +9,7 @@ using System;
 namespace TOHE.Roles.Neutral;
 public static class Pirate
 {
-    private static readonly int Id = 333420;
+    private static readonly int Id = 32000;
     private static List<byte> playerIdList = new();
     public static byte PirateTarget;
     private static Dictionary<byte, bool> DuelDone = new();

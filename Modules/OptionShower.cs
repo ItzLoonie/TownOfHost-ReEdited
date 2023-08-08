@@ -24,10 +24,10 @@ public static class OptionShower
         //初期化
         StringBuilder sb = new();
         pages = new()
-        {
-            //1ページに基本ゲーム設定を格納
-            GameOptionsManager.Instance.CurrentGameOptions.ToHudString(GameData.Instance ? GameData.Instance.PlayerCount : 10) + "\n\n"
-        };
+            {
+                //1ページに基本ゲーム設定を格納
+                GameOptionsManager.Instance.CurrentGameOptions.ToHudString(GameData.Instance ? GameData.Instance.PlayerCount : 10) + "\n\n"
+            };
         //ゲームモードの表示
         sb.Append($"{Options.GameMode.GetName()}: {Options.GameMode.GetString()}\n\n");
         if (Options.HideGameSettings.GetBool() && !AmongUsClient.Instance.AmHost)
@@ -40,7 +40,7 @@ public static class OptionShower
             if (Options.CurrentGameMode == CustomGameMode.Standard)
             {
                 //有効な役職一覧
-            //    sb.Append($"<color={Utils.GetRoleColorCode(CustomRoles.GM)}>{Utils.GetRoleName(CustomRoles.GM)}:</color> {Options.EnableGM.GetString()}\n\n");
+                //sb.Append($"<color={Utils.GetRoleColorCode(CustomRoles.GM)}>{Utils.GetRoleName(CustomRoles.GM)}:</color> {Options.EnableGM.GetString()}\n\n");
                 sb.Append(GetString("ActiveRolesList")).Append("\n");
                 foreach (var kvp in Options.CustomRoleSpawnChances)
                     if (kvp.Value.GameMode is CustomGameMode.Standard or CustomGameMode.All && kvp.Value.GetBool()) //スタンダードか全てのゲームモードで表示する役職
@@ -50,7 +50,7 @@ public static class OptionShower
             }
             //有効な役職と詳細設定一覧
             pages.Add("");
-         //   nameAndValue(Options.EnableGM);
+            //nameAndValue(Options.EnableGM);
             foreach (var kvp in Options.CustomRoleSpawnChances)
             {
                 if (!kvp.Key.IsEnable() || kvp.Value.IsHiddenOn(Options.CurrentGameMode)) continue;
@@ -61,7 +61,7 @@ public static class OptionShower
                 string ruleFooter = Utils.ColorString(Palette.ImpostorRed.ShadeColor(-0.5f), "┗ ");
             }
 
-            foreach (var opt in OptionItem.AllOptions.Where(x => x.Id >= 90000 && !x.IsHiddenOn(Options.CurrentGameMode) && x.Parent == null && !x.IsText))
+            foreach (var opt in OptionItem.AllOptions.Where(x => x.Id >= 99999 && !x.IsHiddenOn(Options.CurrentGameMode) && x.Parent == null && !x.IsText))
             {
                 if (opt.IsHeader) sb.Append("\n");
                 sb.Append($"{opt.GetName()}: {opt.GetString()}\n");
