@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using AmongUs.GameOptions;
 using HarmonyLib;
-using System.Collections.Generic;
+using Il2CppInterop.Runtime.InteropTypes.Arrays;
+
 using TOHE.Roles.AddOns.Crewmate;
 
 namespace TOHE;
@@ -88,7 +90,7 @@ class RpcSetTasksPatch
     //バニラのタスク割り当て処理自体には干渉しない
     public static void Prefix(GameData __instance,
     [HarmonyArgument(0)] byte playerId,
-    [HarmonyArgument(1)] ref Il2CppInterop.Runtime.InteropTypes.Arrays.Il2CppStructArray<byte> taskTypeIds)
+    [HarmonyArgument(1)] ref Il2CppStructArray<byte> taskTypeIds)
     {
         //null対策
         if (Main.RealOptionsData == null)
@@ -196,7 +198,7 @@ class RpcSetTasksPatch
         );
 
         //タスクのリストを配列(Il2CppStructArray)に変換する
-        taskTypeIds = new Il2CppInterop.Runtime.InteropTypes.Arrays.Il2CppStructArray<byte>(TasksList.Count);
+        taskTypeIds = new Il2CppStructArray<byte>(TasksList.Count);
         for (int i = 0; i < TasksList.Count; i++)
         {
             taskTypeIds[i] = TasksList[i];

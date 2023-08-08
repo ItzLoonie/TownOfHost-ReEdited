@@ -26,6 +26,7 @@ public static class Doomsayer
     public static OptionItem DoesNotSuicideWhenMisguessing;
     public static OptionItem MisguessRolePrevGuessRoleUntilNextMeeting;
     public static OptionItem DoomsayerTryHideMsg;
+    public static OptionItem ImpostorVision;
 
     public static void SetupCustomOption()
     {
@@ -44,15 +45,17 @@ public static class Doomsayer
 
         AdvancedSettings = BooleanOptionItem.Create(Id + 16, "DoomsayerAdvancedSettings", true, TabGroup.NeutralRoles, true)
             .SetParent(Options.CustomRoleSpawnChances[CustomRoles.Doomsayer]);
-        MaxNumberOfGuessesPerMeeting = IntegerOptionItem.Create(Id + 17, "DoomsayerMaxNumberOfGuessesPerMeeting", new(1, 10, 1), 1, TabGroup.NeutralRoles, false)
+        MaxNumberOfGuessesPerMeeting = IntegerOptionItem.Create(Id + 23, "DoomsayerMaxNumberOfGuessesPerMeeting", new(1, 10, 1), 3, TabGroup.NeutralRoles, false)
             .SetParent(AdvancedSettings);
         KillCorrectlyGuessedPlayers = BooleanOptionItem.Create(Id + 18, "DoomsayerKillCorrectlyGuessedPlayers", true, TabGroup.NeutralRoles, true)
             .SetParent(AdvancedSettings);
-        DoesNotSuicideWhenMisguessing = BooleanOptionItem.Create(Id + 19, "DoomsayerDoesNotSuicideWhenMisguessing", false, TabGroup.NeutralRoles, false)
+        DoesNotSuicideWhenMisguessing = BooleanOptionItem.Create(Id + 24, "DoomsayerDoesNotSuicideWhenMisguessing", true, TabGroup.NeutralRoles, false)
             .SetParent(AdvancedSettings);
         MisguessRolePrevGuessRoleUntilNextMeeting = BooleanOptionItem.Create(Id + 20, "DoomsayerMisguessRolePrevGuessRoleUntilNextMeeting", true, TabGroup.NeutralRoles, true)
             .SetParent(DoesNotSuicideWhenMisguessing);
 
+        ImpostorVision = BooleanOptionItem.Create(Id + 25, "ImpostorVision", true, TabGroup.NeutralRoles, false)
+            .SetParent(Options.CustomRoleSpawnChances[CustomRoles.Doomsayer]);
         DoomsayerTryHideMsg = BooleanOptionItem.Create(Id + 21, "DoomsayerTryHideMsg", true, TabGroup.NeutralRoles, true)
             .SetColor(Color.green)
             .SetParent(Options.CustomRoleSpawnChances[CustomRoles.Doomsayer]);

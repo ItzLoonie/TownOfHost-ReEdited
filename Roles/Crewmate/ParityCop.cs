@@ -237,9 +237,17 @@ public static class ParityCop
         Logger.Msg(msg, "ParityCop");
 
         string[] nums = msg.Split(" ");
-        if (nums.Length != 2 || !int.TryParse(nums[0], out int num1) || !int.TryParse(nums[1], out int num2))
+                if (nums.Length != 2)
         {
-            Logger.Msg($"nums.Length {nums.Length}, nums0 {nums[0]}, nums1 {nums[1]}", "ParityCop");
+            Logger.Msg($"nums length is {nums.Length}", "ParityCop");
+            id1 = byte.MaxValue;
+            id2 = byte.MaxValue;
+            error = GetString("ParityCheckHelp");
+            return false;
+        }
+        else if(!int.TryParse(nums[0], out int num1) || !int.TryParse(nums[1], out int num2))
+        {
+            Logger.Msg($"{nums.Length}, nums0 {nums[0]}, nums1 {nums[1]}", "ParityCop");
             id1 = byte.MaxValue;
             id2 = byte.MaxValue;
             error = GetString("ParityCheckHelp");

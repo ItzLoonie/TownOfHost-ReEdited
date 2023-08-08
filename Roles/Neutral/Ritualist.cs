@@ -16,7 +16,7 @@ namespace TOHE.Roles.Neutral
         private static OptionItem KillCooldown;
         private static OptionItem RitualMaxCount;
         public static OptionItem CanVent;
-        public static OptionItem HasImpostorVision;
+    //    public static OptionItem HasImpostorVision;
 
         public static Dictionary<byte, int> RitualCount = new();
         public static Dictionary<byte, List<byte>> RitualTarget = new();
@@ -24,13 +24,13 @@ namespace TOHE.Roles.Neutral
 
         public static void SetupCustomOption()
         {
-            SetupRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.Ritualist);
+        SetupSingleRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.Ritualist, 1, zeroOne: false);
             KillCooldown = FloatOptionItem.Create(Id + 10, "KillCooldown", new(0f, 180f, 2.5f), 30f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Ritualist])
                 .SetValueFormat(OptionFormat.Seconds);
             RitualMaxCount = IntegerOptionItem.Create(Id + 11, "RitualMaxCount", new(1, 15, 1), 5, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Ritualist])
                 .SetValueFormat(OptionFormat.Times);
         CanVent = BooleanOptionItem.Create(Id + 12, "CanVent", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Ritualist]);
-        HasImpostorVision = BooleanOptionItem.Create(Id + 13, "ImpostorVision", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Ritualist]);
+    //    HasImpostorVision = BooleanOptionItem.Create(Id + 13, "ImpostorVision", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Ritualist]);
         }
         public static void Init()
         {
@@ -74,14 +74,16 @@ namespace TOHE.Roles.Neutral
                     RitualTarget.Add(playerId, new());
             }
         }
-        public static bool IsEnable => playerIdList.Count > 0;
 
+        public static bool IsEnable => playerIdList.Count > 0;
         public static void SetKillCooldown(byte id)
         {
             Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
         }
         public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
         {
+        if (target.Is(CustomRoles.Ritualist)) return true;
+
             if (RitualCount[killer.PlayerId] > 0)
             {
                 return killer.CheckDoubleTrigger(target, () => { SetRitual(killer, target); });
@@ -122,7 +124,7 @@ namespace TOHE.Roles.Neutral
             });
             return IsWatch;
         }
-        public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(HasImpostorVision.GetBool());
+        public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(true);
         public static void CanUseVent(PlayerControl player)
         {
             bool canUse = CanVent.GetBool();

@@ -280,6 +280,10 @@ public class PlayerState
         Infected,
         Jinx,
         Hack,
+        Pirate,
+        Shrouded,
+        Mauled,
+        Drained,
 
         etc = -1,
     }
@@ -459,8 +463,16 @@ public class TaskState
                         pc.SetRealKiller(player);
                     }
                 }
-                CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Workaholic); //爆破で勝利した人も勝利させる
-                CustomWinnerHolder.WinnerIds.Add(player.PlayerId);
+                if (!player.Is(CustomRoles.Admired))
+                {
+                    CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Workaholic); //Workaholic
+                    CustomWinnerHolder.WinnerIds.Add(player.PlayerId);
+                }
+                if (player.Is(CustomRoles.Admired))
+                {
+                    CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Crewmate); //Admired Workaholic
+                    CustomWinnerHolder.WinnerIds.Add(player.PlayerId);
+                }
             }
 
             Merchant.OnTaskFinished(player);

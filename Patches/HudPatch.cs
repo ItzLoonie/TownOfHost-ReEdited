@@ -91,8 +91,20 @@ class HudManagerPatch
                     case CustomRoles.Pestilence:
                         __instance.KillButton.OverrideText(GetString("KillButtonText"));
                         break;
+                    case CustomRoles.Reverie:
+                        __instance.KillButton.OverrideText(GetString("KillButtonText"));
+                        break;
+                    case CustomRoles.CopyCat:
+                        __instance.KillButton.OverrideText(GetString("CopyButtonText"));
+                        break;
+                    case CustomRoles.Shaman:
+                        __instance.KillButton.OverrideText(GetString("ShamanButtonText"));
+                        break;
                     case CustomRoles.PlagueBearer:
                         __instance.KillButton.OverrideText(GetString("InfectiousKillButtonText"));
+                        break;
+                    case CustomRoles.Pirate:
+                        __instance.KillButton.OverrideText(GetString("PirateDuelButtonText"));
                         break;
                     case CustomRoles.Witch:
                         Witch.GetAbilityButtonText(__instance);
@@ -120,9 +132,15 @@ class HudManagerPatch
                     case CustomRoles.Puppeteer:
                         __instance.KillButton.OverrideText(GetString("PuppeteerOperateButtonText"));
                         break;
+                    case CustomRoles.CovenLeader:
+                        __instance.KillButton.OverrideText(GetString("WitchControlButtonText"));
+                        break;
                     case CustomRoles.NWitch:
                         __instance.KillButton.OverrideText($"{GetString("WitchControlButtonText")}");
                         break;
+                    case CustomRoles.Shroud:
+                        __instance.KillButton.OverrideText($"{GetString("ShroudButtonText")}");
+                       break;
                     case CustomRoles.BountyHunter:
                         BountyHunter.SetAbilityButtonText(__instance);
                         break;
@@ -152,15 +170,21 @@ class HudManagerPatch
                     case CustomRoles.Jackal:
                     case CustomRoles.Virus:
                     case CustomRoles.BloodKnight:
+                    case CustomRoles.Banshee:
                     case CustomRoles.SwordsMan:
                     case CustomRoles.Parasite:
                     case CustomRoles.Refugee:
                     case CustomRoles.Traitor:
                     case CustomRoles.Ritualist:
                     case CustomRoles.Spiritcaller:
+                    case CustomRoles.Conjuror:
+                    case CustomRoles.Necromancer:
                     case CustomRoles.DarkHide:
                     case CustomRoles.Maverick:
                         __instance.KillButton.OverrideText(GetString("KillButtonText"));
+                        break;
+                    case CustomRoles.Werewolf:
+                        __instance.KillButton.OverrideText(GetString("MaulKillButtonText"));
                         break;
                     case CustomRoles.Glitch:
                         __instance.SabotageButton.OverrideText(GetString("HackButtonText"));
@@ -231,7 +255,7 @@ class HudManagerPatch
                         __instance.AbilityButton.OverrideText(GetString(Chameleon.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "ChameleonRevertDisguise" : "ChameleonDisguise"));
                         break;
                     case CustomRoles.Mario:
-                        __instance.AbilityButton.buttonLabelText.text = GetString("MarioVentButtonText");
+                        __instance.AbilityButton.buttonLabelText.text = GetString("VectorVentButtonText");
                         __instance.AbilityButton.SetUsesRemaining(Options.MarioVentNumWin.GetInt() - (Main.MarioVentCount.TryGetValue(PlayerControl.LocalPlayer.PlayerId, out var mx) ? mx : 0));
                         break;
                     case CustomRoles.Veteran:
@@ -351,6 +375,10 @@ class HudManagerPatch
                 else if (player.Is(CustomRoles.BloodKnight))
                 {
                     LowerInfoText.text = BloodKnight.GetHudText(player);
+                }
+                else if (player.Is(CustomRoles.Banshee))
+                {
+                    LowerInfoText.text = Banshee.GetHudText(player);
                 }
                 else if (player.Is(CustomRoles.Wildling))
                 {
@@ -480,6 +508,9 @@ class SetHudActivePatch
             case CustomRoles.Monarch:
             case CustomRoles.Arsonist:
             case CustomRoles.NWitch:
+            case CustomRoles.CovenLeader:
+            case CustomRoles.Conjuror:
+            case CustomRoles.Shroud:
             case CustomRoles.Innocent:
             case CustomRoles.Reverie:
             case CustomRoles.Pelican:
@@ -536,6 +567,7 @@ class SetHudActivePatch
         }
         __instance.KillButton.ToggleVisible(player.CanUseKillButton());
         __instance.ImpostorVentButton.ToggleVisible(player.CanUseImpostorVentButton());
+        __instance.SabotageButton.ToggleVisible(player.CanUseSabotage());
     }
 }
 [HarmonyPatch(typeof(VentButton), nameof(VentButton.DoClick))]
@@ -561,7 +593,7 @@ class MapBehaviourShowPatch
         if (opts.Mode is MapOptions.Modes.Normal or MapOptions.Modes.Sabotage)
         {
             var player = PlayerControl.LocalPlayer;
-            if (player.Is(CustomRoleTypes.Impostor) || (player.Is(CustomRoles.Parasite)) || (player.Is(CustomRoles.Glitch)) || (player.Is(CustomRoles.Refugee)) || (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) || (player.Is(CustomRoles.Traitor) && Traitor.CanUseSabotage.GetBool()))
+            if (player.Is(CustomRoleTypes.Impostor) || (player.Is(CustomRoles.Parasite)) || (player.Is(CustomRoles.Glitch)) || (player.Is(CustomRoles.Werewolf)) || (player.Is(CustomRoles.Refugee)) || (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) || (player.Is(CustomRoles.Traitor) && Traitor.CanUseSabotage.GetBool()))
                 opts.Mode = MapOptions.Modes.Sabotage;
             else
                 opts.Mode = MapOptions.Modes.Normal;

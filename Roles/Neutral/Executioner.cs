@@ -72,10 +72,10 @@ public static class Executioner
             {
                 if (playerId == target.PlayerId) continue;
                 else if (!CanTargetImpostor.GetBool() && target.Is(CustomRoleTypes.Impostor)) continue;
-                else if (!CanTargetNeutralKiller.GetBool() && target.IsNeutralKiller()) continue;
-                else if (!CanTargetNeutralBenign.GetBool() && target.IsNeutralBenign()) continue;
-                else if (!CanTargetNeutralEvil.GetBool() && target.IsNeutralEvil()) continue;
-                else if (!CanTargetNeutralChaos.GetBool() && target.IsNeutralChaos()) continue;
+                else if (!CanTargetNeutralKiller.GetBool() && target.GetCustomRole().IsNK()) continue;
+                else if (!CanTargetNeutralBenign.GetBool() && target.GetCustomRole().IsNB()) continue;
+                else if (!CanTargetNeutralEvil.GetBool() && target.GetCustomRole().IsNE()) continue;
+                else if (!CanTargetNeutralChaos.GetBool() && target.GetCustomRole().IsNC()) continue;
                 if (target.GetCustomRole() is CustomRoles.GM or CustomRoles.SuperStar) continue;
                 if (Utils.GetPlayerById(playerId).Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers)) continue;
 
@@ -153,7 +153,7 @@ public static class Executioner
 
     public static string TargetMark(PlayerControl seer, PlayerControl target)
     {
-        if (!seer.Is(CustomRoles.Executioner)) return ""; //エクスキューショナー以外処理しない
+        if (!seer.Is(CustomRoles.Executioner) || seer.Data.IsDead) return ""; //エクスキューショナー以外処理しない
 
         var GetValue = Target.TryGetValue(seer.PlayerId, out var targetId);
         return GetValue && targetId == target.PlayerId ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.Executioner), "♦") : "";

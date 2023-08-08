@@ -143,7 +143,7 @@ public static class Councillor
 
                     Utils.NotifyRoles(isForMeeting: false, NoCache: true);
 
-                    new LateTask(() => { Utils.SendMessage(string.Format(GetString("MurderKill"), Name), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.NiceGuesser), GetString("MurderKillTitle"))); }, 0.6f, "Guess Msg");
+                    new LateTask(() => { Utils.SendMessage(string.Format(GetString("MurderKill"), Name), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Judge), GetString("MurderKillTitle"))); }, 0.6f, "Guess Msg");
 
                 }, 0.2f, "Murder Kill");
             }

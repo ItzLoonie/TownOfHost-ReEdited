@@ -130,7 +130,28 @@ class ExileControllerWrapUpPatch
                 CustomRoles.Nuker or
                 CustomRoles.Bomber
                 ) pc.RpcResetAbilityCooldown();
+            if (pc.Is(CustomRoles.Infected) && pc.IsAlive() && !CustomRoles.Infectious.RoleExist())
+            {
+                pc.RpcMurderPlayerV3(pc);
+                Main.PlayerStates[pc.PlayerId].deathReason = PlayerState.DeathReason.Suicide;
+            }
+            if (Main.ShroudList.ContainsKey(pc.PlayerId) && CustomRoles.Shroud.RoleExist())
+            {
+                pc.RpcMurderPlayerV3(pc);
+                Main.PlayerStates[pc.PlayerId].deathReason = PlayerState.DeathReason.Suicide;
+                Main.ShroudList.Clear();
+
+            }
+            if (pc.Is(CustomRoles.Werewolf) && pc.IsAlive())
+            {
+                Main.AllPlayerKillCooldown[pc.PlayerId] = Werewolf.KillCooldown.GetFloat();
+            pc.RpcGuardAndKill(pc);
+            pc.SetKillCooldownV3();
+            } 
         }
+
+        Main.ShroudList.Clear();
+
         if (Options.RandomSpawn.GetBool() || Options.CurrentGameMode == CustomGameMode.SoloKombat)
         {
             RandomSpawn.SpawnMap map;

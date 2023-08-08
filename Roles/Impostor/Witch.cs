@@ -158,6 +158,7 @@ public static class Witch
     }
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
     {
+        if (target.Is(CustomRoles.Pestilence)) return true;
         if (Medic.ProtectList.Contains(target.PlayerId)) return false;
 
         if (NowSwitchTrigger == SwitchTrigger.DoubleTrigger)

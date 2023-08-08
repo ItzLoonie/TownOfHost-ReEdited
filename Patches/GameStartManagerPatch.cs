@@ -112,7 +112,7 @@ public class GameStartManagerPatch
                     if (((GameData.Instance.PlayerCount >= minPlayer && timer <= minWait) || timer <= maxWait) && !GameStates.IsCountDown)
                     {
                         GameStartManager.Instance.startState = GameStartManager.StartingStates.Countdown;
-                        GameStartManager.Instance.countDownTimer = 10;
+                        GameStartManager.Instance.countDownTimer = Options.AutoStartTimer.GetInt();
                     }
                 }
             }

@@ -80,6 +80,7 @@ public static class Divinator
                 CustomRoles.Eraser or
                 CustomRoles.Refugee or
                 CustomRoles.AntiAdminer or
+                CustomRoles.Monitor or
                 CustomRoles.Dazzler or
                 CustomRoles.Grenadier
                 => "Result1",
@@ -103,6 +104,7 @@ public static class Divinator
                 CustomRoles.PlagueBearer or
                 CustomRoles.Observer or
                 CustomRoles.BloodKnight or
+                CustomRoles.Banshee or
                 CustomRoles.Guardian or
                 CustomRoles.Wildling
                 => "Result4",
@@ -168,6 +170,7 @@ public static class Divinator
 
                 CustomRoles.God or
                 CustomRoles.Oracle or
+                CustomRoles.Pirate or
                 CustomRoles.Visionary or
                 CustomRoles.ParityCop
                 => "Result13",
@@ -202,7 +205,9 @@ public static class Divinator
 
                 CustomRoles.Mafia or
                 CustomRoles.Retributionist or
+                CustomRoles.Necromancer or
                 CustomRoles.Gangster or
+                CustomRoles.Godfather or
                 CustomRoles.Glitch or
                 CustomRoles.Luckey or
                 CustomRoles.Underdog
@@ -211,7 +216,7 @@ public static class Divinator
                 CustomRoles.EvilGuesser or
                 CustomRoles.NiceGuesser or
                 CustomRoles.DarkHide or
-         //       CustomRoles.Mare or
+                CustomRoles.Conjuror or
                 CustomRoles.Camouflager or
                 CustomRoles.Chameleon
                 => "Result19",
@@ -228,6 +233,7 @@ public static class Divinator
                 CustomRoles.Vampire or
                 CustomRoles.DovesOfNeace or
                 CustomRoles.ImperiusCurse or
+                CustomRoles.CovenLeader or
                 CustomRoles.Traitor
                 => "Result21",
 
@@ -250,12 +256,14 @@ public static class Divinator
                 CustomRoles.Totocalcio or
                 CustomRoles.Pelican or
                 CustomRoles.Scavenger or
+                CustomRoles.Ludopath or
                 CustomRoles.Vulture
                 => "Result24",
 
                 CustomRoles.Jinx or
                 CustomRoles.SwordsMan or
                 CustomRoles.Veteran or
+                CustomRoles.Shroud or
                 CustomRoles.Hangman or
                 CustomRoles.Pitfall
                 => "Result25",
@@ -272,6 +280,7 @@ public static class Divinator
                 CustomRoles.TimeMaster or
                 CustomRoles.TimeThief or
                 CustomRoles.ShapeMaster or
+                CustomRoles.Werewolf or
                 CustomRoles.Sniper
                 => "Result27",
 

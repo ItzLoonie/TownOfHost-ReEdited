@@ -111,7 +111,7 @@ public static class Wraith
                 }
                 else if (remainTime <= 10)
                 {
-                    if (!pc.IsModClient()) pc.Notify(string.Format(GetString("WraithInvisStateCountdown"), remainTime));
+                    if (!pc.IsModClient()) pc.Notify(string.Format(GetString("WraithInvisStateCountdown"), remainTime + 1));
                 }
                 newList.Add(it.Key, it.Value);
             }
@@ -164,12 +164,12 @@ public static class Wraith
         if (IsInvis(pc.PlayerId))
         {
             var remainTime = InvisTime[pc.PlayerId] + (long)WraithDuration.GetFloat() - Utils.GetTimeStamp();
-            str.Append(string.Format(GetString("WraithInvisStateCountdown"), remainTime));
+            str.Append(string.Format(GetString("WraithInvisStateCountdown"), remainTime + 1));
         }
         else if (lastTime.TryGetValue(pc.PlayerId, out var time))
         {
             var cooldown = time + (long)WraithCooldown.GetFloat() - Utils.GetTimeStamp();
-            str.Append(string.Format(GetString("WraithInvisCooldownRemain"), cooldown));
+            str.Append(string.Format(GetString("WraithInvisCooldownRemain"), cooldown + 1));
         }
         else
         {
@@ -182,6 +182,9 @@ public static class Wraith
     {
         if (Medic.ProtectList.Contains(target.PlayerId)) return true;
         if (target.Is(CustomRoles.Bait)) return true;
+        if (target.Is(CustomRoles.Pestilence)) return true;
+        if (target.Is(CustomRoles.Veteran) && Main.VeteranInProtect.ContainsKey(target.PlayerId)) return true;
+
         if (!IsInvis(killer.PlayerId)) return true;
         killer.SetKillCooldown();
         target.RpcCheckAndMurder(target);

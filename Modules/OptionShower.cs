@@ -40,7 +40,7 @@ public static class OptionShower
             if (Options.CurrentGameMode == CustomGameMode.Standard)
             {
                 //有効な役職一覧
-                sb.Append($"<color={Utils.GetRoleColorCode(CustomRoles.GM)}>{Utils.GetRoleName(CustomRoles.GM)}:</color> {Options.EnableGM.GetString()}\n\n");
+            //    sb.Append($"<color={Utils.GetRoleColorCode(CustomRoles.GM)}>{Utils.GetRoleName(CustomRoles.GM)}:</color> {Options.EnableGM.GetString()}\n\n");
                 sb.Append(GetString("ActiveRolesList")).Append("\n");
                 foreach (var kvp in Options.CustomRoleSpawnChances)
                     if (kvp.Value.GameMode is CustomGameMode.Standard or CustomGameMode.All && kvp.Value.GetBool()) //スタンダードか全てのゲームモードで表示する役職
@@ -50,7 +50,7 @@ public static class OptionShower
             }
             //有効な役職と詳細設定一覧
             pages.Add("");
-            nameAndValue(Options.EnableGM);
+         //   nameAndValue(Options.EnableGM);
             foreach (var kvp in Options.CustomRoleSpawnChances)
             {
                 if (!kvp.Key.IsEnable() || kvp.Value.IsHiddenOn(Options.CurrentGameMode)) continue;
@@ -69,7 +69,7 @@ public static class OptionShower
                     ShowChildren(opt, ref sb, Color.white, 1);
             }
             //Onの時に子要素まで表示するメソッド
-            void nameAndValue(OptionItem o) => sb.Append($"{o.GetName()}: {o.GetString()}\n");
+            //void nameAndValue(OptionItem o) => sb.Append($"{o.GetName()}: {o.GetString()}\n");
         }
         //1ページにつき35行までにする処理
         List<string> tmp = new(sb.ToString().Split("\n\n"));

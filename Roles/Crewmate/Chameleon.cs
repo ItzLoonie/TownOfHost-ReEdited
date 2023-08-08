@@ -105,7 +105,7 @@ public static class Chameleon
                 }
                 else if (remainTime <= 10)
                 {
-                    if (!pc.IsModClient()) pc.Notify(string.Format(GetString("ChameleonInvisStateCountdown"), remainTime));
+                    if (!pc.IsModClient()) pc.Notify(string.Format(GetString("ChameleonInvisStateCountdown"), remainTime + 1));
                 }
                 newList.Add(it.Key, it.Value);
             }
@@ -158,7 +158,7 @@ public static class Chameleon
         if (IsInvis(pc.PlayerId))
         {
             var remainTime = InvisTime[pc.PlayerId] + (long)ChameleonDuration.GetFloat() - Utils.GetTimeStamp();
-            str.Append(string.Format(GetString("ChameleonInvisStateCountdown"), remainTime));
+            str.Append(string.Format(GetString("ChameleonInvisStateCountdown"), remainTime + 1));
         }
         else if (lastTime.TryGetValue(pc.PlayerId, out var time))
         {
