@@ -172,11 +172,6 @@ public static class Options
     //public static OptionItem MadmateCanFixSabotage;
     public static OptionItem ImpCanKillMadmate;
     public static OptionItem MadmateCanKillImp;
-    public static OptionItem JackalCanKillSidekick;
-    public static OptionItem SidekickCanKillJackal;
-    public static OptionItem SidekickKnowOtherSidekick;
-    public static OptionItem SidekickKnowOtherSidekickRole;
-    public static OptionItem SidekickCanKillSidekick;
 
     public static OptionItem ShapeMasterShapeshiftDuration;
     public static OptionItem EGCanGuessImp;

@@ -69,7 +69,7 @@ public static class OptionShower
                     ShowChildren(opt, ref sb, Color.white, 1);
             }
             //Onの時に子要素まで表示するメソッド
-            void nameAndValue(OptionItem o) => sb.Append($"{o.GetName()}: {o.GetString()}\n");
+            //void nameAndValue(OptionItem o) => sb.Append($"{o.GetName()}: {o.GetString()}\n");
         }
         //1ページにつき35行までにする処理
         List<string> tmp = new(sb.ToString().Split("\n\n"));
