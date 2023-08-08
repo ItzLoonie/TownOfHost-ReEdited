@@ -130,7 +130,7 @@ public static class Snitch
     /// <param name="target">スニッチの場合有効</param>
     /// <returns></returns>
     public static string GetWarningMark(PlayerControl seer, PlayerControl target)
-        => IsSnitchTarget(seer) && GetExpose(target) ? Utils.ColorString(RoleColor, "★") : "";
+        => IsSnitchTarget(seer) && GetExpose(target) ? Utils.ColorString(RoleColor, "⚠") : "";
 
     /// <summary>
     /// キラーからスニッチに対する矢印
@@ -146,7 +146,7 @@ public static class Snitch
         var exposedSnitch = playerIdList.Where(s => !Main.PlayerStates[s].IsDead && IsExposed[s]);
         if (exposedSnitch.Count() == 0) return "";
 
-        var warning = "★";
+        var warning = "⚠";
         if (EnableTargetArrow)
             warning += TargetArrow.GetArrows(seer, exposedSnitch.ToArray());
 

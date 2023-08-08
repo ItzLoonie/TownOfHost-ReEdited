@@ -95,6 +95,8 @@ public static class Oracle
             CustomRoles.EvilTracker or
             CustomRoles.EvilGuesser or
             CustomRoles.AntiAdminer or
+            CustomRoles.Ludopath or
+            CustomRoles.Godfather or
             CustomRoles.Sans or
             CustomRoles.Bomber or
             CustomRoles.Nuker or
@@ -119,26 +121,24 @@ public static class Oracle
             CustomRoles.Devourer or
             CustomRoles.Camouflager or
             CustomRoles.Twister or
+            CustomRoles.Visionary or
             CustomRoles.Lurker
                 => "Imp",
             
             CustomRoles.Jester or
             CustomRoles.Opportunist or
+            CustomRoles.Shroud or
             CustomRoles.Mario or
-            CustomRoles.HexMaster or
             CustomRoles.Crewpostor or
             CustomRoles.NWitch or
-            CustomRoles.Wraith or
             CustomRoles.Parasite or
             CustomRoles.Refugee or
             CustomRoles.Terrorist or
             CustomRoles.Executioner or
             CustomRoles.Juggernaut or
-            CustomRoles.Jinx or
             CustomRoles.Lawyer or
             CustomRoles.Arsonist or
             CustomRoles.Jackal or
-            CustomRoles.Medusa or
             CustomRoles.Maverick or
             CustomRoles.Sidekick or
             CustomRoles.God or
@@ -147,9 +147,7 @@ public static class Oracle
             CustomRoles.Masochist or
             CustomRoles.Innocent or
             CustomRoles.Pursuer or
-            CustomRoles.Poisoner or
             CustomRoles.NSerialKiller or
-            CustomRoles.Ritualist or
             CustomRoles.Pelican or
             CustomRoles.Revolutionist or
             CustomRoles.FFF or
@@ -165,10 +163,22 @@ public static class Oracle
             CustomRoles.BloodKnight or
             CustomRoles.Totocalcio or
             CustomRoles.Virus or
-            CustomRoles.Medusa or
             CustomRoles.Succubus or
+            CustomRoles.Doomsayer or
             CustomRoles.Pirate
                 => "Neut",
+
+            CustomRoles.Poisoner or
+            CustomRoles.Wraith or
+            CustomRoles.Jinx or
+            CustomRoles.Ritualist or
+            CustomRoles.Banshee or
+            CustomRoles.Medusa or
+            CustomRoles.Conjuror or
+            CustomRoles.Necromancer or
+            CustomRoles.HexMaster or
+            CustomRoles.CovenLeader
+                => "Coven",
 
                 _ => "Crew",
             };

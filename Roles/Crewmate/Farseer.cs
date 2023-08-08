@@ -44,6 +44,8 @@ namespace TOHE.Roles.Crewmate
             CustomRoles.Dictator,
             CustomRoles.Doctor,
             CustomRoles.Detective,
+            CustomRoles.Lookout,
+            CustomRoles.Monitor,
             CustomRoles.NiceGuesser,
             CustomRoles.Transporter,
             CustomRoles.TimeManager,

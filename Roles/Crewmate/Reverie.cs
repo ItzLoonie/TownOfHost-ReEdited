@@ -13,11 +13,11 @@ public static class Reverie
     private static readonly int Id = 1153;
     public static List<byte> playerIdList = new();
 
-    private static OptionItem DefaultKillCooldown;
-    private static OptionItem ReduceKillCooldown;
-    private static OptionItem MinKillCooldown;
+    public static OptionItem DefaultKillCooldown;
+    public static OptionItem ReduceKillCooldown;
+    public static OptionItem MinKillCooldown;
 
-    private static Dictionary<byte, float> NowCooldown;
+    public static Dictionary<byte, float> NowCooldown;
 
     public static void SetupCustomOption()
     {

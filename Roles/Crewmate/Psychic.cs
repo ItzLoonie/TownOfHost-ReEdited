@@ -17,6 +17,7 @@ public static class Psychic
     private static OptionItem CkshowEvil;
     private static OptionItem NBshowEvil;
     private static OptionItem NEshowEvil;
+    private static OptionItem NCshowEvil;
 
     private static List<byte> RedPlayer;
 
@@ -29,6 +30,7 @@ public static class Psychic
         CkshowEvil = BooleanOptionItem.Create(Id + 3, "CrewKillingRed", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Psychic]);
         NBshowEvil = BooleanOptionItem.Create(Id + 4, "NBareRed", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Psychic]);
         NEshowEvil = BooleanOptionItem.Create(Id + 5, "NEareRed", true, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Psychic]);
+        NCshowEvil = BooleanOptionItem.Create(Id + 7, "NCareRed", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Psychic]);
     }
     public static void Init()
     {
@@ -71,9 +73,10 @@ public static class Psychic
         if (!IsEnable || !AmongUsClient.Instance.AmHost) return;
 
         List<PlayerControl> BadListPc = Main.AllAlivePlayerControls.Where(x =>
-        x.Is(CustomRoleTypes.Impostor)  && !x.Is(CustomRoles.Trickster) || x.Is(CustomRoles.Madmate) || x.Is(CustomRoles.Rascal) || x.Is(CustomRoles.Recruit) || x.Is(CustomRoles.Charmed) || x.Is(CustomRoles.Infected) || x.Is(CustomRoles.Contagious) ||
+        x.Is(CustomRoleTypes.Impostor)  && !x.Is(CustomRoles.Trickster) || x.Is(CustomRoles.Madmate) || x.Is(CustomRoles.Rascal) || x.Is(CustomRoles.Recruit) || x.Is(CustomRoles.Charmed) || x.Is(CustomRoles.Infected) || !x.Is(CustomRoles.Admired) || x.Is(CustomRoles.Contagious) ||
         (x.GetCustomRole().IsCK() && CkshowEvil.GetBool()) ||
         (x.GetCustomRole().IsNE() && NEshowEvil.GetBool()) ||
+        (x.GetCustomRole().IsNC() && NCshowEvil.GetBool()) ||
         (x.GetCustomRole().IsNB() && NBshowEvil.GetBool())
         ).ToList();
 
