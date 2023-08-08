@@ -740,9 +740,9 @@ public static class Options
     public static OptionItem AutoKickStopWordsAsBan;
     public static OptionItem AutoKickStopWordsTimes;
     public static OptionItem KickAndroidPlayer;
-    public static OptionItem KickXboxPlayer;
-    public static OptionItem KickPlayStationPlayer;
-    public static OptionItem KickNintendoPlayer;
+    //public static OptionItem KickXboxPlayer;
+    //public static OptionItem KickPlayStationPlayer;
+    //public static OptionItem KickNintendoPlayer;
     public static OptionItem ApplyDenyNameList;
     public static OptionItem KickPlayerFriendCodeNotExist;
     public static OptionItem KickLowLevelPlayer;
