@@ -1318,36 +1318,36 @@ public static class Utils
             {
                 if (!player.IsModClient()) return;
                 {
-                if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
-                    name = $"<color={GetString("HostColor")}>{GetString("HostText")}</color><color={GetString("IconColor")}>{GetString("Icon")}</color><color={GetString("NameColor")}>{name}</color>";
+                    if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
+                        name = $"<color={GetString("HostColor")}>{GetString("HostText")}</color><color={GetString("IconColor")}>{GetString("Icon")}</color><color={GetString("NameColor")}>{name}</color>";
 
                     //name = $"<color=#902efd>{GetString("HostText")}</color><color=#4bf4ff>♥</color>" + name;
 
-                if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
-                    name = $"<color=#f55252><size=1.7>{GetString("ModeSoloKombat")}</size></color>\r\n" + name;
+                    if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
+                        name = $"<color=#f55252><size=1.7>{GetString("ModeSoloKombat")}</size></color>\r\n" + name;
                 }
             }
             if (player.FriendCode == "gnuedaphic#7196") // Loonie
             {
-                    if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
+                if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
                     name = $"<color=#f34c50>L</color><color=#ef484c>o</color><color=#e74146>o</color><color=#df3a3e>n</color><color=#d73238>i</color><color=#cf2b30>e</color>";
             
             }
             if (player.FriendCode == "loonietoons") // Loonie
             {
-                    if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
+                if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
                     name = $"<color=#f34c50>L</color><color=#ef484c>o</color><color=#e74146>o</color><color=#df3a3e>n</color><color=#d73238>i</color><color=#cf2b30>e</color>";
             
             }
             if (player.FriendCode == "dovebliss#9271") // Cake
             {
-                    if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
+                if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
                     name = $"<color=#bd7269>C</color><color=#ba7068>a</color><color=#aa5f5e>k</color><color=#a05559>e</color>";
             
             }
             if (player.FriendCode == "croaktense#0572") // Eevee (duh)
             {
-                    if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
+                if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
                     name = $"<color=#AAAAAA>" + "Eevee" + "</color>";
             
             }
