@@ -119,7 +119,8 @@ public static class Oracle
             CustomRoles.Devourer or
             CustomRoles.Camouflager or
             CustomRoles.Twister or
-            CustomRoles.Lurker
+            CustomRoles.Lurker or
+            CustomRoles.Pitfall
                 => "Imp",
             
             CustomRoles.Jester or

@@ -265,7 +265,7 @@ internal class ChangeRoleSettings
             Reverie.Init();
             Doomsayer.Init();
             Pirate.Init();
-
+            Pitfall.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
@@ -746,6 +746,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Pirate:
                         Pirate.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Pitfall:
+                        Pitfall.Add(pc.PlayerId);
                         break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())

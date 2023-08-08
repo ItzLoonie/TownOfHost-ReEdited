@@ -372,6 +372,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Spiritcaller:
                 opt.SetVision(Spiritcaller.ImpostorVision.GetBool());
                 break;
+            case CustomRoles.Pitfall:
+                Pitfall.ApplyGameOptions();
+                break;
         }
 
         // Ϊ�Ի��ߵ�����
@@ -419,6 +422,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
         Deathpact.SetDeathpactVision(player, opt);
 
         Spiritcaller.ReduceVision(opt, player);
+        Pitfall.ReduceVision(opt, player);
 
         foreach (var subRole in Main.PlayerStates[player.PlayerId].SubRoles)
         {

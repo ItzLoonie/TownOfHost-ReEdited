@@ -582,6 +582,7 @@ public enum CustomRoles
     Visionary,
     Refugee,
     Underdog,   
+    Pitfall,
    // Flashbang,
     //Crewmate(Vanilla)
     Engineer,
