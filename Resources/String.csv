@@ -1216,7 +1216,7 @@
 "LegacyMafia","使用旧版本","Use Legacy Version","Использовать Мафию как в TOH","",""
 "ArsonistKeepsGameGoing","当纵火犯在场时，游戏不会结束","<color=#ff6633>Arsonist</color> keeps the game going","<color=#ff6633>Поджигатель</color> продолжает игру","",""
 "ShowFPS","","Show FPS","Показывать FPS","",""
-"FPSGame","","FPS: ","<b>FPS:</b> ","",""
+"FPSGame","","FPS: ","FPS: ","",""
 
 "## 详细设定 / Advanced Settings"
 "Cooldown","冷却时间","Cooldown","Откат","冷卻時間","冷却时间"
