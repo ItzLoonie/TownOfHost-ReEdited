@@ -74,10 +74,10 @@ class OnPlayerJoinedPatch
             Logger.SendInGame(string.Format(GetString("Message.KickedByNoFriendCode"), client.PlayerName));
             Logger.Info($"フレンドコードがないプレイヤーを{client?.PlayerName}をキックしました。", "Kick");
         }
-        if (AmongUsClient.Instance.AmHost && client.PlatformData.Platform == (Platforms.Android | Platforms.IPhone) && Options.KickAndroidPlayer.GetBool())
+        if (AmongUsClient.Instance.AmHost && client.PlatformData.Platform == (Platforms.Android | Platforms.IPhone) && Options.OptKickAndroidPlayer.GetBool())
         {
             AmongUsClient.Instance.KickPlayer(client.Id, false);
-            string msg = string.Format(GetString("KickAndriodPlayer"), client?.PlayerName);
+            string msg = string.Format(GetString("MsgKickAndriodPlayer"), client?.PlayerName);
             Logger.SendInGame(msg);
             Logger.Info(msg, "Android Kick");
         }
