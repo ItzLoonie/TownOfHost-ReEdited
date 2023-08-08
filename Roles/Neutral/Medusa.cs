@@ -14,7 +14,7 @@ public static class Medusa
     private static OptionItem KillCooldown;
     public static OptionItem KillCooldownAfterStoneGazing;
     public static OptionItem CanVent;
-    private static OptionItem HasImpostorVision;
+  //  private static OptionItem HasImpostorVision;
 
     public static void SetupCustomOption()
     {
@@ -25,7 +25,7 @@ public static class Medusa
         KillCooldownAfterStoneGazing = FloatOptionItem.Create(Id + 14, "KillCooldownAfterStoneGazing", new(0f, 180f, 2.5f), 60f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Medusa])
             .SetValueFormat(OptionFormat.Seconds);
         CanVent = BooleanOptionItem.Create(Id + 11, "CanVent", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Medusa]);
-        HasImpostorVision = BooleanOptionItem.Create(Id + 13, "ImpostorVision", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Medusa]);
+      //  HasImpostorVision = BooleanOptionItem.Create(Id + 13, "ImpostorVision", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Medusa]);
     }
     public static void Init()
     {
@@ -41,7 +41,7 @@ public static class Medusa
     }
     public static bool IsEnable => playerIdList.Count > 0;
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
-    public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(HasImpostorVision.GetBool());
+    public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(true);
     public static void CanUseVent(PlayerControl player)
     {
         bool Medusa_canUse = CanVent.GetBool();
