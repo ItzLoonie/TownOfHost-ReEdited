@@ -199,8 +199,9 @@ public class Main : BasePlugin
     public static Dictionary<byte, int> DovesOfNeaceNumOfUsed = new();
 
     public static Dictionary<byte, CustomRoles> DevRole = new();
-    public static byte GodfatherTarget = byte.MaxValue;
+    public static List<byte> GodfatherTarget = new();
     public static byte ShamanTarget = byte.MaxValue;
+    public static bool ShamanTargetChoosen = false;
 
 
     public static IEnumerable<PlayerControl> AllPlayerControls => PlayerControl.AllPlayerControls.ToArray().Where(p => p != null);
@@ -421,6 +422,7 @@ public class Main : BasePlugin
                 {CustomRoles.Pirate, "#EDC240"},
                 {CustomRoles.Shroud, "#6697FF"},
                 {CustomRoles.Werewolf, "#191970"},
+                {CustomRoles.Seeker, "#ffaa00"},
             
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
@@ -683,6 +685,7 @@ public enum CustomRoles
     Monitor,
     //Neutral
     Arsonist,
+    Seeker,
     HexMaster,
     Jester,
     God,
@@ -866,6 +869,7 @@ public enum CustomWinner
     Doomsayer = CustomRoles.Doomsayer,
     Shroud = CustomRoles.Shroud,
     Coven = CustomRoles.CovenLeader,
+    Seeker = CustomRoles.Seeker,
 }
 public enum AdditionalWinners
 {
