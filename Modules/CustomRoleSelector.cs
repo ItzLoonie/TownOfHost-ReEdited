@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TOHE.Roles.Neutral;
 
 namespace TOHE.Modules;
 
@@ -19,7 +20,7 @@ internal class CustomRoleSelector
         int optImpNum = Main.RealOptionsData.GetInt(Int32OptionNames.NumImpostors);
         int optNonNeutralKillingNum = 0;
         int optNeutralKillingNum = 0;
-        //int optCovenNum = 0;
+        int optCovenNum = 0;
 
         if (Options.NonNeutralKillingRolesMaxPlayer.GetInt() > 0 && Options.NonNeutralKillingRolesMaxPlayer.GetInt() >= Options.NonNeutralKillingRolesMinPlayer.GetInt())
         {
@@ -29,15 +30,15 @@ internal class CustomRoleSelector
         {
             optNeutralKillingNum = rd.Next(Options.NeutralKillingRolesMinPlayer.GetInt(), Options.NeutralKillingRolesMaxPlayer.GetInt() + 1);
         }
-        // if (Options.CovenRolesMaxPlayer.GetInt() > 0 && Options.CovenRolesMaxPlayer.GetInt() >= Options.CovenRolesMinPlayer.GetInt())
-        // {
-        //    optCovenNum = rd.Next(Options.CovenRolesMinPlayer.GetInt(), Options.CovenRolesMaxPlayer.GetInt() + 1);
-        // }
+        if (Options.CovenRolesMaxPlayer.GetInt() > 0 && Options.CovenRolesMaxPlayer.GetInt() >= Options.CovenRolesMinPlayer.GetInt())
+        {
+            optCovenNum = rd.Next(Options.CovenRolesMinPlayer.GetInt(), Options.CovenRolesMaxPlayer.GetInt() + 1);
+        }
 
         int readyRoleNum = 0;
         int readyNonNeutralKillingNum = 0;
         int readyNeutralKillingNum = 0;
-        // int readyCovenNum = 0;
+        int readyCovenNum = 0;
 
         List<CustomRoles> rolesToAssign = new();
         List<CustomRoles> roleList = new();
@@ -48,11 +49,11 @@ internal class CustomRoleSelector
 
         List<CustomRoles> NonNeutralKillingOnList = new();
         List<CustomRoles> NonNeutralKillingRateList = new();
-        // List<CustomRoles> CovenOnList = new();
+        List<CustomRoles> CovenOnList = new();
 
         List<CustomRoles> NeutralKillingOnList = new();
         List<CustomRoles> NeutralKillingRateList = new();
-        // List<CustomRoles> CovenRateList = new();
+        List<CustomRoles> CovenRateList = new();
 
         List<CustomRoles> roleRateList = new();
 
@@ -79,7 +80,7 @@ internal class CustomRoleSelector
             if (role.IsImpostor()) ImpOnList.Add(role);
             else if (role.IsNonNK()) NonNeutralKillingOnList.Add(role);
             else if (role.IsNK()) NeutralKillingOnList.Add(role);
-            // else if (role.IsCoven()) CovenOnList.Add(role);
+            else if (role.IsCoven()) CovenOnList.Add(role);
             else roleOnList.Add(role);
         }
         // 职业设置为：启用
@@ -88,7 +89,7 @@ internal class CustomRoleSelector
             if (role.IsImpostor()) ImpRateList.Add(role);
             else if (role.IsNonNK()) NonNeutralKillingRateList.Add(role);
             else if (role.IsNK()) NeutralKillingRateList.Add(role);
-            // else if (role.IsCoven()) CovenRateList.Add(role);
+            else if (role.IsCoven()) CovenRateList.Add(role);
             else roleRateList.Add(role);
         }
 
@@ -176,19 +177,21 @@ internal class CustomRoleSelector
             }
         }
 
-      /*while (CovenOnList.Count > 0 && optCovenNum > 0)
+        // Select Coven "Always"
+        while (CovenOnList.Count > 0 && optCovenNum > 0)
         {
             var select = CovenOnList[rd.Next(0, CovenOnList.Count)];
             CovenOnList.Remove(select);
             rolesToAssign.Add(select);
             readyRoleNum++;
-            readyCovenNum += select.GetCount();
+            optCovenNum += select.GetCount();
             Logger.Info(select.ToString() + " 加入中立职业待选列表（优先）", "CustomRoleSelector");
             if (readyRoleNum >= playerCount) goto EndOfAssign;
             if (readyCovenNum >= optCovenNum) break;
-        }*/
+        }
 
-      /*if (readyRoleNum < playerCount && readyCovenNum < optCovenNum)
+        // Select Coven "Random"
+        if (readyRoleNum < playerCount && readyNeutralKillingNum < optCovenNum)
         {
             while (CovenRateList.Count > 0 && optCovenNum > 0)
             {
@@ -201,7 +204,7 @@ internal class CustomRoleSelector
                 if (readyRoleNum >= playerCount) goto EndOfAssign;
                 if (readyCovenNum >= optCovenNum) break;
             }
-        }*/
+        }
 
         // 抽取优先职业
         while (roleOnList.Count > 0)
@@ -240,6 +243,11 @@ internal class CustomRoleSelector
         {
             if (rd.Next(0, 100) < Options.NukerChance.GetInt() && rolesToAssign.Remove(CustomRoles.Bomber)) rolesToAssign.Add(CustomRoles.Nuker);
         }
+        if (NSerialKiller.HasSerialKillerBuddy.GetBool() && rolesToAssign.Contains(CustomRoles.NSerialKiller))
+        {
+            if (rd.Next(0, 100) < NSerialKiller.ChanceToSpawn.GetInt()) rolesToAssign.Add(CustomRoles.NSerialKiller);
+         //   if (rd.Next(0, 100) < NSerialKiller.ChanceToSpawnAnother.GetInt()) rolesToAssign.Add(CustomRoles.NSerialKiller);
+        }
         
         {
           /*  if (!rolesToAssign.Contains(CustomRoles.Lovers) && rolesToAssign.Contains(CustomRoles.FFF) || !rolesToAssign.Contains(CustomRoles.Ntr) && rolesToAssign.Contains(CustomRoles.FFF))
@@ -264,7 +272,7 @@ internal class CustomRoleSelector
         // Dev Roles List Edit
         foreach (var dr in Main.DevRole)
         {
-            if (dr.Key == PlayerControl.LocalPlayer.PlayerId && Options.EnableGM.GetBool()) continue;
+            if (dr.Key == PlayerControl.LocalPlayer.PlayerId && Main.EnableGM.Value) continue;
             if (rolesToAssign.Contains(dr.Value))
             {
                 rolesToAssign.Remove(dr.Value);
@@ -299,7 +307,7 @@ internal class CustomRoleSelector
             foreach (var pc in AllPlayer)
                 foreach (var dr in Main.DevRole.Where(x => pc.PlayerId == x.Key))
                 {
-                    if (dr.Key == PlayerControl.LocalPlayer.PlayerId && Options.EnableGM.GetBool()) continue;
+                    if (dr.Key == PlayerControl.LocalPlayer.PlayerId && Main.EnableGM.Value) continue;
                     var id = rolesToAssign.IndexOf(dr.Value);
                     if (id == -1) continue;
                     RoleResult.Add(pc, rolesToAssign[id]);

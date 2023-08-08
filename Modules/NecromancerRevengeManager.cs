@@ -1,59 +1,36 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using Hazel;
 using Rewired.UI.ControlMapper;
 using System;
-using System.Linq;
 using TOHE.Modules;
-using TOHE.Roles.Crewmate;
 using UnityEngine;
 using static TOHE.Translator;
 
 namespace TOHE;
 
-public static class RetributionistRevengeManager
+public static class NecromancerRevengeManager
 {
-    public static bool RetributionistMsgCheck(PlayerControl pc, string msg, bool isUI = false)
+    public static bool NecromancerMsgCheck(PlayerControl pc, string msg, bool isUI = false)
     {
         if (!AmongUsClient.Instance.AmHost) return false;
         if (!GameStates.IsInGame || pc == null) return false;
-        if (!pc.Is(CustomRoles.Retributionist)) return false;
+        if (!pc.Is(CustomRoles.Necromancer)) return false;
         msg = msg.Trim().ToLower();
-        if (msg.Length < 4 || msg[..4] != "/ret") return false;
-        if (Options.RetributionistCanKillNum.GetInt() < 1)
+        if (msg.Length < 3 || msg[..3] != "/rv") return false;
+        if (Options.NecromancerCanKillNum.GetInt() < 1)
         {
-            if (!isUI) Utils.SendMessage(GetString("RetributionistKillDisable"), pc.PlayerId);
-            else pc.ShowPopUp(GetString("RetributionistKillDisable"));
-            return true;
-        }
-        int playerCount = Main.AllAlivePlayerControls.Count();
-        {
-            if (playerCount <= Options.MinimumPlayersAliveToRetri.GetInt())
-            {
-            if (pc.Data.IsDead)
-                {
-                    if (!isUI) Utils.SendMessage(GetString("RetributionistKillTooManyDead"), pc.PlayerId);
-                    else pc.ShowPopUp(GetString("RetributionistKillTooManyDead"));
-                    return true;
-                }
-            }
-         
-        }
-        if (Options.CanOnlyRetributeWithTasksDone.GetBool())
-        {
-            if (!pc.GetPlayerTaskState().IsTaskFinished && pc.Data.IsDead && !CopyCat.playerIdList.Contains(pc.PlayerId))
-            {
-                if (!isUI) Utils.SendMessage(GetString("RetributionistKillDisable"), pc.PlayerId);
-                else pc.ShowPopUp(GetString("RetributionistKillDisable"));
-                return true;
-            }
-        }
-        if (!pc.Data.IsDead)
-        {
-            Utils.SendMessage(GetString("RetributionistAliveKill"), pc.PlayerId);
+            if (!isUI) Utils.SendMessage(GetString("NecromancerKillDisable"), pc.PlayerId);
+            else pc.ShowPopUp(GetString("NecromancerKillDisable"));
             return true;
         }
 
-        if (msg == "/ret")
+        if (!pc.Data.IsDead)
+        {
+            Utils.SendMessage(GetString("NecromancerAliveKill"), pc.PlayerId);
+            return true;
+        }
+
+        if (msg == "/rv")
         {
             string text = GetString("PlayerIdList");
             foreach (var npc in Main.AllAlivePlayerControls)
@@ -62,38 +39,38 @@ public static class RetributionistRevengeManager
             return true;
         }
 
-        if (Main.RetributionistRevenged.ContainsKey(pc.PlayerId))
+        if (Main.NecromancerRevenged.ContainsKey(pc.PlayerId))
         {
-            if (Main.RetributionistRevenged[pc.PlayerId] >= Options.RetributionistCanKillNum.GetInt())
+            if (Main.NecromancerRevenged[pc.PlayerId] >= Options.NecromancerCanKillNum.GetInt())
             {
-                if (!isUI) Utils.SendMessage(GetString("RetributionistKillMax"), pc.PlayerId);
-                else pc.ShowPopUp(GetString("RetributionistKillMax"));
+                if (!isUI) Utils.SendMessage(GetString("NecromancerKillMax"), pc.PlayerId);
+                else pc.ShowPopUp(GetString("NecromancerKillMax"));
                 return true;
             }
         }
         else
         {
-            Main.RetributionistRevenged.Add(pc.PlayerId, 0);
+            Main.NecromancerRevenged.Add(pc.PlayerId, 0);
         }
 
         int targetId;
         PlayerControl target;
         try
         {
-            targetId = int.Parse(msg.Replace("/ret", string.Empty));
+            targetId = int.Parse(msg.Replace("/rv", string.Empty));
             target = Utils.GetPlayerById(targetId);
         }
         catch
         {
-            if (!isUI) Utils.SendMessage(GetString("RetributionistKillDead"), pc.PlayerId);
-            else pc.ShowPopUp(GetString("RetributionistKillDead"));
+            if (!isUI) Utils.SendMessage(GetString("NecromancerKillDead"), pc.PlayerId);
+            else pc.ShowPopUp(GetString("NecromancerKillDead"));
             return true;
         }
 
         if (target == null || target.Data.IsDead)
         {
-            if (!isUI) Utils.SendMessage(GetString("RetributionistKillDead"), pc.PlayerId);
-            else pc.ShowPopUp(GetString("RetributionistKillDead"));
+            if (!isUI) Utils.SendMessage(GetString("NecromancerKillDead"), pc.PlayerId);
+            else pc.ShowPopUp(GetString("NecromancerKillDead"));
             return true;
         }
         if (target.Is(CustomRoles.Pestilence))
@@ -103,11 +80,11 @@ public static class RetributionistRevengeManager
             return true;
         }
 
-        Logger.Info($"{pc.GetNameWithRole()} 复仇了 {target.GetNameWithRole()}", "Retributionist");
+        Logger.Info($"{pc.GetNameWithRole()} 复仇了 {target.GetNameWithRole()}", "Necromancer");
 
         string Name = target.GetRealName();
 
-        Main.RetributionistRevenged[pc.PlayerId]++;
+        Main.NecromancerRevenged[pc.PlayerId]++;
 
         CustomSoundsManager.RPCPlayCustomSoundAll("AWP");
 
@@ -131,30 +108,30 @@ public static class RetributionistRevengeManager
                 Main.PlayerStates[target.PlayerId].SetDead();
             }
 
-            new LateTask(() => { Utils.SendMessage(string.Format(GetString("RetributionistKillSucceed"), Name), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Retributionist), GetString("RetributionistRevengeTitle"))); }, 0.6f, "Retributionist Kill");
+            new LateTask(() => { Utils.SendMessage(string.Format(GetString("NecromancerKillSucceed"), Name), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Necromancer), GetString("NecromancerRevengeTitle"))); }, 0.6f, "Necromancer Kill");
 
-        }, 0.2f, "Retributionist Kill");
+        }, 0.2f, "Necromancer Kill");
         return true;
     }
 
     private static void SendRPC(byte playerId)
     {
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.RetributionistRevenge, SendOption.Reliable, -1);
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.NecromancerRevenge, SendOption.Reliable, -1);
         writer.Write(playerId);
         AmongUsClient.Instance.FinishRpcImmediately(writer);
     }
     public static void ReceiveRPC(MessageReader reader, PlayerControl pc)
     {
         int PlayerId = reader.ReadByte();
-        RetributionistMsgCheck(pc, $"/ret {PlayerId}", true);
+        NecromancerMsgCheck(pc, $"/rv {PlayerId}", true);
     }
 
-    private static void RetributionistOnClick(byte playerId, MeetingHud __instance)
+    private static void NecromancerOnClick(byte playerId, MeetingHud __instance)
     {
-        Logger.Msg($"Click: ID {playerId}", "Retributionist UI");
+        Logger.Msg($"Click: ID {playerId}", "Necromancer UI");
         var pc = Utils.GetPlayerById(playerId);
         if (pc == null || !pc.IsAlive() || !GameStates.IsVoting) return;
-        if (AmongUsClient.Instance.AmHost) RetributionistMsgCheck(PlayerControl.LocalPlayer, $"/ret {playerId}", true);
+        if (AmongUsClient.Instance.AmHost) NecromancerMsgCheck(PlayerControl.LocalPlayer, $"/rv {playerId}", true);
         else SendRPC(playerId);
     }
 
@@ -163,7 +140,7 @@ public static class RetributionistRevengeManager
     {
         public static void Postfix(MeetingHud __instance)
         {
-            if (PlayerControl.LocalPlayer.Is(CustomRoles.Retributionist) && !PlayerControl.LocalPlayer.IsAlive())
+            if (PlayerControl.LocalPlayer.Is(CustomRoles.Necromancer) && !PlayerControl.LocalPlayer.IsAlive())
                 CreateJudgeButton(__instance);
         }
     }
@@ -181,7 +158,7 @@ public static class RetributionistRevengeManager
             renderer.sprite = CustomButton.Get("TargetIcon");
             PassiveButton button = targetBox.GetComponent<PassiveButton>();
             button.OnClick.RemoveAllListeners();
-            button.OnClick.AddListener((Action)(() => RetributionistOnClick(pva.TargetPlayerId, __instance)));
+            button.OnClick.AddListener((Action)(() => NecromancerOnClick(pva.TargetPlayerId, __instance)));
         }
     }
 }

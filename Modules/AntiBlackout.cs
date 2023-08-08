@@ -31,10 +31,11 @@ public static class AntiBlackout
         || Traitor.IsEnable || Pickpocket.IsEnable
         || NSerialKiller.IsEnable || NWitch.IsEnable
         || Maverick.IsEnable || Jinx.IsEnable
+        || CovenLeader.IsEnable || Banshee.IsEnable
         || Medusa.IsEnable || Spiritcaller.IsEnable
         || PlagueBearer.IsEnable || CustomRoles.Sidekick.RoleExist()
         || CustomRoles.Pestilence.RoleExist() || CustomRoles.Arsonist.RoleExist()
-        || Pirate.IsEnable;
+        || Pirate.IsEnable || Werewolf.IsEnable;
     ///<summary>
     ///インポスター以外の人数とインポスターの人数の差
     ///</summary>

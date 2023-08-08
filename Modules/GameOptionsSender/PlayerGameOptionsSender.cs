@@ -104,6 +104,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Crewpostor:
           //  case CustomRoles.Jester:
             case CustomRoles.Chameleon:
+            case CustomRoles.Monitor:
                 AURoleOptions.EngineerCooldown = 0f;
                 AURoleOptions.EngineerInVentMaxTime = 0f;
                 break;
@@ -239,10 +240,15 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
             case CustomRoles.FFF:
             case CustomRoles.Pursuer:
+            case CustomRoles.Necromancer:
+            case CustomRoles.Conjuror:
                 opt.SetVision(true);
                 break;
             case CustomRoles.NSerialKiller:
                 NSerialKiller.ApplyGameOptions(opt);
+                break;
+            case CustomRoles.Werewolf:
+                Werewolf.ApplyGameOptions(opt);
                 break;
             case CustomRoles.Morphling:
                 Morphling.ApplyGameOptions();
@@ -255,6 +261,12 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
             case CustomRoles.NWitch:
                 NWitch.ApplyGameOptions(opt);
+                break;
+            case CustomRoles.CovenLeader:
+                CovenLeader.ApplyGameOptions(opt);
+                break;
+            case CustomRoles.Shroud:
+                Shroud.ApplyGameOptions(opt);
                 break;
             case CustomRoles.Maverick:
                 Maverick.ApplyGameOptions(opt);
@@ -281,6 +293,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 AURoleOptions.EngineerCooldown = 0f;
                 AURoleOptions.EngineerInVentMaxTime = 0f;
                 opt.SetVision(Options.JesterHasImpostorVision.GetBool());
+                break;
+            case CustomRoles.Doomsayer:
+                opt.SetVision(Doomsayer.ImpostorVision.GetBool());
                 break;
             case CustomRoles.Infectious:
                 opt.SetVision(Infectious.HasImpostorVision.GetBool());
@@ -333,6 +348,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
             case CustomRoles.BloodKnight:
                 BloodKnight.ApplyGameOptions(opt);
+                break;
+            case CustomRoles.Banshee:
+                Banshee.ApplyGameOptions(opt);
                 break;
             case CustomRoles.DovesOfNeace:
                 AURoleOptions.EngineerCooldown =

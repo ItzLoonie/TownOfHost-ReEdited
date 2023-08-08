@@ -40,7 +40,7 @@ public static class OptionShower
             if (Options.CurrentGameMode == CustomGameMode.Standard)
             {
                 //有効な役職一覧
-                sb.Append($"<color={Utils.GetRoleColorCode(CustomRoles.GM)}>{Utils.GetRoleName(CustomRoles.GM)}:</color> {Options.EnableGM.GetString()}\n\n");
+            //    sb.Append($"<color={Utils.GetRoleColorCode(CustomRoles.GM)}>{Utils.GetRoleName(CustomRoles.GM)}:</color> {Options.EnableGM.GetString()}\n\n");
                 sb.Append(GetString("ActiveRolesList")).Append("\n");
                 foreach (var kvp in Options.CustomRoleSpawnChances)
                     if (kvp.Value.GameMode is CustomGameMode.Standard or CustomGameMode.All && kvp.Value.GetBool()) //スタンダードか全てのゲームモードで表示する役職
@@ -50,7 +50,7 @@ public static class OptionShower
             }
             //有効な役職と詳細設定一覧
             pages.Add("");
-            nameAndValue(Options.EnableGM);
+         //   nameAndValue(Options.EnableGM);
             foreach (var kvp in Options.CustomRoleSpawnChances)
             {
                 if (!kvp.Key.IsEnable() || kvp.Value.IsHiddenOn(Options.CurrentGameMode)) continue;
