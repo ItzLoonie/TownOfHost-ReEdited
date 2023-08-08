@@ -1353,7 +1353,8 @@ public static class Utils
             }
             if (!name.Contains('\r') && player.FriendCode.GetDevUser().HasTag())
                 name = player.FriendCode.GetDevUser().GetTag() + name;
-            else
+            else if (player.AmOwner)
+            {
                 name = Options.GetSuffixMode() switch
                 {
                     SuffixModes.TOHE => name += $"\r\n<color={Main.ModColor}>TOHE-R v{Main.PluginDisplayVersion}</color>",
@@ -1366,6 +1367,7 @@ public static class Utils
                     SuffixModes.AutoHost => name += $"\r\n<size=1.7><color={Main.ModColor}>{GetString("SuffixModeText.AutoHost")}</color></size>",
                     _ => name
                 };
+            }
         }
         if (name != player.name && player.CurrentOutfitType == PlayerOutfitType.Default)
             player.RpcSetName(name);
