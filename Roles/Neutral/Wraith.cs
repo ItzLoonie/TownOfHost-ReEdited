@@ -183,7 +183,8 @@ public static class Wraith
         if (Medic.ProtectList.Contains(target.PlayerId)) return true;
         if (target.Is(CustomRoles.Bait)) return true;
         if (target.Is(CustomRoles.Pestilence)) return true;
-        if (target.Is(CustomRoles.Wraith)) return true;
+        if (target.Is(CustomRoles.Veteran) && Main.VeteranInProtect.ContainsKey(target.PlayerId)) return true;
+
         if (!IsInvis(killer.PlayerId)) return true;
         killer.SetKillCooldown();
         target.RpcCheckAndMurder(target);
