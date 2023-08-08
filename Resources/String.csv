@@ -310,6 +310,7 @@
 "Shroud","裹尸布","Shroud","Накрыватель","",""
 "Werewolf","狼人","Werewolf","Оборотень","",""
 "Shaman","","Shaman","Шаман","",""
+"Seeker","","Seeker","Искатель","",""
 
 "#  / Covens"
 "Poisoner","投毒者","Poisoner","Отравитель","Poisoner","Poisoner"
@@ -652,6 +653,7 @@
 "ShroudInfo","笼罩玩家，让玩家击杀","Shroud players to make them kill","Накройте игроков, чтобы заставить их убивать","",""
 "WerewolfInfo","把所有人都蒙在鼓里","Maul everyone in the darkness","Растерзайте всех игроков во тьме","",""
 "ShamanInfo","","Deflect all the attacks on Voodoo doll","Отразите все атаки на куклу Вуду","",""
+"SeekerInfo","","Play Hide and Seek with your target","Играйте в прятки со своей целью","",""
 
 "#  / Covens descriptions"
 "PoisonerInfo","用延迟杀人击杀所有人","Kill everyone with delayed kills","Ваши убийства задерживаются","Info not provided","Info not provided"
@@ -898,7 +900,8 @@
 "DoomsayerInfoLong","（中立阵营）：\n末日赌怪可以在会议期间猜测某个玩家的职业。如果是正确的，目标就会死亡，如果是错误的，就会自杀\n猜测指令为：/bt [玩家编号] [职业名]\n您可以在玩家名字前看到该玩家的编号，或者使用/id指令查看所有玩家的编号","(Neutrals):\nThe Doomsayer can guess the role of a certain player during the meeting.\nIf the Doomsayer guesses a certain number of roles (the number depends on the host settings) then he wins.\nThe guessing command is: /bt [player id] [role]\nYou can see the player's id before the player's name, or use the /id command to view the id of all players.","(Злой - Нейтрал):\nПредсказатель может угадывать роли определённых игроков во время встречи.\nЕсли он угадает определённое количество ролей, то он победит (Количество зависит от настроек Хоста).\nКоманда для угадываний: '/bt [Номер игрока] [Название Роли]'' \nПример: /bt 3 Стукач \nВы можете увидеть номер игрока перед его никнеймом, или же для просмотра номеров всех игроков нужно использовать команду ''/id''.","",""
 "ShroudInfoLong","(中立阵营）：\n裹尸布不能进行正常的击杀。而是使用你的击杀按钮来给一名玩家进行保护，被保护的玩家会击杀其他人。会在被保护的玩家名字旁边打上"◈"标记。没有进行击杀的就会被护盾玩家也在会议中打上"◈"标记，如果会议结束时裹尸布还活着，他们就会死亡。","(Neutrals):\nAs the Shroud, you do not kill normally.\nInstead, use your kill button to shroud a player.\nShrouded players kill others.\nIf the shrouded player doesn't make a kill, they'll kill themself after a meeting.\n\nShroud sees shrouded players with a 「◈」mark next to their name.\nShrouded players who did not make a kill will also have the 「◈」mark in meetings, where they'll die if the Shroud is alive by the end of the meeting.","(Злой - Нейтрал):\nНакрыватель не убивает игроков как обычно.\nВместо этого использует кнопку убийства, чтобы накрыть игрока.\nНакрытые игроки убивают других игроков.\nЕсли накрытый игрок не совершит убийство, он убьет себя после встречи.\n\nНакрыватель видит накрытых игроков с отметкой「◈」рядом с их именем.\nНакрытые игроки, не совершившие убийства, также будут иметь метку「◈」на встречах, где они умрут, если Накрыватель будет жив к концу встречи","",""
 "WerewolfInfoLong","(中立阵营）：\n狼人是一个只能在灯光下进行击杀的中立职业。狼人可以召唤灯光（也只能召唤灯光）来开始他们的肆虐。你的击杀冷却时间很短","(Neutrals):\nAs the Werewolf, you're a killer that can only kill during lights.\nWerewolf can call lights (and only lights) to start their rampage.\nYou have a low kill cooldown and do not lunge toward your kills.\n\nAll your kills will have the Mauled death reason.","(Злой - Нейтрал):\nОборотень может убивать только при саботаже света.\nОборотень может призывать саботаж света (только свет), чтобы начать свою ярость.\nУ него короткий откат убийства, и ты не телепортируешься к своим убийствам.\n\nВсе твои убийства будет иметь причину смерти как ''Растерзан''","",""
-"ShamanInfoLong","","(Neutrals):\nAs the Shaman, you can use your kill button to select a voodoo doll once every round. All the interactions with you using kill button will be deflected to the voodoo doll and the voodoo doll will destroy. \n\nSince Witch uses magic too the effect of the voodoo doll will be nullified (voodoo doll wont be destroyed though) and it will take place on Shaman itself.\n\nIf you survive till the end, you win with the winning team","(Злой - Нейтрал):\nШаман может использовать кнопку убийства, чтобы выбрать куклу вуду один раз в раунд. Все взаимодействия с вами с помощью кнопки «Убить» будут направлены на куклу вуду, и кукла вуду будет уничтожена. \n\nПоскольку Ведьма тоже использует магию, эффект куклы вуду будет аннулирован (однако кукла вуду не будет уничтожена) и воздействует на самого Шамана.\n\nЕсли вы доживете до конца, вы выиграете с победившей командой","",""
+"ShamanInfoLong","","(Neutrals):\nAs the Shaman, you can use your kill button to select a voodoo doll once every round. All the interactions with you using kill button will be deflected to the voodoo doll and the voodoo doll will destroy. \n\nSince Coven members uses magic too the effect of the voodoo doll will be nullified (voodoo doll will not be destroyed though) and it will take place on Shaman itself.\n\nIf you survive till the end, you win with the winning team","(Злой - Нейтрал):\nШаман может использовать кнопку убийства, чтобы выбрать куклу вуду один раз в раунд. Все взаимодействия с вами с помощью кнопки «Убить» будут направлены на куклу вуду, и кукла вуду будет уничтожена. \n\nПоскольку некоторые Ковены тоже использует магию, эффект куклы вуду будет аннулирован (при этом кукла вуду не будет уничтожена) и воздействует на самого Шамана.\n\nЕсли вы доживете до конца, вы выиграете с победившей командой","",""
+"SeekerInfoLong","","(Neutrals):\nAs the seeker, use your kill button to tag the target. If seeker tags wrong player a point is deducted and if seeker tags correct player a point will be added.\nAdditionally, the seeker will not be able to move for 5 seconds after every meeting and after getting a new target\n\n The seeker needs to collect certain number of points set by the host to win","(Злой - Нейтрал):\nИскатель использет кнопку убийства, чтобы пометить цель. Если Искатель отмечает неправильного игрока, очко вычитается, а если искатель отмечает правильного игрока, очко будет добавлено.\nКроме того, искатель не сможет двигаться в течение 5 секунд после каждой встречи и после получения новой цели\n\n Искатель необходимо набрать определенное количество очков, установленное хостом, чтобы выиграть","",""
 
 "#  / Covens descriptions"
 "PoisonerInfoLong","(中立阵营):\n仅剩投毒阵营与船员阵营且投毒阵营人数大于船员人数，投毒者获得胜利。投毒者能放毒在一名玩家身上，那名玩家将会延迟一段时间突然暴毙（跟吸血一样）","(Coven):\nAs the Poisoner, your kills are delayed.\nKill everyone to win.","(Ковен)\nУ Отравителя убийства происходят спустя время.\nУбейте всех, чтобы победить.","",""
@@ -2437,6 +2440,11 @@
 "## Underdog Text Strings"
 "UnderdogMaximumPlayersNeededToKill","开始击杀所需的玩家数量上限","Maximum players needed to start killing","","",""
 
+"## Godfather Text Strings"
+"GodfatherTargetCountMode","","Killer turns into","Убийца превращается в ","",""
+"GodfatherCount.Refugee","","<color=#ff1919>Refugee</color>","<color=#ff1919>Беженеца</color>","",""
+"GodfatherCount.Madmate","","<color=#ff1919>Madmate</color>","<color=#ff1919>Безумца</color>","",""
+
 "## Unlucky Text Strings"
 "ImpCanBeUnlucky","<color=#ff1919>内鬼</color>可以成为<color=#b8d7a3>倒霉蛋</color>","<color=#ff1919>Impostors</color> can become <color=#b8d7a3>Unlucky</color>","<color=#ff1919>Предатели</color> могут стать <color=#b8d7a3>Невезучим</color>","",""
 "CrewCanBeUnlucky","<color=#8cffff>船员</color>可以成为<color=#b8d7a3>倒霉蛋</color>","<color=#8cffff>Crewmates</color> can become <color=#b8d7a3>Unlucky</color>","<color=#8cffff>Члены Экипажа</color> могут стать <color=#b8d7a3>Невезучим</color>","",""
@@ -2812,6 +2820,12 @@
 "PirateDuelButtonText","决斗","Duel","ДУЭЛЬ","",""
 "DuelCooldown","决斗冷却","Duel Cooldown","Откат дуэли","",""
 
+"## Seeker Text Strings"
+"SeekerPointsToWin","","Number of points required to win","Количество очков необходимое для победы","",""
+"SeekerTagCooldown","","Tag Cooldown","Откат навыка","",""
+"SeekerNotify","","Your target is <b>{0}</b>","Ваша цель <b>{0}</b>","",""
+"SeekerTargetNotify","","You are Seekers target!! Hide before they tag you","Вы цель Искателя!! Спрячься, пока тебя не отметили","",""
+
 "## PlagueBearer Text Strings"
 "PlagueBearerCD","瘟疫使者冷却时间","Plague cooldown","Откат заражения","",""
 "PestilenceCD","<color=#343136>瘟疫</color>击杀冷却","<color=#343136>Pestilence</color> Kill cooldown","Откак убийства <color=#343136>Чумы</color>","",""
@@ -2946,6 +2960,7 @@
 "WinnerRoleText.Werewolf","狼人胜利！","Werewolf Wins!","Оборотень Победил!","",""
 "WinnerRoleText.CovenLeader","巫师首领胜利！","Coven Wins!","Ковен Победил!","",""
 "WinnerRoleText.Coven","巫师阵营胜利！","Coven Wins!","Ковен Победил!","",""
+"WinnerRoleText.Seeker",","Seeker Wins!","Искатель Победил!","",""
 
 "## Additional Winner Text"
 "AdditionalWinnerRoleText.Sidekick","跟班","Sidekick","Союзник","",""

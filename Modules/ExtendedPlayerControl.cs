@@ -507,6 +507,7 @@ static class ExtendedPlayerControl
             CustomRoles.PlagueBearer => pc.IsAlive(),
             CustomRoles.Pestilence => pc.IsAlive(),
             CustomRoles.Pirate => pc.IsAlive(),
+            CustomRoles.Seeker => pc.IsAlive(),
 
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
@@ -948,6 +949,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Crusader:
                 Crusader.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Seeker:
+                Seeker.SetKillCooldown(player.PlayerId);
                 break;
         }
         if (player.PlayerId == LastImpostor.currentId)

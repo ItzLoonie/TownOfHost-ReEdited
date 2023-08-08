@@ -487,6 +487,7 @@ public static class Utils
             case CustomRoles.Pestilence:
             case CustomRoles.Masochist:
             case CustomRoles.Doomsayer:
+            case CustomRoles.Seeker:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:
@@ -537,7 +538,7 @@ public static class Utils
                     hasTasks &= !ForRecompute;
                     break;
             }
-        if (CopyCat.playerIdList.Contains(p.PlayerId) && ForRecompute) hasTasks = false;
+        if (CopyCat.playerIdList.Contains(p.PlayerId)) hasTasks = false;
 
         return hasTasks;
     }
@@ -607,6 +608,9 @@ public static class Utils
             case CustomRoles.Doomsayer:
                 var doomsayerguess = Doomsayer.GuessedPlayerCount(playerId);
                 ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Doomsayer).ShadeColor(0.25f), $"({doomsayerguess.Item1}/{doomsayerguess.Item2})"));
+                break;
+            case CustomRoles.Seeker:
+                ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Seeker).ShadeColor(0.25f), $"({Seeker.TotalPoints[playerId]}/{Seeker.PointsToWin.GetInt()})"));
                 break;
 
             case CustomRoles.Sniper:
@@ -2027,7 +2031,9 @@ public static class Utils
         CopyCat.AfterMeetingTasks();
         Pirate.AfterMeetingTask();
         Chronomancer.AfterMeetingTask();
+        Seeker.AfterMeetingTasks();
         Main.ShamanTarget = byte.MaxValue;
+        Main.ShamanTargetChoosen = false;
 
 
         if (Options.AirshipVariableElectrical.GetBool())

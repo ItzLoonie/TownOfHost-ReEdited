@@ -224,6 +224,7 @@ internal static class CustomRolesHelper
             //Standard
             CustomRoles.Sheriff => RoleTypes.Impostor,
             CustomRoles.Crusader => RoleTypes.Impostor,
+            CustomRoles.Seeker => RoleTypes.Impostor,
             CustomRoles.Pirate => RoleTypes.Impostor,
             CustomRoles.CopyCat => RoleTypes.Impostor,
             CustomRoles.CursedSoul => RoleTypes.Impostor,
@@ -376,6 +377,7 @@ internal static class CustomRolesHelper
             CustomRoles.Ritualist or
             CustomRoles.Doomsayer or
             CustomRoles.Pirate or
+            CustomRoles.Seeker or
        //     CustomRoles.Juggernaut or
             CustomRoles.Jinx or
        //     CustomRoles.Poisoner or
@@ -453,6 +455,7 @@ internal static class CustomRolesHelper
             CustomRoles.Jester or
             CustomRoles.Sunnyboy or
             CustomRoles.Masochist or
+            CustomRoles.Seeker or
             CustomRoles.Collector or
             CustomRoles.Succubus or
             CustomRoles.Phantom or
@@ -491,7 +494,8 @@ internal static class CustomRolesHelper
             CustomRoles.Executioner or
             CustomRoles.Innocent or
             CustomRoles.Jester or
-            CustomRoles.Masochist;
+            CustomRoles.Masochist or
+            CustomRoles.Seeker;
     }
     public static bool IsNC(this CustomRoles role)
     {
@@ -665,7 +669,7 @@ internal static class CustomRolesHelper
             CustomRoles.PlagueBearer or
             CustomRoles.Pestilence or
             CustomRoles.Pirate or
-
+            CustomRoles.Seeker or
         //    CustomRoles.Sidekick or
             CustomRoles.Poisoner or
             CustomRoles.NSerialKiller or
@@ -695,8 +699,8 @@ internal static class CustomRolesHelper
             CustomRoles.Doomsayer or
             CustomRoles.Spiritcaller;
     }
-        public static bool IsCoven(this CustomRoles role)
-        {
+    public static bool IsCoven(this CustomRoles role)
+    {
         return role is
         CustomRoles.Poisoner or
         CustomRoles.HexMaster or
@@ -709,41 +713,41 @@ internal static class CustomRolesHelper
         CustomRoles.Necromancer or
         CustomRoles.CovenLeader or
         CustomRoles.Ritualist;
-        }
+    }
 
-        public static bool IsAbleToBeSidekicked(this CustomRoles role)
+    public static bool IsAbleToBeSidekicked(this CustomRoles role)
     {
         return role is
-        CustomRoles.BloodKnight or
-        CustomRoles.Virus or
-        CustomRoles.Medusa or
-        CustomRoles.NSerialKiller or
-        CustomRoles.Traitor or
-        CustomRoles.HexMaster or
-        CustomRoles.Werewolf or
-        CustomRoles.Sheriff or
-        CustomRoles.Medic or
-        CustomRoles.Crusader or
-        CustomRoles.Deputy or
-        CustomRoles.Glitch or
-        CustomRoles.Ritualist or
-        CustomRoles.CopyCat or
-        CustomRoles.Pickpocket or
-        CustomRoles.Poisoner or
-        CustomRoles.Reverie or
-        CustomRoles.Arsonist or
-        CustomRoles.Revolutionist or
-        CustomRoles.Maverick or
-        CustomRoles.NWitch or
-        CustomRoles.Shroud or
-        CustomRoles.Succubus or
-        CustomRoles.Gamer or
-        CustomRoles.DarkHide or
-        CustomRoles.Necromancer or
-        CustomRoles.CovenLeader or
-        CustomRoles.Banshee or
-        CustomRoles.Pirate or
-        CustomRoles.Provocateur or
+            CustomRoles.BloodKnight or
+            CustomRoles.Virus or
+            CustomRoles.Medusa or
+            CustomRoles.NSerialKiller or
+            CustomRoles.Traitor or
+            CustomRoles.HexMaster or
+            CustomRoles.Werewolf or
+            CustomRoles.Sheriff or
+            CustomRoles.Medic or
+            CustomRoles.Crusader or
+            CustomRoles.Deputy or
+            CustomRoles.Glitch or
+            CustomRoles.Ritualist or
+            CustomRoles.CopyCat or
+            CustomRoles.Pickpocket or
+            CustomRoles.Poisoner or
+            CustomRoles.Reverie or
+            CustomRoles.Arsonist or
+            CustomRoles.Revolutionist or
+            CustomRoles.Maverick or
+            CustomRoles.NWitch or
+            CustomRoles.Shroud or
+            CustomRoles.Succubus or
+            CustomRoles.Gamer or
+            CustomRoles.DarkHide or
+            CustomRoles.Necromancer or
+            CustomRoles.CovenLeader or
+            CustomRoles.Banshee or
+            CustomRoles.Pirate or
+            CustomRoles.Provocateur or
             CustomRoles.Wraith or
             CustomRoles.Juggernaut or
             CustomRoles.Pelican or
@@ -760,9 +764,8 @@ internal static class CustomRolesHelper
             CustomRoles.Refugee or
             CustomRoles.Amnesiac or
             CustomRoles.Monarch or
-        CustomRoles.Parasite or
-        CustomRoles.PlagueBearer;
-
+            CustomRoles.Parasite or
+            CustomRoles.PlagueBearer;
     }
 
     public static bool IsNeutralWithGuessAccess(this CustomRoles role)
@@ -815,8 +818,9 @@ internal static class CustomRolesHelper
             CustomRoles.Spiritcaller or
             CustomRoles.Doomsayer or
             CustomRoles.PlagueBearer or
+            CustomRoles.Pestilence or
             CustomRoles.Pirate or
-            CustomRoles.Pestilence;
+            CustomRoles.Seeker;
     }
 
     public static bool IsEvilAddons(this CustomRoles role)
