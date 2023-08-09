@@ -277,7 +277,7 @@ internal class ChangeRoleSettings
             Werewolf.Init();
             Chronomancer.Init();
             Seeker.Init();
-
+            Pitfall.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
@@ -779,6 +779,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Seeker:
                         Seeker.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Pitfall:
+                        Pitfall.Add(pc.PlayerId);
                         break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())

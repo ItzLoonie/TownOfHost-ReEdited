@@ -264,7 +264,8 @@ public static class Divinator
                 CustomRoles.SwordsMan or
                 CustomRoles.Veteran or
                 CustomRoles.Shroud or
-                CustomRoles.Hangman
+                CustomRoles.Hangman or
+                CustomRoles.Pitfall
                 => "Result25",
 
                 CustomRoles.Mediumshiper or

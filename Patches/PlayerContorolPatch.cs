@@ -1420,6 +1420,10 @@ class ShapeshiftPatch
             case CustomRoles.Twister:
                 Twister.TwistPlayers(shapeshifter);
                 break;
+            case CustomRoles.Pitfall:
+                if (shapeshifting)
+                    Pitfall.OnShapeshift(shapeshifter);
+                break;
         }
 
     End:
@@ -2077,6 +2081,7 @@ class FixedUpdatePatch
                 Banshee.OnFixedUpdate(player);
                 Wildling.OnFixedUpdate(player);
                 Spiritcaller.OnFixedUpdate(player);
+                Pitfall.OnFixedUpdate(player);
 
                 if (GameStates.IsInTask && player.IsAlive() && Options.LadderDeath.GetBool()) FallFromLadder.FixedUpdate(player);
 
