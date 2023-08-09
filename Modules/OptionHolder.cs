@@ -1091,10 +1091,10 @@ public static class Options
         AntiAdminer.SetupCustomOption();
         FireWorks.SetupCustomOption();
         Gangster.SetupCustomOption();
-        SetupRoleOptions(30000, TabGroup.ImpostorRoles, CustomRoles.Godfather);
-        Morphling.SetupCustomOption();
-        GodfatherChangeOpt = StringOptionItem.Create(35000, "GodfatherTargetCountMode", GodfatherChangeMode, 0, TabGroup.ImpostorRoles, false)
+        SetupRoleOptions(40000, TabGroup.ImpostorRoles, CustomRoles.Godfather);
+        GodfatherChangeOpt = StringOptionItem.Create(40010, "GodfatherTargetCountMode", GodfatherChangeMode, 0, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Godfather]);
+        Morphling.SetupCustomOption();
         SetupRoleOptions(3100, TabGroup.ImpostorRoles, CustomRoles.Mafia);
         MafiaCanKillNum = IntegerOptionItem.Create(3200, "MafiaCanKillNum", new(0, 15, 1), 1, TabGroup.ImpostorRoles, false)
         .SetParent(CustomRoleSpawnChances[CustomRoles.Mafia])
@@ -1523,7 +1523,7 @@ public static class Options
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 154, 206, byte.MaxValue));
 
-        SetupAdtRoleOptions(32000, CustomRoles.Antidote, canSetNum: true);
+        SetupAdtRoleOptions(41000, CustomRoles.Antidote, canSetNum: true);
         ImpCanBeAntidote = BooleanOptionItem.Create(222426, "ImpCanBeAntidote", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Antidote]);
         CrewCanBeAntidote = BooleanOptionItem.Create(222427, "CrewCanBeAntidote", true, TabGroup.Addons, false)
