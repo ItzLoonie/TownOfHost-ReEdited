@@ -103,6 +103,9 @@ public class GameStartManagerPatch
             if (!AmongUsClient.Instance.AmHost || !GameData.Instance || AmongUsClient.Instance.NetworkMode == NetworkModes.LocalGame) return; // Not host or no instance or LocalGame
             update = GameData.Instance.PlayerCount != __instance.LastPlayerCount;
 
+
+            var invalidColor = Main.AllPlayerControls.Where(p => p.Data.DefaultOutfit.ColorId < 0 || Palette.PlayerColors.Length <= p.Data.DefaultOutfit.ColorId);
+
             if (Main.AutoStart.Value)
             {
                 Main.updateTime++;
@@ -114,6 +117,17 @@ public class GameStartManagerPatch
                         GameStartManager.Instance.startState = GameStartManager.StartingStates.Countdown;
                         GameStartManager.Instance.countDownTimer = Options.AutoStartTimer.GetInt();
                     }
+                }
+                if (invalidColor.Any())
+                {
+                    Main.AllPlayerControls
+                        .Where(p => p.Data.DefaultOutfit.ColorId < 0 || Palette.PlayerColors.Length <= p.Data.DefaultOutfit.ColorId)
+                        .Do(p => AmongUsClient.Instance.KickPlayer(p.GetClientId(), false));
+
+                    Logger.SendInGame(GetString("Error.InvalidColorPreventStart"));
+                    var msg = GetString("Error.InvalidColor");
+                    msg += "\n" + string.Join(",", invalidColor.Select(p => $"{p.GetRealName()}"));
+                    Utils.SendMessage(msg);
                 }
             }
         }
