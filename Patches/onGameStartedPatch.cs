@@ -106,8 +106,9 @@ internal class ChangeRoleSettings
             Main.MadmateNum = 0;
             Main.BardCreations = 0;
             Main.DovesOfNeaceNumOfUsed = new();
-            Main.GodfatherTarget = byte.MaxValue;
+            Main.GodfatherTarget = new();
             Main.ShamanTarget = byte.MaxValue;
+            Main.ShamanTargetChoosen = false;
 
             ReportDeadBodyPatch.CanReport = new();
 
@@ -275,6 +276,7 @@ internal class ChangeRoleSettings
             Shroud.Init();
             Werewolf.Init();
             Chronomancer.Init();
+            Seeker.Init();
             Pitfall.Init();
 
             SoloKombatManager.Init();
@@ -774,6 +776,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Chronomancer:
                         Chronomancer.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Seeker:
+                        Seeker.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Pitfall:
                         Pitfall.Add(pc.PlayerId);

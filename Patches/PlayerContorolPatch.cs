@@ -137,7 +137,7 @@ class CheckMurderPatch
                 Main.KilledAntidote.Add(killer.PlayerId, 1);// Main.AllPlayerKillCooldown.TryGetValue(killer.PlayerId, out float kcd) ? (kcd - Options.AntidoteCDOpt.GetFloat() > 0 ? kcd - Options.AntidoteCDOpt.GetFloat() : 0f) : 0f);
             }
             }
-         if (target.Is(CustomRoles.Shaman) && !killer.Is(CustomRoles.NWitch))
+        if (target.Is(CustomRoles.Shaman) && !killer.GetCustomRole().IsCoven())
         {
             if (Main.ShamanTarget != byte.MaxValue && target.IsAlive())
             { 
@@ -311,6 +311,9 @@ class CheckMurderPatch
                     return false;
 
                 //==========中立阵营==========//
+                case CustomRoles.Seeker: //必须在击杀发生前处理
+                    Seeker.OnCheckMurder(killer, target);
+                    return false;
                 case CustomRoles.PlagueBearer:
                     if (!PlagueBearer.OnCheckMurder(killer, target))
                         return false;
@@ -413,10 +416,11 @@ class CheckMurderPatch
                         return false;
                     break;
                 case CustomRoles.Shaman:
-                    if (Main.ShamanTarget == byte.MaxValue)
+                    if (Main.ShamanTargetChoosen == false)
                     {
                         Main.ShamanTarget = target.PlayerId;
                         killer.RpcGuardAndKill(killer);
+                        Main.ShamanTargetChoosen = true;
                     }
                     else killer.Notify(GetString("ShamanTargetAlreadySelected"));
                     return false;
@@ -1029,7 +1033,11 @@ class MurderPlayerPatch
 
         PlayerControl killer = __instance; //読み替え変数
 
-        if (target.PlayerId == Main.GodfatherTarget) killer.RpcSetCustomRole(CustomRoles.Refugee);
+        if (Main.GodfatherTarget.Contains(target.PlayerId) && !(killer.GetCustomRole().IsImpostor() || killer.GetCustomRole().IsMadmate() || killer.Is(CustomRoles.Madmate)))
+        {
+            if (Options.GodfatherChangeOpt.GetValue() == 0) killer.RpcSetCustomRole(CustomRoles.Refugee);
+            else killer.RpcSetCustomRole(CustomRoles.Madmate);
+        }
 
         //実際のキラーとkillerが違う場合の入れ替え処理
         if (Sniper.IsEnable)
@@ -1702,6 +1710,7 @@ class ReportDeadBodyPatch
         Oracle.didVote.Clear();
         Bloodhound.Clear();
         Vulture.Clear();
+        Main.GodfatherTarget.Clear();
 
         Camouflager.OnReportDeadBody();
         Psychic.OnReportDeadBody();
@@ -1724,6 +1733,7 @@ class ReportDeadBodyPatch
         ParityCop.OnReportDeadBody();
         Doomsayer.OnReportDeadBody();
         BallLightning.OnReportDeadBody();
+        Seeker.OnReportDeadBody();
 
         Mortician.OnReportDeadBody(player, target);
         Tracefinder.OnReportDeadBody(player, target);
@@ -1829,6 +1839,7 @@ class FixedUpdatePatch
             Vampire.OnFixedUpdate(player);
             Poisoner.OnFixedUpdate(player);
             BountyHunter.FixedUpdate(player);
+            Seeker.FixedUpdate(player);
             SerialKiller.FixedUpdate(player);
             if (GameStates.IsInTask)
                 if (player.Is(CustomRoles.PlagueBearer) && PlagueBearer.IsPlaguedAll(player))

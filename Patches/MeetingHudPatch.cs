@@ -101,11 +101,10 @@ class CheckForEndVotingPatch
                                 break;
                             case CustomRoles.Godfather:
                                 if (pc == null || voteTarget == null) break;
-                                Main.GodfatherTarget = voteTarget.PlayerId;
+                                Main.GodfatherTarget.Add(voteTarget.PlayerId);
                                 break;
                         }
                     }
-                    else if (pc.GetCustomRole() == CustomRoles.Godfather) Main.GodfatherTarget = byte.MaxValue;
                 }
             }
             foreach (var ps in __instance.playerStates)
@@ -700,7 +699,6 @@ class MeetingHudStartPatch
         Main.VirusNotify.Clear();
         Mortician.msgToSend.Clear();
         Tracker.msgToSend.Clear();
-      //  if (CustomRoles.Pirate.IsEnable())
         Pirate.OnMeetingStart();
     }
     public static void Prefix(MeetingHud __instance)

@@ -1,6 +1,6 @@
 using HarmonyLib;
+using System;
 using System.Text;
-using TMPro;
 using UnityEngine;
 
 using static TOHE.Translator;
@@ -21,14 +21,25 @@ internal class PingTrackerUpdatePatch
         sb.Append(Main.credentialsText);
 
         var ping = AmongUsClient.Instance.Ping;
-        string color = "#ff4500";
-        if (ping < 30) color = "#44dfcc";
-        else if (ping < 100) color = "#7bc690";
-        else if (ping < 200) color = "#f3920e";
-        else if (ping < 400) color = "#ff146e";
-        sb.Append($"\r\n").Append($"<color={color}>Ping: {ping} ms</color>");
+        string pingcolor = "#ff4500";
+        if (ping < 30) pingcolor = "#44dfcc";
+        else if (ping < 100) pingcolor = "#7bc690";
+        else if (ping < 200) pingcolor = "#f3920e";
+        else if (ping < 400) pingcolor = "#ff146e";
+        sb.Append($"\r\n").Append($"<color={pingcolor}>Ping: {ping} ms</color>");
 
         if (!GameStates.IsModHost) sb.Append($"\r\n").Append(Utils.ColorString(Color.red, GetString("Warning.NoModHost")));
+
+        if (Main.ShowFPS.Value)
+        {
+            var FPSGame = 1.0f / Time.deltaTime;
+            Color fpscolor = Color.green;
+            
+            if (FPSGame < 20f) fpscolor = Color.red;
+            else if (FPSGame < 40f) fpscolor = Color.yellow;
+
+            sb.Append("\r\n").Append(Utils.ColorString(fpscolor, Utils.ColorString(Color.cyan, GetString("FPSGame")) + ((int)FPSGame).ToString()));
+        }
 
         if (Main.ShowTextOverlay.Value)
         {

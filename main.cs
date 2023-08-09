@@ -33,8 +33,8 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = " ";
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "2.5.1.36";
-    public const string PluginDisplayVersion = "2.5.1_11 dev 9";
+    public const string PluginVersion = "2.5.1.41";
+    public const string PluginDisplayVersion = "2.5.1_11 dev 10";
     public const int PluginCreate = 3;
     public const bool Canary = false;
 
@@ -57,14 +57,15 @@ public class Main : BasePlugin
     public static ConfigEntry<string> HideColor { get; private set; }
     public static ConfigEntry<int> MessageWait { get; private set; }
     public static ConfigEntry<bool> UnlockFPS { get; private set; }
+    public static ConfigEntry<bool> ShowFPS { get; private set; }
+    public static ConfigEntry<bool> EnableGM { get; private set; }
     public static ConfigEntry<bool> AutoStart { get; private set; }
     public static ConfigEntry<bool> ForceOwnLanguage { get; private set; }
     public static ConfigEntry<bool> ForceOwnLanguageRoleName { get; private set; }
     public static ConfigEntry<bool> EnableCustomButton { get; private set; }
     public static ConfigEntry<bool> EnableCustomSoundEffect { get; private set; }
-    public static ConfigEntry<bool> ModeForSmallScreen { get; private set; }
     public static ConfigEntry<bool> ShowTextOverlay { get; private set; }
-    public static ConfigEntry<bool> EnableGM { get; private set; }
+    public static ConfigEntry<bool> ModeForSmallScreen { get; private set; }
     public static ConfigEntry<bool> SwitchVanilla { get; private set; }
     public static ConfigEntry<bool> VersionCheat { get; private set; }
     public static ConfigEntry<bool> GodMode { get; private set; }
@@ -198,8 +199,9 @@ public class Main : BasePlugin
     public static Dictionary<byte, int> DovesOfNeaceNumOfUsed = new();
 
     public static Dictionary<byte, CustomRoles> DevRole = new();
-    public static byte GodfatherTarget = byte.MaxValue;
+    public static List<byte> GodfatherTarget = new();
     public static byte ShamanTarget = byte.MaxValue;
+    public static bool ShamanTargetChoosen = false;
 
 
     public static IEnumerable<PlayerControl> AllPlayerControls => PlayerControl.AllPlayerControls.ToArray().Where(p => p != null);
@@ -228,14 +230,15 @@ public class Main : BasePlugin
         DebugKeyInput = Config.Bind("Authentication", "Debug Key", "");
         AutoStart = Config.Bind("Client Options", "AutoStart", false);
         UnlockFPS = Config.Bind("Client Options", "UnlockFPS", false);
+        ShowFPS = Config.Bind("Client Options", "ShowFPS", false);
+        EnableGM = Config.Bind("Client Options", "EnableGM", false);
         AutoStart = Config.Bind("Client Options", "AutoStart", false);
         ForceOwnLanguage = Config.Bind("Client Options", "ForceOwnLanguage", false);
         ForceOwnLanguageRoleName = Config.Bind("Client Options", "ForceOwnLanguageRoleName", false);
         EnableCustomButton = Config.Bind("Client Options", "EnableCustomButton", false);
         EnableCustomSoundEffect = Config.Bind("Client Options", "EnableCustomSoundEffect", true);
-        ModeForSmallScreen = Config.Bind("Client Options", "ModeForSmallScreen", false);
         ShowTextOverlay = Config.Bind("Client Options", "ShowTextOverlay", false);
-        EnableGM = Config.Bind("Client Options", "EnableGM", false);
+        ModeForSmallScreen = Config.Bind("Client Options", "ModeForSmallScreen", false);
         SwitchVanilla = Config.Bind("Client Options", "SwitchVanilla", false);
         VersionCheat = Config.Bind("Client Options", "VersionCheat", false);
         GodMode = Config.Bind("Client Options", "GodMode", false);
@@ -419,6 +422,7 @@ public class Main : BasePlugin
                 {CustomRoles.Pirate, "#EDC240"},
                 {CustomRoles.Shroud, "#6697FF"},
                 {CustomRoles.Werewolf, "#191970"},
+                {CustomRoles.Seeker, "#ffaa00"},
             
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
@@ -682,6 +686,7 @@ public enum CustomRoles
     Monitor,
     //Neutral
     Arsonist,
+    Seeker,
     HexMaster,
     Jester,
     God,
@@ -865,6 +870,7 @@ public enum CustomWinner
     Doomsayer = CustomRoles.Doomsayer,
     Shroud = CustomRoles.Shroud,
     Coven = CustomRoles.CovenLeader,
+    Seeker = CustomRoles.Seeker,
 }
 public enum AdditionalWinners
 {

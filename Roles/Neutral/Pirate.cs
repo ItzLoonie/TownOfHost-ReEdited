@@ -9,7 +9,7 @@ using System;
 namespace TOHE.Roles.Neutral;
 public static class Pirate
 {
-    private static readonly int Id = 333420;
+    private static readonly int Id = 32000;
     private static List<byte> playerIdList = new();
     public static byte PirateTarget;
     private static Dictionary<byte, bool> DuelDone = new();
@@ -61,9 +61,9 @@ public static class Pirate
     public static bool IsEnable => playerIdList.Count > 0;
 
     public static void OnMeetingStart()
-    
     {
-        if (playerIdList.Count == 0 || PirateTarget == byte.MaxValue) return;
+        if (!IsEnable || PirateTarget == byte.MaxValue) return;
+
         var pc = Utils.GetPlayerById(playerIdList[0]);
         var tpc = Utils.GetPlayerById(PirateTarget);
         if (!tpc.IsAlive()) return;
@@ -101,7 +101,8 @@ public static class Pirate
     }
     public static void AfterMeetingTask()
     {
-        if (playerIdList.Count == 0) return;
+        if (!IsEnable) return;
+
         var pirateId = playerIdList[0];
         if (PirateTarget != byte.MaxValue)
         {

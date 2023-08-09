@@ -1,19 +1,12 @@
 ﻿using System.Collections.Generic;
-using Hazel;
-using Sentry.Protocol;
-using UnityEngine;
 using static TOHE.Options;
-using static UnityEngine.GraphicsBuffer;
 using static TOHE.Translator;
-using System.Diagnostics;
-using Hazel.Dtls;
-using System.Linq;
 
 namespace TOHE.Roles.Crewmate;
 
 public static class CopyCat
 {
-    private static readonly int Id = 666420;
+    private static readonly int Id = 31000;
     public static List<byte> playerIdList = new();
     public static Dictionary<byte, float> CurrentKillCooldown = new();
     public static Dictionary<byte, int> MiscopyLimit = new();
@@ -53,7 +46,7 @@ public static class CopyCat
             Main.ResetCamPlayerList.Add(playerId);
     }
 
-    public static bool IsEnable() => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Count > 0;
 
   /*  private static void SendRPC(byte playerId)
     {
@@ -75,6 +68,8 @@ public static class CopyCat
 
     public static void AfterMeetingTasks()
     {
+        if (!IsEnable) return;
+
         foreach (var player in playerIdList)
         {
             var pc = Utils.GetPlayerById(player);

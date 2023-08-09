@@ -294,7 +294,10 @@ public class GameOptionsMenuUpdatePatch
 
                     if (option.IsHeader)
                     {
-                        numItems += 0.5f;
+                        if (!Main.ModeForSmallScreen.Value)
+                            numItems += 0.3f;
+                        else
+                            numItems += 0.5f;
                     }
                 }
                 else
