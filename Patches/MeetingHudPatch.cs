@@ -699,7 +699,6 @@ class MeetingHudStartPatch
         Main.VirusNotify.Clear();
         Mortician.msgToSend.Clear();
         Tracker.msgToSend.Clear();
-      //  if (CustomRoles.Pirate.IsEnable())
         Pirate.OnMeetingStart();
     }
     public static void Prefix(MeetingHud __instance)
