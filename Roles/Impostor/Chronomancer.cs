@@ -64,6 +64,8 @@ public static class Chronomancer
 
     public static void AfterMeetingTask()
     {
+        if (!IsEnable) return;
+
         long now = Utils.GetTimeStamp();
         foreach (var playerId in playerIdList)
         {

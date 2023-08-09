@@ -61,9 +61,9 @@ public static class Pirate
     public static bool IsEnable => playerIdList.Count > 0;
 
     public static void OnMeetingStart()
-    
     {
-        if (playerIdList.Count == 0 || PirateTarget == byte.MaxValue) return;
+        if (!IsEnable || PirateTarget == byte.MaxValue) return;
+
         var pc = Utils.GetPlayerById(playerIdList[0]);
         var tpc = Utils.GetPlayerById(PirateTarget);
         if (!tpc.IsAlive()) return;
@@ -101,7 +101,8 @@ public static class Pirate
     }
     public static void AfterMeetingTask()
     {
-        if (playerIdList.Count == 0) return;
+        if (!IsEnable) return;
+
         var pirateId = playerIdList[0];
         if (PirateTarget != byte.MaxValue)
         {
