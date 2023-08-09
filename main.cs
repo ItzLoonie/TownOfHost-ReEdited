@@ -34,7 +34,7 @@ public class Main : BasePlugin
     public static readonly string MainMenuText = " ";
     public const string PluginGuid = "com.karped1em.townofhostedited";
     public const string PluginVersion = "2.5.1.36";
-    public const string PluginDisplayVersion = "2.5.1_11 dev 9";
+    public const string PluginDisplayVersion = "2.5.1_11 dev 10";
     public const int PluginCreate = 3;
     public const bool Canary = false;
 
