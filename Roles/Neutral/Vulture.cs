@@ -98,6 +98,8 @@ public static class Vulture
     }
     public static void AfterMeetingTasks()
     {
+        if (!IsEnable) return;
+
         foreach (var apc in playerIdList)
         {
             var player = Utils.GetPlayerById(apc);
