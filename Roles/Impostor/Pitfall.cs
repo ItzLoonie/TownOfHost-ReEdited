@@ -10,7 +10,7 @@ namespace TOHE.Roles.Impostor
 {
     public static class Pitfall
     {
-        private static readonly int Id = 4600;
+        private static readonly int Id = 8000;
 
         public static List<byte> playerIdList = new();
 
