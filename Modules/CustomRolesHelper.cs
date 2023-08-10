@@ -22,6 +22,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Vindicator => CustomRoles.Impostor,
                 CustomRoles.Snitch => CustomRoles.Crewmate,
                 CustomRoles.Masochist => CustomRoles.Crewmate,
+                CustomRoles.Cleanser => CustomRoles.Crewmate,
                 CustomRoles.ParityCop => CustomRoles.Crewmate,
                 CustomRoles.Marshall => CustomRoles.Crewmate,
                 CustomRoles.SabotageMaster => CustomRoles.Engineer,
@@ -158,7 +159,7 @@ internal static class CustomRolesHelper
                 CustomRoles.PlagueBearer => CustomRoles.Impostor,
                 CustomRoles.Pestilence => CustomRoles.Impostor,
                 CustomRoles.Doomsayer => CustomRoles.Crewmate,
-                CustomRoles.Godfather => CustomRoles.Impostor,
+                CustomRoles.Agitater => CustomRoles.Impostor,
                 CustomRoles.Pitfall => CustomRoles.Shapeshifter,
 
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
@@ -177,6 +178,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Observer => CustomRoles.CrewmateTOHE,
                 CustomRoles.DovesOfNeace => CustomRoles.EngineerTOHE,
                 CustomRoles.Judge => CustomRoles.CrewmateTOHE,
+                CustomRoles.Cleanser => CustomRoles.CrewmateTOHE,
                 CustomRoles.Mortician => CustomRoles.CrewmateTOHE,
                 CustomRoles.Mediumshiper => CustomRoles.CrewmateTOHE,
              //   CustomRoles.Glitch => CustomRoles.CrewmateTOHE,
@@ -281,6 +283,7 @@ internal static class CustomRolesHelper
             CustomRoles.Traitor => RoleTypes.Impostor,
             CustomRoles.PlagueBearer => RoleTypes.Impostor,
             CustomRoles.Pestilence => RoleTypes.Impostor,
+            CustomRoles.Agitater => RoleTypes.Impostor,
             CustomRoles.Spiritcaller => RoleTypes.Impostor,
             _ => RoleTypes.GuardianAngel
         };
@@ -360,6 +363,7 @@ internal static class CustomRolesHelper
             CustomRoles.Amnesiac or
             CustomRoles.Pestilence or
             CustomRoles.PlagueBearer or
+            CustomRoles.Agitater or
             CustomRoles.Innocent or
             CustomRoles.Vulture or
             CustomRoles.NWitch or
@@ -436,6 +440,7 @@ internal static class CustomRolesHelper
             CustomRoles.BloodKnight or
             CustomRoles.Spiritcaller or
             CustomRoles.PlagueBearer or
+            CustomRoles.Agitater or
             CustomRoles.Pestilence;
     }
     public static bool IsNonNK(this CustomRoles role) // ROLE ASSIGNING, NOT NEUTRAL TYPE
@@ -549,6 +554,7 @@ internal static class CustomRolesHelper
             CustomRoles.BloodKnight or
             CustomRoles.Spiritcaller or
             CustomRoles.PlagueBearer or
+            CustomRoles.Agitater or
             CustomRoles.Pestilence;
     }
     public static bool IsCK(this CustomRoles role)
@@ -670,6 +676,7 @@ internal static class CustomRolesHelper
             CustomRoles.God or
             CustomRoles.Innocent or
             CustomRoles.Pursuer or
+            CustomRoles.Agitater or
             CustomRoles.PlagueBearer or
             CustomRoles.Pestilence or
             CustomRoles.Pirate or
@@ -821,6 +828,7 @@ internal static class CustomRolesHelper
             CustomRoles.Succubus or
             CustomRoles.Spiritcaller or
             CustomRoles.Doomsayer or
+            CustomRoles.Agitater or
             CustomRoles.PlagueBearer or
             CustomRoles.Pestilence or
             CustomRoles.Pirate or
@@ -1432,6 +1440,7 @@ internal static class CustomRolesHelper
            CustomRoles.Wraith => CountTypes.Coven,
            CustomRoles.Pestilence => CountTypes.Pestilence,
            CustomRoles.PlagueBearer => CountTypes.PlagueBearer,
+           CustomRoles.Agitater => CountTypes.Agitater,
            CustomRoles.Parasite => CountTypes.Impostor,
     //       CustomRoles.Sorcerer => CountTypes.Coven,
            CustomRoles.NSerialKiller => CountTypes.NSerialKiller,
@@ -1498,4 +1507,5 @@ public enum CountTypes
     Arsonist,
     Shroud,
     Werewolf,
+    Agitater,
 }

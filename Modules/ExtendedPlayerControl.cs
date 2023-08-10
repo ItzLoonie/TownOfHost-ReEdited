@@ -26,6 +26,7 @@ static class ExtendedPlayerControl
         }
         else if (role >= CustomRoles.NotAssigned)   //500:NoSubRole 501~:SubRole
         {
+            if (!Cleanser.CleansedCanGetAddon.GetBool() && player.Is(CustomRoles.Cleansed)) return;
             Main.PlayerStates[player.PlayerId].SetSubRole(role);
         }
         if (AmongUsClient.Instance.AmHost)
@@ -508,6 +509,7 @@ static class ExtendedPlayerControl
             CustomRoles.Pestilence => pc.IsAlive(),
             CustomRoles.Pirate => pc.IsAlive(),
             CustomRoles.Seeker => pc.IsAlive(),
+            CustomRoles.Agitater => pc.IsAlive(),
 
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
@@ -703,6 +705,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.TimeThief:
                 TimeThief.SetKillCooldown(player.PlayerId); //タイムシーフはタイムシーフのキルクールに。
+                break;
+            case CustomRoles.Agitater:
+                Agitater.SetKillCooldown(player.PlayerId);
                 break;
         /*    case CustomRoles.Mare:
                 Mare.SetKillCooldown(player.PlayerId);

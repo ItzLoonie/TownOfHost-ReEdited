@@ -58,6 +58,8 @@ enum CustomRPC
     SetDrawPlayer,
     SetCurrentDrawTarget,
     SetGamerHealth,
+    RpcPassBomb,
+    SetCleanserCleanLimit,
     SetPelicanEtenNum,
     SwordsManKill,
     SetCounterfeiterSellLimit,
@@ -574,6 +576,12 @@ internal class RPCHandlerPatch
             case CustomRPC.SetSeekerPoints:
                 Seeker.ReceiveRPC(reader, setTarget: false);
                 break;
+            case CustomRPC.RpcPassBomb:
+                Agitater.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetCleanserCleanLimit:
+                Cleanser.ReceiveRPC(reader);
+                break;
         }
     }
 }
@@ -795,6 +803,12 @@ internal static class RPC
                 break;
             case CustomRoles.CopyCat:
                 CopyCat.Add(targetId);
+                break;
+            case CustomRoles.Cleanser:
+                Cleanser.Add(targetId);
+                break;
+            case CustomRoles.Agitater:
+                Agitater.Add(targetId);
                 break;
             case CustomRoles.QuickShooter:
                 QuickShooter.Add(targetId);
