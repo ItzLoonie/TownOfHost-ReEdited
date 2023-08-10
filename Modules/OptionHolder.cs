@@ -757,6 +757,7 @@ public static class Options
 
     public static OptionItem AutoPlayAgain;
     public static OptionItem AutoPlayAgainCountdown;
+    public static OptionItem ShowLobbyCode;
 
     public static OptionItem AllowSayCommand;
     public static OptionItem ApplyReminderMsg;
@@ -1425,6 +1426,7 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Phantom]);
         PhantomTasks = OverrideTasksData.Create(11413, TabGroup.NeutralRoles, CustomRoles.Phantom);
         Pirate.SetupCustomOption();
+        SoulCollector.SetupCustomOption();
         SetupRoleOptions(11500, TabGroup.NeutralRoles, CustomRoles.Terrorist);
         CanTerroristSuicideWin = BooleanOptionItem.Create(11510, "CanTerroristSuicideWin", false, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Terrorist]);
@@ -2028,6 +2030,7 @@ public static class Options
         AutoPlayAgainCountdown = IntegerOptionItem.Create(44425, "AutoPlayAgainCountdown", new(1, 20, 1), 10, TabGroup.SystemSettings, false)
             .SetParent(AutoPlayAgain)
             .SetValueFormat(OptionFormat.Seconds);
+        ShowLobbyCode = BooleanOptionItem.Create(44426, "ShowLobbyCode", true, TabGroup.SystemSettings, false);
 
         LowLoadMode = BooleanOptionItem.Create(19316, "LowLoadMode", true, TabGroup.SystemSettings, false)
             .SetHeader(true)

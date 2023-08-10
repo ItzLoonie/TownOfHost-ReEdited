@@ -190,6 +190,7 @@ internal class ChangeRoleSettings
             Witch.Init();
             HexMaster.Init();
             SabotageMaster.Init();
+            SoulCollector.Init();
             Executioner.Init();
             Lawyer.Init();
             Jackal.Init();
@@ -467,6 +468,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Reverie:
                         Reverie.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.SoulCollector:
+                        SoulCollector.Add(pc.PlayerId);
                         break;
                     case CustomRoles.SerialKiller:
                         SerialKiller.Add(pc.PlayerId);

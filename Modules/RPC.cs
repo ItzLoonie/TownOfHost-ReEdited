@@ -59,6 +59,7 @@ enum CustomRPC
     SetCurrentDrawTarget,
     SetGamerHealth,
     RpcPassBomb,
+    SetSoulCollectorLimit,
     SetCleanserCleanLimit,
     SetPelicanEtenNum,
     SwordsManKill,
@@ -582,6 +583,9 @@ internal class RPCHandlerPatch
             case CustomRPC.SetCleanserCleanLimit:
                 Cleanser.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetSoulCollectorLimit:
+                SoulCollector.ReceiveRPC(reader);
+                break;
         }
     }
 }
@@ -812,6 +816,9 @@ internal static class RPC
                 break;
             case CustomRoles.Cleanser:
                 Cleanser.Add(targetId);
+                break;
+            case CustomRoles.SoulCollector:
+                SoulCollector.Add(targetId);
                 break;
             case CustomRoles.Agitater:
                 Agitater.Add(targetId);

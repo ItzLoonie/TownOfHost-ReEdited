@@ -29,6 +29,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Mafia => Options.LegacyMafia.GetBool() ? CustomRoles.Shapeshifter : CustomRoles.Impostor,
                 CustomRoles.Terrorist => CustomRoles.Engineer,
                 CustomRoles.Executioner => CustomRoles.Crewmate,
+                CustomRoles.SoulCollector => CustomRoles.Crewmate,
                 CustomRoles.Juggernaut => CustomRoles.Impostor,
                 CustomRoles.Lawyer => CustomRoles.Crewmate,
                 CustomRoles.Vampire => CustomRoles.Impostor,
@@ -376,6 +377,7 @@ internal static class CustomRolesHelper
             CustomRoles.Workaholic or
         //    CustomRoles.Pelican or
             CustomRoles.Collector or
+            CustomRoles.SoulCollector or
             CustomRoles.Sunnyboy or
             CustomRoles.Arsonist or
             CustomRoles.Maverick or
@@ -467,6 +469,7 @@ internal static class CustomRolesHelper
             CustomRoles.Masochist or
             CustomRoles.Seeker or
             CustomRoles.Collector or
+            CustomRoles.SoulCollector or
             CustomRoles.Succubus or
             CustomRoles.Phantom or
             CustomRoles.Pirate or
@@ -511,6 +514,7 @@ internal static class CustomRolesHelper
     {
         return role is
             CustomRoles.Collector or
+            CustomRoles.SoulCollector or
             CustomRoles.Succubus or
             CustomRoles.Phantom or
             CustomRoles.Mario or
@@ -704,6 +708,7 @@ internal static class CustomRolesHelper
             CustomRoles.Infectious or
             CustomRoles.Workaholic or
             CustomRoles.Collector or
+            CustomRoles.SoulCollector or
             CustomRoles.Provocateur or
             CustomRoles.Sunnyboy or
             CustomRoles.Phantom or
@@ -824,6 +829,7 @@ internal static class CustomRolesHelper
             CustomRoles.Infectious or
             CustomRoles.Workaholic or
             CustomRoles.Collector or
+            CustomRoles.SoulCollector or
             CustomRoles.Provocateur or
             CustomRoles.Sunnyboy or
             CustomRoles.Phantom or
