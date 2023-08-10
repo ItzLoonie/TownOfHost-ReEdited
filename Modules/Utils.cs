@@ -436,6 +436,7 @@ public static class Utils
             case CustomRoles.Glitch:
             case CustomRoles.Pickpocket:
             case CustomRoles.Maverick:
+            case CustomRoles.Agitater:
             case CustomRoles.Jinx:
             case CustomRoles.Parasite:
             case CustomRoles.Crusader:
@@ -669,6 +670,9 @@ public static class Utils
                 break;
             case CustomRoles.Eraser:
                 ProgressText.Append(Eraser.GetProgressText(playerId));
+                break;
+            case CustomRoles.Cleanser:
+                ProgressText.Append(Cleanser.GetProgressText(playerId));
                 break;
             case CustomRoles.Hacker:
                 ProgressText.Append(Hacker.GetHackLimit(playerId));
@@ -2022,6 +2026,7 @@ public static class Utils
         Wraith.AfterMeetingTasks();
         Chameleon.AfterMeetingTasks();
         Eraser.AfterMeetingTasks();
+        Cleanser.AfterMeetingTasks();
         BountyHunter.AfterMeetingTasks();
         EvilTracker.AfterMeetingTasks();
         SerialKiller.AfterMeetingTasks();

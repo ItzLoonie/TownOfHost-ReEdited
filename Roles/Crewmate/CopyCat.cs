@@ -84,6 +84,10 @@ public static class CopyCat
                 //case CustomRoles.Bloodhound:
                 //    Bloodhound.BloodhoundTargets.Remove(player);
                 //    break;
+                case CustomRoles.Cleanser:
+                    Cleanser.CleanserTarget.Remove(pc.PlayerId);
+                    Cleanser.CleanserUses.Remove(pc.PlayerId);
+                    break;
                 case CustomRoles.ParityCop:
                     ParityCop.MaxCheckLimit.Remove(player);
                     ParityCop.RoundCheckLimit.Remove(player);
@@ -184,6 +188,7 @@ public static class CopyCat
         }
         if (CopyCrewVar.GetBool())
         {
+            if (role == CustomRoles.Eraser) role = CustomRoles.Cleanser;
             if (role == CustomRoles.Mafia || role == CustomRoles.Necromancer) role = CustomRoles.Retributionist;
             if (role == CustomRoles.Visionary) role = CustomRoles.Oracle;
             if (role == CustomRoles.Workaholic) role = CustomRoles.Snitch;
@@ -206,6 +211,10 @@ public static class CopyCat
                 //case CustomRoles.Bloodhound:
                 //    Bloodhound.BloodhoundTargets.Add(pc.PlayerId, new List<byte>());
                 //    break;
+                case CustomRoles.Cleanser:
+                    Cleanser.CleanserTarget.Add(pc.PlayerId, byte.MaxValue);
+                    Cleanser.CleanserUses.Add(pc.PlayerId, 0);
+                    break;
                 case CustomRoles.Deputy:
                     Deputy.SetKillCooldown(pc.PlayerId);
                     break;

@@ -424,17 +424,21 @@ class CheckMurderPatch
                     }
                     else killer.Notify(GetString("ShamanTargetAlreadySelected"));
                     return false;
+                case CustomRoles.Agitater:
+                    if (!Agitater.OnCheckMurder(killer, target))
+                        return false;
+                    break;
 
                 //==========船员职业==========//
                 case CustomRoles.Sheriff:
                     if (!Sheriff.OnCheckMurder(killer, target))
                         return false;
                     break;
-                                    case CustomRoles.CopyCat:
+                case CustomRoles.CopyCat:
                     if (!CopyCat.OnCheckMurder(killer, target))
                         return false;
                     break;
-
+                
                 case CustomRoles.SwordsMan:
                     if (!SwordsMan.OnCheckMurder(killer))
                         return false;
@@ -1720,6 +1724,7 @@ class ReportDeadBodyPatch
         Vampire.OnStartMeeting();
         Poisoner.OnStartMeeting();
         Pelican.OnReportDeadBody();
+        Agitater.OnReportDeadBody();
         Counterfeiter.OnReportDeadBody();
         QuickShooter.OnReportDeadBody();
         Eraser.OnReportDeadBody();
@@ -1852,6 +1857,37 @@ class FixedUpdatePatch
                     PlagueBearer.SetKillCooldownPestilence(player.PlayerId);
                     PlagueBearer.playerIdList.Remove(player.PlayerId);
                 }
+
+            if (GameStates.IsInTask && Agitater.IsEnable && Agitater.AgitaterHasBombed && Agitater.CurrentBombedPlayer == player.PlayerId)
+            {
+                if (!player.IsAlive())
+                {
+                    Agitater.ResetBomb();
+                }
+                else
+                {
+                    Vector2 puppeteerPos = player.transform.position;
+                    Dictionary<byte, float> targetDistance = new();
+                    float dis;
+                    foreach (var target in PlayerControl.AllPlayerControls)
+                    {
+                        if (!target.IsAlive()) continue;
+                        if (target.PlayerId != player.PlayerId && target.PlayerId != Agitater.LastBombedPlayer && !target.Data.IsDead)
+                        {
+                            dis = Vector2.Distance(puppeteerPos, target.transform.position);
+                            targetDistance.Add(target.PlayerId, dis);
+                        }
+                    }
+                    if (targetDistance.Count != 0)
+                    {
+                        var min = targetDistance.OrderBy(c => c.Value).FirstOrDefault();
+                        PlayerControl target = Utils.GetPlayerById(min.Key);
+                        var KillRange = GameOptionsData.KillDistances[Mathf.Clamp(GameOptionsManager.Instance.currentNormalGameOptions.KillDistance, 0, 2)];
+                        if (min.Value <= KillRange && player.CanMove && target.CanMove)
+                            Agitater.PassBomb(player, target);
+                    }
+                }
+            }
 
 
             #region 女巫处理

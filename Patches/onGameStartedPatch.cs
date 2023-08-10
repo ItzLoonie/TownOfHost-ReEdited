@@ -195,6 +195,7 @@ internal class ChangeRoleSettings
             Sidekick.Init();
             Sheriff.Init();
             CopyCat.Init();
+            Cleanser.Init();
             SwordsMan.Init();
             EvilTracker.Init();
             Snitch.Init();
@@ -278,6 +279,7 @@ internal class ChangeRoleSettings
             Chronomancer.Init();
             Seeker.Init();
             Pitfall.Init();
+            Agitater.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
@@ -532,6 +534,12 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.CopyCat:
                         CopyCat.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Cleanser:
+                        Cleanser.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Agitater:
+                        Agitater.Add(pc.PlayerId);
                         break;
                     case CustomRoles.QuickShooter:
                         QuickShooter.Add(pc.PlayerId);

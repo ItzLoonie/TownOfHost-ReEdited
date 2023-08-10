@@ -72,8 +72,7 @@ public static class ParityCop
     public static bool IsEnable => playerIdList.Count > 0;
     public static void OnReportDeadBody()
     {
-        RoundCheckLimit.Clear();
-        foreach (var pc in playerIdList) RoundCheckLimit.Add(pc, ParityCheckLimitPerMeeting.GetInt());
+        foreach (var pid in RoundCheckLimit.Keys) RoundCheckLimit[pid] = ParityCheckLimitPerMeeting.GetInt();
     }
 
     public static bool ParityCheckMsg(PlayerControl pc, string msg, bool isUI = false)
