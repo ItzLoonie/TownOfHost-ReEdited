@@ -258,16 +258,16 @@ public class GameStartRandomMap
             Polus      = 2
             Dleks      = 3
             TheAirship = 4*/
-            if (Options.AddedTheSkeld.GetBool()) RandomMaps.Add(0);
-            if (Options.AddedMiraHQ.GetBool()) RandomMaps.Add(1);
-            if (Options.AddedPolus.GetBool()) RandomMaps.Add(2);
-            // if (Options.AddedDleks.GetBool()) RandomMaps.Add(3);
-            if (Options.AddedTheAirship.GetBool()) RandomMaps.Add(4);
+            if ((byte)rand.Next(1, 100) <= Options.SkeldChance.GetInt()) RandomMaps.Add(0);
+            if ((byte)rand.Next(1, 100) <= Options.MiraChance.GetInt()) RandomMaps.Add(1);
+            if ((byte)rand.Next(1, 100) <= Options.PolusChance.GetInt()) RandomMaps.Add(2);
+            // if (Options.AddedDleks.GetInt()) RandomMaps.Add(3);
+            if ((byte)rand.Next(1, 100) <= Options.AirshipChance.GetInt()) RandomMaps.Add(4);
 
-            if (RandomMaps.Count <= 0) return true;
+            if (!RandomMaps.Any()) return true;
+
             var MapsId = RandomMaps[rand.Next(RandomMaps.Count)];
             Main.NormalOptions.MapId = MapsId;
-
         }
         return continueStart;
     }
