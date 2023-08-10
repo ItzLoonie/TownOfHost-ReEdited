@@ -1092,14 +1092,15 @@ class MurderPlayerPatch
                 killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Burst), GetString("BurstNotify")));
                 new LateTask(() =>
                 {
-
-                    if (!killer.inVent && !killer.Is(CustomRoles.Pestilence))
+                    if (!killer.inVent && !killer.Is(CustomRoles.Pestilence) && !GameStates.IsMeeting && !killer.Data.IsDead)
                     {
                         target.RpcMurderPlayerV3(killer);
                         killer.SetRealKiller(target);
                         Main.PlayerStates[killer.PlayerId].deathReason = PlayerState.DeathReason.Bombed;
                         RPC.PlaySoundRPC(killer.PlayerId, Sounds.TaskComplete);
                     }
+                    else
+                        killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Burst), GetString("BurstFailed")));
                 }, Options.BurstKillDelay.GetFloat(), "Burst Suicide");
             }   
         } 

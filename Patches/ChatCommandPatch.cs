@@ -645,6 +645,7 @@ internal class ChatCommands
             "和平之鸽" or "和平之鴿" or "和平的鸽子" or "和平" => GetString("DovesOfNeace"),
             "持槍" or "持械" or "手长" => GetString("Reach"),
             "monarch" => GetString("Monarch"),
+            "爆破者" or "爆破" or "爆裂" => GetString("Burst"),
             _ => text,
         };
     }
