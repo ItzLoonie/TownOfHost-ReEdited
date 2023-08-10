@@ -1,7 +1,7 @@
 using HarmonyLib;
 using Discord;
 using System;
-// Comes from Town of Us Rewritten, by Det
+// Originally from Town of Us Rewritten, by Det
 namespace TOHE.Patches
 {
     [HarmonyPatch(typeof(ActivityManager), nameof(ActivityManager.UpdateActivity))]
@@ -32,7 +32,7 @@ namespace TOHE.Patches
 
                         if (lobbycode != "" && region != "")
                         {
-                            details = $"Lobby Code : {lobbycode} ({region})";
+                            details = $"TOHE - {lobbycode} ({region})";
                         }
 
                         activity.Details = details;

@@ -228,6 +228,20 @@ internal class ChatCommands
                     canceled = true;
                     Utils.ShowHelp(PlayerControl.LocalPlayer.PlayerId);
                     break;
+
+    /*        case "/icons":
+                { 
+                    Utils.SendMessage(GetString("Command.icons"), PlayerControl.LocalPlayer.PlayerId);
+                    break;
+                }
+
+            case "/iconhelp":
+                { 
+                    Utils.SendMessage(GetString("Command.icons"));
+                    break;
+                }*/
+
+
             case "/d":
             case "/death":
                     canceled = true;
@@ -863,6 +877,11 @@ internal class ChatCommands
                     else Utils.SendMessage("Winner: " + string.Join(", ", Main.winnerNameList), player.PlayerId);
                     break;
 
+    /*        case "/icons":
+                { 
+                    Utils.SendMessage(GetString("Command.icons"), player.PlayerId);
+                    break;
+                } */
 
 
             case "/d":

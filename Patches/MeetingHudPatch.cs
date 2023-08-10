@@ -99,11 +99,11 @@ class CheckForEndVotingPatch
                             case CustomRoles.Cleanser:
                                 Cleanser.OnVote(pc, voteTarget);
                                 break;
-                            case CustomRoles.SoulCollector:
-                                SoulCollector.OnVote(pc, voteTarget);
-                                break;
                             case CustomRoles.Tracker:
                                 Tracker.OnVote(pc, voteTarget);
+                                break;
+                            case CustomRoles.SoulCollector:
+                                SoulCollector.OnVote(pc, voteTarget);
                                 break;
                             case CustomRoles.Godfather:
                                 if (pc == null || voteTarget == null) break;
@@ -479,6 +479,7 @@ class CheckForEndVotingPatch
     {
         Witch.OnCheckForEndVoting(deathReason, playerIds);
         HexMaster.OnCheckForEndVoting(deathReason, playerIds);
+        Occultist.OnCheckForEndVoting(deathReason, playerIds);
         Virus.OnCheckForEndVoting(deathReason, playerIds);
         foreach (var playerId in playerIds)
         {
@@ -1058,6 +1059,7 @@ class MeetingHudStartPatch
             //呪われている場合
             sb.Append(Witch.GetSpelledMark(target.PlayerId, true));
             sb.Append(HexMaster.GetHexedMark(target.PlayerId, true));
+            sb.Append(Occultist.GetCursedMark(target.PlayerId, true));
             if (Baker.IsPoisoned(target))
                 sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Famine), "θ"));
 

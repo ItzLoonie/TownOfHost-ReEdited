@@ -233,6 +233,9 @@ class CheckMurderPatch
                 case CustomRoles.HexMaster:
                     if (!HexMaster.OnCheckMurder(killer, target)) return false;
                     break;
+                case CustomRoles.Occultist:
+                    if (!Occultist.OnCheckMurder(killer, target)) return false;
+                    break;
                 case CustomRoles.Puppeteer:
                     if (target.Is(CustomRoles.Needy) || target.Is(CustomRoles.Lazy) || Medic.ProtectList.Contains(target.PlayerId)) return false;
                     Main.PuppeteerList[target.PlayerId] = killer.PlayerId;
@@ -302,6 +305,9 @@ class CheckMurderPatch
                     break;
                 case CustomRoles.Wraith:
                     if (!Wraith.OnCheckMurder(killer, target)) return false;
+                    break;
+                case CustomRoles.Shade:
+                    if (!Shade.OnCheckMurder(killer, target)) return false;
                     break;
                 case CustomRoles.Lurker:
                     Lurker.OnCheckMurder(killer);
@@ -663,7 +669,11 @@ class CheckMurderPatch
             return false;
         if (killer.Is(CustomRoles.Wraith) && target.Is(CustomRoles.Wraith))
             return false;
+        if (killer.Is(CustomRoles.Shade) && target.Is(CustomRoles.Shade))
+            return false;
         if (killer.Is(CustomRoles.HexMaster) && target.Is(CustomRoles.HexMaster))
+            return false;
+        if (killer.Is(CustomRoles.Occultist) && target.Is(CustomRoles.Occultist))
             return false;
         if (killer.Is(CustomRoles.BloodKnight) && target.Is(CustomRoles.BloodKnight))
             return false;
@@ -1076,7 +1086,7 @@ class MurderPlayerPatch
 
         if (target.Is(CustomRoles.Bait))
         {
-            if (killer.PlayerId != target.PlayerId || (target.GetRealKiller()?.GetCustomRole() is CustomRoles.Swooper or CustomRoles.Wraith) || !killer.Is(CustomRoles.Oblivious) || (killer.Is(CustomRoles.Oblivious) && !Options.ObliviousBaitImmune.GetBool()))
+            if (killer.PlayerId != target.PlayerId || (target.GetRealKiller()?.GetCustomRole() is CustomRoles.Swooper or CustomRoles.Shade or CustomRoles.Wraith) || !killer.Is(CustomRoles.Oblivious) || (killer.Is(CustomRoles.Oblivious) && !Options.ObliviousBaitImmune.GetBool()))
             {
                 killer.RPCPlayCustomSound("Congrats");
                 target.RPCPlayCustomSound("Congrats");
@@ -1097,7 +1107,7 @@ class MurderPlayerPatch
                 new LateTask(() =>
                 {
 
-                    if (!killer.inVent && !killer.Is(CustomRoles.Pestilence))
+                    if (!killer.inVent && !killer.Is(CustomRoles.Pestilence) && !killer.Data.IsDead)
                     {
                         target.RpcMurderPlayerV3(killer);
                         killer.SetRealKiller(target);
@@ -1826,10 +1836,10 @@ class ReportDeadBodyPatch
         Main.GodfatherTarget.Clear();
 
         Camouflager.OnReportDeadBody();
-        SoulCollector.OnReportDeadBody();
         Psychic.OnReportDeadBody();
         BountyHunter.OnReportDeadBody();
         SerialKiller.OnReportDeadBody();
+        SoulCollector.OnReportDeadBody();
         Sniper.OnReportDeadBody();
         Vampire.OnStartMeeting();
         Poisoner.OnStartMeeting();
@@ -2222,6 +2232,7 @@ class FixedUpdatePatch
                 BallLightning.OnFixedUpdate();
                 Swooper.OnFixedUpdate(player);
                 Wraith.OnFixedUpdate(player);
+                Shade.OnFixedUpdate(player);
                 Chameleon.OnFixedUpdate(player);
                 BloodKnight.OnFixedUpdate(player);
                 Banshee.OnFixedUpdate(player);
@@ -2907,6 +2918,7 @@ class EnterVentPatch
 
         Witch.OnEnterVent(pc);
         HexMaster.OnEnterVent(pc);
+        Occultist.OnEnterVent(pc);
 
         if (Options.MayorHasPortableButton.GetBool())
         {
@@ -2967,6 +2979,7 @@ class EnterVentPatch
 
         Swooper.OnEnterVent(pc, __instance);
         Wraith.OnEnterVent(pc, __instance);
+        Shade.OnEnterVent(pc, __instance);
         Addict.OnEnterVent(pc, __instance);
         Chameleon.OnEnterVent(pc, __instance);
         Lurker.OnEnterVent(pc);
@@ -3125,6 +3138,9 @@ class CoEnterVentPatch
 
         if (__instance.myPlayer.Is(CustomRoles.Wraith))
             Wraith.OnCoEnterVent(__instance, id);
+
+        if (__instance.myPlayer.Is(CustomRoles.Shade))
+            Shade.OnCoEnterVent(__instance, id);
 
         if (__instance.myPlayer.Is(CustomRoles.Chameleon))
             Chameleon.OnCoEnterVent(__instance, id);

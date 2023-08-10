@@ -102,6 +102,7 @@ class ExileControllerWrapUpPatch
 
         Witch.RemoveSpelledPlayer();
         HexMaster.RemoveHexedPlayer();
+        Occultist.RemoveCursedPlayer();
 
         foreach (var pc in Main.AllPlayerControls)
         {

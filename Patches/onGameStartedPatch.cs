@@ -189,8 +189,8 @@ internal class ChangeRoleSettings
         //    Mare.Init();
             Witch.Init();
             HexMaster.Init();
+            Occultist.Init();
             SabotageMaster.Init();
-            SoulCollector.Init();
             Executioner.Init();
             Lawyer.Init();
             Jackal.Init();
@@ -241,6 +241,8 @@ internal class ChangeRoleSettings
             Mediumshiper.Init();
             Swooper.Init();
             Wraith.Init();
+            Shade.Init();
+            SoulCollector.Init();
             BloodKnight.Init();
             Banshee.Init();
             Totocalcio.Init();
@@ -469,9 +471,6 @@ internal class SelectRolesPatch
                     case CustomRoles.Reverie:
                         Reverie.Add(pc.PlayerId);
                         break;
-                    case CustomRoles.SoulCollector:
-                        SoulCollector.Add(pc.PlayerId);
-                        break;
                     case CustomRoles.SerialKiller:
                         SerialKiller.Add(pc.PlayerId);
                         break;
@@ -480,6 +479,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.HexMaster:
                         HexMaster.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Occultist:
+                        Occultist.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Crusader:
                         Crusader.Add(pc.PlayerId);
@@ -700,6 +702,12 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Wraith:
                         Wraith.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Shade:
+                        Shade.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.SoulCollector:
+                        SoulCollector.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Chameleon:
                         Chameleon.Add(pc.PlayerId);

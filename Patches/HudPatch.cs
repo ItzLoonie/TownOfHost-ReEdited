@@ -125,6 +125,10 @@ class HudManagerPatch
                         __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         HexMaster.GetAbilityButtonText(__instance);
                         break;
+                    case CustomRoles.Occultist:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
+                        Occultist.GetAbilityButtonText(__instance);
+                        break;
                     case CustomRoles.Vampire:
                         __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         Vampire.SetKillButtonText();
@@ -300,6 +304,11 @@ class HudManagerPatch
                         __instance.KillButton.OverrideText(GetString("KillButtonText"));
                         __instance.ImpostorVentButton.OverrideText(GetString(Wraith.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "WraithRevertVentButtonText" : "WraithVentButtonText"));
                         break;
+                    case CustomRoles.Shade:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
+                        __instance.KillButton.OverrideText(GetString("KillButtonText"));
+                        __instance.ImpostorVentButton.OverrideText(GetString(Shade.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "WraithRevertVentButtonText" : "WraithVentButtonText"));
+                        break;
                     case CustomRoles.Chameleon:
                         __instance.AbilityButton.OverrideText(GetString(Chameleon.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "ChameleonRevertDisguise" : "ChameleonDisguise"));
                         __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
@@ -431,6 +440,10 @@ class HudManagerPatch
                 {
                     LowerInfoText.text = HexMaster.GetHexModeText(player, true);
                 }
+                else if (player.Is(CustomRoles.Occultist))
+                {
+                    LowerInfoText.text = Occultist.GetHexModeText(player, true);
+                }
                 else if (player.Is(CustomRoles.FireWorks))
                 {
                     var stateText = FireWorks.GetStateText(player);
@@ -443,6 +456,10 @@ class HudManagerPatch
                 else if (player.Is(CustomRoles.Wraith))
                 {
                     LowerInfoText.text = Wraith.GetHudText(player);
+                }
+                else if (player.Is(CustomRoles.Shade))
+                {
+                    LowerInfoText.text = Shade.GetHudText(player);
                 }
                 else if (player.Is(CustomRoles.Chameleon))
                 {
@@ -653,7 +670,7 @@ class VentButtonDoClickPatch
     {
         var pc = PlayerControl.LocalPlayer;
         {
-            if (!pc.Is(CustomRoles.Swooper) || !pc.Is(CustomRoles.Wraith) || !pc.Is(CustomRoles.Chameleon) || pc.inVent || __instance.currentTarget == null || !pc.CanMove || !__instance.isActiveAndEnabled) return true;
+            if (!pc.Is(CustomRoles.Swooper) || !pc.Is(CustomRoles.Wraith) || !pc.Is(CustomRoles.Shade) || !pc.Is(CustomRoles.Chameleon) || pc.inVent || __instance.currentTarget == null || !pc.CanMove || !__instance.isActiveAndEnabled) return true;
             pc?.MyPhysics?.RpcEnterVent(__instance.currentTarget.Id);
             return false;
         }
