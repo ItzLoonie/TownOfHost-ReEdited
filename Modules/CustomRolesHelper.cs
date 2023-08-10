@@ -236,6 +236,7 @@ internal static class CustomRolesHelper
             CustomRoles.Shaman => RoleTypes.Impostor,
             CustomRoles.Admirer => RoleTypes.Impostor,
             CustomRoles.Refugee => RoleTypes.Impostor,
+    //        CustomRoles.Minion => RoleTypes.Impostor,
             CustomRoles.Amnesiac => RoleTypes.Impostor,
             CustomRoles.Monarch => RoleTypes.Impostor,
             CustomRoles.Deputy => RoleTypes.Impostor,
@@ -381,12 +382,12 @@ internal static class CustomRolesHelper
             CustomRoles.CursedSoul or
             CustomRoles.Phantom or
             CustomRoles.DarkHide or
-            CustomRoles.Ritualist or
+       //     CustomRoles.Ritualist or
             CustomRoles.Doomsayer or
             CustomRoles.Pirate or
             CustomRoles.Seeker or
        //     CustomRoles.Juggernaut or
-            CustomRoles.Jinx or
+      //      CustomRoles.Jinx or
        //     CustomRoles.Poisoner or
        //     CustomRoles.HexMaster or
             CustomRoles.Totocalcio;
@@ -402,6 +403,7 @@ internal static class CustomRolesHelper
             CustomRoles.Shroud or
             CustomRoles.Pelican or
             CustomRoles.Refugee or
+    //        CustomRoles.Minion or
             CustomRoles.Parasite or
             CustomRoles.NSerialKiller or
             CustomRoles.Werewolf or
@@ -531,6 +533,7 @@ internal static class CustomRolesHelper
             CustomRoles.CovenLeader or
             CustomRoles.Conjuror or
             CustomRoles.Refugee or
+    //        CustomRoles.Minion or
             CustomRoles.Infectious or
             CustomRoles.Wraith or
             CustomRoles.Crewpostor or
@@ -668,6 +671,7 @@ internal static class CustomRolesHelper
             CustomRoles.Juggernaut or
             CustomRoles.CovenLeader or
             CustomRoles.Refugee or
+    //        CustomRoles.Minion or
             CustomRoles.Jinx or
             CustomRoles.Lawyer or
             CustomRoles.Arsonist or
@@ -773,6 +777,7 @@ internal static class CustomRolesHelper
             CustomRoles.CursedSoul or
             CustomRoles.Admirer or
             CustomRoles.Refugee or
+    //        CustomRoles.Minion or
             CustomRoles.Amnesiac or
             CustomRoles.Monarch or
             CustomRoles.Parasite or
@@ -1455,6 +1460,7 @@ internal static class CustomRolesHelper
            CustomRoles.Traitor => CountTypes.Traitor,
            CustomRoles.Medusa => CountTypes.Coven,
            CustomRoles.Refugee => CountTypes.Impostor,
+    //       CustomRoles.Minion => CountTypes.Coven,
            CustomRoles.Glitch => CountTypes.Glitch,
           // CustomRoles.Phantom => CountTypes.OutOfGame,
         //   CustomRoles.CursedSoul => CountTypes.OutOfGame, // if they count as OutOfGame, it prevents them from winning lmao
