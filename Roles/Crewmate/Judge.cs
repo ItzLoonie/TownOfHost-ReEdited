@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using Hazel;
-using Rewired.UI.ControlMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,7 +55,7 @@ public static class Judge
         playerIdList.Add(playerId);
         TrialLimit.Add(playerId, TrialLimitPerMeeting.GetInt());
     }
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
     public static void OnReportDeadBody()
     {
         TrialLimit.Clear();

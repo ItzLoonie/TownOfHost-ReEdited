@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TOHE.Roles.Crewmate;
 using static TOHE.Options;
 
@@ -28,7 +29,7 @@ public static class Hangman
     {
         playerIdList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
     public static void ApplyGameOptions()
     {
         AURoleOptions.ShapeshifterCooldown = ShapeshiftCooldown.GetFloat();

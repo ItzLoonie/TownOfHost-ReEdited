@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using AmongUs.GameOptions;
-using Epic.OnlineServices;
-using Il2CppSystem.Collections.Generic;
-using TOHE.Roles.AddOns.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
@@ -72,7 +65,7 @@ namespace TOHE.Roles.Crewmate
 
         public static void SetupCustomOption()
         {
-            Options.SetupRoleOptions(Id, TabGroup.CrewmateRoles, CustomRoles.Farseer);
+            SetupRoleOptions(Id, TabGroup.CrewmateRoles, CustomRoles.Farseer);
             FarseerCooldown = FloatOptionItem.Create(Id + 10, "FarseerRevealCooldown", new(0f, 990f, 2.5f), 25f, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Farseer])
                 .SetValueFormat(OptionFormat.Seconds);
             FarseerRevealTime = FloatOptionItem.Create(Id + 11, "FarseerRevealTime", new(0f, 60f, 1f), 10f, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Farseer])
@@ -82,12 +75,10 @@ namespace TOHE.Roles.Crewmate
         }
         public static void Add(byte playerId)
         {
-
-        if (!AmongUsClient.Instance.AmHost) return;
-        if (!Main.ResetCamPlayerList.Contains(playerId))
-            Main.ResetCamPlayerList.Add(playerId);
+            if (!AmongUsClient.Instance.AmHost) return;
+            if (!Main.ResetCamPlayerList.Contains(playerId))
+                Main.ResetCamPlayerList.Add(playerId);
         }
-
 
         public static void SetCooldown(byte id) => Main.AllPlayerKillCooldown[id] = FarseerCooldown.GetFloat();
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using System.Collections.Generic;
 using static TOHE.Options;
 using static TOHE.Translator;
 
@@ -41,29 +42,31 @@ public static class CopyCat
         playerIdList.Add(playerId);
         CurrentKillCooldown.Add(playerId, KillCooldown.GetFloat());
     //    MiscopyLimit.TryAdd(playerId, MiscopyLimitOpt.GetInt());
+
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
 
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
 
-  /*  private static void SendRPC(byte playerId)
-    {
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetCopyCatMiscopyLimit, SendOption.Reliable, -1);
-        writer.Write(playerId);
-        writer.Write(MiscopyLimit[playerId]);
-        AmongUsClient.Instance.FinishRpcImmediately(writer);
-    }
-    public static void ReceiveRPC(MessageReader reader)
-    {
-        byte CopyCatId = reader.ReadByte();
-        int Limit = reader.ReadInt32();
-        if (MiscopyLimit.ContainsKey(CopyCatId))
-            MiscopyLimit[CopyCatId] = Limit;
-        else
-            MiscopyLimit.Add(CopyCatId, MiscopyLimitOpt.GetInt());
-    } */
+
+    /*  private static void SendRPC(byte playerId)
+      {
+          MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetCopyCatMiscopyLimit, SendOption.Reliable, -1);
+          writer.Write(playerId);
+          writer.Write(MiscopyLimit[playerId]);
+          AmongUsClient.Instance.FinishRpcImmediately(writer);
+      }
+      public static void ReceiveRPC(MessageReader reader)
+      {
+          byte CopyCatId = reader.ReadByte();
+          int Limit = reader.ReadInt32();
+          if (MiscopyLimit.ContainsKey(CopyCatId))
+              MiscopyLimit[CopyCatId] = Limit;
+          else
+              MiscopyLimit.Add(CopyCatId, MiscopyLimitOpt.GetInt());
+      } */
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = Utils.GetPlayerById(id).IsAlive() ? CurrentKillCooldown[id] : 0f;
 
     public static void AfterMeetingTasks()

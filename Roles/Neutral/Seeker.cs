@@ -23,8 +23,6 @@ public static class Seeker
         TagCooldownOpt = FloatOptionItem.Create(Id + 11, "SeekerTagCooldown", new(0f, 180f, 2.5f), 12.5f, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Seeker])
             .SetValueFormat(OptionFormat.Seconds);
     }
-    public static bool IsEnable => playerIdList.Count > 0;
-
     public static void Init()
     {
         playerIdList = new();
@@ -51,6 +49,7 @@ public static class Seeker
             Main.ResetCamPlayerList.Add(playerId);
     }
 
+    public static bool IsEnable => playerIdList.Any();
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = TagCooldownOpt.GetFloat();
 
     private static void SendRPC(byte seekerId, byte targetId = 0xff, bool setTarget = true)

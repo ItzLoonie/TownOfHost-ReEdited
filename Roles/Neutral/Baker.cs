@@ -3,6 +3,7 @@ using Hazel;
 
 using static TOHE.Translator;
 using static TOHE.Options;
+using System.Linq;
 
 namespace TOHE.Roles.Neutral
 {
@@ -12,33 +13,24 @@ namespace TOHE.Roles.Neutral
         public static List<byte> playerIdList = new();
         public static List<byte> NplayerIdList = new();
 
-    //    public static Dictionary<byte, PlayerControl> PoisonPlayer = new();
-     //   public static OptionItem BakerChangeChances;
-     public static OverrideTasksData BakerTasks;
+        public static OverrideTasksData BakerTasks;
 
         public static void SetupCustomOption()
         {
             SetupRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.Baker);
             BakerTasks = OverrideTasksData.Create(Id + 12, TabGroup.NeutralRoles, CustomRoles.Baker);
-
-          /*  BakerChangeChances = IntegerOptionItem.Create(Id + 10, "BakerChangeChances", new(0, 50, 1), 10, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Baker])
-                .SetValueFormat(OptionFormat.Percent); */
         }
         public static void Init()
         {
             playerIdList = new();
             NplayerIdList = new();
-     //       PoisonPlayer = new();
         }
         public static void Add(byte playerId)
         {
             playerIdList.Add(playerId);
-       //     PoisonPlayer.Add(playerId, null);
         }
-        public static bool IsEnable()
-        {
-            return playerIdList.Count > 0;
-        }
+        public static bool IsEnable => playerIdList.Any();
+
         public static bool IsNEnable()
         {
             return NplayerIdList.Count > 0;
@@ -73,17 +65,6 @@ namespace TOHE.Roles.Neutral
             } */
         }
 
-    /*    public static bool HavePoisonedPlayer()
-        {
-            foreach (var BakerId in NplayerIdList)
-            {
-                if (PoisonPlayer[BakerId] != null)
-                {
-                    return true;
-                }
-            }
-            return false;
-        } */
         public static bool IsPoisoned(PlayerControl target)
         {
             foreach (var BakerId in NplayerIdList)

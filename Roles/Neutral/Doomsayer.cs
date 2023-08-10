@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Hazel;
 using UnityEngine;
 
@@ -74,7 +75,7 @@ public static class Doomsayer
         playerIdList.Add(playerId);
         GuessingToWin.TryAdd(playerId, GuessesCount);
     }
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
     public static void SendRPC(PlayerControl player)
     {
         MessageWriter writer;

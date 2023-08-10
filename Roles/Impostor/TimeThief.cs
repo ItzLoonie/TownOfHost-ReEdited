@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TOHE.Roles.Impostor;
 
@@ -6,6 +7,7 @@ public static class TimeThief
 {
     private static readonly int Id = 3300;
     private static List<byte> playerIdList = new();
+
     public static OptionItem KillCooldown;
     public static OptionItem DecreaseMeetingTime;
     public static OptionItem LowerLimitVotingTime;
@@ -29,7 +31,8 @@ public static class TimeThief
     {
         playerIdList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
+
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
     private static int StolenTime(byte id)
     {

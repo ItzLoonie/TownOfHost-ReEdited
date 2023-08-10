@@ -134,6 +134,8 @@ namespace TOHE.Roles.Crewmate
             bribedKiller.Add(playerId, new List<byte>());
         }
 
+        public static bool IsEnable => playerIdList.Any();
+
         public static void OnTaskFinished(PlayerControl player)
         {
             if (!player.IsAlive() || !player.Is(CustomRoles.Merchant) || (addonsSold[player.PlayerId] >= OptionMaxSell.GetInt()))

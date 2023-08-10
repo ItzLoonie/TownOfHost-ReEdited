@@ -1,15 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AmongUs.GameOptions;
-using TOHE.Modules;
 using TOHE.Roles.Neutral;
 using static TOHE.Options;
 using static TOHE.Translator;
 using static TOHE.Utils;
-using static UnityEngine.GraphicsBuffer;
 
 namespace TOHE.Roles.Impostor
 {
@@ -54,6 +49,8 @@ namespace TOHE.Roles.Impostor
             playerIdList.Add(playerId);
             PlayersDazzled.TryAdd(playerId, new List<byte>());
         }
+
+        public static bool IsEnable => playerIdList.Any();
 
         public static void ApplyGameOptions()
         {

@@ -62,7 +62,7 @@ namespace TOHE.Roles.Impostor
             playerIdList.Add(playerId);
             DefaultSpeed = Main.AllPlayerSpeed[playerId];
         }
-        public static bool IsEnable => playerIdList.Count > 0;
+        public static bool IsEnable => playerIdList.Any();
 
         public static void OnShapeshift(PlayerControl shapeshifter)
         {

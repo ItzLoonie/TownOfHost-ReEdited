@@ -1,9 +1,5 @@
-using Hazel;
-using MS.Internal.Xml.XPath;
 using System.Collections.Generic;
 using System.Linq;
-using TOHE.Modules;
-using UnityEngine;
 using static TOHE.Options;
 
 namespace TOHE.Roles.Impostor;
@@ -38,10 +34,10 @@ public static class Chronomancer
         firstKill.Add(playerId, -1);
         ChargedTime.Add(playerId, 0);
         lastCooldownStart.Add(playerId, now);
-
     }
 
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
+
     public static void SetKillCooldown(byte id)
     {
         long now = Utils.GetTimeStamp();

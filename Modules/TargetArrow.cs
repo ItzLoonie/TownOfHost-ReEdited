@@ -108,7 +108,7 @@ static class TargetArrow
         var seerIsDead = !seer.IsAlive();
 
         var arrowList = new List<ArrowInfo>(TargetArrows.Keys.Where(a => a.From == seer.PlayerId));
-        if (arrowList.Count == 0) return;
+        if (!arrowList.Any()) return;
 
         var update = false;
         foreach (var arrowInfo in arrowList)

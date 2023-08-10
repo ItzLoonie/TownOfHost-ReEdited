@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using static TOHE.Options;
 using static TOHE.Translator;
 
@@ -35,7 +36,7 @@ public static class Divinator
         playerIdList.Add(playerId);
         CheckLimit.TryAdd(playerId, CheckLimitOpt.GetInt());
     }
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
     public static void OnVote(PlayerControl player, PlayerControl target)
     {
         if (player == null || target == null) return;

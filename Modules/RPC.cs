@@ -789,6 +789,9 @@ internal static class RPC
             case CustomRoles.HexMaster:
                 HexMaster.Add(targetId);
                 break;
+            case CustomRoles.Camouflager:
+                Camouflager.Add(targetId);
+                break;
             case CustomRoles.Jackal:
                 Jackal.Add(targetId);
                 break;
@@ -803,6 +806,9 @@ internal static class RPC
                 break;
             case CustomRoles.CopyCat:
                 CopyCat.Add(targetId);
+                break;
+            case CustomRoles.Pickpocket:
+                Pickpocket.Add(targetId);
                 break;
             case CustomRoles.Cleanser:
                 Cleanser.Add(targetId);
@@ -825,6 +831,12 @@ internal static class RPC
             case CustomRoles.Chronomancer:
                 Chronomancer.Add(targetId);
                 break;
+            case CustomRoles.Medusa:
+                Medusa.Add(targetId);
+                break;
+            case CustomRoles.Necromancer:
+                Necromancer.Add(targetId);
+                break;
             case CustomRoles.Marshall:
                 Marshall.Add(targetId);
                 break;
@@ -845,6 +857,9 @@ internal static class RPC
                 break;
             case CustomRoles.Pelican:
                 Pelican.Add(targetId);
+                break;
+            case CustomRoles.Glitch:
+                Glitch.Add(targetId);
                 break;
             case CustomRoles.Counterfeiter:
                 Counterfeiter.Add(targetId);

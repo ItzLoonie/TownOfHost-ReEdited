@@ -87,7 +87,7 @@ public static class Executioner
             Logger.Info($"{Utils.GetPlayerById(playerId)?.GetNameWithRole()}:{SelectedTarget.GetNameWithRole()}", "Executioner");
         }
     }
-    public static bool IsEnable() => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
     public static void SendRPC(byte executionerId, byte targetId = 0x73, string Progress = "")
     {
         MessageWriter writer;

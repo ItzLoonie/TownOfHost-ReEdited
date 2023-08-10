@@ -1,5 +1,6 @@
 ﻿using Hazel;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static TOHE.Options;
 
@@ -26,7 +27,7 @@ public static class Mortician
     {
         playerIdList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(byte playerId, bool add, Vector3 loc = new())
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetMorticianArrow, SendOption.Reliable, -1);

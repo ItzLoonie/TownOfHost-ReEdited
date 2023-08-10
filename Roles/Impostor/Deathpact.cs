@@ -57,6 +57,8 @@ namespace TOHE.Roles.Impostor
             ActiveDeathpacts = new();
         }
 
+        public static bool IsEnable => playerIdList.Any();
+
         public static void Add(byte playerId)
         {
             playerIdList.Add(playerId);
@@ -69,7 +71,6 @@ namespace TOHE.Roles.Impostor
             AURoleOptions.ShapeshifterCooldown = ShapeshiftCooldown.GetFloat();
             AURoleOptions.ShapeshifterDuration = 1f;
         }
-        public static bool IsEnable => playerIdList.Count > 0;
 
         public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
 
@@ -144,7 +145,7 @@ namespace TOHE.Roles.Impostor
                 }
 
                 ClearDeathpact(player.PlayerId);
-                player.Notify(Translator.GetString("DeathpactExecuted"));
+                player.Notify(GetString("DeathpactExecuted"));
             }
         }
 
@@ -153,7 +154,7 @@ namespace TOHE.Roles.Impostor
             if (PlayersInDeathpact[deathpact.PlayerId].Any(a => a.Data.Disconnected || a.Data.IsDead))
             {
                 ClearDeathpact(deathpact.PlayerId);
-                deathpact.Notify(Translator.GetString("DeathpactAverted"));
+                deathpact.Notify(GetString("DeathpactAverted"));
                 return true;
             }
 
@@ -172,7 +173,7 @@ namespace TOHE.Roles.Impostor
             if (cancelDeathpact)
             {
                 ClearDeathpact(deathpact.PlayerId);
-                deathpact.Notify(Translator.GetString("DeathpactAverted"));
+                deathpact.Notify(GetString("DeathpactAverted"));
             }
 
             return cancelDeathpact;
@@ -202,7 +203,7 @@ namespace TOHE.Roles.Impostor
                 foreach (var otherPlayerInPact in deathpact.Value.Where(a => a.PlayerId != seer.PlayerId))
                 {
                     var arrow = TargetArrow.GetArrows(seer, otherPlayerInPact.PlayerId);
-                    arrows += Utils.ColorString(Utils.GetRoleColor(CustomRoles.Crewmate), arrow); 
+                    arrows += ColorString(GetRoleColor(CustomRoles.Crewmate), arrow); 
                 }
             }
 
@@ -212,7 +213,7 @@ namespace TOHE.Roles.Impostor
         public static string GetDeathpactMark(PlayerControl seer, PlayerControl target)
         {
             if (!seer.Is(CustomRoles.Deathpact) || !Deathpact.IsInDeathpact(seer.PlayerId, target)) return string.Empty;
-            return Utils.ColorString(Palette.ImpostorRed, "◀");
+            return ColorString(Palette.ImpostorRed, "◀");
         }
 
         public static bool IsInActiveDeathpact(PlayerControl player)

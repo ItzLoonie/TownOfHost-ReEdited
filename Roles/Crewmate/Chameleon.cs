@@ -39,7 +39,7 @@ public static class Chameleon
     {
         playerIdList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(PlayerControl pc)
     {
         if (pc.AmOwner) return;

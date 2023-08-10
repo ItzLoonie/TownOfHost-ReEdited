@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TOHE.Roles.Crewmate;
 
@@ -37,7 +38,7 @@ public static class SabotageMaster
     {
         playerIdList.Add(playerId);
     }
-    public static bool IsEnable() => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
     public static void RepairSystem(ShipStatus __instance, SystemTypes systemType, byte amount)
     {
         switch (systemType)

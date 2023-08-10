@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using AmongUs.GameOptions;
 using HarmonyLib;
 using Hazel;
@@ -51,6 +52,8 @@ namespace TOHE.Roles.Neutral
                 Main.ResetCamPlayerList.Add(playerId);
         }
 
+        public static bool IsEnable => playerIdList.Any();
+
         private static void SendRPC(byte playerId, byte targetId)
         {
             MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetRitualist, SendOption.Reliable, -1);
@@ -74,8 +77,6 @@ namespace TOHE.Roles.Neutral
                     RitualTarget.Add(playerId, new());
             }
         }
-
-        public static bool IsEnable => playerIdList.Count > 0;
         public static void SetKillCooldown(byte id)
         {
             Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();

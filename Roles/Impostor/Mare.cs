@@ -1,5 +1,5 @@
+using System.Linq;
 using System.Collections.Generic;
-
 using static TOHE.Options;
 
 namespace TOHE.Roles.Impostor;
@@ -33,7 +33,7 @@ public static class Mare
     {
         playerIdList.Add(mare);
     }
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
     public static float GetKillCooldown => Utils.IsActive(SystemTypes.Electrical) ? KillCooldownInLightsOut.GetFloat() : DefaultKillCooldown;
     public static void SetKillCooldown(byte id)
     {

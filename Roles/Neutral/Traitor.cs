@@ -1,5 +1,4 @@
 using AmongUs.GameOptions;
-using HarmonyLib;
 using System.Collections.Generic;
 using System.Linq;
 using static TOHE.Options;
@@ -38,12 +37,11 @@ public static class Traitor
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
+    public static bool IsEnable => playerIdList.Any();
     public static void SetHudActive(HudManager __instance, bool isActive)
     {
         __instance.SabotageButton.ToggleVisible(isActive && CanUseSabotage.GetBool());
     }
-
-    public static bool IsEnable => playerIdList.Count > 0;
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
     public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(HasImpostorVision.GetBool());
     public static void CanUseVent(PlayerControl player)

@@ -43,7 +43,6 @@ public static class Snitch
     public static void Init()
     {
         playerIdList.Clear();
-        IsEnable = false;
 
         EnableTargetArrow = OptionEnableTargetArrow.GetBool();
         CanGetColoredArrow = OptionCanGetColoredArrow.GetBool();
@@ -61,13 +60,12 @@ public static class Snitch
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
-        IsEnable = true;
 
         IsExposed[playerId] = false;
         IsComplete[playerId] = false;
     }
 
-    public static bool IsEnable;
+    public static bool IsEnable => playerIdList.Any();
     public static bool IsThisRole(byte playerId) => playerIdList.Contains(playerId);
     private static bool GetExpose(PlayerControl pc)
     {

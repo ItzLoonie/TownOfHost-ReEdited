@@ -1,8 +1,12 @@
-﻿namespace TOHE.Roles.Impostor
+﻿using System.Linq;
+using System.Collections.Generic;
+
+namespace TOHE.Roles.Impostor
 {
     public static class Camouflager
     {
         private static readonly int Id = 2500;
+        public static List<byte> playerIdList = new();
 
         private static OptionItem CamouflageCooldown;
         private static OptionItem CamouflageDuration;
@@ -17,14 +21,21 @@
             CamouflageDuration = FloatOptionItem.Create(Id + 4, "CamouflageDuration", new(1f, 999f, 1f), 10f, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Camouflager])
                 .SetValueFormat(OptionFormat.Seconds);
         }
+        public static void Init()
+        {
+            playerIdList = new();
+            IsActive = false;
+        }
+        public static void Add(byte playerId)
+        {
+            playerIdList.Add(playerId);
+        }
+        public static bool IsEnable => playerIdList.Any();
+
         public static void ApplyGameOptions()
         {
             AURoleOptions.ShapeshifterCooldown = CamouflageCooldown.GetFloat();
             AURoleOptions.ShapeshifterDuration = CamouflageDuration.GetFloat();
-        }
-        public static void Init()
-        {
-            IsActive = false;
         }
         public static void OnShapeshift()
         {
