@@ -229,6 +229,9 @@ internal class ChangeRoleSettings
             Juggernaut.Init();
             Hacker.Init();
             Psychic.Init();
+            Glitch.Init();
+            Deputy.Init();
+            Pickpocket.Init();
             Hangman.Init();
             Judge.Init();
             Councillor.Init();
@@ -240,12 +243,16 @@ internal class ChangeRoleSettings
             Banshee.Init();
             Totocalcio.Init();
             Succubus.Init();
+            Crusader.Init();
             CursedSoul.Init();
             Admirer.Init();
+            Medusa.Init();
+            Marshall.Init();
             Amnesiac.Init();
             Infectious.Init();
             Monarch.Init();
             Virus.Init();
+            CovenLeader.Init();
             Bloodhound.Init();
             Tracker.Init();
             Merchant.Init();
@@ -483,6 +490,9 @@ internal class SelectRolesPatch
                     case CustomRoles.TimeThief:
                         TimeThief.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.Camouflager:
+                        Camouflager.Add(pc.PlayerId);
+                        break;
                     case CustomRoles.Sniper:
                         Sniper.Add(pc.PlayerId);
                         break;
@@ -494,6 +504,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.SwordsMan:
                         SwordsMan.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Pickpocket:
+                        Pickpocket.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Arsonist:
                         foreach (var ar in Main.AllPlayerControls)
@@ -514,6 +527,12 @@ internal class SelectRolesPatch
                     case CustomRoles.Executioner:
                         Executioner.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.Medusa:
+                        Medusa.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Necromancer:
+                        Necromancer.Add(pc.PlayerId);
+                        break;
                     case CustomRoles.Lawyer:
                         Lawyer.Add(pc.PlayerId);
                         break;
@@ -531,6 +550,12 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Sheriff:
                         Sheriff.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Marshall:
+                        Marshall.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Glitch:
+                        Glitch.Add(pc.PlayerId);
                         break;
                     case CustomRoles.CopyCat:
                         CopyCat.Add(pc.PlayerId);
@@ -843,7 +868,7 @@ internal class SelectRolesPatch
             }
 
             // ResetCamが必要なプレイヤーのリストにクラス化が済んでいない役職のプレイヤーを追加
-            Main.ResetCamPlayerList.AddRange(Main.AllPlayerControls.Where(p => p.GetCustomRole() is CustomRoles.Arsonist or CustomRoles.NWitch or CustomRoles.Conjuror or CustomRoles.Necromancer or CustomRoles.Revolutionist or CustomRoles.Farseer or CustomRoles.Sidekick or CustomRoles.Shaman or CustomRoles.KB_Normal).Select(p => p.PlayerId));
+            Main.ResetCamPlayerList.AddRange(Main.AllPlayerControls.Where(p => p.GetCustomRole() is CustomRoles.Arsonist or CustomRoles.NWitch or CustomRoles.Conjuror or CustomRoles.Revolutionist or CustomRoles.Farseer or CustomRoles.Sidekick or CustomRoles.Shaman or CustomRoles.KB_Normal).Select(p => p.PlayerId));
             Utils.CountAlivePlayers(true);
             Utils.SyncAllSettings();
             SetColorPatch.IsAntiGlitchDisabled = false;

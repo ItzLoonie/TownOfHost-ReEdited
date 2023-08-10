@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using HarmonyLib;
 using Hazel;
 using UnityEngine;
@@ -41,6 +42,7 @@ namespace TOHE.Roles.Impostor
             var pc = Utils.GetPlayerById(playerId);
             pc.AddDoubleTrigger();
         }
+        public static bool IsEnable => playerIdList.Any();
 
         private static void SendRPC(byte playerId, byte targetId)
         {
@@ -66,10 +68,6 @@ namespace TOHE.Roles.Impostor
             }
         }
 
-        public static bool IsEnable()
-        {
-            return playerIdList.Count > 0;
-        }
         public static void SetKillCooldown(byte id)
         {
             Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();

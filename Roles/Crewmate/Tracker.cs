@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using static TOHE.Options;
 using static TOHE.Translator;
+using System.Linq;
 
 namespace TOHE.Roles.Crewmate
 {
@@ -46,6 +47,7 @@ namespace TOHE.Roles.Crewmate
             TrackLimit.TryAdd(playerId, TrackLimitOpt.GetInt());
             TrackerTarget.Add(playerId, byte.MaxValue);
         }
+        public static bool IsEnable => playerIdList.Any();
         public static void SendRPC(byte trackerId = byte.MaxValue, byte targetId = byte.MaxValue)
         {
             MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetTrackerTarget, SendOption.Reliable, -1);
@@ -67,8 +69,6 @@ namespace TOHE.Roles.Crewmate
             TargetArrow.Add(trackerId, targetId);
 
         }
-        public static bool IsEnable => playerIdList.Count > 0;
-
         public static string GetTargetMark(PlayerControl seer, PlayerControl target) => TrackerTarget.ContainsKey(seer.PlayerId) && TrackerTarget[seer.PlayerId] == target.PlayerId ? Utils.ColorString(seer.GetRoleColor(), "◀") : "";
 
         public static void OnReportDeadBody()

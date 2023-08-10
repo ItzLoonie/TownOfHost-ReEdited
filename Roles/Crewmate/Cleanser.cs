@@ -1,5 +1,6 @@
 ﻿using Hazel;
 using UnityEngine;
+using System.Linq;
 using System.Collections.Generic;
 using static TOHE.Options;
 using static TOHE.Translator;
@@ -24,7 +25,6 @@ public static class Cleanser
         CleansedCanGetAddon = BooleanOptionItem.Create(Id + 11, "CleansedCanGetAddon", false, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Cleanser]);
 
     }
-
     public static void Init()
     {
         playerIdList = new();
@@ -32,7 +32,6 @@ public static class Cleanser
         CleanserUses = new();
         CleansedPlayers = new();
     }
-    public static string GetProgressText(byte playerId) => Utils.ColorString(CleanserUsesOpt.GetInt() - CleanserUses[playerId] > 0 ? Utils.GetRoleColor(CustomRoles.Cleanser).ShadeColor(0.25f) : Color.gray, CleanserUses.TryGetValue(playerId, out var x) ? $"({CleanserUsesOpt.GetInt() - x})" : "Invalid");
 
     public static void Add(byte playerId)
     {
@@ -41,7 +40,9 @@ public static class Cleanser
         CleanserUses.Add(playerId, 0);
     }
 
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
+
+    public static string GetProgressText(byte playerId) => Utils.ColorString(CleanserUsesOpt.GetInt() - CleanserUses[playerId] > 0 ? Utils.GetRoleColor(CustomRoles.Cleanser).ShadeColor(0.25f) : Color.gray, CleanserUses.TryGetValue(playerId, out var x) ? $"({CleanserUsesOpt.GetInt() - x})" : "Invalid");
 
     private static void SendRPC(byte playerId)
     {

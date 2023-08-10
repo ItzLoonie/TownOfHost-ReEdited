@@ -1,4 +1,5 @@
 ﻿using Hazel;
+using System.Linq;
 using System.Collections.Generic;
 using static TOHE.Translator;
 
@@ -29,8 +30,6 @@ public static class Agitater
         BombExplodeCooldown = FloatOptionItem.Create(Id + 12, "BombExplodeCooldown", new(1f, 10f, 1f), 10f, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Agitater]);
         AgitaterCanGetBombed = BooleanOptionItem.Create(Id + 13, "AgitaterCanGetBombed", false, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Agitater]);
     }
-    public static bool IsEnable => playerIdList.Count > 0;
-
     public static void Init()
     {
         playerIdList = new();
@@ -43,10 +42,13 @@ public static class Agitater
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
+
+    public static bool IsEnable => playerIdList.Any();
 
     public static void ResetBomb()
     {

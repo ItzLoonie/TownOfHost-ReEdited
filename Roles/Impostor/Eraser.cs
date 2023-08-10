@@ -1,5 +1,6 @@
 ﻿using Hazel;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static TOHE.Translator;
 
@@ -35,7 +36,7 @@ internal static class Eraser
         EraseLimit.TryAdd(playerId, EraseLimitOpt.GetInt());
         Logger.Info($"{Utils.GetPlayerById(playerId)?.GetNameWithRole()} : 剩余{EraseLimit[playerId]}次", "Eraser");
     }
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(byte playerId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetEraseLimit, SendOption.Reliable, -1);

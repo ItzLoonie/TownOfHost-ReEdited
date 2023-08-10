@@ -39,7 +39,7 @@ public static class Medusa
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
     public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(true);
     public static void CanUseVent(PlayerControl player)

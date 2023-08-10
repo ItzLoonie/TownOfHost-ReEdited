@@ -1,12 +1,8 @@
-using HarmonyLib;
 using Hazel;
-using Rewired.UI.ControlMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using UnityEngine;
-using UnityEngine.UI;
 using static TOHE.Options;
 using static TOHE.Translator;
 
@@ -22,8 +18,6 @@ public static class ParityCop
         "EgoistCountMode.Original",
         "EgoistCountMode.Neutral",
     };
-
-
 
     private static OptionItem TryHideMsg;
     public static OptionItem ParityCheckLimitMax;
@@ -69,7 +63,7 @@ public static class ParityCop
         MaxCheckLimit.Add(playerId, ParityCheckLimitMax.GetInt());
         RoundCheckLimit.Add(playerId, ParityCheckLimitPerMeeting.GetInt());
     }
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
     public static void OnReportDeadBody()
     {
         foreach (var pid in RoundCheckLimit.Keys) RoundCheckLimit[pid] = ParityCheckLimitPerMeeting.GetInt();

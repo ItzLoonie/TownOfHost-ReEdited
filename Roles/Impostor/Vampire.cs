@@ -23,6 +23,7 @@ public static class Vampire
 
     private static readonly int Id = 4500;
     private static readonly List<byte> PlayerIdList = new();
+
     private static OptionItem OptionKillDelay;
     private static float KillDelay;
     private static readonly Dictionary<byte, BittenInfo> BittenPlayers = new();
@@ -34,20 +35,16 @@ public static class Vampire
     }
     public static void Init()
     {
-        IsEnable = false;
         PlayerIdList.Clear();
         BittenPlayers.Clear();
 
         KillDelay = OptionKillDelay.GetFloat();
     }
-
     public static void Add(byte playerId)
     {
-        IsEnable = true;
         PlayerIdList.Add(playerId);
     }
-
-    public static bool IsEnable = false;
+    public static bool IsEnable => PlayerIdList.Any();
     public static bool IsThisRole(byte playerId) => PlayerIdList.Contains(playerId);
 
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)

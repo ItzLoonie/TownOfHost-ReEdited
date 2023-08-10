@@ -978,6 +978,7 @@ internal static class CustomRolesHelper
                 if (!pc.CanUseKillButton())
                     return false;
                 break;
+
             case CustomRoles.Lazy:
                 if (pc.Is(CustomRoles.Ghoul)
                     || pc.Is(CustomRoles.Needy))

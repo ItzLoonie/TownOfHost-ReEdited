@@ -1,13 +1,12 @@
-﻿namespace TOHE.Roles.Crewmate
-{
-    using System.Collections.Generic;
-    using Hazel;
-    using Sentry.Protocol;
-    using UnityEngine;
-    using static TOHE.Options;
-    using static UnityEngine.GraphicsBuffer;
-    using static TOHE.Translator;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Hazel;
+using UnityEngine;
+using static TOHE.Options;
+using static TOHE.Translator;
 
+namespace TOHE.Roles.Crewmate
+{
     public static class Bloodhound
     {
         private static readonly int Id = 6400;
@@ -35,9 +34,8 @@
         {
             playerIdList.Add(playerId);
             BloodhoundTargets.Add(playerId, new List<byte>());
-
         }
-        public static bool IsEnable => playerIdList.Count > 0;
+        public static bool IsEnable => playerIdList.Any();
 
         private static void SendRPC(byte playerId, bool add, Vector3 loc = new())
         {

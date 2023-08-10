@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TOHE.Roles.Neutral;
 using UnityEngine;
 
@@ -35,12 +36,12 @@ internal class AntiAdminer
     {
         playerIdList.Add(playerId);
     }
-    public static bool IsEnable() => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
 
     private static int Count = 0;
     public static void FixedUpdate()
     {
-        if (!IsEnable()) return;
+        if (!IsEnable) return;
 
         Count--; if (Count > 0) return; Count = 5;
 

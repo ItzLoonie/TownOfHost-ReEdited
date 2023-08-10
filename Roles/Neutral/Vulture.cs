@@ -4,6 +4,7 @@ using AmongUs.GameOptions;
 using System.Collections.Generic;
 using static TOHE.Options;
 using static TOHE.Translator;
+using System.Linq;
 
 namespace TOHE.Roles.Neutral;
 
@@ -60,7 +61,7 @@ public static class Vulture
             return;
         }, Vulture.VultureReportCD.GetFloat() + 8f, "Vulture CD");  //for some reason that idk vulture cd completes 8s faster when the game starts, so I added 8f for now 
     }
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
 
     public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(HasImpVision.GetBool());
 

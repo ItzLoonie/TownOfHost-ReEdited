@@ -1,14 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MS.Internal.Xml.XPath;
 using TOHE.Roles.Neutral;
 using static TOHE.Options;
 using static TOHE.Translator;
-using static TOHE.Utils;
-using static UnityEngine.GraphicsBuffer;
 
 namespace TOHE.Roles.Impostor
 {
@@ -59,6 +53,7 @@ namespace TOHE.Roles.Impostor
             PlayerSkinsCosumed.TryAdd(playerId, new List<byte>());
             NowCooldown.TryAdd(playerId, DefaultKillCooldown.GetFloat());
         }
+        public static bool IsEnable => playerIdList.Any();
 
         public static void ApplyGameOptions()
         {

@@ -1,10 +1,10 @@
 ﻿using Hazel;
 using UnityEngine;
-using System.Collections.Generic;
-using static TOHE.Translator;
-using System.Linq;
-using System.Text.RegularExpressions;
 using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using static TOHE.Translator;
 
 namespace TOHE.Roles.Neutral;
 public static class Pirate
@@ -48,17 +48,17 @@ public static class Pirate
         targetChose = -1;
         NumWin = 0;
     }
-
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         DuelDone.Add(playerId, false);
+
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
 
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
 
     public static void OnMeetingStart()
     {

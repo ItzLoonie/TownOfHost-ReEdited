@@ -13,7 +13,8 @@ public static class AntiBlackout
     ///<summary>
     ///追放処理を上書きするかどうか
     ///</summary>
-    public static bool OverrideExiledPlayer => IsRequired && (IsSingleImpostor || Diff_CrewImp == 1);
+    public static bool OverrideExiledPlayer => IsRequired && IsSingleImpostor;
+    //public static bool OverrideExiledPlayer => IsRequired && (IsSingleImpostor || Diff_CrewImp == 1);
     ///<summary>
     ///インポスターが一人しか存在しない設定かどうか
     ///</summary>
@@ -22,20 +23,24 @@ public static class AntiBlackout
     ///AntiBlackout内の処理が必要であるかどうか
     ///</summary>
     public static bool IsRequired => Options.NoGameEnd.GetBool()
-        || Jackal.IsEnable || Pelican.IsEnable
-        || Gamer.IsEnable || BloodKnight.IsEnable
-        || Succubus.IsEnable || Poisoner.IsEnable
-        || Infectious.IsEnable || Juggernaut.IsEnable
-        || Ritualist.IsEnable || Virus.IsEnable
-        || Wraith.IsEnable || HexMaster.IsEnable
-        || Traitor.IsEnable || Pickpocket.IsEnable
-        || NSerialKiller.IsEnable || NWitch.IsEnable
-        || Maverick.IsEnable || Jinx.IsEnable
-        || CovenLeader.IsEnable || Banshee.IsEnable
-        || Medusa.IsEnable || Spiritcaller.IsEnable
-        || PlagueBearer.IsEnable || CustomRoles.Sidekick.RoleExist()
-        || CustomRoles.Pestilence.RoleExist() || CustomRoles.Arsonist.RoleExist()
-        || Pirate.IsEnable || Werewolf.IsEnable;
+        // Neutrals
+        || Jackal.IsEnable || BloodKnight.IsEnable
+        || Glitch.IsEnable || Infectious.IsEnable
+        || Juggernaut.IsEnable || Pelican.IsEnable
+        || Pickpocket.IsEnable || NSerialKiller.IsEnable
+        || Shroud.IsEnable || Traitor.IsEnable
+        || Virus.IsEnable || Werewolf.IsEnable
+        || Gamer.IsEnable || Succubus.IsEnable
+        || NWitch.IsEnable || Maverick.IsEnable
+        || Spiritcaller.IsEnable || CustomRoles.Arsonist.RoleExist()
+        || PlagueBearer.IsEnable || CustomRoles.Pestilence.RoleExist()
+        || CustomRoles.Sidekick.RoleExist()
+        // Covens
+        || Banshee.IsEnable || CovenLeader.IsEnable
+        || HexMaster.IsEnable || Jinx.IsEnable
+        || Medusa.IsEnable || Poisoner.IsEnable
+        || Ritualist.IsEnable || Wraith.IsEnable
+        || Necromancer.IsEnable;
     ///<summary>
     ///インポスター以外の人数とインポスターの人数の差
     ///</summary>

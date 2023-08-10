@@ -1,6 +1,6 @@
-using AmongUs.GameOptions;
 using Hazel;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using static TOHE.Options;
@@ -36,11 +36,9 @@ public static class Wildling
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
-        TimeStamp.TryAdd(playerId, 0);
-
-        
+        TimeStamp.TryAdd(playerId, 0); 
     }
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(byte playerId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetBKTimer, SendOption.Reliable, -1);

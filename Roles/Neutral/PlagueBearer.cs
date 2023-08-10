@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Hazel;
 using TOHE.Roles.Impostor;
 using static TOHE.Options;
@@ -40,7 +41,6 @@ public static class PlagueBearer
         PlagueBearerCD = new();
         PestilenceList = new();
     }
-
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
@@ -50,7 +50,7 @@ public static class PlagueBearer
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
 
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = PlagueBearerCD[id];
     public static void SetKillCooldownPestilence(byte id) => Main.AllPlayerKillCooldown[id] = PestilenceCDOpt.GetFloat();

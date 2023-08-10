@@ -56,7 +56,6 @@ namespace TOHE.Roles.Neutral
             ProtectTimeStamp = new();
             PlayersHaunted = new();
         }
-
         public static void Add(byte playerId)
         {
             playerIdList.Add(playerId);
@@ -67,7 +66,7 @@ namespace TOHE.Roles.Neutral
             if (!Main.ResetCamPlayerList.Contains(playerId))
                 Main.ResetCamPlayerList.Add(playerId);
         }
-        public static bool IsEnable => playerIdList.Count > 0;
+        public static bool IsEnable => playerIdList.Any();
         public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
         public static bool InProtect(PlayerControl player) => player.Is(CustomRoles.Spiritcaller) && ProtectTimeStamp > Utils.GetTimeStamp();
 

@@ -37,6 +37,7 @@ public static class Poisoner
             .SetValueFormat(OptionFormat.Seconds);
         CanVent = BooleanOptionItem.Create(Id + 12, "CanVent", true, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Poisoner]);
     }
+
     public static void Init()
     {
         playerIdList = new();
@@ -44,7 +45,6 @@ public static class Poisoner
 
         KillDelay = OptionKillDelay.GetFloat();
     }
-
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
@@ -54,7 +54,7 @@ public static class Poisoner
             Main.ResetCamPlayerList.Add(playerId);
     }
 
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
     public static bool IsThisRole(byte playerId) => playerIdList.Contains(playerId);
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
 

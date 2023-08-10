@@ -31,7 +31,6 @@ public static class Marshall
     public static void Init()
     {
         playerIdList.Clear();
-        IsEnable = false;
 
         //MadmateCanFindMarshall = OptionMadmateCanFindMarshall.GetBool();
 
@@ -45,13 +44,12 @@ public static class Marshall
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
-        IsEnable = true;
 
         IsExposed[playerId] = false;
         IsComplete[playerId] = false;
     }
 
-    public static bool IsEnable;
+    public static bool IsEnable => playerIdList.Any();
     public static bool IsThisRole(byte playerId) => playerIdList.Contains(playerId);
     private static bool GetExpose(PlayerControl pc)
     {

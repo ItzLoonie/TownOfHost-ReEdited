@@ -10,7 +10,7 @@ namespace TOHE.Roles.Impostor
 {
     public static class Pitfall
     {
-        private static readonly int Id = 8000;
+        private static readonly int Id = 43000;
 
         public static List<byte> playerIdList = new();
 
@@ -62,7 +62,7 @@ namespace TOHE.Roles.Impostor
             playerIdList.Add(playerId);
             DefaultSpeed = Main.AllPlayerSpeed[playerId];
         }
-        public static bool IsEnable => playerIdList.Count > 0;
+        public static bool IsEnable => playerIdList.Any();
 
         public static void OnShapeshift(PlayerControl shapeshifter)
         {

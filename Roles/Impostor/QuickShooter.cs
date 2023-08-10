@@ -1,6 +1,7 @@
 ﻿using Hazel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace TOHE.Roles.Impostor;
@@ -35,7 +36,7 @@ internal static class QuickShooter
         playerIdList.Add(playerId);
         ShotLimit.TryAdd(playerId, 0);
     }
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(byte playerId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetQuickShooterShotLimit, SendOption.Reliable, -1);

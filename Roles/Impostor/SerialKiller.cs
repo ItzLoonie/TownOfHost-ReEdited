@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static TOHE.Translator;
 
@@ -31,7 +32,7 @@ public static class SerialKiller
     {
         playerIdList.Add(serial);
     }
-    public static bool IsEnable() => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
     public static void ApplyKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
     public static void ApplyGameOptions(PlayerControl pc)
     {

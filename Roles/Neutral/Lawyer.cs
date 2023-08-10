@@ -93,7 +93,7 @@ public static class Lawyer
             Logger.Info($"{Utils.GetPlayerById(playerId)?.GetNameWithRole()}:{SelectedTarget.GetNameWithRole()}", "Lawyer");
         }
     }
-    public static bool IsEnable() => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
     public static void SendRPC(byte lawyerId, byte targetId = 0x73, string Progress = "")
     {
         MessageWriter writer;

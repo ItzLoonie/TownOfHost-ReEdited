@@ -78,7 +78,7 @@ public static class Camouflage
     }
     public static void CheckCamouflage()
     {
-        if (!(AmongUsClient.Instance.AmHost && (Options.CommsCamouflage.GetBool() || CustomRoles.Camouflager.IsEnable()))) return;
+        if (!(AmongUsClient.Instance.AmHost && (Options.CommsCamouflage.GetBool() || Camouflager.IsEnable))) return;
 
         var oldIsCamouflage = IsCamouflage;
 
@@ -92,7 +92,7 @@ public static class Camouflage
     }
     public static void RpcSetSkin(PlayerControl target, bool ForceRevert = false, bool RevertToDefault = false)
     {
-        if (!(AmongUsClient.Instance.AmHost && (Options.CommsCamouflage.GetBool() || CustomRoles.Camouflager.IsEnable()))) return;
+        if (!(AmongUsClient.Instance.AmHost && (Options.CommsCamouflage.GetBool() || Camouflager.IsEnable))) return;
         if (target == null) return;
 
         var id = target.PlayerId;
