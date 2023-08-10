@@ -342,7 +342,8 @@ internal static class CustomRolesHelper
       //      CustomRoles.Cyber or
             CustomRoles.DoubleShot or
             CustomRoles.Ghoul or
-            CustomRoles.EvilSpirit;
+            CustomRoles.EvilSpirit or
+            CustomRoles.Fategiver;
     }
     public static bool IsAmneMaverick(this CustomRoles role) // ROLE ASSIGNING, NOT NEUTRAL TYPE
     {
@@ -1292,6 +1293,7 @@ internal static class CustomRolesHelper
                 if ((pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeSidekick.GetBool()) || (pc.GetCustomRole().IsCrewmate() && !Options.CrewmateCanBeSidekick.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpostorCanBeSidekick.GetBool()))
                     return false;
                 break;
+
         }
 
         // Code not used:
@@ -1299,6 +1301,8 @@ internal static class CustomRolesHelper
         //if (role is CustomRoles.Onbound && pc.Is(CustomRoles.Reflective)) return false;
         //if (role is CustomRoles.Reflective && pc.Is(CustomRoles.Onbound)) return false;
         //if (role is CustomRoles.Cyber && pc.Is(CustomRoles.CyberStar)) return false;
+
+        //Fategiver not checked yet.
 
         // Coven is not allowed to get add-ons, it gets special abilities from the Necronomicon (will be worked on further once I start Necronomicon)
         //if (role is CustomRoles.Ntr or CustomRoles.Watcher or CustomRoles.Flashman or CustomRoles.Lighter or CustomRoles.Seer or CustomRoles.Bait or CustomRoles.Burst) return false;

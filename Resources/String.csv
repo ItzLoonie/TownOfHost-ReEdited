@@ -378,6 +378,7 @@
 "Burst","爆裂者","Burst","Взрывной","",""
 "Sleuth","侦察员","Sleuth","Сыщик","",""
 "Clumsy","笨蛋","Clumsy","Неуклюжий","",""
+"Fategiver","命运眷顾者","Fategiver"
 
 "## 附加职业作为前缀时 / Prefixes for Add-ons"
 
@@ -426,8 +427,9 @@
 "Prefix.Burst","爆裂","Burst ","Взрывной ","",""
 "Prefix.Sleuth","侦察","Sleuth ","Сыщик ","",""
 "Prefix.Clumsy","笨蛋","Clumsy ","Неуклюжий ","",""
+"Prefix.Fategiver","命运眷顾者","Fategiver "
 
-"## 附加职业作为前缀时 / Prefixes for Add-ons But With Brackets"
+"## 附加职业作为有括号的前缀时 / Prefixes for Add-ons But With Brackets"
 
 "PrefixB.Ntr","（海王）","(Neptune) ","(Нептун) ","海王","海王"
 "PrefixB.Watcher","（窥视）","(Watcher) ","(Наблюдатель) ","觀察","窥视"
@@ -474,6 +476,7 @@
 "PrefixB.Burst","（爆裂）","(Burst) ","(Взрывной) ","",""
 "PrefixB.Sleuth","（侦察）","(Sleuth) ","(Сыщик) ","",""
 "PrefixB.Clumsy","（笨蛋）","(Clumsy) ","(Неуклюжий) ","",""
+"PrefixB.Fategiver","（命运眷顾者）","(Fategiver) "
 
 "BracketAddons","将附加职业以括号的形式展出","Add Brackets To Add-ons","Добавить скобки к Атрибутам","BracketAddons","BracketAddons"
 
@@ -718,6 +721,7 @@
 "BurstInfo","让你的目标爆发！","Make your killer burst!","Сделайте свой убийственный взрыв!","",""
 "SleuthInfo","从尸体中获取信息","Gain info from dead bodies","Получайте информацию от трупов","",""
 "ClumsyInfo","你可能错过你的击杀","You have a chance to miss your kill","У тебя есть шанс упустить свою добычу","",""
+"FategiverInfo","神明保佑你","God will help you on voting"
 
 "# 其它 / Other descriptions"
 "GMInfo","开局死的冤魂隔岸观火","Spectate the chaos!","Вы Мастер Игры, наслаждайтесь хаосом!","當吃瓜群眾在一旁看戲吧","开局死的冤魂隔岸观火"
@@ -971,6 +975,7 @@
 "BurstInfoLong","（附加职业）：\n如果带刀玩家击杀了爆裂者，那么该玩家要在一定时间内进入通风管，否则就会爆炸","(Add-ons):\nAs the Burst, your killer explodes if they aren't inside a vent after a set amount of time.","(Атрибут)\nЕсли кто-то убъёт Взрывого и если он не находится в вентиляции то через определенное время он умрёт.","",""
 "SleuthInfoLong","（附加职业）：\n侦查员可以从尸体中获得信息。在选择上，你也可能获得击杀玩家的身份。该附加职业不会分配给侦探或入殓师","(Add-ons):\nAs the Sleuth, you gain info from dead bodies.\n\nOptionally, you may also gain the killer's role.\n\nNot assigned to Detective or Mortician.","(Атрибут):\nКогда Сыщик репортит турп, он будет видеть его роль","",""
 "ClumsyInfoLong","（附加职业）：\n笨蛋有机会错过击杀机会。当错过时，击杀冷却时间会重置，目标不会受到影响。只分配给带刀职业","(Add-ons):\nAs the Clumsy, you have a chance to miss your kill.\n\nWhen you miss, your cooldown is reset and the target remains untouched.\n\nOnly assigned to killers.","(Атрибут):\nУ Неуклюжого есть шанс упустить свою добычу.\n\n Когда он промахивается, его откат убийства сбрасывается, и цель остается нетронутой.\n\nНазначается только убийцам","",""
+"FategiverInfoLong","(附加职业) ：\n命运眷顾者的投票有几率变为0或1或2或3票，如果投票者是市长则加或减对应票数","(add-ons)\n Your vote may change to 1 ,2 ,3 or 0 tickets .\n If you are mayor or ticketstealer, your vote may be added or minused."
 
 "# 其它 / Other long description"
 "GMInfoLong","(房主):\n看我干啥，我只是个开局就死的冤魂，静静地吃瓜而已。","(None):\nThe Game Master is an observer role.\nTheir presence has no effect on the game, and all players know who the Game Master is. The Game Master role will be assigned to the host, who will automatically become a ghost at the start of the game.","(Никто):\nGM (Мастер Игры) — это роль, которая наблюдает за игрой в роле призрака. \nОн не влияет на игру, и все игроки всегда знают кто Мастер Игры. Всегда назначается только хосту лобби и становится призраком в самом начале игры.","(房主):\n看我幹嘛，我只是開始遊戲時就在冥界吃瓜而已。","(房主):\n看我干啥，我只是个开局就死的冤魂，静静地吃瓜而已。"

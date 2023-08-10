@@ -483,6 +483,7 @@ public class Main : BasePlugin
                 {CustomRoles.Ghoul, "#B22222"},
                 {CustomRoles.Sleuth, "#803333" },
                 {CustomRoles.Clumsy, "#ff1919"},
+                {CustomRoles.Fategiver,"#FFB6C1" },
 
           //      {CustomRoles.Cyber, "#ee4a55" },
 
@@ -809,6 +810,7 @@ public enum CustomRoles
     Burst,
     Sleuth,
     Clumsy,
+    Fategiver
   //  Cyber,
     // QuickFix
 }

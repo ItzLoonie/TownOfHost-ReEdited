@@ -566,6 +566,88 @@ static class ExtendedMeetingHud
                 if (CheckForEndVotingPatch.CheckRole(ps.TargetPlayerId, CustomRoles.Pickpocket))
                     VoteNum += (int)(Main.AllPlayerControls.Count(x => x.GetRealKiller()?.PlayerId == ps.TargetPlayerId) * Pickpocket.VotesPerKill.GetFloat());
 
+                // 命运眷顾票数
+                if (CheckForEndVotingPatch.CheckRole(ps.TargetPlayerId, CustomRoles.Fategiver)
+                && ps.TargetPlayerId != ps.VotedFor)
+                {
+                    var Fg = IRandom.Instance;
+                    int vote = Fg.Next(1, 6);
+
+                    if (VoteNum < 15 && VoteNum > 0) //We dont change exterme votes
+                    {
+                        if (CheckForEndVotingPatch.CheckRole(ps.TargetPlayerId, CustomRoles.Mayor)
+                            || CheckForEndVotingPatch.CheckRole(ps.TargetPlayerId, CustomRoles.TicketsStealer))
+                        {
+                            if (vote == 1)
+                            {
+                                Logger.Info("=add 0 vote=", "Fategiver");
+                                VoteNum += 0;
+                                Utils.SendMessage("Fategiver added 0 vote", ps.TargetPlayerId);
+                            }
+                            else if (vote == 2 || vote == 3)
+                            {
+                                Logger.Info("=add 1 vote=", "Fategiver");
+                                VoteNum += 1;
+                                Utils.SendMessage("Fategiver added 1 vote", ps.TargetPlayerId);
+                            }
+                            else if (vote == 4)
+                            {
+                                if (VoteNum >= 1)
+                                {
+                                    Logger.Info("=minus 1 vote=", "Fategiver");
+                                    VoteNum -= 1;
+                                    Utils.SendMessage("Fategiver minus 1 vote", ps.TargetPlayerId);
+                                }
+                                else
+                                {
+                                    Logger.Info("=minus vote failed=", "Fategiver");
+                                    VoteNum -= 0;
+                                    Utils.SendMessage("Fategiver failed to change your vote", ps.TargetPlayerId);
+                                }
+                            }
+                            else
+                            {
+                                Logger.Info("=add 2 vote=", "Fategiver");
+                                VoteNum += 2;
+                                Utils.SendMessage("Fategiver added 2 vote", ps.TargetPlayerId);
+                            }
+                        }
+                        else
+                        {
+                            if (vote == 1)
+                            {
+                                Logger.Info("=set to 0=", "Fategiver");
+                                VoteNum = 0;
+                                Utils.SendMessage("Fategiver turned your vote to 0", ps.TargetPlayerId);
+                            }
+                            else if (vote == 2 || vote == 3)
+                            {
+                                Logger.Info("=set to 1=", "Fategiver");
+                                VoteNum = 1;
+                                Utils.SendMessage("Fategiver turned your vote to 1", ps.TargetPlayerId);
+                            }
+                            else if (vote == 4 || vote == 5)
+                            {
+                                Logger.Info("=set to 2=", "Fategiver");
+                                VoteNum = 2;
+                                Utils.SendMessage("Fategiver turned your vote to 2", ps.TargetPlayerId);
+                            }
+                            else
+                            {
+                                Logger.Info("=set to 3=", "Fategiver");
+                                VoteNum = 3;
+                                Utils.SendMessage("Fategiver turned your vote to 3", ps.TargetPlayerId);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Logger.Info("=Skipped change=", "Fategiver");
+                        VoteNum += 0;
+                        Utils.SendMessage("Fategiver did not change your vote", ps.TargetPlayerId);
+                    }
+                }
+
                 // 主动叛变模式下自票无效
                 if (ps.TargetPlayerId == ps.VotedFor && Options.MadmateSpawnMode.GetInt() == 2) VoteNum = 0;
 
