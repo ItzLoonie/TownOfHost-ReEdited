@@ -591,6 +591,9 @@ public static class Utils
                 var doused = GetDousedPlayerCount(playerId);
                 ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Arsonist).ShadeColor(0.25f), $"({doused.Item1}/{doused.Item2})"));
                 break;
+            case CustomRoles.SoulCollector:
+                ProgressText.Append(SoulCollector.GetProgressText(playerId));
+                break;
             case CustomRoles.Sheriff:
                 ProgressText.Append(Sheriff.GetShotLimit(playerId));
                 break;

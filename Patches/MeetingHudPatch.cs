@@ -99,6 +99,9 @@ class CheckForEndVotingPatch
                             case CustomRoles.Cleanser:
                                 Cleanser.OnVote(pc, voteTarget);
                                 break;
+                            case CustomRoles.SoulCollector:
+                                SoulCollector.OnVote(pc, voteTarget);
+                                break;
                             case CustomRoles.Tracker:
                                 Tracker.OnVote(pc, voteTarget);
                                 break;

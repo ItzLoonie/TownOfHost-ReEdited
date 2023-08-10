@@ -425,6 +425,8 @@ public class Main : BasePlugin
                 {CustomRoles.Shroud, "#6697FF"},
                 {CustomRoles.Werewolf, "#191970"},
                 {CustomRoles.Seeker, "#ffaa00"},
+                {CustomRoles.SoulCollector,"#A675A1" },
+
             
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
@@ -692,6 +694,7 @@ public enum CustomRoles
     Arsonist,
     Agitater,
     Seeker,
+    SoulCollector,
     HexMaster,
     Jester,
     God,
@@ -853,6 +856,7 @@ public enum CustomWinner
     Succubus = CustomRoles.Succubus,
     Wraith = CustomRoles.Wraith,
     Pirate = CustomRoles.Pirate,
+    SoulCollector = CustomRoles.SoulCollector,
     SerialKiller = CustomRoles.NSerialKiller,
     Werewolf = CustomRoles.Werewolf,
     Witch = CustomRoles.NWitch,

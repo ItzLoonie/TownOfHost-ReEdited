@@ -1175,6 +1175,7 @@ class MurderPlayerPatch
         Bloodhound.OnPlayerDead(target);
         Tracefinder.OnPlayerDead(target);
         Vulture.OnPlayerDead(target);
+        SoulCollector.OnPlayerDead(target);
 
         Utils.AfterPlayerDeathTasks(target);
 
@@ -1825,6 +1826,7 @@ class ReportDeadBodyPatch
         Main.GodfatherTarget.Clear();
 
         Camouflager.OnReportDeadBody();
+        SoulCollector.OnReportDeadBody();
         Psychic.OnReportDeadBody();
         BountyHunter.OnReportDeadBody();
         SerialKiller.OnReportDeadBody();
