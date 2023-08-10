@@ -80,6 +80,9 @@ public static class NameColorManager
         if (seer.Is(CustomRoles.Refugee) && (target.Is(CustomRoleTypes.Impostor))) color = Main.roleColors[CustomRoles.ImpostorTOHE];
         if (seer.Is(CustomRoleTypes.Impostor) && (target.Is(CustomRoles.Refugee))) color = Main.roleColors[CustomRoles.Refugee];
 
+//        if (seer.Is(CustomRoles.Minion) && (target.GetCustomRole().IsCoven())) color = Main.roleColors[CustomRoles.CovenLeader];
+  //      if (seer.GetCustomRole().IsCoven() && (target.Is(CustomRoles.Minion))) color = Main.roleColors[CustomRoles.Minion];
+
         // Infectious
         if (seer.Is(CustomRoles.Infected) && target.Is(CustomRoles.Infectious)) color = Main.roleColors[CustomRoles.Infectious];
         if (seer.Is(CustomRoles.Infectious) && target.Is(CustomRoles.Infected)) color = Main.roleColors[CustomRoles.Infected];

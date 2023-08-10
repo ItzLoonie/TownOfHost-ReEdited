@@ -475,6 +475,7 @@ static class ExtendedPlayerControl
             CustomRoles.Jinx => pc.IsAlive(),
             CustomRoles.Parasite => pc.IsAlive(),
             CustomRoles.Refugee => pc.IsAlive(),
+    //        CustomRoles.Minion => pc.IsAlive(),
             CustomRoles.NWitch => pc.IsAlive(),
             CustomRoles.CovenLeader => pc.IsAlive(),
             CustomRoles.Conjuror => pc.IsAlive(),
@@ -499,7 +500,7 @@ static class ExtendedPlayerControl
             CustomRoles.Succubus => Succubus.CanUseKillButton(pc),
             CustomRoles.CursedSoul => CursedSoul.CanUseKillButton(pc),
             CustomRoles.Admirer => Admirer.CanUseKillButton(pc),
-            CustomRoles.Amnesiac => Amnesiac.CanUseKillButton(pc),
+            CustomRoles.Amnesiac => false,
             //CustomRoles.Warlock => !Main.isCurseAndKill.TryGetValue(pc.PlayerId, out bool wcs) || !wcs,
             CustomRoles.Infectious => Infectious.CanUseKillButton(pc),
             CustomRoles.Monarch => Monarch.CanUseKillButton(pc),
@@ -539,6 +540,7 @@ static class ExtendedPlayerControl
             CustomRoles.CursedSoul or
             CustomRoles.PlagueBearer or
             CustomRoles.Admirer or
+    //        CustomRoles.Minion or
             CustomRoles.Amnesiac or
             CustomRoles.Glitch or
             CustomRoles.Crusader or
@@ -641,6 +643,7 @@ static class ExtendedPlayerControl
             CustomRoles.PlagueBearer or
             CustomRoles.Necromancer or
             CustomRoles.Pestilence or
+    //        CustomRoles.Minion or
             CustomRoles.Spiritcaller
             => false,
 

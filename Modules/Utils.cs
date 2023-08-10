@@ -441,6 +441,7 @@ public static class Utils
             case CustomRoles.Parasite:
             case CustomRoles.Crusader:
             case CustomRoles.Refugee:
+    //        case CustomRoles.Minion:
             case CustomRoles.Jester:
             case CustomRoles.Pirate:
          //   case CustomRoles.Baker:

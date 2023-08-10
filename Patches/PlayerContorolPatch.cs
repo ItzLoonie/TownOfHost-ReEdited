@@ -399,9 +399,9 @@ class CheckMurderPatch
                 case CustomRoles.Admirer:
                     Admirer.OnCheckMurder(killer, target);
                     return false;
-                case CustomRoles.Amnesiac:
-                    Amnesiac.OnCheckMurder(killer, target);
-                    return false;
+        //        case CustomRoles.Amnesiac:
+          //          Amnesiac.OnCheckMurder(killer, target);
+            //        return false;
                 case CustomRoles.Infectious:
                     Infectious.OnCheckMurder(killer, target);
                     return false;
@@ -1581,6 +1581,114 @@ class ReportDeadBodyPatch
                     {
                         return false;
                     } 
+                }
+
+                var tar = Utils.GetPlayerById(target.PlayerId);
+                if (__instance.Is(CustomRoles.Amnesiac))
+                {
+                    if (tar.GetCustomRole().IsImpostor())
+                    {
+                        __instance.RpcSetCustomRole(CustomRoles.Refugee);
+                        __instance.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("YouRememberedRole")));
+                        tar.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("RememberedYourRole")));
+                    }
+
+                    if (tar.GetCustomRole().IsCoven())
+                    {
+                        __instance.RpcSetCustomRole(CustomRoles.Banshee);
+                        Banshee.Add(__instance.PlayerId);
+                        __instance.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("YouRememberedRole")));
+                        tar.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("RememberedYourRole")));
+                    }
+
+                    if (tar.GetCustomRole().IsMadmate() || tar.Is(CustomRoles.Madmate))
+                    {
+                        __instance.RpcSetCustomRole(CustomRoles.Refugee);
+                        __instance.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("YouRememberedRole")));
+                        tar.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("RememberedYourRole")));
+                    }
+
+                    if (tar.GetCustomRole().IsCrewmate() && !tar.Is(CustomRoles.Madmate))
+                    {
+                        Sheriff.Add(__instance.PlayerId);
+                        __instance.RpcSetCustomRole(CustomRoles.Sheriff);
+                        __instance.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("YouRememberedRole")));
+                        tar.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("RememberedYourRole")));
+                    }
+
+                    if (tar.GetCustomRole().IsAmneNK())
+                    {
+                    //    Sheriff.Add(__instance.PlayerId);
+                        __instance.RpcSetCustomRole(tar.GetCustomRole());
+                        __instance.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("YouRememberedRole")));
+                        tar.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("RememberedYourRole")));
+                    }
+
+                    if (tar.GetCustomRole().IsAmneMaverick())
+                    {
+                        if (Amnesiac.IncompatibleNeutralMode.GetValue() == 0)
+                        {
+                        Amnesiac.Add(__instance.PlayerId);
+                        __instance.RpcSetCustomRole(CustomRoles.Amnesiac);
+                        __instance.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("YouRememberedRole")));
+                        tar.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("RememberedYourRole")));
+                        }
+                        if (Amnesiac.IncompatibleNeutralMode.GetValue() == 1)
+                        {
+                        NWitch.Add(__instance.PlayerId);
+                        __instance.RpcSetCustomRole(CustomRoles.NWitch);
+                        __instance.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("YouRememberedRole")));
+                        tar.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("RememberedYourRole")));
+                        }
+                        if (Amnesiac.IncompatibleNeutralMode.GetValue() == 2)
+                        {
+                        Pursuer.Add(__instance.PlayerId);
+                        __instance.RpcSetCustomRole(CustomRoles.Pursuer);
+                        __instance.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("YouRememberedRole")));
+                        tar.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("RememberedYourRole")));
+                        }
+                        if (Amnesiac.IncompatibleNeutralMode.GetValue() == 3)
+                        {
+                        Totocalcio.Add(__instance.PlayerId);
+                        __instance.RpcSetCustomRole(CustomRoles.Totocalcio);
+                        __instance.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("YouRememberedRole")));
+                        tar.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("RememberedYourRole")));
+                        }
+                        if (Amnesiac.IncompatibleNeutralMode.GetValue() == 4)
+                        {
+                        Maverick.Add(__instance.PlayerId);
+                        __instance.RpcSetCustomRole(CustomRoles.Maverick);
+                        __instance.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("YouRememberedRole")));
+                        tar.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("RememberedYourRole")));
+                        }
+                    }
+
+                    if (tar.Is(CustomRoles.Jackal))
+                    {
+                        Sidekick.Add(__instance.PlayerId);
+                        __instance.RpcSetCustomRole(CustomRoles.Sidekick);
+                        __instance.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("YouRememberedRole")));
+                        tar.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("RememberedYourRole")));
+                    }
+
+                    if (tar.Is(CustomRoles.Juggernaut))
+                    {
+                        Juggernaut.Add(__instance.PlayerId);
+                        __instance.RpcSetCustomRole(CustomRoles.Juggernaut);
+                        __instance.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("YouRememberedRole")));
+                        tar.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("RememberedYourRole")));
+                    }
+
+                    if (tar.Is(CustomRoles.BloodKnight))
+                    {
+                        BloodKnight.Add(__instance.PlayerId);
+                        __instance.RpcSetCustomRole(CustomRoles.BloodKnight);
+                        __instance.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("YouRememberedRole")));
+                        tar.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("RememberedYourRole")));
+                    }
+
+
+                        return false;
                 }
 
                 if (__instance.Is(CustomRoles.Unlucky) && (target?.Object == null || !target.Object.Is(CustomRoles.Bait)))

@@ -65,18 +65,22 @@ class HudManagerPatch
                 switch (player.GetCustomRole())
                 {
                     case CustomRoles.Sniper:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         Sniper.OverrideShapeText(player.PlayerId);
                         break;
                     case CustomRoles.FireWorks:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         if (FireWorks.nowFireWorksCount[player.PlayerId] == 0)
                             __instance.AbilityButton.OverrideText(GetString("FireWorksExplosionButtonText"));
                         else
                             __instance.AbilityButton.OverrideText(GetString("FireWorksInstallAtionButtonText"));
                         break;
                     case CustomRoles.SerialKiller:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         SerialKiller.GetAbilityButtonText(__instance, player);
                         break;
                     case CustomRoles.Warlock:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         bool curse = Main.isCurseAndKill.TryGetValue(player.PlayerId, out bool wcs) && wcs;
                         if (!shapeshifting && !curse)
                             __instance.KillButton.OverrideText(GetString("WarlockCurseButtonText"));
@@ -86,83 +90,109 @@ class HudManagerPatch
                             __instance.AbilityButton.OverrideText(GetString("WarlockShapeshiftButtonText"));
                         break;
                     case CustomRoles.Miner:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.OverrideText(GetString("MinerTeleButtonText"));
                         break;
                     case CustomRoles.Pestilence:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("KillButtonText"));
                         break;
                     case CustomRoles.Reverie:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("KillButtonText"));
                         break;
                     case CustomRoles.CopyCat:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("CopyButtonText"));
                         break;
                     case CustomRoles.Shaman:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("ShamanButtonText"));
                         break;
                     case CustomRoles.PlagueBearer:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("InfectiousKillButtonText"));
                         break;
                     case CustomRoles.Pirate:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("PirateDuelButtonText"));
                         break;
                     case CustomRoles.Witch:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         Witch.GetAbilityButtonText(__instance);
                         break;
                     case CustomRoles.HexMaster:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         HexMaster.GetAbilityButtonText(__instance);
                         break;
                     case CustomRoles.Vampire:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         Vampire.SetKillButtonText();
                         break;
                     case CustomRoles.Poisoner:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         Poisoner.SetKillButtonText();
                         break;
                     case CustomRoles.Arsonist:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("ArsonistDouseButtonText"));
                         __instance.ImpostorVentButton.buttonLabelText.text = GetString("ArsonistVentButtonText");
                         break;
                     case CustomRoles.Revolutionist:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("RevolutionistDrawButtonText"));
                         __instance.ImpostorVentButton.buttonLabelText.text = GetString("RevolutionistVentButtonText");
                         break;
                     case CustomRoles.Farseer:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("FarseerKillButtonText"));
                         break;
                     case CustomRoles.Puppeteer:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("PuppeteerOperateButtonText"));
                         break;
                     case CustomRoles.CovenLeader:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("WitchControlButtonText"));
                         break;
                     case CustomRoles.NWitch:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText($"{GetString("WitchControlButtonText")}");
                         break;
                     case CustomRoles.Shroud:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText($"{GetString("ShroudButtonText")}");
                        break;
                     case CustomRoles.BountyHunter:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         BountyHunter.SetAbilityButtonText(__instance);
                         break;
                     case CustomRoles.EvilTracker:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         EvilTracker.GetAbilityButtonText(__instance, player.PlayerId);
                         break;
                     case CustomRoles.Innocent:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("InnocentButtonText"));
                         break;
                     case CustomRoles.Capitalism:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("CapitalismButtonText"));
                         break;
                     case CustomRoles.Pelican:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("PelicanButtonText"));
                         break;
                     case CustomRoles.Counterfeiter:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("CounterfeiterButtonText"));
                         break;
                     case CustomRoles.Pursuer:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("PursuerButtonText"));
                         break;
                     case CustomRoles.Gangster:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         Gangster.SetKillButtonText(player.PlayerId);
                         break;
                     case CustomRoles.NSerialKiller:
@@ -181,57 +211,74 @@ class HudManagerPatch
                     case CustomRoles.Necromancer:
                     case CustomRoles.DarkHide:
                     case CustomRoles.Maverick:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("KillButtonText"));
                         break;
                     case CustomRoles.Werewolf:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("MaulKillButtonText"));
                         break;
                     case CustomRoles.Glitch:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.SabotageButton.OverrideText(GetString("HackButtonText"));
                         break;
                     case CustomRoles.FFF:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("FFFButtonText"));
                         break;
                     case CustomRoles.Medic:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("MedicalerButtonText"));
                         break;
                     case CustomRoles.Gamer:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("GamerButtonText"));
                         break;
                     case CustomRoles.BallLightning:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("BallLightningButtonText"));
                         break;
                     case CustomRoles.Bomber:
                     case CustomRoles.Nuker:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.OverrideText(GetString("BomberShapeshiftText"));
                         break;
                     case CustomRoles.Twister:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.OverrideText(GetString("TwisterButtonText"));
                         break;
                     case CustomRoles.ImperiusCurse:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.OverrideText(GetString("ImperiusCurseButtonText"));
                         break;
                     case CustomRoles.QuickShooter:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.OverrideText(GetString("QuickShooterShapeshiftText"));
                         __instance.AbilityButton.SetUsesRemaining(QuickShooter.ShotLimit.TryGetValue(PlayerControl.LocalPlayer.PlayerId, out var qx) ? qx : 0);
                         break;
                     case CustomRoles.Provocateur:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("ProvocateurButtonText"));
                         break;
                     case CustomRoles.Camouflager:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.OverrideText(GetString("CamouflagerShapeshiftText"));
                         break;
                     case CustomRoles.OverKiller:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("OverKillerButtonText"));
                         break;
                     case CustomRoles.Assassin:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         Assassin.SetKillButtonText(player.PlayerId);
                         Assassin.GetAbilityButtonText(__instance, player.PlayerId);
                         break;
                     case CustomRoles.Hacker:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         Hacker.GetAbilityButtonText(__instance, player.PlayerId);
                         break;
                     case CustomRoles.KB_Normal:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("GamerButtonText"));
                         break;
                     case CustomRoles.Cleaner:
@@ -245,83 +292,112 @@ class HudManagerPatch
                         __instance.ReportButton.OverrideText(GetString("VultureEatButtonText"));
                         break;
                     case CustomRoles.Swooper:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.ImpostorVentButton.OverrideText(GetString(Swooper.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "SwooperRevertVentButtonText" : "SwooperVentButtonText"));
                         break;
                     case CustomRoles.Wraith:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("KillButtonText"));
                         __instance.ImpostorVentButton.OverrideText(GetString(Wraith.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "WraithRevertVentButtonText" : "WraithVentButtonText"));
                         break;
                     case CustomRoles.Chameleon:
                         __instance.AbilityButton.OverrideText(GetString(Chameleon.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "ChameleonRevertDisguise" : "ChameleonDisguise"));
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         break;
                     case CustomRoles.Mario:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.buttonLabelText.text = GetString("VectorVentButtonText");
                         __instance.AbilityButton.SetUsesRemaining(Options.MarioVentNumWin.GetInt() - (Main.MarioVentCount.TryGetValue(PlayerControl.LocalPlayer.PlayerId, out var mx) ? mx : 0));
                         break;
                     case CustomRoles.Veteran:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.buttonLabelText.text = GetString("VeteranVentButtonText");
                         break;
                     case CustomRoles.TimeMaster:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.buttonLabelText.text = GetString("TimeMasterVentButtonText");
                         break;
                     case CustomRoles.Grenadier:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.buttonLabelText.text = GetString("GrenadierVentButtonText");
                         break;
                     case CustomRoles.Mayor:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.buttonLabelText.text = GetString("MayorVentButtonText");
                         break;
                     case CustomRoles.Paranoia:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.buttonLabelText.text = GetString("ParanoiaVentButtonText");
                         break;
                     case CustomRoles.Sheriff:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("SheriffKillButtonText"));
                         break;
                     case CustomRoles.Crusader:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("CrusaderKillButtonText"));
                         break;
                     case CustomRoles.Totocalcio:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("TotocalcioKillButtonText"));
                         break;
                     case CustomRoles.Succubus:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("SuccubusKillButtonText"));
                         break;
                     case CustomRoles.CursedSoul:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("CursedSoulKillButtonText"));
                         break;
                     case CustomRoles.Admirer:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("AdmireButtonText"));
                         break;
                     case CustomRoles.Amnesiac:
-                        __instance.KillButton.OverrideText(GetString("RememberButtonText"));
+                        __instance.ReportButton.OverrideText(GetString("RememberButtonText"));
                         break;
                     case CustomRoles.DovesOfNeace:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.buttonLabelText.text = GetString("DovesOfNeaceVentButtonText");
                         break;
                     case CustomRoles.Infectious:
                         __instance.KillButton.OverrideText(GetString("InfectiousKillButtonText"));
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         break;
                     case CustomRoles.Monarch:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("MonarchKillButtonText"));
                         break;
                     case CustomRoles.Deputy:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("DeputyHandcuffText"));
                         break;
                     case CustomRoles.Sidekick:
                         __instance.KillButton.OverrideText(GetString("KillButtonText"));
-                        __instance.ImpostorVentButton.OverrideText(GetString("ReportButtonText"));
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.SabotageButton.OverrideText(GetString("SabotageButtonText"));
                         break;
                     case CustomRoles.Addict:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.OverrideText(GetString("AddictVentButtonText"));
                         break;
                     case CustomRoles.Dazzler:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.OverrideText(GetString("DazzleButtonText"));
                         break;
                     case CustomRoles.Deathpact:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.OverrideText(GetString("DeathpactButtonText"));
                         break;
                     case CustomRoles.Devourer:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.OverrideText(GetString("DevourerButtonText"));
+                        break;
+
+                    default:
+                        __instance.KillButton.OverrideText(GetString("KillButtonText"));
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
+                        __instance.SabotageButton.OverrideText(GetString("SabotageButtonText"));
                         break;
                 }
 

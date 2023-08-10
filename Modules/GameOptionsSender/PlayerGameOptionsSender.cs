@@ -149,6 +149,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 opt.SetVision(PlagueBearer.PestilenceHasImpostorVision.GetBool());
                 break;
             case CustomRoles.Refugee:
+        //    case CustomRoles.Minion:
                 opt.SetVision(true);
                 break;
             case CustomRoles.Virus:
