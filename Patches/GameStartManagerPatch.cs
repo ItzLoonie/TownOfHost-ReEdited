@@ -266,7 +266,7 @@ public class GameStartRandomMap
 
             if (!RandomMaps.Any()) return true;
 
-            var MapsId = RandomMaps[rand.Next(RandomMaps.Count)];
+            var MapsId = RandomMaps[0];
             Main.NormalOptions.MapId = MapsId;
         }
         return continueStart;
