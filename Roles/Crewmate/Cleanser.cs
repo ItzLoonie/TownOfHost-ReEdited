@@ -74,6 +74,7 @@ public static class Cleanser
 
         CleanserUses[voter.PlayerId]++;
         CleanserTarget[voter.PlayerId] = target.PlayerId;
+        Logger.Info($"{voter.GetNameWithRole()} cleansed {target.GetNameWithRole()}", "Cleansed");
         CleansedPlayers.Add(target.PlayerId);
         Utils.SendMessage(string.Format(GetString("CleanserRemovedRole"), target.GetRealName()), voter.PlayerId, title: Utils.ColorString(Utils.GetRoleColor(CustomRoles.Cleanser),"CleanserTitle"));
         SendRPC(voter.PlayerId);
@@ -83,30 +84,24 @@ public static class Cleanser
     {
         foreach(var pid in CleanserTarget.Keys)
         {
-            Logger.Warn("Inside first for", "Cleanser");
+            if (pid == byte.MaxValue) continue;
             var targetid = CleanserTarget[pid];
-            if (pid == byte.MaxValue || targetid == byte.MaxValue) continue;
+            if (targetid == byte.MaxValue) continue;
             var targetpc = Utils.GetPlayerById(targetid);
             if (targetpc == null) continue;
             //var allAddons = targetpc.GetCustomSubRoles();
             targetpc.RpcSetCustomRole(CustomRoles.Cleansed);
+            Logger.Info($"Removed all the add ons of {targetpc.GetNameWithRole()}", "Cleanser");
             //foreach (var role in allAddons)
             //{
-            //    Logger.Warn("Removing role", "Cleanser");
             //    Main.PlayerStates[targetid].RemoveSubRole(role);
-            //    Logger.Warn("Removed role", "Cleanser");
 
             //}
-            Logger.Warn("After removing roles", "Cleanser");
             CleanserTarget[pid] = byte.MaxValue;
-            Logger.Warn("Set byte.MaxValue", "Cleanser");
             targetpc.Notify(GetString("LostAddonByCleanser"));
-            Logger.Warn("Notified target", "Cleanser");
 
         }
-        Logger.Warn("Dirty Settings", "Cleanser");
         Utils.MarkEveryoneDirtySettings();
-        Logger.Warn("Dirty Settings done", "Cleanser");
 
 
     }
