@@ -61,10 +61,10 @@ public static class Options
     };
 
     // MapActive
-    public static bool IsActiveSkeld => AddedTheSkeld.GetBool() || Main.NormalOptions.MapId == 0;
-    public static bool IsActiveMiraHQ => AddedMiraHQ.GetBool() || Main.NormalOptions.MapId == 1;
-    public static bool IsActivePolus => AddedPolus.GetBool() || Main.NormalOptions.MapId == 2;
-    public static bool IsActiveAirship => AddedTheAirship.GetBool() || Main.NormalOptions.MapId == 4;
+    public static bool IsActiveSkeld => Main.NormalOptions.MapId == 0;
+    public static bool IsActiveMiraHQ => Main.NormalOptions.MapId == 1;
+    public static bool IsActivePolus => Main.NormalOptions.MapId == 2;
+    public static bool IsActiveAirship => Main.NormalOptions.MapId == 4;
 
     // 役職数・確率
     public static Dictionary<CustomRoles, int> roleCounts;
@@ -252,11 +252,6 @@ public static class Options
     public static OptionItem NukerChance;
     public static OptionItem NukeRadius;
     public static OptionItem NukeCooldown;
-
-    public static OptionItem SkeldChance;
-    public static OptionItem MiraChance;
-    public static OptionItem PolusChance;
-    public static OptionItem AirshipChance;
 
     // UNDERDOG
     public static OptionItem UnderdogKillCooldown;
@@ -572,10 +567,14 @@ public static class Options
 
     // Maps
     public static OptionItem RandomMapsMode;
-    public static OptionItem AddedTheSkeld;
-    public static OptionItem AddedMiraHQ;
-    public static OptionItem AddedPolus;
-    public static OptionItem AddedTheAirship;
+    public static OptionItem SkeldChance;
+    public static OptionItem MiraChance;
+    public static OptionItem PolusChance;
+    public static OptionItem AirshipChance;
+    //public static OptionItem AddedTheSkeld;
+    //public static OptionItem AddedMiraHQ;
+    //public static OptionItem AddedPolus;
+    //public static OptionItem AddedTheAirship;
     public static OptionItem AddedDleks;
     public static OptionItem RandomSpawn;
     public static OptionItem AirshipAdditionalSpawn;
@@ -2123,7 +2122,7 @@ public static class Options
             .SetColor(new Color32(19, 188, 233, byte.MaxValue));
 
         // Random Maps Mode
-        RandomMapsMode = BooleanOptionItem.Create(19900, "RandomMapsMode", false, TabGroup.GameSettings, false)
+        /*RandomMapsMode = BooleanOptionItem.Create(19900, "RandomMapsMode", false, TabGroup.GameSettings, false)
             .SetHeader(true)
             .SetColor(new Color32(19, 188, 233, byte.MaxValue));
         AddedTheSkeld = BooleanOptionItem.Create(19910, "AddedTheSkeld", false, TabGroup.GameSettings, false)
@@ -2134,23 +2133,28 @@ public static class Options
             .SetParent(RandomMapsMode);
         AddedTheAirship = BooleanOptionItem.Create(19913, "AddedTheAirship", false, TabGroup.GameSettings, false)
             .SetParent(RandomMapsMode);
-        // MapDleks = CustomOption.Create(19914, Color.white, "AddedDleks", false, RandomMapMode);
+        // MapDleks = CustomOption.Create(19914, Color.white, "AddedDleks", false, RandomMapMode); */
 
-/*
-        SkeldChance = IntegerOptionItem.Create(19910, "SkeldChance", new(0, 100, 5), 0, TabGroup.GameSettings, false)
+        RandomMapsMode = BooleanOptionItem.Create(19900, "RandomMapsMode", false, TabGroup.GameSettings, false)
+            .SetHeader(true)
+            .SetColor(new Color32(19, 188, 233, byte.MaxValue));
+        SkeldChance = IntegerOptionItem.Create(19910, "SkeldChance", new(0, 100, 5), 10, TabGroup.GameSettings, false)
             .SetParent(RandomMapsMode)
             .SetValueFormat(OptionFormat.Percent);
-        MiraChance = IntegerOptionItem.Create(19911, "MiraChance", new(0, 100, 5), 0, TabGroup.GameSettings, false)
+        MiraChance = IntegerOptionItem.Create(19911, "MiraChance", new(0, 100, 5), 10, TabGroup.GameSettings, false)
             .SetParent(RandomMapsMode)
             .SetValueFormat(OptionFormat.Percent);
-        PolusChance = IntegerOptionItem.Create(19912, "PolusChance", new(0, 100, 5), 0, TabGroup.GameSettings, false)
+        PolusChance = IntegerOptionItem.Create(19912, "PolusChance", new(0, 100, 5), 10, TabGroup.GameSettings, false)
             .SetParent(RandomMapsMode)
             .SetValueFormat(OptionFormat.Percent);
-        AirshipChance = IntegerOptionItem.Create(19913, "AirshipChance", new(0, 100, 5), 0, TabGroup.GameSettings, false)
+        AirshipChance = IntegerOptionItem.Create(19913, "AirshipChance", new(0, 100, 5), 10, TabGroup.GameSettings, false)
             .SetParent(RandomMapsMode)
             .SetValueFormat(OptionFormat.Percent);
+        //MapDleksChance = IntegerOptionItem.Create(19914, "MapDleks", new(0, 100, 5), 10, TabGroup.GameSettings, false)
+        //    .SetParent(RandomMapsMode)
+        //    .SetValueFormat(OptionFormat.Percent);
 
-*/
+
 
         // Random Spawn
         RandomSpawn = BooleanOptionItem.Create(22000, "RandomSpawn", false, TabGroup.GameSettings, false)
