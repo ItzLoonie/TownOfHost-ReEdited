@@ -1100,7 +1100,10 @@ class MurderPlayerPatch
                         RPC.PlaySoundRPC(killer.PlayerId, Sounds.TaskComplete);
                     }
                     else
+                    {
+                        killer.RpcGuardAndKill();
                         killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Burst), GetString("BurstFailed")));
+                    }
                 }, Options.BurstKillDelay.GetFloat(), "Burst Suicide");
             }   
         } 
