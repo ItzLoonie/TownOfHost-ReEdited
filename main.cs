@@ -392,7 +392,9 @@ public class Main : BasePlugin
                 {CustomRoles.Totocalcio, "#ff9409"},
                 {CustomRoles.Succubus, "#cf6acd"},
                 {CustomRoles.HexMaster, "#663399"},
+                {CustomRoles.Occultist, "#375d91"},
                 {CustomRoles.Wraith, "#663399"},
+                {CustomRoles.Shade, "#000930"},
                 {CustomRoles.NSerialKiller, "#233fcc"},
                 {CustomRoles.BloodKnight, "#630000"},
                 {CustomRoles.Juggernaut, "#A41342"},
@@ -425,8 +427,7 @@ public class Main : BasePlugin
                 {CustomRoles.Shroud, "#6697FF"},
                 {CustomRoles.Werewolf, "#191970"},
                 {CustomRoles.Seeker, "#ffaa00"},
-                {CustomRoles.SoulCollector,"#A675A1" },
-
+                {CustomRoles.SoulCollector, "#A675A1"},
             
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
@@ -752,6 +753,8 @@ public enum CustomRoles
     Conjuror,
     Necromancer,
     Banshee,
+    Occultist,
+    Shade,
    // Sorcerer,
    // Flux,
     
@@ -853,10 +856,11 @@ public enum CustomWinner
     BloodKnight = CustomRoles.BloodKnight,
     Poisoner = CustomRoles.Poisoner,
     HexMaster = CustomRoles.HexMaster,
+    Occultist = CustomRoles.Occultist,
     Succubus = CustomRoles.Succubus,
     Wraith = CustomRoles.Wraith,
+    Shade = CustomRoles.Shade,
     Pirate = CustomRoles.Pirate,
-    SoulCollector = CustomRoles.SoulCollector,
     SerialKiller = CustomRoles.NSerialKiller,
     Werewolf = CustomRoles.Werewolf,
     Witch = CustomRoles.NWitch,
@@ -882,6 +886,7 @@ public enum CustomWinner
     Shroud = CustomRoles.Shroud,
     Coven = CustomRoles.CovenLeader,
     Seeker = CustomRoles.Seeker,
+    SoulCollector = CustomRoles.SoulCollector,
 }
 public enum AdditionalWinners
 {
