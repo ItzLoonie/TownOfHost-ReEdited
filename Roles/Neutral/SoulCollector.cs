@@ -1,4 +1,4 @@
-﻿using Hazel;
+using Hazel;
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
@@ -104,4 +104,3 @@ public static class SoulCollector
     }
 
 }
-

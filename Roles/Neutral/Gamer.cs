@@ -107,6 +107,7 @@ public static class Gamer
     }
     public static bool CheckMurder(PlayerControl killer, PlayerControl target)
     {
+        if (target.Is(CustomRoles.Pestilence)) return true;
         if (killer == null || target == null || !target.Is(CustomRoles.Gamer) || killer.Is(CustomRoles.Gamer)) return true;
 
         if (GamerHealth[target.PlayerId] - SelfDamage.GetInt() < 1)
