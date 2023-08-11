@@ -915,10 +915,15 @@ internal static class CustomRolesHelper
     }
     public static bool CheckAddonConfilct(CustomRoles role, PlayerControl pc)
     {
+        // Only add-ons
         if (!role.IsAdditionRole()) return false;
 
-        if (pc.Is(CustomRoles.GM) || pc.Is(CustomRoles.Lovers) || pc.Is(CustomRoles.Needy) || (pc.HasSubRole() && pc.GetCustomSubRoles().Count >= Options.NoLimitAddonsNumMax.GetInt())) return false;
 
+        // Check roles
+        if (pc.Is(CustomRoles.GM) || role is CustomRoles.Lovers || pc.Is(CustomRoles.Needy) || (pc.HasSubRole() && pc.GetCustomSubRoles().Count >= Options.NoLimitAddonsNumMax.GetInt())) return false;
+
+
+        // Checking for conflicts with other add-ons
         switch (role)
         {
             case CustomRoles.Autopsy:
