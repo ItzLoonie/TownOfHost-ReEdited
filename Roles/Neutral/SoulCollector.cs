@@ -1,10 +1,8 @@
 using Hazel;
-using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 using static TOHE.Options;
 using static TOHE.Translator;
-using UnityEngine.Rendering;
 
 namespace TOHE.Roles.Neutral;
 public static class SoulCollector
