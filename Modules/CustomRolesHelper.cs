@@ -732,9 +732,9 @@ internal static class CustomRolesHelper
         CustomRoles.HexMaster or
         CustomRoles.Medusa or
         CustomRoles.Wraith or
-        CustomRoles.Conjuror or
+       // CustomRoles.Conjuror or
         CustomRoles.Banshee or
-    //    CustomRoles.Sorcerer or
+       // CustomRoles.Sorcerer or
         CustomRoles.Jinx or
         CustomRoles.Necromancer or
         CustomRoles.CovenLeader or

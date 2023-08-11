@@ -185,7 +185,7 @@ internal class CustomRoleSelector
             CovenOnList.Remove(select);
             rolesToAssign.Add(select);
             readyRoleNum++;
-            optCovenNum += select.GetCount();
+            readyCovenNum += select.GetCount();
             Logger.Info(select.ToString() + " 加入中立职业待选列表（优先）", "CustomRoleSelector");
             if (readyRoleNum >= playerCount) goto EndOfAssign;
             if (readyCovenNum >= optCovenNum) break;
