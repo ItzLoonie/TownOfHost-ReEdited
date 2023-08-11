@@ -461,6 +461,7 @@ static class ExtendedPlayerControl
             CustomRoles.Sidekick => pc.IsAlive(),
             CustomRoles.Necromancer => pc.IsAlive(),
             CustomRoles.HexMaster => pc.IsAlive(),
+            CustomRoles.Occultist => pc.IsAlive(),
             CustomRoles.Poisoner => pc.IsAlive(),
             CustomRoles.Juggernaut => pc.IsAlive(),
             CustomRoles.Reverie => pc.IsAlive(),
@@ -481,6 +482,7 @@ static class ExtendedPlayerControl
             CustomRoles.Conjuror => pc.IsAlive(),
             CustomRoles.Shroud => pc.IsAlive(),
             CustomRoles.Wraith => pc.IsAlive(),
+            CustomRoles.Shade => pc.IsAlive(),
             CustomRoles.Bomber => (Options.BomberCanKill.GetBool() && pc.IsAlive()),
             CustomRoles.Nuker => (Options.BomberCanKill.GetBool() && pc.IsAlive()),
             CustomRoles.Innocent => pc.IsAlive(),
@@ -573,7 +575,9 @@ static class ExtendedPlayerControl
             CustomRoles.SwordsMan => SwordsMan.CanVent.GetBool(),
             CustomRoles.Pickpocket => Pickpocket.CanVent.GetBool(),
             CustomRoles.HexMaster => true,
+            CustomRoles.Occultist => true,
             CustomRoles.Wraith => true,
+            CustomRoles.Shade => true,
          //   CustomRoles.Chameleon => true,
             CustomRoles.Parasite => true,
             CustomRoles.Refugee => true,
@@ -618,7 +622,9 @@ static class ExtendedPlayerControl
             CustomRoles.Medic or
             CustomRoles.Gamer or
             CustomRoles.HexMaster or
+            CustomRoles.Occultist or
             CustomRoles.Wraith or
+            CustomRoles.Shade or
             CustomRoles.Juggernaut or
             CustomRoles.Jinx or
             CustomRoles.DarkHide or
@@ -760,6 +766,8 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.HexMaster:
             case CustomRoles.Wraith:
+            case CustomRoles.Shade:
+            case CustomRoles.Occultist:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.DefaultKillCooldown;
                 break;
             case CustomRoles.Parasite:
@@ -921,9 +929,9 @@ static class ExtendedPlayerControl
             case CustomRoles.Admirer:
                 Admirer.SetKillCooldown(player.PlayerId);
                 break;
-            case CustomRoles.Amnesiac:
+        /*    case CustomRoles.Amnesiac:
                 Amnesiac.SetKillCooldown(player.PlayerId);
-                break;
+                break; */
             case CustomRoles.Infectious:
                 Infectious.SetKillCooldown(player.PlayerId);
                 break;

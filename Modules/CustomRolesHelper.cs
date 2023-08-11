@@ -29,7 +29,6 @@ internal static class CustomRolesHelper
                 CustomRoles.Mafia => Options.LegacyMafia.GetBool() ? CustomRoles.Shapeshifter : CustomRoles.Impostor,
                 CustomRoles.Terrorist => CustomRoles.Engineer,
                 CustomRoles.Executioner => CustomRoles.Crewmate,
-                CustomRoles.SoulCollector => CustomRoles.Crewmate,
                 CustomRoles.Juggernaut => CustomRoles.Impostor,
                 CustomRoles.Lawyer => CustomRoles.Crewmate,
                 CustomRoles.Vampire => CustomRoles.Impostor,
@@ -51,6 +50,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Pickpocket => CustomRoles.Impostor,
                 CustomRoles.Traitor => CustomRoles.Impostor,
                 CustomRoles.HexMaster => CustomRoles.Impostor,
+                CustomRoles.Occultist => CustomRoles.Impostor,
                 CustomRoles.Wildling => CustomRoles.Shapeshifter,
                 CustomRoles.Morphling => CustomRoles.Shapeshifter,
                 CustomRoles.Warlock => CustomRoles.Shapeshifter,
@@ -136,6 +136,8 @@ internal static class CustomRolesHelper
                 CustomRoles.Bard => CustomRoles.Impostor,
                 CustomRoles.Swooper => CustomRoles.Impostor,
                 CustomRoles.Wraith => CustomRoles.Impostor,
+                CustomRoles.Shade => CustomRoles.Impostor,
+                CustomRoles.SoulCollector => CustomRoles.Crewmate,
                 CustomRoles.Crewpostor => CustomRoles.Engineer,
                 CustomRoles.Observer => CustomRoles.Crewmate,
                 CustomRoles.DovesOfNeace => CustomRoles.Engineer,
@@ -256,7 +258,9 @@ internal static class CustomRolesHelper
             CustomRoles.Medic => RoleTypes.Impostor,
             CustomRoles.Gamer => RoleTypes.Impostor,
             CustomRoles.HexMaster => RoleTypes.Impostor,
+            CustomRoles.Occultist => RoleTypes.Impostor,
             CustomRoles.Wraith => RoleTypes.Impostor,
+            CustomRoles.Shade => RoleTypes.Impostor,
             CustomRoles.Glitch => RoleTypes.Impostor,
             CustomRoles.Juggernaut => RoleTypes.Impostor,
             CustomRoles.Jinx => RoleTypes.Impostor,
@@ -377,7 +381,6 @@ internal static class CustomRolesHelper
             CustomRoles.Workaholic or
         //    CustomRoles.Pelican or
             CustomRoles.Collector or
-            CustomRoles.SoulCollector or
             CustomRoles.Sunnyboy or
             CustomRoles.Arsonist or
             CustomRoles.Maverick or
@@ -386,6 +389,7 @@ internal static class CustomRolesHelper
             CustomRoles.DarkHide or
        //     CustomRoles.Ritualist or
             CustomRoles.Doomsayer or
+            CustomRoles.SoulCollector or
             CustomRoles.Pirate or
             CustomRoles.Seeker or
        //     CustomRoles.Juggernaut or
@@ -400,7 +404,7 @@ internal static class CustomRolesHelper
             CustomRoles.Sidekick or
             CustomRoles.Infectious or
             CustomRoles.Glitch or
-         //   CustomRoles.Wraith or
+            CustomRoles.Shade or
          //   CustomRoles.Medusa or
             CustomRoles.Shroud or
             CustomRoles.Pelican or
@@ -422,15 +426,15 @@ internal static class CustomRolesHelper
             CustomRoles.Jackal or
             CustomRoles.Glitch or
             CustomRoles.Sidekick or
-      //      CustomRoles.HexMaster or
+            CustomRoles.Occultist or
             CustomRoles.Infectious or
-   //         CustomRoles.Wraith or
+            CustomRoles.Shade or
    //         CustomRoles.Medusa or
             CustomRoles.Pelican or
             CustomRoles.DarkHide or
             CustomRoles.Juggernaut or
    //         CustomRoles.Jinx or
-  //          CustomRoles.Poisoner or
+  //          CustomRoles.Void or
             CustomRoles.Refugee or
             CustomRoles.Parasite or
             CustomRoles.NSerialKiller or
@@ -469,7 +473,6 @@ internal static class CustomRolesHelper
             CustomRoles.Masochist or
             CustomRoles.Seeker or
             CustomRoles.Collector or
-            CustomRoles.SoulCollector or
             CustomRoles.Succubus or
             CustomRoles.Phantom or
             CustomRoles.Pirate or
@@ -514,10 +517,10 @@ internal static class CustomRolesHelper
     {
         return role is
             CustomRoles.Collector or
-            CustomRoles.SoulCollector or
             CustomRoles.Succubus or
             CustomRoles.Phantom or
             CustomRoles.Mario or
+            CustomRoles.SoulCollector or
             CustomRoles.Pirate or
             CustomRoles.Terrorist or
             CustomRoles.Vulture or
@@ -533,6 +536,7 @@ internal static class CustomRolesHelper
             CustomRoles.Jackal or
             CustomRoles.Sidekick or
             CustomRoles.HexMaster or
+            CustomRoles.Occultist or
             CustomRoles.Necromancer or
             CustomRoles.CovenLeader or
             CustomRoles.Conjuror or
@@ -660,12 +664,15 @@ internal static class CustomRolesHelper
             CustomRoles.Famine or
             CustomRoles.Baker or
             CustomRoles.HexMaster or
+            CustomRoles.Occultist or
             CustomRoles.Glitch or
             CustomRoles.Shaman or
             CustomRoles.Crewpostor or
             CustomRoles.NWitch or
             CustomRoles.Shroud or
             CustomRoles.Wraith or
+            CustomRoles.Shade or
+            CustomRoles.SoulCollector or
             CustomRoles.Vulture or
             CustomRoles.Convict or
             CustomRoles.Necromancer or
@@ -708,7 +715,6 @@ internal static class CustomRolesHelper
             CustomRoles.Infectious or
             CustomRoles.Workaholic or
             CustomRoles.Collector or
-            CustomRoles.SoulCollector or
             CustomRoles.Provocateur or
             CustomRoles.Sunnyboy or
             CustomRoles.Phantom or
@@ -768,6 +774,8 @@ internal static class CustomRolesHelper
             CustomRoles.Banshee or
             CustomRoles.Pirate or
             CustomRoles.Provocateur or
+            CustomRoles.Shade or
+            CustomRoles.SoulCollector or
             CustomRoles.Wraith or
             CustomRoles.Juggernaut or
             CustomRoles.Pelican or
@@ -829,7 +837,6 @@ internal static class CustomRolesHelper
             CustomRoles.Infectious or
             CustomRoles.Workaholic or
             CustomRoles.Collector or
-            CustomRoles.SoulCollector or
             CustomRoles.Provocateur or
             CustomRoles.Sunnyboy or
             CustomRoles.Phantom or
@@ -1445,12 +1452,14 @@ internal static class CustomRolesHelper
            CustomRoles.BloodKnight => CountTypes.BloodKnight,
            CustomRoles.Succubus => CountTypes.Succubus,
            CustomRoles.HexMaster => CountTypes.Coven,
+           CustomRoles.Occultist => CountTypes.Occultist,
            CustomRoles.Necromancer => CountTypes.Coven,
            CustomRoles.NWitch => CountTypes.NWitch,
            CustomRoles.Shroud => CountTypes.Shroud,
            CustomRoles.Werewolf => CountTypes.Werewolf,
            CustomRoles.Wraith => CountTypes.Coven,
            CustomRoles.Pestilence => CountTypes.Pestilence,
+           CustomRoles.Shade => CountTypes.Shade,
            CustomRoles.PlagueBearer => CountTypes.PlagueBearer,
            CustomRoles.Agitater => CountTypes.Agitater,
            CustomRoles.Parasite => CountTypes.Impostor,
@@ -1521,4 +1530,6 @@ public enum CountTypes
     Shroud,
     Werewolf,
     Agitater,
+    Occultist,
+    Shade
 }

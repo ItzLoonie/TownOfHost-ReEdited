@@ -32,9 +32,10 @@ public static class AntiBlackout
         || Virus.IsEnable || Werewolf.IsEnable
         || Gamer.IsEnable || Succubus.IsEnable
         || NWitch.IsEnable || Maverick.IsEnable
+        || Shade.IsEnable
         || Spiritcaller.IsEnable || CustomRoles.Arsonist.RoleExist()
         || PlagueBearer.IsEnable || CustomRoles.Pestilence.RoleExist()
-        || CustomRoles.Sidekick.RoleExist()
+        || CustomRoles.Sidekick.RoleExist() || Occultist.IsEnable
         // Covens
         || Banshee.IsEnable || CovenLeader.IsEnable
         || HexMaster.IsEnable || Jinx.IsEnable

@@ -1201,8 +1201,8 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.CyberStar]);
         NeutralKnowCyberStarDead = BooleanOptionItem.Create(5500, "NeutralKnowCyberStarDead", false, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.CyberStar]);
-        SetupRoleOptions(5600, TabGroup.CrewmateRoles, CustomRoles.Doctor);
         Cleanser.SetupCustomOption();
+        SetupRoleOptions(5600, TabGroup.CrewmateRoles, CustomRoles.Doctor);
         DoctorTaskCompletedBatteryCharge = FloatOptionItem.Create(5610, "DoctorTaskCompletedBatteryCharge", new(0f, 250f, 1f), 50f, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Doctor])
             .SetValueFormat(OptionFormat.Seconds);
@@ -1467,10 +1467,12 @@ public static class Options
         Infectious.SetupCustomOption();
         Jackal.SetupCustomOption();
         Juggernaut.SetupCustomOption();
+        Occultist.SetupCustomOption();
         Pelican.SetupCustomOption();
         Pickpocket.SetupCustomOption();
         PlagueBearer.SetupCustomOption();
         NSerialKiller.SetupCustomOption(); // Serial Killer
+        Shade.SetupCustomOption();
         Shroud.SetupCustomOption();
         DarkHide.SetupCustomOption(); // Stalker (TOHY)
         Traitor.SetupCustomOption();
@@ -1502,8 +1504,8 @@ public static class Options
         ConjurorCanVent = BooleanOptionItem.Create(10463, "CanVent", true, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Conjuror]); */
         CovenLeader.SetupCustomOption();
-        HexMaster.SetupCustomOption();
         Jinx.SetupCustomOption();
+        HexMaster.SetupCustomOption();
         Medusa.SetupCustomOption();
         SetupSingleRoleOptions(3150, TabGroup.NeutralRoles, CustomRoles.Necromancer, 1, zeroOne: false);
         NecromancerKillCD = FloatOptionItem.Create(3162, "KillCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.NeutralRoles, false)
@@ -2030,7 +2032,8 @@ public static class Options
         AutoPlayAgainCountdown = IntegerOptionItem.Create(44425, "AutoPlayAgainCountdown", new(1, 20, 1), 10, TabGroup.SystemSettings, false)
             .SetParent(AutoPlayAgain)
             .SetValueFormat(OptionFormat.Seconds);
-        ShowLobbyCode = BooleanOptionItem.Create(44426, "ShowLobbyCode", true, TabGroup.SystemSettings, false);
+        ShowLobbyCode = BooleanOptionItem.Create(44426, "ShowLobbyCode", true, TabGroup.SystemSettings, false)
+            .SetColor(Color.blue);
 
         LowLoadMode = BooleanOptionItem.Create(19316, "LowLoadMode", true, TabGroup.SystemSettings, false)
             .SetHeader(true)

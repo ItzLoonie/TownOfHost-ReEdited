@@ -305,8 +305,11 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 //Main.NormalOptions.CrewLightMod = Lawyer.LawyerVision.GetFloat();
                 break;
             case CustomRoles.Wraith:
+            case CustomRoles.Shade:
             case CustomRoles.HexMaster:
             case CustomRoles.Parasite:
+            case CustomRoles.Occultist:
+            case CustomRoles.Agitater:
                 opt.SetVision(true);
                 break;
         /*    case CustomRoles.Chameleon:

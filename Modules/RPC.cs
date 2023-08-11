@@ -26,6 +26,7 @@ enum CustomRPC
     SetBountyTarget,
     SetKillOrSpell,
     SetKillOrHex,
+    SetKillOrCurse,
     SetSheriffShotLimit,
     //SetCopyCatMiscopyLimit,
     SetDousedPlayer,
@@ -33,6 +34,7 @@ enum CustomRPC
     SetNameColorData,
     DoSpell,
     DoHex,
+    DoCurse,
     SniperSync,
     SetLoversPlayers,
     SetExecutionerTarget,
@@ -59,8 +61,8 @@ enum CustomRPC
     SetCurrentDrawTarget,
     SetGamerHealth,
     RpcPassBomb,
-    SetSoulCollectorLimit,
     SetCleanserCleanLimit,
+    SetSoulCollectorLimit,
     SetPelicanEtenNum,
     SwordsManKill,
     SetCounterfeiterSellLimit,
@@ -92,6 +94,7 @@ enum CustomRPC
     NecromancerRevenge,
     SetSwooperTimer,
     SetWraithTimer,
+    SetShadeTimer,
     SetBKTimer,
     SetBansheeTimer,
     SyncTotocalcioTargetAndTimes,
@@ -294,6 +297,9 @@ internal class RPCHandlerPatch
             case CustomRPC.SetKillOrHex:
                 HexMaster.ReceiveRPC(reader, false);
                 break;
+            case CustomRPC.SetKillOrCurse:
+                Occultist.ReceiveRPC(reader, false);
+                break;
 
             case CustomRPC.SetSheriffShotLimit:
                 Sheriff.ReceiveRPC(reader);
@@ -330,6 +336,9 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.DoHex:
                 HexMaster.ReceiveRPC(reader, true);
+                break;
+            case CustomRPC.DoCurse:
+                Occultist.ReceiveRPC(reader, true);
                 break;
             case CustomRPC.SniperSync:
                 Sniper.ReceiveRPC(reader);
@@ -518,6 +527,9 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetWraithTimer:
                 Wraith.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetShadeTimer:
+                Shade.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetChameleonTimer:
                 Chameleon.ReceiveRPC(reader);
@@ -793,6 +805,9 @@ internal static class RPC
             case CustomRoles.HexMaster:
                 HexMaster.Add(targetId);
                 break;
+            case CustomRoles.Occultist:
+                Occultist.Add(targetId);
+                break;
             case CustomRoles.Camouflager:
                 Camouflager.Add(targetId);
                 break;
@@ -967,6 +982,9 @@ internal static class RPC
                 break;
             case CustomRoles.Wraith:
                 Wraith.Add(targetId);
+                break;
+            case CustomRoles.Shade:
+                Shade.Add(targetId);
                 break;
             case CustomRoles.Chameleon:
                 Chameleon.Add(targetId);

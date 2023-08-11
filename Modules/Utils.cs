@@ -459,7 +459,9 @@ public static class Utils
             case CustomRoles.FFF:
             case CustomRoles.Gamer:
             case CustomRoles.HexMaster:
+            case CustomRoles.Occultist:
             case CustomRoles.Wraith:
+            case CustomRoles.Shade:
       //      case CustomRoles.Chameleon:
             case CustomRoles.Juggernaut:
             case CustomRoles.Reverie:
@@ -1242,6 +1244,7 @@ public static class Utils
             + $"\n  ○ /color {GetString("Command.color")}"
             + $"\n  ○ /qt {GetString("Command.quit")}"
             + $"\n ○ /death {GetString("Command.death")}"
+     //       + $"\n ○ /icons {GetString("Command.iconinfo")}"
             , ID);
     }
     public static void ShowHelp(byte ID)
@@ -1257,6 +1260,8 @@ public static class Utils
             + $"\n  ○ /color {GetString("Command.color")}"
             + $"\n  ○ /rn {GetString("Command.rename")}"
             + $"\n  ○ /qt {GetString("Command.quit")}"
+       //     + $"\n  ○ /icons {GetString("Command.iconinfo")}"
+            + $"\n  ○ /death {GetString("Command.death")}"
             + "\n\n" + GetString("CommandHostList")
             + $"\n  ○ /s {GetString("Command.say")}"
             + $"\n  ○ /rn {GetString("Command.rename")}"
@@ -1268,7 +1273,7 @@ public static class Utils
             + $"\n  ○ /id {GetString("Command.idlist")}"
             + $"\n  ○ /qq {GetString("Command.qq")}"
             + $"\n  ○ /dump {GetString("Command.dump")}"
-            + $"\n  ○ /death {GetString("Command.death")}"
+        //    + $"\n  ○ /iconhelp {GetString("Command.iconhelp")}"
             , ID);
     }
     public static void CheckTerroristWin(GameData.PlayerInfo Terrorist)
@@ -1444,6 +1449,7 @@ public static class Utils
             //呪われている場合
             SelfMark.Append(Witch.GetSpelledMark(seer.PlayerId, isForMeeting));
             SelfMark.Append(HexMaster.GetHexedMark(seer.PlayerId, isForMeeting));
+            SelfMark.Append(Occultist.GetCursedMark(seer.PlayerId, isForMeeting));
             if (Baker.IsPoisoned(seer) && isForMeeting && seer.IsAlive())
                 SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Famine), "θ"));
 
@@ -1503,6 +1509,10 @@ public static class Utils
             if (seer.Is(CustomRoles.HexMaster))
             {
                 SelfSuffix.Append(HexMaster.GetHexModeText(seer, false, isForMeeting));
+            }
+            if (seer.Is(CustomRoles.Occultist))
+            {
+                SelfSuffix.Append(Occultist.GetHexModeText(seer, false, isForMeeting));
             }
             if (seer.Is(CustomRoles.AntiAdminer) && !isForMeeting)
             {
@@ -1638,6 +1648,7 @@ public static class Utils
                 //呪われている人
                 TargetMark.Append(Witch.GetSpelledMark(target.PlayerId, isForMeeting));
                 TargetMark.Append(HexMaster.GetHexedMark(target.PlayerId, isForMeeting));
+                TargetMark.Append(Occultist.GetCursedMark(target.PlayerId, isForMeeting));
              //   TargetMark.Append(Baker.GetPoisonMark(target, isForMeeting));
 
                 if (Main.ShroudList.ContainsKey(target.PlayerId) && isForMeeting && target.IsAlive())
@@ -2028,6 +2039,7 @@ public static class Utils
         }
         Swooper.AfterMeetingTasks();
         Wraith.AfterMeetingTasks();
+        Shade.AfterMeetingTasks();
         Chameleon.AfterMeetingTasks();
         Eraser.AfterMeetingTasks();
         Cleanser.AfterMeetingTasks();
