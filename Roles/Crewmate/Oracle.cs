@@ -61,130 +61,135 @@ public static class Oracle
             string msg;
 
         {
-            
-            string text = target.GetCustomRole() switch
-            {
-                CustomRoles.Impostor or
-            CustomRoles.Shapeshifter or
-            CustomRoles.ShapeshifterTOHE or
-            CustomRoles.ImpostorTOHE or
-            CustomRoles.EvilDiviner or
-            CustomRoles.Wildling or
-            CustomRoles.BountyHunter or
-            CustomRoles.Vampire or
-            CustomRoles.Witch or
-            CustomRoles.Vindicator or
-            CustomRoles.ShapeMaster or
-            CustomRoles.Zombie or
-            CustomRoles.Warlock or
-            CustomRoles.Assassin or
-            CustomRoles.Hacker or
-            CustomRoles.Miner or
-            CustomRoles.Escapee or
-            CustomRoles.SerialKiller or
-       //     CustomRoles.Mare or
-            CustomRoles.Inhibitor or
-            CustomRoles.Councillor or
-            CustomRoles.Saboteur or
-            CustomRoles.Puppeteer or
-            CustomRoles.TimeThief or
-      //      CustomRoles.Trickster or // Trickster appears as crew to Oracle
-            CustomRoles.Mafia or
-            CustomRoles.Minimalism or
-            CustomRoles.FireWorks or
-            CustomRoles.Sniper or
-            CustomRoles.EvilTracker or
-            CustomRoles.EvilGuesser or
-            CustomRoles.AntiAdminer or
-            CustomRoles.Ludopath or
-            CustomRoles.Godfather or
-            CustomRoles.Sans or
-            CustomRoles.Bomber or
-            CustomRoles.Nuker or
-            CustomRoles.Scavenger or
-            CustomRoles.BoobyTrap or
-            CustomRoles.Capitalism or
-            CustomRoles.Gangster or
-            CustomRoles.Cleaner or
-            CustomRoles.BallLightning or
-            CustomRoles.Greedier or
-            CustomRoles.CursedWolf or
-            CustomRoles.ImperiusCurse or
-            CustomRoles.QuickShooter or
-            CustomRoles.Eraser or
-            CustomRoles.OverKiller or
-            CustomRoles.Hangman or
-            CustomRoles.Bard or
-            CustomRoles.Swooper or
-            CustomRoles.Disperser or
-            CustomRoles.Dazzler or
-            CustomRoles.Deathpact or
-            CustomRoles.Devourer or
-            CustomRoles.Camouflager or
-            CustomRoles.Twister or
-            CustomRoles.Visionary or
-            CustomRoles.Lurker or
-            CustomRoles.Pitfall
-                => "Imp",
-            
-            CustomRoles.Jester or
-            CustomRoles.Opportunist or
-            CustomRoles.Shroud or
-            CustomRoles.Mario or
-            CustomRoles.Crewpostor or
-            CustomRoles.NWitch or
-            CustomRoles.Parasite or
-            CustomRoles.Refugee or
-            CustomRoles.Terrorist or
-            CustomRoles.Executioner or
-            CustomRoles.Juggernaut or
-            CustomRoles.Lawyer or
-            CustomRoles.Arsonist or
-            CustomRoles.Jackal or
-            CustomRoles.Maverick or
-            CustomRoles.Sidekick or
-            CustomRoles.God or
-            CustomRoles.PlagueBearer or
-            CustomRoles.Pestilence or
-            CustomRoles.Masochist or
-            CustomRoles.Innocent or
-            CustomRoles.Pursuer or
-            CustomRoles.NSerialKiller or
-            CustomRoles.Pelican or
-            CustomRoles.Revolutionist or
-            CustomRoles.FFF or
-            CustomRoles.Konan or
-            CustomRoles.Gamer or
-            CustomRoles.DarkHide or
-            CustomRoles.Infectious or
-            CustomRoles.Workaholic or
-            CustomRoles.Collector or
-            CustomRoles.Provocateur or
-            CustomRoles.Sunnyboy or
-            CustomRoles.Phantom or
-            CustomRoles.BloodKnight or
-            CustomRoles.Totocalcio or
-            CustomRoles.Virus or
-            CustomRoles.Succubus or
-            CustomRoles.Doomsayer or
-            CustomRoles.Pirate
-                => "Neut",
 
-            CustomRoles.Poisoner or
-            CustomRoles.Wraith or
-            CustomRoles.Jinx or
-            CustomRoles.Ritualist or
-            CustomRoles.Banshee or
-            CustomRoles.Medusa or
-            CustomRoles.Conjuror or
-            CustomRoles.Necromancer or
-            CustomRoles.HexMaster or
-            CustomRoles.CovenLeader
-                => "Coven",
+                string text;
+                if (target.GetCustomRole().IsImpostor() && !target.Is(CustomRoles.Trickster)) text = "Imp";
+                else if (target.GetCustomRole().IsCoven()) text = "Coven";
+                else if (target.GetCustomRole().IsNeutral()) text = "Neut";
+                else text = "Crew";
+                //      string text = target.GetCustomRole() switch
+                //      {
+                //          CustomRoles.Impostor or
+                //      CustomRoles.Shapeshifter or
+                //      CustomRoles.ShapeshifterTOHE or
+                //      CustomRoles.ImpostorTOHE or
+                //      CustomRoles.EvilDiviner or
+                //      CustomRoles.Wildling or
+                //      CustomRoles.BountyHunter or
+                //      CustomRoles.Vampire or
+                //      CustomRoles.Witch or
+                //      CustomRoles.Vindicator or
+                //      CustomRoles.ShapeMaster or
+                //      CustomRoles.Zombie or
+                //      CustomRoles.Warlock or
+                //      CustomRoles.Assassin or
+                //      CustomRoles.Hacker or
+                //      CustomRoles.Miner or
+                //      CustomRoles.Escapee or
+                //      CustomRoles.SerialKiller or
+                // //     CustomRoles.Mare or
+                //      CustomRoles.Inhibitor or
+                //      CustomRoles.Councillor or
+                //      CustomRoles.Saboteur or
+                //      CustomRoles.Puppeteer or
+                //      CustomRoles.TimeThief or
+                ////      CustomRoles.Trickster or // Trickster appears as crew to Oracle
+                //      CustomRoles.Mafia or
+                //      CustomRoles.Minimalism or
+                //      CustomRoles.FireWorks or
+                //      CustomRoles.Sniper or
+                //      CustomRoles.EvilTracker or
+                //      CustomRoles.EvilGuesser or
+                //      CustomRoles.AntiAdminer or
+                //      CustomRoles.Ludopath or
+                //      CustomRoles.Godfather or
+                //      CustomRoles.Sans or
+                //      CustomRoles.Bomber or
+                //      CustomRoles.Nuker or
+                //      CustomRoles.Scavenger or
+                //      CustomRoles.BoobyTrap or
+                //      CustomRoles.Capitalism or
+                //      CustomRoles.Gangster or
+                //      CustomRoles.Cleaner or
+                //      CustomRoles.BallLightning or
+                //      CustomRoles.Greedier or
+                //      CustomRoles.CursedWolf or
+                //      CustomRoles.ImperiusCurse or
+                //      CustomRoles.QuickShooter or
+                //      CustomRoles.Eraser or
+                //      CustomRoles.OverKiller or
+                //      CustomRoles.Hangman or
+                //      CustomRoles.Bard or
+                //      CustomRoles.Swooper or
+                //      CustomRoles.Disperser or
+                //      CustomRoles.Dazzler or
+                //      CustomRoles.Deathpact or
+                //      CustomRoles.Devourer or
+                //      CustomRoles.Camouflager or
+                //      CustomRoles.Twister or
+                //      CustomRoles.Visionary or
+                //      CustomRoles.Lurker or
+                //      CustomRoles.Pitfall
+                //          => "Imp",
 
-                _ => "Crew",
-            };
-            msg = string.Format(GetString("OracleCheck." + text), target.GetRealName());
+                //      CustomRoles.Jester or
+                //      CustomRoles.Opportunist or
+                //      CustomRoles.Shroud or
+                //      CustomRoles.Mario or
+                //      CustomRoles.Crewpostor or
+                //      CustomRoles.NWitch or
+                //      CustomRoles.Parasite or
+                //      CustomRoles.Refugee or
+                //      CustomRoles.Terrorist or
+                //      CustomRoles.Executioner or
+                //      CustomRoles.Juggernaut or
+                //      CustomRoles.Lawyer or
+                //      CustomRoles.Arsonist or
+                //      CustomRoles.Jackal or
+                //      CustomRoles.Maverick or
+                //      CustomRoles.Sidekick or
+                //      CustomRoles.God or
+                //      CustomRoles.PlagueBearer or
+                //      CustomRoles.Pestilence or
+                //      CustomRoles.Masochist or
+                //      CustomRoles.Innocent or
+                //      CustomRoles.Pursuer or
+                //      CustomRoles.NSerialKiller or
+                //      CustomRoles.Pelican or
+                //      CustomRoles.Revolutionist or
+                //      CustomRoles.FFF or
+                //      CustomRoles.Konan or
+                //      CustomRoles.Gamer or
+                //      CustomRoles.DarkHide or
+                //      CustomRoles.Infectious or
+                //      CustomRoles.Workaholic or
+                //      CustomRoles.Collector or
+                //      CustomRoles.Provocateur or
+                //      CustomRoles.Sunnyboy or
+                //      CustomRoles.Phantom or
+                //      CustomRoles.BloodKnight or
+                //      CustomRoles.Totocalcio or
+                //      CustomRoles.Virus or
+                //      CustomRoles.Succubus or
+                //      CustomRoles.Doomsayer or
+                //      CustomRoles.Pirate
+                //          => "Neut",
+
+                //      CustomRoles.Poisoner or
+                //      CustomRoles.Wraith or
+                //      CustomRoles.Jinx or
+                //      CustomRoles.Ritualist or
+                //      CustomRoles.Banshee or
+                //      CustomRoles.Medusa or
+                //      CustomRoles.Conjuror or
+                //      CustomRoles.Necromancer or
+                //      CustomRoles.HexMaster or
+                //      CustomRoles.CovenLeader
+                //          => "Coven",
+
+                //          _ => "Crew",
+                //      };
+                msg = string.Format(GetString("OracleCheck." + text), target.GetRealName());
         }
 
         Utils.SendMessage(GetString("OracleCheck") + "\n" + msg + "\n\n" + string.Format(GetString("OracleCheckLimit"), CheckLimit[player.PlayerId]), player.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Oracle), GetString("OracleCheckMsgTitle")));}

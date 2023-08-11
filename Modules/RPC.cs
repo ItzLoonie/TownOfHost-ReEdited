@@ -871,6 +871,9 @@ internal static class RPC
             case CustomRoles.LastImpostor:
                 LastImpostor.Add(targetId);
                 break;
+            case CustomRoles.Aware:
+                Main.AwareInteracted[targetId] = new();
+                break;
             case CustomRoles.TimeManager:
                 TimeManager.Add(targetId);
                 break;

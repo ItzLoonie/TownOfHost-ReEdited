@@ -1,5 +1,6 @@
 using AmongUs.GameOptions;
 using HarmonyLib;
+using MS.Internal.Xml.XPath;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
 using static TOHE.Translator;
+using static UnityEngine.GraphicsBuffer;
 
 namespace TOHE;
 
@@ -110,6 +112,18 @@ class CheckForEndVotingPatch
                                 Main.GodfatherTarget.Add(voteTarget.PlayerId);
                                 break;
                         }
+                        if (voteTarget.Is(CustomRoles.Aware))
+                        {
+                            switch (pc.GetCustomRole())
+                            {
+                                case CustomRoles.Divinator:
+                                case CustomRoles.Oracle:
+                                    if (!Main.AwareInteracted.ContainsKey(pva.VotedFor)) Main.AwareInteracted[pva.VotedFor] = new();
+                                    if (!Main.AwareInteracted[pva.VotedFor].Contains(pc.GetCustomRole())) Main.AwareInteracted[pva.VotedFor].Add(pc.GetCustomRole());
+                                    break;
+                            }
+                        }    
+                     
                     }
                 }
             }

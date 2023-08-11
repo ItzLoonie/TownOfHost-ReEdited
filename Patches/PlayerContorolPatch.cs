@@ -136,7 +136,19 @@ class CheckMurderPatch
                 // Key doesn't exist, add the key-value pair
                 Main.KilledAntidote.Add(killer.PlayerId, 1);// Main.AllPlayerKillCooldown.TryGetValue(killer.PlayerId, out float kcd) ? (kcd - Options.AntidoteCDOpt.GetFloat() > 0 ? kcd - Options.AntidoteCDOpt.GetFloat() : 0f) : 0f);
             }
+        }
+        if (target.Is(CustomRoles.Aware))
+        {
+            switch (killer.GetCustomRole())
+            {
+                case CustomRoles.EvilDiviner:
+                case CustomRoles.Farseer:
+                case CustomRoles.Ritualist:
+                    if (!Main.AwareInteracted.ContainsKey(target.PlayerId)) Main.AwareInteracted.Add(target.PlayerId, new());
+                    if (!Main.AwareInteracted[target.PlayerId].Contains(killer.GetCustomRole())) Main.AwareInteracted[target.PlayerId].Add(killer.GetCustomRole());
+                    break;
             }
+        }
         if (target.Is(CustomRoles.Shaman) && !killer.GetCustomRole().IsCoven())
         {
             if (Main.ShamanTarget != byte.MaxValue && target.IsAlive())
@@ -1875,6 +1887,22 @@ class ReportDeadBodyPatch
         Tracefinder.OnReportDeadBody(player, target);
         Mediumshiper.OnReportDeadBody(target);
         Spiritualist.OnReportDeadBody(target);
+       
+        foreach (var pid in Main.AwareInteracted.Keys)
+        {
+            var Awarepc = Utils.GetPlayerById(pid);
+            if (Main.AwareInteracted[pid].Count > 0 && Awarepc.IsAlive())
+            {
+                string rolelist = "Someone";
+                new LateTask(() =>
+                {
+                    if (Options.AwareknowRole.GetBool())
+                        rolelist = string.Join(", ", Main.AwareInteracted[pid]);
+                    Utils.SendMessage(string.Format(GetString("AwareInteracted"), rolelist), pid, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Aware),GetString("AwareTitle")));
+                    Main.AwareInteracted[pid] = new();
+                }, 0.5f, "AwareCheckMsg");
+            }
+        }
         
         foreach (var x in Main.RevolutionistStart)
         {

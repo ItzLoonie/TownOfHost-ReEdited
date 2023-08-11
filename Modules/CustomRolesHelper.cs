@@ -310,6 +310,7 @@ internal static class CustomRolesHelper
             CustomRoles.Burst or
             CustomRoles.Diseased or
             CustomRoles.Antidote or
+            CustomRoles.Aware or
             CustomRoles.Swift or
             CustomRoles.Gravestone or
             CustomRoles.Trapper or
@@ -485,7 +486,8 @@ internal static class CustomRolesHelper
             CustomRoles.Revolutionist or
             CustomRoles.Famine or
             CustomRoles.Baker or
-            CustomRoles.Provocateur;
+            CustomRoles.Provocateur or
+            CustomRoles.SoulCollector;
     }
     public static bool IsNB(this CustomRoles role)
     {
@@ -1027,7 +1029,10 @@ internal static class CustomRolesHelper
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeWatcher.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeWatcher.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeWatcher.GetBool()))
                     return false;
                 break;
-
+            case CustomRoles.Aware:
+                if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeAware.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeAware.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeAware.GetBool()))
+                    return false;
+                break;
             case CustomRoles.Antidote:
                 if (pc.Is(CustomRoles.Diseased))
                     return false;

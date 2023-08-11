@@ -203,6 +203,7 @@ public class Main : BasePlugin
     public static List<byte> GodfatherTarget = new();
     public static byte ShamanTarget = byte.MaxValue;
     public static bool ShamanTargetChoosen = false;
+    public static Dictionary<byte, List<CustomRoles>> AwareInteracted = new();
 
 
     public static IEnumerable<PlayerControl> AllPlayerControls => PlayerControl.AllPlayerControls.ToArray().Where(p => p != null);
@@ -491,6 +492,7 @@ public class Main : BasePlugin
                 {CustomRoles.Ghoul, "#B22222"},
                 {CustomRoles.Sleuth, "#803333" },
                 {CustomRoles.Clumsy, "#ff1919"},
+                {CustomRoles.Aware,"#4B0082"},
 
           //      {CustomRoles.Cyber, "#ee4a55" },
 
@@ -784,6 +786,7 @@ public enum CustomRoles
     Fool,
     Avanger,
     Youtuber,
+    Aware,
     Egoist,
     TicketsStealer,
     DualPersonality,
