@@ -1113,6 +1113,7 @@ internal static class CustomRolesHelper
 
             case CustomRoles.Oblivious:
                 if (pc.Is(CustomRoles.Detective)
+                    || pc.Is(CustomRoles.Amnesiac)
                     || pc.Is(CustomRoles.Vulture)
                     || pc.Is(CustomRoles.Sleuth)
                     || pc.Is(CustomRoles.Cleaner)
