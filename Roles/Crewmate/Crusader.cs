@@ -26,12 +26,11 @@ public static class Crusader
     {
         playerIdList = new();
         CrusaderLimit = new();
-        CurrentKillCooldown = new();
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
-        CrusaderLimit.Add(playerId, SkillLimitOpt.GetInt());
+        CrusaderLimit.TryAdd(playerId, SkillLimitOpt.GetInt());
         CurrentKillCooldown.Add(playerId, SkillCooldown.GetFloat());
 
 
