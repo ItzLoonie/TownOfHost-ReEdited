@@ -49,10 +49,11 @@ internal class CustomRoleSelector
 
         List<CustomRoles> NonNeutralKillingOnList = new();
         List<CustomRoles> NonNeutralKillingRateList = new();
-        List<CustomRoles> CovenOnList = new();
 
         List<CustomRoles> NeutralKillingOnList = new();
         List<CustomRoles> NeutralKillingRateList = new();
+
+        List<CustomRoles> CovenOnList = new();
         List<CustomRoles> CovenRateList = new();
 
         List<CustomRoles> roleRateList = new();
@@ -191,7 +192,7 @@ internal class CustomRoleSelector
         }
 
         // Select Coven "Random"
-        if (readyRoleNum < playerCount && readyNeutralKillingNum < optCovenNum)
+        if (readyRoleNum < playerCount && readyCovenNum < optCovenNum)
         {
             while (CovenRateList.Any() && optCovenNum > 0)
             {
