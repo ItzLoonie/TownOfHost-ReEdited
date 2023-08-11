@@ -134,6 +134,7 @@ public class Main : BasePlugin
     public static Dictionary<int, int> SayBanwordsTimes = new();
     public static Dictionary<byte, float> AllPlayerSpeed = new();
     public const float MinSpeed = 0.0001f;
+    public static List<byte> BurstBodies = new();
     public static List<byte> CleanerBodies = new();
     public static List<byte> MedusaBodies = new();
     public static List<byte> InfectedBodies = new();

@@ -2478,10 +2478,11 @@
 
 "## 爆破者设置 / Burst Text Strings"
 "BurstKillDelay","爆破杀伤延迟","Burst Kill Delay","Задержка убийства","",""
-"BurstNotify","那是一次爆发！进入通风口或<color=#ff1919>死亡</color>","That was a Burst! Get in a vent or <color=#ff1919>die</color>.","Он был Взрывным! Прыгните в вентиляцию или <color=#ff1919>умрёте</color>","",""
+"BurstNotify","你击杀了爆裂者！快进入通风口躲避<color=#ff1919>死亡</color>","That was a Burst! Get in a vent or <color=#ff1919>die</color>.","Он был Взрывным! Прыгните в вентиляцию или <color=#ff1919>умрёте</color>","",""
 "ImpCanBeBurst","<color=#ff1919>内鬼阵营</color>可以变成爆裂者","<color=#ff1919>Impostors</color> can become Burst","<color=#ff1919>Предатели</color> могут стать Взрывным","",""
 "CrewCanBeBurst","<color=#8cffff>船员成员</color>可以变成爆裂者","<color=#8cffff>Crewmates</color> can become Burst","<color=#8cffff>Члены Экипажа</color> могут стать Взрывным","",""
 "NeutralCanBeBurst","<color=#7f8c8d>中立阵营</color>可以成为爆裂者","<color=#7f8c8d>Neutrals</color> can become Burst","<color=#7f8c8d>Нейтралы</color> могут стать Взрывным","",""
+"BurstFailed","爆裂者没能炸死你","Burst failed to bomb you","","",""
 
 "## 裹尸布设置 / Shroud Text Strings"
 "ShroudButtonText","裹尸布","Shroud","Накрыть","",""
