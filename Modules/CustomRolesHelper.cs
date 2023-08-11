@@ -919,7 +919,7 @@ internal static class CustomRolesHelper
         if (!role.IsAdditionRole()) return false;
 
 
-        // Check roles
+        // Checking for conflicts with roles
         if (pc.Is(CustomRoles.GM) || role is CustomRoles.Lovers || pc.Is(CustomRoles.Needy) || (pc.HasSubRole() && pc.GetCustomSubRoles().Count >= Options.NoLimitAddonsNumMax.GetInt())) return false;
 
 
