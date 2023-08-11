@@ -396,6 +396,11 @@ public static class Options
     public static OptionItem NeutralCanBeDiseased;
     public static OptionItem DiseasedCDOpt;
     public static OptionItem DiseasedCDReset;
+    
+    public static OptionItem ImpCanBeVoidBallot;
+    public static OptionItem CrewCanBeVoidBallot;
+    public static OptionItem NeutralCanBeVoidBallot;
+
 
     public static OptionItem ImpCanBeAntidote;
     public static OptionItem CrewCanBeAntidote;
@@ -1773,6 +1778,15 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Unlucky]);
         NeutralCanBeUnlucky = BooleanOptionItem.Create(14363, "NeutralCanBeUnlucky", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Unlucky]);
+
+        SetupAdtRoleOptions(36420, CustomRoles.VoidBallot, canSetNum: true);
+        ImpCanBeVoidBallot = BooleanOptionItem.Create(36430, "ImpCanBeVoidBallot", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.VoidBallot]);
+        CrewCanBeVoidBallot = BooleanOptionItem.Create(36431, "CrewCanBeVoidBallot", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.VoidBallot]);
+        NeutralCanBeVoidBallot = BooleanOptionItem.Create(36432, "NeutralCanBeVoidBallot", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.VoidBallot]);
+
         Workhorse.SetupCustomOption();
 
         TextOptionItem.Create(100016, "RoleType.Impostor", TabGroup.Addons) // IMPOSTOR

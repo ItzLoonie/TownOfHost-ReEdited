@@ -482,6 +482,7 @@ public class Main : BasePlugin
                 {CustomRoles.Glow, "#E2F147"},
                 {CustomRoles.Diseased, "#AAAAAA"},
                 {CustomRoles.Antidote,"#FF9876"},
+                {CustomRoles.VoidBallot,"#FF3399"},
                 {CustomRoles.Burst, "#B619B9"},
 
                 {CustomRoles.Swift, "#ff1919"},
@@ -815,6 +816,7 @@ public enum CustomRoles
     Glow,
     Diseased,
     Antidote,
+    VoidBallot,
     Swift,
     Ghoul,
     Mare,
