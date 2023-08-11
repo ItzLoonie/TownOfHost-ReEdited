@@ -560,7 +560,7 @@
 "LudopathInfo","我的冷却时间怎么变化的那么奇怪？","Your kill cooldown is random","Твой откат убийства случайный","",""
 "GodfatherInfo","给我变成逃亡者吧！","Convert players to Refugees by voting","Превращайте игроков в Беженцев путем голосования","",""
 "ChronomancerInfo","爆发式击杀！","Kill in bursts","Убивайте очередями","",""
-"Pitfall","","Setup Traps","Устанавливайте ловушки","",""
+"PitfallInfo","","Setup traps around the map","Устанавливайте ловушки","",""
 
 "# 船员阵营 / Crewmate descriptions"
 "LuckeyInfo","你擅长治疗内鬼的低血压","Dodge attacks","Уклоняйтесь от атак","是生是死，看你是歐還是非","你擅长治疗内鬼的低血压"
@@ -671,7 +671,7 @@
 "SeekerInfo","与目标玩捉迷藏","Play Hide and Seek with your target","Играйте в прятки со своей целью","",""
 "OccultistInfo","","Kill and curse your enemies","","",""
 "ShadeInfo","","Go invisible and murder","","",""
-"SoulCollectorInfo","","Collect the souls of players by predicting their deaths","","",""
+"SoulCollectorInfo","","Predict deaths to collect souls","","",""
 
 "#  / Covens descriptions"
 "PoisonerInfo","用延迟杀人击杀所有人","Kill everyone with delayed kills","Ваши убийства задерживаются","Info not provided","Info not provided"
@@ -2487,6 +2487,7 @@
 "ImpCanBeBurst","<color=#ff1919>内鬼阵营</color>可以变成爆裂者","<color=#ff1919>Impostors</color> can become Burst","<color=#ff1919>Предатели</color> могут стать Взрывным","",""
 "CrewCanBeBurst","<color=#8cffff>船员成员</color>可以变成爆裂者","<color=#8cffff>Crewmates</color> can become Burst","<color=#8cffff>Члены Экипажа</color> могут стать Взрывным","",""
 "NeutralCanBeBurst","<color=#7f8c8d>中立阵营</color>可以成为爆裂者","<color=#7f8c8d>Neutrals</color> can become Burst","<color=#7f8c8d>Нейтралы</color> могут стать Взрывным","",""
+"BurstFailed","爆裂者没能炸死你","Burst failed to bomb you","","",""
 
 "## 裹尸布设置 / Shroud Text Strings"
 "ShroudButtonText","裹尸布","Shroud","Накрыть","",""
