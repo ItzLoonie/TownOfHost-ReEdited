@@ -68,7 +68,7 @@ public static class SoulCollector
     {
         if (!voter.Is(CustomRoles.SoulCollector)) return;
         if (SoulCollectorTarget[voter.PlayerId] != byte.MaxValue) return;
-        if (!CollectOwnSoulOpt.GetBool())
+        if (!CollectOwnSoulOpt.GetBool() && voter.PlayerId == target.PlayerId)
         {
             Utils.SendMessage(GetString("SoulCollectorSelfVote"), voter.PlayerId, title: Utils.ColorString(Utils.GetRoleColor(CustomRoles.SoulCollector), "SoulCollectorTitle"));
             Logger.Info($"{voter.GetNameWithRole()} Self vote Not Allowed", "SoulCollector");
