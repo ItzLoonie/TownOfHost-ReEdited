@@ -1099,21 +1099,28 @@ class MurderPlayerPatch
                 new LateTask(() => { if (GameStates.IsInTask) killer.CmdReportDeadBody(target.Data); }, delay, "Bait Self Report");
             }
         }
-        if (target.Is(CustomRoles.Burst))
+        if (target.Is(CustomRoles.Burst) && !killer.Data.IsDead)
         {
-            if (killer.PlayerId != target.PlayerId)
+            target.SetRealKiller(killer);
+            Main.BurstBodies.Add(target.PlayerId);
+            if (killer.PlayerId != target.PlayerId && !killer.Is(CustomRoles.Pestilence))
             {
                 killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Burst), GetString("BurstNotify")));
                 new LateTask(() =>
                 {
-
-                    if (!killer.inVent && !killer.Is(CustomRoles.Pestilence) && !killer.Data.IsDead)
+                    if (!killer.inVent && !killer.Data.IsDead && !GameStates.IsMeeting)
                     {
                         target.RpcMurderPlayerV3(killer);
                         killer.SetRealKiller(target);
                         Main.PlayerStates[killer.PlayerId].deathReason = PlayerState.DeathReason.Bombed;
                         RPC.PlaySoundRPC(killer.PlayerId, Sounds.TaskComplete);
                     }
+                    else
+                    {
+                        killer.RpcGuardAndKill();
+                        killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Burst), GetString("BurstFailed")));                        
+                    }
+                    Main.BurstBodies.Remove(target.PlayerId);
                 }, Options.BurstKillDelay.GetFloat(), "Burst Suicide");
             }   
         } 
@@ -1594,6 +1601,10 @@ class ReportDeadBodyPatch
                     } 
                 }
 
+                // 爆裂者尸体不被击杀者报告 Burst cannot be reported by its killer
+                if (Main.BurstBodies.Contains(target.PlayerId))
+                    if (__instance.PlayerId == tpc.GetRealKiller().PlayerId) return false;  
+                
                 var tar = Utils.GetPlayerById(target.PlayerId);
                 if (__instance.Is(CustomRoles.Amnesiac))
                 {

@@ -2055,6 +2055,7 @@ public static class Utils
         Seeker.AfterMeetingTasks();
         Main.ShamanTarget = byte.MaxValue;
         Main.ShamanTargetChoosen = false;
+        Main.BurstBodies.Clear();
 
 
         if (Options.AirshipVariableElectrical.GetBool())
