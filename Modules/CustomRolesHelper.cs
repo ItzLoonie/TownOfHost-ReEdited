@@ -1102,7 +1102,7 @@ internal static class CustomRolesHelper
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeVoidBallot.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeVoidBallot.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeVoidBallot.GetBool()))
                     return false;
                 break;
-
+            
             case CustomRoles.Ntr:
                 if (pc.Is(CustomRoles.Lovers)
                     || pc.Is(CustomRoles.FFF)
@@ -1128,7 +1128,7 @@ internal static class CustomRolesHelper
                     || pc.Is(CustomRoles.Medusa)
                     || pc.Is(CustomRoles.Mortician)
                     || pc.Is(CustomRoles.Mediumshiper)
-                    || pc.Is(CustomRoles.GuardianAngelTOHE))
+                    || pc.Is(CustomRoles.GuardianAngelTOHE))                    
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeOblivious.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeOblivious.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeOblivious.GetBool()))
                     return false;

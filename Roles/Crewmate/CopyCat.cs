@@ -90,6 +90,7 @@ public static class CopyCat
                 case CustomRoles.Cleanser:
                     Cleanser.CleanserTarget.Remove(pc.PlayerId);
                     Cleanser.CleanserUses.Remove(pc.PlayerId);
+                    Cleanser.DidVote.Remove(pc.PlayerId);
                     break;
                 case CustomRoles.ParityCop:
                     ParityCop.MaxCheckLimit.Remove(player);
@@ -217,6 +218,7 @@ public static class CopyCat
                 case CustomRoles.Cleanser:
                     Cleanser.CleanserTarget.Add(pc.PlayerId, byte.MaxValue);
                     Cleanser.CleanserUses.Add(pc.PlayerId, 0);
+                    Cleanser.DidVote.Add(pc.PlayerId, false);
                     break;
                 case CustomRoles.Deputy:
                     Deputy.SetKillCooldown(pc.PlayerId);
