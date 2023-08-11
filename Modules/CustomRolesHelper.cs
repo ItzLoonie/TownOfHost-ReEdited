@@ -1097,6 +1097,8 @@ internal static class CustomRolesHelper
                 break;
 
             case CustomRoles.VoidBallot:
+                if (pc.Is(CustomRoles.Glitch))
+                    return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeVoidBallot.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeVoidBallot.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeVoidBallot.GetBool()))
                     return false;
                 break;
