@@ -15,12 +15,14 @@ public static class SoulCollector
     public static Dictionary<byte, int> SoulCollectorPoints = new();
 
     public static OptionItem SoulCollectorPointsOpt;
+    public static OptionItem CollectOwnSoulOpt;
 
     public static void SetupCustomOption()
     {
         SetupRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.SoulCollector);
         SoulCollectorPointsOpt = IntegerOptionItem.Create(Id + 10, "SoulCollectorPointsToWin", new(1, 14, 1), 3, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.SoulCollector])
             .SetValueFormat(OptionFormat.Times);
+        CollectOwnSoulOpt = BooleanOptionItem.Create(Id + 11, "CollectOwnSoulOpt", true, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.SoulCollector]);
     }
     public static void Init()
     {
@@ -68,6 +70,15 @@ public static class SoulCollector
     {
         if (!voter.Is(CustomRoles.SoulCollector)) return;
         if (SoulCollectorTarget[voter.PlayerId] != byte.MaxValue) return;
+        if (!CollectOwnSoulOpt.GetBool())
+        {
+            Utils.SendMessage(GetString("SoulCollectorSelfVote"), voter.PlayerId, title: Utils.ColorString(Utils.GetRoleColor(CustomRoles.SoulCollector), "SoulCollectorTitle"));
+            Logger.Info($"{voter.GetNameWithRole()} Self vote Not Allowed", "SoulCollector");
+            SoulCollectorTarget[voter.PlayerId] = byte.MaxValue;
+
+            return;
+        }
+
 
         SoulCollectorTarget[voter.PlayerId] = target.PlayerId;
         Logger.Info($"{voter.GetNameWithRole()} predicted the death of {target.GetNameWithRole()}", "SoulCollector");
