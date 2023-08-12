@@ -940,6 +940,7 @@ internal static class CustomRolesHelper
             case CustomRoles.Bait:
                 if (pc.Is(CustomRoles.Trapper)
                     || pc.Is(CustomRoles.Unreportable)
+                    || pc.Is(CustomRoles.Burst)
                     || pc.Is(CustomRoles.GuardianAngelTOHE))
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeBait.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeBait.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeBait.GetBool()))
@@ -1247,6 +1248,7 @@ internal static class CustomRolesHelper
 
             case CustomRoles.Burst:
                 if (pc.Is(CustomRoles.Avanger)
+                    || pc.Is(CustomRoles.Bait)
                     || pc.Is(CustomRoles.Trapper))
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeBurst.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeBurst.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeBurst.GetBool()))
