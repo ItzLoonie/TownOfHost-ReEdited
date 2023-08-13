@@ -123,17 +123,11 @@ public static class Sheriff
         ShotLimit[killer.PlayerId]--;
         Logger.Info($"{killer.GetNameWithRole()} : Number of kills left: {ShotLimit[killer.PlayerId]}", "Sheriff");
         SendRPC(killer.PlayerId);
-        if (target.CanBeKilledBySheriff()
-            || (killer.Is(CustomRoles.Recruit) && SidekickSheriffCanGoBerserk.GetBool())
-            || ((SetNonCrewCanKill.GetBool() &&
-                    (
-                        killer.Is(CustomRoles.Madmate)
-                     || killer.Is(CustomRoles.Charmed)
-                     || killer.Is(CustomRoles.Infected)
-                     || killer.Is(CustomRoles.Contagious)
-                    )
-                ) && ((target.GetCustomRole().IsImpostor() && NonCrewCanKillImp.GetBool()) || (target.GetCustomRole().IsCrewmate() && NonCrewCanKillCrew.GetBool()) || (target.GetCustomRole().IsNeutral() && NonCrewCanKillNeutral.GetBool()))
-            ))
+        if ((target.CanBeKilledBySheriff() && !(SetNonCrewCanKill.GetBool() && killer.IsNonCrewSheriff() || SidekickSheriffCanGoBerserk.GetBool() && killer.Is(CustomRoles.Recruit)))
+            || (SidekickSheriffCanGoBerserk.GetBool() && killer.Is(CustomRoles.Recruit))
+            || (SetNonCrewCanKill.GetBool() && killer.IsNonCrewSheriff()
+                 && ((target.GetCustomRole().IsImpostor() && NonCrewCanKillImp.GetBool()) || (target.GetCustomRole().IsCrewmate() && NonCrewCanKillCrew.GetBool()) || (target.GetCustomRole().IsNeutral() && NonCrewCanKillNeutral.GetBool())))
+            )
         {
             SetKillCooldown(killer.PlayerId);
             return true;
