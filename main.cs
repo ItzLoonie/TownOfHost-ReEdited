@@ -33,8 +33,8 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = " ";
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "2.5.1.48";
-    public const string PluginDisplayVersion = "2.5.1_11 dev 11";
+    public const string PluginVersion = "3.0.0.001";
+    public const string PluginDisplayVersion = "3.0.0 dev 1";
     public const int PluginCreate = 3;
     public const bool Canary = false;
 
@@ -115,6 +115,7 @@ public class Main : BasePlugin
     public static List<byte> CyberStarDead = new();
     public static List<byte> CyberDead = new();
     public static List<byte> WorkaholicAlive = new();
+    public static List<byte> BurstBodies = new();
     public static List<byte> BaitAlive = new();
     public static List<byte> BoobyTrapBody = new();
     public static List<byte> BoobyTrapKiller = new();
@@ -134,7 +135,6 @@ public class Main : BasePlugin
     public static Dictionary<int, int> SayBanwordsTimes = new();
     public static Dictionary<byte, float> AllPlayerSpeed = new();
     public const float MinSpeed = 0.0001f;
-    public static List<byte> BurstBodies = new();
     public static List<byte> CleanerBodies = new();
     public static List<byte> MedusaBodies = new();
     public static List<byte> InfectedBodies = new();
@@ -203,6 +203,7 @@ public class Main : BasePlugin
     public static List<byte> GodfatherTarget = new();
     public static byte ShamanTarget = byte.MaxValue;
     public static bool ShamanTargetChoosen = false;
+    
 
 
     public static IEnumerable<PlayerControl> AllPlayerControls => PlayerControl.AllPlayerControls.ToArray().Where(p => p != null);
@@ -386,7 +387,7 @@ public class Main : BasePlugin
                 {CustomRoles.Sunnyboy, "#ff9902"},
                 {CustomRoles.Poisoner, "#663399"},
                 {CustomRoles.CovenLeader, "#663399"},
-                {CustomRoles.Conjuror, "#663399"},
+                {CustomRoles.Ritualist, "#663399"},
                 {CustomRoles.Necromancer, "#663399"},
                 {CustomRoles.Banshee, "#663399"},
                 {CustomRoles.NWitch, "#BF5FFF"},
@@ -410,7 +411,7 @@ public class Main : BasePlugin
                 {CustomRoles.Jinx, "#663399"},
                 {CustomRoles.Maverick, "#781717"},
                 {CustomRoles.CursedSoul, "#531269"},
-                {CustomRoles.Ritualist, "#663399"},
+                {CustomRoles.PotionMaster, "#663399"},
         //        {CustomRoles.Sorcerer, "#663399"},
                 {CustomRoles.Pickpocket, "#47008B"},
                 {CustomRoles.Traitor, "#BA2E05"},
@@ -734,7 +735,7 @@ public enum CustomRoles
     Maverick,
     CursedSoul,
     Pirate,
-    Ritualist,
+    PotionMaster,
     Pickpocket,
     Traitor,
     Vulture,
@@ -751,7 +752,7 @@ public enum CustomRoles
     Shroud,
     Werewolf,
     CovenLeader,
-    Conjuror,
+    Ritualist,
     Necromancer,
     Banshee,
     Occultist,
@@ -872,7 +873,7 @@ public enum CustomWinner
     Phantom = CustomRoles.Phantom,
     Jinx = CustomRoles.Jinx,
     CursedSoul = CustomRoles.CursedSoul,
-    Ritualist = CustomRoles.Ritualist,
+    PotionMaster = CustomRoles.PotionMaster,
     Pickpocket = CustomRoles.Pickpocket,
     Traitor = CustomRoles.Traitor,
     Vulture = CustomRoles.Vulture,
