@@ -72,8 +72,8 @@ internal class ChangeRoleSettings
             Main.BaitAlive = new();
             Main.BoobyTrapBody = new();
             Main.KillerOfBoobyTrapBody = new();
-            Main.BurstBodies = new();
             Main.CleanerBodies = new();
+            Main.BurstBodies = new();
             Main.MedusaBodies = new();
             Main.InfectedBodies = new();
             Main.VirusNotify = new();
@@ -270,7 +270,7 @@ internal class ChangeRoleSettings
             Deathpact.Init();
             Tracefinder.Init();
             Devourer.Init();
-            Ritualist.Init();
+            PotionMaster.Init();
             NWitch.Init();
             Traitor.Init();
             Spiritualist.Init();
@@ -628,8 +628,8 @@ internal class SelectRolesPatch
                     case CustomRoles.EvilDiviner:
                         EvilDiviner.Add(pc.PlayerId);
                         break;
-                    case CustomRoles.Ritualist:
-                        Ritualist.Add(pc.PlayerId);
+                    case CustomRoles.PotionMaster:
+                        PotionMaster.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Divinator:
                         Divinator.Add(pc.PlayerId);
@@ -882,7 +882,7 @@ internal class SelectRolesPatch
             }
 
             // ResetCamが必要なプレイヤーのリストにクラス化が済んでいない役職のプレイヤーを追加
-            Main.ResetCamPlayerList.AddRange(Main.AllPlayerControls.Where(p => p.GetCustomRole() is CustomRoles.Arsonist or CustomRoles.NWitch or CustomRoles.Conjuror or CustomRoles.Revolutionist or CustomRoles.Farseer or CustomRoles.Sidekick or CustomRoles.Shaman or CustomRoles.KB_Normal).Select(p => p.PlayerId));
+            Main.ResetCamPlayerList.AddRange(Main.AllPlayerControls.Where(p => p.GetCustomRole() is CustomRoles.Arsonist or CustomRoles.NWitch or CustomRoles.Ritualist or CustomRoles.Revolutionist or CustomRoles.Farseer or CustomRoles.Sidekick or CustomRoles.Shaman or CustomRoles.KB_Normal).Select(p => p.PlayerId));
             Utils.CountAlivePlayers(true);
             Utils.SyncAllSettings();
             SetColorPatch.IsAntiGlitchDisabled = false;

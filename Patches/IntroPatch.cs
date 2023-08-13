@@ -403,7 +403,7 @@ class BeginImpostorPatch
             __instance.overlayHandle.color = new Color32(127, 140, 141, byte.MaxValue);
             return false;
         }
-        else if (role is CustomRoles.CovenLeader or CustomRoles.Conjuror or CustomRoles.Banshee or CustomRoles.Necromancer or CustomRoles.Medusa or CustomRoles.HexMaster or CustomRoles.Wraith or CustomRoles.Jinx or CustomRoles.Poisoner or CustomRoles.Ritualist)
+        else if (role is CustomRoles.CovenLeader or CustomRoles.Ritualist or CustomRoles.Banshee or CustomRoles.Necromancer or CustomRoles.Medusa or CustomRoles.HexMaster or CustomRoles.Wraith or CustomRoles.Jinx or CustomRoles.Poisoner or CustomRoles.PotionMaster)
         {
             yourTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             yourTeam.Add(PlayerControl.LocalPlayer);
@@ -436,7 +436,7 @@ class IntroCutsceneDestroyPatch
                     new LateTask(() =>
                     {
                         Main.AllPlayerControls.Do(x => x.ResetKillCooldown());
-                        Main.AllPlayerControls.Where(x => (Main.AllPlayerKillCooldown[x.PlayerId] - 2f) > 0f).Do(pc => pc.SetKillCooldown(Main.AllPlayerKillCooldown[pc.PlayerId] - 2f));
+                        Main.AllPlayerControls.Where(x => (Main.AllPlayerKillCooldown[x.PlayerId] - 2f) > 0f).Do(pc => pc.SetKillCooldown(Options.FixKillCooldownValue.GetFloat() - 2f));
                     }, 2f, "FixKillCooldownTask");
             }
             new LateTask(() => Main.AllPlayerControls.Do(pc => pc.RpcSetRoleDesync(RoleTypes.Shapeshifter, -3)), 2f, "SetImpostorForServer");

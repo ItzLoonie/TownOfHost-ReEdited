@@ -1,3 +1,4 @@
+using AmongUs.GameOptions;
 using HarmonyLib;
 using System;
 using System.Collections.Generic;
@@ -762,7 +763,7 @@ class MeetingHudStartPatch
                 (pc.Is(CustomRoles.Marshall) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Crewmate) && pc.GetPlayerTaskState().IsTaskFinished) ||
                 (Totocalcio.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (EvilDiviner.IsShowTargetRole(PlayerControl.LocalPlayer, pc)) ||
-                (Ritualist.IsShowTargetRole(PlayerControl.LocalPlayer, pc)) ||
+                (PotionMaster.IsShowTargetRole(PlayerControl.LocalPlayer, pc)) ||
                 (Lawyer.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (Executioner.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (Succubus.KnowRole(PlayerControl.LocalPlayer, pc)) ||
@@ -850,7 +851,7 @@ class MeetingHudStartPatch
                 if (Options.ImpostorsCanGuess.GetBool() && seer.GetCustomRole().IsImpostor() && !seer.Is(CustomRoles.Councillor))
                     if (!seer.Data.IsDead && !target.Data.IsDead)
                         pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + pva.NameText.text;
-                if (Options.CovenMembersCanGuess.GetBool() && seer.GetCustomRole().IsCoven() && !seer.Is(CustomRoles.Conjuror))
+                if (Options.CovenMembersCanGuess.GetBool() && seer.GetCustomRole().IsCoven() && !seer.Is(CustomRoles.Ritualist))
                     if (!seer.Data.IsDead && !target.Data.IsDead)
                         pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + pva.NameText.text;
                 if (Options.NeutralKillersCanGuess.GetBool() && seer.GetCustomRole().IsNK())
@@ -934,7 +935,7 @@ class MeetingHudStartPatch
                 case CustomRoles.Succubus:
                 case CustomRoles.CovenLeader:
                 case CustomRoles.Pickpocket:
-                case CustomRoles.Ritualist:
+                case CustomRoles.PotionMaster:
                 case CustomRoles.Traitor:
                 case CustomRoles.Spiritcaller:
                     sb.Append(Snitch.GetWarningMark(seer, target));
@@ -983,10 +984,10 @@ class MeetingHudStartPatch
                     if (!seer.Data.IsDead && !target.Data.IsDead)
                         pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Judge), target.PlayerId.ToString()) + " " + pva.NameText.text;
                     break;
-                case CustomRoles.Conjuror:
+                case CustomRoles.Ritualist:
                     sb.Append(Snitch.GetWarningMark(seer, target));
                     if (!seer.Data.IsDead && !target.Data.IsDead)
-                        pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Conjuror), target.PlayerId.ToString()) + " " + pva.NameText.text;
+                        pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Ritualist), target.PlayerId.ToString()) + " " + pva.NameText.text;
                     break;
                 case CustomRoles.Lookout:
                     if (!seer.Data.IsDead && !target.Data.IsDead)
@@ -1151,7 +1152,7 @@ class MeetingHudUpdatePatch
             __instance.playerStates.Where(x => (!Main.PlayerStates.TryGetValue(x.TargetPlayerId, out var ps) || ps.IsDead) && !x.AmDead).Do(x => x.SetDead(x.DidReport, true));
 
             //若玩家死亡则销毁技能按钮
-            if (myRole is CustomRoles.NiceGuesser or CustomRoles.EvilGuesser or CustomRoles.Conjuror or CustomRoles.Doomsayer or CustomRoles.Judge or CustomRoles.Councillor or CustomRoles.Guesser && !PlayerControl.LocalPlayer.IsAlive())
+            if (myRole is CustomRoles.NiceGuesser or CustomRoles.EvilGuesser or CustomRoles.Ritualist or CustomRoles.Doomsayer or CustomRoles.Judge or CustomRoles.Councillor or CustomRoles.Guesser && !PlayerControl.LocalPlayer.IsAlive())
                 ClearShootButton(__instance, true);
 
             //若黑手党死亡则创建技能按钮

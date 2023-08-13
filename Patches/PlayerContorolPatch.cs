@@ -539,10 +539,10 @@ class CheckMurderPatch
             return true;
         } */
 
-        if (killer.Is(CustomRoles.Ritualist))
+        if (killer.Is(CustomRoles.PotionMaster))
         {
             
-            if (!Ritualist.OnCheckMurder(killer, target))
+            if (!PotionMaster.OnCheckMurder(killer, target))
                 return false;
         }
 
@@ -699,7 +699,7 @@ class CheckMurderPatch
             return false;
         if (killer.Is(CustomRoles.Medusa) && target.Is(CustomRoles.Medusa))
             return false;
-        if (killer.Is(CustomRoles.Ritualist) && target.Is(CustomRoles.Ritualist))
+        if (killer.Is(CustomRoles.PotionMaster) && target.Is(CustomRoles.PotionMaster))
             return false;
         if (killer.Is(CustomRoles.Glitch) && target.Is(CustomRoles.Glitch))
             return false;
@@ -1122,7 +1122,7 @@ class MurderPlayerPatch
                     }
                     Main.BurstBodies.Remove(target.PlayerId);
                 }, Options.BurstKillDelay.GetFloat(), "Burst Suicide");
-            }   
+            }
         } 
 
 
@@ -1601,10 +1601,6 @@ class ReportDeadBodyPatch
                     } 
                 }
 
-                // 爆裂者尸体不被击杀者报告 Burst cannot be reported by its killer
-                if (Main.BurstBodies.Contains(target.PlayerId))
-                    if (__instance.PlayerId == tpc.GetRealKiller().PlayerId) return false;  
-                
                 var tar = Utils.GetPlayerById(target.PlayerId);
                 if (__instance.Is(CustomRoles.Amnesiac))
                 {
@@ -2330,7 +2326,7 @@ class FixedUpdatePatch
                             {
                                 if (player.RpcCheckAndMurder(target, true))
                                 {
-                                    var puppeteerId = Main.PuppeteerList[player.PlayerId];
+                                    var puppeteerId = Main.CovenLeaderList[player.PlayerId];
                                     RPC.PlaySoundRPC(puppeteerId, Sounds.KillSound);
                                     target.SetRealKiller(Utils.GetPlayerById(puppeteerId));
                                     player.SetRealKiller(Utils.GetPlayerById(puppeteerId));
@@ -2526,7 +2522,7 @@ class FixedUpdatePatch
                 else if (Totocalcio.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (Lawyer.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (EvilDiviner.IsShowTargetRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
-                else if (Ritualist.IsShowTargetRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
+                else if (PotionMaster.IsShowTargetRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (Executioner.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (Succubus.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (CursedSoul.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
@@ -2540,7 +2536,7 @@ class FixedUpdatePatch
                 else if (Totocalcio.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (Lawyer.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (EvilDiviner.IsShowTargetRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
-                else if (Ritualist.IsShowTargetRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
+                else if (PotionMaster.IsShowTargetRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (Executioner.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (Main.GodMode.Value) RoleText.enabled = true;
                 else RoleText.enabled = false; //そうでなければロールを非表示
@@ -3263,7 +3259,7 @@ class PlayerControlSetRolePatch
                 {
                     ghostRoles[seer] = RoleTypes.GuardianAngel;
                 }
-                else if((self && targetIsKiller) || (!seerIsKiller && (target.Is(CustomRoleTypes.Impostor) || Main.ResetCamPlayerList.Contains(target.PlayerId) || (target.Is(CustomRoles.Pickpocket)) || (target.Is(CustomRoles.Medusa)) || (target.Is(CustomRoles.Amnesiac)) || (target.Is(CustomRoles.Conjuror)) || (target.Is(CustomRoles.Refugee)))))
+                else if((self && targetIsKiller) || (!seerIsKiller && (target.Is(CustomRoleTypes.Impostor) || Main.ResetCamPlayerList.Contains(target.PlayerId) || (target.Is(CustomRoles.Pickpocket)) || (target.Is(CustomRoles.Medusa)) || (target.Is(CustomRoles.Amnesiac)) || (target.Is(CustomRoles.Ritualist)) || (target.Is(CustomRoles.Refugee)))))
                 {
                     ghostRoles[seer] = RoleTypes.ImpostorGhost;
                 }

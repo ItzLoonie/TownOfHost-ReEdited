@@ -209,9 +209,9 @@ class HudManagerPatch
                     case CustomRoles.Parasite:
                     case CustomRoles.Refugee:
                     case CustomRoles.Traitor:
-                    case CustomRoles.Ritualist:
+                    case CustomRoles.PotionMaster:
                     case CustomRoles.Spiritcaller:
-                    case CustomRoles.Conjuror:
+                    case CustomRoles.Ritualist:
                     case CustomRoles.Necromancer:
                     case CustomRoles.DarkHide:
                     case CustomRoles.Maverick:
@@ -602,7 +602,7 @@ class SetHudActivePatch
             case CustomRoles.Arsonist:
             case CustomRoles.NWitch:
             case CustomRoles.CovenLeader:
-            case CustomRoles.Conjuror:
+            case CustomRoles.Ritualist:
             case CustomRoles.Shroud:
             case CustomRoles.Innocent:
             case CustomRoles.Reverie:
@@ -686,7 +686,7 @@ class MapBehaviourShowPatch
         if (opts.Mode is MapOptions.Modes.Normal or MapOptions.Modes.Sabotage)
         {
             var player = PlayerControl.LocalPlayer;
-            if (player.Is(CustomRoleTypes.Impostor) || (player.Is(CustomRoles.Parasite)) || (player.Is(CustomRoles.Glitch)) || (player.Is(CustomRoles.Werewolf)) || (player.Is(CustomRoles.Refugee)) || (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) || (player.Is(CustomRoles.Traitor) && Traitor.CanUseSabotage.GetBool()))
+            if (player.Is(CustomRoleTypes.Impostor) || (player.Is(CustomRoles.Parasite)) || (player.Is(CustomRoles.PotionMaster)) || (player.Is(CustomRoles.Glitch)) || (player.Is(CustomRoles.Werewolf)) || (player.Is(CustomRoles.Refugee)) || (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) || (player.Is(CustomRoles.Traitor) && Traitor.CanUseSabotage.GetBool()))
                 opts.Mode = MapOptions.Modes.Sabotage;
             else
                 opts.Mode = MapOptions.Modes.Normal;
