@@ -465,7 +465,7 @@ static class ExtendedPlayerControl
             CustomRoles.Poisoner => pc.IsAlive(),
             CustomRoles.Juggernaut => pc.IsAlive(),
             CustomRoles.Reverie => pc.IsAlive(),
-            CustomRoles.Ritualist => pc.IsAlive(),
+            CustomRoles.PotionMaster => pc.IsAlive(),
             CustomRoles.NSerialKiller => pc.IsAlive(),
             CustomRoles.Werewolf => Utils.IsActive(SystemTypes.Electrical),
             CustomRoles.Medusa => pc.IsAlive(),
@@ -479,7 +479,7 @@ static class ExtendedPlayerControl
     //        CustomRoles.Minion => pc.IsAlive(),
             CustomRoles.NWitch => pc.IsAlive(),
             CustomRoles.CovenLeader => pc.IsAlive(),
-            CustomRoles.Conjuror => pc.IsAlive(),
+            CustomRoles.Ritualist => pc.IsAlive(),
             CustomRoles.Shroud => pc.IsAlive(),
             CustomRoles.Wraith => pc.IsAlive(),
             CustomRoles.Shade => pc.IsAlive(),
@@ -559,7 +559,7 @@ static class ExtendedPlayerControl
             CustomRoles.Traitor => Traitor.CanVent.GetBool(),
             CustomRoles.NWitch => NWitch.CanVent.GetBool(),
             CustomRoles.CovenLeader => CovenLeader.CanVent.GetBool(),
-            CustomRoles.Conjuror => Options.ConjurorCanVent.GetBool(),
+            CustomRoles.Ritualist => Options.RitualistCanVent.GetBool(),
             CustomRoles.Necromancer => Options.NecromancerCanVent.GetBool(),
             CustomRoles.Shroud => Shroud.CanVent.GetBool(),
             CustomRoles.Maverick => Maverick.CanVent.GetBool(),
@@ -570,7 +570,7 @@ static class ExtendedPlayerControl
             CustomRoles.Banshee => Banshee.CanVent.GetBool(),
             CustomRoles.Juggernaut => Juggernaut.CanVent.GetBool(),
             CustomRoles.Infectious => Infectious.CanVent.GetBool(),
-            CustomRoles.Ritualist => Ritualist.CanVent.GetBool(),
+            CustomRoles.PotionMaster => PotionMaster.CanVent.GetBool(),
             CustomRoles.Virus => Virus.CanVent.GetBool(),
             CustomRoles.SwordsMan => SwordsMan.CanVent.GetBool(),
             CustomRoles.Pickpocket => Pickpocket.CanVent.GetBool(),
@@ -637,14 +637,13 @@ static class ExtendedPlayerControl
             CustomRoles.Maverick or
             CustomRoles.NWitch or
             CustomRoles.CovenLeader or
-            CustomRoles.Conjuror or
+            CustomRoles.Ritualist or
             CustomRoles.Shroud or
             CustomRoles.Totocalcio or
             CustomRoles.Succubus or
             CustomRoles.Infectious or
             CustomRoles.Virus or
             CustomRoles.Farseer or
-            CustomRoles.Ritualist or
             CustomRoles.Pickpocket or
             CustomRoles.PlagueBearer or
             CustomRoles.Necromancer or
@@ -658,6 +657,7 @@ static class ExtendedPlayerControl
             CustomRoles.Traitor => Traitor.CanUseSabotage.GetBool(),
             CustomRoles.Parasite => true,
             CustomRoles.Glitch => true,
+            CustomRoles.PotionMaster => true,
             CustomRoles.Refugee => true,
             
 
@@ -729,8 +729,8 @@ static class ExtendedPlayerControl
             case CustomRoles.Morphling:
                 Morphling.SetKillCooldown(player.PlayerId);
                 break;
-            case CustomRoles.Ritualist:
-                Ritualist.SetKillCooldown(player.PlayerId);
+            case CustomRoles.PotionMaster:
+                PotionMaster.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.Pickpocket:
                 Pickpocket.SetKillCooldown(player.PlayerId);

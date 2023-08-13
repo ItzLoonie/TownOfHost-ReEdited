@@ -75,7 +75,7 @@ public static class NameColorManager
         if (seer.Is(CustomRoles.Pickpocket) && (target.Is(CustomRoles.Pickpocket))) color = Main.roleColors[CustomRoles.Pickpocket];
         if (seer.Is(CustomRoles.Spiritcaller) && (target.Is(CustomRoles.Spiritcaller))) color = Main.roleColors[CustomRoles.Spiritcaller];
         if (seer.Is(CustomRoles.Medusa) && (target.Is(CustomRoles.Medusa))) color = Main.roleColors[CustomRoles.Medusa];
-        if (seer.Is(CustomRoles.Ritualist) && (target.Is(CustomRoles.Ritualist))) color = Main.roleColors[CustomRoles.Ritualist];
+        if (seer.Is(CustomRoles.PotionMaster) && (target.Is(CustomRoles.PotionMaster))) color = Main.roleColors[CustomRoles.PotionMaster];
         if (seer.Is(CustomRoles.Glitch) && (target.Is(CustomRoles.Glitch))) color = Main.roleColors[CustomRoles.Glitch];
         if (seer.Is(CustomRoles.Succubus) && (target.Is(CustomRoles.Succubus))) color = Main.roleColors[CustomRoles.Succubus];
 
@@ -178,7 +178,7 @@ public static class NameColorManager
             || (seer.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoles.Marshall) && target.GetPlayerTaskState().IsTaskFinished)
          //   || Mare.KnowTargetRoleColor(target, isMeeting)
             || EvilDiviner.IsShowTargetRole(seer, target)
-            || Ritualist.IsShowTargetRole(seer, target);
+            || PotionMaster.IsShowTargetRole(seer, target);
     }
     public static bool TryGetData(PlayerControl seer, PlayerControl target, out string colorCode)
     {

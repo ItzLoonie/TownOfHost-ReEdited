@@ -242,7 +242,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.FFF:
             case CustomRoles.Pursuer:
             case CustomRoles.Necromancer:
-            case CustomRoles.Conjuror:
+            case CustomRoles.Ritualist:
                 opt.SetVision(true);
                 break;
             case CustomRoles.NSerialKiller:
@@ -278,8 +278,8 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Jinx:
                 Jinx.ApplyGameOptions(opt);
                 break;
-            case CustomRoles.Ritualist:
-                Ritualist.ApplyGameOptions(opt);
+            case CustomRoles.PotionMaster:
+                PotionMaster.ApplyGameOptions(opt);
                 break;
             case CustomRoles.Pickpocket:
                 Pickpocket.ApplyGameOptions(opt);

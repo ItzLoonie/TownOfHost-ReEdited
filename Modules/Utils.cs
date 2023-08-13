@@ -429,7 +429,7 @@ public static class Utils
             case CustomRoles.Poisoner:
             case CustomRoles.CovenLeader:
             case CustomRoles.Necromancer:
-            case CustomRoles.Conjuror:
+            case CustomRoles.Ritualist:
             case CustomRoles.NSerialKiller:
             case CustomRoles.Werewolf:
             case CustomRoles.Traitor:
@@ -465,7 +465,7 @@ public static class Utils
       //      case CustomRoles.Chameleon:
             case CustomRoles.Juggernaut:
             case CustomRoles.Reverie:
-            case CustomRoles.Ritualist:
+            case CustomRoles.PotionMaster:
             case CustomRoles.DarkHide:
             case CustomRoles.Collector:
             case CustomRoles.ImperiusCurse:
@@ -713,8 +713,8 @@ public static class Utils
             case CustomRoles.EvilDiviner:
                 ProgressText.Append(EvilDiviner.GetDivinationCount(playerId));
                 break;
-            case CustomRoles.Ritualist:
-                ProgressText.Append(Ritualist.GetRitualCount(playerId));
+            case CustomRoles.PotionMaster:
+                ProgressText.Append(PotionMaster.GetRitualCount(playerId));
                 break;
             case CustomRoles.Jackal:
                 if (Jackal.CanRecruitSidekick.GetBool())
@@ -1798,7 +1798,7 @@ public static class Utils
                         (Totocalcio.KnowRole(seer, target)) ||
                         (Lawyer.KnowRole(seer, target)) ||
                         (EvilDiviner.IsShowTargetRole(seer, target)) ||
-                        (Ritualist.IsShowTargetRole(seer, target)) ||
+                        (PotionMaster.IsShowTargetRole(seer, target)) ||
                         (Executioner.KnowRole(seer, target)) ||
                         (Succubus.KnowRole(seer, target)) ||
                         (CursedSoul.KnowRole(seer, target)) ||
@@ -1883,6 +1883,7 @@ public static class Utils
                     }
                 }
 
+
                 if (seer.Is(CustomRoles.Lookout))
                 {
                     if (seer.IsAlive() && target.IsAlive())
@@ -1931,11 +1932,11 @@ public static class Utils
                     }
 
                     // Coven
-                    if (seer.IsAlive() && target.IsAlive() && GuesserIsForMeeting && !seer.Is(CustomRoles.Conjuror) && !seer.Is(CustomRoles.Necromancer) && Options.CovenMembersCanGuess.GetBool() && seer.GetCustomRole().IsCoven())
+                    if (seer.IsAlive() && target.IsAlive() && GuesserIsForMeeting && !seer.Is(CustomRoles.Ritualist) && !seer.Is(CustomRoles.Necromancer) && Options.CovenMembersCanGuess.GetBool() && seer.GetCustomRole().IsCoven())
                     {
                         TargetPlayerName = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
                     }
-                    else if (seer.Is(CustomRoles.Conjuror) && !Options.CovenMembersCanGuess.GetBool())
+                    else if (seer.Is(CustomRoles.Ritualist) && !Options.CovenMembersCanGuess.GetBool())
                     {
                         if (seer.IsAlive() && target.IsAlive() && GuesserIsForMeeting)
                         {

@@ -40,7 +40,7 @@ public static class AntiBlackout
         || Banshee.IsEnable || CovenLeader.IsEnable
         || HexMaster.IsEnable || Jinx.IsEnable
         || Medusa.IsEnable || Poisoner.IsEnable
-        || Ritualist.IsEnable || Wraith.IsEnable
+        || PotionMaster.IsEnable || Wraith.IsEnable
         || Necromancer.IsEnable;
     ///<summary>
     ///インポスター以外の人数とインポスターの人数の差

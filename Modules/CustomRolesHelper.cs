@@ -46,7 +46,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Chronomancer => CustomRoles.Impostor,
                 CustomRoles.ImpostorTOHE => CustomRoles.Impostor,
                 CustomRoles.EvilDiviner => CustomRoles.Impostor,
-                CustomRoles.Ritualist => CustomRoles.Impostor,
+                CustomRoles.PotionMaster => CustomRoles.Impostor,
                 CustomRoles.Pickpocket => CustomRoles.Impostor,
                 CustomRoles.Traitor => CustomRoles.Impostor,
                 CustomRoles.HexMaster => CustomRoles.Impostor,
@@ -87,7 +87,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Escapee => CustomRoles.Shapeshifter,
                 CustomRoles.NiceGuesser => CustomRoles.Crewmate,
                 CustomRoles.EvilGuesser => CustomRoles.Impostor,
-                CustomRoles.Conjuror => CustomRoles.Impostor,
+                CustomRoles.Ritualist => CustomRoles.Impostor,
                 CustomRoles.Detective => CustomRoles.Crewmate,
            //     CustomRoles.Minimalism => CustomRoles.Impostor,
                 CustomRoles.God => CustomRoles.Crewmate,
@@ -283,8 +283,8 @@ internal static class CustomRolesHelper
             CustomRoles.Infectious => RoleTypes.Impostor,
             CustomRoles.Virus => RoleTypes.Impostor,
             CustomRoles.Farseer => RoleTypes.Impostor,
+            CustomRoles.PotionMaster => RoleTypes.Impostor,
             CustomRoles.Ritualist => RoleTypes.Impostor,
-            CustomRoles.Conjuror => RoleTypes.Impostor,
             CustomRoles.Pickpocket => RoleTypes.Impostor,
             CustomRoles.Traitor => RoleTypes.Impostor,
             CustomRoles.PlagueBearer => RoleTypes.Impostor,
@@ -387,7 +387,7 @@ internal static class CustomRolesHelper
             CustomRoles.CursedSoul or
             CustomRoles.Phantom or
             CustomRoles.DarkHide or
-       //     CustomRoles.Ritualist or
+       //     CustomRoles.PotionMaster or
             CustomRoles.Doomsayer or
             CustomRoles.SoulCollector or
             CustomRoles.Pirate or
@@ -439,7 +439,7 @@ internal static class CustomRolesHelper
             CustomRoles.Parasite or
             CustomRoles.NSerialKiller or
             CustomRoles.Werewolf or
- //           CustomRoles.Ritualist or
+ //           CustomRoles.PotionMaster or
             CustomRoles.Arsonist or
             CustomRoles.Pickpocket or
             CustomRoles.Traitor or
@@ -462,6 +462,7 @@ internal static class CustomRolesHelper
             CustomRoles.Opportunist or
             CustomRoles.Pursuer or
             CustomRoles.Shaman or
+            CustomRoles.SoulCollector or
             CustomRoles.NWitch or
             CustomRoles.CursedSoul or
             CustomRoles.Gamer or
@@ -539,7 +540,7 @@ internal static class CustomRolesHelper
             CustomRoles.Occultist or
             CustomRoles.Necromancer or
             CustomRoles.CovenLeader or
-            CustomRoles.Conjuror or
+            CustomRoles.Ritualist or
             CustomRoles.Refugee or
     //        CustomRoles.Minion or
             CustomRoles.Infectious or
@@ -554,7 +555,7 @@ internal static class CustomRolesHelper
             CustomRoles.NSerialKiller or
             CustomRoles.Werewolf or
             CustomRoles.Banshee or
-            CustomRoles.Ritualist or
+            CustomRoles.PotionMaster or
             CustomRoles.Pickpocket or
             CustomRoles.Traitor or
             CustomRoles.Medusa or
@@ -661,6 +662,7 @@ internal static class CustomRolesHelper
             CustomRoles.Masochist or
             CustomRoles.Amnesiac or
             CustomRoles.Medusa or
+            CustomRoles.Ritualist or
             CustomRoles.Famine or
             CustomRoles.Baker or
             CustomRoles.HexMaster or
@@ -699,7 +701,7 @@ internal static class CustomRolesHelper
         //    CustomRoles.Sidekick or
             CustomRoles.Poisoner or
             CustomRoles.NSerialKiller or
-            CustomRoles.Ritualist or
+            CustomRoles.PotionMaster or
             CustomRoles.Pickpocket or
             CustomRoles.Werewolf or
             CustomRoles.Pelican or
@@ -732,13 +734,13 @@ internal static class CustomRolesHelper
         CustomRoles.HexMaster or
         CustomRoles.Medusa or
         CustomRoles.Wraith or
-       // CustomRoles.Conjuror or
+        CustomRoles.Ritualist or
         CustomRoles.Banshee or
-       // CustomRoles.Sorcerer or
+    //    CustomRoles.Sorcerer or
         CustomRoles.Jinx or
         CustomRoles.Necromancer or
         CustomRoles.CovenLeader or
-        CustomRoles.Ritualist;
+        CustomRoles.PotionMaster;
     }
 
     public static bool IsAbleToBeSidekicked(this CustomRoles role)
@@ -756,7 +758,7 @@ internal static class CustomRolesHelper
             CustomRoles.Crusader or
             CustomRoles.Deputy or
             CustomRoles.Glitch or
-            CustomRoles.Ritualist or
+            CustomRoles.PotionMaster or
             CustomRoles.CopyCat or
             CustomRoles.Pickpocket or
             CustomRoles.Poisoner or
@@ -917,7 +919,6 @@ internal static class CustomRolesHelper
     {
         // Only add-ons
         if (!role.IsAdditionRole()) return false;
-
 
         // Checking for conflicts with roles
         if (pc.Is(CustomRoles.GM) || role is CustomRoles.Lovers || pc.Is(CustomRoles.Needy) || (pc.HasSubRole() && pc.GetCustomSubRoles().Count >= Options.NoLimitAddonsNumMax.GetInt())) return false;
@@ -1122,6 +1123,7 @@ internal static class CustomRolesHelper
                     || pc.Is(CustomRoles.Vulture)
                     || pc.Is(CustomRoles.Sleuth)
                     || pc.Is(CustomRoles.Cleaner)
+                    || pc.Is(CustomRoles.Amnesiac)
                     || pc.Is(CustomRoles.Bloodhound)
                     || pc.Is(CustomRoles.Medusa)
                     || pc.Is(CustomRoles.Mortician)
@@ -1248,8 +1250,8 @@ internal static class CustomRolesHelper
 
             case CustomRoles.Burst:
                 if (pc.Is(CustomRoles.Avanger)
-                    || pc.Is(CustomRoles.Bait)
-                    || pc.Is(CustomRoles.Trapper))
+                    || pc.Is(CustomRoles.Trapper)
+                    || pc.Is(CustomRoles.Bait))
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeBurst.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeBurst.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeBurst.GetBool()))
                     return false;
@@ -1291,6 +1293,7 @@ internal static class CustomRolesHelper
 
             case CustomRoles.Gravestone:
                 if (pc.Is(CustomRoles.SuperStar))
+                if (pc.Is(CustomRoles.Innocent))
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeGravestone.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeGravestone.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeGravestone.GetBool()))
                     return false;
@@ -1477,8 +1480,8 @@ internal static class CustomRolesHelper
            CustomRoles.Infectious => CountTypes.Infectious,
            CustomRoles.Crewpostor => CountTypes.Impostor,
            CustomRoles.Virus => CountTypes.Virus,
+           CustomRoles.PotionMaster => CountTypes.Coven,
            CustomRoles.Ritualist => CountTypes.Coven,
-           CustomRoles.Conjuror => CountTypes.Coven,
            CustomRoles.Pickpocket => CountTypes.Pickpocket,
            CustomRoles.Traitor => CountTypes.Traitor,
            CustomRoles.Medusa => CountTypes.Coven,
@@ -1525,7 +1528,7 @@ public enum CountTypes
     Rogue,
     DarkHide,
     Jinx,
-    Ritualist,
+    PotionMaster,
     Pickpocket,
     Traitor,
     Medusa,

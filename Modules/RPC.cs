@@ -119,7 +119,7 @@ enum CustomRPC
     SyncKBPlayer,
     SyncKBBackCountdown,
     SyncKBNameNotify,
-    SetRitualist,
+    SetPotionMaster,
     SetChameleonTimer,
     DoPoison,
     SetAdmireLimit,
@@ -558,8 +558,8 @@ internal class RPCHandlerPatch
             case CustomRPC.SetEvilDiviner:
                 EvilDiviner.ReceiveRPC(reader);
                 break;
-            case CustomRPC.SetRitualist:
-                Ritualist.ReceiveRPC(reader);
+            case CustomRPC.SetPotionMaster:
+                PotionMaster.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetDeputyHandcuffLimit:
                 Deputy.ReceiveRPC(reader);
@@ -895,8 +895,8 @@ internal static class RPC
             case CustomRoles.EvilDiviner:
                 EvilDiviner.Add(targetId);
                 break;
-            case CustomRoles.Ritualist:
-                Ritualist.Add(targetId);
+            case CustomRoles.PotionMaster:
+                PotionMaster.Add(targetId);
                 break;
             case CustomRoles.Medic:
                 Medic.Add(targetId);
