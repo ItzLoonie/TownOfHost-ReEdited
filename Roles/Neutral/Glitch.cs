@@ -42,7 +42,6 @@ public static class Glitch
     {
         __instance.SabotageButton.ToggleVisible(isActive);
     }
-
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
     public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(false);
     public static void CanUseVent(PlayerControl player)

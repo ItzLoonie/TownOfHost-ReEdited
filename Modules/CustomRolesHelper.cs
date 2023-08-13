@@ -730,17 +730,17 @@ internal static class CustomRolesHelper
     public static bool IsCoven(this CustomRoles role)
     {
         return role is
-        CustomRoles.Poisoner or
-        CustomRoles.HexMaster or
-        CustomRoles.Medusa or
-        CustomRoles.Wraith or
-        CustomRoles.Ritualist or
-        CustomRoles.Banshee or
-    //    CustomRoles.Sorcerer or
-        CustomRoles.Jinx or
-        CustomRoles.Necromancer or
-        CustomRoles.CovenLeader or
-        CustomRoles.PotionMaster;
+            CustomRoles.Poisoner or
+            CustomRoles.HexMaster or
+            CustomRoles.Medusa or
+            CustomRoles.Wraith or
+            CustomRoles.Ritualist or
+            CustomRoles.Banshee or
+       //     CustomRoles.Sorcerer or
+            CustomRoles.Jinx or
+            CustomRoles.Necromancer or
+            CustomRoles.CovenLeader or
+            CustomRoles.PotionMaster;
     }
 
     public static bool IsAbleToBeSidekicked(this CustomRoles role)
@@ -854,54 +854,39 @@ internal static class CustomRolesHelper
             CustomRoles.Pirate or
             CustomRoles.Seeker;
     }
-
-    public static bool IsEvilAddons(this CustomRoles role)
-    {
-        return role is
-        CustomRoles.Madmate or
-        CustomRoles.Egoist or
-        CustomRoles.Charmed or
-        CustomRoles.Recruit or
-        CustomRoles.Infected or
-        CustomRoles.Contagious or
-        CustomRoles.Rogue or
-        CustomRoles.Rascal or
-        CustomRoles.Soulless;
-    }
-
     public static bool IsMadmate(this CustomRoles role)
     {
         return role is
-        CustomRoles.Crewpostor or
-        CustomRoles.Convict or
-        CustomRoles.Refugee or
-        CustomRoles.Parasite;
+            CustomRoles.Crewpostor or
+            CustomRoles.Convict or
+            CustomRoles.Refugee or
+            CustomRoles.Parasite;
     }
     public static bool IsTasklessCrewmate(this CustomRoles role)
     {
         return role is
-        CustomRoles.Sheriff or
-        CustomRoles.Medic or
-        CustomRoles.CopyCat or
-        CustomRoles.Reverie or
-        CustomRoles.Crusader or
-        CustomRoles.Counterfeiter or
-        CustomRoles.Monarch or
-        CustomRoles.Farseer or
-        CustomRoles.SwordsMan or
-        CustomRoles.Deputy;
+            CustomRoles.Sheriff or
+            CustomRoles.Medic or
+            CustomRoles.CopyCat or
+            CustomRoles.Reverie or
+            CustomRoles.Crusader or
+            CustomRoles.Counterfeiter or
+            CustomRoles.Monarch or
+            CustomRoles.Farseer or
+            CustomRoles.SwordsMan or
+            CustomRoles.Deputy;
     }
     public static bool IsTaskBasedCrewmate(this CustomRoles role)
     {
         return role is
-        CustomRoles.Snitch or
-        CustomRoles.Divinator or
-        CustomRoles.Marshall or
-        CustomRoles.TimeManager or
-        CustomRoles.Guardian or
-        CustomRoles.Merchant or
-        CustomRoles.Mayor or
-        CustomRoles.Transporter;
+            CustomRoles.Snitch or
+            CustomRoles.Divinator or
+            CustomRoles.Marshall or
+            CustomRoles.TimeManager or
+            CustomRoles.Guardian or
+            CustomRoles.Merchant or
+            CustomRoles.Mayor or
+            CustomRoles.Transporter;
     }
 
     public static bool IsNotKnightable(this CustomRoles role)

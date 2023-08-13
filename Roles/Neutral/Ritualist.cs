@@ -56,7 +56,7 @@ namespace TOHE.Roles.Neutral
 
         private static void SendRPC(byte playerId, byte targetId)
         {
-            MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetRitualist, SendOption.Reliable, -1);
+            MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetPotionMaster, SendOption.Reliable, -1);
             writer.Write(playerId);
             writer.Write(RitualCount[playerId]);
             writer.Write(targetId);
