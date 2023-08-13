@@ -122,12 +122,14 @@ public static class Divinator
                 CustomRoles.EvilTracker or
                 CustomRoles.Mortician or
                 CustomRoles.Tracefinder or
+                CustomRoles.Seeker or
                 CustomRoles.Tracker
                 => "Result6",
 
 
                 CustomRoles.Bodyguard or
                 CustomRoles.Bomber or
+                CustomRoles.Agitater or
                 CustomRoles.FireWorks or
                 CustomRoles.Nuker
                 => "Result7",
@@ -217,8 +219,9 @@ public static class Divinator
                 CustomRoles.EvilGuesser or
                 CustomRoles.NiceGuesser or
                 CustomRoles.DarkHide or
-                CustomRoles.Conjuror or
+                CustomRoles.Ritualist or
                 CustomRoles.Camouflager or
+                CustomRoles.Shade or
                 CustomRoles.Chameleon
                 => "Result19",
 
@@ -248,7 +251,8 @@ public static class Divinator
 
                 CustomRoles.Divinator or
                 CustomRoles.EvilDiviner or
-                CustomRoles.Ritualist or
+                CustomRoles.PotionMaster or
+                CustomRoles.Occultist or
                 CustomRoles.HexMaster or
                 CustomRoles.Witch
                 => "Result23",

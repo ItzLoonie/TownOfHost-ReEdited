@@ -90,6 +90,7 @@ public static class CopyCat
                 case CustomRoles.Cleanser:
                     Cleanser.CleanserTarget.Remove(pc.PlayerId);
                     Cleanser.CleanserUses.Remove(pc.PlayerId);
+                    Cleanser.DidVote.Remove(pc.PlayerId);
                     break;
                 case CustomRoles.ParityCop:
                     ParityCop.MaxCheckLimit.Remove(player);
@@ -199,7 +200,7 @@ public static class CopyCat
             if (role == CustomRoles.Vindicator || role == CustomRoles.Pickpocket) role = CustomRoles.Mayor;
             else if (role == CustomRoles.Councillor) role = CustomRoles.Judge;
             else if (role == CustomRoles.Sans || role == CustomRoles.Juggernaut) role = CustomRoles.Reverie;
-            else if (role == CustomRoles.EvilGuesser || role == CustomRoles.Doomsayer || role == CustomRoles.Conjuror) role = CustomRoles.NiceGuesser;
+            else if (role == CustomRoles.EvilGuesser || role == CustomRoles.Doomsayer || role == CustomRoles.Ritualist) role = CustomRoles.NiceGuesser;
         }
         if (role.IsCrewmate()/* && (!tpc.GetCustomSubRoles().Any(x => x == CustomRoles.Rascal))*/)
         {
@@ -217,6 +218,7 @@ public static class CopyCat
                 case CustomRoles.Cleanser:
                     Cleanser.CleanserTarget.Add(pc.PlayerId, byte.MaxValue);
                     Cleanser.CleanserUses.Add(pc.PlayerId, 0);
+                    Cleanser.DidVote.Add(pc.PlayerId, false);
                     break;
                 case CustomRoles.Deputy:
                     Deputy.SetKillCooldown(pc.PlayerId);

@@ -54,7 +54,6 @@ namespace TOHE.Roles.Crewmate
         private static readonly List<CustomRoles> experimentalAddons = new List<CustomRoles>
         {
         //    CustomRoles.Flashman,
-            CustomRoles.Egoist,
             CustomRoles.Ntr, // Neptune
             CustomRoles.Guesser,
             CustomRoles.Fool
