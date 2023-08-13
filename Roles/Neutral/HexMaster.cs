@@ -168,6 +168,7 @@ public static class HexMaster
         if (Medic.ProtectList.Contains(target.PlayerId)) return false;
         if (target.Is(CustomRoles.Pestilence)) return true;
         if (target.Is(CustomRoles.HexMaster)) return true;
+        if (target.GetCustomRole().IsCoven()) return false;
 
         if (NowSwitchTrigger == SwitchTrigger.DoubleTrigger)
         {
