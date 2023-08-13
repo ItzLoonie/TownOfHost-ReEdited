@@ -1,7 +1,8 @@
 using HarmonyLib;
 using Il2CppSystem.Text;
-using System.Collections.Generic;
+using System;
 using System.Linq;
+using System.Collections.Generic;
 using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
@@ -413,7 +414,7 @@ class HudManagerPatch
                 //バウンティハンターのターゲットテキスト
                 if (LowerInfoText == null)
                 {
-                    LowerInfoText = Object.Instantiate(__instance.KillButton.buttonLabelText);
+                    LowerInfoText = UnityEngine.Object.Instantiate(__instance.KillButton.buttonLabelText);
                     LowerInfoText.transform.parent = __instance.transform;
                     LowerInfoText.transform.localPosition = new Vector3(0, -2f, 0);
                     LowerInfoText.alignment = TMPro.TextAlignmentOptions.Center;
@@ -575,7 +576,7 @@ class SetVentOutlinePatch
         __instance.myRend.material.SetColor("_AddColor", mainTarget ? color : Color.clear);
     }
 }
-[HarmonyPatch(typeof(HudManager), nameof(HudManager.SetHudActive), new System.Type[] { typeof(PlayerControl), typeof(RoleBehaviour), typeof(bool) })]
+[HarmonyPatch(typeof(HudManager), nameof(HudManager.SetHudActive), new Type[] { typeof(PlayerControl), typeof(RoleBehaviour), typeof(bool) })]
 class SetHudActivePatch
 {
     public static bool IsActive = false;
@@ -627,8 +628,11 @@ class SetHudActivePatch
                 __instance.ReportButton.ToggleVisible(false);
                 break;
             case CustomRoles.Parasite:
+            case CustomRoles.Glitch:
+            case CustomRoles.PotionMaster:
+            case CustomRoles.Werewolf:
             case CustomRoles.Refugee:
-                __instance.SabotageButton.ToggleVisible(true);
+                __instance.SabotageButton.ToggleVisible(isActive);
                 break;
             case CustomRoles.Jackal:
                 Jackal.SetHudActive(__instance, isActive);
@@ -638,9 +642,6 @@ class SetHudActivePatch
                 break;
             case CustomRoles.Traitor:
                 Traitor.SetHudActive(__instance, isActive);
-                break;
-            case CustomRoles.Glitch:
-                Glitch.SetHudActive(__instance, isActive);
                 break;
             
         }

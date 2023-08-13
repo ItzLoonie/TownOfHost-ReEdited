@@ -30,6 +30,10 @@ internal static class CustomRolesHelper
                 CustomRoles.Terrorist => CustomRoles.Engineer,
                 CustomRoles.Executioner => CustomRoles.Crewmate,
                 CustomRoles.Juggernaut => CustomRoles.Impostor,
+                CustomRoles.Jackal => CustomRoles.Impostor,
+                CustomRoles.Sidekick => CustomRoles.Impostor,
+                CustomRoles.Werewolf => CustomRoles.Impostor,
+                CustomRoles.Refugee => CustomRoles.Impostor,
                 CustomRoles.Lawyer => CustomRoles.Crewmate,
                 CustomRoles.Vampire => CustomRoles.Impostor,
                 CustomRoles.Poisoner => CustomRoles.Impostor,
@@ -169,7 +173,7 @@ internal static class CustomRolesHelper
             };
     }
 
-        public static CustomRoles GetErasedRole(this CustomRoles role)
+    public static CustomRoles GetErasedRole(this CustomRoles role)
     {
         return role.IsVanilla()
             ? role
@@ -238,15 +242,12 @@ internal static class CustomRolesHelper
             CustomRoles.CursedSoul => RoleTypes.Impostor,
             CustomRoles.Shaman => RoleTypes.Impostor,
             CustomRoles.Admirer => RoleTypes.Impostor,
-            CustomRoles.Refugee => RoleTypes.Impostor,
     //        CustomRoles.Minion => RoleTypes.Impostor,
             CustomRoles.Amnesiac => RoleTypes.Impostor,
             CustomRoles.Monarch => RoleTypes.Impostor,
             CustomRoles.Deputy => RoleTypes.Impostor,
             CustomRoles.Arsonist => RoleTypes.Impostor,
-            CustomRoles.Jackal => RoleTypes.Impostor,
             CustomRoles.Medusa => RoleTypes.Impostor,
-            CustomRoles.Sidekick => RoleTypes.Impostor,
             CustomRoles.SwordsMan => RoleTypes.Impostor,
             CustomRoles.Reverie => RoleTypes.Impostor,
             CustomRoles.Innocent => RoleTypes.Impostor,
@@ -261,7 +262,6 @@ internal static class CustomRolesHelper
             CustomRoles.Occultist => RoleTypes.Impostor,
             CustomRoles.Wraith => RoleTypes.Impostor,
             CustomRoles.Shade => RoleTypes.Impostor,
-            CustomRoles.Glitch => RoleTypes.Impostor,
             CustomRoles.Juggernaut => RoleTypes.Impostor,
             CustomRoles.Jinx => RoleTypes.Impostor,
             CustomRoles.DarkHide => RoleTypes.Impostor,
@@ -270,9 +270,7 @@ internal static class CustomRolesHelper
             CustomRoles.Banshee => RoleTypes.Impostor,
             CustomRoles.Poisoner => RoleTypes.Impostor,
             CustomRoles.NSerialKiller => RoleTypes.Impostor,
-            CustomRoles.Werewolf => RoleTypes.Impostor,
             CustomRoles.Maverick => RoleTypes.Impostor,
-            CustomRoles.Parasite => RoleTypes.Impostor,
         //    CustomRoles.Sorcerer => RoleTypes.Impostor,
             CustomRoles.NWitch => RoleTypes.Impostor,
             CustomRoles.CovenLeader => RoleTypes.Impostor,
@@ -283,10 +281,8 @@ internal static class CustomRolesHelper
             CustomRoles.Infectious => RoleTypes.Impostor,
             CustomRoles.Virus => RoleTypes.Impostor,
             CustomRoles.Farseer => RoleTypes.Impostor,
-            CustomRoles.PotionMaster => RoleTypes.Impostor,
             CustomRoles.Ritualist => RoleTypes.Impostor,
             CustomRoles.Pickpocket => RoleTypes.Impostor,
-            CustomRoles.Traitor => RoleTypes.Impostor,
             CustomRoles.PlagueBearer => RoleTypes.Impostor,
             CustomRoles.Pestilence => RoleTypes.Impostor,
             CustomRoles.Agitater => RoleTypes.Impostor,

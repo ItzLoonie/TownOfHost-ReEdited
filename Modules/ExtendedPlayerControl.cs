@@ -649,15 +649,6 @@ static class ExtendedPlayerControl
     //        CustomRoles.Minion or
             CustomRoles.Spiritcaller
             => false,
-
-            CustomRoles.Jackal => Jackal.CanUseSabotage.GetBool(),
-            CustomRoles.Sidekick => Jackal.CanUseSabotageSK.GetBool(),
-            CustomRoles.Traitor => Traitor.CanUseSabotage.GetBool(),
-            CustomRoles.Parasite => true,
-            CustomRoles.Glitch => true,
-            CustomRoles.PotionMaster => true,
-            CustomRoles.Werewolf => true,
-            CustomRoles.Refugee => true,
             
 
             _ => pc.Is(CustomRoleTypes.Impostor),

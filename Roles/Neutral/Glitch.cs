@@ -38,10 +38,6 @@ public static class Glitch
             Main.ResetCamPlayerList.Add(playerId);
     }
     public static bool IsEnable => playerIdList.Any();
-    public static void SetHudActive(HudManager __instance, bool isActive)
-    {
-        __instance.SabotageButton.ToggleVisible(isActive);
-    }
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
     public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(false);
     public static void CanUseVent(PlayerControl player)
