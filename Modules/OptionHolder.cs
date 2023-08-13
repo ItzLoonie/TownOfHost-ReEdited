@@ -397,6 +397,23 @@ public static class Options
     public static OptionItem DiseasedCDOpt;
     public static OptionItem DiseasedCDReset;
 
+    public static OptionItem ImpCanBeVoidBallot;
+    public static OptionItem CrewCanBeVoidBallot;
+    public static OptionItem NeutralCanBeVoidBallot;
+
+    public static OptionItem ImpCanBeAware;
+    public static OptionItem CrewCanBeAware;
+    public static OptionItem NeutralCanBeAware;
+    public static OptionItem AwareknowRole;
+
+    public static OptionItem ImpCanBeFragile;
+    public static OptionItem CrewCanBeFragile;
+    public static OptionItem NeutralCanBeFragile;
+    public static OptionItem ImpCanKillFragile;
+    public static OptionItem CrewCanKillFragile;
+    public static OptionItem NeutralCanKillFragile;
+    public static OptionItem FragileKillerLunge;
+
     public static OptionItem ImpCanBeAntidote;
     public static OptionItem CrewCanBeAntidote;
     public static OptionItem NeutralCanBeAntidote;
@@ -1572,6 +1589,17 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Autopsy]);
         NeutralCanBeAutopsy = BooleanOptionItem.Create(13612, "NeutralCanBeAutopsy", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Autopsy]);
+
+        SetupAdtRoleOptions(42420, CustomRoles.Aware, canSetNum: true);
+        ImpCanBeAware = BooleanOptionItem.Create(42430, "ImpCanBeAware", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Aware]);
+        CrewCanBeAware = BooleanOptionItem.Create(42431, "CrewCanBeAware", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Aware]);
+        NeutralCanBeAware = BooleanOptionItem.Create(42432, "NeutralCanBeAware", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Aware]);
+        AwareknowRole = BooleanOptionItem.Create(42433, "AwareKnowRole", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Aware]);
+
         SetupAdtRoleOptions(13700, CustomRoles.Bait, canSetNum: true);
         ImpCanBeBait = BooleanOptionItem.Create(13710, "ImpCanBeBait", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Bait]);
@@ -1754,6 +1782,24 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Unreportable]);
         NeutralCanBeUnreportable = BooleanOptionItem.Create(15312, "NeutralCanBeUnreportable", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Unreportable]);
+
+
+        SetupAdtRoleOptions(32420, CustomRoles.Fragile, canSetNum: true);
+        ImpCanBeFragile = BooleanOptionItem.Create(32430, "ImpCanBeFragile", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Fragile]);
+        CrewCanBeFragile = BooleanOptionItem.Create(32431, "CrewCanBeFragile", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Fragile]);
+        NeutralCanBeFragile = BooleanOptionItem.Create(32432, "NeutralCanBeFragile", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Fragile]);
+        ImpCanKillFragile = BooleanOptionItem.Create(32433, "ImpCanKillFragile", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Fragile]);
+        CrewCanKillFragile = BooleanOptionItem.Create(32434, "CrewCanKillFragile", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Fragile]);
+        NeutralCanKillFragile = BooleanOptionItem.Create(32435, "NeutralCanKillFragile", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Fragile]);
+        FragileKillerLunge = BooleanOptionItem.Create(32436, "FragileKillerLunge", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Fragile]);
+
         SetupAdtRoleOptions(15250, CustomRoles.Ghoul, canSetNum: true);
         SetupAdtRoleOptions(15400, CustomRoles.Oblivious, canSetNum: true);
         ImpCanBeOblivious = BooleanOptionItem.Create(15410, "ImpCanBeOblivious", true, TabGroup.Addons, false)
@@ -1799,6 +1845,15 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Unlucky]);
         NeutralCanBeUnlucky = BooleanOptionItem.Create(14363, "NeutralCanBeUnlucky", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Unlucky]);
+
+        SetupAdtRoleOptions(36420, CustomRoles.VoidBallot, canSetNum: true);
+        ImpCanBeVoidBallot = BooleanOptionItem.Create(36430, "ImpCanBeVoidBallot", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.VoidBallot]);
+        CrewCanBeVoidBallot = BooleanOptionItem.Create(36431, "CrewCanBeVoidBallot", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.VoidBallot]);
+        NeutralCanBeVoidBallot = BooleanOptionItem.Create(36432, "NeutralCanBeVoidBallot", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.VoidBallot]);
+
         Workhorse.SetupCustomOption();
 
         TextOptionItem.Create(100016, "RoleType.Impostor", TabGroup.Addons) // IMPOSTOR

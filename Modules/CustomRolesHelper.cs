@@ -310,6 +310,9 @@ internal static class CustomRolesHelper
             CustomRoles.Burst or
             CustomRoles.Diseased or
             CustomRoles.Antidote or
+            CustomRoles.Fragile or
+            CustomRoles.VoidBallot or
+            CustomRoles.Aware or
             CustomRoles.Swift or
             CustomRoles.Gravestone or
             CustomRoles.Trapper or
@@ -348,7 +351,7 @@ internal static class CustomRolesHelper
             CustomRoles.Unreportable or
             CustomRoles.Lucky or
             CustomRoles.Unlucky or
-      //      CustomRoles.Cyber or
+            //      CustomRoles.Cyber or
             CustomRoles.DoubleShot or
             CustomRoles.Ghoul or
             CustomRoles.EvilSpirit;
@@ -1019,6 +1022,26 @@ internal static class CustomRolesHelper
                     return false;
                 break;
 
+            case CustomRoles.Aware:
+                if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeAware.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeAware.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeAware.GetBool()))
+                    return false;
+                break;
+
+            case CustomRoles.Fragile:
+                if (pc.Is(CustomRoles.Lucky) ||
+                    pc.Is(CustomRoles.Luckey))
+                    return false;
+                if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeFragile.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeFragile.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeFragile.GetBool()))
+                    return false;
+                break;
+
+            case CustomRoles.VoidBallot:
+                if (pc.Is(CustomRoles.Glitch))
+                    return false;
+                if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeVoidBallot.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeVoidBallot.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeVoidBallot.GetBool()))
+                    return false;
+                break;
+
             case CustomRoles.Antidote:
                 if (pc.Is(CustomRoles.Diseased))
                     return false;
@@ -1073,7 +1096,8 @@ internal static class CustomRolesHelper
             case CustomRoles.Lucky:
                 if (pc.Is(CustomRoles.Guardian)
                     || pc.Is(CustomRoles.Luckey)
-                    || pc.Is(CustomRoles.Unlucky))
+                    || pc.Is(CustomRoles.Unlucky)
+                    || pc.Is(CustomRoles.Fragile))
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeLucky.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeLucky.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeLucky.GetBool()))
                     return false;
@@ -1342,7 +1366,7 @@ internal static class CustomRolesHelper
     public static bool IsImpostorTeam(this CustomRoles role) => role.IsImpostor() || role == CustomRoles.Madmate;
     public static bool IsCrewmate(this CustomRoles role) => !role.IsImpostor() && !role.IsNeutral() && !role.IsMadmate();
 
-    public static bool IsImpostorTeamV2(this CustomRoles role) => (role.IsImpostorTeam() && role != CustomRoles.Trickster && !role.IsConverted()) || role == CustomRoles.Rascal;
+    public static bool IsImpostorTeamV2(this CustomRoles role) => (role.IsImpostorTeamV3() && role != CustomRoles.Trickster && !role.IsConverted()) || role == CustomRoles.Rascal;
     public static bool IsNeutralTeamV2(this CustomRoles role) => (role.IsConverted() || role.IsNeutral() && role != CustomRoles.Madmate);
 
     public static bool IsCrewmateTeamV2(this CustomRoles role) => ((!role.IsImpostorTeamV2() && !role.IsNeutralTeamV2()) || (role == CustomRoles.Trickster && !role.IsConverted()));

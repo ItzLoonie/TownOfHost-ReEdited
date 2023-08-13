@@ -108,6 +108,7 @@ internal class ChangeRoleSettings
             Main.BardCreations = 0;
             Main.DovesOfNeaceNumOfUsed = new();
             Main.GodfatherTarget = new();
+            Main.AwareInteracted = new();
             Main.ShamanTarget = byte.MaxValue;
             Main.ShamanTargetChoosen = false;
 
@@ -835,6 +836,9 @@ internal class SelectRolesPatch
                 {
                     switch (subRole)
                     {
+                        case CustomRoles.Aware:
+                            Main.AwareInteracted[pc.PlayerId] = new();
+                            break;
                         // ここに属性のAddを追加
                         default:
                             break;
