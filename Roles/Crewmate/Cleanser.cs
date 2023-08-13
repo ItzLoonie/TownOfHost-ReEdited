@@ -45,8 +45,16 @@ public static class Cleanser
 
     public static bool IsEnable => playerIdList.Any();
 
-    public static string GetProgressText(byte playerId) => Utils.ColorString(CleanserUsesOpt.GetInt() - CleanserUses[playerId] > 0 ? Utils.GetRoleColor(CustomRoles.Cleanser).ShadeColor(0.25f) : Color.gray, CleanserUses.TryGetValue(playerId, out var x) ? $"({CleanserUsesOpt.GetInt() - x})" : "Invalid");
-
+    //public static string GetProgressText(byte playerId) => Utils.ColorString(CleanserUsesOpt.GetInt() - CleanserUses[playerId] > 0 ? Utils.GetRoleColor(CustomRoles.Cleanser).ShadeColor(0.25f) : Color.gray, CleanserUses.TryGetValue(playerId, out var x) ? $"({CleanserUsesOpt.GetInt() - x})" : "Invalid");
+    public static string GetProgressText(byte playerId)
+    {
+        if (!CleanserUses.ContainsKey(playerId)) return "Invalid";
+        Color x;
+        if (CleanserUsesOpt.GetInt() - CleanserUses[playerId] > 0)
+            x = Utils.GetRoleColor(CustomRoles.Cleanser);
+        else x = Color.gray;
+        return (Utils.ColorString(x, $"({CleanserUsesOpt.GetInt() - CleanserUses[playerId]})"));
+    }
     private static void SendRPC(byte playerId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetCleanserCleanLimit, SendOption.Reliable, -1);
@@ -70,7 +78,7 @@ public static class Cleanser
         if (!voter.Is(CustomRoles.Cleanser)) return;
         if (DidVote[voter.PlayerId]) return;
         DidVote[voter.PlayerId] = true;
-        if (CleanserUses[voter.PlayerId] > CleanserUsesOpt.GetInt()) return;
+        if (CleanserUses[voter.PlayerId] >= CleanserUsesOpt.GetInt()) return;
         if (target.PlayerId == voter.PlayerId)
         {
             Utils.SendMessage(GetString("CleanserRemoveSelf"), voter.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Cleanser), GetString("CleanserTitle")));

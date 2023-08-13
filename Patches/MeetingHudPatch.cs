@@ -110,6 +110,17 @@ class CheckForEndVotingPatch
                                 Main.GodfatherTarget.Add(voteTarget.PlayerId);
                                 break;
                         }
+                        if (voteTarget.Is(CustomRoles.Aware))
+                        {
+                            switch (pc.GetCustomRole())
+                            {
+                                case CustomRoles.Divinator:
+                                case CustomRoles.Oracle:
+                                    if (!Main.AwareInteracted.ContainsKey(pva.VotedFor)) Main.AwareInteracted[pva.VotedFor] = new();
+                                    if (!Main.AwareInteracted[pva.VotedFor].Contains(Utils.GetRoleName(pc.GetCustomRole()))) Main.AwareInteracted[pva.VotedFor].Add(Utils.GetRoleName(pc.GetCustomRole())); break;
+                            }
+                        }
+
                     }
                 }
             }
@@ -575,6 +586,7 @@ static class ExtendedMeetingHud
 
                 // 主动叛变模式下自票无效
                 if (ps.TargetPlayerId == ps.VotedFor && Options.MadmateSpawnMode.GetInt() == 2) VoteNum = 0;
+                if (CheckForEndVotingPatch.CheckRole(ps.TargetPlayerId, CustomRoles.VoidBallot)) VoteNum = 0;
 
                 //投票を1追加 キーが定義されていない場合は1で上書きして定義
                 dic[ps.VotedFor] = !dic.TryGetValue(ps.VotedFor, out int num) ? VoteNum : num + VoteNum;//统计该玩家被投的数量

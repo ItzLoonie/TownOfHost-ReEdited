@@ -224,7 +224,7 @@ public static class ParityCop
                     }
                     else 
                     {
-                /*        if (target1.Is(CustomRoles.Aware))
+                        if (target1.Is(CustomRoles.Aware))
                         {
                             if (!Main.AwareInteracted.ContainsKey(target1.PlayerId)) Main.AwareInteracted[target1.PlayerId] = new();
                             if (!Main.AwareInteracted[target1.PlayerId].Contains(Utils.GetRoleName(CustomRoles.ParityCop))) Main.AwareInteracted[target1.PlayerId].Add(Utils.GetRoleName(CustomRoles.ParityCop));
@@ -233,7 +233,7 @@ public static class ParityCop
                         {
                             if (!Main.AwareInteracted.ContainsKey(target2.PlayerId)) Main.AwareInteracted[target2.PlayerId] = new();
                             if (!Main.AwareInteracted[target2.PlayerId].Contains(Utils.GetRoleName(CustomRoles.ParityCop)))  Main.AwareInteracted[target2.PlayerId].Add(Utils.GetRoleName(CustomRoles.ParityCop));
-                        } */
+                        }
                     } 
                     MaxCheckLimit[pc.PlayerId]--;
                     RoundCheckLimit[pc.PlayerId]--;

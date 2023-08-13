@@ -201,6 +201,7 @@ public class Main : BasePlugin
 
     public static Dictionary<byte, CustomRoles> DevRole = new();
     public static List<byte> GodfatherTarget = new();
+    public static Dictionary<byte, List<string>> AwareInteracted = new();
     public static byte ShamanTarget = byte.MaxValue;
     public static bool ShamanTargetChoosen = false;
     
@@ -484,6 +485,9 @@ public class Main : BasePlugin
                 {CustomRoles.Glow, "#E2F147"},
                 {CustomRoles.Diseased, "#AAAAAA"},
                 {CustomRoles.Antidote,"#FF9876"},
+                {CustomRoles.VoidBallot,"#FF3399"},
+                {CustomRoles.Aware,"#4B0082"},
+                {CustomRoles.Fragile,"#D3D3D3"},
                 {CustomRoles.Burst, "#B619B9"},
 
                 {CustomRoles.Swift, "#ff1919"},
@@ -817,6 +821,9 @@ public enum CustomRoles
     Glow,
     Diseased,
     Antidote,
+    VoidBallot,
+    Aware,
+    Fragile,
     Swift,
     Ghoul,
     Mare,

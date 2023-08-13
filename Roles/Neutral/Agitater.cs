@@ -14,6 +14,7 @@ public static class Agitater
     public static OptionItem PassCooldown;
     public static OptionItem AgitaterCanGetBombed;
     public static OptionItem AgiTaterBombCooldown;
+    public static OptionItem AgitaterAutoReportBait;
 
     public static byte CurrentBombedPlayer = byte.MaxValue;
     public static byte LastBombedPlayer = byte.MaxValue;
@@ -29,6 +30,7 @@ public static class Agitater
         PassCooldown = FloatOptionItem.Create(Id + 11, "AgitaterPassCooldown", new(0f, 5f, 0.25f), 1f, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Agitater]);
         BombExplodeCooldown = FloatOptionItem.Create(Id + 12, "BombExplodeCooldown", new(1f, 10f, 1f), 10f, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Agitater]);
         AgitaterCanGetBombed = BooleanOptionItem.Create(Id + 13, "AgitaterCanGetBombed", false, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Agitater]);
+        AgitaterAutoReportBait = BooleanOptionItem.Create(Id + 14, "AgitaterAutoReportBait", false, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Agitater]);
     }
     public static void Init()
     {
@@ -63,7 +65,7 @@ public static class Agitater
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
     {
         if (!IsEnable) return false;
-        if (target.Is(CustomRoles.Bait)) return true;
+        if (AgitaterAutoReportBait.GetBool() && target.Is(CustomRoles.Bait)) return true;
         if (target.Is(CustomRoles.Pestilence) || (target.Is(CustomRoles.Veteran) && Main.VeteranInProtect.ContainsKey(target.PlayerId)))
         {
             target.RpcMurderPlayer(killer);

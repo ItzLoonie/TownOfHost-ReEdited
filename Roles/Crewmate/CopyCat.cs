@@ -76,6 +76,7 @@ public static class CopyCat
         foreach (var player in playerIdList)
         {
             var pc = Utils.GetPlayerById(player);
+            if (pc == null) continue;
             var role = pc.GetCustomRole();
             ////////////           /*remove the settings for current role*/             /////////////////////
             switch (role)
