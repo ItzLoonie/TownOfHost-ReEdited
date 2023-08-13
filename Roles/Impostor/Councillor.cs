@@ -131,6 +131,7 @@ public static class Councillor
 
                 MurderLimit[pc.PlayerId]--;
 
+                if (!GameStates.IsProceeding)
                 new LateTask(() =>
                 {
                     Main.PlayerStates[dp.PlayerId].deathReason = PlayerState.DeathReason.Trialed;

@@ -15,8 +15,8 @@ public static class Chronomancer
 
     public static void SetupCustomOption()
     {
-        SetupRoleOptions(Id, TabGroup.OtherRoles, CustomRoles.Chronomancer);
-        KillCooldown = FloatOptionItem.Create(Id + 10, "ChronomancerKillCooldown", new(0f, 180f, 2.5f), 30f, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Chronomancer])
+        SetupRoleOptions(Id, TabGroup.ImpostorRoles, CustomRoles.Chronomancer);
+        KillCooldown = FloatOptionItem.Create(Id + 10, "ChronomancerKillCooldown", new(0f, 180f, 2.5f), 30f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Chronomancer])
             .SetValueFormat(OptionFormat.Seconds);
     }
 
