@@ -2834,6 +2834,7 @@
 
 "## Pitfall Text Strings"
 "PitfallTrapCooldown","陷阱冷却时间","Trap Cooldown","","",""
+"PitfallMaxTrapCount","","Number of Traps that can be set","","",""
 "PitfallTrapMaxPlayerCount","陷阱可捕捉的玩家数量","Number of Players that can be caught per Trap","","",""
 "PitfallTrapDuration","陷阱的持续时间","Time the Trap remains active","","",""
 "PitfallTrapRadius","陷阱半径","Trap Radius","","",""
