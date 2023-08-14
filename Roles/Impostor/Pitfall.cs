@@ -15,7 +15,7 @@ namespace TOHE.Roles.Impostor
         public static List<byte> playerIdList = new();
 
         private static List<PitfallTrap> Traps = new();
-        private static Dictionary<byte, long> ReducedVisionPlayers = new();
+        private static List<byte> ReducedVisionPlayers = new();
 
         private static OptionItem ShapeshiftCooldown;
         public static OptionItem TrapMaxPlayerCount;
@@ -101,11 +101,6 @@ namespace TOHE.Roles.Impostor
 
                 return;
             }
-            else if (ReducedVisionPlayers.ContainsKey(player.PlayerId) && ReducedVisionPlayers[player.PlayerId] < Utils.GetTimeStamp())
-            {
-                ReducedVisionPlayers.Remove(player.PlayerId);
-                player.MarkDirtySettings();
-            }
 
             var position = player.GetTruePosition();
 
@@ -124,10 +119,9 @@ namespace TOHE.Roles.Impostor
                     TrapPlayer(player);
                 }
 
-                if (TrapCauseVisionTime.GetFloat() > 0 && !ReducedVisionPlayers.ContainsKey(player.PlayerId))
+                if (TrapCauseVisionTime.GetFloat() > 0)
                 {
-                    long time = Utils.GetTimeStamp() + (long)TrapCauseVisionTime.GetFloat();
-                    ReducedVisionPlayers.Add(player.PlayerId, time);
+                    ReducePlayerVision(player);
                 }
 
                 trap.PlayersTrapped.Add(player.PlayerId);
@@ -136,9 +130,9 @@ namespace TOHE.Roles.Impostor
             }
         }
 
-        public static void ReduceVision(IGameOptions opt, PlayerControl target)
+        public static void SetPitfallTrapVision(IGameOptions opt, PlayerControl target)
         {
-            if (ReducedVisionPlayers.ContainsKey(target.PlayerId))
+            if (ReducedVisionPlayers.Contains(target.PlayerId))
             {
                 opt.SetVision(false);
                 opt.SetFloat(FloatOptionNames.CrewLightMod, TrapCauseVision.GetFloat());
@@ -156,7 +150,21 @@ namespace TOHE.Roles.Impostor
                 Main.AllPlayerSpeed[player.PlayerId] = DefaultSpeed;
                 ReportDeadBodyPatch.CanReport[player.PlayerId] = true;
                 player.MarkDirtySettings();
-            }, TrapFreezeTime.GetFloat(), "PitfallTrapPlayer");
+            }, TrapFreezeTime.GetFloat(), "PitfallTrapPlayerFreeze");
+        }
+
+        private static void ReducePlayerVision(PlayerControl player)
+        {
+            if (ReducedVisionPlayers.Contains(player.PlayerId)) return;
+
+            ReducedVisionPlayers.Add(player.PlayerId);
+            player.MarkDirtySettings();
+
+            new LateTask(() =>
+            {
+                ReducedVisionPlayers.Remove(player.PlayerId);
+                player.MarkDirtySettings();
+            }, TrapCauseVisionTime.GetFloat(), "PitfallTrapPlayerVision");
         }
     }
 
