@@ -15,7 +15,7 @@ namespace TOHE.Roles.Impostor
         public static List<byte> playerIdList = new();
 
         private static List<PitfallTrap> Traps = new();
-        private static Dictionary<byte, long> PlayersTrapped = new();
+        private static Dictionary<byte, long> ReducedVisionPlayers = new();
 
         private static OptionItem ShapeshiftCooldown;
         public static OptionItem TrapMaxPlayerCount;
@@ -55,7 +55,7 @@ namespace TOHE.Roles.Impostor
         {
             playerIdList = new();
             Traps = new();
-            PlayersTrapped = new();
+            ReducedVisionPlayers = new();
         }
         public static void Add(byte playerId)
         {
@@ -75,14 +75,14 @@ namespace TOHE.Roles.Impostor
                 {
                     PitfallPlayerId = shapeshifter.PlayerId,
                     Location = position,
-                    PlayersTrappedCount = 0,
+                    PlayersTrapped = new List<int>(),
                     Timer = 0
                 });
             }
             else
             {
                 trap.Location = position;
-                trap.PlayersTrappedCount = 0;
+                trap.PlayersTrapped = new List<int>();
                 trap.Timer = 0;
             }
         }
@@ -101,9 +101,9 @@ namespace TOHE.Roles.Impostor
 
                 return;
             }
-            else if (PlayersTrapped.ContainsKey(player.PlayerId) && PlayersTrapped[player.PlayerId] < Utils.GetTimeStamp())
+            else if (ReducedVisionPlayers.ContainsKey(player.PlayerId) && ReducedVisionPlayers[player.PlayerId] < Utils.GetTimeStamp())
             {
-                PlayersTrapped.Remove(player.PlayerId);
+                ReducedVisionPlayers.Remove(player.PlayerId);
                 player.MarkDirtySettings();
             }
 
@@ -111,6 +111,11 @@ namespace TOHE.Roles.Impostor
 
             foreach (var trap in Traps.Where(a => a.IsActive))
             {
+                if (trap.PlayersTrapped.Contains(player.PlayerId))
+                {
+                    continue;
+                }
+
                 var dis = Vector2.Distance(trap.Location, position);
                 if (dis > TrapRadius.GetFloat()) continue;
 
@@ -119,13 +124,13 @@ namespace TOHE.Roles.Impostor
                     TrapPlayer(player);
                 }
 
-                if (TrapCauseVisionTime.GetFloat() > 0)
+                if (TrapCauseVisionTime.GetFloat() > 0 && !ReducedVisionPlayers.ContainsKey(player.PlayerId))
                 {
                     long time = Utils.GetTimeStamp() + (long)TrapCauseVisionTime.GetFloat();
-                    PlayersTrapped.Add(player.PlayerId, time);
+                    ReducedVisionPlayers.Add(player.PlayerId, time);
                 }
-                    
-                trap.PlayersTrappedCount += 1;
+
+                trap.PlayersTrapped.Add(player.PlayerId);
 
                 player.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Pitfall), GetString("PitfallTrap")));
             }
@@ -133,7 +138,7 @@ namespace TOHE.Roles.Impostor
 
         public static void ReduceVision(IGameOptions opt, PlayerControl target)
         {
-            if (PlayersTrapped.ContainsKey(target.PlayerId))
+            if (ReducedVisionPlayers.ContainsKey(target.PlayerId))
             {
                 opt.SetVision(false);
                 opt.SetFloat(FloatOptionNames.CrewLightMod, TrapCauseVision.GetFloat());
@@ -160,12 +165,12 @@ namespace TOHE.Roles.Impostor
         public int PitfallPlayerId;
         public Vector2 Location;
         public float Timer;
-        public int PlayersTrappedCount;
+        public List<int> PlayersTrapped;
         public bool IsActive
         {
             get
             {
-                return Timer <= Pitfall.TrapDuration.GetFloat() && PlayersTrappedCount < Pitfall.TrapMaxPlayerCount.GetInt();
+                return Timer <= Pitfall.TrapDuration.GetFloat() && PlayersTrapped.Count < Pitfall.TrapMaxPlayerCount.GetInt();
             }
         }
     }
