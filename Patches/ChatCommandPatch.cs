@@ -614,7 +614,7 @@ internal class ChatCommands
             "膽小" or "胆小" => GetString("Oblivious"),
             "迷惑者" or "迷幻" => GetString("Bewilder"),
             "sun" => GetString("Sunglasses"),
-            "蠢蛋" or "笨蛋" or "蠢狗" or "傻逼" => GetString("Fool"),
+            "蠢蛋" or "蠢狗" or "傻逼" => GetString("Fool"),
             "冤罪師" or "冤罪" => GetString("Innocent"),
             "資本家" or "资本主义" or "资本" => GetString("Capitalism"),
             "老兵" => GetString("Veteran"),
