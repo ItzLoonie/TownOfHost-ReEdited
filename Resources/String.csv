@@ -2542,7 +2542,7 @@
 "AwareTitle","【★ 警告 ★】","AWARE MESSAGE","","",""
 
 "## Fragile Text Strings"
-"ImpCanBeFragile","<color=#ff1919>内鬼阵营</color>可以成为<color=#D3D3D3>脆弱/color>","<color=#ff1919>Impostors</color> can become <color=#D3D3D3>Fragile</color>","","",""
+"ImpCanBeFragile","<color=#ff1919>内鬼阵营</color>可以成为<color=#D3D3D3>脆弱</color>","<color=#ff1919>Impostors</color> can become <color=#D3D3D3>Fragile</color>","","",""
 "NeutralCanBeFragile","<color=#7f8c8d>中立阵营</color>可以成为<color=#D3D3D3>脆弱</color>","<color=#7f8c8d>Neutrals</color> can become <color=#D3D3D3>Fragile</color>","","",""
 "CrewCanBeFragile","<color=#8cffff>船员阵营</color>可以成为<color=#D3D3D3>脆弱</color>","<color=#8cffff>Crewmates</color> can become <color=#D3D3D3>Fragile</color>","","",""
 "ImpCanKillFragile","<color=#ff1919>内鬼阵营</color>可以强制击杀<color=#D3D3D3>脆弱</color>","<color=#ff1919>Impostors</color> can force kill <color=#D3D3D3>Fragile</color>","","",""
@@ -2946,6 +2946,7 @@
 "AgitaterPassNotify","炸弹成功传递","Bomb successfully passed","","",""
 "AgitaterTargetNotify","你有炸弹！！ 快传给别人来避免自己的死亡！","YOU HAVE THE BOMB!! Pass it to someone else","","",""
 "AgitaterCanGetBombed","煽动者可以得到炸弹","Agitater can get bomb","","",""
+"AgitaterAutoReportBait","煽动者自动报告诱饵","Agitater Auto Report Bait","","",""
 
 "## Seeker Text Strings"
 "SeekerPointsToWin","胜利所需分数","Number of points required to win","Количество очков необходимое для победы","",""
