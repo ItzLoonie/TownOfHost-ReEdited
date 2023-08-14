@@ -3037,6 +3037,13 @@
 "RoleType.Neut","★ 中立附加职业","★ Neutral Add-ons","★ Нейтральные Атрибуты","",""
 "RoleType.Coven","★ 巫师阵营职业","★ Coven Roles","★ Роли Ковенов","",""
 
+"## /r command"
+"CrewmateRoles","","【 ★ Crewmate Roles ★ 】","","",""
+"ImpostorRoles","","【 ★ Impostor Roles ★ 】","","",""
+"NeutralRoles","","<color=#7f8c8d>【 ★ Neutral Roles ★ 】</color>","","",""
+"CovenRoles","","<color=#663399>【 ★ Coven Roles ★ 】</color>","","",""
+"AddonRoles","","<color=#ff9ace>【 ★ Add-ons ★ 】</color>","","",""
+
 "## 胜利界面职业名 / Winner Text"
 "WinnerRoleText.Impostor","内鬼胜利！","Impostors Win!","Предатели Победили!","偽裝者",""
 "WinnerRoleText.Crewmate","船员胜利！","Crewmates Win!","Члены Экипажа Победили!","船員",""

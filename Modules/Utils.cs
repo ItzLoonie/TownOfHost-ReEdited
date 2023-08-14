@@ -915,11 +915,11 @@ public static class Utils
         }
         //  SendMessage(sb.ToString(), PlayerId);
     //    SendMessage(sb.Append("\n.").ToString(), PlayerId, "<color=#ff5b70>【 ★ Roles ★ 】</color>");
-        SendMessage(impsb.Append("\n.").ToString(), PlayerId, ColorString(GetRoleColor(CustomRoles.Impostor), "【 ★ Impostor Roles ★ 】"));
-        SendMessage(crewsb.Append("\n.").ToString(), PlayerId, ColorString(Utils.GetRoleColor(CustomRoles.Crewmate), "【 ★ Crewmate Roles ★ 】"));
-        SendMessage(neutralsb.Append("\n.").ToString(), PlayerId, "<color=#7f8c8d>【 ★ Neutral Roles ★ 】</color>");
-        SendMessage(covensb.Append("\n.").ToString(), PlayerId, "<color=#663399>【 ★ Coven Roles ★ 】</color>");
-        SendMessage(addonsb.Append("\n.").ToString(), PlayerId, "<color=#ff9ace>【 ★ Add-ons ★ 】</color>");
+        SendMessage(impsb.Append("\n.").ToString(), PlayerId, ColorString(GetRoleColor(CustomRoles.Impostor), GetString("ImpostorRoles")));
+        SendMessage(crewsb.Append("\n.").ToString(), PlayerId, ColorString(Utils.GetRoleColor(CustomRoles.Crewmate), GetString("CrewmateRoles")));
+        SendMessage(neutralsb.Append("\n.").ToString(), PlayerId, GetString("NeutralRoles"));
+        SendMessage(covensb.Append("\n.").ToString(), PlayerId, GetString("CovenRoles"));
+        SendMessage(addonsb.Append("\n.").ToString(), PlayerId, GetString("AddonRoles"));
         //foreach (string roleList in sb.ToString().Split("\n\n●"))
         //    SendMessage("\n\n●" + roleList + "\n\n.", PlayerId);
     }
