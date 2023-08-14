@@ -98,6 +98,7 @@ public static class Divinator
                 CustomRoles.Counterfeiter or
                 CustomRoles.Greedier or
                 CustomRoles.Merchant or
+                CustomRoles.SoulCollector or
                 CustomRoles.Trickster
                 => "Result3",
 
@@ -131,6 +132,7 @@ public static class Divinator
                 CustomRoles.Bomber or
                 CustomRoles.Agitater or
                 CustomRoles.FireWorks or
+                CustomRoles.Lookout or
                 CustomRoles.Nuker
                 => "Result7",
 
@@ -154,12 +156,14 @@ public static class Divinator
                 CustomRoles.Dictator or
                 CustomRoles.Judge or
                 CustomRoles.CursedSoul or
+                CustomRoles.Cleanser or
                 CustomRoles.CursedWolf
                 => "Result10",
 
                 CustomRoles.Addict or
                 CustomRoles.Escapee or
                 CustomRoles.Miner or
+                CustomRoles.Chronomancer or
                 CustomRoles.Morphling
                 => "Result11",
 
@@ -196,6 +200,7 @@ public static class Divinator
                 CustomRoles.Masochist or
                 CustomRoles.Inhibitor or
                 CustomRoles.SabotageMaster or
+                CustomRoles.Shaman or
                 CustomRoles.Saboteur
                 => "Result16",
 
