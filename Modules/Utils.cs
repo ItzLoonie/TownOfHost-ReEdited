@@ -438,6 +438,7 @@ public static class Utils
             case CustomRoles.Maverick:
             case CustomRoles.Agitater:
             case CustomRoles.Jinx:
+            case CustomRoles.SoulCollector:
             case CustomRoles.Parasite:
             case CustomRoles.Crusader:
             case CustomRoles.Refugee:

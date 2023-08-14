@@ -1374,6 +1374,7 @@
 "HideJesterVote","隐藏小丑的投票","Hide Jester's vote","Скрывать голоса","",""
 "ExecutionerCanTargetImpostor","<color=#ff1919>内鬼阵营</color>可以成为目标","Can Target <color=#ff1919>Impostors</color>","Может иметь цель изгнать <color=#ff1919>Предателя</color>","<color=#ff1919>偽裝者</color>可以成為目標","<color=#ff1919>内鬼</color>可以成为目标"
 "ExecutionerCanTargetNeutralKiller","带刀<color=#7f8c8d>中立</color>玩家可以成为目标","Can Target <color=#7f8c8d>Neutral</color> <color=#ff1919>Killing</color>","Может иметь цель изгнать <color=#7f8c8d>Нейтрального</color> <color=#ff1919>Убийцу</color>","帶刀<color=#7f8c8d>中立</color>玩家可以成為目標","带刀<color=#7f8c8d>中立</color>玩家可以成为目标"
+"ExecutionerCanTargetCoven","","Can Target <color=#663399>Coven</color> Members","","",""
 "ExecutionerChangeRolesAfterTargetKilled","目标死亡后将变为","When Target Dies, <color=#c0c0c0>Executioner</color> becomes","Роль после смерти его цели","目標死亡後將變為","目标死亡后将变为"
 "CanTargetNeutralBenign","目标可能是<color=#7f8c8d>中立不带刀</color>","Can Target <color=#7f8c8d>Neutral</color> <color=#046300>Benign</color>","Может иметь цель изгнать <color=#046300>Доброго</color> <color=#7f8c8d>Нейтрала</color>","",""
 "CanTargetNeutralEvil","目标可能是<color=#7f8c8d>中立邪恶</color>","Can Target <color=#7f8c8d>Neutral</color> <color=#912900>Evil</color>","Может иметь цель изгнать <color=#912900>Злого</color> <color=#7f8c8d>Нейтрала</color>","",""
