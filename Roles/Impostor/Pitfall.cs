@@ -18,6 +18,7 @@ namespace TOHE.Roles.Impostor
         private static List<byte> ReducedVisionPlayers = new();
 
         private static OptionItem ShapeshiftCooldown;
+        public static OptionItem MaxTrapCount;
         public static OptionItem TrapMaxPlayerCount;
         public static OptionItem TrapDuration;
         private static OptionItem TrapRadius;
@@ -32,17 +33,19 @@ namespace TOHE.Roles.Impostor
             SetupRoleOptions(Id, TabGroup.ImpostorRoles, CustomRoles.Pitfall);
             ShapeshiftCooldown = FloatOptionItem.Create(Id + 10, "PitfallTrapCooldown", new(1f, 999f, 1f), 20f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Pitfall])
                 .SetValueFormat(OptionFormat.Seconds);
-            TrapMaxPlayerCount = FloatOptionItem.Create(Id + 11, "PitfallTrapMaxPlayerCount", new(1f, 15f, 1f), 3f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Pitfall])
+            MaxTrapCount = FloatOptionItem.Create(Id + 11, "PitfallMaxTrapCount", new(1f, 5f, 1f), 3f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Pitfall])
                 .SetValueFormat(OptionFormat.Times);
-            TrapDuration = FloatOptionItem.Create(Id + 12, "PitfallTrapDuration", new(5f, 999f, 1f), 30f, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Pitfall])
+            TrapMaxPlayerCount = FloatOptionItem.Create(Id + 12, "PitfallTrapMaxPlayerCount", new(1f, 15f, 1f), 3f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Pitfall])
+                .SetValueFormat(OptionFormat.Times);
+            TrapDuration = FloatOptionItem.Create(Id + 13, "PitfallTrapDuration", new(5f, 999f, 1f), 30f, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Pitfall])
                 .SetValueFormat(OptionFormat.Seconds);
-            TrapRadius = FloatOptionItem.Create(Id + 13, "PitfallTrapRadius", new(0.5f, 5f, 0.5f), 2f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Pitfall])
+            TrapRadius = FloatOptionItem.Create(Id + 14, "PitfallTrapRadius", new(0.5f, 5f, 0.5f), 2f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Pitfall])
                 .SetValueFormat(OptionFormat.Multiplier);
-            TrapFreezeTime = FloatOptionItem.Create(Id + 14, "PitfallTrapFreezeTime", new(0f, 30f, 1f), 5f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Pitfall])
+            TrapFreezeTime = FloatOptionItem.Create(Id + 15, "PitfallTrapFreezeTime", new(0f, 30f, 1f), 5f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Pitfall])
                 .SetValueFormat(OptionFormat.Seconds);
-            TrapCauseVision = FloatOptionItem.Create(Id + 15, "PitfallTrapCauseVision", new(0f, 5f, 0.05f), 0.2f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Pitfall])
+            TrapCauseVision = FloatOptionItem.Create(Id + 16, "PitfallTrapCauseVision", new(0f, 5f, 0.05f), 0.2f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Pitfall])
                 .SetValueFormat(OptionFormat.Multiplier);
-            TrapCauseVisionTime = FloatOptionItem.Create(Id + 16, "PitfallTrapCauseVisionTime", new(0f, 45f, 1f), 15f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Pitfall])
+            TrapCauseVisionTime = FloatOptionItem.Create(Id + 17, "PitfallTrapCauseVisionTime", new(0f, 45f, 1f), 15f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Pitfall])
                 .SetValueFormat(OptionFormat.Seconds);
         }
         public static void ApplyGameOptions()
@@ -66,10 +69,19 @@ namespace TOHE.Roles.Impostor
 
         public static void OnShapeshift(PlayerControl shapeshifter)
         {
-            var position = shapeshifter.GetTruePosition();
+            // Remove inactive traps so there is room for new traps
+            Traps = Traps.Where(a => a.IsActive).ToList();
 
-            var trap = Traps.FirstOrDefault(a => a.PitfallPlayerId == shapeshifter.PlayerId);
-            if (trap == null)
+            var position = shapeshifter.GetTruePosition();
+            var playerTraps = Traps.Where(a => a.PitfallPlayerId == shapeshifter.PlayerId);
+            if (playerTraps.Count() >= MaxTrapCount.GetInt())
+            {
+                var trap = playerTraps.First();
+                trap.Location = position;
+                trap.PlayersTrapped = new List<int>();
+                trap.Timer = 0;
+            }
+            else
             {
                 Traps.Add(new PitfallTrap
                 {
@@ -79,12 +91,6 @@ namespace TOHE.Roles.Impostor
                     Timer = 0
                 });
             }
-            else
-            {
-                trap.Location = position;
-                trap.PlayersTrapped = new List<int>();
-                trap.Timer = 0;
-            }
         }
 
         public static void OnFixedUpdate(PlayerControl player)
@@ -93,12 +99,11 @@ namespace TOHE.Roles.Impostor
 
             if (player.GetCustomRole().IsImpostor())
             {
-                var trap = Traps.FirstOrDefault(a => a.PitfallPlayerId == player.PlayerId && a.IsActive);
-                if (trap != null)
+                var traps = Traps.Where(a => a.PitfallPlayerId == player.PlayerId && a.IsActive);
+                foreach (var trap in traps)
                 {
                     trap.Timer += Time.fixedDeltaTime;
                 }
-
                 return;
             }
 
