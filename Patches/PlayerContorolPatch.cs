@@ -1898,6 +1898,8 @@ class ReportDeadBodyPatch
         Doomsayer.OnReportDeadBody();
         BallLightning.OnReportDeadBody();
         Seeker.OnReportDeadBody();
+        Jailer.OnReportDeadBody();
+
 
         Mortician.OnReportDeadBody(player, target);
         Tracefinder.OnReportDeadBody(player, target);

@@ -127,7 +127,7 @@ public static class Jailer
         return false;
     }
 
-    public static void OnReportBody()
+    public static void OnReportDeadBody()
     {
         foreach (var targetId in JailerTarget.Values)
         {
