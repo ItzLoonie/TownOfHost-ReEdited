@@ -91,7 +91,7 @@ public static class Gangster
 
                 killer.ResetKillCooldown();
                 killer.SetKillCooldown();
-                killer.RpcGuardAndKill(target);
+                if (!Options.DisableShieldAnimations.GetBool()) killer.RpcGuardAndKill(target);
                 target.RpcGuardAndKill(killer);
                 target.RpcGuardAndKill(target);
 
@@ -113,7 +113,7 @@ public static class Gangster
 
                 killer.ResetKillCooldown();
                 killer.SetKillCooldown();
-                killer.RpcGuardAndKill(target);
+                if (!Options.DisableShieldAnimations.GetBool()) killer.RpcGuardAndKill(target);
                 target.RpcGuardAndKill(killer);
                 target.RpcGuardAndKill(target);
 
@@ -135,7 +135,7 @@ public static class Gangster
 
                 killer.ResetKillCooldown();
                 killer.SetKillCooldown();
-                killer.RpcGuardAndKill(target);
+                if (!Options.DisableShieldAnimations.GetBool()) killer.RpcGuardAndKill(target);
                 target.RpcGuardAndKill(killer);
                 target.RpcGuardAndKill(target);
 
@@ -157,7 +157,7 @@ public static class Gangster
 
                 killer.ResetKillCooldown();
                 killer.SetKillCooldown();
-                killer.RpcGuardAndKill(target);
+                if (!Options.DisableShieldAnimations.GetBool()) killer.RpcGuardAndKill(target);
                 target.RpcGuardAndKill(killer);
                 target.RpcGuardAndKill(target);
 
@@ -179,7 +179,7 @@ public static class Gangster
 
                 killer.ResetKillCooldown();
                 killer.SetKillCooldown();
-                killer.RpcGuardAndKill(target);
+                if (!Options.DisableShieldAnimations.GetBool()) killer.RpcGuardAndKill(target);
                 target.RpcGuardAndKill(killer);
                 target.RpcGuardAndKill(target);
 
@@ -201,7 +201,7 @@ public static class Gangster
 
                 killer.ResetKillCooldown();
                 killer.SetKillCooldown();
-                killer.RpcGuardAndKill(target);
+                if (!Options.DisableShieldAnimations.GetBool()) killer.RpcGuardAndKill(target);
                 target.RpcGuardAndKill(killer);
                 target.RpcGuardAndKill(target);
 

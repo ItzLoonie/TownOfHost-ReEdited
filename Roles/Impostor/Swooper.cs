@@ -16,6 +16,7 @@ public static class Swooper
 
     private static OptionItem SwooperCooldown;
     private static OptionItem SwooperDuration;
+    private static OptionItem SwooperVentNormallyOnCooldown;
 
     private static Dictionary<byte, long> InvisTime = new();
     private static Dictionary<byte, long> lastTime = new();
@@ -24,10 +25,11 @@ public static class Swooper
     public static void SetupCustomOption()
     {
         SetupRoleOptions(Id, TabGroup.ImpostorRoles, CustomRoles.Swooper);
-        SwooperCooldown = FloatOptionItem.Create(Id + 2, "SwooperCooldown", new(1f, 999f, 1f), 30f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Swooper])
+        SwooperCooldown = FloatOptionItem.Create(Id + 2, "SwooperCooldown", new(1f, 180f, 1f), 30f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Swooper])
             .SetValueFormat(OptionFormat.Seconds);
-        SwooperDuration = FloatOptionItem.Create(Id + 4, "SwooperDuration", new(1f, 999f, 1f), 15f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Swooper])
+        SwooperDuration = FloatOptionItem.Create(Id + 4, "SwooperDuration", new(1f, 60f, 1f), 15f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Swooper])
             .SetValueFormat(OptionFormat.Seconds);
+        SwooperVentNormallyOnCooldown = BooleanOptionItem.Create(Id + 5, "SwooperVentNormallyOnCooldown", true, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Swooper]);
     }
     public static void Init()
     {
@@ -136,8 +138,11 @@ public static class Swooper
             }
             else
             {
-                __instance.myPlayer.MyPhysics.RpcBootFromVent(ventId);
-                NameNotifyManager.Notify(pc, GetString("SwooperInvisInCooldown"));
+                if (!SwooperVentNormallyOnCooldown.GetBool())
+                {
+                    __instance.myPlayer.MyPhysics.RpcBootFromVent(ventId);
+                    NameNotifyManager.Notify(pc, GetString("SwooperInvisInCooldown"));
+                }
             }
         }, 0.5f, "Swooper Vent");
     }

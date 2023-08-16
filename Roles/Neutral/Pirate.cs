@@ -35,7 +35,7 @@ public static class Pirate
                 .SetValueFormat(OptionFormat.Seconds);
         TryHideMsg = BooleanOptionItem.Create(Id + 10, "PirateTryHideMsg", true, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Pirate])
             .SetColor(Color.green);
-        SuccessfulDuelsToWin = IntegerOptionItem.Create(Id + 11, "SuccessfulDuelsToWin", new(1, 99, 1), 2, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Pirate])
+        SuccessfulDuelsToWin = IntegerOptionItem.Create(Id + 11, "SuccessfulDuelsToWin", new(1, 20, 1), 2, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Pirate])
             .SetValueFormat(OptionFormat.Times);
     }
 
@@ -88,7 +88,8 @@ public static class Pirate
         Logger.Msg($"{killer.GetNameWithRole()} chose a target {target.GetNameWithRole()}", "Pirate");
         PirateTarget = target.PlayerId;
         DuelDone.Add(PirateTarget, false);
-        killer.RpcGuardAndKill(killer);
+        if (!Options.DisableShieldAnimations.GetBool()) killer.RpcGuardAndKill(killer);
+        else killer.SetKillCooldown();
         return false;
     }
     public static string GetPlunderedMark(byte target, bool isMeeting)
