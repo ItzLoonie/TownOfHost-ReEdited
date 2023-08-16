@@ -88,10 +88,13 @@ public static class Camouflage
         if (oldIsCamouflage != IsCamouflage)
         {
             Main.AllPlayerControls.Do(pc => RpcSetSkin(pc));
-            
-            Main.AllPlayerControls
-                .Where(pc => PlayerSkins[pc.PlayerId].PetId != "" && pc.Data.IsDead && !pc.IsAlive())
-                .Do(pc => pc.RpcSetPet(""));
+
+            if (Options.RemovePetsAtDeadPlayers.GetBool())
+            {
+                Main.AllPlayerControls
+                    .Where(pc => PlayerSkins[pc.PlayerId].PetId != "" && pc.Data.IsDead && !pc.IsAlive())
+                    .Do(pc => pc.RpcSetPet(""));
+            }
 
             Utils.NotifyRoles();
         }

@@ -3209,6 +3209,7 @@ public static class PlayerControlDiePatch
     {
         if (!AmongUsClient.Instance.AmHost) return;
         if (!GameStates.IsInGame) return;
+        if (!Options.RemovePetsAtDeadPlayers.GetBool()) return;
 
         __instance.RpcSetPet("");
     }
