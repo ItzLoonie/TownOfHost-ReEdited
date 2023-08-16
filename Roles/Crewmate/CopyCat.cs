@@ -22,7 +22,7 @@ public static class CopyCat
     public static void SetupCustomOption()
     {
         SetupRoleOptions(Id, TabGroup.CrewmateRoles, CustomRoles.CopyCat);
-        KillCooldown = FloatOptionItem.Create(Id + 10, "CopyCatCopyCooldown", new(0f, 999f, 1f), 15f, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.CopyCat])
+        KillCooldown = FloatOptionItem.Create(Id + 10, "CopyCatCopyCooldown", new(0f, 180f, 1f), 15f, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.CopyCat])
             .SetValueFormat(OptionFormat.Seconds);
     //    CanKill = BooleanOptionItem.Create(Id + 11, "CopyCatCanKill", false, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.CopyCat]);
         CopyCrewVar = BooleanOptionItem.Create(Id+13, "CopyCrewVar",true,TabGroup.CrewmateRoles,false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.CopyCat]);        
@@ -152,6 +152,12 @@ public static class CopyCat
                     break;
                 case CustomRoles.Veteran:
                     Main.VeteranNumOfUsed.Remove(player);
+                    break;
+                case CustomRoles.Grenadier:
+                    Main.GrenadierNumOfUsed.Remove(player);
+                    break;
+                case CustomRoles.TimeMaster:
+                    Main.TimeMasterNumOfUsed.Remove(player);
                     break;
                 case CustomRoles.Judge:
                     Judge.TrialLimit.Remove(player);
