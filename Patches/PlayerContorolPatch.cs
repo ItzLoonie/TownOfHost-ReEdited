@@ -7,13 +7,12 @@ using AmongUs.GameOptions;
 using HarmonyLib;
 using Hazel;
 using InnerNet;
-using MS.Internal.Xml.XPath;
+using UnityEngine;
 using TOHE.Modules;
 using TOHE.Roles.AddOns.Crewmate;
 using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
-using UnityEngine;
 using static TOHE.Translator;
 
 namespace TOHE;
@@ -3202,7 +3201,18 @@ class CoEnterVentPatch
         return true;
     }
 }
+[HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.Die))]
+public static class PlayerControlDiePatch
+{
+    //https://github.com/Hyz-sui/TownOfHost-H
+    public static void Postfix(PlayerControl __instance)
+    {
+        if (!AmongUsClient.Instance.AmHost) return;
+        if (!GameStates.IsInGame) return;
 
+        __instance.RpcSetPet("");
+    }
+}
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.SetName))]
 class SetNamePatch
 {

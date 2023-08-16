@@ -1,5 +1,6 @@
 using AmongUs.Data;
 using HarmonyLib;
+using System.Linq;
 using System.Collections.Generic;
 using TOHE.Roles.Impostor;
 
@@ -87,6 +88,11 @@ public static class Camouflage
         if (oldIsCamouflage != IsCamouflage)
         {
             Main.AllPlayerControls.Do(pc => RpcSetSkin(pc));
+            
+            Main.AllPlayerControls
+                .Where(pc => PlayerSkins[pc.PlayerId].PetId != "" && pc.Data.IsDead && !pc.IsAlive())
+                .Do(pc => pc.RpcSetPet(""));
+
             Utils.NotifyRoles();
         }
     }
