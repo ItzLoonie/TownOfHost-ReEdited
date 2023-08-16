@@ -330,6 +330,7 @@ internal static class CustomRolesHelper
             CustomRoles.Avanger or
             CustomRoles.Sleuth or
             CustomRoles.Clumsy or
+            CustomRoles.Nimble or
             CustomRoles.Youtuber or
             CustomRoles.Soulless or
             CustomRoles.Loyal or
@@ -867,6 +868,24 @@ internal static class CustomRolesHelper
             CustomRoles.Refugee or
             CustomRoles.Parasite;
     }
+    public static bool IsNimbleNeutral(this CustomRoles role)
+    {
+        return role is
+            CustomRoles.Shaman or
+            CustomRoles.CursedSoul or
+            CustomRoles.Amnesiac or
+            CustomRoles.Glitch or
+            CustomRoles.Innocent or
+            CustomRoles.Pursuer or
+            CustomRoles.Agitater or
+            CustomRoles.PlagueBearer or
+            CustomRoles.Pirate or
+            CustomRoles.FFF or
+            CustomRoles.Totocalcio or
+            CustomRoles.Provocateur or
+            CustomRoles.DarkHide or
+            CustomRoles.Seeker;
+    }
     public static bool IsTasklessCrewmate(this CustomRoles role)
     {
         return role is
@@ -1247,6 +1266,16 @@ internal static class CustomRolesHelper
                     return false;
                 if (!pc.GetCustomRole().IsImpostor())
                     return false;
+                break;
+
+            case CustomRoles.Nimble:
+                if ((pc.Is(CustomRoles.SwordsMan) && SwordsMan.CanVent.GetBool())
+                    || pc.Is(CustomRoles.CopyCat))
+                    return false;
+                if (!pc.GetCustomRole().IsTasklessCrewmate())
+                    return false;
+                
+
                 break;
 
             case CustomRoles.Clumsy:

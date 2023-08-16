@@ -524,6 +524,8 @@ static class ExtendedPlayerControl
     {
         if (!pc.IsAlive() || pc.Data.Role.Role == RoleTypes.GuardianAngel) return false;
         if (CopyCat.playerIdList.Contains(pc.PlayerId)) return true;
+        if (pc.Is(CustomRoles.Nimble)) return true;
+     //   if (pc.Is(CustomRoles.Circumvent)) return false;
 
         return pc.GetCustomRole() switch
         {

@@ -498,6 +498,7 @@ public class Main : BasePlugin
                 {CustomRoles.Ghoul, "#B22222"},
                 {CustomRoles.Sleuth, "#803333" },
                 {CustomRoles.Clumsy, "#ff1919"},
+                {CustomRoles.Nimble, "#FFFAA6"},
 
           //      {CustomRoles.Cyber, "#ee4a55" },
 
@@ -834,6 +835,7 @@ public enum CustomRoles
     Burst,
     Sleuth,
     Clumsy,
+    Nimble,
   //  Cyber,
     // QuickFix
 }

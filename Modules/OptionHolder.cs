@@ -392,6 +392,10 @@ public static class Options
     // Clumsy
     public static OptionItem ChanceToMiss;
 
+    // Nimble
+    public static OptionItem NeutralCanBeNimble,
+    public static OptionItem CrewCanBeNimble,
+
 
 
     //
@@ -1732,6 +1736,11 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Necroview]);
         NeutralCanBeNecroview = BooleanOptionItem.Create(14412, "NeutralCanBeNecroview", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Necroview]);
+        SetupAdtRoleOptions(14050, CustomRoles.Necroview, canSetNum: true, tab: TabGroup.Addons);
+    /*    CrewCanBeNimble = BooleanOptionItem.Create(14061, "CrewCanBeNimble", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Nimble]);
+        NeutralCanBeNimble = BooleanOptionItem.Create(14062, "NeutralCanBeNimble", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Nimble]); */
         SetupAdtRoleOptions(14600, CustomRoles.Reach, canSetNum: true);
         SetupAdtRoleOptions(14700, CustomRoles.DualPersonality, canSetNum: true);
         ImpCanBeDualPersonality = BooleanOptionItem.Create(14710, "ImpCanBeDualPersonality", true, TabGroup.Addons, false)
