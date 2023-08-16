@@ -168,9 +168,11 @@ public class Main : BasePlugin
     public static Dictionary<byte, int> ParaUsedButtonCount = new();
     public static Dictionary<byte, int> MarioVentCount = new();
     public static Dictionary<byte, long> VeteranInProtect = new();
-    public static Dictionary<byte, int> VeteranNumOfUsed = new();
+    public static Dictionary<byte, float> VeteranNumOfUsed = new();
     public static Dictionary<byte, long> GrenadierBlinding = new();
     public static Dictionary<byte, long> MadGrenadierBlinding = new();
+    public static Dictionary<byte, float> GrenadierNumOfUsed = new();
+    public static Dictionary<byte, float> TimeMasterNumOfUsed = new();
     public static Dictionary<byte, int> CursedWolfSpellCount = new();
     public static Dictionary<byte, int> JinxSpellCount = new();
     public static int AliveImpostorCount;
@@ -197,7 +199,7 @@ public class Main : BasePlugin
     public static int MadmateNum = 0;
     public static int BardCreations = 0;
     public static Dictionary<byte, byte> Provoked = new();
-    public static Dictionary<byte, int> DovesOfNeaceNumOfUsed = new();
+    public static Dictionary<byte, float> DovesOfNeaceNumOfUsed = new();
 
     public static Dictionary<byte, CustomRoles> DevRole = new();
     public static List<byte> GodfatherTarget = new();

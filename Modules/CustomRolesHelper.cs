@@ -229,7 +229,7 @@ internal static class CustomRolesHelper
         {
             //SoloKombat
             CustomRoles.KB_Normal => RoleTypes.Impostor,
-            //Standard                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+            //Standard
             CustomRoles.Sheriff => RoleTypes.Impostor,
             CustomRoles.Jailer => RoleTypes.Impostor,
             CustomRoles.Crusader => RoleTypes.Impostor,

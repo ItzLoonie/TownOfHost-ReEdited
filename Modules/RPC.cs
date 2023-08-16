@@ -405,10 +405,10 @@ internal class RPCHandlerPatch
                 Counterfeiter.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetJailerExeLimit:
-                Jailer.ReceiveRPC(reader,setTarget:false);
+                Jailer.ReceiveRPC(reader, setTarget: false);
                 break;
             case CustomRPC.SetJailerTarget:
-                Jailer.ReceiveRPC(reader,setTarget:true);
+                Jailer.ReceiveRPC(reader, setTarget: true);
                 break;
             case CustomRPC.SetPursuerSellLimit:
                 Pursuer.ReceiveRPC(reader);
@@ -990,6 +990,12 @@ internal static class RPC
                 break;
             case CustomRoles.Veteran:
                 Main.VeteranNumOfUsed.Add(targetId, Options.VeteranSkillMaxOfUseage.GetInt());
+                break;
+            case CustomRoles.Grenadier:
+                Main.GrenadierNumOfUsed.Add(targetId, Options.GrenadierSkillMaxOfUseage.GetInt());
+                break;
+            case CustomRoles.TimeMaster:
+                Main.TimeMasterNumOfUsed.Add(targetId, Options.TimeMasterMaxUses.GetInt());
                 break;
             case CustomRoles.Swooper:
                 Swooper.Add(targetId);
