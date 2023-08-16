@@ -109,6 +109,9 @@ class CheckForEndVotingPatch
                                 if (pc == null || voteTarget == null) break;
                                 Main.GodfatherTarget.Add(voteTarget.PlayerId);
                                 break;
+                            case CustomRoles.Jailer:
+                                Jailer.OnVote(pc, voteTarget);
+                                break;
                         }
                         if (voteTarget.Is(CustomRoles.Aware))
                         {
@@ -587,6 +590,8 @@ static class ExtendedMeetingHud
                 // 主动叛变模式下自票无效
                 if (ps.TargetPlayerId == ps.VotedFor && Options.MadmateSpawnMode.GetInt() == 2) VoteNum = 0;
                 if (CheckForEndVotingPatch.CheckRole(ps.TargetPlayerId, CustomRoles.VoidBallot)) VoteNum = 0;
+                if (Jailer.JailerTarget.ContainsValue(ps.VotedFor) || Jailer.JailerTarget.ContainsValue(ps.TargetPlayerId)) VoteNum = 0; //jailed can't vote and can't get voted
+
 
                 //投票を1追加 キーが定義されていない場合は1で上書きして定義
                 dic[ps.VotedFor] = !dic.TryGetValue(ps.VotedFor, out int num) ? VoteNum : num + VoteNum;//统计该玩家被投的数量

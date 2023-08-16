@@ -1310,6 +1310,7 @@ public static class Options
             .SetValueFormat(OptionFormat.Multiplier);
         Crusader.SetupCustomOption();
         Counterfeiter.SetupCustomOption();
+        Jailer.SetupCustomOption();
         SwordsMan.SetupCustomOption();
 
         SetupRoleOptions(8700, TabGroup.CrewmateRoles, CustomRoles.Retributionist);

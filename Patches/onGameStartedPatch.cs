@@ -226,6 +226,7 @@ internal class ChangeRoleSettings
             QuickShooter.Init();
             Camouflager.Init();
             Divinator.Init();
+            Jailer.Init();
             Oracle.Init();
             Eraser.Init();
             Assassin.Init();
@@ -616,6 +617,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Counterfeiter:
                         Counterfeiter.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Jailer:
+                        Jailer.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Pursuer:
                         Pursuer.Add(pc.PlayerId);

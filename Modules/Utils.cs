@@ -421,6 +421,7 @@ public static class Utils
         {
             case CustomRoles.GM:
             case CustomRoles.Sheriff:
+            case CustomRoles.Jailer:
             case CustomRoles.CopyCat:
             case CustomRoles.Shaman:
             case CustomRoles.Arsonist:
@@ -605,6 +606,9 @@ public static class Utils
                 break;
             case CustomRoles.Crusader:
                 ProgressText.Append(Crusader.GetSkillLimit(playerId));
+                break;
+            case CustomRoles.Jailer:
+                ProgressText.Append(Jailer.GetProgressText(playerId));
                 break;
        /*     case CustomRoles.CopyCat:
                 ProgressText.Append(ColorString(GetRoleColor(CustomRoles.CopyCat).ShadeColor(0.25f), $"({(CopyCat.MiscopyLimit.TryGetValue(playerId, out var count2) ? count2 : 0)})"));
@@ -2059,7 +2063,8 @@ public static class Utils
         Spiritualist.AfterMeetingTasks();
         Vulture.AfterMeetingTasks();
         Baker.AfterMeetingTasks();
-        CopyCat.AfterMeetingTasks();
+        Jailer.AfterMeetingTasks();
+        CopyCat.AfterMeetingTasks();  //all crew after meeting task should be before this
         Pirate.AfterMeetingTask();
         Chronomancer.AfterMeetingTask();
         Seeker.AfterMeetingTasks();

@@ -229,8 +229,9 @@ internal static class CustomRolesHelper
         {
             //SoloKombat
             CustomRoles.KB_Normal => RoleTypes.Impostor,
-            //Standard
+            //Standard                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
             CustomRoles.Sheriff => RoleTypes.Impostor,
+            CustomRoles.Jailer => RoleTypes.Impostor,
             CustomRoles.Crusader => RoleTypes.Impostor,
             CustomRoles.Seeker => RoleTypes.Impostor,
             CustomRoles.Pirate => RoleTypes.Impostor,
@@ -584,7 +585,8 @@ internal static class CustomRolesHelper
             CustomRoles.NiceGuesser or
             CustomRoles.Counterfeiter or
             CustomRoles.Retributionist or
-            CustomRoles.Sheriff;
+            CustomRoles.Sheriff or
+            CustomRoles.Jailer;
     }
     public static bool IsImpostor(this CustomRoles role) // IsImp
     {
@@ -869,6 +871,7 @@ internal static class CustomRolesHelper
     {
         return role is
             CustomRoles.Sheriff or
+            CustomRoles.Jailer or
             CustomRoles.Medic or
             CustomRoles.CopyCat or
             CustomRoles.Reverie or

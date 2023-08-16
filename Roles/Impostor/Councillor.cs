@@ -102,6 +102,12 @@ public static class Councillor
                     else pc.ShowPopUp(GetString("CouncillorMurderMax"));
                     return true;
                 }
+                if (Jailer.JailerTarget.ContainsValue(target.PlayerId))
+                {
+                    if (!isUI) Utils.SendMessage(GetString("CanNotTrialJailed"), pc.PlayerId, title: Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jailer), GetString("JailerTitle")));
+                    else pc.ShowPopUp(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jailer), GetString("JailerTitle")) + "\n" + GetString("CanNotTrialJailed"));
+                    return true;
+                }
                 if (pc.PlayerId == target.PlayerId)
                 {
                     if (!isUI) Utils.SendMessage(GetString("LaughToWhoMurderSelf"), pc.PlayerId, Utils.ColorString(Color.cyan, GetString("MessageFromKPD")));
