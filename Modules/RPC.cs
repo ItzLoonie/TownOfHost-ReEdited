@@ -61,6 +61,8 @@ enum CustomRPC
     SetCurrentDrawTarget,
     SetGamerHealth,
     RpcPassBomb,
+    SetJailerTarget,
+    SetJailerExeLimit,
     SetCleanserCleanLimit,
     SetSoulCollectorLimit,
     SetPelicanEtenNum,
@@ -401,6 +403,12 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetCounterfeiterSellLimit:
                 Counterfeiter.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetJailerExeLimit:
+                Jailer.ReceiveRPC(reader,setTarget:false);
+                break;
+            case CustomRPC.SetJailerTarget:
+                Jailer.ReceiveRPC(reader,setTarget:true);
                 break;
             case CustomRPC.SetPursuerSellLimit:
                 Pursuer.ReceiveRPC(reader);
@@ -888,6 +896,9 @@ internal static class RPC
                 break;
             case CustomRoles.Counterfeiter:
                 Counterfeiter.Add(targetId);
+                break;
+            case CustomRoles.Jailer:
+                Jailer.Add(targetId);
                 break;
             case CustomRoles.Pursuer:
                 Pursuer.Add(targetId);

@@ -468,6 +468,10 @@ class CheckMurderPatch
                     if (!Sheriff.OnCheckMurder(killer, target))
                         return false;
                     break;
+                case CustomRoles.Jailer:
+                    if (!Jailer.OnCheckMurder(killer, target))
+                        return false;
+                    break;
                 case CustomRoles.CopyCat:
                     if (!CopyCat.OnCheckMurder(killer, target))
                         return false;

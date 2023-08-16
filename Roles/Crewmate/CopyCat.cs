@@ -93,6 +93,12 @@ public static class CopyCat
                     Cleanser.CleanserUses.Remove(pc.PlayerId);
                     Cleanser.DidVote.Remove(pc.PlayerId);
                     break;
+                case CustomRoles.Jailer:
+                    Jailer.JailerExeLimit.Remove(pc.PlayerId);
+                    Jailer.JailerTarget.Remove(pc.PlayerId);
+                    Jailer.JailerHasExe.Remove(pc.PlayerId);
+                    Jailer.JailerDidVote.Remove(pc.PlayerId);
+                    break;
                 case CustomRoles.ParityCop:
                     ParityCop.MaxCheckLimit.Remove(player);
                     ParityCop.RoundCheckLimit.Remove(player);
@@ -220,6 +226,16 @@ public static class CopyCat
                     Cleanser.CleanserTarget.Add(pc.PlayerId, byte.MaxValue);
                     Cleanser.CleanserUses.Add(pc.PlayerId, 0);
                     Cleanser.DidVote.Add(pc.PlayerId, false);
+                    break;
+                case CustomRoles.Jailer:
+                    Jailer.JailerExeLimit.Add(pc.PlayerId, Jailer.MaxExecution.GetInt());
+                    Jailer.JailerTarget.Add(pc.PlayerId, byte.MaxValue);
+                    Jailer.JailerHasExe.Add(pc.PlayerId, false);
+                    Jailer.JailerDidVote.Add(pc.PlayerId, false);
+
+                    if (!AmongUsClient.Instance.AmHost) break;
+                    if (!Main.ResetCamPlayerList.Contains(pc.PlayerId))
+                        Main.ResetCamPlayerList.Add(pc.PlayerId);
                     break;
                 case CustomRoles.Deputy:
                     Deputy.SetKillCooldown(pc.PlayerId);

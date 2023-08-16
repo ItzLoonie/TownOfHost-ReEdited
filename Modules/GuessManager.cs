@@ -189,7 +189,7 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("GGGuessMax"));
                     return true;
                 }
-                if (pc.Is(CustomRoles.EvilGuesser) && Main.GuesserGuessed[pc.PlayerId] >= Options.EGCanGuessTime.GetInt())
+                    if (pc.Is(CustomRoles.EvilGuesser) && Main.GuesserGuessed[pc.PlayerId] >= Options.EGCanGuessTime.GetInt())
                 {
                     if (!isUI) Utils.SendMessage(GetString("EGGuessMax"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("EGGuessMax"));
@@ -292,6 +292,18 @@ public static class GuessManager
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessOnbound"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessOnbound"));
+                    return true;
+                }
+                if (Jailer.JailerTarget.ContainsValue(target.PlayerId))
+                {
+                    if (!isUI) Utils.SendMessage(GetString("CantGuessJailed"), pc.PlayerId, title: Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jailer), GetString("JailerTitle")));
+                    else pc.ShowPopUp(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jailer), GetString("JailerTitle")) + "\n" + GetString("CantGuessJailed"));
+                    return true;
+                }
+                if (Jailer.JailerTarget.ContainsValue(pc.PlayerId) && role != CustomRoles.Jailer)
+                {
+                    if (!isUI) Utils.SendMessage(GetString("JailedCanOnlyGuessJailer"), pc.PlayerId, title: Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jailer), GetString("JailerTitle")));
+                    else pc.ShowPopUp(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jailer), GetString("JailerTitle")) + "\n" + GetString("JailedCanOnlyGuessJailer"));
                     return true;
                 }
                 if (target.Is(CustomRoles.Pestilence))
