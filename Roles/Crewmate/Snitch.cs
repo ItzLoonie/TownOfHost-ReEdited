@@ -142,7 +142,7 @@ public static class Snitch
         if (target != null && seer.PlayerId != target.PlayerId) return "";
 
         var exposedSnitch = playerIdList.Where(s => !Main.PlayerStates[s].IsDead && IsExposed[s]);
-        if (exposedSnitch.Count() == 0) return "";
+        if (!exposedSnitch.Any()) return "";
 
         var warning = "⚠";
         if (EnableTargetArrow)

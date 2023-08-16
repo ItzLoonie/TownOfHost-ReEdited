@@ -11,20 +11,28 @@ public static class Oracle
     private static List<byte> playerIdList = new();
 
     public static OptionItem CheckLimitOpt;
-  //  private static OptionItem OracleCheckMode;
+    //  private static OptionItem OracleCheckMode;
     public static OptionItem HideVote;
+    public static OptionItem FailChance;
+    public static OptionItem OracleAbilityUseGainWithEachTaskCompleted;
 
     public static List<byte> didVote = new();
-    public static Dictionary<byte, int> CheckLimit = new();
+    public static Dictionary<byte, float> CheckLimit = new();
 
     public static void SetupCustomOption()
     {
         SetupRoleOptions(Id, TabGroup.CrewmateRoles, CustomRoles.Oracle);
-        CheckLimitOpt = IntegerOptionItem.Create(Id + 10, "OracleSkillLimit", new(1, 990, 1), 5, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Oracle])
+        CheckLimitOpt = IntegerOptionItem.Create(Id + 10, "OracleSkillLimit", new(0, 10, 1), 1, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Oracle])
             .SetValueFormat(OptionFormat.Times);
-    //    OracleCheckMode = BooleanOptionItem.Create(Id + 12, "AccurateCheckMode", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Oracle]);
-        HideVote = BooleanOptionItem.Create(Id + 14, "OracleHideVote", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Oracle]);
-      //  OverrideTasksData.Create(Id + 20, TabGroup.CrewmateRoles, CustomRoles.Oracle);
+        //    OracleCheckMode = BooleanOptionItem.Create(Id + 11, "AccurateCheckMode", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Oracle]);
+        HideVote = BooleanOptionItem.Create(Id + 12, "OracleHideVote", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Oracle]);
+        //  OverrideTasksData.Create(Id + 20, TabGroup.CrewmateRoles, CustomRoles.Oracle);
+        FailChance = IntegerOptionItem.Create(Id + 13, "FailChance", new(0, 100, 5), 0, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Oracle])
+            .SetValueFormat(OptionFormat.Percent);
+        OracleAbilityUseGainWithEachTaskCompleted = FloatOptionItem.Create(Id + 14, "AbilityUseGainWithEachTaskCompleted", new(0f, 5f, 0.1f), 0.2f, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Mediumshiper])
+            .SetValueFormat(OptionFormat.Times);
     }
     public static void Init()
     {
@@ -49,7 +57,7 @@ public static class Oracle
             return;
         }
 
-        CheckLimit[player.PlayerId]--;
+        CheckLimit[player.PlayerId] -= 1;
 
         if (player.PlayerId == target.PlayerId)
         {
@@ -189,6 +197,38 @@ public static class Oracle
 
                 //          _ => "Crew",
                 //      };
+                if (FailChance.GetInt() > 0)
+                {
+                    int random_number_1 = HashRandom.Next(1, 100);
+                    if (random_number_1 <= FailChance.GetInt())
+                    {
+                        int random_number_2 = HashRandom.Next(1, 3);
+                        if (text == "Crew")
+                        {
+                            if (random_number_2 == 1) text = "Neut";
+                            if (random_number_2 == 2) text = "Imp";
+                            if (random_number_2 == 3) text = "Coven";
+                        }
+                        if (text == "Neut")
+                        {
+                            if (random_number_2 == 1) text = "Crew";
+                            if (random_number_2 == 2) text = "Imp";
+                            if (random_number_2 == 3) text = "Coven";
+                        }
+                        if (text == "Imp")
+                        {
+                            if (random_number_2 == 1) text = "Neut";
+                            if (random_number_2 == 2) text = "Crew";
+                            if (random_number_2 == 3) text = "Coven";
+                        }
+                        if (text == "Coven")
+                        {
+                            if (random_number_2 == 1) text = "Neut";
+                            if (random_number_2 == 2) text = "Crew";
+                            if (random_number_2 == 3) text = "Imp";
+                        }
+                    }
+                }
                 msg = string.Format(GetString("OracleCheck." + text), target.GetRealName());
         }
 

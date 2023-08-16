@@ -34,7 +34,7 @@ public static class Sniper
     public static void SetupCustomOption()
     {
         Options.SetupRoleOptions(Id, TabGroup.ImpostorRoles, CustomRoles.Sniper);
-        SniperBulletCount = IntegerOptionItem.Create(Id + 10, "SniperBulletCount", new(1, 99, 1), 2, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sniper])
+        SniperBulletCount = IntegerOptionItem.Create(Id + 10, "SniperBulletCount", new(1, 20, 1), 2, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sniper])
             .SetValueFormat(OptionFormat.Pieces);
         SniperPrecisionShooting = BooleanOptionItem.Create(Id + 11, "SniperPrecisionShooting", false, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sniper]);
         SniperAimAssist = BooleanOptionItem.Create(Id + 12, "SniperAimAssist", true, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Sniper]);
@@ -227,7 +227,8 @@ public static class Sniper
             snipeTarget[sniperId] = snipedTarget.PlayerId;
             snipedTarget.CheckMurder(snipedTarget);
             //あたった通知
-            sniper.RpcGuardAndKill();
+            if (!Options.DisableShieldAnimations.GetBool()) sniper.RpcGuardAndKill();
+            else sniper.SetKillCooldown();
             snipeTarget[sniperId] = 0x7F;
 
             //スナイプが起きたことを聞こえそうな対象に通知したい

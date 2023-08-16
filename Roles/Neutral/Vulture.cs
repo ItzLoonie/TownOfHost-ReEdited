@@ -54,8 +54,8 @@ public static class Vulture
         new LateTask(() =>
         {
             if (GameStates.IsInTask)
-            { 
-                Utils.GetPlayerById(playerId).RpcGuardAndKill(Utils.GetPlayerById(playerId));
+            {
+                if (!DisableShieldAnimations.GetBool()) Utils.GetPlayerById(playerId).RpcGuardAndKill(Utils.GetPlayerById(playerId));
                 Utils.GetPlayerById(playerId).Notify(GetString("VultureCooldownUp"));
             }
             return;
@@ -112,7 +112,7 @@ public static class Vulture
                 {
                     if (GameStates.IsInTask)
                     {
-                        Utils.GetPlayerById(apc).RpcGuardAndKill(Utils.GetPlayerById(apc));
+                        if (!DisableShieldAnimations.GetBool()) Utils.GetPlayerById(apc).RpcGuardAndKill(Utils.GetPlayerById(apc));
                         Utils.GetPlayerById(apc).Notify(GetString("VultureCooldownUp"));
                     }
                     return;

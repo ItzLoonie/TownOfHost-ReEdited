@@ -97,7 +97,7 @@ public static class Seeker
             TotalPoints[killer.PlayerId] -= 1;
         }
         killer.SyncSettings();  //IDK WHAT DOES THIS DO!!
-        killer.RpcGuardAndKill();
+        if (!Options.DisableShieldAnimations.GetBool()) killer.RpcGuardAndKill();
         SetKillCooldown(killer.PlayerId);
         SendRPC(killer.PlayerId, setTarget: false);
     }

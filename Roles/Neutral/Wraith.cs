@@ -16,6 +16,7 @@ public static class Wraith
 
     private static OptionItem WraithCooldown;
     private static OptionItem WraithDuration;
+    private static OptionItem WraithVentNormallyOnCooldown;
 
     private static Dictionary<byte, long> InvisTime = new();
     private static Dictionary<byte, long> lastTime = new();
@@ -24,10 +25,11 @@ public static class Wraith
     public static void SetupCustomOption()
     {
         SetupSingleRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.Wraith, 1, zeroOne: false);        
-        WraithCooldown = FloatOptionItem.Create(Id + 2, "WraithCooldown", new(1f, 999f, 1f), 30f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Wraith])
+        WraithCooldown = FloatOptionItem.Create(Id + 2, "WraithCooldown", new(1f, 180f, 1f), 30f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Wraith])
             .SetValueFormat(OptionFormat.Seconds);
-        WraithDuration = FloatOptionItem.Create(Id + 4, "WraithDuration", new(1f, 999f, 1f), 15f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Wraith])
+        WraithDuration = FloatOptionItem.Create(Id + 4, "WraithDuration", new(1f, 60f, 1f), 15f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Wraith])
             .SetValueFormat(OptionFormat.Seconds);
+        WraithVentNormallyOnCooldown = BooleanOptionItem.Create(Id + 5, "WraithVentNormallyOnCooldown", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Wraith]);
     }
     public static void Init()
     {
@@ -141,8 +143,11 @@ public static class Wraith
             }
             else
             {
-                __instance.myPlayer.MyPhysics.RpcBootFromVent(ventId);
-                NameNotifyManager.Notify(pc, GetString("WraithInvisInCooldown"));
+                if (!WraithVentNormallyOnCooldown.GetBool())
+                {
+                    __instance.myPlayer.MyPhysics.RpcBootFromVent(ventId);
+                    NameNotifyManager.Notify(pc, GetString("WraithInvisInCooldown"));
+                }
             }
         }, 0.5f, "Wraith Vent");
     }

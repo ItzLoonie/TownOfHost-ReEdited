@@ -96,6 +96,8 @@ internal class ChangeRoleSettings
             Main.MarioVentCount = new();
             Main.VeteranInProtect = new();
             Main.VeteranNumOfUsed = new();
+            Main.GrenadierNumOfUsed = new();
+            Main.TimeMasterNumOfUsed = new();
             Main.GrenadierBlinding = new();
             Main.MadGrenadierBlinding = new();
             Main.CursedWolfSpellCount = new();
@@ -140,7 +142,7 @@ internal class ChangeRoleSettings
 
             Camouflage.Init();
             var invalidColor = Main.AllPlayerControls.Where(p => p.Data.DefaultOutfit.ColorId < 0 || Palette.PlayerColors.Length <= p.Data.DefaultOutfit.ColorId);
-            if (invalidColor.Count() != 0)
+            if (invalidColor.Any())
             {
                 var msg = GetString("Error.InvalidColor");
                 Logger.SendInGame(msg);
@@ -584,6 +586,7 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.TimeMaster:
                         Main.TimeMasterNum[pc.PlayerId] = 0;
+                        Main.TimeMasterNumOfUsed.Add(pc.PlayerId, Options.TimeMasterMaxUses.GetInt());
                         break;
                     case CustomRoles.Masochist:
                         Main.MasochistKillMax[pc.PlayerId] = 0;
@@ -702,6 +705,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Veteran:
                         Main.VeteranNumOfUsed.Add(pc.PlayerId, Options.VeteranSkillMaxOfUseage.GetInt());
+                        break;
+                    case CustomRoles.Grenadier:
+                        Main.GrenadierNumOfUsed.Add(pc.PlayerId, Options.GrenadierSkillMaxOfUseage.GetInt());
                         break;
                     case CustomRoles.Swooper:
                         Swooper.Add(pc.PlayerId);

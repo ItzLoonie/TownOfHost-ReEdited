@@ -103,10 +103,13 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Phantom:
             case CustomRoles.Crewpostor:
           //  case CustomRoles.Jester:
-            case CustomRoles.Chameleon:
             case CustomRoles.Monitor:
                 AURoleOptions.EngineerCooldown = 0f;
                 AURoleOptions.EngineerInVentMaxTime = 0f;
+                break;
+            case CustomRoles.Chameleon:
+                AURoleOptions.EngineerCooldown = Chameleon.ChameleonCooldown.GetFloat() + 1f;
+                AURoleOptions.EngineerInVentMaxTime = 1f;
                 break;
             case CustomRoles.ShapeMaster:
                 AURoleOptions.ShapeshifterCooldown = 1f;
@@ -116,6 +119,14 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Warlock:
                 AURoleOptions.ShapeshifterCooldown = Main.isCursed ? 1f : Options.DefaultKillCooldown;
                 AURoleOptions.ShapeshifterDuration = Options.WarlockShiftDuration.GetFloat();
+                break;
+            case CustomRoles.Escapee:
+                AURoleOptions.ShapeshifterCooldown = Options.EscapeeSSCD.GetFloat();
+                AURoleOptions.ShapeshifterDuration = Options.EscapeeSSDuration.GetFloat();
+                break;
+            case CustomRoles.Miner:
+                AURoleOptions.ShapeshifterCooldown = Options.MinerSSCD.GetFloat();
+                AURoleOptions.ShapeshifterDuration = Options.MinerSSDuration.GetFloat();
                 break;
             case CustomRoles.SerialKiller:
                 SerialKiller.ApplyGameOptions(player);
@@ -222,10 +233,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 Poisoner.ApplyGameOptions(opt);
                 break;
             case CustomRoles.Veteran:
-                AURoleOptions.EngineerCooldown =
-                    !Main.VeteranNumOfUsed.TryGetValue(player.PlayerId, out var count3) || count3 > 0
-                    ? Options.VeteranSkillCooldown.GetFloat()
-                    : 300f;
+                AURoleOptions.EngineerCooldown = Options.VeteranSkillCooldown.GetFloat();
                 AURoleOptions.EngineerInVentMaxTime = 1;
                 break;
             case CustomRoles.Grenadier:
@@ -358,10 +366,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 Banshee.ApplyGameOptions(opt);
                 break;
             case CustomRoles.DovesOfNeace:
-                AURoleOptions.EngineerCooldown =
-                    !Main.DovesOfNeaceNumOfUsed.TryGetValue(player.PlayerId, out var count4) || count4 > 0
-                    ? Options.DovesOfNeaceCooldown.GetFloat()
-                    : 300f;
+                AURoleOptions.EngineerCooldown = Options.DovesOfNeaceCooldown.GetFloat();
                 AURoleOptions.EngineerInVentMaxTime = 1;
                 break;
             case CustomRoles.Disperser:
@@ -401,13 +406,13 @@ public class PlayerGameOptionsSender : GameOptionsSender
         }
 
         // Ϊ�Ի��ߵ�����
-        if (Main.AllPlayerControls.Where(x => x.Is(CustomRoles.Bewilder) && !x.IsAlive() && x.GetRealKiller()?.PlayerId == player.PlayerId && !x.Is(CustomRoles.Hangman)).Count() > 0)
+        if (Main.AllPlayerControls.Where(x => x.Is(CustomRoles.Bewilder) && !x.IsAlive() && x.GetRealKiller()?.PlayerId == player.PlayerId && !x.Is(CustomRoles.Hangman)).Any())
         {
             opt.SetVision(false);
             opt.SetFloat(FloatOptionNames.CrewLightMod, Options.BewilderVision.GetFloat());
             opt.SetFloat(FloatOptionNames.ImpostorLightMod, Options.BewilderVision.GetFloat());
         }
-        if (Main.AllPlayerControls.Where(x => x.Is(CustomRoles.Ghoul) && !x.IsAlive() && x.GetRealKiller()?.PlayerId == player.PlayerId).Count() > 0)
+        if (Main.AllPlayerControls.Where(x => x.Is(CustomRoles.Ghoul) && !x.IsAlive() && x.GetRealKiller()?.PlayerId == player.PlayerId).Any())
         {
             Main.KillGhoul.Add(player.PlayerId);
         }

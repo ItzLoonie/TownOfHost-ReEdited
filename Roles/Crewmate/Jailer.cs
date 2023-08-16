@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Collections.Generic;
 using static TOHE.Options;
 using static TOHE.Translator;
@@ -10,7 +10,7 @@ public static class Jailer
 {
     private static readonly int Id = 63420;
     public static List<byte> playerIdList = new();
-    public static Dictionary<byte, byte>  JailerTarget = new();
+    public static Dictionary<byte, byte> JailerTarget = new();
     public static Dictionary<byte, int> JailerExeLimit = new();
     public static Dictionary<byte, bool> JailerHasExe = new();
     public static Dictionary<byte, bool> JailerDidVote = new();
@@ -102,7 +102,7 @@ public static class Jailer
             bool didvote = reader.ReadBoolean();
             if (JailerDidVote.ContainsKey(jailerId)) JailerDidVote[jailerId] = didvote;
             else JailerDidVote.Add(jailerId, false);
-            
+
             return;
         }
 
@@ -153,7 +153,7 @@ public static class Jailer
         {
             if (JailerExeLimit[voter.PlayerId] > 0)
             {
-                JailerExeLimit[voter.PlayerId] = JailerExeLimit[voter.PlayerId] -1;
+                JailerExeLimit[voter.PlayerId] = JailerExeLimit[voter.PlayerId] - 1;
                 JailerHasExe[voter.PlayerId] = true;
             }
             else JailerHasExe[voter.PlayerId] = false;
@@ -194,7 +194,7 @@ public static class Jailer
             JailerHasExe[pid] = false;
             JailerTarget[pid] = byte.MaxValue;
             JailerDidVote[pid] = false;
-            SendRPC(pid, byte.MaxValue, setTarget:true);
+            SendRPC(pid, byte.MaxValue, setTarget: true);
         }
     }
 

@@ -16,6 +16,7 @@ public static class Shade
 
     private static OptionItem ShadeCooldown;
     private static OptionItem ShadeDuration;
+    private static OptionItem ShadeVentNormallyOnCooldown;
 
     private static Dictionary<byte, long> InvisTime = new();
     private static Dictionary<byte, long> lastTime = new();
@@ -24,10 +25,11 @@ public static class Shade
     public static void SetupCustomOption()
     {
         SetupSingleRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.Shade, 1, zeroOne: false);        
-        ShadeCooldown = FloatOptionItem.Create(Id + 2, "ShadeCooldown", new(1f, 999f, 1f), 30f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Shade])
+        ShadeCooldown = FloatOptionItem.Create(Id + 2, "ShadeCooldown", new(1f, 180f, 1f), 30f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Shade])
             .SetValueFormat(OptionFormat.Seconds);
-        ShadeDuration = FloatOptionItem.Create(Id + 4, "ShadeDuration", new(1f, 999f, 1f), 15f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Shade])
+        ShadeDuration = FloatOptionItem.Create(Id + 4, "ShadeDuration", new(1f, 60f, 1f), 15f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Shade])
             .SetValueFormat(OptionFormat.Seconds);
+        ShadeVentNormallyOnCooldown = BooleanOptionItem.Create(Id + 5, "ShadeVentNormallyOnCooldown", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Shade]);
     }
     public static void Init()
     {
@@ -141,8 +143,11 @@ public static class Shade
             }
             else
             {
-                __instance.myPlayer.MyPhysics.RpcBootFromVent(ventId);
-                NameNotifyManager.Notify(pc, GetString("ShadeInvisInCooldown"));
+                if (!ShadeVentNormallyOnCooldown.GetBool())
+                {
+                    __instance.myPlayer.MyPhysics.RpcBootFromVent(ventId);
+                    NameNotifyManager.Notify(pc, GetString("WraithInvisInCooldown"));
+                }
             }
         }, 0.5f, "Shade Vent");
     }

@@ -134,17 +134,17 @@ public static class Medic
         TempMarkProtected = target.PlayerId;
         SendRPCForProtectList();
 
-        killer.RpcGuardAndKill();
+        if (!Options.DisableShieldAnimations.GetBool()) killer.RpcGuardAndKill();
 
         switch (WhoCanSeeProtect.GetInt())
         {
             case 0:
-                killer.RpcGuardAndKill(target);
+                if (!Options.DisableShieldAnimations.GetBool()) killer.RpcGuardAndKill(target);
                 killer.RPCPlayCustomSound("Shield");
                 target.RPCPlayCustomSound("Shield");
                 break;
             case 1:
-                killer.RpcGuardAndKill(target);
+                if (!Options.DisableShieldAnimations.GetBool()) killer.RpcGuardAndKill(target);
                 killer.RPCPlayCustomSound("Shield");
                 break;
             case 2:
