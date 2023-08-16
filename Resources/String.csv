@@ -1749,6 +1749,7 @@
 "DeathReason.Hack","黑客入侵","Hacked","Взломан","",""
 "DeathReason.Curse","诅咒","Cursed","Проклятый","",""
 "DeathReason.Drained","沥干","Drained","Осушен","",""
+"DeathReason.Shattered","","Shattered","","",""
 "Alive","存活","Alive","Выжил","存活","存活"
 "Win","胜利"," Wins!"," Победили!","勝利","胜利"
 "Last-","仅存","Last ","Последний ","僅存","仅存"

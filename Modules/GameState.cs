@@ -286,6 +286,7 @@ public class PlayerState
         Shrouded,
         Mauled,
         Drained,
+        Shattered,
 
         etc = -1,
     }

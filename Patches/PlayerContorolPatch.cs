@@ -146,7 +146,7 @@ class CheckMurderPatch
             {
                 if (Options.FragileKillerLunge.GetBool()) killer.RpcMurderPlayer(target);
                 else target.RpcMurderPlayer(target);
-                Main.PlayerStates[target.PlayerId].deathReason = PlayerState.DeathReason.Suicide;
+                Main.PlayerStates[target.PlayerId].deathReason = PlayerState.DeathReason.Shattered;
                 target.SetRealKiller(target);
                 killer.ResetKillCooldown();
                 return false;
