@@ -21,6 +21,7 @@ public class MainMenuManagerPatch
         if (template == null) template = __instance.quitButton;
         if (template == null) return;
 
+
         // GitHub Button
         if (gitHubButton == null)
         {
@@ -63,10 +64,8 @@ public class MainMenuManagerPatch
 
         var howToPlayButton = __instance.howToPlayButton;
         var freeplayButton = howToPlayButton.transform.parent.Find("FreePlayButton");
-        if (freeplayButton != null)
-        {
-            freeplayButton.gameObject.SetActive(false);
-        }
+        
+        if (freeplayButton != null) freeplayButton.gameObject.SetActive(false);
 
         howToPlayButton.transform.SetLocalX(0);
 
@@ -94,7 +93,6 @@ public class MainMenuManagerPatch
         normalSprite.color = normalColor;
         hoverSprite.color = hoverColor;
 
-        // ラベルをセンタリング
         var container = buttonText.transform.parent;
         Object.Destroy(container.GetComponent<AspectPosition>());
         Object.Destroy(buttonText.GetComponent<AspectPosition>());
@@ -107,7 +105,7 @@ public class MainMenuManagerPatch
         {
             normalSprite.size = hoverSprite.size = buttonCollider.size = scale.Value;
         }
-        // 当たり判定のズレを直す
+
         buttonCollider.offset = new(0f, 0f);
 
         return button;
@@ -119,18 +117,12 @@ public class MainMenuManagerPatch
     [HarmonyPostfix]
     public static void OpenMenuPostfix()
     {
-        if (Credentials.ToheLogo != null)
-        {
-            Credentials.ToheLogo.gameObject.SetActive(false);
-        }
+        if (Credentials.ToheLogo != null) Credentials.ToheLogo.gameObject.SetActive(false);
     }
     [HarmonyPatch(nameof(MainMenuManager.ResetScreen)), HarmonyPostfix]
     public static void ResetScreenPostfix()
     {
-        if (Credentials.ToheLogo != null)
-        {
-            Credentials.ToheLogo.gameObject.SetActive(true);
-        }
+        if (Credentials.ToheLogo != null) Credentials.ToheLogo.gameObject.SetActive(true);
     }
 }
 

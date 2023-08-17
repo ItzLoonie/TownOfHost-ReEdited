@@ -1537,7 +1537,7 @@ internal static class CustomRolesHelper
            _ => role.IsImpostorTeam() ? CountTypes.Impostor : CountTypes.Crew,
        };
 
-    public static bool HasSubRole(this PlayerControl pc) => Main.PlayerStates[pc.PlayerId].SubRoles.Count > 0;
+    public static bool HasSubRole(this PlayerControl pc) => Main.PlayerStates[pc.PlayerId].SubRoles.Any();
 }
 public enum CustomRoleTypes
 {

@@ -37,7 +37,7 @@ internal class ControllerManagerUpdatePatch
         //捕捉全屏快捷键
         if (GetKeysDown(KeyCode.LeftAlt, KeyCode.Return))
         {
-            new LateTask(SetResolutionManager.Postfix, 0.01f, "Fix Button Position");
+            _ = new LateTask(SetResolutionManager.Postfix, 0.01f, "Fix Button Position");
         }
         //职业介绍
         if (Input.GetKeyDown(KeyCode.F1) && GameStates.InGame && Options.CurrentGameMode == CustomGameMode.Standard)
@@ -65,7 +65,7 @@ internal class ControllerManagerUpdatePatch
             {
                 var role = PlayerControl.LocalPlayer.GetCustomRole();
                 var lp = PlayerControl.LocalPlayer;
-                if (Main.PlayerStates[lp.PlayerId].SubRoles.Count < 1) return;
+                if (!Main.PlayerStates[lp.PlayerId].SubRoles.Any()) return;
 
                 addDes = new();
                 foreach (var subRole in Main.PlayerStates[lp.PlayerId].SubRoles.Where(x => x is not CustomRoles.Charmed))

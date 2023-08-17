@@ -150,7 +150,7 @@ namespace TOHE.Roles.Impostor
             Main.AllPlayerSpeed[player.PlayerId] = Main.MinSpeed;
             ReportDeadBodyPatch.CanReport[player.PlayerId] = false;
             player.MarkDirtySettings();
-            new LateTask(() =>
+            _ = new LateTask(() =>
             {
                 Main.AllPlayerSpeed[player.PlayerId] = DefaultSpeed;
                 ReportDeadBodyPatch.CanReport[player.PlayerId] = true;
@@ -165,7 +165,7 @@ namespace TOHE.Roles.Impostor
             ReducedVisionPlayers.Add(player.PlayerId);
             player.MarkDirtySettings();
 
-            new LateTask(() =>
+            _ = new LateTask(() =>
             {
                 ReducedVisionPlayers.Remove(player.PlayerId);
                 player.MarkDirtySettings();

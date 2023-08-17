@@ -135,7 +135,7 @@ public static class Jailer
             var tpc = Utils.GetPlayerById(targetId);
             if (tpc == null) continue;
             if (notifyJailedOnMeeting.GetBool() && tpc.IsAlive())
-                new LateTask(() =>
+                _ = new LateTask(() =>
                 {
                     Utils.SendMessage(GetString("JailedNotifyMsg"), targetId, title: Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jailer), GetString("JailerTitle")));
                 }, 0.3f, "JailerNotifyJailed");

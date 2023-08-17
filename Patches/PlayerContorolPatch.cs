@@ -603,7 +603,7 @@ class CheckMurderPatch
         if (killer.Is(CustomRoles.OverKiller) && killer.PlayerId != target.PlayerId)
         {
             Main.PlayerStates[target.PlayerId].deathReason = PlayerState.DeathReason.Dismembered;
-            new LateTask(() =>
+            _ = new LateTask(() =>
             {
                 if (!Main.OverDeadPlayerList.Contains(target.PlayerId)) Main.OverDeadPlayerList.Add(target.PlayerId);
                 var ops = target.GetTruePosition();
@@ -648,7 +648,8 @@ class CheckMurderPatch
     public static bool RpcCheckAndMurder(PlayerControl killer, PlayerControl target, bool check = false)
     {
         if (!AmongUsClient.Instance.AmHost) return false;
-        if (target == null) target = killer;
+        
+        target ??= killer;
 
         //Jackal can kill Sidekick
         if (killer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Sidekick) && !Jackal.JackalCanKillSidekick.GetBool())
@@ -959,7 +960,7 @@ class CheckMurderPatch
                     x.PlayerId != killer.PlayerId &&
                     x.PlayerId != target.PlayerId &&
                     Vector2.Distance(x.GetTruePosition(), target.GetTruePosition()) < 2f
-                    ).ToList().Count >= 1) return false;
+                    ).ToList().Any()) return false;
                 break;
             //玩家被击杀事件
             case CustomRoles.Gamer:
@@ -1127,7 +1128,7 @@ class MurderPlayerPatch
                 delay = Math.Max(delay, 0.15f);
                 if (delay > 0.15f && Options.BaitDelayNotify.GetBool()) killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Bait), string.Format(GetString("KillBaitNotify"), (int)delay)), delay);
                 Logger.Info($"{killer.GetNameWithRole()} 击杀诱饵 => {target.GetNameWithRole()}", "MurderPlayer");
-                new LateTask(() => { if (GameStates.IsInTask) killer.CmdReportDeadBody(target.Data); }, delay, "Bait Self Report");
+                _ = new LateTask(() => { if (GameStates.IsInTask) killer.CmdReportDeadBody(target.Data); }, delay, "Bait Self Report");
             }
         }
         if (target.Is(CustomRoles.Burst) && !killer.Data.IsDead)
@@ -1137,7 +1138,7 @@ class MurderPlayerPatch
             if (killer.PlayerId != target.PlayerId && !killer.Is(CustomRoles.Pestilence))
             {
                 killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Burst), GetString("BurstNotify")));
-                new LateTask(() =>
+                _ = new LateTask(() =>
                 {
                     if (!killer.inVent && !killer.Data.IsDead && !GameStates.IsMeeting)
                     {
@@ -1304,7 +1305,7 @@ class ShapeshiftPatch
                             cpdistance.Add(p, dis);
                             Logger.Info($"{p?.Data?.PlayerName}の位置{dis}", "Warlock");
                         }
-                        if (cpdistance.Count >= 1)
+                        if (cpdistance.Any())
                         {
                             var min = cpdistance.OrderBy(c => c.Value).FirstOrDefault();//一番小さい値を取り出す
                             PlayerControl targetw = min.Key;
@@ -1373,7 +1374,7 @@ class ShapeshiftPatch
                         tg.RpcMurderPlayerV3(tg);
                         Medic.IsDead(tg);
                     }
-                    new LateTask(() =>
+                    _ = new LateTask(() =>
                     {
                         var totalAlive = Main.AllAlivePlayerControls.Count();
                         //自分が最後の生き残りの場合は勝利のために死なない
@@ -1409,7 +1410,7 @@ class ShapeshiftPatch
                         tg.RpcMurderPlayerV3(tg);
                         Medic.IsDead(tg);
                     }
-                    new LateTask(() =>
+                    _ = new LateTask(() =>
                     {
                         var totalAlive = Main.AllAlivePlayerControls.Count();
                         //自分が最後の生き残りの場合は勝利のために死なない
@@ -1431,7 +1432,7 @@ class ShapeshiftPatch
             case CustomRoles.ImperiusCurse:
                 if (shapeshifting)
                 {
-                    new LateTask(() =>
+                    _ = new LateTask(() =>
                     {
                         if (!(!GameStates.IsInTask || !shapeshifter.IsAlive() || !target.IsAlive() || shapeshifter.inVent || target.inVent))
                         {
@@ -1484,7 +1485,7 @@ class ShapeshiftPatch
         //変身解除のタイミングがずれて名前が直せなかった時のために強制書き換え
         if (!shapeshifting)
         {
-            new LateTask(() =>
+            _ = new LateTask(() =>
             {
                 Utils.NotifyRoles(NoCache: true);
             },
@@ -1571,7 +1572,7 @@ class ReportDeadBodyPatch
                         __instance.Notify(GetString("VultureReportBody"));
                         if (Vulture.AbilityLeftInRound[__instance.PlayerId] > 0)
                         {
-                            new LateTask(() =>
+                            _ = new LateTask(() =>
                             {
                                 if (GameStates.IsInTask) 
                                 { 
@@ -1908,10 +1909,10 @@ class ReportDeadBodyPatch
         foreach (var pid in Main.AwareInteracted.Keys)
         {
             var Awarepc = Utils.GetPlayerById(pid);
-            if (Main.AwareInteracted[pid].Count > 0 && Awarepc.IsAlive())
+            if (Main.AwareInteracted[pid].Any() && Awarepc.IsAlive())
             {
                 string rolelist = "Someone";
-                new LateTask(() =>
+                _ = new LateTask(() =>
                 {
                     if (Options.AwareknowRole.GetBool())
                         rolelist = string.Join(", ", Main.AwareInteracted[pid]);
@@ -2054,7 +2055,7 @@ class FixedUpdatePatch
                             targetDistance.Add(target.PlayerId, dis);
                         }
                     }
-                    if (targetDistance.Count != 0)
+                    if (targetDistance.Any())
                     {
                         var min = targetDistance.OrderBy(c => c.Value).FirstOrDefault();
                         PlayerControl target = Utils.GetPlayerById(min.Key);
@@ -2326,7 +2327,7 @@ class FixedUpdatePatch
                                 }
                             }
                         }
-                        if (targetDistance.Count() != 0)
+                        if (targetDistance.Any())
                         {
                             var min = targetDistance.OrderBy(c => c.Value).FirstOrDefault();//一番値が小さい
                             PlayerControl target = Utils.GetPlayerById(min.Key);
@@ -2369,7 +2370,7 @@ class FixedUpdatePatch
                                 }
                             }
                         }
-                        if (targetDistance.Count() != 0)
+                        if (targetDistance.Any())
                         {
                             var min = targetDistance.OrderBy(c => c.Value).FirstOrDefault();//一番値が小さい
                             PlayerControl target = Utils.GetPlayerById(min.Key);
@@ -2418,7 +2419,7 @@ class FixedUpdatePatch
                                 }
                             }
                         }
-                        if (targetDistance.Count() != 0)
+                        if (targetDistance.Any())
                         {
                             var min = targetDistance.OrderBy(c => c.Value).FirstOrDefault();//一番値が小さい
                             PlayerControl target = Utils.GetPlayerById(min.Key);
@@ -2514,7 +2515,7 @@ class FixedUpdatePatch
             if (GameStates.IsInTask && !__instance.Is(CustomRoleTypes.Impostor) && __instance.CanUseKillButton() && !__instance.Data.IsDead)
             {
                 var players = __instance.GetPlayersInAbilityRangeSorted(false);
-                PlayerControl closest = players.Count <= 0 ? null : players[0];
+                PlayerControl closest = !players.Any() ? null : players[0];
                 HudManager.Instance.KillButton.SetTarget(closest);
             }
         }
@@ -3003,7 +3004,7 @@ class EnterVentPatch
                 Main.ParaUsedButtonCount[pc.PlayerId] += 1;
                 if (AmongUsClient.Instance.AmHost)
                 {
-                    new LateTask(() =>
+                    _ = new LateTask(() =>
                     {
                         Utils.SendMessage(GetString("SkillUsedLeft") + (Options.ParanoiaNumOfUseButton.GetInt() - Main.ParaUsedButtonCount[pc.PlayerId]).ToString(), pc.PlayerId);
                     }, 4.0f, "Skill Remain Message");
@@ -3191,7 +3192,7 @@ class CoEnterVentPatch
             MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(__instance.NetId, (byte)RpcCalls.BootFromVent, SendOption.Reliable, -1);
             writer.WritePacked(127);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
-            new LateTask(() =>
+            _ = new LateTask(() =>
             {
                 int clientId = __instance.myPlayer.GetClientId();
                 MessageWriter writer2 = AmongUsClient.Instance.StartRpcImmediately(__instance.NetId, (byte)RpcCalls.BootFromVent, SendOption.Reliable, clientId);

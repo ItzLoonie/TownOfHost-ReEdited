@@ -138,7 +138,7 @@ public static class Councillor
                 MurderLimit[pc.PlayerId]--;
 
                 if (!GameStates.IsProceeding)
-                new LateTask(() =>
+                    _ = new LateTask(() =>
                 {
                     Main.PlayerStates[dp.PlayerId].deathReason = PlayerState.DeathReason.Trialed;
                     dp.SetRealKiller(pc);
@@ -149,7 +149,7 @@ public static class Councillor
 
                     Utils.NotifyRoles(isForMeeting: false, NoCache: true);
 
-                    new LateTask(() => { Utils.SendMessage(string.Format(GetString("MurderKill"), Name), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Judge), GetString("MurderKillTitle"))); }, 0.6f, "Guess Msg");
+                    _ = new LateTask(() => { Utils.SendMessage(string.Format(GetString("MurderKill"), Name), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Judge), GetString("MurderKillTitle"))); }, 0.6f, "Guess Msg");
 
                 }, 0.2f, "Murder Kill");
             }

@@ -9,7 +9,7 @@ namespace TOHE;
 class DisableDevice
 {
     public static bool DoDisable => Options.DisableDevices.GetBool();
-    private static List<byte> DesyncComms = new();
+    private static readonly List<byte> DesyncComms = new();
     private static int frame = 0;
     public static readonly Dictionary<string, Vector2> DevicePos = new()
     {
@@ -139,8 +139,8 @@ public class RemoveDisableDevicesPatch
             (Options.DisableDevicesIgnoreNeutrals.GetBool() && player.Is(CustomRoleTypes.Neutral)) ||
             (Options.DisableDevicesIgnoreCrewmates.GetBool() && player.Is(CustomRoleTypes.Crewmate)) ||
             (Options.DisableDevicesIgnoreAfterAnyoneDied.GetBool() && GameStates.AlreadyDied);
-        var admins = GameObject.FindObjectsOfType<MapConsole>(true);
-        var consoles = GameObject.FindObjectsOfType<SystemConsole>(true);
+        var admins = UnityEngine.Object.FindObjectsOfType<MapConsole>(true);
+        var consoles = UnityEngine.Object.FindObjectsOfType<SystemConsole>(true);
         if (admins == null || consoles == null) return;
         switch (Main.NormalOptions.MapId)
         {

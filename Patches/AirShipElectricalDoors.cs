@@ -1,5 +1,6 @@
 using HarmonyLib;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TOHE;
 
@@ -16,7 +17,7 @@ public class AirshipElectricalDoors
     public static byte[] GetClosedDoors()
     {
         List<byte> DoorsArray = new();
-        if (Instance.Doors == null || Instance.Doors.Count == 0) return DoorsArray.ToArray();
+        if (Instance.Doors == null || !Instance.Doors.Any()) return DoorsArray.ToArray();
         for (byte i = 0; i < Instance.Doors.Count; i++)
         {
             var door = Instance.Doors[i];

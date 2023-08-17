@@ -65,7 +65,7 @@ public static class Psychic
     }
     public static void OnReportDeadBody()
     {
-        if (Fresh.GetBool() || RedPlayer == null || RedPlayer.Count < 1)
+        if (Fresh.GetBool() || RedPlayer == null || !RedPlayer.Any())
             GetRedName();
     }
     public static void GetRedName()

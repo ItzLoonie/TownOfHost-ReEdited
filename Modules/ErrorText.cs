@@ -63,8 +63,8 @@ public class ErrorText : MonoBehaviour
     {
         if (!Text.enabled) return;
 
-        if (Camera == null)
-            Camera = !HudManager.InstanceExists ? Camera.main : HudManager.Instance.PlayerCam.GetComponent<Camera>();
+        Camera ??= !HudManager.InstanceExists ? Camera.main : HudManager.Instance.PlayerCam.GetComponent<Camera>();
+
         if (Camera != null)
         {
             transform.position = AspectPosition.ComputeWorldPosition(Camera, AspectPosition.EdgeAlignments.Top, TextOffset);

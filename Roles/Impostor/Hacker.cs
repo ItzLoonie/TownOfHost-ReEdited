@@ -90,12 +90,12 @@ public static class Hacker
         }
 
         // 未找到骇客击杀的尸体，寻找其他尸体
-        if (targetId == byte.MaxValue && DeadBodyList.Count >= 1)
+        if (targetId == byte.MaxValue && DeadBodyList.Any())
             targetId = DeadBodyList[IRandom.Instance.Next(0, DeadBodyList.Count)];
 
         if (targetId == byte.MaxValue)
-            new LateTask(() => ssTarget?.NoCheckStartMeeting(ssTarget?.Data), 0.15f, "Hacker Hacking Report Self");
+            _ = new LateTask(() => ssTarget?.NoCheckStartMeeting(ssTarget?.Data), 0.15f, "Hacker Hacking Report Self");
         else
-            new LateTask(() => ssTarget?.NoCheckStartMeeting(Utils.GetPlayerById(targetId)?.Data), 0.15f, "Hacker Hacking Report");
+            _ = new LateTask(() => ssTarget?.NoCheckStartMeeting(Utils.GetPlayerById(targetId)?.Data), 0.15f, "Hacker Hacking Report");
     }
 }

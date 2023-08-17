@@ -126,7 +126,7 @@ public static class Occultist
     {
         foreach (var occultist in playerIdList)
         {
-            if (CursedPlayer[occultist].Count != 0)
+            if (CursedPlayer[occultist].Any())
             {
                 return true;
             }

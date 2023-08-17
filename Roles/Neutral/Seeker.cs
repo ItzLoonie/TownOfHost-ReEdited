@@ -39,7 +39,7 @@ public static class Seeker
         DefaultSpeed = Main.AllPlayerSpeed[playerId];
 
         if (AmongUsClient.Instance.AmHost)
-            new LateTask(() =>
+            _ = new LateTask(() =>
             {
                 ResetTarget(Utils.GetPlayerById(playerId));
             }, 10f, "SeekerRound1");
@@ -134,7 +134,7 @@ public static class Seeker
     public static byte GetTarget(PlayerControl player)
     {
         if (player == null) return 0xff;
-        if (Targets == null) Targets = new();
+        Targets ??= new();
 
         if (!Targets.TryGetValue(player.PlayerId, out var targetId))
             targetId = ResetTarget(player);
@@ -145,7 +145,7 @@ public static class Seeker
         Main.AllPlayerSpeed[player.PlayerId] = Main.MinSpeed;
         ReportDeadBodyPatch.CanReport[player.PlayerId] = false;
         player.MarkDirtySettings();
-        new LateTask(() =>
+        _ = new LateTask(() =>
         {
             Main.AllPlayerSpeed[player.PlayerId] = DefaultSpeed;
             ReportDeadBodyPatch.CanReport[player.PlayerId] = true;
@@ -163,7 +163,7 @@ public static class Seeker
         if (cTargets.Count() >= 2 && Targets.TryGetValue(player.PlayerId, out var nowTarget))
             cTargets.RemoveAll(x => x.PlayerId == nowTarget);
 
-        if (cTargets.Count <= 0)
+        if (!cTargets.Any())
         {
             Logger.Warn("Failed to specify target: Target candidate does not exist", "Seeker");
             return 0xff;

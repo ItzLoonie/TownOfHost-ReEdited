@@ -33,11 +33,11 @@ public static class Utils
             Logger.Fatal($"{text} 错误，触发防黑屏措施", "Anti-black");
             ChatUpdatePatch.DoBlockChat = true;
             Main.OverrideWelcomeMsg = GetString("AntiBlackOutNotifyInLobby");
-            new LateTask(() =>
+            _ = new LateTask(() =>
             {
                 Logger.SendInGame(GetString("AntiBlackOutLoggerSendInGame"), true);
             }, 3f, "Anti-Black Msg SendInGame");
-            new LateTask(() =>
+            _ = new LateTask(() =>
             {
                 CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Error);
                 GameManager.Instance.LogicFlow.CheckEndCriteria();
@@ -51,18 +51,18 @@ public static class Utils
             writer.EndMessage();
             if (Options.EndWhenPlayerBug.GetBool())
             {
-                new LateTask(() =>
+                _ = new LateTask(() =>
                 {
                     Logger.SendInGame(GetString("AntiBlackOutRequestHostToForceEnd"), true);
                 }, 3f, "Anti-Black Msg SendInGame");
             }
             else
             {
-                new LateTask(() =>
+                _ = new LateTask(() =>
                 {
                     Logger.SendInGame(GetString("AntiBlackOutHostRejectForceEnd"), true);
                 }, 3f, "Anti-Black Msg SendInGame");
-                new LateTask(() =>
+                _ = new LateTask(() =>
                 {
                     AmongUsClient.Instance.ExitGame(DisconnectReasons.Custom);
                     Logger.Fatal($"{text} 错误，已断开游戏", "Anti-black");
@@ -242,7 +242,7 @@ public static class Utils
         }
         else if (!ReactorCheck) player.ReactorFlash(0f); //リアクターフラッシュ
         player.MarkDirtySettings();
-        new LateTask(() =>
+        _ = new LateTask(() =>
         {
             Main.PlayerStates[player.PlayerId].IsBlackOut = false; //ブラックアウト解除
             player.MarkDirtySettings();
@@ -989,7 +989,7 @@ public static class Utils
         }
         var sb = new StringBuilder();
 
-        sb.Append(GetString("Settings")).Append(":");
+        sb.Append(GetString("Settings")).Append(':');
         foreach (var role in Options.CustomRoleCounts)
         {
             if (!role.Key.IsEnable()) continue;
@@ -1130,7 +1130,7 @@ public static class Utils
         }
         var sb = new StringBuilder();
 
-        sb.Append(GetString("PlayerInfo")).Append(":");
+        sb.Append(GetString("PlayerInfo")).Append(':');
         List<byte> cloneRoles = new(Main.PlayerStates.Keys);
         foreach (var id in Main.winnerList)
         {
@@ -1180,7 +1180,7 @@ public static class Utils
     public static string GetSubRolesText(byte id, bool disableColor = false, bool intro = false, bool summary = false)
     {
         var SubRoles = Main.PlayerStates[id].SubRoles;
-        if (SubRoles.Count == 0 && intro == false) return "";
+        if (!SubRoles.Any() && intro == false) return "";
         var sb = new StringBuilder();
         foreach (var role in SubRoles)
         {

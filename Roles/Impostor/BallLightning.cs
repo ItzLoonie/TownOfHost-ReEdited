@@ -81,7 +81,7 @@ public static class BallLightning
     }
     private static void StartConvertCountDown(PlayerControl killer, PlayerControl target)
     {
-        new LateTask(() =>
+        _ = new LateTask(() =>
         {
             if (GameStates.IsInGame && GameStates.IsInTask && !GameStates.IsMeeting && target.IsAlive() && !Pelican.IsEaten(target.PlayerId))
             {
@@ -129,7 +129,7 @@ public static class BallLightning
                 break;
             }
         }
-        if (deList.Count > 0)
+        if (deList.Any())
         {
             GhostPlayer.RemoveAll(deList.Contains);
             foreach (var gs in deList) SendRPC(gs);

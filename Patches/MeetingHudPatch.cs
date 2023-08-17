@@ -462,12 +462,12 @@ class CheckForEndVotingPatch
 
 
         name += "<size=0>";
-        new LateTask(() =>
+        _ = new LateTask(() =>
         {
             Main.DoBlockNameChange = true;
             if (GameStates.IsInGame) player.RpcSetName(name);
         }, 3.0f, "Change Exiled Player Name");
-        new LateTask(() =>
+        _ = new LateTask(() =>
         {
             if (GameStates.IsInGame && !player.Data.Disconnected)
             {
@@ -523,7 +523,7 @@ class CheckForEndVotingPatch
         {
             if (candidate == exiledplayer || Main.AfterMeetingDeathPlayers.ContainsKey(candidate.PlayerId)) continue;
         }
-        if (TargetList == null || TargetList.Count == 0) return null;
+        if (TargetList == null || !TargetList.Any()) return null;
         var rand = IRandom.Instance;
         var target = TargetList[rand.Next(TargetList.Count)];
         return target;
@@ -629,10 +629,10 @@ class MeetingHudStartPatch
                     sb.Append($"\n\n" + GetString($"Lovers") + Utils.GetRoleMode(CustomRoles.Lovers) + GetString($"LoversInfoLong"));
                 AddMsg(sb.ToString(), pc.PlayerId);
             }
-        if (msgToSend.Count >= 1)
+        if (msgToSend.Any())
         {
             var msgTemp = msgToSend.ToList();
-            new LateTask(() => { msgTemp.Do(x => Utils.SendMessage(x.Item1, x.Item2, x.Item3)); }, 3f, "Skill Description First Meeting");
+            _ = new LateTask(() => { msgTemp.Do(x => Utils.SendMessage(x.Item1, x.Item2, x.Item3)); }, 3f, "Skill Description First Meeting");
         }
         msgToSend = new();
 
@@ -715,7 +715,7 @@ class MeetingHudStartPatch
         msgToSend.Do(x => Logger.Info($"To:{x.Item2} {x.Item3} => {x.Item1}", "Skill Notice OnMeeting Start"));
 
         //总体延迟发送
-        new LateTask(() => { msgToSend.Do(x => Utils.SendMessage(x.Item1, x.Item2, x.Item3)); }, 3f, "Skill Notice OnMeeting Start");
+        _ = new LateTask(() => { msgToSend.Do(x => Utils.SendMessage(x.Item1, x.Item2, x.Item3)); }, 3f, "Skill Notice OnMeeting Start");
 
         Main.CyberStarDead.Clear();
         Main.DetectiveNotify.Clear();
@@ -821,7 +821,7 @@ class MeetingHudStartPatch
         }
         if (AntiBlackout.OverrideExiledPlayer)
         {
-            new LateTask(() =>
+            _ = new LateTask(() =>
             {
                 Utils.SendMessage(GetString("Warning.OverrideExiledPlayer"), 255, Utils.ColorString(Color.red, GetString("DefaultSystemMessageTitle")));
             }, 5f, "Warning OverrideExiledPlayer");

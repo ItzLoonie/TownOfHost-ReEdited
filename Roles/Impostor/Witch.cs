@@ -119,7 +119,7 @@ public static class Witch
     {
         foreach (var witch in playerIdList)
         {
-            if (SpelledPlayer[witch].Count != 0)
+            if (SpelledPlayer[witch].Any())
             {
                 return true;
             }

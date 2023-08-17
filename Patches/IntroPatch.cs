@@ -15,7 +15,7 @@ class SetUpRoleTextPatch
     public static void Postfix(IntroCutscene __instance)
     {
         if (!GameStates.IsModHost) return;
-        new LateTask(() =>
+        _ = new LateTask(() =>
         {
             if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
             {
@@ -433,13 +433,13 @@ class IntroCutsceneDestroyPatch
             {
                 Main.AllPlayerControls.Do(pc => pc.RpcResetAbilityCooldown());
                 if (Options.FixFirstKillCooldown.GetBool() && Options.CurrentGameMode != CustomGameMode.SoloKombat)
-                    new LateTask(() =>
+                    _ = new LateTask(() =>
                     {
                         Main.AllPlayerControls.Do(x => x.ResetKillCooldown());
                         Main.AllPlayerControls.Where(x => (Main.AllPlayerKillCooldown[x.PlayerId] - 2f) > 0f).Do(pc => pc.SetKillCooldown(Options.FixKillCooldownValue.GetFloat() - 2f));
                     }, 2f, "FixKillCooldownTask");
             }
-            new LateTask(() => Main.AllPlayerControls.Do(pc => pc.RpcSetRoleDesync(RoleTypes.Shapeshifter, -3)), 2f, "SetImpostorForServer");
+            _ = new LateTask(() => Main.AllPlayerControls.Do(pc => pc.RpcSetRoleDesync(RoleTypes.Shapeshifter, -3)), 2f, "SetImpostorForServer");
             if (PlayerControl.LocalPlayer.Is(CustomRoles.GM))
             {
                 PlayerControl.LocalPlayer.RpcExile();

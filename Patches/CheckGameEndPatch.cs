@@ -31,7 +31,7 @@ class GameEndChecker
         // SoloKombat
         if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
         {
-            if (CustomWinnerHolder.WinnerIds.Count > 0 || CustomWinnerHolder.WinnerTeam != CustomWinner.Default)
+            if (CustomWinnerHolder.WinnerIds.Any() || CustomWinnerHolder.WinnerTeam != CustomWinner.Default)
             {
                 ShipStatus.Instance.enabled = false;
                 StartEndGame(reason);
@@ -693,7 +693,7 @@ class GameEndChecker
         public override bool CheckForEndGame(out GameOverReason reason)
         {
             reason = GameOverReason.ImpostorByKill;
-            if (CustomWinnerHolder.WinnerIds.Count > 0) return false;
+            if (CustomWinnerHolder.WinnerIds.Any()) return false;
             if (CheckGameEndByLivingPlayers(out reason)) return true;
             return false;
         }

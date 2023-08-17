@@ -126,7 +126,7 @@ public static class HexMaster
     {
         foreach (var hexmaster in playerIdList)
         {
-            if (HexedPlayer[hexmaster].Count != 0)
+            if (HexedPlayer[hexmaster].Any())
             {
                 return true;
             }

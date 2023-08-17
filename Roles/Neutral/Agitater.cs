@@ -82,7 +82,7 @@ public static class Agitater
         AgitaterHasBombed = true;
         killer.ResetKillCooldown();
         killer.SetKillCooldown();
-        new LateTask(() =>
+        _ = new LateTask(() =>
         {
             if (CurrentBombedPlayer != byte.MaxValue && GameStates.IsInTask)
             {
