@@ -610,7 +610,7 @@ internal class ChatCommands
             "閃電俠" or "闪电" => GetString("Flashman"),
             "靈媒" => GetString("Seer"),
             "破平者" or "破平" => GetString("Brakar"),
-            "執燈人" or "执灯" or "灯人" => GetString("Lighter"),
+            "執燈人" or "执灯" or "灯人" => GetString("Torch"),
             "膽小" or "胆小" => GetString("Oblivious"),
             "迷惑者" or "迷幻" => GetString("Bewilder"),
             "sun" => GetString("Sunglasses"),
