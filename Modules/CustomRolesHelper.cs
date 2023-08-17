@@ -219,7 +219,6 @@ internal static class CustomRolesHelper
                 CustomRoles.SabotageMaster => CustomRoles.EngineerTOHE,
                 CustomRoles.Retributionist => CustomRoles.Crewmate,
                 CustomRoles.Monarch => CustomRoles.CrewmateTOHE,
-                CustomRoles.Witness => CustomRoles.CrewmateTOHE,
                 CustomRoles.Deputy => CustomRoles.CrewmateTOHE,
                 CustomRoles.Guardian => CustomRoles.CrewmateTOHE,
                 CustomRoles.Addict => CustomRoles.EngineerTOHE,

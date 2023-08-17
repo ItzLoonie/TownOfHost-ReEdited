@@ -69,7 +69,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
     }
     public override IGameOptions BuildGameOptions()
     {
-        Main.RealOptionsData ??= new OptionBackupData(GameOptionsManager.Instance.CurrentGameOptions);
+        if (Main.RealOptionsData == null) Main.RealOptionsData = new OptionBackupData(GameOptionsManager.Instance.CurrentGameOptions);
 
         var opt = BasedGameOptions;
         AURoleOptions.SetOpt(opt);
