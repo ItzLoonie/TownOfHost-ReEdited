@@ -393,8 +393,8 @@ public static class Options
     public static OptionItem ChanceToMiss;
 
     // Nimble
-    public static OptionItem NeutralCanBeNimble,
-    public static OptionItem CrewCanBeNimble,
+    public static OptionItem NeutralCanBeNimble;
+    public static OptionItem CrewCanBeNimble;
 
 
 
