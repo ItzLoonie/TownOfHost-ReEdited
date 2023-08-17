@@ -44,7 +44,7 @@ public static class ParityCop
         ParityCheckTargetKnow = BooleanOptionItem.Create(Id + 15, "ParityCheckTargetKnow", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.ParityCop]);
         ParityCheckOtherTargetKnow = BooleanOptionItem.Create(Id + 16, "ParityCheckOtherTargetKnow", false, TabGroup.CrewmateRoles, false).SetParent(ParityCheckTargetKnow);
         ParityCheckRevealTargetTeam = BooleanOptionItem.Create(Id + 17, "ParityCheckRevealTarget", false, TabGroup.CrewmateRoles, false).SetParent(ParityCheckOtherTargetKnow);
-        ParityAbilityUseGainWithEachTaskCompleted = FloatOptionItem.Create(Id + 18, "AbilityUseGainWithEachTaskCompleted", new(0f, 5f, 1f), 1f, TabGroup.CrewmateRoles, false)
+        ParityAbilityUseGainWithEachTaskCompleted = FloatOptionItem.Create(Id + 18, "AbilityUseGainWithEachTaskCompleted", new(0f, 5f, 0.1f), 1f, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.ParityCop])
             .SetValueFormat(OptionFormat.Times);
         OverrideTasksData.Create(Id + 20, TabGroup.CrewmateRoles, CustomRoles.ParityCop);
