@@ -3,6 +3,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using Object = UnityEngine.Object;
+using static TOHE.Translator;
 
 namespace TOHE;
 
@@ -20,11 +21,12 @@ public class MainMenuManagerPatch
         if (template == null) template = __instance.quitButton;
         if (template == null) return;
 
+        // GitHub Button
         if (gitHubButton == null)
         {
             gitHubButton = CreateButton(
                 "GitHubButton",
-                new(-1.5f, -1.5f, 1f),
+                new(-1.8f, -1.4f, 1f),
                 new(153, 153, 153, byte.MaxValue),
                 new(209, 209, 209, byte.MaxValue),
                 () => Application.OpenURL(Main.GitHubInviteUrl),
@@ -32,12 +34,12 @@ public class MainMenuManagerPatch
         }
         gitHubButton.gameObject.SetActive(Main.ShowGitHubButton);
 
-
+        // Discord Button
         if (discordButton == null)
         {
             discordButton = CreateButton(
                 "DiscordButton",
-                new(0f, -1.5f, 1f),
+                new(-1.8f, -1.8f, 1f),
                 new(88, 101, 242, byte.MaxValue),
                 new(148, 161, byte.MaxValue, byte.MaxValue),
                 () => Application.OpenURL(Main.DiscordInviteUrl),
@@ -45,14 +47,14 @@ public class MainMenuManagerPatch
         }
         discordButton.gameObject.SetActive(Main.ShowDiscordButton);
 
-
+        // Website Button
         if (websiteButton == null)
         {
             websiteButton = CreateButton(
                 "WebsiteButton",
-                new(1f, -1.5f, 1f),
-                new(88, 101, 242, byte.MaxValue),
-                new(148, 161, byte.MaxValue, byte.MaxValue),
+                new(-1.8f, -2.2f, 1f),
+                new(251, 81, 44, byte.MaxValue),
+                new(211, 77, 48, byte.MaxValue),
                 () => Application.OpenURL(Main.WebsiteInviteUrl),
                 "Website");
         }

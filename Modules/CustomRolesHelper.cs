@@ -1090,6 +1090,9 @@ internal static class CustomRolesHelper
                 if (pc.Is(CustomRoles.Oblivious)
                     || pc.Is(CustomRoles.Detective)
                     || pc.Is(CustomRoles.Mortician)
+                    || pc.Is(CustomRoles.Cleaner)
+                    || pc.Is(CustomRoles.Medusa)
+                    || pc.Is(CustomRoles.Vulture)
                     || pc.Is(CustomRoles.Bloodhound))
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeSleuth.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeSleuth.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeSleuth.GetBool()))

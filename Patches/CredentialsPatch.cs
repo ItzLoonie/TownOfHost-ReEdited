@@ -77,13 +77,19 @@ public static class Credentials
 #endif
 
 #if DEBUG
+         /* string additionalCredentials = GetString("TextBelowVersionText");
+            if (additionalCredentials != null && additionalCredentials != "*TextBelowVersionText")
+            {
+                Main.credentialsText += $"\n{additionalCredentials}";
+            } */
+
             Main.credentialsText += $"\r\n<color=#a54aff>By <color=#ffc0cb>KARPED1EM</color> & </color><color=#f34c50>Loonie</color>";
 #endif
 
             if (Main.IsAprilFools)
                 Main.credentialsText = $"\r\n<color=#00bfff>Town Of Host</color> v11.45.14";
 
-            var credentials = UnityEngine.Object.Instantiate(__instance.text);
+            var credentials = Object.Instantiate(__instance.text);
             credentials.text = Main.credentialsText;
             credentials.alignment = TextAlignmentOptions.Right;
             credentials.transform.position = new Vector3(1f, 2.79f, -2f);
@@ -99,7 +105,7 @@ public static class Credentials
 
             if (SpecialEventText == null && ToheLogo != null)
             {
-                SpecialEventText = UnityEngine.Object.Instantiate(__instance.text, ToheLogo.transform);
+                SpecialEventText = Object.Instantiate(__instance.text, ToheLogo.transform);
                 SpecialEventText.name = "SpecialEventText";
                 SpecialEventText.text = "";
                 SpecialEventText.color = Color.white;
@@ -133,11 +139,11 @@ public static class Credentials
             amongUsLogo = GameObject.Find("LOGO-AU");
 
             var rightpanel = __instance.gameModeButtons.transform.parent;
-            var logoObject = new GameObject("titleLogo_TOH");
+            var logoObject = new GameObject("titleLogo_TOHE");
             var logoTransform = logoObject.transform;
             ToheLogo = logoObject.AddComponent<SpriteRenderer>();
             logoTransform.parent = rightpanel;
-            logoTransform.localPosition = new(0f, 0.15f, 1f);
+            logoTransform.localPosition = new(0f, 0.15f, 1f); //new(0f, 0.3f, 1f);
             logoTransform.localScale *= 1.2f;
 
             if ((Ambience = GameObject.Find("Ambience")) != null)
