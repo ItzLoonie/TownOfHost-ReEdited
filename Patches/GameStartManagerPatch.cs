@@ -29,7 +29,7 @@ public class GameStartManagerPatch
     [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Start))]
     public class GameStartManagerStartPatch
     {
-        public static TMPro.TextMeshPro HideName;
+        public static TextMeshPro HideName;
         public static void Postfix(GameStartManager __instance)
         {
             __instance.GameRoomNameCode.text = GameCode.IntToGameName(AmongUsClient.Instance.GameId);
@@ -88,7 +88,7 @@ public class GameStartManagerPatch
             maxWait = Options.MaxWaitAutoStart.GetFloat();
             minPlayer = Options.PlayerAutoStart.GetInt();
             minWait = 600f - minWait * 60f;
-            maxWait = maxWait * 60f;
+            maxWait *= 60f;
             // Lobby code
             if (DataManager.Settings.Gameplay.StreamerMode)
             {

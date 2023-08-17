@@ -158,7 +158,7 @@ public static class AntiBlackout
     public static void Reset()
     {
         logger.Info("==Reset==");
-        if (isDeadCache == null) isDeadCache = new();
+        isDeadCache ??= new();
         isDeadCache.Clear();
         IsCached = false;
     }

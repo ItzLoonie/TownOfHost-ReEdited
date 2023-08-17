@@ -1180,7 +1180,7 @@ public static class Utils
     public static string GetSubRolesText(byte id, bool disableColor = false, bool intro = false, bool summary = false)
     {
         var SubRoles = Main.PlayerStates[id].SubRoles;
-        if (SubRoles.Count == 0 && intro == false) return "";
+        if (!SubRoles.Any() && intro == false) return "";
         var sb = new StringBuilder();
         foreach (var role in SubRoles)
         {

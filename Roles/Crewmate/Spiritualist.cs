@@ -54,20 +54,14 @@ namespace TOHE.Roles.Crewmate
                 ShowGhostArrowUntil[playerId] = timestamp + (long)ShowGhostArrowForSeconds.GetFloat();
                 return true;
             }
-            else if (ShowGhostArrowUntil[playerId] >= timestamp)
-            {
-                return true;
-            }
+            else if (ShowGhostArrowUntil[playerId] >= timestamp) return true;
 
             return false;
         }
 
         public static void OnReportDeadBody(GameData.PlayerInfo target)
         {
-            if (target == null)
-            {
-                return;
-            }
+            if (target == null) return;
 
             if (SpiritualistTarget != byte.MaxValue)
                 RemoveTarget();
@@ -82,19 +76,15 @@ namespace TOHE.Roles.Crewmate
             foreach (var spiritualist in playerIdList)
             {
                 PlayerControl player = Main.AllPlayerControls.FirstOrDefault(a => a.PlayerId == spiritualist);
-                if (!player.IsAlive())
-                {
-                    continue;
-                }
+                
+                if (!player.IsAlive()) continue;
 
                 LastGhostArrowShowTime[spiritualist] = 0;
                 ShowGhostArrowUntil[spiritualist] = 0;
 
                 PlayerControl target = Main.AllPlayerControls.FirstOrDefault(a => a.PlayerId == SpiritualistTarget);
-                if (target == null)
-                {
-                    continue;
-                }
+                
+                if (target == null) continue;
 
                 TargetArrow.Add(spiritualist, target.PlayerId);
 

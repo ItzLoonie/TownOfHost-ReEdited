@@ -135,7 +135,8 @@ static class ExtendedPlayerControl
         //player: 名前の変更対象
         //seer: 上の変更を確認することができるプレイヤー
         if (player == null || name == null || !AmongUsClient.Instance.AmHost) return;
-        if (seer == null) seer = player;
+        
+        seer ??= player;
         if (!force && Main.LastNotifyNames[(player.PlayerId, seer.PlayerId)] == name)
         {
             //Logger.info($"Cancel:{player.name}:{name} for {seer.name}", "RpcSetNamePrivate");
@@ -168,8 +169,13 @@ static class ExtendedPlayerControl
 
     public static void RpcGuardAndKill(this PlayerControl killer, PlayerControl target = null, int colorId = 0, bool forObserver = false)
     {
-        if (target == null) target = killer;
-        if (!forObserver && !MeetingStates.FirstMeeting) Main.AllPlayerControls.Where(x => x.Is(CustomRoles.Observer) && killer.PlayerId != x.PlayerId).Do(x => x.RpcGuardAndKill(target, colorId, true));
+        target ??= killer;
+
+        if (!forObserver && !MeetingStates.FirstMeeting)
+            Main.AllPlayerControls
+                .Where(x => x.Is(CustomRoles.Observer) && killer.PlayerId != x.PlayerId)
+                .Do(x => x.RpcGuardAndKill(target, colorId, true));
+        
         // Host
         if (killer.AmOwner)
         {
@@ -206,7 +212,8 @@ static class ExtendedPlayerControl
     {
         if (player == null) return;
         if (!player.CanUseKillButton()) return;
-        if (target == null) target = player;
+        
+        target ??= player;
         if (time >= 0f) Main.AllPlayerKillCooldown[player.PlayerId] = time * 2;
         else Main.AllPlayerKillCooldown[player.PlayerId] *= 2;
         if (forceAnime || !player.IsModClient() || !Options.DisableShieldAnimations.GetBool())
@@ -232,7 +239,8 @@ static class ExtendedPlayerControl
     {
         if (player == null) return;
         if (!player.CanUseKillButton()) return;
-        if (target == null) target = player;
+        
+        target ??= player;
         if (time >= 0f) Main.AllPlayerKillCooldown[player.PlayerId] = time * 2;
         else Main.AllPlayerKillCooldown[player.PlayerId] *= 2;
         if (forceAnime || !player.IsModClient() || !Options.DisableShieldAnimations.GetBool())
@@ -256,7 +264,8 @@ static class ExtendedPlayerControl
     }
     public static void RpcSpecificMurderPlayer(this PlayerControl killer, PlayerControl target = null)
     {
-        if (target == null) target = killer;
+        target ??= killer;
+
         if (killer.AmOwner)
         {
             killer.MurderPlayer(target);
@@ -1064,7 +1073,8 @@ static class ExtendedPlayerControl
     }
     public static void RpcMurderPlayerV2(this PlayerControl killer, PlayerControl target)
     {
-        if (target == null) target = killer;
+        target ??= killer;
+
         if (AmongUsClient.Instance.AmClient)
         {
             killer.MurderPlayer(target);

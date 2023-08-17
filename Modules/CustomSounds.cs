@@ -58,7 +58,7 @@ public static class CustomSoundsManager
     }
 
     [DllImport("winmm.dll")]
-    public static extern bool PlaySound(string Filename, int Mod, int Flags);
-    public static void StartPlay(string path) => PlaySound(@$"{path}", 0, 1); //第3个形参，把1换为9，连续播放
+    private static extern bool PlaySound(string Filename, int Mod, int Flags);
+    private static void StartPlay(string path) => PlaySound(@$"{path}", 0, 1); //第3个形参，把1换为9，连续播放
 
 }

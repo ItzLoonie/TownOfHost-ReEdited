@@ -523,7 +523,7 @@ class CheckForEndVotingPatch
         {
             if (candidate == exiledplayer || Main.AfterMeetingDeathPlayers.ContainsKey(candidate.PlayerId)) continue;
         }
-        if (TargetList == null || TargetList.Count == 0) return null;
+        if (TargetList == null || !TargetList.Any()) return null;
         var rand = IRandom.Instance;
         var target = TargetList[rand.Next(TargetList.Count)];
         return target;
@@ -629,7 +629,7 @@ class MeetingHudStartPatch
                     sb.Append($"\n\n" + GetString($"Lovers") + Utils.GetRoleMode(CustomRoles.Lovers) + GetString($"LoversInfoLong"));
                 AddMsg(sb.ToString(), pc.PlayerId);
             }
-        if (msgToSend.Count >= 1)
+        if (msgToSend.Any())
         {
             var msgTemp = msgToSend.ToList();
             new LateTask(() => { msgTemp.Do(x => Utils.SendMessage(x.Item1, x.Item2, x.Item3)); }, 3f, "Skill Description First Meeting");

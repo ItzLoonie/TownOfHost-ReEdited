@@ -4,6 +4,7 @@ using HarmonyLib;
 using Hazel;
 using InnerNet;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using TOHE.Modules;
 using TOHE.Roles.Crewmate;
@@ -237,9 +238,9 @@ class CreatePlayerPatch
             if (Main.OverrideWelcomeMsg != "") Utils.SendMessage(Main.OverrideWelcomeMsg, client.Character.PlayerId);
             else TemplateManager.SendTemplate("welcome", client.Character.PlayerId, true);
         }, 3f, "Welcome Message");
-        if (Main.OverrideWelcomeMsg == "" && Main.PlayerStates.Count != 0 && Main.clientIdList.Contains(client.Id))
+        if (Main.OverrideWelcomeMsg == "" && Main.PlayerStates.Any() && Main.clientIdList.Contains(client.Id))
         {
-            if (Options.AutoDisplayKillLog.GetBool() && Main.PlayerStates.Count != 0 && Main.clientIdList.Contains(client.Id))
+            if (Options.AutoDisplayKillLog.GetBool() && Main.PlayerStates.Any() && Main.clientIdList.Contains(client.Id))
             {
                 new LateTask(() =>
                 {

@@ -69,10 +69,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
     }
     public override IGameOptions BuildGameOptions()
     {
-        if (Main.RealOptionsData == null)
-        {
-            Main.RealOptionsData = new OptionBackupData(GameOptionsManager.Instance.CurrentGameOptions);
-        }
+        Main.RealOptionsData ??= new OptionBackupData(GameOptionsManager.Instance.CurrentGameOptions);
 
         var opt = BasedGameOptions;
         AURoleOptions.SetOpt(opt);
@@ -405,7 +402,6 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
         }
 
-        // Ϊ�Ի��ߵ�����
         if (Main.AllPlayerControls.Where(x => x.Is(CustomRoles.Bewilder) && !x.IsAlive() && x.GetRealKiller()?.PlayerId == player.PlayerId && !x.Is(CustomRoles.Hangman)).Any())
         {
             opt.SetVision(false);
@@ -416,7 +412,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
         {
             Main.KillGhoul.Add(player.PlayerId);
         }
-   /*     if (Main.AllPlayerControls.Where(x => x.Is(CustomRoles.Diseased) && !x.IsAlive() && x.GetRealKiller()?.PlayerId == player.PlayerId).Count() > 0)
+   /*     if (Main.AllPlayerControls.Where(x => x.Is(CustomRoles.Diseased) && !x.IsAlive() && x.GetRealKiller()?.PlayerId == player.PlayerId).Any())
         {
             Main.AllPlayerKillCooldown[player.PlayerId] *= Options.DiseasedMultiplier.GetFloat();
             player.SetKillCooldownV3();
@@ -424,13 +420,12 @@ public class PlayerGameOptionsSender : GameOptionsSender
         //    player.SyncSettings();
         } */
 
-        // Ͷ��ɵ�ϵ�������������
         if (
-            (Main.GrenadierBlinding.Count >= 1 &&
+            (Main.GrenadierBlinding.Any() &&
             (player.GetCustomRole().IsImpostor() ||
             (player.GetCustomRole().IsNeutral() && Options.GrenadierCanAffectNeutral.GetBool()))
             ) || (
-            Main.MadGrenadierBlinding.Count >= 1 && !player.GetCustomRole().IsImpostorTeam() && !player.Is(CustomRoles.Madmate))
+            Main.MadGrenadierBlinding.Any() && !player.GetCustomRole().IsImpostorTeam() && !player.Is(CustomRoles.Madmate))
             )
         {
             {
@@ -491,7 +486,6 @@ public class PlayerGameOptionsSender : GameOptionsSender
             }
         }
 
-        // ������������ȴΪ0ʱ�޷�������ʾͼ��
         AURoleOptions.EngineerCooldown = Mathf.Max(0.01f, AURoleOptions.EngineerCooldown);
 
         if (Main.AllPlayerKillCooldown.TryGetValue(player.PlayerId, out var killCooldown))

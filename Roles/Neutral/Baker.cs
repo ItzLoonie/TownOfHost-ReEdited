@@ -30,11 +30,8 @@ namespace TOHE.Roles.Neutral
             playerIdList.Add(playerId);
         }
         public static bool IsEnable => playerIdList.Any();
+        public static bool IsNEnable => NplayerIdList.Any();
 
-        public static bool IsNEnable()
-        {
-            return NplayerIdList.Count > 0;
-        }
         public static bool IsNAlive()
         {
             foreach (var BakerId in NplayerIdList)

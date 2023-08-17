@@ -728,7 +728,7 @@ class TaskPanelBehaviourPatch
                     if (sb.Length > 1)
                     {
                         var text = sb.ToString().TrimEnd('\n').TrimEnd('\r');
-                        if (!Utils.HasTasks(player.Data, false) && sb.ToString().Count(s => (s == '\n')) >= 2)
+                        if (!Utils.HasTasks(player.Data, false) && sb.ToString().Count(s => s == '\n') >= 2)
                             text = $"{ Utils.ColorString(Utils.GetRoleColor(player.GetCustomRole()).ShadeColor(0.2f), GetString("FakeTask"))}\r\n{text}";
                         AllText += $"\r\n\r\n<size=85%>{text}</size>";
                     }
@@ -736,7 +736,7 @@ class TaskPanelBehaviourPatch
                     if (MeetingStates.FirstMeeting)
                     {
                         AllText += $"\r\n\r\n</color><size=70%>{GetString("PressF1ShowMainRoleDes")}";
-                        if (Main.PlayerStates.TryGetValue(PlayerControl.LocalPlayer.PlayerId, out var ps) && ps.SubRoles.Count >= 1)
+                        if (Main.PlayerStates.TryGetValue(PlayerControl.LocalPlayer.PlayerId, out var ps) && ps.SubRoles.Any())
                             AllText += $"\r\n{GetString("PressF2ShowAddRoleDes")}";
                         AllText += "</size>";
                     }
