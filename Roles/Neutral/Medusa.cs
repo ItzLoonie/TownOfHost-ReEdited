@@ -20,9 +20,9 @@ public static class Medusa
     {
         //Medusaは1人固定
         SetupSingleRoleOptions(Id, TabGroup.CovenRoles, CustomRoles.Medusa, 1, zeroOne: false);
-        KillCooldown = FloatOptionItem.Create(Id + 10, "KillCooldown", new(0f, 180f, 2.5f), 30f, TabGroup.CovenRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Medusa])
+        KillCooldown = FloatOptionItem.Create(Id + 12, "KillCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.CovenRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Medusa])
             .SetValueFormat(OptionFormat.Seconds);
-        KillCooldownAfterStoneGazing = FloatOptionItem.Create(Id + 14, "KillCooldownAfterStoneGazing", new(0f, 180f, 2.5f), 60f, TabGroup.CovenRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Medusa])
+        KillCooldownAfterStoneGazing = FloatOptionItem.Create(Id + 15, "KillCooldownAfterStoneGazing", new(0f, 180f, 2.5f), 40f, TabGroup.CovenRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Medusa])
             .SetValueFormat(OptionFormat.Seconds);
         CanVent = BooleanOptionItem.Create(Id + 11, "CanVent", true, TabGroup.CovenRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Medusa]);
       //  HasImpostorVision = BooleanOptionItem.Create(Id + 13, "ImpostorVision", true, TabGroup.CovenRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Medusa]);

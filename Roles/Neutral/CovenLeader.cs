@@ -19,7 +19,7 @@ public static class CovenLeader
     {
         //CovenLeaderは1人固定
         SetupSingleRoleOptions(Id, TabGroup.CovenRoles, CustomRoles.CovenLeader, 1, zeroOne: false);
-        ControlCooldown = FloatOptionItem.Create(Id + 10, "ControlCooldown", new(0f, 180f, 1f), 30f, TabGroup.CovenRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.CovenLeader])
+        ControlCooldown = FloatOptionItem.Create(Id + 12, "ControlCooldown", new(0f, 180f, 1f), 20f, TabGroup.CovenRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.CovenLeader])
             .SetValueFormat(OptionFormat.Seconds);
         CanVent = BooleanOptionItem.Create(Id + 11, "CanVent", false, TabGroup.CovenRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.CovenLeader]);
      //   HasImpostorVision = BooleanOptionItem.Create(Id + 13, "ImpostorVision", true, TabGroup.CovenRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.CovenLeader]);

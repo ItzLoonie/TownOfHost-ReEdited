@@ -26,7 +26,7 @@ namespace TOHE.Roles.Neutral
         public static void SetupCustomOption()
         {
         SetupSingleRoleOptions(Id, TabGroup.CovenRoles, CustomRoles.PotionMaster, 1, zeroOne: false);
-            KillCooldown = FloatOptionItem.Create(Id + 10, "KillCooldown", new(0f, 180f, 2.5f), 30f, TabGroup.CovenRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.PotionMaster])
+            KillCooldown = FloatOptionItem.Create(Id + 14, "KillCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.CovenRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.PotionMaster])
                 .SetValueFormat(OptionFormat.Seconds);
             RitualMaxCount = IntegerOptionItem.Create(Id + 11, "RitualMaxCount", new(1, 15, 1), 5, TabGroup.CovenRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.PotionMaster])
                 .SetValueFormat(OptionFormat.Times);
