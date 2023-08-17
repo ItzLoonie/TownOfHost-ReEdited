@@ -148,6 +148,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Monarch:
             case CustomRoles.Deputy:
             case CustomRoles.Counterfeiter:
+            case CustomRoles.Witness:
             case CustomRoles.Succubus:
             case CustomRoles.CursedSoul:
             case CustomRoles.Admirer:
@@ -241,6 +242,10 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 AURoleOptions.ShapeshifterCooldown = Options.FlashbangSkillCooldown.GetFloat();
                 AURoleOptions.ShapeshifterDuration = Options.FlashbangSkillDuration.GetFloat();
                 break; */
+            case CustomRoles.Lighter:
+                AURoleOptions.EngineerInVentMaxTime = 1;
+                AURoleOptions.EngineerCooldown = Options.LighterSkillCooldown.GetFloat();
+                break;
             case CustomRoles.TimeMaster:
                 AURoleOptions.EngineerCooldown = Options.TimeMasterSkillCooldown.GetFloat();
                 AURoleOptions.EngineerInVentMaxTime = 1;
@@ -434,6 +439,13 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 opt.SetFloat(FloatOptionNames.ImpostorLightMod, Options.GrenadierCauseVision.GetFloat());
             }
         }
+
+        if (Main.Lighter.Any() && player.GetCustomRole() == CustomRoles.Lighter)
+        {
+            opt.SetVision(false);
+            if (Utils.IsActive(SystemTypes.Electrical)) opt.SetFloat(FloatOptionNames.CrewLightMod, Options.LighterVisionOnLightsOut.GetFloat() * 5);
+            else opt.SetFloat(FloatOptionNames.CrewLightMod, Options.LighterVisionNormal.GetFloat());
+        }
    /*     if ((Main.FlashbangInProtect.Count >= 1 && Main.ForFlashbang.Contains(player.PlayerId) && (!player.GetCustomRole().IsCrewmate())))  
         {
                 opt.SetVision(false);
@@ -457,15 +469,15 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 case CustomRoles.Flashman:
                     Main.AllPlayerSpeed[player.PlayerId] = Options.FlashmanSpeed.GetFloat();
                     break;
-                case CustomRoles.Lighter:
+                case CustomRoles.Torch:
                     if (!Utils.IsActive(SystemTypes.Electrical))
                     opt.SetVision(true);
-                    opt.SetFloat(FloatOptionNames.CrewLightMod, Options.LighterVision.GetFloat());
-                    opt.SetFloat(FloatOptionNames.ImpostorLightMod, Options.LighterVision.GetFloat());
-                    if (Utils.IsActive(SystemTypes.Electrical))
+                    opt.SetFloat(FloatOptionNames.CrewLightMod, Options.TorchVision.GetFloat());
+                    opt.SetFloat(FloatOptionNames.ImpostorLightMod, Options.TorchVision.GetFloat());
+                    if (Utils.IsActive(SystemTypes.Electrical) && !Options.TorchAffectedByLights.GetBool())
                     opt.SetVision(true);
-                    opt.SetFloat(FloatOptionNames.CrewLightMod, Options.LighterVision.GetFloat() * 5);
-                    opt.SetFloat(FloatOptionNames.ImpostorLightMod, Options.LighterVision.GetFloat() * 5);
+                    opt.SetFloat(FloatOptionNames.CrewLightMod, Options.TorchVision.GetFloat() * 5);
+                    opt.SetFloat(FloatOptionNames.ImpostorLightMod, Options.TorchVision.GetFloat() * 5);
                     break;
                 case CustomRoles.Bewilder:
                     opt.SetVision(false);
