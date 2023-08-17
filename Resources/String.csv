@@ -37,6 +37,11 @@
 "Icon","♥","♥","♥","♥","♥"
 "NameColor","#ffc0cb","#ffc0cb","#ffc0cb","#ffc0cb","#ffc0cb"
 
+"#  / Main Menu Buttons"
+"GitHub","","GitHub","<size=75%>ГитХаб</size>","",""
+"Discord","","Discord","<size=75%>Дискорд</size>","",""
+"Website","","Website","<size=75%>Веб-сайт</size>","",""
+
 "## 对齐文本 / Alignment Sub Text"
 "SubText.Crewmate","做任务和找出所有的<color=#ff1919>内鬼</color>","Find and exile the <color=#ff1919>Impostors</color>","Найди и кикни <color=#ff1919>Предателей</color>","",""
 "SubText.Impostor","击杀所有的<color=#8cffff>船员</color>","Sabotage and kill everyone","Устраните <color=#8cffff>Членов Экипажа</color>","",""

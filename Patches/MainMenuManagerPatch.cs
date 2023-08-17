@@ -30,7 +30,7 @@ public class MainMenuManagerPatch
                 new(153, 153, 153, byte.MaxValue),
                 new(209, 209, 209, byte.MaxValue),
                 () => Application.OpenURL(Main.GitHubInviteUrl),
-                "GitHub");
+                GetString("GitHub")); //"GitHub"
         }
         gitHubButton.gameObject.SetActive(Main.ShowGitHubButton);
 
@@ -43,7 +43,7 @@ public class MainMenuManagerPatch
                 new(88, 101, 242, byte.MaxValue),
                 new(148, 161, byte.MaxValue, byte.MaxValue),
                 () => Application.OpenURL(Main.DiscordInviteUrl),
-                "Discord");
+                GetString("Discord")); //"Discord"
         }
         discordButton.gameObject.SetActive(Main.ShowDiscordButton);
 
@@ -56,7 +56,7 @@ public class MainMenuManagerPatch
                 new(251, 81, 44, byte.MaxValue),
                 new(211, 77, 48, byte.MaxValue),
                 () => Application.OpenURL(Main.WebsiteInviteUrl),
-                "Website");
+                GetString("Website")); //"Website"
         }
         websiteButton.gameObject.SetActive(Main.ShowWebsiteButton);
 
