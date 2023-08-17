@@ -487,6 +487,7 @@ public static class Utils
             case CustomRoles.Virus:
             case CustomRoles.Farseer:
             case CustomRoles.Counterfeiter:
+            case CustomRoles.Witness:
             case CustomRoles.Pursuer:
             case CustomRoles.Spiritcaller:
             case CustomRoles.PlagueBearer:
@@ -566,6 +567,7 @@ public static class Utils
             pc.Is(CustomRoles.Loyal) ||
             pc.Is(CustomRoles.SuperStar) ||
             pc.Is(CustomRoles.CyberStar) ||
+            pc.Is(CustomRoles.TaskManager) ||
          //   pc.Is(CustomRoles.Cyber) ||
             pc.Is(CustomRoles.Egoist) ||
             pc.Is(CustomRoles.DualPersonality)
