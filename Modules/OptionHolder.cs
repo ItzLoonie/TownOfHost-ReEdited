@@ -1736,7 +1736,7 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Necroview]);
         NeutralCanBeNecroview = BooleanOptionItem.Create(14412, "NeutralCanBeNecroview", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Necroview]);
-        SetupAdtRoleOptions(14050, CustomRoles.Necroview, canSetNum: true, tab: TabGroup.Addons);
+        SetupAdtRoleOptions(14050, CustomRoles.Nimble, canSetNum: true, tab: TabGroup.Addons);
     /*    CrewCanBeNimble = BooleanOptionItem.Create(14061, "CrewCanBeNimble", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Nimble]);
         NeutralCanBeNimble = BooleanOptionItem.Create(14062, "NeutralCanBeNimble", true, TabGroup.Addons, false)
