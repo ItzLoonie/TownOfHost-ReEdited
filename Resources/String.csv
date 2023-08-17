@@ -1910,7 +1910,7 @@
 "SwooperInvisInCooldown","技能冷却中，隐身失败","Swoop cooldown isn't up yet, swooping failed","Откат способности, невидимости нет","技能正在冷卻中，隱身失敗",""
 "SwooperInvisStateCountdown","隐身状态将在{0}秒后失效","Invisibility will expire after {0}s","Невидимость пропадёт через {0} секунд","隱身狀態將在{0}秒後失效",""
 "SwooperInvisCooldownRemain","隐身剩余冷却时间：{0}","Swoop Cooldown: {0}s","Осталось {0} секунд до использования способности","剩餘隱身冷卻時間：{0} 秒",""
-"WraithCanVent","通风口变为隐形","Vent to turn invisible","Прыгните в вентиляцию, чтобы стать невидимым","",""
+"WraithCanVent","使用通风口变为隐形","Vent to turn invisible","Прыгните в вентиляцию, чтобы стать невидимым","",""
 "WraithInvisState","你是隐形的","You are invisible","Вы невидимы!","",""
 "WraithInvisStateOut","您再次可见","You are visible again","Невидимость пропала","",""
 "WraithInvisInCooldown","技能仍处于冷却状态，消失失败","Ability still on cooldown, vanish failed","Способность все еще на перезарядке, невидимость не удалась","",""
