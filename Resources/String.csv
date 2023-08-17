@@ -1361,7 +1361,7 @@
 "MareAddSpeedInLightsOut","熄灯时的额外速度","Additional Speed During Lights Out","Скорость Ночного при Саботаже Света","關燈時的額外速度","熄灯时的额外速度"
 "MareKillCooldownInLightsOut","熄灯时的击杀冷却时间","Kill Cooldown During Lights Out","Откат убийства Ночного при Саботаже Света","關燈時的殺人冷卻時間","熄灯时的击杀冷却时间"
 "KillCooldownNormally","击杀冷却时不能破坏","Kill Cooldown Without Sabotage","Откат убийства без саботажа","",""
-"SabotageMasterSkillLimit","修理技能次数上限","Max use of Abilities (Excluding Doors)","Лимит способности (Кроме открытия дверей)","修理技能可使用次數上限","修理技能次数上限"
+"SabotageMasterSkillLimit","修理技能次数上限","Initial repair use limit","Лимит способности (Кроме открытия дверей)","修理技能可使用次數上限","修理技能次数上限"
 "LuckeyProbability","触发挡伤的概率","Probability of surviving a kill","Вероятность остаться в живых","觸發擋傷的機率","触发挡伤的概率"
 "SabotageMasterFixesDoors","打开多扇关闭的门","Can open all doors in the same building","Может открыть все двери","打開多扇關閉的門","打开多扇关闭的门"
 "SabotageMasterFixesReactors","秒修核反应堆","Can Fix Both Reactors Alone","Может починить саботаж Реактора","秒修反應堆","秒修核反应堆"
