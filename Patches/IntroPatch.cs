@@ -281,12 +281,12 @@ class BeginCrewmatePatch
             case CustomRoles.Addict:
                 PlayerControl.LocalPlayer.Data.Role.IntroSound = ShipStatus.Instance.VentEnterSound;
                 break;
-            case CustomRoles.ParityCop:
+        /*    case CustomRoles.ParityCop:
             case CustomRoles.Mediumshiper:
             case CustomRoles.Mayor:
             case CustomRoles.Dictator:
                 PlayerControl.LocalPlayer.Data.Role.IntroSound = HudManager.Instance.Chat.messageSound;
-                break;
+                break; */
         }
 
         if (PlayerControl.LocalPlayer.Is(CustomRoles.Madmate))
