@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using AmongUs.GameOptions;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
@@ -26,6 +26,7 @@ namespace TOHE.Roles.Crewmate
             CustomRoles.Needy,
             CustomRoles.SuperStar,
             CustomRoles.CyberStar,
+            CustomRoles.TaskManager,
             CustomRoles.Mayor,
             CustomRoles.Paranoia,
             CustomRoles.Psychic,
@@ -45,6 +46,7 @@ namespace TOHE.Roles.Crewmate
             CustomRoles.Veteran,
             CustomRoles.Bodyguard,
             CustomRoles.Grenadier,
+            CustomRoles.Lighter,
             CustomRoles.Divinator,
             CustomRoles.Oracle,
             CustomRoles.Tracefinder,
