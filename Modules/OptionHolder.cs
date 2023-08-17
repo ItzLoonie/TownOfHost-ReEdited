@@ -1473,6 +1473,8 @@ public static class Options
         OpportunistTasks = OverrideTasksData.Create(10111, TabGroup.NeutralRoles, CustomRoles.Opportunist);
 
         Pursuer.SetupCustomOption();
+        Romantic.SetupCustomOption();
+
         SetupRoleOptions(22420, TabGroup.NeutralRoles, CustomRoles.Shaman);
         VoodooCooldown = FloatOptionItem.Create(22430, "VoodooCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Shaman])

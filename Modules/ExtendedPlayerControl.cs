@@ -510,6 +510,9 @@ static class ExtendedPlayerControl
             CustomRoles.Banshee => pc.IsAlive(),
             CustomRoles.Crewpostor => false,
             CustomRoles.Totocalcio => Totocalcio.CanUseKillButton(pc),
+            CustomRoles.Romantic => pc.IsAlive(),
+            CustomRoles.RuthlessRomantic => pc.IsAlive(),
+            CustomRoles.VengefulRomantic => VengefulRomantic.CanUseKillButton(pc),
             CustomRoles.Succubus => Succubus.CanUseKillButton(pc),
             CustomRoles.CursedSoul => CursedSoul.CanUseKillButton(pc),
             CustomRoles.Admirer => Admirer.CanUseKillButton(pc),
@@ -549,6 +552,7 @@ static class ExtendedPlayerControl
       //      CustomRoles.NWitch or
             CustomRoles.DarkHide or
             CustomRoles.Monarch or
+            CustomRoles.Romantic or
             CustomRoles.Provocateur or
             CustomRoles.Totocalcio or
             CustomRoles.Succubus or
@@ -563,6 +567,8 @@ static class ExtendedPlayerControl
             => false,
 
             CustomRoles.Jackal => Jackal.CanVent.GetBool(),
+            CustomRoles.VengefulRomantic => Romantic.VengefulCanVent.GetBool(),
+            CustomRoles.RuthlessRomantic => Romantic.RuthlessCanVent.GetBool(),
             CustomRoles.Sidekick => Jackal.CanVentSK.GetBool(),
             CustomRoles.Poisoner => Poisoner.CanVent.GetBool(),
             CustomRoles.NSerialKiller => NSerialKiller.CanVent.GetBool(),
@@ -935,6 +941,14 @@ static class ExtendedPlayerControl
             case CustomRoles.Totocalcio:
                 Totocalcio.SetKillCooldown(player.PlayerId);
                 break;
+            case CustomRoles.Romantic:
+                Romantic.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.VengefulRomantic:
+                Main.AllPlayerKillCooldown[player.PlayerId] = Romantic.VengefulKCD.GetFloat();
+                break;
+            case CustomRoles.RuthlessRomantic:
+                Main.AllPlayerKillCooldown[player.PlayerId] = Romantic.RuthlessKCD.GetFloat();
             case CustomRoles.Gangster:
                 Gangster.SetKillCooldown(player.PlayerId);
                 break;

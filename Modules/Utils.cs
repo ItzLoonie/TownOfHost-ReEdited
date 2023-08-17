@@ -495,6 +495,9 @@ public static class Utils
             case CustomRoles.Masochist:
             case CustomRoles.Doomsayer:
             case CustomRoles.Seeker:
+            case CustomRoles.Romantic:
+            case CustomRoles.VengefulRomantic:
+            case CustomRoles.RuthlessRomantic:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:
@@ -863,6 +866,12 @@ public static class Utils
                 break;
             case CustomRoles.Totocalcio:
                 ProgressText.Append(Totocalcio.GetProgressText(playerId));
+                break;
+            case CustomRoles.Romantic:
+                ProgressText.Append(Romantic.GetProgressText(playerId));
+                break;
+            case CustomRoles.VengefulRomantic:
+                ProgressText.Append(VengefulRomantic.GetProgressText(playerId));
                 break;
             case CustomRoles.Succubus:
                 ProgressText.Append(Succubus.GetCharmLimit());
@@ -1971,6 +1980,7 @@ public static class Utils
                         (target.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && target.GetPlayerTaskState().IsTaskFinished) ||
                         (seer.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoles.Marshall) && target.GetPlayerTaskState().IsTaskFinished) ||
                         (Totocalcio.KnowRole(seer, target)) ||
+                        (Romantic.KnowRole(seer, target)) ||
                         (Lawyer.KnowRole(seer, target)) ||
                         (EvilDiviner.IsShowTargetRole(seer, target)) ||
                         (PotionMaster.IsShowTargetRole(seer, target)) ||
@@ -2159,6 +2169,7 @@ public static class Utils
                 }
 
                 TargetMark.Append(Totocalcio.TargetMark(seer, target));
+                TargetMark.Append(Romantic.TargetMark(seer, target));
                 TargetMark.Append(Lawyer.LawyerMark(seer, target));
                 TargetMark.Append(Deathpact.GetDeathpactMark(seer, target));
 
@@ -2290,6 +2301,9 @@ public static class Utils
                         Main.CyberStarDead.Add(target.PlayerId);
                 }
                 break;
+            case CustomRoles.Romantic:
+                Romantic.isRomanticAlive = false;
+                break;
             case CustomRoles.Pelican:
                 Pelican.OnPelicanDied(target.PlayerId);
                 break;
@@ -2297,7 +2311,7 @@ public static class Utils
                 Devourer.OnDevourerDied(target.PlayerId);
                 break;
         }
-        
+
         /*    var States = Main.PlayerStates[target.PlayerId];
                 foreach (var subRole in States.SubRoles)
             switch (subRole)
@@ -2316,7 +2330,8 @@ public static class Utils
                 }
                 break;    
             } */
-
+        if (Romantic.BetPlayer.ContainsValue(target.PlayerId))
+            Romantic.ChangeRole(target.PlayerId);
         if (Executioner.Target.ContainsValue(target.PlayerId))
             Executioner.ChangeRoleByTarget(target);
         if (Lawyer.Target.ContainsValue(target.PlayerId))

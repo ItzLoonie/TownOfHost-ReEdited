@@ -429,6 +429,12 @@ class CheckMurderPatch
                 case CustomRoles.Totocalcio:
                     Totocalcio.OnCheckMurder(killer, target);
                     return false;
+                case CustomRoles.Romantic:
+                    if (!Romantic.OnCheckMurder(killer, target)) return false;
+                    break;
+                case CustomRoles.VengefulRomantic:
+                    if (!VengefulRomantic.OnCheckMurder(killer, target)) return false;
+                    break;
                 case CustomRoles.Succubus:
                     Succubus.OnCheckMurder(killer, target);
                     return false;
@@ -676,6 +682,8 @@ class CheckMurderPatch
         if (target.Is(CustomRoles.Guardian) && target.AllTasksCompleted())
             return false;
 
+        // Romantic partner is protected
+        if (Romantic.BetPlayer.ContainsValue(target.PlayerId) && Romantic.isPartnerProtected) return false;
 
         if (Options.OppoImmuneToAttacksWhenTasksDone.GetBool())
         {
@@ -1910,6 +1918,7 @@ class ReportDeadBodyPatch
         BallLightning.OnReportDeadBody();
         Seeker.OnReportDeadBody();
         Jailer.OnReportDeadBody();
+        Romantic.OnReportDeadBody();
 
 
         Mortician.OnReportDeadBody(player, target);
@@ -2596,6 +2605,7 @@ class FixedUpdatePatch
                 else if (__instance.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && __instance.GetPlayerTaskState().IsTaskFinished) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Marshall) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Crewmate) && __instance.GetPlayerTaskState().IsTaskFinished) RoleText.enabled = true;
                 else if (Totocalcio.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
+                else if (Romantic.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (Lawyer.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (EvilDiviner.IsShowTargetRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
                 else if (PotionMaster.IsShowTargetRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
@@ -2773,6 +2783,7 @@ class FixedUpdatePatch
                     Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Medic)}> ●</color>");
 
                 Mark.Append(Totocalcio.TargetMark(seer, target));
+                Mark.Append(Romantic.TargetMark(seer, target));
                 Mark.Append(Lawyer.LawyerMark(seer, target));
 
                 if (seer.Is(CustomRoles.Puppeteer))

@@ -33,6 +33,9 @@ internal static class CustomRolesHelper
                 CustomRoles.Lawyer => CustomRoles.Crewmate,
                 CustomRoles.Vampire => CustomRoles.Impostor,
                 CustomRoles.Poisoner => CustomRoles.Impostor,
+                CustomRoles.RuthlessRomantic => CustomRoles.Impostor,
+                CustomRoles.VengefulRomantic => CustomRoles.Impostor,
+                CustomRoles.Romantic => CustomRoles.Impostor,
                 CustomRoles.NSerialKiller => CustomRoles.Impostor,
                 CustomRoles.Maverick => CustomRoles.Impostor,
                 CustomRoles.CursedSoul => CustomRoles.Impostor,
@@ -287,6 +290,9 @@ internal static class CustomRolesHelper
             CustomRoles.Necromancer => RoleTypes.Impostor,
             CustomRoles.Shroud => RoleTypes.Impostor,
             CustomRoles.Totocalcio => RoleTypes.Impostor,
+            CustomRoles.Romantic => RoleTypes.Impostor,
+            CustomRoles.VengefulRomantic => RoleTypes.Impostor,
+            CustomRoles.RuthlessRomantic => RoleTypes.Impostor,
             CustomRoles.Succubus => RoleTypes.Impostor,
             CustomRoles.Infectious => RoleTypes.Impostor,
             CustomRoles.Virus => RoleTypes.Impostor,
@@ -404,10 +410,13 @@ internal static class CustomRolesHelper
             CustomRoles.SoulCollector or
             CustomRoles.Pirate or
             CustomRoles.Seeker or
-       //     CustomRoles.Juggernaut or
-      //      CustomRoles.Jinx or
-       //     CustomRoles.Poisoner or
-       //     CustomRoles.HexMaster or
+            CustomRoles.Romantic or
+            CustomRoles.RuthlessRomantic or
+            CustomRoles.VengefulRomantic or
+            //     CustomRoles.Juggernaut or
+            //      CustomRoles.Jinx or
+            //     CustomRoles.Poisoner or
+            //     CustomRoles.HexMaster or
             CustomRoles.Totocalcio;
     }
     public static bool IsAmneNK(this CustomRoles role)
@@ -461,6 +470,7 @@ internal static class CustomRolesHelper
             CustomRoles.Spiritcaller or
             CustomRoles.PlagueBearer or
             CustomRoles.Agitater or
+            CustomRoles.RuthlessRomantic or
             CustomRoles.Pestilence;
     }
     public static bool IsNonNK(this CustomRoles role) // ROLE ASSIGNING, NOT NEUTRAL TYPE
@@ -497,6 +507,8 @@ internal static class CustomRolesHelper
             CustomRoles.Revolutionist or
             CustomRoles.Famine or
             CustomRoles.Baker or
+            CustomRoles.Romantic or
+            CustomRoles.VengefulRomantic or
             CustomRoles.Provocateur;
     }
     public static bool IsNB(this CustomRoles role)
@@ -512,6 +524,8 @@ internal static class CustomRolesHelper
             CustomRoles.Shaman or
             CustomRoles.NWitch or
             CustomRoles.God or
+            CustomRoles.Romantic or
+            CustomRoles.VengefulRomantic or
             CustomRoles.Sunnyboy;
     }
     public static bool IsNE(this CustomRoles role)
@@ -579,6 +593,7 @@ internal static class CustomRolesHelper
             CustomRoles.Spiritcaller or
             CustomRoles.PlagueBearer or
             CustomRoles.Agitater or
+            CustomRoles.RuthlessRomantic or
             CustomRoles.Pestilence;
     }
     public static bool IsCK(this CustomRoles role)
@@ -735,6 +750,9 @@ internal static class CustomRolesHelper
             CustomRoles.Phantom or
             CustomRoles.BloodKnight or
             CustomRoles.Totocalcio or
+            CustomRoles.Romantic or
+            CustomRoles.RuthlessRomantic or
+            CustomRoles.VengefulRomantic or
             CustomRoles.Virus or
             CustomRoles.Succubus or
             CustomRoles.Doomsayer or
@@ -866,6 +884,9 @@ internal static class CustomRolesHelper
             CustomRoles.PlagueBearer or
             CustomRoles.Pestilence or
             CustomRoles.Pirate or
+            CustomRoles.Romantic or
+            CustomRoles.RuthlessRomantic or
+            CustomRoles.VengefulRomantic or
             CustomRoles.Seeker;
     }
     public static bool IsMadmate(this CustomRoles role)
@@ -939,8 +960,10 @@ internal static class CustomRolesHelper
         // Only add-ons
         if (!role.IsAdditionRole()) return false;
 
-        // Checking for conflicts with roles
-        if (pc.Is(CustomRoles.GM) || role is CustomRoles.Lovers || pc.Is(CustomRoles.Needy) || (pc.HasSubRole() && pc.GetCustomSubRoles().Count >= Options.NoLimitAddonsNumMax.GetInt())) return false;
+        if ((pc.Is(CustomRoles.RuthlessRomantic) || pc.Is(CustomRoles.Romantic) || pc.Is(CustomRoles.VengefulRomantic)) && role is CustomRoles.Lovers) return false;
+
+            // Checking for conflicts with roles
+            if (pc.Is(CustomRoles.GM) || role is CustomRoles.Lovers || pc.Is(CustomRoles.Needy) || (pc.HasSubRole() && pc.GetCustomSubRoles().Count >= Options.NoLimitAddonsNumMax.GetInt())) return false;
 
 
         // Checking for conflicts with other add-ons
@@ -1150,7 +1173,10 @@ internal static class CustomRolesHelper
             case CustomRoles.Ntr:
                 if (pc.Is(CustomRoles.Lovers)
                     || pc.Is(CustomRoles.FFF)
-                    || pc.Is(CustomRoles.GuardianAngelTOHE))
+                    || pc.Is(CustomRoles.GuardianAngelTOHE)
+                    || pc.Is(CustomRoles.RuthlessRomantic)
+                    || pc.Is(CustomRoles.Romantic)
+                    || pc.Is(CustomRoles.VengefulRomantic))
                     return false;
                 break;
 
@@ -1546,6 +1572,7 @@ internal static class CustomRolesHelper
         //   CustomRoles.CursedSoul => CountTypes.OutOfGame, // if they count as OutOfGame, it prevents them from winning lmao
            
            CustomRoles.Spiritcaller => CountTypes.Spiritcaller,
+           CustomRoles.RuthlessRomantic => CountTypes.RuthlessRomantic,
            _ => role.IsImpostorTeam() ? CountTypes.Impostor : CountTypes.Crew,
        };
     public static bool HasSubRole(this PlayerControl pc) => Main.PlayerStates[pc.PlayerId].SubRoles.Any();
@@ -1594,5 +1621,6 @@ public enum CountTypes
     Werewolf,
     Agitater,
     Occultist,
-    Shade
+    Shade,
+    RuthlessRomantic
 }
