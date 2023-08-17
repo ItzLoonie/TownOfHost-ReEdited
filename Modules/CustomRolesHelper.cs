@@ -1277,8 +1277,6 @@ internal static class CustomRolesHelper
                     return false;
                 if (!pc.GetCustomRole().IsTasklessCrewmate())
                     return false;
-                
-
                 break;
 
             case CustomRoles.Clumsy:

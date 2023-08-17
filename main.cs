@@ -33,14 +33,18 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = " ";
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "3.0.0.026";
-    public const string PluginDisplayVersion = "3.0.0 dev 2";
+    public const string PluginVersion = "3.0.0.038";
+    public const string PluginDisplayVersion = "3.0.0 dev 3";
     public const bool Canary = false;
 
-    public static readonly bool ShowQQButton = true;
-    public static readonly string QQInviteUrl = "https://jq.qq.com/?_wv=1027&k=2RpigaN6";
+    public static readonly bool ShowGitHubButton = true;
+    public static readonly string GitHubInviteUrl = "https://github.com/Loonie-Toons/TownOfHost-ReEdited";
+
     public static readonly bool ShowDiscordButton = true;
-    public static readonly string DiscordInviteUrl = "https://discord.gg/hkk2p9ggv4";
+    public static readonly string DiscordInviteUrl = "https://dsc.gg/tohe";
+
+    public static readonly bool ShowWebsiteButton = true;
+    public static readonly string WebsiteInviteUrl = "https://toher.vercel.app";
 
     public Harmony Harmony { get; } = new Harmony(PluginGuid);
     public static Version version = Version.Parse(PluginVersion);
