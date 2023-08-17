@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Collections.Generic;
 using static TOHE.Options;
 using static TOHE.Translator;
@@ -156,6 +156,9 @@ public static class CopyCat
                 case CustomRoles.Grenadier:
                     Main.GrenadierNumOfUsed.Remove(player);
                     break;
+                case CustomRoles.Lighter:
+                    Main.LighterNumOfUsed.Remove(player);
+                    break;
                 case CustomRoles.TimeMaster:
                     Main.TimeMasterNumOfUsed.Remove(player);
                     break;
@@ -182,6 +185,7 @@ public static class CopyCat
         return role is CustomRoles.CopyCat or
             //bcoz of vent cd
             CustomRoles.Grenadier or
+            CustomRoles.Lighter or
             CustomRoles.DovesOfNeace or
             CustomRoles.Veteran or
             CustomRoles.Addict or
@@ -245,6 +249,11 @@ public static class CopyCat
                     break;
                 case CustomRoles.Deputy:
                     Deputy.SetKillCooldown(pc.PlayerId);
+                    break;
+                case CustomRoles.Witness:
+                    if (!AmongUsClient.Instance.AmHost) break;
+                    if (!Main.ResetCamPlayerList.Contains(pc.PlayerId))
+                        Main.ResetCamPlayerList.Add(pc.PlayerId);
                     break;
                 case CustomRoles.ParityCop:
                     ParityCop.MaxCheckLimit.Add(pc.PlayerId, ParityCop.ParityCheckLimitMax.GetInt());
