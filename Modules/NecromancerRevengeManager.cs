@@ -87,7 +87,7 @@ public static class NecromancerRevengeManager
 
         CustomSoundsManager.RPCPlayCustomSoundAll("AWP");
 
-        new LateTask(() =>
+        _ = new LateTask(() =>
         {
             Main.PlayerStates[target.PlayerId].deathReason = PlayerState.DeathReason.Revenge;
             target.SetRealKiller(pc);
@@ -107,7 +107,7 @@ public static class NecromancerRevengeManager
                 Main.PlayerStates[target.PlayerId].SetDead();
             }
 
-            new LateTask(() => { Utils.SendMessage(string.Format(GetString("NecromancerKillSucceed"), Name), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Necromancer), GetString("NecromancerRevengeTitle"))); }, 0.6f, "Necromancer Kill");
+            _ = new LateTask(() => { Utils.SendMessage(string.Format(GetString("NecromancerKillSucceed"), Name), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Necromancer), GetString("NecromancerRevengeTitle"))); }, 0.6f, "Necromancer Kill");
 
         }, 0.2f, "Necromancer Kill");
         return true;

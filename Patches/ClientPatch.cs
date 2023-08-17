@@ -47,7 +47,7 @@ internal class MMOnlineManagerStartPatch
             textObj.name = "CanNotJoinPublic";
             var message = ModUpdater.isBroken ? $"<size=2>{Utils.ColorString(Color.red, GetString("ModBrokenMessage"))}</size>"
                 : $"<size=2>{Utils.ColorString(Color.red, GetString("CanNotJoinPublicRoomNoLatest"))}</size>";
-            new LateTask(() => { textObj.text = message; }, 0.01f, "CanNotJoinPublic");
+            _ = new LateTask(() => { textObj.text = message; }, 0.01f, "CanNotJoinPublic");
         }
     }
 }

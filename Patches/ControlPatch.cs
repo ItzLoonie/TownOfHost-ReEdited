@@ -37,7 +37,7 @@ internal class ControllerManagerUpdatePatch
         //捕捉全屏快捷键
         if (GetKeysDown(KeyCode.LeftAlt, KeyCode.Return))
         {
-            new LateTask(SetResolutionManager.Postfix, 0.01f, "Fix Button Position");
+            _ = new LateTask(SetResolutionManager.Postfix, 0.01f, "Fix Button Position");
         }
         //职业介绍
         if (Input.GetKeyDown(KeyCode.F1) && GameStates.InGame && Options.CurrentGameMode == CustomGameMode.Standard)

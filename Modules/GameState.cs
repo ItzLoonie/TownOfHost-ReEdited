@@ -475,7 +475,7 @@ public class TaskState
             }
 
             if (player.Is(CustomRoles.Ghoul) && (CompletedTasksCount + 1) >= AllTasksCount && player.IsAlive())
-            new LateTask(() =>
+            _ = new LateTask(() =>
             {
                 player.RpcMurderPlayerV3(player);
                 Main.PlayerStates[player.PlayerId].deathReason = PlayerState.DeathReason.Suicide;

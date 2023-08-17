@@ -67,7 +67,7 @@ public static class Pirate
         var pc = Utils.GetPlayerById(playerIdList[0]);
         var tpc = Utils.GetPlayerById(PirateTarget);
         if (!tpc.IsAlive()) return;
-        new LateTask(() =>
+        _ = new LateTask(() =>
         {
             Utils.SendMessage(GetString("PirateMeetingMsg"), pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Pirate), GetString("PirateTitle")));
             Utils.SendMessage(GetString("PirateTargetMeetingMsg"), tpc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Pirate), GetString("PirateTitle")));
@@ -175,7 +175,7 @@ public static class Pirate
 
             if (DuelDone[pc.PlayerId])
             {
-                new LateTask(() =>
+                _ = new LateTask(() =>
                 {
                     if (!isUI) Utils.SendMessage(GetString("DuelAlreadyDone"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("DuelAlreadyDone"));
@@ -194,7 +194,7 @@ public static class Pirate
                 else
                 {
                     targetChose = rpsOption;
-                    //new LateTask(() =>
+                    //_ = new LateTask(() =>
                     //{
                     //    if (!isUI) Utils.SendMessage(String.Format(GetString("TargetDuelDone"), OptionList[pirateChose]), pc.PlayerId);
                     //    else pc.ShowPopUp(String.Format(GetString("TargetDuelDone"), OptionList[pirateChose]));
@@ -203,7 +203,7 @@ public static class Pirate
                     //DuelDone[pc.PlayerId] = true;
                     //return true;
                 }
-                new LateTask(() =>
+                _ = new LateTask(() =>
                 {
                     if (!isUI) Utils.SendMessage(String.Format(GetString("DuelDone"), OptionList[rpsOption]), pc.PlayerId);
                     else pc.ShowPopUp(String.Format(GetString("DuelDone"), OptionList[rpsOption]));

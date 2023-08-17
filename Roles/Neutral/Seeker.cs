@@ -39,7 +39,7 @@ public static class Seeker
         DefaultSpeed = Main.AllPlayerSpeed[playerId];
 
         if (AmongUsClient.Instance.AmHost)
-            new LateTask(() =>
+            _ = new LateTask(() =>
             {
                 ResetTarget(Utils.GetPlayerById(playerId));
             }, 10f, "SeekerRound1");
@@ -145,7 +145,7 @@ public static class Seeker
         Main.AllPlayerSpeed[player.PlayerId] = Main.MinSpeed;
         ReportDeadBodyPatch.CanReport[player.PlayerId] = false;
         player.MarkDirtySettings();
-        new LateTask(() =>
+        _ = new LateTask(() =>
         {
             Main.AllPlayerSpeed[player.PlayerId] = DefaultSpeed;
             ReportDeadBodyPatch.CanReport[player.PlayerId] = true;
