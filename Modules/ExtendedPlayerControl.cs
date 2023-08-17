@@ -488,6 +488,7 @@ static class ExtendedPlayerControl
             CustomRoles.Refugee => pc.IsAlive(),
     //        CustomRoles.Minion => pc.IsAlive(),
             CustomRoles.NWitch => pc.IsAlive(),
+            CustomRoles.Witness => pc.IsAlive(),
             CustomRoles.CovenLeader => pc.IsAlive(),
             CustomRoles.Ritualist => pc.IsAlive(),
             CustomRoles.Shroud => pc.IsAlive(),
@@ -857,6 +858,9 @@ static class ExtendedPlayerControl
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.BomberKillCD.GetFloat();
                 else
                 Main.AllPlayerKillCooldown[player.PlayerId] = 300f;
+                break;
+            case CustomRoles.Witness:
+                Main.AllPlayerKillCooldown[player.PlayerId] = Options.WitnessCD.GetFloat();
                 break;
             case CustomRoles.Capitalism:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.CapitalismSkillCooldown.GetFloat();

@@ -99,6 +99,9 @@ internal class ChangeRoleSettings
             Main.GrenadierNumOfUsed = new();
             Main.TimeMasterNumOfUsed = new();
             Main.GrenadierBlinding = new();
+            Main.LighterNumOfUsed = new();
+            Main.Lighter = new();
+            Main.AllKillers = new();
             Main.MadGrenadierBlinding = new();
             Main.CursedWolfSpellCount = new();
             Main.JinxSpellCount = new();
@@ -717,6 +720,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Shade:
                         Shade.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Lighter:
+                        Main.LighterNumOfUsed.Add(pc.PlayerId, Options.LighterSkillMaxOfUseage.GetInt());
                         break;
                     case CustomRoles.SoulCollector:
                         SoulCollector.Add(pc.PlayerId);

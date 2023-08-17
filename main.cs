@@ -175,6 +175,9 @@ public class Main : BasePlugin
     public static Dictionary<byte, long> GrenadierBlinding = new();
     public static Dictionary<byte, long> MadGrenadierBlinding = new();
     public static Dictionary<byte, float> GrenadierNumOfUsed = new();
+    public static Dictionary<byte, long> Lighter = new();
+    public static Dictionary<byte, float> LighterNumOfUsed = new();
+    public static Dictionary<byte, byte> AllKillers = new();
     public static Dictionary<byte, float> TimeMasterNumOfUsed = new();
     public static Dictionary<byte, int> CursedWolfSpellCount = new();
     public static Dictionary<byte, int> JinxSpellCount = new();
@@ -337,7 +340,10 @@ public class Main : BasePlugin
                 {CustomRoles.Veteran, "#a77738"},
                 {CustomRoles.Bodyguard, "#185abd"},
                 {CustomRoles.Counterfeiter, "#BE29EC"},
+                {CustomRoles.Witness, "#e70052"},
                 {CustomRoles.Grenadier, "#3c4a16"},
+                {CustomRoles.Lighter, "#eee5be"},
+                {CustomRoles.TaskManager, "#00ffa5" },
                 {CustomRoles.Medic, "#00ff97"},
                 {CustomRoles.Divinator, "#882c83"},
                 {CustomRoles.Glitch, "#39FF14"},
@@ -448,7 +454,7 @@ public class Main : BasePlugin
                 {CustomRoles.Madmate, "#ff1919"},
                 {CustomRoles.Watcher, "#800080"},
                 {CustomRoles.Flashman, "#ff8400"},
-                {CustomRoles.Lighter, "#eee5be"},
+                {CustomRoles.Torch, "#eee5be"},
                 {CustomRoles.Seer, "#61b26c"},
                 {CustomRoles.Brakar, "#1447af"},
                 {CustomRoles.Oblivious, "#424242"},
@@ -675,7 +681,10 @@ public enum CustomRoles
     Veteran,
     Bodyguard,
     Counterfeiter,
+    Witness,
     Grenadier,
+    Lighter,
+    TaskManager,
     Medic,
     Divinator,
     Glitch,
@@ -786,7 +795,7 @@ public enum CustomRoles
     Madmate,
     Watcher,
     Flashman,
-    Lighter,
+    Torch,
     Seer,
     Brakar,
     Oblivious,

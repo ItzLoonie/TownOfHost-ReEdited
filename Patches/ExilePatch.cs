@@ -145,6 +145,8 @@ class ExileControllerWrapUpPatch
                 CustomRoles.Engineer or
                 CustomRoles.Grenadier or
                 CustomRoles.Scientist or
+                CustomRoles.Lighter or
+                CustomRoles.Pitfall or
                 CustomRoles.ScientistTOHE or
                 CustomRoles.Tracefinder or
                 CustomRoles.Doctor or

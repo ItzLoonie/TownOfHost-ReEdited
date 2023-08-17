@@ -241,6 +241,8 @@ public static class Options
     public static OptionItem VeteranSkillMaxOfUseage;
     public static OptionItem VeteranAbilityUseGainWithEachTaskCompleted;
     public static OptionItem BodyguardProtectRadius;
+    public static OptionItem WitnessCD;
+    public static OptionItem WitnessTime;
     public static OptionItem ParanoiaNumOfUseButton;
     public static OptionItem ParanoiaVentCooldown;
     public static OptionItem ImpKnowCyberStarDead;
@@ -277,6 +279,12 @@ public static class Options
     public static OptionItem GrenadierCanAffectNeutral;
     public static OptionItem GrenadierSkillMaxOfUseage;
     public static OptionItem GrenadierAbilityUseGainWithEachTaskCompleted;
+    public static OptionItem LighterVisionNormal;
+    public static OptionItem LighterVisionOnLightsOut;
+    public static OptionItem LighterSkillCooldown;
+    public static OptionItem LighterSkillDuration;
+    public static OptionItem LighterSkillMaxOfUseage;
+    public static OptionItem LighterAbilityUseGainWithEachTaskCompleted;
     public static OptionItem RevolutionistDrawTime;
     public static OptionItem RevolutionistCooldown;
     public static OptionItem RevolutionistDrawCount;
@@ -448,7 +456,8 @@ public static class Options
     public static OptionItem ImpCanBeFool;
     public static OptionItem CrewCanBeFool;
     public static OptionItem NeutralCanBeFool;
-    public static OptionItem LighterVision;
+    public static OptionItem TorchVision;
+    public static OptionItem TorchAffectedByLights;
     public static OptionItem TasklessCrewCanBeLazy;
     public static OptionItem TaskBasedCrewCanBeLazy;
     public static OptionItem DovesOfNeaceCooldown;
@@ -1250,6 +1259,7 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.CyberStar]);
         NeutralKnowCyberStarDead = BooleanOptionItem.Create(5500, "NeutralKnowCyberStarDead", false, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.CyberStar]);
+        SetupRoleOptions(5575, TabGroup.CrewmateRoles, CustomRoles.TaskManager);
         Cleanser.SetupCustomOption();
         SetupRoleOptions(5600, TabGroup.CrewmateRoles, CustomRoles.Doctor);
         DoctorTaskCompletedBatteryCharge = FloatOptionItem.Create(5610, "DoctorTaskCompletedBatteryCharge", new(0f, 250f, 1f), 50f, TabGroup.CrewmateRoles, false)
@@ -1300,6 +1310,25 @@ public static class Options
             .SetValueFormat(OptionFormat.Times);
         GrenadierAbilityUseGainWithEachTaskCompleted = FloatOptionItem.Create(6815, "AbilityUseGainWithEachTaskCompleted", new(0f, 5f, 0.1f), 1f, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Grenadier])
+            .SetValueFormat(OptionFormat.Times);
+        SetupSingleRoleOptions(6850, TabGroup.CrewmateRoles, CustomRoles.Lighter, 1);
+        LighterSkillCooldown = FloatOptionItem.Create(6852, "LighterSkillCooldown", new(1f, 180f, 1f), 25f, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Lighter])
+            .SetValueFormat(OptionFormat.Seconds);
+        LighterSkillDuration = FloatOptionItem.Create(6853, "LighterSkillDuration", new(1f, 180f, 1f), 10f, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Lighter])
+            .SetValueFormat(OptionFormat.Seconds);
+        LighterVisionNormal = FloatOptionItem.Create(6854, "LighterVisionNormal", new(0f, 5f, 0.05f), 1.35f, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Lighter])
+            .SetValueFormat(OptionFormat.Multiplier);
+        LighterVisionOnLightsOut = FloatOptionItem.Create(6855, "LighterVisionOnLightsOut", new(0f, 5f, 0.05f), 0.5f, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Lighter])
+            .SetValueFormat(OptionFormat.Multiplier);
+        LighterSkillMaxOfUseage = IntegerOptionItem.Create(6856, "AbilityUseLimit", new(0, 180, 1), 4, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Lighter])
+            .SetValueFormat(OptionFormat.Times);
+        LighterAbilityUseGainWithEachTaskCompleted = FloatOptionItem.Create(6857, "AbilityUseGainWithEachTaskCompleted", new(0f, 5f, 0.1f), 1f, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Lighter])
             .SetValueFormat(OptionFormat.Times);
         ParityCop.SetupCustomOption();
         SabotageMaster.SetupCustomOption(); //Mechanic
@@ -1355,6 +1384,13 @@ public static class Options
             .SetValueFormat(OptionFormat.Multiplier);
         Crusader.SetupCustomOption();
         Counterfeiter.SetupCustomOption();
+        SetupSingleRoleOptions(8550, TabGroup.CrewmateRoles, CustomRoles.Witness, 1);
+        WitnessCD = FloatOptionItem.Create(8552, "AbilityCD", new(0f, 60f, 2.5f), 15f, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Witness])
+            .SetValueFormat(OptionFormat.Seconds);
+        WitnessTime = IntegerOptionItem.Create(8552, "WitnessTime", new(1, 30, 1), 10, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Witness])
+            .SetValueFormat(OptionFormat.Seconds);
         Jailer.SetupCustomOption();
         SwordsMan.SetupCustomOption();
 
@@ -1712,10 +1748,12 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Lazy]);
         TaskBasedCrewCanBeLazy = BooleanOptionItem.Create(14120, "TaskBasedCrewCanBeLazy", false, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Lazy]);
-        SetupAdtRoleOptions(14200, CustomRoles.Lighter, canSetNum: true);
-        LighterVision = FloatOptionItem.Create(14210, "LighterVision", new(0.5f, 5f, 0.25f), 1.25f, TabGroup.Addons, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Lighter])
+        SetupAdtRoleOptions(14200, CustomRoles.Torch, canSetNum: true);
+        TorchVision = FloatOptionItem.Create(14210, "TorchVision", new(0.5f, 5f, 0.25f), 1.25f, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Torch])
             .SetValueFormat(OptionFormat.Multiplier);
+        TorchAffectedByLights = BooleanOptionItem.Create(14220, "TorchAffectedByLights", false, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Torch]);
         SetupAdtRoleOptions(15500, CustomRoles.Loyal, canSetNum: true);
         ImpCanBeLoyal = BooleanOptionItem.Create(15510, "ImpCanBeLoyal", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Loyal]);

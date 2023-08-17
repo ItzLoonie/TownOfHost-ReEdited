@@ -437,6 +437,10 @@ public class TaskState
             {
                 Main.GrenadierNumOfUsed[player.PlayerId] += Options.GrenadierAbilityUseGainWithEachTaskCompleted.GetFloat();
             }
+            if (player.Is(CustomRoles.Lighter) && player.IsAlive())
+            {
+                Main.LighterNumOfUsed[player.PlayerId] += Options.LighterAbilityUseGainWithEachTaskCompleted.GetFloat();
+            }
             if (player.Is(CustomRoles.DovesOfNeace) && player.IsAlive())
             {
                 Main.DovesOfNeaceNumOfUsed[player.PlayerId] += Options.DovesOfNeaceAbilityUseGainWithEachTaskCompleted.GetFloat();
