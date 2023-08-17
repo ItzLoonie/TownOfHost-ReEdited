@@ -994,6 +994,9 @@ internal static class RPC
             case CustomRoles.Grenadier:
                 Main.GrenadierNumOfUsed.Add(targetId, Options.GrenadierSkillMaxOfUseage.GetInt());
                 break;
+            case CustomRoles.Lighter:
+                Main.LighterNumOfUsed.Add(targetId, Options.LighterSkillMaxOfUseage.GetInt());
+                break;
             case CustomRoles.TimeMaster:
                 Main.TimeMasterNumOfUsed.Add(targetId, Options.TimeMasterMaxUses.GetInt());
                 break;
