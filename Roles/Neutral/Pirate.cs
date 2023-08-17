@@ -15,7 +15,7 @@ public static class Pirate
     private static Dictionary<byte, bool> DuelDone = new();
     private static int pirateChose, targetChose;
     public static int NumWin = 0;
-    public static readonly string[] OptionList = new()
+    public static readonly string[] OptionList =
     {
         "Rock",
         "Paper",
