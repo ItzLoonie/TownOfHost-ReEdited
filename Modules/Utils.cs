@@ -614,8 +614,8 @@ public static class Utils
                 Color TextColor21;
                 if (Main.VeteranNumOfUsed[playerId] < 1) TextColor21 = Color.red;
                 else TextColor21 = Color.white;
-                ProgressText.Append(ColorString(TextColor2, $"<color=#777777>-</color> {Completed2}/{taskState2.AllTasksCount}"));
-                ProgressText.Append(ColorString(TextColor21, $" <color=#777777>-</color> {Math.Round(Main.VeteranNumOfUsed[playerId], 1)}"));
+                ProgressText.Append(ColorString(TextColor2, $"({Completed2}/{taskState2.AllTasksCount})"));
+                ProgressText.Append(ColorString(TextColor21, $" <color=#ffffff>-</color> {Math.Round(Main.VeteranNumOfUsed[playerId], 1)}"));
                 break;
             case CustomRoles.Grenadier:
                 var taskState3 = Main.PlayerStates?[playerId].GetTaskState();
@@ -628,8 +628,8 @@ public static class Utils
                 Color TextColor31;
                 if (Main.GrenadierNumOfUsed[playerId] < 1) TextColor31 = Color.red;
                 else TextColor31 = Color.white;
-                ProgressText.Append(ColorString(TextColor3, $"<color=#777777>-</color> {Completed3}/{taskState3.AllTasksCount}"));
-                ProgressText.Append(ColorString(TextColor31, $" <color=#777777>-</color> {Math.Round(Main.GrenadierNumOfUsed[playerId], 1)}"));
+                ProgressText.Append(ColorString(TextColor3, $"({Completed3}/{taskState3.AllTasksCount})"));
+                ProgressText.Append(ColorString(TextColor31, $" <color=#ffffff>-</color> {Math.Round(Main.GrenadierNumOfUsed[playerId], 1)}"));
                 break;
             case CustomRoles.Divinator:
                 var taskState4 = Main.PlayerStates?[playerId].GetTaskState();
@@ -642,8 +642,8 @@ public static class Utils
                 Color TextColor41;
                 if (Divinator.CheckLimit[playerId] < 1) TextColor41 = Color.red;
                 else TextColor41 = Color.white;
-                ProgressText.Append(ColorString(TextColor4, $"<color=#777777>-</color> {Completed4}/{taskState4.AllTasksCount}"));
-                ProgressText.Append(ColorString(TextColor41, $" <color=#777777>-</color> {Math.Round(Divinator.CheckLimit[playerId])}"));
+                ProgressText.Append(ColorString(TextColor4, $"({Completed4}/{taskState4.AllTasksCount})"));
+                ProgressText.Append(ColorString(TextColor41, $" <color=#ffffff>-</color> {Math.Round(Divinator.CheckLimit[playerId])}"));
                 break;
             case CustomRoles.DovesOfNeace:
                 var taskState5 = Main.PlayerStates?[playerId].GetTaskState();
@@ -656,8 +656,8 @@ public static class Utils
                 Color TextColor51;
                 if (Main.DovesOfNeaceNumOfUsed[playerId] < 1) TextColor51 = Color.red;
                 else TextColor51 = Color.white;
-                ProgressText.Append(ColorString(TextColor5, $"<color=#777777>-</color> {Completed5}/{taskState5.AllTasksCount}"));
-                ProgressText.Append(ColorString(TextColor51, $" <color=#777777>-</color> {Math.Round(Main.DovesOfNeaceNumOfUsed[playerId], 1)}"));
+                ProgressText.Append(ColorString(TextColor5, $"({Completed5}/{taskState5.AllTasksCount})"));
+                ProgressText.Append(ColorString(TextColor51, $" <color=#ffffff>-</color> {Math.Round(Main.DovesOfNeaceNumOfUsed[playerId], 1)}"));
                 break;
             case CustomRoles.TimeMaster:
                 var taskState6 = Main.PlayerStates?[playerId].GetTaskState();
@@ -670,8 +670,8 @@ public static class Utils
                 Color TextColor61;
                 if (Main.TimeMasterNumOfUsed[playerId] < 1) TextColor61 = Color.red;
                 else TextColor61 = Color.white;
-                ProgressText.Append(ColorString(TextColor6, $"<color=#777777>-</color> {Completed6}/{taskState6.AllTasksCount}"));
-                ProgressText.Append(ColorString(TextColor61, $" <color=#777777>-</color> {Math.Round(Main.TimeMasterNumOfUsed[playerId], 1)}"));
+                ProgressText.Append(ColorString(TextColor6, $"({Completed6}/{taskState6.AllTasksCount})"));
+                ProgressText.Append(ColorString(TextColor61, $" <color=#ffffff>-</color> {Math.Round(Main.TimeMasterNumOfUsed[playerId], 1)}"));
                 break;
             case CustomRoles.Mediumshiper:
                 var taskState7 = Main.PlayerStates?[playerId].GetTaskState();
@@ -684,8 +684,8 @@ public static class Utils
                 Color TextColor71;
                 if (Mediumshiper.ContactLimit[playerId] < 1) TextColor71 = Color.red;
                 else TextColor71 = Color.white;
-                ProgressText.Append(ColorString(TextColor7, $"<color=#777777>-</color> {Completed7}/{taskState7.AllTasksCount}"));
-                ProgressText.Append(ColorString(TextColor71, $" <color=#777777>-</color> {Math.Round(Mediumshiper.ContactLimit[playerId], 1)}"));
+                ProgressText.Append(ColorString(TextColor7, $"({Completed7}/{taskState7.AllTasksCount})"));
+                ProgressText.Append(ColorString(TextColor71, $" <color=#ffffff>-</color> {Math.Round(Mediumshiper.ContactLimit[playerId], 1)}"));
                 break;
             case CustomRoles.ParityCop:
                 var taskState8 = Main.PlayerStates?[playerId].GetTaskState();
@@ -698,8 +698,8 @@ public static class Utils
                 Color TextColor81;
                 if (ParityCop.MaxCheckLimit[playerId] < 1) TextColor81 = Color.red;
                 else TextColor81 = Color.white;
-                ProgressText.Append(ColorString(TextColor8, $"<color=#777777>-</color> {Completed8}/{taskState8.AllTasksCount}"));
-                ProgressText.Append(ColorString(TextColor81, $" <color=#777777>-</color> {Math.Round(ParityCop.MaxCheckLimit[playerId], 1)}"));
+                ProgressText.Append(ColorString(TextColor8, $"({Completed8}/{taskState8.AllTasksCount})"));
+                ProgressText.Append(ColorString(TextColor81, $" <color=#ffffff>-</color> {Math.Round(ParityCop.MaxCheckLimit[playerId], 1)}"));
                 break;
             case CustomRoles.Oracle:
                 var taskState9 = Main.PlayerStates?[playerId].GetTaskState();
@@ -712,8 +712,8 @@ public static class Utils
                 Color TextColor91;
                 if (Oracle.CheckLimit[playerId] < 1) TextColor91 = Color.red;
                 else TextColor91 = Color.white;
-                ProgressText.Append(ColorString(TextColor9, $"<color=#777777>-</color> {Completed9}/{taskState9.AllTasksCount}"));
-                ProgressText.Append(ColorString(TextColor91, $" <color=#777777>-</color> {Math.Round(Oracle.CheckLimit[playerId], 1)}"));
+                ProgressText.Append(ColorString(TextColor9, $"({Completed9}/{taskState9.AllTasksCount})"));
+                ProgressText.Append(ColorString(TextColor91, $" <color=#ffffff>-</color> {Math.Round(Oracle.CheckLimit[playerId], 1)}"));
                 break;
             case CustomRoles.SabotageMaster:
                 var taskState10 = Main.PlayerStates?[playerId].GetTaskState();
@@ -726,8 +726,8 @@ public static class Utils
                 Color TextColor101;
                 if (SabotageMaster.SkillLimit.GetFloat() - SabotageMaster.UsedSkillCount < 1) TextColor101 = Color.red;
                 else TextColor101 = Color.white;
-                ProgressText.Append(ColorString(TextColor10, $"<color=#777777>-</color> {Completed10}/{taskState10.AllTasksCount}"));
-                ProgressText.Append(ColorString(TextColor101, $" <color=#777777>-</color> {Math.Round(SabotageMaster.SkillLimit.GetFloat() - SabotageMaster.UsedSkillCount, 1)}"));
+                ProgressText.Append(ColorString(TextColor10, $"({Completed10}/{taskState10.AllTasksCount})"));
+                ProgressText.Append(ColorString(TextColor101, $" <color=#ffffff>-</color> {Math.Round(SabotageMaster.SkillLimit.GetFloat() - SabotageMaster.UsedSkillCount, 1)}"));
                 break;
             case CustomRoles.Tracker:
                 var taskState11 = Main.PlayerStates?[playerId].GetTaskState();
@@ -740,8 +740,8 @@ public static class Utils
                 Color TextColor111;
                 if (Tracker.TrackLimit[playerId] < 1) TextColor111 = Color.red;
                 else TextColor111 = Color.white;
-                ProgressText.Append(ColorString(TextColor11, $"<color=#777777>-</color> {Completed11}/{taskState11.AllTasksCount}"));
-                ProgressText.Append(ColorString(TextColor111, $" <color=#777777>-</color> {Math.Round(Tracker.TrackLimit[playerId], 1)}"));
+                ProgressText.Append(ColorString(TextColor11, $"({Completed11}/{taskState11.AllTasksCount})"));
+                ProgressText.Append(ColorString(TextColor111, $" <color=#ffffff>-</color> {Math.Round(Tracker.TrackLimit[playerId], 1)}"));
                 break;
             case CustomRoles.Bloodhound:
                 var taskState12 = Main.PlayerStates?[playerId].GetTaskState();
@@ -754,8 +754,8 @@ public static class Utils
                 Color TextColor121;
                 if (Bloodhound.UseLimit[playerId] < 1) TextColor121 = Color.red;
                 else TextColor121 = Color.white;
-                ProgressText.Append(ColorString(TextColor12, $"<color=#777777>-</color> {Completed12}/{taskState12.AllTasksCount}"));
-                ProgressText.Append(ColorString(TextColor121, $" <color=#777777>-</color> {Math.Round(Bloodhound.UseLimit[playerId], 1)}"));
+                ProgressText.Append(ColorString(TextColor12, $"({Completed12}/{taskState12.AllTasksCount})"));
+                ProgressText.Append(ColorString(TextColor121, $" <color=#ffffff>-</color> {Math.Round(Bloodhound.UseLimit[playerId], 1)}"));
                 break;
             case CustomRoles.Chameleon:
                 var taskState13 = Main.PlayerStates?[playerId].GetTaskState();
@@ -768,34 +768,8 @@ public static class Utils
                 Color TextColor131;
                 if (Chameleon.UseLimit[playerId] < 1) TextColor131 = Color.red;
                 else TextColor131 = Color.white;
-                ProgressText.Append(ColorString(TextColor13, $"<color=#777777>-</color> {Completed13}/{taskState13.AllTasksCount}"));
-                ProgressText.Append(ColorString(TextColor131, $" <color=#777777>-</color> {Math.Round(Chameleon.UseLimit[playerId], 1)}"));
-                break;
-            case CustomRoles.Lighter:
-                var taskState14 = Main.PlayerStates?[playerId].GetTaskState();
-                Color TextColor14;
-                var TaskCompleteColor14 = Color.green;
-                var NonCompleteColor14 = Color.yellow;
-                var NormalColor14 = taskState14.IsTaskFinished ? TaskCompleteColor14 : NonCompleteColor14;
-                TextColor14 = comms ? Color.gray : NormalColor14;
-                string Completed14 = comms ? "?" : $"{taskState14.CompletedTasksCount}";
-                Color TextColor141;
-                if (Main.LighterNumOfUsed[playerId] < 1) TextColor141 = Color.red;
-                else TextColor141 = Color.white;
-                ProgressText.Append(ColorString(TextColor14, $"<color=#777777>-</color> {Completed14}/{taskState14.AllTasksCount}"));
-                ProgressText.Append(ColorString(TextColor141, $" <color=#777777>-</color> {Math.Round(Main.LighterNumOfUsed[playerId], 1)}"));
-                break;
-            case CustomRoles.TaskManager:
-                var taskState1 = Main.PlayerStates?[playerId].GetTaskState();
-                Color TextColor1;
-                var TaskCompleteColor1 = Color.green;
-                var NonCompleteColor1 = Color.yellow;
-                var NormalColor1 = taskState1.IsTaskFinished ? TaskCompleteColor1 : NonCompleteColor1;
-                TextColor1 = comms ? Color.gray : NormalColor1;
-                string Completed1 = comms ? "?" : $"{taskState1.CompletedTasksCount}";
-                string totalCompleted1 = comms ? "?" : $"{GameData.Instance.CompletedTasks}";
-                ProgressText.Append(ColorString(TextColor1, $"<color=#777777>-</color> {Completed1}/{taskState1.AllTasksCount}"));
-                ProgressText.Append($" <color=#777777>-</color> <color=#00ffa5>{totalCompleted1}</color><color=#ffffff>/{GameData.Instance.TotalTasks}</color>");
+                ProgressText.Append(ColorString(TextColor13, $"({Completed13}/{taskState13.AllTasksCount})"));
+                ProgressText.Append(ColorString(TextColor131, $" <color=#ffffff>-</color> {Math.Round(Chameleon.UseLimit[playerId], 1)}"));
                 break;
             case CustomRoles.Pirate:
                 ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Pirate).ShadeColor(0.25f), $"({Pirate.NumWin}/{Pirate.SuccessfulDuelsToWin.GetInt()})"));
