@@ -18,46 +18,54 @@ public class MainMenuManagerPatch
     [HarmonyPatch(nameof(MainMenuManager.Start)), HarmonyPostfix, HarmonyPriority(Priority.Normal)]
     public static void StartPostfix(MainMenuManager __instance)
     {
-        template ??= __instance.quitButton;
+        if (template == null) template = __instance.quitButton;
         if (template == null) return;
 
 
         // GitHub Button
-        gitHubButton ??= CreateButton(
+        if (gitHubButton == null)
+        {
+            gitHubButton = CreateButton(
                 "GitHubButton",
                 new(-1.8f, -1.4f, 1f),
                 new(153, 153, 153, byte.MaxValue),
                 new(209, 209, 209, byte.MaxValue),
                 () => Application.OpenURL(Main.GitHubInviteUrl),
                 GetString("GitHub")); //"GitHub"
+        }
         gitHubButton.gameObject.SetActive(Main.ShowGitHubButton);
 
-
         // Discord Button
-        discordButton ??= CreateButton(
+        if (discordButton == null)
+        {
+            discordButton = CreateButton(
                 "DiscordButton",
                 new(-1.8f, -1.8f, 1f),
                 new(88, 101, 242, byte.MaxValue),
                 new(148, 161, byte.MaxValue, byte.MaxValue),
                 () => Application.OpenURL(Main.DiscordInviteUrl),
                 GetString("Discord")); //"Discord"
+        }
         discordButton.gameObject.SetActive(Main.ShowDiscordButton);
 
-
         // Website Button
-        websiteButton ??= CreateButton(
+        if (websiteButton == null)
+        {
+            websiteButton = CreateButton(
                 "WebsiteButton",
                 new(-1.8f, -2.2f, 1f),
                 new(251, 81, 44, byte.MaxValue),
                 new(211, 77, 48, byte.MaxValue),
                 () => Application.OpenURL(Main.WebsiteInviteUrl),
                 GetString("Website")); //"Website"
+        }
         websiteButton.gameObject.SetActive(Main.ShowWebsiteButton);
 
 
         var howToPlayButton = __instance.howToPlayButton;
         var freeplayButton = howToPlayButton.transform.parent.Find("FreePlayButton");
-        freeplayButton?.gameObject.SetActive(false);
+        
+        if (freeplayButton != null) freeplayButton.gameObject.SetActive(false);
 
         howToPlayButton.transform.SetLocalX(0);
 
@@ -109,12 +117,12 @@ public class MainMenuManagerPatch
     [HarmonyPostfix]
     public static void OpenMenuPostfix()
     {
-        Credentials.ToheLogo?.gameObject.SetActive(false);
+        if (Credentials.ToheLogo != null) Credentials.ToheLogo.gameObject.SetActive(false);
     }
     [HarmonyPatch(nameof(MainMenuManager.ResetScreen)), HarmonyPostfix]
     public static void ResetScreenPostfix()
     {
-        Credentials.ToheLogo?.gameObject.SetActive(true);
+        if (Credentials.ToheLogo != null) Credentials.ToheLogo.gameObject.SetActive(true);
     }
 }
 
