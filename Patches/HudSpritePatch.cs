@@ -154,6 +154,7 @@ public static class HudSpritePatch
         __instance.KillButton.graphic.sprite = newKillButton;
         __instance.AbilityButton.graphic.sprite = newAbilityButton;
         __instance.ImpostorVentButton.graphic.sprite = newVentButton;
+        __instance.ReportButton.graphic.sprite = newReportButton;
 
     }
 }
