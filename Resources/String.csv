@@ -1047,8 +1047,6 @@
 "SheriffShowShotLimit","","Display Shot Limit next to Role Name","","",""
 "AbilityCD","","Ability Cooldown","","",""
 "GrenadierSkillMaxOfUseage","","(Initial) Max number of Grenades","","",""
-"SwooperVentNormallyOnCooldown","","<color=#ff1919>Swooper</color> vents normally when swooping is on cooldown","","",""
-"WraithVentNormallyOnCooldown","","<color=#4b0082>Wraith</color> vents normally when invis is on cooldown","","",""
 "ShowSpecificRole","","Know specific roles on Task Completion","","",""
 "TimeMasterMaxUses","","(Initial) Max Amount of Ability Uses","","",""
 "FailChance","","Chance of showing incorrect result","Результат:","",""
