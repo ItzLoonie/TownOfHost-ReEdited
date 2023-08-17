@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using static TOHE.Options;
 using static TOHE.Translator;
@@ -88,7 +88,8 @@ public static class Divinator
                 CustomRoles.AntiAdminer or
                 CustomRoles.Monitor or
                 CustomRoles.Dazzler or
-                CustomRoles.Grenadier
+                CustomRoles.Grenadier or
+                CustomRoles.Lighter
                 => "Result1",
 
                 CustomRoles.Crusader or
@@ -101,6 +102,7 @@ public static class Divinator
 
                 CustomRoles.Capitalism or
                 CustomRoles.Counterfeiter or
+                CustomRoles.Witness or
                 CustomRoles.Greedier or
                 CustomRoles.Merchant or
                 CustomRoles.SoulCollector or
@@ -213,7 +215,6 @@ public static class Divinator
                 CustomRoles.Mario or
                 CustomRoles.Jester or
                 CustomRoles.Lurker or
-                CustomRoles.Jailer or
                 CustomRoles.Sunnyboy
                 => "Result17",
 
@@ -279,6 +280,7 @@ public static class Divinator
                 CustomRoles.Jinx or
                 CustomRoles.SwordsMan or
                 CustomRoles.Veteran or
+                CustomRoles.TaskManager or
                 CustomRoles.Shroud or
                 CustomRoles.Hangman or
                 CustomRoles.Pitfall
