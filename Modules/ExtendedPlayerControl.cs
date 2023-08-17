@@ -893,7 +893,7 @@ static class ExtendedPlayerControl
                 QuickShooter.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.Provocateur:
-                Main.AllPlayerKillCooldown[player.PlayerId] = 0f;
+                Main.AllPlayerKillCooldown[player.PlayerId] = Options.ProvKillCD.GetFloat();
                 break;
             case CustomRoles.Assassin:
                 Assassin.SetKillCooldown(player.PlayerId);

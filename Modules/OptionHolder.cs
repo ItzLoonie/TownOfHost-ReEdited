@@ -282,6 +282,7 @@ public static class Options
     public static OptionItem RevolutionistDrawCount;
     public static OptionItem RevolutionistKillProbability;
     public static OptionItem RevolutionistVentCountDown;
+    public static OptionItem ProvKillCD;
     public static OptionItem ShapeImperiusCurseShapeshiftDuration;
     public static OptionItem ImperiusCurseShapeshiftCooldown;
     public static OptionItem CrewpostorCanKillAllies;
@@ -1493,6 +1494,9 @@ public static class Options
         PhantomTasks = OverrideTasksData.Create(11413, TabGroup.NeutralRoles, CustomRoles.Phantom);
         Pirate.SetupCustomOption();
         SetupRoleOptions(18500, TabGroup.NeutralRoles, CustomRoles.Provocateur);
+        ProvKillCD = FloatOptionItem.Create(18511, "KillCooldown", new(0f, 100f, 2.5f), 15f, TabGroup.NeutralRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Provocateur])
+            .SetValueFormat(OptionFormat.Seconds);
         SetupRoleOptions(18400, TabGroup.NeutralRoles, CustomRoles.Revolutionist);
         RevolutionistDrawTime = FloatOptionItem.Create(18410, "RevolutionistDrawTime", new(0f, 10f, 1f), 3f, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Revolutionist])
