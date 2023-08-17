@@ -106,6 +106,12 @@ public static class HudSpritePatch
             case CustomRoles.Veteran:
                 newAbilityButton = CustomButton.Get("Veteran");
                 break;
+            case CustomRoles.Lighter:
+                newAbilityButton = CustomButton.Get("Lighter");
+                break;
+            case CustomRoles.Witness:
+                newKillButton = CustomButton.Get("Examine");
+                break;
             case CustomRoles.Pelican:
                 newKillButton = CustomButton.Get("Vulture");
                 break;
