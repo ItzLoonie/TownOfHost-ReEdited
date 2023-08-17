@@ -237,6 +237,8 @@ class BeginCrewmatePatch
                 break;
 
             case CustomRoles.Workaholic:
+            case CustomRoles.Snitch:
+            case CustomRoles.TaskManager:
                 PlayerControl.LocalPlayer.Data.Role.IntroSound = DestroyableSingleton<HudManager>.Instance.TaskCompleteSound;
                 break;
 
@@ -262,6 +264,28 @@ class BeginCrewmatePatch
                 __instance.BackgroundBar.material.color = Utils.GetRoleColor(role);
                 __instance.ImpostorText.gameObject.SetActive(false);
                 PlayerControl.LocalPlayer.Data.Role.IntroSound = DestroyableSingleton<HudManager>.Instance.TaskCompleteSound;
+                break;
+            case CustomRoles.Sheriff:
+            case CustomRoles.Veteran:
+            case CustomRoles.SwordsMan:
+            case CustomRoles.Minimalism:
+            case CustomRoles.Reverie:
+            case CustomRoles.NiceGuesser:
+                PlayerControl.LocalPlayer.Data.Role.IntroSound = PlayerControl.LocalPlayer.KillSfx;
+                break;
+            case CustomRoles.Swooper:
+            case CustomRoles.Wraith:
+            case CustomRoles.Chameleon:
+                PlayerControl.LocalPlayer.Data.Role.IntroSound = PlayerControl.LocalPlayer.MyPhysics.ImpostorDiscoveredSound;
+                break;
+            case CustomRoles.Addict:
+                PlayerControl.LocalPlayer.Data.Role.IntroSound = ShipStatus.Instance.VentEnterSound;
+                break;
+            case CustomRoles.ParityCop:
+            case CustomRoles.Mediumshiper:
+            case CustomRoles.Mayor:
+            case CustomRoles.Dictator:
+                PlayerControl.LocalPlayer.Data.Role.IntroSound = HudManager.Instance.Chat.messageSound;
                 break;
         }
 
@@ -385,7 +409,7 @@ class BeginImpostorPatch
             __instance.overlayHandle.color = Palette.ImpostorRed;
             return true;
         }
-        else if (role is CustomRoles.Sheriff or CustomRoles.Jailer or CustomRoles.SwordsMan or CustomRoles.Medic or CustomRoles.Counterfeiter or CustomRoles.Monarch or CustomRoles.Farseer or CustomRoles.Reverie or CustomRoles.Admirer or CustomRoles.Deputy or CustomRoles.Crusader or CustomRoles.CopyCat)
+        else if (role is CustomRoles.Sheriff or CustomRoles.Jailer or CustomRoles.SwordsMan or CustomRoles.Medic or CustomRoles.Counterfeiter or CustomRoles.Witness or CustomRoles.Monarch or CustomRoles.Farseer or CustomRoles.Reverie or CustomRoles.Admirer or CustomRoles.Deputy or CustomRoles.Crusader or CustomRoles.CopyCat)
         {
             yourTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             yourTeam.Add(PlayerControl.LocalPlayer);
