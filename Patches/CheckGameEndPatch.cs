@@ -63,7 +63,7 @@ class GameEndChecker
                     break;
                 case CustomWinner.Impostor:
                     Main.AllPlayerControls
-                        .Where(pc => (pc.Is(CustomRoleTypes.Impostor) || pc.Is(CustomRoles.Madmate)) && !pc.Is(CustomRoles.Rogue) && !pc.Is(CustomRoles.Charmed) && !pc.Is(CustomRoles.Recruit) && !pc.Is(CustomRoles.Infected) && !pc.Is(CustomRoles.Contagious) && !pc.Is(CustomRoles.EvilSpirit) && !pc.Is(CustomRoles.Recruit) && !pc.Is(CustomRoles.Admired))
+                        .Where(pc => (pc.Is(CustomRoleTypes.Impostor) || pc.Is(CustomRoles.Madmate) || pc.Is(CustomRoles.Crewpostor) || pc.Is(CustomRoles.Parasite) || pc.Is(CustomRoles.Refugee) || pc.Is(CustomRoles.Convict)) && !pc.Is(CustomRoles.Rogue) && !pc.Is(CustomRoles.Charmed) && !pc.Is(CustomRoles.Recruit) && !pc.Is(CustomRoles.Infected) && !pc.Is(CustomRoles.Contagious) && !pc.Is(CustomRoles.EvilSpirit) && !pc.Is(CustomRoles.Recruit) && !pc.Is(CustomRoles.Admired))
                         .Do(pc => CustomWinnerHolder.WinnerIds.Add(pc.PlayerId));
                     break;
                 case CustomWinner.Succubus:
@@ -496,10 +496,10 @@ class GameEndChecker
             {
                 reason = GameOverReason.ImpostorByKill;
                 CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Impostor);
-                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Parasite);
+        /*        CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Parasite);
                 CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Refugee);
                 CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Crewpostor);
-                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Convict);
+                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Convict); */
             }
             else if (Imp == 0 && Pel == 0 && Traitor == 0 && Med == 0 && Rit == 0 && PP == 0 && Gam == 0 && Vamp == 0 && DH == 0 && Rogue == 0 && Shade == 0 && Agitater == 0 && Pestilence == 0 && PB == 0 && Juggy == 0 && Coven == 0 && WW == 0 && Shr == 0 && Arso == 0 && Glitch == 0 && Jinx == 0 && SK == 0 && Hex == 0 && BK == 0 && Pois == 0 && Virus == 0 && SC == 0 && CM == 0 && Crew <= Jackal) //豺狼胜利
             {
