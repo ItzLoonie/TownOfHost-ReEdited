@@ -226,6 +226,12 @@ class CheckMurderPatch
                 case CustomRoles.Poisoner:
                     if (!Poisoner.OnCheckMurder(killer, target)) return false;
                     break;
+                case CustomRoles.Witness:
+                    killer.SetKillCooldown();
+                    if (Main.AllKillers.TryGetValue(target.PlayerId, out var killerId) && target.PlayerId == killerId)
+                        killer.Notify(GetString("WitnessFoundKiller"));
+                    else killer.Notify(GetString("WitnessFoundInnocent"));
+                    return false;
                 case CustomRoles.Warlock:
                     if (!Main.CheckShapeshift[killer.PlayerId] && !Main.isCurseAndKill[killer.PlayerId])
                     { //Warlockが変身時以外にキルしたら、呪われる処理
@@ -1148,8 +1154,8 @@ class MurderPlayerPatch
                     }
                     else
                     {
-                        if (!killer.IsModClient()) killer.RpcGuardAndKill();
                         RPC.PlaySoundRPC(killer.PlayerId, Sounds.TaskComplete);
+                        killer.SetKillCooldown(time : Main.AllPlayerKillCooldown[killer.PlayerId] - Options.BurstKillDelay.GetFloat(), forceAnime: true);
                         killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Burst), GetString("BurstFailed")));                        
                     }
                     Main.BurstBodies.Remove(target.PlayerId);
@@ -1160,6 +1166,9 @@ class MurderPlayerPatch
 
         if (target.Is(CustomRoles.Trapper) && killer != target)
             killer.TrapperKilled(target);
+
+        Main.AllKillers.Add(killer.PlayerId, 1);
+        new LateTask(() => { Main.AllKillers.Remove(killer.PlayerId); }, Options.WitnessTime.GetInt());
 
         switch (target.GetCustomRole())
         {
@@ -1868,6 +1877,8 @@ class ReportDeadBodyPatch
         Main.VeteranInProtect.Clear();
         Main.GrenadierBlinding.Clear();
         Main.MadGrenadierBlinding.Clear();
+        Main.Lighter.Clear();
+        Main.AllKillers.Clear();
         Divinator.didVote.Clear();
         Oracle.didVote.Clear();
         Bloodhound.Clear();
@@ -2270,6 +2281,18 @@ class FixedUpdatePatch
                         else player.RpcResetAbilityCooldown();
                         player.Notify(GetString("GrenadierSkillStop"));
                         Utils.MarkEveryoneDirtySettings();
+                    }
+                }
+
+                if (GameStates.IsInTask && player.Is(CustomRoles.Lighter))
+                {
+                    if (Main.Lighter.TryGetValue(player.PlayerId, out var ltime) && ltime + Options.LighterSkillDuration.GetInt() < Utils.GetTimeStamp())
+                    {
+                        Main.Lighter.Remove(player.PlayerId);
+                        if (!Options.DisableShieldAnimations.GetBool()) player.RpcGuardAndKill();
+                        else player.RpcResetAbilityCooldown();
+                        player.Notify(GetString("LighterSkillStop"));
+                        player.MarkDirtySettings();
                     }
                 }
 
@@ -3112,6 +3135,22 @@ class EnterVentPatch
                 });
                 pc.RPCPlayCustomSound("Dove");
                 pc.Notify(string.Format(GetString("DovesOfNeaceOnGuard"), Main.DovesOfNeaceNumOfUsed[pc.PlayerId]));
+            }
+        }
+        if (pc.Is(CustomRoles.Lighter))
+        {
+            if (Main.LighterNumOfUsed[pc.PlayerId] >= 1)
+            {
+                Main.Lighter.Remove(pc.PlayerId);
+                Main.Lighter.Add(pc.PlayerId, Utils.GetTimeStamp());
+                if (!Options.DisableShieldAnimations.GetBool()) pc.RpcGuardAndKill(pc);
+                pc.Notify(GetString("LighterSkillInUse"), Options.LighterSkillDuration.GetFloat());
+                Main.LighterNumOfUsed[pc.PlayerId] -= 1;
+                pc.MarkDirtySettings();
+            }
+            else
+            {
+                pc.Notify(GetString("OutOfAbilityUsesDoMoreTasks"));
             }
         }
         if (pc.Is(CustomRoles.TimeMaster))
