@@ -989,7 +989,7 @@ public static class Utils
         }
         var sb = new StringBuilder();
 
-        sb.Append(GetString("Settings")).Append(":");
+        sb.Append(GetString("Settings")).Append(':');
         foreach (var role in Options.CustomRoleCounts)
         {
             if (!role.Key.IsEnable()) continue;
@@ -1130,7 +1130,7 @@ public static class Utils
         }
         var sb = new StringBuilder();
 
-        sb.Append(GetString("PlayerInfo")).Append(":");
+        sb.Append(GetString("PlayerInfo")).Append(':');
         List<byte> cloneRoles = new(Main.PlayerStates.Keys);
         foreach (var id in Main.winnerList)
         {
