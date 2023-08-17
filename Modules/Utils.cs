@@ -769,6 +769,32 @@ public static class Utils
                 ProgressText.Append(ColorString(TextColor13, $"<color=#777777>-</color> {Completed13}/{taskState13.AllTasksCount}"));
                 ProgressText.Append(ColorString(TextColor131, $" <color=#777777>-</color> {Math.Round(Chameleon.UseLimit[playerId], 1)}"));
                 break;
+            case CustomRoles.Lighter:
+                var taskState14 = Main.PlayerStates?[playerId].GetTaskState();
+                Color TextColor14;
+                var TaskCompleteColor14 = Color.green;
+                var NonCompleteColor14 = Color.yellow;
+                var NormalColor14 = taskState14.IsTaskFinished ? TaskCompleteColor14 : NonCompleteColor14;
+                TextColor14 = comms ? Color.gray : NormalColor14;
+                string Completed14 = comms ? "?" : $"{taskState14.CompletedTasksCount}";
+                Color TextColor141;
+                if (Main.LighterNumOfUsed[playerId] < 1) TextColor141 = Color.red;
+                else TextColor141 = Color.white;
+                ProgressText.Append(ColorString(TextColor14, $"<color=#777777>-</color> {Completed14}/{taskState14.AllTasksCount}"));
+                ProgressText.Append(ColorString(TextColor141, $" <color=#777777>-</color> {Math.Round(Main.LighterNumOfUsed[playerId], 1)}"));
+                break;
+            case CustomRoles.TaskManager:
+                var taskState1 = Main.PlayerStates?[playerId].GetTaskState();
+                Color TextColor1;
+                var TaskCompleteColor1 = Color.green;
+                var NonCompleteColor1 = Color.yellow;
+                var NormalColor1 = taskState1.IsTaskFinished ? TaskCompleteColor1 : NonCompleteColor1;
+                TextColor1 = comms ? Color.gray : NormalColor1;
+                string Completed1 = comms ? "?" : $"{taskState1.CompletedTasksCount}";
+                string totalCompleted1 = comms ? "?" : $"{GameData.Instance.CompletedTasks}";
+                ProgressText.Append(ColorString(TextColor1, $"<color=#777777>-</color> {Completed1}/{taskState1.AllTasksCount}"));
+                ProgressText.Append($" <color=#777777>-</color> <color=#00ffa5>{totalCompleted1}</color><color=#ffffff>/{GameData.Instance.TotalTasks}</color>");
+                break;
             case CustomRoles.Pirate:
                 ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Pirate).ShadeColor(0.25f), $"({Pirate.NumWin}/{Pirate.SuccessfulDuelsToWin.GetInt()})"));
                 break;
