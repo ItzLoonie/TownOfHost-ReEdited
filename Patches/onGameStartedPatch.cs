@@ -19,9 +19,22 @@ namespace TOHE;
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.CoStartGame))]
 internal class ChangeRoleSettings
 {
+    //private static void changeModName(PlayerControl pc)
+    //{
+    //    string name = "";
+    //    if (Utils.IsPlayerModerator(pc.FriendCode))
+    //    {
+    //        int startIndex = pc.GetRealName().IndexOf("♥</color>") + "♥</color>".Length;
+    //        name = pc.GetRealName().Substring(startIndex);
+    //        pc.RpcSetName(name);
+    //    }
+    //}
     public static void Postfix(AmongUsClient __instance)
     {
         Main.OverrideWelcomeMsg = "";
+        //Main.AllPlayerControls.Do(pc => changeModName(pc));
+        //foreach (var pc in Main.AllPlayerControls)
+        //    changeModName(pc);
         try
         {
             //注:この時点では役職は設定されていません。

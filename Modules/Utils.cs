@@ -1523,7 +1523,7 @@ public static class Utils
     public static void ApplySuffix(PlayerControl player)
     {
         if (!AmongUsClient.Instance.AmHost || player == null) return;
-        if (!(player.AmOwner || (player.FriendCode.GetDevUser().HasTag()))) return;
+        if (!(player.AmOwner || (player.FriendCode.GetDevUser().HasTag()) || IsPlayerModerator(player.FriendCode))) return;
         string name = Main.AllPlayerNames.TryGetValue(player.PlayerId, out var n) ? n : "";
         if (Main.nickName != "" && player.AmOwner) name = Main.nickName;
         if (name == "") return;
@@ -1573,6 +1573,32 @@ public static class Utils
             }
             if (!name.Contains('\r') && player.FriendCode.GetDevUser().HasTag())
                 name = player.FriendCode.GetDevUser().GetTag() + name;
+            else if (Options.ApplyModeratorList.GetValue() == 1 && player.FriendCode != PlayerControl.LocalPlayer.FriendCode)
+            {
+                if (IsPlayerModerator(player.FriendCode))
+                {
+                    string colorFilePath = @$"./TOHE-DATA/MOD_TAGS/{player.FriendCode}.txt";
+                    string startColorCode = "8bbee0";
+                    string endColorCode = "8bbee0";
+                    string ColorCode = "";
+                    if (File.Exists(colorFilePath))
+                    {
+                        ColorCode = File.ReadAllText(colorFilePath);
+                        startColorCode = ColorCode.Split(" ")[0];
+                        endColorCode = ColorCode.Split(" ")[1];
+                        //Logger.Msg("found the file","applysuffix");
+                    }
+                    Regex regex = new Regex(@"^[0-9A-Fa-f]{6}\s[0-9A-Fa-f]{6}$");
+                    if (!regex.IsMatch(ColorCode))
+                    {
+                        startColorCode = "8bbee0";
+                        endColorCode = "8bbee0";
+                    }
+                    //"33ccff", "ff99cc"
+                    name = GradientColorText(startColorCode, endColorCode, "Moderator♥") + name;
+                    //Logger.Msg($"{name}", "name");
+                }
+            }
             else if (player.AmOwner)
             {
                 name = Options.GetSuffixMode() switch
@@ -1592,6 +1618,59 @@ public static class Utils
         if (name != player.name && player.CurrentOutfitType == PlayerOutfitType.Default)
             player.RpcSetName(name);
     }
+    public static bool IsPlayerModerator(string friendCode)
+    {
+        var friendCodesFilePath = @"./TOHE-DATA/Moderators.txt";
+        var friendCodes = File.ReadAllLines(friendCodesFilePath);
+        return friendCodes.Contains(friendCode);
+    }
+    public static string GradientColorText(string startColorHex, string endColorHex, string text)
+    {
+        if (startColorHex.Length != 6 || endColorHex.Length != 6)
+        {
+            throw new ArgumentException("Invalid color hex code. Hex code should be 6 characters long (e.g., FFFFFF).");
+        }
+
+        Color startColor = HexToColor(startColorHex);
+        Color endColor = HexToColor(endColorHex);
+
+        int textLength = text.Length;
+        float stepR = (endColor.r - startColor.r) / (float)textLength;
+        float stepG = (endColor.g - startColor.g) / (float)textLength;
+        float stepB = (endColor.b - startColor.b) / (float)textLength;
+        float stepA = (endColor.a - startColor.a) / (float)textLength;
+
+        string gradientText = "";
+
+        for (int i = 0; i < textLength; i++)
+        {
+            float r = startColor.r + (stepR * i);
+            float g = startColor.g + (stepG * i);
+            float b = startColor.b + (stepB * i);
+            float a = startColor.a + (stepA * i);
+
+
+            string colorHex = ColorToHex(new Color(r, g, b, a));
+            //Logger.Msg(colorHex, "color");
+            gradientText += $"<color=#{colorHex}>{text[i]}</color>";
+        }
+
+        return gradientText;
+    }
+
+    public static Color HexToColor(string hex)
+    {
+        Color color = new Color();
+        ColorUtility.TryParseHtmlString("#" + hex, out color);
+        return color;
+    }
+
+    public static string ColorToHex(Color color)
+    {
+        Color32 color32 = (Color32)color;
+        return $"{color32.r:X2}{color32.g:X2}{color32.b:X2}{color32.a:X2}";
+    }
+
     public static PlayerControl GetPlayerById(int PlayerId)
     {
         return Main.AllPlayerControls.Where(pc => pc.PlayerId == PlayerId).FirstOrDefault();
