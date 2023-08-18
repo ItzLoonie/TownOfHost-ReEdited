@@ -254,6 +254,9 @@ internal class ChangeRoleSettings
             BloodKnight.Init();
             Banshee.Init();
             Totocalcio.Init();
+            Romantic.Init();
+            VengefulRomantic.Init();
+            RuthlessRomantic.Init();
             Succubus.Init();
             Crusader.Init();
             CursedSoul.Init();
@@ -738,6 +741,15 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Totocalcio:
                         Totocalcio.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Romantic:
+                        Romantic.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.VengefulRomantic:
+                        VengefulRomantic.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.RuthlessRomantic:
+                        RuthlessRomantic.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Succubus:
                         Succubus.Add(pc.PlayerId);

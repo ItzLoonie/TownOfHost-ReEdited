@@ -61,6 +61,8 @@ enum CustomRPC
     SetCurrentDrawTarget,
     SetGamerHealth,
     RpcPassBomb,
+    SyncRomanticTarget,
+    SyncVengefulRomanticTarget,
     SetJailerTarget,
     SetJailerExeLimit,
     SetCleanserCleanLimit,
@@ -551,6 +553,12 @@ internal class RPCHandlerPatch
             case CustomRPC.SyncTotocalcioTargetAndTimes:
                 Totocalcio.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SyncRomanticTarget:
+                Romantic.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SyncVengefulRomanticTarget:
+                VengefulRomantic.ReceiveRPC(reader);
+                break;
             case CustomRPC.SetSuccubusCharmLimit:
                 Succubus.ReceiveRPC(reader);
                 break;
@@ -1020,6 +1028,15 @@ internal static class RPC
                 break;
             case CustomRoles.Totocalcio:
                 Totocalcio.Add(targetId);
+                break;
+            case CustomRoles.Romantic:
+                Romantic.Add(targetId);
+                break;
+            case CustomRoles.VengefulRomantic:
+                VengefulRomantic.Add(targetId);
+                break;
+            case CustomRoles.RuthlessRomantic:
+                RuthlessRomantic.Add(targetId);
                 break;
             case CustomRoles.Succubus:
                 Succubus.Add(targetId);

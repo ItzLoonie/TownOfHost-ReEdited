@@ -779,6 +779,7 @@ class MeetingHudStartPatch
                 (pc.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && pc.GetPlayerTaskState().IsTaskFinished) ||
                 (pc.Is(CustomRoles.Marshall) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Crewmate) && pc.GetPlayerTaskState().IsTaskFinished) ||
                 (Totocalcio.KnowRole(PlayerControl.LocalPlayer, pc)) ||
+                (Romantic.KnowRole(PlayerControl.LocalPlayer, pc)) ||
                 (EvilDiviner.IsShowTargetRole(PlayerControl.LocalPlayer, pc)) ||
                 (PotionMaster.IsShowTargetRole(PlayerControl.LocalPlayer, pc)) ||
                 (Lawyer.KnowRole(PlayerControl.LocalPlayer, pc)) ||
@@ -947,6 +948,7 @@ class MeetingHudStartPatch
                 case CustomRoles.BloodKnight:
                 case CustomRoles.Banshee:
                 case CustomRoles.Infectious:
+                case CustomRoles.RuthlessRomantic:
                 case CustomRoles.Virus:
                 case CustomRoles.Medusa:
                 case CustomRoles.Succubus:
@@ -1109,6 +1111,7 @@ class MeetingHudStartPatch
 
             //赌徒提示
             sb.Append(Totocalcio.TargetMark(seer, target));
+            sb.Append(Romantic.TargetMark(seer, target));
             sb.Append(Lawyer.LawyerMark(seer, target));
 
             //会議画面ではインポスター自身の名前にSnitchマークはつけません。

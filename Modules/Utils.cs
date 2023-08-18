@@ -495,6 +495,9 @@ public static class Utils
             case CustomRoles.Masochist:
             case CustomRoles.Doomsayer:
             case CustomRoles.Seeker:
+            case CustomRoles.Romantic:
+            case CustomRoles.VengefulRomantic:
+            case CustomRoles.RuthlessRomantic:
                 hasTasks = false;
                 break;
             case CustomRoles.Workaholic:
@@ -864,6 +867,12 @@ public static class Utils
             case CustomRoles.Totocalcio:
                 ProgressText.Append(Totocalcio.GetProgressText(playerId));
                 break;
+            case CustomRoles.Romantic:
+                ProgressText.Append(Romantic.GetProgressText(playerId));
+                break;
+            case CustomRoles.VengefulRomantic:
+                ProgressText.Append(VengefulRomantic.GetProgressText(playerId));
+                break;
             case CustomRoles.Succubus:
                 ProgressText.Append(Succubus.GetCharmLimit());
                 break;
@@ -1057,11 +1066,17 @@ public static class Utils
         var sb = new StringBuilder();
         sb.AppendFormat("\n{0}: {1}", GetRoleName(CustomRoles.GM), Options.EnableGM.GetString().RemoveHtmlTags());
 
-        var impsb = new StringBuilder();
-        var neutralsb = new StringBuilder();
-        var covensb = new StringBuilder();
-        var crewsb = new StringBuilder();
-        var addonsb = new StringBuilder();
+        List<string> impsb = new();
+        List<string> neutralsb = new();
+        List<string> covensb = new();
+        List<string> crewsb = new();
+        List<string> addonsb = new();
+
+        //var impsb = new StringBuilder();
+        //var neutralsb = new StringBuilder();
+        //var covensb = new StringBuilder();
+        //var crewsb = new StringBuilder();
+        //var addonsb = new StringBuilder();
         //int headCount = -1;
         foreach (CustomRoles role in Enum.GetValues(typeof(CustomRoles)))
         {
@@ -1069,11 +1084,11 @@ public static class Utils
             if (role.IsEnable())
             {
                 var roleDisplay = $"\n{GetRoleName(role)}:{mode} x{role.GetCount()}";
-                if (role.IsAdditionRole()) addonsb.Append(roleDisplay);
-                else if (role.IsCrewmate() && !role.IsCoven()) crewsb.Append(roleDisplay);
-                else if (role.IsImpostor() || role.IsMadmate()) impsb.Append(roleDisplay);
-                else if (role.IsNeutral() && !role.IsCoven()) neutralsb.Append(roleDisplay);
-                else if (role.IsCoven()) covensb.Append(roleDisplay);
+                if (role.IsAdditionRole()) addonsb.Add(roleDisplay);
+                else if (role.IsCrewmate() && !role.IsCoven()) crewsb.Add(roleDisplay);
+                else if (role.IsImpostor() || role.IsMadmate()) impsb.Add(roleDisplay);
+                else if (role.IsNeutral() && !role.IsCoven()) neutralsb.Add(roleDisplay);
+                else if (role.IsCoven()) covensb.Add(roleDisplay);
             }
             
             
@@ -1088,12 +1103,25 @@ public static class Utils
             //if (role.IsEnable()) sb.AppendFormat("\n{0}:{1} x{2}", GetRoleName(role), $"{mode}", role.GetCount());
         }
         //  SendMessage(sb.ToString(), PlayerId);
-    //    SendMessage(sb.Append("\n.").ToString(), PlayerId, "<color=#ff5b70>【 ★ Roles ★ 】</color>");
-        SendMessage(impsb.Append("\n.").ToString(), PlayerId, ColorString(GetRoleColor(CustomRoles.Impostor), GetString("ImpostorRoles")));
-        SendMessage(crewsb.Append("\n.").ToString(), PlayerId, ColorString(Utils.GetRoleColor(CustomRoles.Crewmate), GetString("CrewmateRoles")));
-        SendMessage(neutralsb.Append("\n.").ToString(), PlayerId, GetString("NeutralRoles"));
-        SendMessage(covensb.Append("\n.").ToString(), PlayerId, GetString("CovenRoles"));
-        SendMessage(addonsb.Append("\n.").ToString(), PlayerId, GetString("AddonRoles"));
+        //    SendMessage(sb.Append("\n.").ToString(), PlayerId, "<color=#ff5b70>【 ★ Roles ★ 】</color>");
+        impsb.Sort();
+        crewsb.Sort();
+        neutralsb.Sort();
+        covensb.Sort();
+        addonsb.Sort();
+        
+        SendMessage(string.Join("", impsb) + "\n.", PlayerId, ColorString(GetRoleColor(CustomRoles.Impostor), GetString("ImpostorRoles")));
+        SendMessage(string.Join("", crewsb) + "\n.", PlayerId, ColorString(GetRoleColor(CustomRoles.Crewmate), GetString("CrewmateRoles")));
+        SendMessage(string.Join("", neutralsb) + "\n.", PlayerId, GetString("NeutralRoles"));
+        SendMessage(string.Join("", covensb) + "\n.", PlayerId, GetString("CovenRoles"));
+        SendMessage(string.Join("", addonsb) + "\n.", PlayerId, GetString("AddonRoles"));
+        
+
+        //SendMessage(impsb.Append("\n.").ToString(), PlayerId, ColorString(GetRoleColor(CustomRoles.Impostor), GetString("ImpostorRoles")));
+        //SendMessage(crewsb.Append("\n.").ToString(), PlayerId, ColorString(Utils.GetRoleColor(CustomRoles.Crewmate), GetString("CrewmateRoles")));
+        //SendMessage(neutralsb.Append("\n.").ToString(), PlayerId, GetString("NeutralRoles"));
+        //SendMessage(covensb.Append("\n.").ToString(), PlayerId, GetString("CovenRoles"));
+        //SendMessage(addonsb.Append("\n.").ToString(), PlayerId, GetString("AddonRoles"));
         //foreach (string roleList in sb.ToString().Split("\n\n●"))
         //    SendMessage("\n\n●" + roleList + "\n\n.", PlayerId);
     }
@@ -1971,6 +1999,7 @@ public static class Utils
                         (target.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && target.GetPlayerTaskState().IsTaskFinished) ||
                         (seer.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoles.Marshall) && target.GetPlayerTaskState().IsTaskFinished) ||
                         (Totocalcio.KnowRole(seer, target)) ||
+                        (Romantic.KnowRole(seer, target)) ||
                         (Lawyer.KnowRole(seer, target)) ||
                         (EvilDiviner.IsShowTargetRole(seer, target)) ||
                         (PotionMaster.IsShowTargetRole(seer, target)) ||
@@ -2159,6 +2188,7 @@ public static class Utils
                 }
 
                 TargetMark.Append(Totocalcio.TargetMark(seer, target));
+                TargetMark.Append(Romantic.TargetMark(seer, target));
                 TargetMark.Append(Lawyer.LawyerMark(seer, target));
                 TargetMark.Append(Deathpact.GetDeathpactMark(seer, target));
 
@@ -2290,6 +2320,9 @@ public static class Utils
                         Main.CyberStarDead.Add(target.PlayerId);
                 }
                 break;
+            case CustomRoles.Romantic:
+                Romantic.isRomanticAlive = false;
+                break;
             case CustomRoles.Pelican:
                 Pelican.OnPelicanDied(target.PlayerId);
                 break;
@@ -2297,7 +2330,7 @@ public static class Utils
                 Devourer.OnDevourerDied(target.PlayerId);
                 break;
         }
-        
+
         /*    var States = Main.PlayerStates[target.PlayerId];
                 foreach (var subRole in States.SubRoles)
             switch (subRole)
@@ -2316,7 +2349,8 @@ public static class Utils
                 }
                 break;    
             } */
-
+        if (Romantic.BetPlayer.ContainsValue(target.PlayerId))
+            Romantic.ChangeRole(target.PlayerId);
         if (Executioner.Target.ContainsValue(target.PlayerId))
             Executioner.ChangeRoleByTarget(target);
         if (Lawyer.Target.ContainsValue(target.PlayerId))

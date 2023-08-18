@@ -131,7 +131,9 @@ public static class Divinator
                 CustomRoles.Mortician or
                 CustomRoles.Tracefinder or
                 CustomRoles.Seeker or
-                CustomRoles.Tracker
+                CustomRoles.Tracker or
+                CustomRoles.Romantic
+
                 => "Result6",
 
 
@@ -139,6 +141,8 @@ public static class Divinator
                 CustomRoles.Bomber or
                 CustomRoles.Agitater or
                 CustomRoles.FireWorks or
+                CustomRoles.RuthlessRomantic or
+                CustomRoles.VengefulRomantic or
                 CustomRoles.Lookout or
                 CustomRoles.Nuker
                 => "Result7",
