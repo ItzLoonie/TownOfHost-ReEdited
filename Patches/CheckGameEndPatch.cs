@@ -101,6 +101,7 @@ class GameEndChecker
                     {
                         if (pc.Is(CustomRoles.RuthlessRomantic))
                         {
+                            CustomWinnerHolder.WinnerIds.Add(pc.PlayerId);
                             CustomWinnerHolder.WinnerIds.Add(Romantic.BetPlayer[pc.PlayerId]);
                         }
 

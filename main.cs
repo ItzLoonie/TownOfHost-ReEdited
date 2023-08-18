@@ -936,6 +936,7 @@ public enum AdditionalWinners
     Totocalcio = CustomRoles.Totocalcio,
     Romantic = CustomRoles.Romantic,
     VengefulRomantic = CustomRoles.VengefulRomantic,
+    RuthlessRomantic = CustomRoles.RuthlessRomantic,
     Jackal = CustomRoles.Jackal,
     Sidekick = CustomRoles.Sidekick,
     Pursuer = CustomRoles.Pursuer,

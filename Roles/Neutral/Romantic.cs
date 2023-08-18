@@ -185,17 +185,24 @@ public static class Romantic
             if (x.Value == playerId)
                 Romantic = x.Key;
         });
+        if (Romantic == 0x73) return;
         var pc = Utils.GetPlayerById(Romantic);
-        if (player.IsNeutralKiller())
-        {
-            Logger.Info($"Neutral Romantic Partner Died changing {pc.GetNameWithRole()} to Ruthless Romantic", "Romantic");
-            pc.RpcSetCustomRole(CustomRoles.RuthlessRomantic);
-            RuthlessRomantic.Add(playerId);
-        }
-        else if (player.GetCustomRole().IsImpostorTeamV3())
+        if (player.GetCustomRole().IsImpostorTeamV3())
         {
             Logger.Info($"Impostor Romantic Partner Died changing {pc.GetNameWithRole()} to Refugee", "Romantic");
             pc.RpcSetCustomRole(CustomRoles.Refugee);
+        }
+        else if (player.GetCustomRole().IsCoven())
+        {
+            Logger.Info($"Coven Romantic Partner Died changing {pc.GetNameWithRole()} to Banshee", "Romantic");
+            Banshee.Add(Romantic);
+            pc.RpcSetCustomRole(CustomRoles.Banshee);
+        }
+        else if (player.IsNeutralKiller())
+        {
+            Logger.Info($"Neutral Romantic Partner Died changing {pc.GetNameWithRole()} to Ruthless Romantic", "Romantic");
+            RuthlessRomantic.Add(Romantic);
+            pc.RpcSetCustomRole(CustomRoles.RuthlessRomantic);
         }
         else
         {
@@ -203,12 +210,10 @@ public static class Romantic
             {
                 Logger.Info($"Crew/nnk Romantic Partner Died changing {pc.GetNameWithRole()} to Vengeful romantic", "Romantic");
 
-                pc.RpcSetCustomRole(CustomRoles.VengefulRomantic);
-                Logger.Warn($"player is alive? => {player.IsAlive()}", "VRomantic");
                 var killerId = player.GetRealKiller().PlayerId;
-                Logger.Warn($"killer playerId? => {killerId}", "VRomantic");
                 VengefulRomantic.Add(pc.PlayerId, killerId);
-                VengefulRomantic.SendRPC(playerId);
+                VengefulRomantic.SendRPC(pc.PlayerId);
+                pc.RpcSetCustomRole(CustomRoles.VengefulRomantic);
             }, 0.2f, "Convert to Vengeful Romantic");
         }
 

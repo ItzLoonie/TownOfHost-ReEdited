@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using static TOHE.Options;
 using static TOHE.Translator;
+using static UnityEngine.GraphicsBuffer;
 
 namespace TOHE.Roles.Crewmate;
 
@@ -15,7 +16,7 @@ public static class Oracle
     public static OptionItem HideVote;
     public static OptionItem FailChance;
     public static OptionItem OracleAbilityUseGainWithEachTaskCompleted;
-
+    public static OptionItem ChangeRecruitTeam;
     public static List<byte> didVote = new();
     public static Dictionary<byte, float> CheckLimit = new();
 
@@ -33,6 +34,8 @@ public static class Oracle
         OracleAbilityUseGainWithEachTaskCompleted = FloatOptionItem.Create(Id + 14, "AbilityUseGainWithEachTaskCompleted", new(0f, 5f, 0.1f), 1f, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Oracle])
             .SetValueFormat(OptionFormat.Times);
+        ChangeRecruitTeam = BooleanOptionItem.Create(Id+15,"OracleCheckAddons",false,TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Oracle]);
+
     }
     public static void Init()
     {
@@ -70,11 +73,22 @@ public static class Oracle
 
         {
 
-                string text;
-                if (target.GetCustomRole().IsImpostor() && !target.Is(CustomRoles.Trickster)) text = "Imp";
-                else if (target.GetCustomRole().IsCoven()) text = "Coven";
-                else if (target.GetCustomRole().IsNeutral()) text = "Neut";
-                else text = "Crew";
+                string text = "Crew";
+                if (ChangeRecruitTeam.GetBool())
+                {
+                    if (target.Is(CustomRoles.Admired)) text = "Crewmate";
+                    else if (target.GetCustomRole().IsImpostorTeamV2() || target.GetCustomSubRoles().Any(role => role.IsImpostorTeamV2())) text = "Impostor";
+                    else if (target.GetCustomRole().IsCoven() && !target.GetCustomSubRoles().Any(role => role.IsConverted())) text = "Coven";
+                    else if (target.GetCustomRole().IsNeutralTeamV2() || target.GetCustomSubRoles().Any(role => role.IsNeutralTeamV2())) text = "Neutral";
+                    else if (target.GetCustomRole().IsCrewmateTeamV2() && (target.GetCustomSubRoles().Any(role => role.IsCrewmateTeamV2()) || (target.GetCustomSubRoles().Count == 0))) text = "Crewmate";
+                }
+                else 
+                { 
+                    if (target.GetCustomRole().IsImpostor() && !target.Is(CustomRoles.Trickster)) text = "Imp";
+                    else if (target.GetCustomRole().IsCoven()) text = "Coven";
+                    else if (target.GetCustomRole().IsNeutral()) text = "Neut";
+                    else text = "Crew";
+                }
                 //      string text = target.GetCustomRole() switch
                 //      {
                 //          CustomRoles.Impostor or
