@@ -1214,6 +1214,7 @@ class MeetingHudOnDestroyPatch
 
             Main.LastVotedPlayerInfo = null;
             EAC.MeetingTimes = 0;
+            EAC.ReportBodyTimes.Clear();
         }
     }
 }
