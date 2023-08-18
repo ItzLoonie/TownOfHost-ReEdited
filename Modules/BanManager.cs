@@ -15,7 +15,7 @@ public static class BanManager
     private static readonly string DENY_NAME_LIST_PATH = @"./TOHE-DATA/DenyName.txt";
     private static readonly string BAN_LIST_PATH = @"./TOHE-DATA/BanList.txt";
     private static readonly string MODERATOR_LIST_PATH = @"./TOHE-DATA/Moderators.txt";
-    private static readonly List<string> EACList = new();
+    private static List<string> EACList = new();
     public static void Init()
     {
         try
