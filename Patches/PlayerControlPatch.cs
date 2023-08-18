@@ -2415,6 +2415,7 @@ class FixedUpdatePatch
                                     RPC.PlaySoundRPC(puppeteerId, Sounds.KillSound);
                                     target.SetRealKiller(Utils.GetPlayerById(puppeteerId));
                                     player.SetRealKiller(Utils.GetPlayerById(puppeteerId));
+                                    Main.PlayerStates[target.PlayerId].deathReason = PlayerState.DeathReason.Kill; // Exists to hopefully prevent death reason "Alive"
                                     player.RpcMurderPlayerV3(target);
                                     Utils.MarkEveryoneDirtySettings();
                                     Main.CovenLeaderList.Remove(player.PlayerId);
