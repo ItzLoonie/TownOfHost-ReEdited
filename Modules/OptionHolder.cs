@@ -1259,7 +1259,6 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.CyberStar]);
         NeutralKnowCyberStarDead = BooleanOptionItem.Create(5500, "NeutralKnowCyberStarDead", false, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.CyberStar]);
-        SetupRoleOptions(5575, TabGroup.CrewmateRoles, CustomRoles.TaskManager);
         Cleanser.SetupCustomOption();
         SetupRoleOptions(5600, TabGroup.CrewmateRoles, CustomRoles.Doctor);
         DoctorTaskCompletedBatteryCharge = FloatOptionItem.Create(5610, "DoctorTaskCompletedBatteryCharge", new(0f, 250f, 1f), 50f, TabGroup.CrewmateRoles, false)
@@ -1275,6 +1274,7 @@ public static class Options
         SetupRoleOptions(6000, TabGroup.CrewmateRoles, CustomRoles.SuperStar);
         EveryOneKnowSuperStar = BooleanOptionItem.Create(6010, "EveryOneKnowSuperStar", true, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.SuperStar]);
+        SetupRoleOptions(5575, TabGroup.CrewmateRoles, CustomRoles.TaskManager);
         Tracefinder.SetupCustomOption();
         SetupRoleOptions(6200, TabGroup.CrewmateRoles, CustomRoles.Transporter);
         TransporterTeleportMax = IntegerOptionItem.Create(6210, "TransporterTeleportMax", new(1, 100, 1), 5, TabGroup.CrewmateRoles, false)
@@ -1311,6 +1311,7 @@ public static class Options
         GrenadierAbilityUseGainWithEachTaskCompleted = FloatOptionItem.Create(6815, "AbilityUseGainWithEachTaskCompleted", new(0f, 5f, 0.1f), 1f, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Grenadier])
             .SetValueFormat(OptionFormat.Times);
+        ParityCop.SetupCustomOption();
         SetupSingleRoleOptions(6850, TabGroup.CrewmateRoles, CustomRoles.Lighter, 1);
         LighterSkillCooldown = FloatOptionItem.Create(6852, "LighterSkillCooldown", new(1f, 180f, 1f), 25f, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Lighter])
@@ -1330,7 +1331,6 @@ public static class Options
         LighterAbilityUseGainWithEachTaskCompleted = FloatOptionItem.Create(6857, "AbilityUseGainWithEachTaskCompleted", new(0f, 5f, 0.1f), 1f, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Lighter])
             .SetValueFormat(OptionFormat.Times);
-        ParityCop.SetupCustomOption();
         SabotageMaster.SetupCustomOption(); //Mechanic
         Medic.SetupCustomOption();
         Mediumshiper.SetupCustomOption();
@@ -1384,13 +1384,6 @@ public static class Options
             .SetValueFormat(OptionFormat.Multiplier);
         Crusader.SetupCustomOption();
         Counterfeiter.SetupCustomOption();
-        SetupSingleRoleOptions(8550, TabGroup.CrewmateRoles, CustomRoles.Witness, 1);
-        WitnessCD = FloatOptionItem.Create(8552, "AbilityCD", new(0f, 60f, 2.5f), 15f, TabGroup.CrewmateRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Witness])
-            .SetValueFormat(OptionFormat.Seconds);
-        WitnessTime = IntegerOptionItem.Create(8553, "WitnessTime", new(1, 30, 1), 10, TabGroup.CrewmateRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Witness])
-            .SetValueFormat(OptionFormat.Seconds);
         Jailer.SetupCustomOption();
         SwordsMan.SetupCustomOption();
 
@@ -1429,6 +1422,13 @@ public static class Options
         GGTryHideMsg = BooleanOptionItem.Create(8613, "GuesserTryHideMsg", true, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.NiceGuesser])
             .SetColor(Color.green);
+        SetupSingleRoleOptions(8550, TabGroup.CrewmateRoles, CustomRoles.Witness, 1);
+        WitnessCD = FloatOptionItem.Create(8552, "AbilityCD", new(0f, 60f, 2.5f), 15f, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Witness])
+            .SetValueFormat(OptionFormat.Seconds);
+        WitnessTime = IntegerOptionItem.Create(8553, "WitnessTime", new(1, 30, 1), 10, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Witness])
+            .SetValueFormat(OptionFormat.Seconds);
 
         TextOptionItem.Create(100009, "RoleType.CrewPower", TabGroup.CrewmateRoles)
             .SetGameMode(CustomGameMode.Standard)
