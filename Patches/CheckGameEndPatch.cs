@@ -102,7 +102,6 @@ class GameEndChecker
                         if (pc.Is(CustomRoles.RuthlessRomantic))
                         {
                             CustomWinnerHolder.WinnerIds.Add(pc.PlayerId);
-                            CustomWinnerHolder.WinnerIds.Add(Romantic.BetPlayer[pc.PlayerId]);
                         }
 
                     }
@@ -618,6 +617,7 @@ class GameEndChecker
                 reason = GameOverReason.ImpostorByKill;
                 CustomWinnerHolder.ResetAndSetWinner(CustomWinner.RuthlessRomantic);
                 CustomWinnerHolder.WinnerRoles.Add(CustomRoles.RuthlessRomantic);
+                CustomWinnerHolder.WinnerIds.Add(Romantic.BetPlayer[pc.PlayerId]);
             }
             else if (Imp == 0 && Jackal == 0 && PP == 0 && Traitor == 0 && Med == 0 && Arso == 0 && Pel == 0 && Vamp == 0 && DH == 0 && Rogue == 0 && Juggy == 0 && RR == 0 && Glitch == 0 && SK == 0 && Rit == 0 && Jinx == 0 && Hex == 0 && Shade == 0 && Agitater == 0 && Pestilence == 0 && PB == 0 && Pois == 0 && Virus == 0 && SC == 0 && WW == 0 && Shr == 0 && BK == 0 && Gam == 0 && CM == 0 && Crew <= Coven) //嗜血骑士胜利
             {
