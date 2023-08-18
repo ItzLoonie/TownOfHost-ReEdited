@@ -1366,6 +1366,7 @@
 "GuesserTryHideMsg","尝试混淆赌怪指令（试验性）","Try to hide guesser's command","Спрятать команду <color=#eede26>Угадывателя</color>","嘗試隱藏賭怪指令(試驗性)","尝试混淆赌怪指令（试验性）"
 "GCanGuessImp","<color=#ff1919>内鬼</color>可以猜测<color=#ff1919>内鬼</color>身份","<color=#ff1919>Impostor</color> can guess <color=#ff1919>Impostor</color> roles","<color=#ff1919>Предатели</color> могут угадывать роли <color=#ff1919>Предателей</color>ы","",""
 "GCanGuessCrew","<color=#8cffff>成员</color>可以猜测<color=#8cffff>船员</color>身份","<color=#8cffff>Crewmate</color> can guess <color=#8cffff>Crewmate</color> roles","<color=#8cffff>Члены Экипажа</color> могут угадывать роли <color=#8cffff>Членов Экипажа</color>","",""
+"GCanGuessNeutrals","<color=#8cffff>成员</color>可以猜测<color=#8cffff>中立</color>身份","<color=#8cffff>Crewmate</color> can guess <color=#8cffff>Crewmate</color> roles","<color=#8cffff>Члены Экипажа</color> могут угадывать роли <color=#8cffff>Членов Экипажа</color>","",""
 "GCanGuessAdt","可以猜测附加职业","Can guess Add-ons","Может угадывать Атрибуты","",""
 "GCanGuessTaskDoneSnitch","可以猜测完成任务的<color=#b8fb4f>告密者</color>","Can guess <color=#b8fb4f>Snitch</color> with All Tasks Done","Может угадать <color=#b8fb4f>Стукача</color> который выполнил свои задания","可以猜測完成任務的<color=#b8fb4f>告密者</color>","可以猜测完成任务的<color=#b8fb4f>告密者</color>"
 "BountyTargetChangeTime","赏金目标切换时间","Time Until Target Swaps","Время смены цели","賞金目標切換時間","赏金目标切换时间"
