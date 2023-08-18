@@ -169,6 +169,11 @@ class ExileControllerWrapUpPatch
                 Main.AllPlayerKillCooldown[pc.PlayerId] = Werewolf.KillCooldown.GetFloat();
                 if (!Options.DisableShieldAnimations.GetBool()) pc.RpcGuardAndKill(pc);
                 pc.SetKillCooldownV3();
+            }
+            if (Main.PlayerStates[pc.PlayerId].deathReason == PlayerState.DeathReason.Alive && !pc.Data.IsDead)
+            {
+            // Correct player alive state
+                Main.PlayerStates[pc.PlayerId].deathReason = PlayerState.DeathReason.Kill;
             } 
         }
 
