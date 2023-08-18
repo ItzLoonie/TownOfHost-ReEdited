@@ -101,8 +101,8 @@ class GameEndChecker
                     {
                         if (pc.Is(CustomRoles.RuthlessRomantic))
                         {
-                            CustomWinnerHolder.WinnerIds.Add(pc.PlayerId);
                             CustomWinnerHolder.WinnerIds.Add(Romantic.BetPlayer[pc.PlayerId]);
+                            
                         }
 
                     }
@@ -312,6 +312,18 @@ class GameEndChecker
                         CustomWinnerHolder.AdditionalWinnerTeams.Add(AdditionalWinners.Romantic);
                     }
                 }
+                foreach (var pc in Main.AllPlayerControls.Where(x => x.Is(CustomRoles.RuthlessRomantic)))
+                {
+                    if (Romantic.BetPlayer.TryGetValue(pc.PlayerId, out var betTarget) && (
+                        CustomWinnerHolder.WinnerIds.Contains(betTarget) ||
+                        (Main.PlayerStates.TryGetValue(betTarget, out var ps) && CustomWinnerHolder.WinnerRoles.Contains(ps.MainRole)
+                        )))
+                    {
+                        CustomWinnerHolder.WinnerIds.Add(pc.PlayerId);
+                        CustomWinnerHolder.AdditionalWinnerTeams.Add(AdditionalWinners.RuthlessRomantic);
+                    }
+                }
+                
                 //Vengeful Romantic win condition
                 foreach (var pc in Main.AllPlayerControls.Where(x => x.Is(CustomRoles.VengefulRomantic)))
                 {
