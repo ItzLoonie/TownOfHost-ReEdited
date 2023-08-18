@@ -27,7 +27,7 @@ internal class EAC
     {
         if (!AmongUsClient.Instance.AmHost) return false;
         if (pc == null || reader == null || pc.AmOwner) return false;
-        if (pc.GetClient()?.PlatformData?.Platform is Platforms.Android or Platforms.IPhone or Platforms.Switch or Platforms.Playstation or Platforms.Xbox or Platforms.StandaloneMac) return false;
+        if (pc.GetClient()?.PlatformData?.Platform is Platforms.IPhone or Platforms.Switch or Platforms.Playstation or Platforms.Xbox) return false;
         try
         {
             MessageReader sr = MessageReader.Get(reader);
@@ -96,7 +96,14 @@ internal class EAC
                     break;
                 case RpcCalls.ReportDeadBody:
                     var p1 = Utils.GetPlayerById(sr.ReadByte());
-                    if (p1 != null && p1.IsAlive() && !p1.Is(CustomRoles.Paranoia) && !p1.Is(CustomRoles.GM))
+                    if ((p1 != null && p1.IsAlive() && !p1.Is(CustomRoles.Paranoia) && !p1.Is(CustomRoles.GM)) || GameStates.IsLobby)
+                    {
+                        WarnHost();
+                        Report(pc, "非法报告尸体");
+                        Logger.Fatal($"玩家【{pc.GetClientId()}:{pc.GetRealName()}】非法报告尸体：【{p1?.GetNameWithRole() ?? "null"}】，已驳回", "EAC");
+                        return true;
+                    }
+                    else if (GameStates.IsInGame && p1 == null && sr.ReadByte() != 0) //non-host calls meeting with id 0
                     {
                         WarnHost();
                         Report(pc, "非法报告尸体");
@@ -234,6 +241,7 @@ internal class EAC
         string msg = $"{pc.GetClientId()}|{pc.FriendCode}|{pc.Data.PlayerName}|{reason}";
         Cloud.SendData(msg);
         Logger.Fatal($"EAC报告：{pc.GetRealName()}: {reason}", "EAC Cloud");
+        HandleCheat(pc, reason);
     }
     public static bool ReceiveInvalidRpc(PlayerControl pc, byte callId)
     {
@@ -252,13 +260,13 @@ internal class EAC
         {
             case 0:
                 AmongUsClient.Instance.KickPlayer(pc.GetClientId(), true);
-                string msg0 = string.Format(GetString("Message.KickedByEAC"), pc?.Data?.PlayerName, text);
+                string msg0 = string.Format(GetString("Message.BanedByEAC"), pc?.Data?.PlayerName, text);
                 Logger.Warn(msg0, "EAC");
                 Logger.SendInGame(msg0);
                 break;
             case 1:
                 AmongUsClient.Instance.KickPlayer(pc.GetClientId(), false);
-                string msg1 = string.Format(GetString("Message.BanedByEAC"), pc?.Data?.PlayerName, text);
+                string msg1 = string.Format(GetString("Message.KickedByEAC"), pc?.Data?.PlayerName, text);
                 Logger.Warn(msg1, "EAC");
                 Logger.SendInGame(msg1);
                 break;
