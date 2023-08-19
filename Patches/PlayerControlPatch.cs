@@ -1629,11 +1629,6 @@ class ReportDeadBodyPatch
                     return false;
                 }
 
-                if (Main.PlayerStates[__instance.PlayerId].deathReason == PlayerState.DeathReason.Alive && !__instance.Data.IsDead)
-                {
-                // Correct player alive state
-                   Main.PlayerStates[__instance.PlayerId].deathReason = PlayerState.DeathReason.Kill;
-                }
 
                 // 被赌杀的尸体无法被报告
                 if (Main.PlayerStates[target.PlayerId].deathReason == PlayerState.DeathReason.Gambled) return false;
