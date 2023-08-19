@@ -1733,6 +1733,7 @@
 "CanBeInLove","可能<color=#ff9ace>坠入爱河</color>","Can be <color=#ff9ace>in love</color>","Может стать <color=#ff9ace>Любовником</color>","",""
 
 "## 自动房主的管理 / Moderation for Auto-Hosters"
+"ModTag","","Moderator♥","","",""
 "ApplyModeratorList","","Apply Moderator List","Применить список модераторов","",""
 "AllowSayCommand","","Allow moderators to use /say command"," ","",""
 
@@ -1743,6 +1744,7 @@
 "KickCommandKickMod","","You are not permitted to kick other moderators.","Вам не разрешено кикать других модераторов.","",""
 "KickCommandKicked","","was kicked from the game by ","","",""
 "KickCommandKickedRole","","Their role was","Их роль была","",""
+"KickExample","","Use /kick [id] [reason] in future. \nExample :-\n /kick 5 not following rules","","",""
 
 "BanCommandDisabled","","The ban command is currently disabled.","","",""
 "BanCommandNoAccess","","You do not have access to the ban command.","","",""
@@ -1755,8 +1757,10 @@
 
 "ColorCommandDisabled","","The modcolor command is currently disabled.","","",""
 "ColorCommandNoAccess","","You do not have access to the modcolor command.","","",""
-"ColorCommandNoLobby","","You can only use modcolor command in Lobby when the game hasn't started.","","",""
+"ColorCommandNoLobby","","You can only use the command in Lobby when the game hasn't started.","","",""
 "ColorInvalidHexCode","","Invalid hexcode specified.\nPlease use '/modcolor [hexcode] [hexcode]' to change color of MODERATOR♥.\nExample :- /modcolor 33ccff ff99cc","","",""
+
+"TagColorInvalidHexCode","","Invalid hexcode specified.\nPlease use '/tagcolor [hexcode] [hexcode]' to change color of your tag.\nExample :- /tagcolor 33ccff ff99cc","","",""
 
 "midCommandDisabled","","The mid command is currently disabled.","","",""
 "midCommandNoAccess","","You do not have access to the mid command."," ","",""
@@ -1767,7 +1771,7 @@
 "WarnCommandWarnHost","","You are not permitted to warn the host."," ","",""
 "WarnCommandWarnMod","","You are not permitted to warn other moderators."," ","",""
 "WarnCommandWarned","","has been warned. There will be no more warnings given and appropriate action will be taken \n "," ","",""
-"WarnExample","",""Use /warn [id] [reason] in future. \nExample :-\n /warn 5 lava chatting"","","",""
+"WarnExample","","Use /warn [id] [reason] in future. \nExample :-\n /warn 5 lava chatting","","",""
 
 "SayCommandDisabled","","The say command is currently disabled.","","",""
 "MessageFromModerator","","- Moderator Message - ","","",""

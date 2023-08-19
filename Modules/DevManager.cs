@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace TOHE;
@@ -25,7 +26,54 @@ public class DevUser
         UpName = upName;
     }
     public bool HasTag() => Tag != "null";
-    public string GetTag() => Color == "null" ? $"<size=1.2>{Tag}</size>\r\n" : $"<color={Color}><size=1.2>{(Tag == "#Dev" ? Translator.GetString("Developer") : Tag)}</size></color>\r\n";
+    //public string GetTag() => Color == "null" ? $"<size=1.2>{Tag}</size>\r\n" : $"<color={Color}><size=1.2>{(Tag == "#Dev" ? Translator.GetString("Developer") : Tag)}</size></color>\r\n";
+    public string GetTag() 
+    {
+        string tagColorFilePath = @$"./TOHE-DATA/Tags/SPONSOR_TAGS/{Code}.txt";
+
+        if (Color == "null" || Color == string.Empty) return $"<size=1.2>{Tag}</size>\r\n";
+        var startColor = "FFFF00";
+        var endColor = "FFFF00";
+        var startColor1 = startColor;
+        var endColor1 = endColor;
+        if (Color.Split(",").Length == 1)
+        {
+            startColor1 = Color.Split(",")[0].TrimStart('#');
+            endColor1 = startColor1;
+        }
+        else if (Color.Split(",").Length == 2)
+        {
+             startColor1 = Color.Split(",")[0].TrimStart('#');
+             endColor1 = Color.Split(",")[1].TrimStart('#');
+        }
+        if (File.Exists(tagColorFilePath))
+        {
+            var ColorCode = File.ReadAllText(tagColorFilePath);
+            if (ColorCode.Split(" ").Length == 2)
+            {
+                startColor = ColorCode.Split(" ")[0];
+                endColor = ColorCode.Split(" ")[1];
+            }
+            else
+            {
+                startColor = startColor1;
+                endColor = endColor1;
+            }
+        }
+        else
+        {
+            startColor = startColor1;
+            endColor = endColor1;
+        }
+        if (!Utils.CheckGradientCode($"{startColor} {endColor}"))
+        {
+            startColor = "FFFF00";
+            endColor = "FFFF00";
+        }
+        var t1 = "";
+        t1 = Tag == "#Dev" ? Translator.GetString("Developer") : Tag;
+        return $"<size=1.2>{Utils.GradientColorText(startColor,endColor, t1)}</size>\r\n";
+    }
 }
 
 public static class DevManager
@@ -35,11 +83,11 @@ public static class DevManager
     public static void Init()
     {
         // Dev
-        DevUserList.Add(new(code: "actorour#0029", color: "#ffc0cb", tag: "Original Developer", isUp: true, isDev: true, deBug: true, colorCmd: true, upName: "KARPED1EM"));
-        DevUserList.Add(new(code: "pinklaze#1776", color: "#30548e", tag: "#Dev", isUp: true, isDev: true, deBug: true, colorCmd: false, upName: "NCSIMON"));
-        DevUserList.Add(new(code: "keepchirpy#6354", color: "#1FF3C6", tag: "Переводчик", isUp: true, isDev: true, deBug: true, colorCmd: true, upName: "TommyXL")); //Tommy-XL
+        DevUserList.Add(new(code: "actorour#0029", color: "#ffc0cb,#ffc0cb", tag: "Original Developer", isUp: true, isDev: true, deBug: true, colorCmd: true, upName: "KARPED1EM"));
+        DevUserList.Add(new(code: "pinklaze#1776", color: "#30548e,#30548e", tag: "#Dev", isUp: true, isDev: true, deBug: true, colorCmd: false, upName: "NCSIMON"));
+        DevUserList.Add(new(code: "keepchirpy#6354", color: "#1FF3C6,#1FF3C6", tag: "Переводчик", isUp: true, isDev: true, deBug: true, colorCmd: true, upName: "TommyXL")); //Tommy-XL
         DevUserList.Add(new(code: "taskunsold#2701", color: "null", tag: "<color=#426798>Tem</color><color=#f6e509>mie</color>", isUp: false, isDev: true, deBug: false, colorCmd: false, upName: null)); //Tem
-        DevUserList.Add(new(code: "timedapper#9496", color: "#48FFFF", tag: "#Dev", isUp: false, isDev: true, deBug: false, colorCmd: false, upName: null)); //阿龍
+        DevUserList.Add(new(code: "timedapper#9496", color: "#48FFFF,#48FFFF", tag: "#Dev", isUp: false, isDev: true, deBug: false, colorCmd: false, upName: null)); //阿龍
         DevUserList.Add(new(code: "sofaagile#3120", color: "null", tag: "null", isUp: false, isDev: true, deBug: true, colorCmd: false, upName: null)); //天寸
         DevUserList.Add(new(code: "keyscreech#2151", color: "null", tag: "<color=#D3A4FF>美術</color><color=#5A5AAD>NotKomi</color>", isUp: false, isDev: true, deBug: false, upName: null)); //Endrmen40409
 
@@ -63,46 +111,46 @@ public static class DevManager
         DevUserList.Add(new(code: "spoonkey#0792", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "没好康的"));
         DevUserList.Add(new(code: "beakedmire#6099", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "茄-au"));
         DevUserList.Add(new(code: "doggedsize#7892", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "TronAndRey"));
-        DevUserList.Add(new(code: "openlanded#9533", color: "#9e2424", tag: "God Of Death Love Apples", isUp: true, isDev: true, deBug: true, colorCmd: true, upName: "ryuk"));
-        //DevUserList.Add(new(code: "icingposh#6469", color: "#9e2424", tag: "God Of Death Love Apples", isUp: true, isDev: true, deBug: true, colorCmd: true, upName: "ryuk2"));
-        DevUserList.Add(new(code: "unlikecity#4086", color: "#eD2F91", tag: "Ward", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: "Ward"));
+        DevUserList.Add(new(code: "openlanded#9533", color: "#9e2424,#9e2424", tag: "God Of Death Love Apples", isUp: true, isDev: true, deBug: true, colorCmd: true, upName: "ryuk"));
+        //DevUserList.Add(new(code: "icingposh#6469", color: "#9e2424,#9e2424", tag: "God Of Death Love Apples", isUp: true, isDev: true, deBug: true, colorCmd: true, upName: "ryuk2"));
+        DevUserList.Add(new(code: "unlikecity#4086", color: "#eD2F91,eD2F91", tag: "Ward", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: "Ward"));
         DevUserList.Add(new(code: "iconicdrop#2727", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: "jackler"));
 
-        DevUserList.Add(new(code: "neatnet#5851", color: "#FFFF00", tag: "The 200IQ guy", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "The 200IQ guy"));
-        DevUserList.Add(new(code: "contenthue#0404", color: "#FFFF00", tag: "The 200IQ guy", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "The 200IQ guy"));
-        DevUserList.Add(new(code: "heavyclod#2286", color: "#FFFF00", tag: "小叨.exe已停止运行", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "小叨院长"));
-        DevUserList.Add(new(code: "storeroan#0331", color: "#FF0066", tag: "Night_瓜", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "Night_瓜"));
-        DevUserList.Add(new(code: "teamelder#5856", color: "#1379bf", tag: "屑Slok（没信誉的鸽子）", isUp: true, isDev: false, colorCmd: false, deBug: false, upName: "Slok7565"));
+        DevUserList.Add(new(code: "neatnet#5851", color: "#FFFF00,#FFFF00", tag: "The 200IQ guy", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "The 200IQ guy"));
+        DevUserList.Add(new(code: "contenthue#0404", color: "#FFFF00,#FFFF00", tag: "The 200IQ guy", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "The 200IQ guy"));
+        DevUserList.Add(new(code: "heavyclod#2286", color: "#FFFF00,#FFFF00", tag: "小叨.exe已停止运行", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "小叨院长"));
+        DevUserList.Add(new(code: "storeroan#0331", color: "#FF0066,#FF0066", tag: "Night_瓜", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "Night_瓜"));
+        DevUserList.Add(new(code: "teamelder#5856", color: "#1379bf,#1379bf", tag: "屑Slok（没信誉的鸽子）", isUp: true, isDev: false, colorCmd: false, deBug: false, upName: "Slok7565"));
 
         DevUserList.Add(new(code: "radarright#2509", color: "null", tag: "null", isUp: false, isDev: false, deBug: true, colorCmd: false, upName: null));
 
         // Sponsor
-        DevUserList.Add(new(code: "recentduct#6068", color: "#FF00FF", tag: "高冷男模法师", isUp: false, isDev: false, colorCmd: false, deBug: true, upName: null));
-        DevUserList.Add(new(code: "canneddrum#2370", color: "#fffcbe", tag: "我是喜唉awa", isUp: false, isDev: false, colorCmd: false, deBug: false, upName: null));
-        DevUserList.Add(new(code: "dovefitted#5329", color: "#1379bf", tag: "不要首刀我", isUp: false, isDev: false, colorCmd: false, deBug: false, upName: null));
-        DevUserList.Add(new(code: "luckylogo#7352", color: "#f30000", tag: "林@林", isUp: false, isDev: false, colorCmd: false, deBug: false, upName: null));
-        DevUserList.Add(new(code: "axefitful#8788", color: "#8e8171", tag: "寄才是真理", isUp: false, isDev: false, colorCmd: false, deBug: false, upName: null));
-        DevUserList.Add(new(code: "raftzonal#8893", color: "#8e8171", tag: "寄才是真理", isUp: false, isDev: false, colorCmd: false, deBug: false, upName: null));
-        DevUserList.Add(new(code: "twainrobin#8089", color: "#0000FF", tag: "啊哈修maker", isUp: false, isDev: false, colorCmd: false, deBug: false, upName: null));
-        DevUserList.Add(new(code: "mallcasual#6075", color: "#f89ccb", tag: "波奇酱", isUp: false, isDev: false, colorCmd: false, deBug: false, upName: null));
-        DevUserList.Add(new(code: "beamelfin#9478", color: "#6495ED", tag: "Amaster-1111", isUp: false, isDev: false, colorCmd: false, deBug: false, upName: null));
-        DevUserList.Add(new(code: "lordcosy#8966", color: "#FFD6EC", tag: "HostTOHE", isUp: false, isDev: false, colorCmd: false, deBug: false, upName: null)); //K
+        DevUserList.Add(new(code: "recentduct#6068", color: "#FF00FF,#FF00FF", tag: "高冷男模法师", isUp: false, isDev: false, colorCmd: false, deBug: true, upName: null));
+        DevUserList.Add(new(code: "canneddrum#2370", color: "#fffcbe,#fffcbe", tag: "我是喜唉awa", isUp: false, isDev: false, colorCmd: false, deBug: false, upName: null));
+        DevUserList.Add(new(code: "dovefitted#5329", color: "#1379bf,#1379bf", tag: "不要首刀我", isUp: false, isDev: false, colorCmd: false, deBug: false, upName: null));
+        DevUserList.Add(new(code: "luckylogo#7352", color: "#f30000,#f30000", tag: "林@林", isUp: false, isDev: false, colorCmd: false, deBug: false, upName: null));
+        DevUserList.Add(new(code: "axefitful#8788", color: "#8e8171,#8e8171", tag: "寄才是真理", isUp: false, isDev: false, colorCmd: false, deBug: false, upName: null));
+        DevUserList.Add(new(code: "raftzonal#8893", color: "#8e8171,#8e8171", tag: "寄才是真理", isUp: false, isDev: false, colorCmd: false, deBug: false, upName: null));
+        DevUserList.Add(new(code: "twainrobin#8089", color: "#0000FF,#0000FF", tag: "啊哈修maker", isUp: false, isDev: false, colorCmd: false, deBug: false, upName: null));
+        DevUserList.Add(new(code: "mallcasual#6075", color: "#f89ccb,#f89ccb", tag: "波奇酱", isUp: false, isDev: false, colorCmd: false, deBug: false, upName: null));
+        DevUserList.Add(new(code: "beamelfin#9478", color: "#6495ED,#6495ED", tag: "Amaster-1111", isUp: false, isDev: false, colorCmd: false, deBug: false, upName: null));
+        DevUserList.Add(new(code: "lordcosy#8966", color: "#FFD6EC,#FFD6EC", tag: "HostTOHE", isUp: false, isDev: false, colorCmd: false, deBug: false, upName: null)); //K
 //        DevUserList.Add(new(code: "honestsofa#2870", color: "#D381D9", tag: "Discord: SolarFlare#0700", isUp: true, isDev: false, colorCmd: false, deBug: false, upName: "SolarFlare")); //SolarFlare
-        DevUserList.Add(new(code: "caseeast#7194", color: "#1c2451", tag: "disc.gg/maul", isUp: false, isDev: false, colorCmd: false, deBug: false, upName: null)); //laikrai
+        DevUserList.Add(new(code: "caseeast#7194", color: "#1c2451,#1c2451", tag: "disc.gg/maul", isUp: false, isDev: false, colorCmd: false, deBug: false, upName: null)); //laikrai
         // lol hi go away, im the main dev smfh
-        DevUserList.Add(new(code: "gnuedaphic#7196", color: "#ffc0cb", tag: "<color=#f34c50>M</color><color=#ef484c>a</color><color=#e74146>i</color><color=#df3a3e>n</color> <color=#d73238>D</color><color=#cf2b30>e</color><color=#c8232a>v</color><color=#c01c22>e</color><color=#b8141c>l</color><color=#ac0911>o</color><color=#a4020a>p</color><color=#8B0000>e</color><color=#720000>r</color>", isUp: true, isDev: true, deBug: false, colorCmd: true, upName: "Loonie")); //Loonie
-        DevUserList.Add(new(code: "loonietoons", color: "#ffc0cb", tag: "<color=#f34c50>M</color><color=#ef484c>a</color><color=#e74146>i</color><color=#df3a3e>n</color> <color=#d73238>D</color><color=#cf2b30>e</color><color=#c8232a>v</color><color=#c01c22>e</color><color=#b8141c>l</color><color=#ac0911>o</color><color=#a4020a>p</color><color=#8B0000>e</color><color=#720000>r</color>", isUp: true, isDev: true, deBug: false, colorCmd: true, upName: "Loonie")); //Loonie
+        DevUserList.Add(new(code: "gnuedaphic#7196", color: "#f34c50,#720000", tag: "Main Developer", isUp: true, isDev: true, deBug: false, colorCmd: true, upName: "Loonie")); //Loonie
+        DevUserList.Add(new(code: "loonietoons", color: "#f34c50,#720000", tag: "Main Developer", isUp: true, isDev: true, deBug: false, colorCmd: true, upName: "Loonie")); //Loonie
         // Lauryn and Moe
-        DevUserList.Add(new(code: "straymovie#6453", color: "#F6B05E", tag: "Website Developer", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: "Moe")); //Moe
-        DevUserList.Add(new(code: "singlesign#1823", color: "#ffb6cd", tag: "Princess", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: "Lauryn")); //Lauryn
+        DevUserList.Add(new(code: "straymovie#6453", color: "#F6B05E,#F6B05E", tag: "Website Developer", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: "Moe")); //Moe
+        DevUserList.Add(new(code: "singlesign#1823", color: "#ffb6cd,#ffb6cd", tag: "Princess", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: "Lauryn")); //Lauryn
         // Other
         DevUserList.Add(new(code: "peakcrown#8292", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: null)); //Hakaka
-        DevUserList.Add(new(code: "croaktense#0572", color: "#AAAAAA", tag: "Shiny Eevee", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: null)); //Eevee
-        DevUserList.Add(new(code: "dovebliss#9271", color: "#C67C6F", tag: "<color=#c67c6f>C<color=#bd7269>h</color><color=#ba7068>e</color><color=#aa5f5e>r</color><color=#a05559>r</color><color=#974b53>y</color>", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: null)); //Cake
+        DevUserList.Add(new(code: "croaktense#0572", color: "#AAAAAA,#AAAAAA", tag: "Shiny Eevee", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: null)); //Eevee
+        DevUserList.Add(new(code: "dovebliss#9271", color: "#c67c6f,#974b53", tag: "Cherry", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: null)); //Cake
         // Chinese translation
-        DevUserList.Add(new(code: "cloakhazy#9133", color: "#87CEFA", tag: "这里是崽子吖awa", isUp: true, isDev: true, deBug: false, colorCmd: false, upName: null)); //乐崽吖
-        DevUserList.Add(new(code: "drawncod#3642", color: "#00FFFF", tag: "简中翻译人员", isUp: false, isDev: true, deBug: false, colorCmd: false, upName: null)); //船员小青
-        DevUserList.Add(new(code: "grubmotive#0072", color: "#4169E1", tag: "跟班诅咒中", isUp: false, isDev: true, deBug: false, colorCmd: false, upName: null));//您有一个好
+        DevUserList.Add(new(code: "cloakhazy#9133", color: "#87CEFA,#87CEFA", tag: "这里是崽子吖awa", isUp: true, isDev: true, deBug: false, colorCmd: false, upName: null)); //乐崽吖
+        DevUserList.Add(new(code: "drawncod#3642", color: "#00FFFF,#00FFFF", tag: "简中翻译人员", isUp: false, isDev: true, deBug: false, colorCmd: false, upName: null)); //船员小青
+        DevUserList.Add(new(code: "grubmotive#0072", color: "#4169E1,#4169E1", tag: "跟班诅咒中", isUp: false, isDev: true, deBug: false, colorCmd: false, upName: null));//您有一个好
     }
     public static bool IsDevUser(this string code) => DevUserList.Any(x => x.Code == code);
     public static DevUser GetDevUser(this string code) => code.IsDevUser() ? DevUserList.Find(x => x.Code == code) : DefaultDevUser;

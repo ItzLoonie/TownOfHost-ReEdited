@@ -21,15 +21,9 @@ namespace TOHE;
 internal class ChatCommands
 {
     private static string modLogFiles = @"./TOHE-DATA/ModLogs.txt";
-    private static string modTagsFiles = @"./TOHE-DATA/MOD_TAGS";
+    private static string modTagsFiles = @"./TOHE-DATA/Tags/MOD_TAGS";
+    private static string sponsorTagsFiles = @"./TOHE-DATA/Tags/SPONSOR_TAGS";
 
-    // Function to check if a player is a moderator
-    //private static bool IsPlayerModerator(string friendCode)
-    //{
-    //    var friendCodesFilePath = @"./TOHE-DATA/Moderators.txt";
-    //    var friendCodes = File.ReadAllLines(friendCodesFilePath);
-    //    return friendCodes.Contains(friendCode);
-    //}
 
     public static List<string> ChatHistory = new();
 
@@ -58,6 +52,7 @@ internal class ChatCommands
         if (NecromancerRevengeManager.NecromancerMsgCheck(PlayerControl.LocalPlayer, text)) goto Canceled;
         if (RetributionistRevengeManager.RetributionistMsgCheck(PlayerControl.LocalPlayer, text)) goto Canceled;
         Directory.CreateDirectory(modTagsFiles);
+        Directory.CreateDirectory(sponsorTagsFiles);
         switch (args[0])
         {
             case "/dump":
@@ -482,6 +477,35 @@ internal class ChatCommands
                     File.AppendAllText(modLogFiles, logMessage2 + Environment.NewLine);
 
                     break;
+                case "/tagcolor":
+                case "/tagcolour":
+                    canceled = true;
+                    string name = Main.AllPlayerNames.TryGetValue(PlayerControl.LocalPlayer.PlayerId, out var n) ? n : "";
+                    if (name == "") break;
+                    if (!name.Contains('\r') && PlayerControl.LocalPlayer.FriendCode.GetDevUser().HasTag())
+                    {
+                        if (!GameStates.IsLobby)
+                        {
+                            Utils.SendMessage(GetString("ColorCommandNoLobby"), PlayerControl.LocalPlayer.PlayerId);
+                            break;
+                        }
+                        subArgs = args.Length < 3 ? "" : args[1] + " " + args[2];
+                        if (string.IsNullOrEmpty(subArgs) || !Utils.CheckGradientCode(subArgs))
+                        {
+                            Logger.Msg($"{subArgs}", "tagcolor");
+                            Utils.SendMessage(GetString("TagColorInvalidHexCode"), PlayerControl.LocalPlayer.PlayerId);
+                            break;
+                        }
+                        string tagColorFilePath = $"{sponsorTagsFiles}/{PlayerControl.LocalPlayer.FriendCode}.txt";
+                        if (!File.Exists(tagColorFilePath))
+                        {
+                            Logger.Msg($"File Not exist, creating file at {tagColorFilePath}", "tagcolor");
+                            File.Create(tagColorFilePath).Close();
+                        }
+                        File.WriteAllText(tagColorFilePath, $"{subArgs}");
+                    }
+                    break;
+
                 case "/exe":
                     canceled = true;
                     if (GameStates.IsLobby)
@@ -888,6 +912,7 @@ internal class ChatCommands
         if (NecromancerRevengeManager.NecromancerMsgCheck(player, text)) return;
         if (RetributionistRevengeManager.RetributionistMsgCheck(player, text)) return;
         Directory.CreateDirectory(modTagsFiles);
+        Directory.CreateDirectory(sponsorTagsFiles);
         switch (args[0])
         {
             case "/l":
@@ -1338,6 +1363,34 @@ internal class ChatCommands
                 //Logger.Msg($"File exists, creating file at {modTagsFiles}/{player.FriendCode}.txt", "modcolor");
                 //Logger.Msg($"{subArgs}","modcolor");
                 File.WriteAllText(colorFilePath, $"{subArgs}");
+                break;
+            case "/tagcolor":
+            case "/tagcolour":
+                string name1 = Main.AllPlayerNames.TryGetValue(player.PlayerId, out var n) ? n : "";
+                if (name1 == "") break;
+                if (!name1.Contains('\r') && player.FriendCode.GetDevUser().HasTag())
+                {
+                    if (!GameStates.IsLobby)
+                    {
+                        Utils.SendMessage(GetString("ColorCommandNoLobby"), player.PlayerId);
+                        break;
+                    }
+                    subArgs = args.Length < 3 ? "" : args[1] + " " + args[2];
+                    if (string.IsNullOrEmpty(subArgs) || !Utils.CheckGradientCode(subArgs))
+                    {
+                        Logger.Msg($"{subArgs}", "tagcolor");
+                        Utils.SendMessage(GetString("TagColorInvalidHexCode"), player.PlayerId);
+                        break;
+                    }
+                    string tagColorFilePath = $"{sponsorTagsFiles}/{player.FriendCode}.txt";
+                    if (!File.Exists(tagColorFilePath))
+                    {
+                        Logger.Msg($"File Not exist, creating file at {tagColorFilePath}", "tagcolor");
+                        File.Create(tagColorFilePath).Close();
+                    }
+                    
+                    File.WriteAllText(tagColorFilePath, $"{subArgs}");
+                }
                 break;
 
             case "/xf":
