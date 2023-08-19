@@ -72,7 +72,6 @@ public static class Deputy
           //  target.ResetKillCooldown();
             target.SetKillCooldownV3(DeputyHandcuffCDForTarget.GetFloat());
             if (!DisableShieldAnimations.GetBool()) killer.RpcGuardAndKill(target);
-            if (!DisableShieldAnimations.GetBool()) target.RpcGuardAndKill(killer);
             if (!DisableShieldAnimations.GetBool()) target.RpcGuardAndKill(target);
 
             if (HandcuffLimit < 0)

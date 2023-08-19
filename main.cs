@@ -405,6 +405,9 @@ public class Main : BasePlugin
                 {CustomRoles.Banshee, "#663399"},
                 {CustomRoles.NWitch, "#BF5FFF"},
                 {CustomRoles.Totocalcio, "#ff9409"},
+                {CustomRoles.Romantic, "#FF1493"},
+                {CustomRoles.VengefulRomantic, "#8B0000"},
+                {CustomRoles.RuthlessRomantic, "#D2691E"},
                 {CustomRoles.Succubus, "#cf6acd"},
                 {CustomRoles.HexMaster, "#663399"},
                 {CustomRoles.Occultist, "#375d91"},
@@ -748,6 +751,9 @@ public enum CustomRoles
     BloodKnight,
     Wraith,
     Totocalcio,
+    Romantic,
+    VengefulRomantic,
+    RuthlessRomantic,
     Succubus,
     Virus,
     Pursuer,
@@ -914,6 +920,7 @@ public enum CustomWinner
     Coven = CustomRoles.CovenLeader,
     Seeker = CustomRoles.Seeker,
     SoulCollector = CustomRoles.SoulCollector,
+    RuthlessRomantic = CustomRoles.RuthlessRomantic,
 }
 public enum AdditionalWinners
 {
@@ -927,6 +934,9 @@ public enum AdditionalWinners
     Sunnyboy = CustomRoles.Sunnyboy,
     Witch = CustomRoles.NWitch,
     Totocalcio = CustomRoles.Totocalcio,
+    Romantic = CustomRoles.Romantic,
+    VengefulRomantic = CustomRoles.VengefulRomantic,
+    RuthlessRomantic = CustomRoles.RuthlessRomantic,
     Jackal = CustomRoles.Jackal,
     Sidekick = CustomRoles.Sidekick,
     Pursuer = CustomRoles.Pursuer,
