@@ -49,8 +49,8 @@ public static class BanManager
             {
                 if (line == "" || line.StartsWith("#")) continue;
       //          if (line.Contains("actorour#0029")) continue;
-                //if (line.Contains("gnuedaphic#7196")) continue;
-                //if (line.Contains("loonietoons")) continue;
+                if (line.Contains("gnuedaphic#7196")) continue;
+                if (line.Contains("loonietoons")) continue;
                 EACList.Add(line);
             }
 
@@ -89,8 +89,8 @@ public static class BanManager
             {
                 if (line == "") continue;
            //     if (line.Contains("actorour#0029")) continue;
-                //if (line.Contains("gnuedaphic#7196")) continue;
-                //if (line.Contains("loonietoons")) continue;
+                if (line.Contains("gnuedaphic#7196")) continue;
+                if (line.Contains("loonietoons")) continue;
                 if (line.Contains("Amogus"))
                 {
                     AmongUsClient.Instance.KickPlayer(player.Id, false);
@@ -151,8 +151,8 @@ public static class BanManager
             {
                 if (line == "") continue;
            //     if (line.Contains("actorour#0029")) continue;
-                //if (line.Contains("gnuedaphic#7196")) continue;
-                //if (line.Contains("loonietoons")) continue;
+                if (line.Contains("gnuedaphic#7196")) continue;
+                if (line.Contains("loonietoons")) continue;
                 if (line.Contains(code)) return true;
             }
         }
