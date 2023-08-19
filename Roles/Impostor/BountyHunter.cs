@@ -130,7 +130,7 @@ public static class BountyHunter
     public static byte GetTarget(PlayerControl player)
     {
         if (player == null) return 0xff;
-        Targets ??= new();
+        if (Targets == null) Targets = new();
 
         if (!Targets.TryGetValue(player.PlayerId, out var targetId))
             targetId = ResetTarget(player);
@@ -157,7 +157,7 @@ public static class BountyHunter
         if (cTargets.Count() >= 2 && Targets.TryGetValue(player.PlayerId, out var nowTarget))
             cTargets.RemoveAll(x => x.PlayerId == nowTarget); //前回のターゲットは除外
 
-        if (!cTargets.Any())
+        if (cTargets.Count <= 0)
         {
             Logger.Warn("ターゲットの指定に失敗しました:ターゲット候補が存在しません", "BountyHunter");
             return 0xff;

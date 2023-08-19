@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using Hazel;
 using System.Collections.Generic;
+using System.Linq;
 using TOHE.Modules;
 using UnityEngine;
 using static TOHE.Options;
@@ -66,7 +67,7 @@ public static class Romantic
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(byte playerId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SyncRomanticTarget, SendOption.Reliable, -1);
@@ -141,7 +142,7 @@ public static class Romantic
                 killer.RPCPlayCustomSound("Shield");
                 killer.Notify(GetString("RomanticProtectPartner"));
                 tpc.Notify(GetString("RomanticIsProtectingYou"));
-                new LateTask(() =>
+                _ = new LateTask(() =>
                 {
                     if (!GameStates.IsInTask || !tpc.IsAlive()) return;
                     isPartnerProtected = false;
@@ -206,7 +207,7 @@ public static class Romantic
         }
         else
         {
-            new LateTask(() =>
+            _ = new LateTask(() =>
             {
                 Logger.Info($"Crew/nnk Romantic Partner Died changing {pc.GetNameWithRole()} to Vengeful romantic", "Romantic");
 
@@ -246,7 +247,7 @@ public static class VengefulRomantic
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
 
     public static bool CanUseKillButton(PlayerControl player) => !player.Data.IsDead && !hasKilledKiller;
 
@@ -304,5 +305,5 @@ public static class RuthlessRomantic
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Count > 0;
+    public static bool IsEnable => playerIdList.Any();
 }

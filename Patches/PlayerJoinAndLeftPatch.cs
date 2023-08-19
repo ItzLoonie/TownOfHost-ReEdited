@@ -238,9 +238,9 @@ class CreatePlayerPatch
             if (Main.OverrideWelcomeMsg != "") Utils.SendMessage(Main.OverrideWelcomeMsg, client.Character.PlayerId);
             else TemplateManager.SendTemplate("welcome", client.Character.PlayerId, true);
         }, 3f, "Welcome Message");
-        if (Main.OverrideWelcomeMsg == "" && Main.PlayerStates.Any() && Main.clientIdList.Contains(client.Id))
+        if (Main.OverrideWelcomeMsg == "" && Main.PlayerStates.Count != 0 && Main.clientIdList.Contains(client.Id))
         {
-            if (Options.AutoDisplayKillLog.GetBool() && Main.PlayerStates.Any() && Main.clientIdList.Contains(client.Id))
+            if (Options.AutoDisplayKillLog.GetBool() && Main.PlayerStates.Count != 0 && Main.clientIdList.Contains(client.Id))
             {
                 _ = new LateTask(() =>
                 {

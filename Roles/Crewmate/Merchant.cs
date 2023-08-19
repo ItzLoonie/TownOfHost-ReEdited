@@ -164,7 +164,7 @@ namespace TOHE.Roles.Crewmate
                     )
                 ).ToList();
 
-            if (AllAlivePlayer.Any())
+            if (AllAlivePlayer.Count >= 1)
             {
                 bool helpfulAddon = helpfulAddons.Contains(addon);
                 bool harmfulAddon = !helpfulAddon;

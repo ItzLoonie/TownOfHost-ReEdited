@@ -42,10 +42,8 @@ namespace TOHE.Roles.Impostor
 
                 var filtered = Main.AllAlivePlayerControls.Where(a =>
                     pc.IsAlive() && !Pelican.IsEaten(pc.PlayerId) && a.PlayerId != pc.PlayerId && !changePositionPlayers.Contains(a.PlayerId)).ToList();
-                if (!filtered.Any())
-                {
-                    break;
-                }
+                
+                if (filtered.Count == 0) break;
 
                 PlayerControl target = filtered[rd.Next(0, filtered.Count)];
                 changePositionPlayers.Add(target.PlayerId);

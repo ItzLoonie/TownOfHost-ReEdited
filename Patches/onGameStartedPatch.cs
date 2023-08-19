@@ -984,7 +984,7 @@ internal class SelectRolesPatch
             count = Count;
         for (var i = 0; i < count; i++)
         {
-            if (!AllPlayers.Any()) break;
+            if (AllPlayers.Count <= 0) break;
             var rand = new Random();
             var player = AllPlayers[rand.Next(0, AllPlayers.Count)];
             AllPlayers.Remove(player);

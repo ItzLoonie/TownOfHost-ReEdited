@@ -134,7 +134,7 @@ public static class Seeker
     public static byte GetTarget(PlayerControl player)
     {
         if (player == null) return 0xff;
-        Targets ??= new();
+        if (Targets == null) Targets = new();
 
         if (!Targets.TryGetValue(player.PlayerId, out var targetId))
             targetId = ResetTarget(player);
@@ -163,7 +163,7 @@ public static class Seeker
         if (cTargets.Count() >= 2 && Targets.TryGetValue(player.PlayerId, out var nowTarget))
             cTargets.RemoveAll(x => x.PlayerId == nowTarget);
 
-        if (!cTargets.Any())
+        if (cTargets.Count <= 0)
         {
             Logger.Warn("Failed to specify target: Target candidate does not exist", "Seeker");
             return 0xff;

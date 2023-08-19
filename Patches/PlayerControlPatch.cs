@@ -660,8 +660,7 @@ class CheckMurderPatch
     public static bool RpcCheckAndMurder(PlayerControl killer, PlayerControl target, bool check = false)
     {
         if (!AmongUsClient.Instance.AmHost) return false;
-        
-        target ??= killer;
+        if (target == null) target = killer;
 
         //Jackal can kill Sidekick
         if (killer.Is(CustomRoles.Jackal) && target.Is(CustomRoles.Sidekick) && !Jackal.JackalCanKillSidekick.GetBool())
@@ -974,7 +973,7 @@ class CheckMurderPatch
                     x.PlayerId != killer.PlayerId &&
                     x.PlayerId != target.PlayerId &&
                     Vector2.Distance(x.GetTruePosition(), target.GetTruePosition()) < 2f
-                    ).ToList().Any()) return false;
+                    ).ToList().Count >= 1) return false;
                 break;
             //玩家被击杀事件
             case CustomRoles.Gamer:
@@ -1322,7 +1321,7 @@ class ShapeshiftPatch
                             cpdistance.Add(p, dis);
                             Logger.Info($"{p?.Data?.PlayerName}の位置{dis}", "Warlock");
                         }
-                        if (cpdistance.Any())
+                        if (cpdistance.Count >= 1)
                         {
                             var min = cpdistance.OrderBy(c => c.Value).FirstOrDefault();//一番小さい値を取り出す
                             PlayerControl targetw = min.Key;
@@ -1930,7 +1929,7 @@ class ReportDeadBodyPatch
         foreach (var pid in Main.AwareInteracted.Keys)
         {
             var Awarepc = Utils.GetPlayerById(pid);
-            if (Main.AwareInteracted[pid].Any() && Awarepc.IsAlive())
+            if (Main.AwareInteracted[pid].Count > 0 && Awarepc.IsAlive())
             {
                 string rolelist = "Someone";
                 _ = new LateTask(() =>
@@ -2076,7 +2075,7 @@ class FixedUpdatePatch
                             targetDistance.Add(target.PlayerId, dis);
                         }
                     }
-                    if (targetDistance.Any())
+                    if (targetDistance.Count != 0)
                     {
                         var min = targetDistance.OrderBy(c => c.Value).FirstOrDefault();
                         PlayerControl target = Utils.GetPlayerById(min.Key);
@@ -2360,7 +2359,7 @@ class FixedUpdatePatch
                                 }
                             }
                         }
-                        if (targetDistance.Any())
+                        if (targetDistance.Count() != 0)
                         {
                             var min = targetDistance.OrderBy(c => c.Value).FirstOrDefault();//一番値が小さい
                             PlayerControl target = Utils.GetPlayerById(min.Key);
@@ -2403,7 +2402,7 @@ class FixedUpdatePatch
                                 }
                             }
                         }
-                        if (targetDistance.Any())
+                        if (targetDistance.Count() != 0)
                         {
                             var min = targetDistance.OrderBy(c => c.Value).FirstOrDefault();//一番値が小さい
                             PlayerControl target = Utils.GetPlayerById(min.Key);
@@ -2453,7 +2452,7 @@ class FixedUpdatePatch
                                 }
                             }
                         }
-                        if (targetDistance.Any())
+                        if (targetDistance.Count() != 0)
                         {
                             var min = targetDistance.OrderBy(c => c.Value).FirstOrDefault();//一番値が小さい
                             PlayerControl target = Utils.GetPlayerById(min.Key);
@@ -2549,7 +2548,7 @@ class FixedUpdatePatch
             if (GameStates.IsInTask && !__instance.Is(CustomRoleTypes.Impostor) && __instance.CanUseKillButton() && !__instance.Data.IsDead)
             {
                 var players = __instance.GetPlayersInAbilityRangeSorted(false);
-                PlayerControl closest = !players.Any() ? null : players[0];
+                PlayerControl closest = players.Count <= 0 ? null : players[0];
                 HudManager.Instance.KillButton.SetTarget(closest);
             }
         }
