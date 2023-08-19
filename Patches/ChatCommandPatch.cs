@@ -373,13 +373,15 @@ internal class ChatCommands
                         textToSend1 += $" {GetString("BanCommandBannedRole")} {GetString(bannedPlayer.GetCustomRole().ToString())}";
                     }
                     Utils.SendMessage(textToSend1);
-                    string moderatorName = PlayerControl.LocalPlayer.GetRealName().ToString();
+                    //string moderatorName = PlayerControl.LocalPlayer.GetRealName().ToString();
                     //int startIndex = moderatorName.IndexOf("♥</color>") + "♥</color>".Length;
                     //moderatorName = moderatorName.Substring(startIndex);
                     //string extractedString = 
                     string moderatorFriendCode = PlayerControl.LocalPlayer.FriendCode.ToString();
                     string bannedPlayerFriendCode = bannedPlayer.FriendCode.ToString();
-                    string logMessage = $"[{DateTime.Now}] {moderatorFriendCode},{moderatorName} Banned: {bannedPlayerFriendCode},{bannedPlayerName} Reason: {banReason}";
+                    string modLogname = Main.AllPlayerNames.TryGetValue(PlayerControl.LocalPlayer.PlayerId, out var n1) ? n1 : "";
+                    string banlogname = Main.AllPlayerNames.TryGetValue(bannedPlayer.PlayerId, out var n11) ? n11 : "";
+                    string logMessage = $"[{DateTime.Now}] {moderatorFriendCode},{modLogname} Banned: {bannedPlayerFriendCode},{banlogname} Reason: {banReason}";
                     File.AppendAllText(modLogFiles, logMessage + Environment.NewLine);
                     break;
                 case "/warn":
@@ -418,13 +420,15 @@ internal class ChatCommands
                     }
                     textToSend2 = $" {warnedPlayerName} {GetString("WarnCommandWarned")} {warnReason} ~{PlayerControl.LocalPlayer.name}";
                     Utils.SendMessage(textToSend2);
-                    string moderatorName1 = PlayerControl.LocalPlayer.GetRealName().ToString();
-                    int startIndex1 = moderatorName1.IndexOf("♥</color>") + "♥</color>".Length;
-                    moderatorName1 = moderatorName1.Substring(startIndex1);
+                    //string moderatorName1 = PlayerControl.LocalPlayer.GetRealName().ToString();
+                    //int startIndex1 = moderatorName1.IndexOf("♥</color>") + "♥</color>".Length;
+                    //moderatorName1 = moderatorName1.Substring(startIndex1);
+                    string modLogname1 = Main.AllPlayerNames.TryGetValue(PlayerControl.LocalPlayer.PlayerId, out var n2) ? n2 : "";
+                    string warnlogname = Main.AllPlayerNames.TryGetValue(warnedPlayer.PlayerId, out var n12) ? n12 : "";
 
                     string moderatorFriendCode1 = PlayerControl.LocalPlayer.FriendCode.ToString();
                     string warnedPlayerFriendCode = warnedPlayer.FriendCode.ToString();
-                    string logMessage1 = $"[{DateTime.Now}] {moderatorFriendCode1},{moderatorName1} Warned: {warnedPlayerFriendCode},{warnedPlayerName} Reason: {warnReason}";
+                    string logMessage1 = $"[{DateTime.Now}] {moderatorFriendCode1},{modLogname1} Warned: {warnedPlayerFriendCode},{warnlogname} Reason: {warnReason}";
                     File.AppendAllText(modLogFiles, logMessage1 + Environment.NewLine);
 
                     break;
@@ -467,13 +471,16 @@ internal class ChatCommands
                         textToSend += $" {GetString("KickCommandKickedRole")} {GetString(kickedPlayer.GetCustomRole().ToString())}";
                     }
                     Utils.SendMessage(textToSend);
-                    string moderatorName2 = PlayerControl.LocalPlayer.GetRealName().ToString();
-                    int startIndex2 = moderatorName2.IndexOf("♥</color>") + "♥</color>".Length;
-                    moderatorName2 = moderatorName2.Substring(startIndex2);
+                    //string moderatorName2 = PlayerControl.LocalPlayer.GetRealName().ToString();
+                    //int startIndex2 = moderatorName2.IndexOf("♥</color>") + "♥</color>".Length;
+                    //moderatorName2 = moderatorName2.Substring(startIndex2);
+
+                    string modLogname2 = Main.AllPlayerNames.TryGetValue(PlayerControl.LocalPlayer.PlayerId, out var n3) ? n3 : "";
+                    string kicklogname = Main.AllPlayerNames.TryGetValue(kickedPlayer.PlayerId, out var n13) ? n13 : "";
 
                     string moderatorFriendCode2 = PlayerControl.LocalPlayer.FriendCode.ToString();
                     string kickedPlayerFriendCode = kickedPlayer.FriendCode.ToString();
-                    string logMessage2 = $"[{DateTime.Now}] {moderatorFriendCode2},{moderatorName2} Kicked: {kickedPlayerFriendCode},{kickedPlayerName} Reason: {kickReason}";
+                    string logMessage2 = $"[{DateTime.Now}] {moderatorFriendCode2},{modLogname2} Kicked: {kickedPlayerFriendCode},{kicklogname} Reason: {kickReason}";
                     File.AppendAllText(modLogFiles, logMessage2 + Environment.NewLine);
 
                     break;
@@ -1190,13 +1197,15 @@ internal class ChatCommands
                     textToSend1 += $" {GetString("BanCommandBannedRole")} {GetString(bannedPlayer.GetCustomRole().ToString())}";
                 }
                 Utils.SendMessage(textToSend1);
-                string moderatorName = player.GetRealName().ToString();
+                //string moderatorName = player.GetRealName().ToString();
                 //int startIndex = moderatorName.IndexOf("♥</color>") + "♥</color>".Length;
                 //moderatorName = moderatorName.Substring(startIndex);
                 //string extractedString = 
+                string modLogname = Main.AllPlayerNames.TryGetValue(player.PlayerId, out var n1) ? n1 : "";
+                string banlogname = Main.AllPlayerNames.TryGetValue(bannedPlayer.PlayerId, out var n11) ? n11 : "";
                 string moderatorFriendCode = player.FriendCode.ToString();
                 string bannedPlayerFriendCode = bannedPlayer.FriendCode.ToString();
-                string logMessage = $"[{DateTime.Now}] {moderatorFriendCode},{moderatorName} Banned: {bannedPlayerFriendCode},{bannedPlayerName} Reason: {banReason}";
+                string logMessage = $"[{DateTime.Now}] {moderatorFriendCode},{modLogname} Banned: {bannedPlayerFriendCode},{banlogname} Reason: {banReason}";
                 File.AppendAllText(modLogFiles, logMessage + Environment.NewLine);
                 break;
             case "/warn":
@@ -1250,13 +1259,14 @@ internal class ChatCommands
                 }
                 textToSend2 = $" {warnedPlayerName} {GetString("WarnCommandWarned")} {warnReason} ~{player.name}";
                 Utils.SendMessage(textToSend2);
-                string moderatorName1 = player.GetRealName().ToString();
-                int startIndex1 = moderatorName1.IndexOf("♥</color>") + "♥</color>".Length;
-                moderatorName1 = moderatorName1.Substring(startIndex1);
-
+                //string moderatorName1 = player.GetRealName().ToString();
+                //int startIndex1 = moderatorName1.IndexOf("♥</color>") + "♥</color>".Length;
+                //moderatorName1 = moderatorName1.Substring(startIndex1);
+                string modLogname1 = Main.AllPlayerNames.TryGetValue(player.PlayerId, out var n2) ? n2 : "";
+                string warnlogname = Main.AllPlayerNames.TryGetValue(warnedPlayer.PlayerId, out var n12) ? n12 : "";
                 string moderatorFriendCode1 = player.FriendCode.ToString();
                 string warnedPlayerFriendCode = warnedPlayer.FriendCode.ToString();
-                string logMessage1 = $"[{DateTime.Now}] {moderatorFriendCode1},{moderatorName1} Warned: {warnedPlayerFriendCode},{warnedPlayerName} Reason: {warnReason}";
+                string logMessage1 = $"[{DateTime.Now}] {moderatorFriendCode1},{modLogname1} Warned: {warnedPlayerFriendCode},{warnlogname} Reason: {warnReason}";
                 File.AppendAllText(modLogFiles, logMessage1 + Environment.NewLine);
 
                 break;
@@ -1319,13 +1329,15 @@ internal class ChatCommands
                     textToSend += $" {GetString("KickCommandKickedRole")} {GetString(kickedPlayer.GetCustomRole().ToString())}";
                 }
                 Utils.SendMessage(textToSend);
-                string moderatorName2 = player.GetRealName().ToString();
-                int startIndex2 = moderatorName2.IndexOf("♥</color>") + "♥</color>".Length;
-                moderatorName2 = moderatorName2.Substring(startIndex2);
+                //string moderatorName2 = player.GetRealName().ToString();
+                //int startIndex2 = moderatorName2.IndexOf("♥</color>") + "♥</color>".Length;
+                //moderatorName2 = moderatorName2.Substring(startIndex2);
+                string modLogname2 = Main.AllPlayerNames.TryGetValue(player.PlayerId, out var n3) ? n3 : "";
+                string kicklogname = Main.AllPlayerNames.TryGetValue(kickedPlayer.PlayerId, out var n13) ? n13 : "";
 
                 string moderatorFriendCode2 = player.FriendCode.ToString();
                 string kickedPlayerFriendCode = kickedPlayer.FriendCode.ToString();
-                string logMessage2 = $"[{DateTime.Now}] {moderatorFriendCode2},{moderatorName2} Kicked: {kickedPlayerFriendCode},{kickedPlayerName} Reason: {kickReason}";
+                string logMessage2 = $"[{DateTime.Now}] {moderatorFriendCode2},{modLogname2} Kicked: {kickedPlayerFriendCode},{kicklogname} Reason: {kickReason}";
                 File.AppendAllText(modLogFiles, logMessage2 + Environment.NewLine);
 
                 break;
@@ -1427,12 +1439,13 @@ internal class ChatCommands
                     {
                         if (args.Length > 1)
                             Utils.SendMessage(args.Skip(1).Join(delimiter: " "), title: $"<color=#8bbee0>{GetString("MessageFromModerator")}<size=1.25>{player.GetRealName()}</size></color>");
-                        string moderatorName3 = player.GetRealName().ToString();
-                        int startIndex3 = moderatorName3.IndexOf("♥</color>") + "♥</color>".Length;
-                        moderatorName3 = moderatorName3.Substring(startIndex3);
+                        //string moderatorName3 = player.GetRealName().ToString();
+                        //int startIndex3 = moderatorName3.IndexOf("♥</color>") + "♥</color>".Length;
+                        //moderatorName3 = moderatorName3.Substring(startIndex3);
+                        string modLogname3 = Main.AllPlayerNames.TryGetValue(player.PlayerId, out var n4) ? n4 : "";
 
                         string moderatorFriendCode3 = player.FriendCode.ToString();
-                        string logMessage3 = $"[{DateTime.Now}] {moderatorFriendCode3},{moderatorName3} used /s: {args.Skip(1).Join(delimiter: " ")}";
+                        string logMessage3 = $"[{DateTime.Now}] {moderatorFriendCode3},{modLogname3} used /s: {args.Skip(1).Join(delimiter: " ")}";
                         File.AppendAllText(modLogFiles, logMessage3 + Environment.NewLine);
 
                     }
