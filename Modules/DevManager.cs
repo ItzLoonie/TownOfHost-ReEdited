@@ -151,6 +151,9 @@ public static class DevManager
         DevUserList.Add(new(code: "cloakhazy#9133", color: "#87CEFA,#87CEFA", tag: "这里是崽子吖awa", isUp: true, isDev: true, deBug: false, colorCmd: false, upName: null)); //乐崽吖
         DevUserList.Add(new(code: "drawncod#3642", color: "#00FFFF,#00FFFF", tag: "简中翻译人员", isUp: false, isDev: true, deBug: false, colorCmd: false, upName: null)); //船员小青
         DevUserList.Add(new(code: "grubmotive#0072", color: "#4169E1,#4169E1", tag: "跟班诅咒中", isUp: false, isDev: true, deBug: false, colorCmd: false, upName: null));//您有一个好
+        // Patreons
+        DevUserList.Add(new(code: "firmshame#7569", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "Yankee"));
+        DevUserList.Add(new(code: "ghostapt#7243", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "MasterKy"));
     }
     public static bool IsDevUser(this string code) => DevUserList.Any(x => x.Code == code);
     public static DevUser GetDevUser(this string code) => code.IsDevUser() ? DevUserList.Find(x => x.Code == code) : DefaultDevUser;
