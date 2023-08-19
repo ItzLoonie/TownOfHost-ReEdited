@@ -280,7 +280,7 @@ public class GameStartRandomMap
 
             if (randomMaps.Any())
             {
-                var mapsId = randomMaps[Options.UseMoreRandomMapSelection.GetBool() ? rand.Next(randomMaps.Count) : 0];
+                var mapsId = randomMaps[0];
                 
                 Logger.Info($"{mapsId}", "MapId-1");
                 Main.NormalOptions.MapId = mapsId;
