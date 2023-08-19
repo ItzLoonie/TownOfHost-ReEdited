@@ -2158,12 +2158,13 @@ public static class Options
         ApplyDenyNameList = BooleanOptionItem.Create(19303, "ApplyDenyNameList", true, TabGroup.SystemSettings, true);
         ApplyBanList = BooleanOptionItem.Create(19304, "ApplyBanList", true, TabGroup.SystemSettings, true);
         ApplyModeratorList = BooleanOptionItem.Create(19305, "ApplyModeratorList", false, TabGroup.SystemSettings, false);
-    //    ApplyAllowList = BooleanOptionItem.Create(19306, "ApplyAllowList", false, TabGroup.SystemSettings, false);
-     //   AllowSayCommand = BooleanOptionItem.Create(19307, "AllowSayCommand", false, TabGroup.SystemSettings, false);
-   //     ApplyReminderMsg = BooleanOptionItem.Create(19308, "ApplyReminderMsg", false, TabGroup.SystemSettings, false);
-   /*     TimeForReminder = IntegerOptionItem.Create(19309, "TimeForReminder", new(0, 99, 1), 3, TabGroup.SystemSettings, false)
-            .SetParent(TimeForReminder)
-            .SetValueFormat(OptionFormat.Seconds); */
+        //    ApplyAllowList = BooleanOptionItem.Create(19306, "ApplyAllowList", false, TabGroup.SystemSettings, false);
+        AllowSayCommand = BooleanOptionItem.Create(19307, "AllowSayCommand", false, TabGroup.SystemSettings, false)
+            .SetParent(ApplyModeratorList);
+        //     ApplyReminderMsg = BooleanOptionItem.Create(19308, "ApplyReminderMsg", false, TabGroup.SystemSettings, false);
+        /*     TimeForReminder = IntegerOptionItem.Create(19309, "TimeForReminder", new(0, 99, 1), 3, TabGroup.SystemSettings, false)
+                 .SetParent(TimeForReminder)
+                 .SetValueFormat(OptionFormat.Seconds); */
         AutoKickStart = BooleanOptionItem.Create(19310, "AutoKickStart", false, TabGroup.SystemSettings, false);
         AutoKickStartTimes = IntegerOptionItem.Create(19311, "AutoKickStartTimes", new(0, 99, 1), 1, TabGroup.SystemSettings, false)
             .SetParent(AutoKickStart)

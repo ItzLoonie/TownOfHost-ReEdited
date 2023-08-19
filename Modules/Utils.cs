@@ -1520,10 +1520,75 @@ public static class Utils
         if (title == "") title = "<color=#aaaaff>" + GetString("DefaultSystemMessageTitle") + "</color>";
         Main.MessagesToSend.Add((text.RemoveHtmlTagsTemplate(), sendTo, title));
     }
+    public static bool IsPlayerModerator(string friendCode)
+    {
+        var friendCodesFilePath = @"./TOHE-DATA/Moderators.txt";
+        var friendCodes = File.ReadAllLines(friendCodesFilePath);
+        return friendCodes.Contains(friendCode);
+    }
+    public static bool CheckGradientCode(string ColorCode)
+    {
+        Regex regex = new Regex(@"^[0-9A-Fa-f]{6}\s[0-9A-Fa-f]{6}$");
+        if (!regex.IsMatch(ColorCode)) return false;
+        return true;
+    }
+    public static string GradientColorText(string startColorHex, string endColorHex, string text)
+    {
+        if (startColorHex.Length != 6 || endColorHex.Length != 6)
+        {
+            Logger.Error("Invalid color hex code. Hex code should be 6 characters long (without #) (e.g., FFFFFF).", "GradientColorText");
+            //throw new ArgumentException("Invalid color hex code. Hex code should be 6 characters long (e.g., FFFFFF).");
+            return text;
+        }
+
+        Color startColor = HexToColor(startColorHex);
+        Color endColor = HexToColor(endColorHex);
+
+        int textLength = text.Length;
+        float stepR = (endColor.r - startColor.r) / (float)textLength;
+        float stepG = (endColor.g - startColor.g) / (float)textLength;
+        float stepB = (endColor.b - startColor.b) / (float)textLength;
+        float stepA = (endColor.a - startColor.a) / (float)textLength;
+
+        string gradientText = "";
+
+        for (int i = 0; i < textLength; i++)
+        {
+            float r = startColor.r + (stepR * i);
+            float g = startColor.g + (stepG * i);
+            float b = startColor.b + (stepB * i);
+            float a = startColor.a + (stepA * i);
+
+
+            string colorHex = ColorToHex(new Color(r, g, b, a));
+            //Logger.Msg(colorHex, "color");
+            gradientText += $"<color=#{colorHex}>{text[i]}</color>";
+        }
+
+        return gradientText;
+    }
+
+    private static Color HexToColor(string hex)
+    {
+        Color color = new Color();
+        ColorUtility.TryParseHtmlString("#" + hex, out color);
+        return color;
+    }
+
+    private static string ColorToHex(Color color)
+    {
+        Color32 color32 = (Color32)color;
+        return $"{color32.r:X2}{color32.g:X2}{color32.b:X2}{color32.a:X2}";
+    }
     public static void ApplySuffix(PlayerControl player)
     {
         if (!AmongUsClient.Instance.AmHost || player == null) return;
-        if (!(player.AmOwner || (player.FriendCode.GetDevUser().HasTag()))) return;
+        if (!IsPlayerModerator(player.FriendCode))
+        {
+            string name1 = Main.AllPlayerNames.TryGetValue(player.PlayerId, out var n1) ? n1 : "";
+            if (GameStates.IsLobby) player.RpcSetName(name1);
+        }
+        if (!(player.AmOwner || (player.FriendCode.GetDevUser().HasTag()) || IsPlayerModerator(player.FriendCode))) return;
         string name = Main.AllPlayerNames.TryGetValue(player.PlayerId, out var n) ? n : "";
         if (Main.nickName != "" && player.AmOwner) name = Main.nickName;
         if (name == "") return;
@@ -1550,29 +1615,56 @@ public static class Utils
             if (player.FriendCode == "gnuedaphic#7196") // Loonie
             {
                 if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
-                    name = $"<color=#f34c50>L</color><color=#ef484c>o</color><color=#e74146>o</color><color=#df3a3e>n</color><color=#d73238>i</color><color=#cf2b30>e</color>";
-            
+                    name = $"{GradientColorText("f34c50", "cf2b30", "Loonie")}";
+
             }
             if (player.FriendCode == "loonietoons") // Loonie
             {
                 if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
-                    name = $"<color=#f34c50>L</color><color=#ef484c>o</color><color=#e74146>o</color><color=#df3a3e>n</color><color=#d73238>i</color><color=#cf2b30>e</color>";
-            
+                    name = $"{GradientColorText("f34c50", "cf2b30", "Loonie")}";
             }
             if (player.FriendCode == "dovebliss#9271") // Cake
             {
                 if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
-                    name = $"<color=#bd7269>C</color><color=#ba7068>a</color><color=#aa5f5e>k</color><color=#a05559>e</color>";
-            
+                    name = $"{GradientColorText("bd7269", "a05559", "cake")}";
             }
             if (player.FriendCode == "croaktense#0572") // Eevee (duh)
             {
                 if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
                     name = $"<color=#AAAAAA>" + "Eevee" + "</color>";
-            
+            }
+            var modtag = "";
+            if (Options.ApplyModeratorList.GetValue() == 1 && player.FriendCode != PlayerControl.LocalPlayer.FriendCode)
+            {
+                if (IsPlayerModerator(player.FriendCode))
+                {
+                    string colorFilePath = @$"./TOHE-DATA/Tags/MOD_TAGS/{player.FriendCode}.txt";
+                    string startColorCode = "8bbee0";
+                    string endColorCode = "8bbee0";
+                    string ColorCode = "";
+                    if (File.Exists(colorFilePath))
+                    {
+                        ColorCode = File.ReadAllText(colorFilePath);
+                        if (ColorCode.Split(" ").Length == 2)
+                        {
+                            startColorCode = ColorCode.Split(" ")[0];
+                            endColorCode = ColorCode.Split(" ")[1];
+                        }
+                    }
+                    if (!CheckGradientCode(ColorCode))
+                    {
+                        startColorCode = "8bbee0";
+                        endColorCode = "8bbee0";
+                    }
+                    //"33ccff", "ff99cc"
+                    modtag = GradientColorText(startColorCode, endColorCode, GetString("ModTag"));
+
+                }
             }
             if (!name.Contains('\r') && player.FriendCode.GetDevUser().HasTag())
-                name = player.FriendCode.GetDevUser().GetTag() + name;
+            {
+                name = player.FriendCode.GetDevUser().GetTag() + "<size=1.5>" + modtag + "</size>" + name;
+            }
             else if (player.AmOwner)
             {
                 name = Options.GetSuffixMode() switch
@@ -1588,6 +1680,7 @@ public static class Utils
                     _ => name
                 };
             }
+            else name = modtag + name;
         }
         if (name != player.name && player.CurrentOutfitType == PlayerOutfitType.Default)
             player.RpcSetName(name);
