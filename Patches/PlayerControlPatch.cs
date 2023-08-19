@@ -2968,11 +2968,11 @@ class FixedUpdatePatch
                     {
                         if (partnerPlayer.Is(CustomRoles.Lovers))
                         {
-                         Main.PlayerStates[partnerPlayer.PlayerId].deathReason = PlayerState.DeathReason.FollowingSuicide;
-                        if (isExiled)
-                            CheckForEndVotingPatch.TryAddAfterMeetingDeathPlayers(PlayerState.DeathReason.FollowingSuicide, partnerPlayer.PlayerId);
-                        else
-                            partnerPlayer.RpcMurderPlayerV3(partnerPlayer);
+                            Main.PlayerStates[partnerPlayer.PlayerId].deathReason = PlayerState.DeathReason.FollowingSuicide;
+                            if (isExiled)
+                                CheckForEndVotingPatch.TryAddAfterMeetingDeathPlayers(PlayerState.DeathReason.FollowingSuicide, partnerPlayer.PlayerId);
+                            else
+                                partnerPlayer.RpcMurderPlayerV3(partnerPlayer);
                         }
                     }
                 }
