@@ -959,6 +959,8 @@ internal static class CustomRolesHelper
         // Only add-ons
         if (!role.IsAdditionRole()) return false;
 
+        if ((pc.Is(CustomRoles.RuthlessRomantic) || pc.Is(CustomRoles.Romantic) || pc.Is(CustomRoles.VengefulRomantic)) && role is CustomRoles.Lovers) return false;
+
         // Checking for conflicts with roles
         if (pc.Is(CustomRoles.GM) || role is CustomRoles.Lovers || pc.Is(CustomRoles.Needy) || (pc.HasSubRole() && pc.GetCustomSubRoles().Count >= Options.NoLimitAddonsNumMax.GetInt())) return false;
 
