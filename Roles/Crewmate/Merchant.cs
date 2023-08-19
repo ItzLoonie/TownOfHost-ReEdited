@@ -48,14 +48,13 @@ namespace TOHE.Roles.Crewmate
 
         private static readonly List<CustomRoles> neutralAddons = new List<CustomRoles>
         {
-           CustomRoles.Soulless
+            CustomRoles.Guesser,
         };
 
         private static readonly List<CustomRoles> experimentalAddons = new List<CustomRoles>
         {
         //    CustomRoles.Flashman,
         //    CustomRoles.Ntr, // Neptune
-            CustomRoles.Guesser,
             CustomRoles.Fool
         };
 
