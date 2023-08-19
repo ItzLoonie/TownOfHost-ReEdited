@@ -488,8 +488,9 @@ public static class Options
     public static OptionItem ScientistDur;
     public static OptionItem ScientistCD;
 
-    public static OptionItem GCanGuessImp;
-    public static OptionItem GCanGuessCrew;
+    //public static OptionItem GCanGuessImp;
+    //public static OptionItem GCanGuessCrew;
+    //public static OptionItem GCanGuessNeutrals;
     public static OptionItem GCanGuessAdt;
     public static OptionItem GCanGuessTaskDoneSnitch;
     public static OptionItem GTryHideMsg;
@@ -2122,13 +2123,17 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
         NeutralCanBeGuesser = BooleanOptionItem.Create(19112, "NeutralCanBeGuesser", true, TabGroup.OtherRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
-     //   GCanGuessImp = BooleanOptionItem.Create(19113, "GCanGuessImp", false, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
-     //   GCanGuessCrew = BooleanOptionItem.Create(19114, "GCanGuessCrew", false, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
-        GCanGuessAdt = BooleanOptionItem.Create(19115, "GCanGuessAdt", false, TabGroup.OtherRoles, false)
+        //GCanGuessImp = BooleanOptionItem.Create(19113, "GCanGuessImp", true, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser])
+        //    .SetHidden(true);
+        //GCanGuessCrew = BooleanOptionItem.Create(19114, "GCanGuessCrew", true, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser])
+        //    .SetHidden(true);
+        //GCanGuessNeutrals = BooleanOptionItem.Create(19115, "GCanGuessNeutrals", true, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Guesser])
+        //    .SetHidden(true);
+        GCanGuessAdt = BooleanOptionItem.Create(19116, "GCanGuessAdt", false, TabGroup.OtherRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
-        GCanGuessTaskDoneSnitch = BooleanOptionItem.Create(19116, "GCanGuessTaskDoneSnitch", true, TabGroup.OtherRoles, false)
+        GCanGuessTaskDoneSnitch = BooleanOptionItem.Create(19117, "GCanGuessTaskDoneSnitch", true, TabGroup.OtherRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
-        GTryHideMsg = BooleanOptionItem.Create(19117, "GuesserTryHideMsg", true, TabGroup.OtherRoles, false)
+        GTryHideMsg = BooleanOptionItem.Create(19118, "GuesserTryHideMsg", true, TabGroup.OtherRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Guesser])
             .SetColor(Color.green);
         SetupAdtRoleOptions(19200, CustomRoles.Fool, canSetNum: true, tab: TabGroup.OtherRoles);
@@ -2153,12 +2158,13 @@ public static class Options
         ApplyDenyNameList = BooleanOptionItem.Create(19303, "ApplyDenyNameList", true, TabGroup.SystemSettings, true);
         ApplyBanList = BooleanOptionItem.Create(19304, "ApplyBanList", true, TabGroup.SystemSettings, true);
         ApplyModeratorList = BooleanOptionItem.Create(19305, "ApplyModeratorList", false, TabGroup.SystemSettings, false);
-    //    ApplyAllowList = BooleanOptionItem.Create(19306, "ApplyAllowList", false, TabGroup.SystemSettings, false);
-     //   AllowSayCommand = BooleanOptionItem.Create(19307, "AllowSayCommand", false, TabGroup.SystemSettings, false);
-   //     ApplyReminderMsg = BooleanOptionItem.Create(19308, "ApplyReminderMsg", false, TabGroup.SystemSettings, false);
-   /*     TimeForReminder = IntegerOptionItem.Create(19309, "TimeForReminder", new(0, 99, 1), 3, TabGroup.SystemSettings, false)
-            .SetParent(TimeForReminder)
-            .SetValueFormat(OptionFormat.Seconds); */
+        //    ApplyAllowList = BooleanOptionItem.Create(19306, "ApplyAllowList", false, TabGroup.SystemSettings, false);
+        AllowSayCommand = BooleanOptionItem.Create(19307, "AllowSayCommand", false, TabGroup.SystemSettings, false)
+            .SetParent(ApplyModeratorList);
+        //     ApplyReminderMsg = BooleanOptionItem.Create(19308, "ApplyReminderMsg", false, TabGroup.SystemSettings, false);
+        /*     TimeForReminder = IntegerOptionItem.Create(19309, "TimeForReminder", new(0, 99, 1), 3, TabGroup.SystemSettings, false)
+                 .SetParent(TimeForReminder)
+                 .SetValueFormat(OptionFormat.Seconds); */
         AutoKickStart = BooleanOptionItem.Create(19310, "AutoKickStart", false, TabGroup.SystemSettings, false);
         AutoKickStartTimes = IntegerOptionItem.Create(19311, "AutoKickStartTimes", new(0, 99, 1), 1, TabGroup.SystemSettings, false)
             .SetParent(AutoKickStart)
