@@ -2172,35 +2172,11 @@ public static class Utils
                     }
                 }
 
-                if (seer.Is(CustomRoles.EvilGuesser))
-                {
-                    if (seer.IsAlive() && target.IsAlive() && GuesserIsForMeeting)
-                    {
-                        TargetPlayerName = ColorString(GetRoleColor(CustomRoles.EvilGuesser), " " + target.PlayerId.ToString()) + " " + TargetPlayerName;
-                    }
-                }
-
-                if (seer.Is(CustomRoles.NiceGuesser))
-                {
-                    if (seer.IsAlive() && target.IsAlive() && GuesserIsForMeeting)
-                    {
-                        TargetPlayerName = ColorString(GetRoleColor(CustomRoles.NiceGuesser), " " + target.PlayerId.ToString()) + " " + TargetPlayerName;
-                    }
-                }
-
                 if (seer.Is(CustomRoles.Doomsayer))
                 {
                     if (seer.IsAlive() && target.IsAlive() && GuesserIsForMeeting)
                     {
                         TargetPlayerName = ColorString(GetRoleColor(CustomRoles.Doomsayer), " " + target.PlayerId.ToString()) + " " + TargetPlayerName;
-                    }
-                }
-
-                if (seer.Is(CustomRoles.Guesser) && !seer.Is(CustomRoles.Lookout))
-                {
-                    if (seer.IsAlive() && target.IsAlive() && GuesserIsForMeeting)
-                    {
-                        TargetPlayerName = ColorString(GetRoleColor(CustomRoles.Guesser), " " + target.PlayerId.ToString()) + " " + TargetPlayerName;
                     }
                 }
 

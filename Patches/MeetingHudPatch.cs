@@ -1047,12 +1047,6 @@ class MeetingHudStartPatch
                             isLover = true;
                         }
                         break;
-                    /*      case CustomRoles.Guesser:
-                              if (!target.Data.IsDead)
-                              {
-                                  sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lookout), " " + target.PlayerId.ToString()) + " ");
-                              }
-                              break;
                      /*     case CustomRoles.Sidekick:
                           if (seer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Sidekick) && Options.SidekickKnowOtherSidekick.GetBool())
                           {
