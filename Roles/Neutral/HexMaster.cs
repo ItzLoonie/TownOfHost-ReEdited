@@ -126,10 +126,7 @@ public static class HexMaster
     {
         foreach (var hexmaster in playerIdList)
         {
-            if (HexedPlayer[hexmaster].Any())
-            {
-                return true;
-            }
+            if (HexedPlayer[hexmaster].Count != 0) return true;
         }
         return false;
 
@@ -138,10 +135,7 @@ public static class HexMaster
     {
         foreach (var hexmaster in playerIdList)
         {
-            if (HexedPlayer[hexmaster].Contains(target))
-            {
-                return true;
-            }
+            if (HexedPlayer[hexmaster].Contains(target)) return true;
         }
         return false;
     }

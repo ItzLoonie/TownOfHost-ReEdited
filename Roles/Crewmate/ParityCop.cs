@@ -164,8 +164,8 @@ public static class ParityCop
                         && ((target2.GetCustomRole().IsImpostorTeamV2() || target2.GetCustomSubRoles().Any(role => role.IsImpostorTeamV2())) && !target2.Is(CustomRoles.Admired))) ||
                     (((target1.GetCustomRole().IsNeutralTeamV2() || target1.GetCustomSubRoles().Any(role => role.IsNeutralTeamV2())) && !target1.Is(CustomRoles.Admired))
                     && ((target2.GetCustomRole().IsNeutralTeamV2() || target2.GetCustomSubRoles().Any(role => role.IsNeutralTeamV2())) && !target2.Is(CustomRoles.Admired))) ||
-                    (((target1.GetCustomRole().IsCrewmateTeamV2() && (target1.GetCustomSubRoles().Any(role => role.IsCrewmateTeamV2()) || !target1.GetCustomSubRoles().Any())) || target1.Is(CustomRoles.Admired))
-                    && ((target2.GetCustomRole().IsCrewmateTeamV2() && (target2.GetCustomSubRoles().Any(role => role.IsCrewmateTeamV2()) || !target2.GetCustomSubRoles().Any())) || target2.Is(CustomRoles.Admired))))
+                    (((target1.GetCustomRole().IsCrewmateTeamV2() && (target1.GetCustomSubRoles().Any(role => role.IsCrewmateTeamV2()) || target1.GetCustomSubRoles().Count == 0)) || target1.Is(CustomRoles.Admired))
+                    && ((target2.GetCustomRole().IsCrewmateTeamV2() && (target2.GetCustomSubRoles().Any(role => role.IsCrewmateTeamV2()) || target2.GetCustomSubRoles().Count == 0)) || target2.Is(CustomRoles.Admired))))
                     {
                         _ = new LateTask(() =>
                         {

@@ -984,7 +984,7 @@ internal class SelectRolesPatch
             count = Count;
         for (var i = 0; i < count; i++)
         {
-            if (!AllPlayers.Any()) break;
+            if (AllPlayers.Count <= 0) break;
             var rand = new Random();
             var player = AllPlayers[rand.Next(0, AllPlayers.Count)];
             AllPlayers.Remove(player);
@@ -1046,6 +1046,9 @@ internal class SelectRolesPatch
                 || pc.Is(CustomRoles.Bomber)
                 || pc.Is(CustomRoles.Nuker) 
                 || pc.Is(CustomRoles.Provocateur)
+                || pc.Is(CustomRoles.RuthlessRomantic)
+                || pc.Is(CustomRoles.Romantic)
+                || pc.Is(CustomRoles.VengefulRomantic)
                 || (pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeInLove.GetBool())
                 || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeInLove.GetBool())
                 || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeInLove.GetBool()))

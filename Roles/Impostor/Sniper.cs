@@ -220,7 +220,7 @@ public static class Sniper
 
         var targets = GetSnipeTargets(sniper);
 
-        if (targets.Any())
+        if (targets.Count != 0)
         {
             //一番正確な対象がターゲット
             var snipedTarget = targets.OrderBy(c => c.Value).First().Key;
@@ -324,7 +324,7 @@ public static class Sniper
             foreach (var sniperId in PlayerIdList)
             {
                 var snList = shotNotify[sniperId];
-                if (snList.Any() && snList.Contains(seerId))
+                if (snList.Count > 0 && snList.Contains(seerId))
                 {
                     return $"<size=200%>{Utils.ColorString(Palette.ImpostorRed, "!")}</size>";
                 }
