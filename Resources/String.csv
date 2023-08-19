@@ -1072,8 +1072,6 @@
 "GrenadierSkillMaxOfUseage","初始技能数量","(Initial) Max number of Grenades","(Первоначальное) Максимальное количество гранат","",""
 "ShowSpecificRole","完成任务时知道玩家具体身份","Know specific roles on Task Completion","Знать более специфические роли после выполенния заданий","",""
 "TimeMasterMaxUses","初始技能数量","(Initial) Max Amount of Ability Uses","(Первоначальное) Максимальное количество способности","",""
-"FailChance","显示错误结果的概率","Chance of showing incorrect result","Результат:","",""
-"OracleCheckAddons","","Oracle checks add-ons","","",""
 "SwooperVentNormallyOnCooldown","当<color=#ff1919>隐匿者</color>隐形处于冷却时,可以正常使用通风管","<color=#ff1919>Swooper</color> vents normally when swooping is on cooldown","<color=#ff1919>Невидимка</color> может использовать вентиляцию когда невидимость в откате","",""
 "WraithVentNormallyOnCooldown","当<color=#4b0082>魅影</color>隐形处于冷却时,可以正常使用通风管","<color=#4b0082>Wraith</color> vents normally when invis is on cooldown","<color=#4b0082>Дух</color> может использовать вентиляцию когда невидимость в откате","",""
 "ShadeVentNormallyOnCooldown","当<color=#000930>遮蔽者</color>隐形处于冷却时,可以正常使用通风管","<color=#000930>Shade</color> vents normally when invis is on cooldown","<color=#000930>Тень</color> может использовать вентиляцию когда невидимость в откате","",""
@@ -2950,6 +2948,9 @@
 "OracleCheck.Imp","看起来是内鬼阵营","Appears to be an Impostor","Похоже это Предатель","",""
 "OracleCheck.Coven","看起来是巫师阵营的一员","Appears to be a member of the Coven","Похоже он в команде Ковена","",""
 "OracleCheck","目标结果：","Target Results:","Результат:","",""
+"FailChance","显示错误结果的概率","Chance of showing incorrect result","Результат:","",""
+"OracleCheckAddons","","Oracle checks add-ons","","",""
+
 
 "## Chameleon Text Strings"
 "ChameleonCanVent","隐形的通风口","Vent to disguise","Вентанитесь чтобы стать невидимым","",""
