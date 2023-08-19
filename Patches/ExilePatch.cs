@@ -58,7 +58,7 @@ class ExileControllerWrapUpPatch
 
             exiled.IsDead = true;
             Main.PlayerStates[exiled.PlayerId].deathReason = PlayerState.DeathReason.Vote;
-                        var role = exiled.GetCustomRole();
+            var role = exiled.GetCustomRole();
 
             //判断冤罪师胜利
             if (Main.AllPlayerControls.Any(x => x.Is(CustomRoles.Innocent) && !x.IsAlive() && x.GetRealKiller()?.PlayerId == exiled.PlayerId))
@@ -171,32 +171,33 @@ class ExileControllerWrapUpPatch
                 pc.SetKillCooldownV3();
             }
 
-        Main.ShroudList.Clear();
+            Main.ShroudList.Clear();
 
-        if (Options.RandomSpawn.GetBool() || Options.CurrentGameMode == CustomGameMode.SoloKombat)
-        {
-            RandomSpawn.SpawnMap map;
-            switch (Main.NormalOptions.MapId)
+            if (Options.RandomSpawn.GetBool() || Options.CurrentGameMode == CustomGameMode.SoloKombat)
             {
-                case 0:
-                    map = new RandomSpawn.SkeldSpawnMap();
-                    Main.AllPlayerControls.Do(map.RandomTeleport);
-                    break;
-                case 1:
-                    map = new RandomSpawn.MiraHQSpawnMap();
-                    Main.AllPlayerControls.Do(map.RandomTeleport);
-                    break;
-                case 2:
-                    map = new RandomSpawn.PolusSpawnMap();
-                    Main.AllPlayerControls.Do(map.RandomTeleport);
-                    break;
+                RandomSpawn.SpawnMap map;
+                switch (Main.NormalOptions.MapId)
+                {
+                    case 0:
+                        map = new RandomSpawn.SkeldSpawnMap();
+                        Main.AllPlayerControls.Do(map.RandomTeleport);
+                        break;
+                    case 1:
+                        map = new RandomSpawn.MiraHQSpawnMap();
+                        Main.AllPlayerControls.Do(map.RandomTeleport);
+                        break;
+                    case 2:
+                        map = new RandomSpawn.PolusSpawnMap();
+                        Main.AllPlayerControls.Do(map.RandomTeleport);
+                        break;
+                }
             }
+            FallFromLadder.Reset();
+            Utils.CountAlivePlayers(true);
+            Utils.AfterMeetingTasks();
+            Utils.SyncAllSettings();
+            Utils.NotifyRoles();
         }
-        FallFromLadder.Reset();
-        Utils.CountAlivePlayers(true);
-        Utils.AfterMeetingTasks();
-        Utils.SyncAllSettings();
-        Utils.NotifyRoles();
     }
 
     static void WrapUpFinalizer(GameData.PlayerInfo exiled)
@@ -239,13 +240,13 @@ class ExileControllerWrapUpPatch
         SoundManager.Instance.ChangeAmbienceVolume(DataManager.Settings.Audio.AmbienceVolume);
         Logger.Info("タスクフェイズ開始", "Phase");
     }
-}
 
-[HarmonyPatch(typeof(PbExileController), nameof(PbExileController.PlayerSpin))]
-class PolusExileHatFixPatch
-{
-    public static void Prefix(PbExileController __instance)
+    [HarmonyPatch(typeof(PbExileController), nameof(PbExileController.PlayerSpin))]
+    class PolusExileHatFixPatch
     {
-        __instance.Player.cosmetics.hat.transform.localPosition = new(-0.2f, 0.6f, 1.1f);
+        public static void Prefix(PbExileController __instance)
+        {
+            __instance.Player.cosmetics.hat.transform.localPosition = new(-0.2f, 0.6f, 1.1f);
+        }
     }
 }
