@@ -152,6 +152,7 @@
 
 "# 内鬼阵营 / Impostors"
 "BountyHunter","赏金猎人","Bounty Hunter","Охотник за Головами","賞金獵人","Caza-recompensas"
+"Cultivator","","Berserker","","",""
 "FireWorks","烟花商人","Fireworker","Фейерверк","煙火工匠","Fuegos Artificiales"
 "SerialKiller","嗜血杀手","Mercenary","Серийный Убийца","嗜血殺手","Mercenario"
 "ShapeMaster","千面鬼","Shapemaster","Шпион","百變怪","As Cambiaformas"
@@ -520,6 +521,7 @@
 
 "# 内鬼阵营 / Impostor descriptions"
 "BountyHunterInfo","走，去拿下你的目标！","Eliminate your target","Охотьтесь за своей целью","拿下你的目標","Deshazte de tu blanco"
+"CultivatorInfo","","Kill to increase your level","","",""
 "FireWorksInfo","一起来看最后的烟花吧","Go out with a BANG","Морфитесь, чтобы поставить фейерверк","在最後時刻來放煙火吧","Vete con una explosión"
 "SerialKillerInfo","这么多人至少得死一两个吧","Keep killing, else you suicide","Убивайте, чтобы не умереть","你無法抑制你的殺人衝動","En este mundo, es matar o morir"
 "ShapeMasterInfo","猜猜我是谁","Swiftly kill with no shift cooldown","У вас нет отката морфа","你知道我是誰嗎?","Transfórmate tantas veces como quieras"
@@ -788,6 +790,7 @@
 
 "# 内鬼阵营 / Long Impostors descriptions"
 "BountyHunterInfoLong","(内鬼阵营):\n赏金猎人会被随机分配一个悬赏目标，若在规定时间内击杀了悬赏目标，则击杀CD会变得很短，能立刻进行下一次击杀。若赏金猎人击杀的人不是赏金目标，则击杀CD会被延长。若赏金猎人在规定时间内没有完成任何击杀，则目标会被随机切换为另一个人。","(Impostors):\nIf you kill your assigned target, your next kill cooldown will be shortened.\nIf you kill anyone other than your target, your next kill cooldown will be increased.\nThe target swaps after a certain amount of time."," (Предатель):\nЕсли Охотник за головами убьет назначенную ему цель, время отката убийства будет намного меньше чем обычно. \n При убийстве игрока который не является его целью, время отката убийства будет обычным. \nЦели меняются спустя какое-то время.","(偽裝者陣營):\n如果賞金獵人擊殺了賞金目標，下一次的殺人冷卻會變得非常的短\n反之，如果賞金獵人擊殺了非賞金目標，那麼他的冷卻將會被延長\n賞金目標將會重置在殺死賞金目標後或切換目標時間結束。","(Impostores):\nSi matas a tu blanco, tu tiempo de espera para matar será menor.\nEn cambio, si matas a otra persona, tu tiempo de espera será mayor.\nNOTA : Tu blanco cambia cada cierto tiempo."
+"CultivatorInfoLong","","(Impostors):\nAs Berserker, you kill to increase your level. Every time you increase your level you will Unlock a new power.\n1. Level 1 => Decreased Cooldown\n2. Level 2 => Kills like scavenger\n3. Level 3 => Kills like Bomber (but using kill button instead of SS button)\n4. Level 4 => You become immortal.","","",""
 "FireWorksInfoLong","(内鬼阵营):\n烟花商人可以安放烟花炸弹，造成范围性杀伤。烟花商人使用变形可以安放至多三个烟花炸弹。当存活的内鬼阵营玩家仅剩烟花商人且烟花炸弹安置完毕时，烟花商人可以使用变形下引爆炸弹。烟花炸弹可以同样炸死烟花商人自己。但如果烟花炸弹炸死所有存活玩家，那也算内鬼阵营胜利。","(Impostors):\nFireworker can place firework bombs to cause area damage. The Fireworker can plant up to three firework bombs using shapeshift. When only the Fireworker is left among the impostors' team players and the firework bombs are placed, the Fireworker can use shapeshift to detonate the bomb. The firework bombs can also kill the Fireworker himself. But if the firework bombs kill all surviving players, it is also considered a victory for the impostors."," (Предатель):\nФейерверк может поставить несколько фейерверков с помощью Морфлинга. \nПосле установки всех фейерверков он может поджечь их все сразу с помощью использования Морфлинга, когда он является последним Предателем. \nТолько после этого он сможет убивать.","(偽裝者陣營):\n煙火工匠可以放置煙火來造成範圍性傷害，煙火工匠可以以變形來放置煙火，最多可以放置三個煙火，但是在煙火工匠放置完所有煙火前無法殺人\n如果他的隊友都已經死亡的話，煙火工匠便可以引爆煙火。\n如果煙火工匠也在爆炸中被炸死，偽裝者陣營同樣獲勝。","(Impostores):\nPuedes poner fuegos artificiales para causar daño en un area específica. Podrás plantar un máximo de tres bombas cambiando de forma. Cuando seas el único impostor vivo y todos tus fuegos artificiales estén colocados, puedes detonarlos todos cambiando formas.\nATENCIÓN: Los fuegos artificiales que detonen pueden matarte, pero si matas a todos, cuenta como una victoria para los impostores."
 "SerialKillerInfoLong","(内鬼阵营):\n嗜血杀手的击杀冷却很短，但是在指定时间内没有杀人的话，嗜血杀手就会自杀。","(Impostors):\nYou have a shorter kill cooldown than other impostors, but you will die if you don't kill before the end of your shape-shift cooldown."," (Предатель):\nУ nУ Серийного Убийцы еще более короткий откат убийства. \nНо если он не совершит убийство в установленный срок, то он мгновенно убьёт сам себя.","(偽裝者陣營):\n嗜血殺手的殺人冷卻是所有偽裝者中最短的一個。\n但是如果嗜血殺手沒有在自殺倒數時間前再殺人，嗜血殺手將會自殺。","(Impostores):\nPuedes matar más rápido, pero si no matas antes de que tu tiempo de espera para cambiar formas se acabe, te suicidarás."
 "ShapeMasterInfoLong","(内鬼阵营):\n千面鬼没有变形冷却，但千面鬼默认的变形持续时间更短。","(Impostors):\nThe Shapemaster has no Shapeshift cooldown, but their default Shapeshift duration is shorter."," (Предатель):\nШпион не имеет отката восстановления Морфа. \nС другой стороны, длительность Морфа по умолчанию стоит куда меньше. \nПродолжительность Морфа можно изменить в настройках.","(偽裝者陣營):\n百變怪相較於普通變形者，百變怪沒有變形冷卻，但是相較於普通變形者他的變形時間會更短。","(Impostores):\nEl As Cambiaformas puede cambiar formas a quemarropa, pero la transformación durará poco."
@@ -2604,6 +2607,19 @@
 "GodfatherTargetCountMode","带刀玩家变成","Killer turns into","Убийца превращается в ","",""
 "GodfatherCount.Refugee","<color=#ff1919>逃亡者</color>","<color=#ff1919>Refugee</color>","<color=#ff1919>Беженеца</color>","",""
 "GodfatherCount.Madmate","<color=#ff1919>叛徒</color>","<color=#ff1919>Madmate</color>","<color=#ff1919>Безумца</color>","",""
+
+"## Cultivator (Berserker) Text Strings"
+"CultivatorKillCooldown","","Berserker kill cooldown","","",""
+"CultivatorMax","","Max level that Berserker can reach","","",""
+"CultivatorOneCanKillCooldown","","Unlock Level 1 power (Lower kill cooldown)","","",""
+"CultivatorOneKillCooldown","","Kill cooldown after reaching Level 1","","",""
+"CultivatorTwoCanScavenger","","Unlock Level 2 power (Kills like Scavenger)","","",""
+"CultivatorThreeCanBomber","","Unlock Level 3 power (Kills like Bomber)","","",""
+"CultivatorFourCanNotKill","","Unlock Level 3 power (Become Immortal)","","",""
+"CultivatorMaxReached","","Maximum Level Reached!!","","",""
+"CultivatorLevelChanged","","Increased Level to {0}","","",""
+
+
 
 "## Unlucky Text Strings"
 "ImpCanBeUnlucky","<color=#ff1919>内鬼阵营</color>可以成为<color=#b8d7a3>倒霉蛋</color>","<color=#ff1919>Impostors</color> can become <color=#b8d7a3>Unlucky</color>","<color=#ff1919>Предатели</color> могут стать <color=#b8d7a3>Невезучим</color>","",""

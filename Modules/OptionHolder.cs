@@ -277,7 +277,7 @@ public static class Options
     public static OptionItem CultivatorThreeCanBomber;
     //public static OptionItem CultivatorFourCanFlash;
     //public static OptionItem CultivatorSpeed;
-    public static OptionItem CultivatorFiveCanNotKill;
+    public static OptionItem CultivatorFourCanNotKill;
 
     public static OptionItem CleanerKillCooldown;
     public static OptionItem KillCooldownAfterCleaning;
@@ -1068,7 +1068,7 @@ public static class Options
         SetupRoleOptions(122113545, TabGroup.ImpostorRoles, CustomRoles.Cultivator);
         CultivatorKillCooldown = FloatOptionItem.Create(2326841, "CultivatorKillCooldown", new(25f, 250f, 2.5f), 35f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Cultivator])
             .SetValueFormat(OptionFormat.Seconds);
-        CultivatorMax = IntegerOptionItem.Create(2123841, "CultivatorMax", new(1, 5, 1), 3, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Cultivator])
+        CultivatorMax = IntegerOptionItem.Create(2123841, "CultivatorMax", new(1, 4, 1), 3, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Cultivator])
             .SetValueFormat(OptionFormat.Level);
         CultivatorOneCanKillCooldown = BooleanOptionItem.Create(12364412, "CultivatorOneCanKillCooldown", false, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Cultivator]);
         CultivatorOneKillCooldown = FloatOptionItem.Create(12364413, "CultivatorOneKillCooldown", new(10f, 45f, 2.5f), 15f, TabGroup.ImpostorRoles, false).SetParent(CultivatorOneCanKillCooldown)
@@ -1078,7 +1078,7 @@ public static class Options
         //CultivatorFourCanFlash = BooleanOptionItem.Create(12364416, "CultivatorFourCanFlash", false, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Cultivator]);
         //CultivatorSpeed = FloatOptionItem.Create(12364417, "CultivatorSpeed", new(1.5f, 5f, 0.25f), 2.5f, TabGroup.ImpostorRoles, false).SetParent(CultivatorOneCanKillCooldown)
         //    .SetValueFormat(OptionFormat.Multiplier);
-        CultivatorFiveCanNotKill = BooleanOptionItem.Create(12364418, "CultivatorFiveCanNotKill", false, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Cultivator]);
+        CultivatorFourCanNotKill = BooleanOptionItem.Create(12364418, "CultivatorFourCanNotKill", false, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Cultivator]);
 
         SetupRoleOptions(2400, TabGroup.ImpostorRoles, CustomRoles.Bomber);
         BomberRadius = FloatOptionItem.Create(2018, "BomberRadius", new(0.5f, 5f, 0.5f), 2f, TabGroup.ImpostorRoles, false)

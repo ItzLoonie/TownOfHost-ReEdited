@@ -655,12 +655,13 @@ class CheckMurderPatch
             if (Main.CultivatorKillMax[killer.PlayerId] < Options.CultivatorMax.GetInt())
             {
                 Main.CultivatorKillMax[killer.PlayerId]++;
-                Logger.Warn($"Increased the lvl to {Main.CultivatorKillMax[killer.PlayerId]}", "CULTIVATOR");
+                killer.Notify(string.Format(GetString("CultivatorLevelChanged"), Main.CultivatorKillMax[killer.PlayerId]));
+                Logger.Info($"Increased the lvl to {Main.CultivatorKillMax[killer.PlayerId]}", "CULTIVATOR");
             }
             else
             {
-                killer.Notify(GetString("CultivatorNotMax"));
-                Logger.Warn($"Max level reached lvl =  {Main.CultivatorKillMax[killer.PlayerId]}", "CULTIVATOR");
+                killer.Notify(GetString("CultivatorMaxReached"));
+                Logger.Info($"Max level reached lvl =  {Main.CultivatorKillMax[killer.PlayerId]}", "CULTIVATOR");
 
             }
             if (Main.CultivatorKillMax[killer.PlayerId] == 1 && Options.CultivatorOneCanKillCooldown.GetBool())
@@ -1013,7 +1014,7 @@ class CheckMurderPatch
                     }
                 return false;
             case CustomRoles.Cultivator:
-                if (Main.CultivatorKillMax[killer.PlayerId] == 4 && Options.CultivatorFiveCanNotKill.GetBool())
+                if (Main.CultivatorKillMax[killer.PlayerId] == 4 && Options.CultivatorFourCanNotKill.GetBool())
                 {
                     Utils.TP(killer.NetTransform, target.GetTruePosition());
                     RPC.PlaySoundRPC(killer.PlayerId, Sounds.KillSound);
