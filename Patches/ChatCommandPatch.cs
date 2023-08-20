@@ -769,7 +769,7 @@ internal class ChatCommands
             "fff團" or "fff" or "fff团" => GetString("FFF"),
             "清理工" or "清潔工" or "清洁工" or "清理" or "清洁" => GetString("Cleaner"),
             "醫生" => GetString("Medicaler"),
-            "占卜師" or "占卜" => GetString("Divinator"),
+            "调查员" or "调查" => GetString("Divinator"),
             "雙重人格" or "双重" or "双人格" or "人格" => GetString("DualPersonality"),
             "玩家" => GetString("Gamer"),
             "情報販子" or "情报" or "贩子" => GetString("Messenger"),
