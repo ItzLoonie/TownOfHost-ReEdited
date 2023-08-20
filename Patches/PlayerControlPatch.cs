@@ -227,6 +227,7 @@ class CheckMurderPatch
                     if (!Poisoner.OnCheckMurder(killer, target)) return false;
                     break;
                 case CustomRoles.Witness:
+                    killer.SetKillCooldown();
                     if (Main.AllKillers.ContainsKey(target.PlayerId))
                         killer.Notify(GetString("WitnessFoundKiller"));
                     else killer.Notify(GetString("WitnessFoundInnocent"));
