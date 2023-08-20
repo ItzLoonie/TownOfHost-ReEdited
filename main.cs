@@ -177,7 +177,7 @@ public class Main : BasePlugin
     public static Dictionary<byte, float> GrenadierNumOfUsed = new();
     public static Dictionary<byte, long> Lighter = new();
     public static Dictionary<byte, float> LighterNumOfUsed = new();
-    public static Dictionary<byte, byte> AllKillers = new();
+    public static Dictionary<byte, long> AllKillers = new();
     public static Dictionary<byte, float> TimeMasterNumOfUsed = new();
     public static Dictionary<byte, int> CursedWolfSpellCount = new();
     public static Dictionary<byte, int> JinxSpellCount = new();
