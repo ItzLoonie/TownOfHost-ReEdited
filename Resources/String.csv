@@ -2485,6 +2485,7 @@
 "MiraChance","米拉总部地图的概率","Chance that the map is MIRA HQ","Шанс у MIRA HQ","",""
 "PolusChance","波鲁斯的地图概率","Chance that the map is Polus","Шанс у Polus","",""
 "AirshipChance","高空飞艇的地图概率","Chance that the map is Airship","Шанс у Airship","",""
+"UseMoreRandomMapSelection","","Use a more random map selection","Использовать более случайный выбор карты","",""
 
 "## 隐蔽外观 / Camouflage Appearance"
 "CamouflageMode.Default","默认","Default","Серый","",""

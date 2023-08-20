@@ -615,10 +615,7 @@ public static class Options
     public static OptionItem MiraChance;
     public static OptionItem PolusChance;
     public static OptionItem AirshipChance;
-    //public static OptionItem AddedTheSkeld;
-    //public static OptionItem AddedMiraHQ;
-    //public static OptionItem AddedPolus;
-    //public static OptionItem AddedTheAirship;
+    public static OptionItem UseMoreRandomMapSelection;
     public static OptionItem AddedDleks;
     public static OptionItem RandomSpawn;
     public static OptionItem AirshipAdditionalSpawn;
@@ -2272,7 +2269,7 @@ public static class Options
         ShowTeamNextToRoleNameOnEject = BooleanOptionItem.Create(19812, "ShowTeamNextToRoleNameOnEject", false, TabGroup.GameSettings, false)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 238, 232, byte.MaxValue));
-                    ConfirmEgoistOnEject = BooleanOptionItem.Create(19813, "ConfirmEgoistOnEject", true, TabGroup.GameSettings, false)
+        ConfirmEgoistOnEject = BooleanOptionItem.Create(19813, "ConfirmEgoistOnEject", true, TabGroup.GameSettings, false)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 238, 232, byte.MaxValue))
             .SetHeader(true);
@@ -2286,19 +2283,6 @@ public static class Options
             .SetColor(new Color32(19, 188, 233, byte.MaxValue));
 
         // Random Maps Mode
-        /*RandomMapsMode = BooleanOptionItem.Create(19900, "RandomMapsMode", false, TabGroup.GameSettings, false)
-            .SetHeader(true)
-            .SetColor(new Color32(19, 188, 233, byte.MaxValue));
-        AddedTheSkeld = BooleanOptionItem.Create(19910, "AddedTheSkeld", false, TabGroup.GameSettings, false)
-            .SetParent(RandomMapsMode);
-        AddedMiraHQ = BooleanOptionItem.Create(19911, "AddedMIRAHQ", false, TabGroup.GameSettings, false)
-            .SetParent(RandomMapsMode);
-        AddedPolus = BooleanOptionItem.Create(19912, "AddedPolus", false, TabGroup.GameSettings, false)
-            .SetParent(RandomMapsMode);
-        AddedTheAirship = BooleanOptionItem.Create(19913, "AddedTheAirship", false, TabGroup.GameSettings, false)
-            .SetParent(RandomMapsMode);
-        // MapDleks = CustomOption.Create(19914, Color.white, "AddedDleks", false, RandomMapMode); */
-
         RandomMapsMode = BooleanOptionItem.Create(19900, "RandomMapsMode", false, TabGroup.GameSettings, false)
             .SetHeader(true)
             .SetColor(new Color32(19, 188, 233, byte.MaxValue));
@@ -2314,7 +2298,11 @@ public static class Options
         AirshipChance = IntegerOptionItem.Create(19913, "AirshipChance", new(0, 100, 5), 10, TabGroup.GameSettings, false)
             .SetParent(RandomMapsMode)
             .SetValueFormat(OptionFormat.Percent);
-        //MapDleksChance = IntegerOptionItem.Create(19914, "MapDleks", new(0, 100, 5), 10, TabGroup.GameSettings, false)
+        UseMoreRandomMapSelection = BooleanOptionItem.Create(19920, "UseMoreRandomMapSelection", false, TabGroup.GameSettings, false)
+            .SetParent(RandomMapsMode)
+            .SetValueFormat(OptionFormat.Percent);
+
+        //MapDleksChance = IntegerOptionItem.Create(19915, "MapDleks", new(0, 100, 5), 10, TabGroup.GameSettings, false)
         //    .SetParent(RandomMapsMode)
         //    .SetValueFormat(OptionFormat.Percent);
 

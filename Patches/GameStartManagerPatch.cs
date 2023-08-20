@@ -252,22 +252,51 @@ public class GameStartRandomMap
         if (Options.RandomMapsMode.GetBool())
         {
             var rand = IRandom.Instance;
-            List<byte> RandomMaps = new();
-            /*TheSkeld   = 0
-            MIRAHQ     = 1
-            Polus      = 2
-            Dleks      = 3
-            TheAirship = 4*/
-            if ((byte)rand.Next(1, 100) <= Options.SkeldChance.GetInt()) RandomMaps.Add(0);
-            if ((byte)rand.Next(1, 100) <= Options.MiraChance.GetInt()) RandomMaps.Add(1);
-            if ((byte)rand.Next(1, 100) <= Options.PolusChance.GetInt()) RandomMaps.Add(2);
-            // if (Options.AddedDleks.GetInt()) RandomMaps.Add(3);
-            if ((byte)rand.Next(1, 100) <= Options.AirshipChance.GetInt()) RandomMaps.Add(4);
+            List<byte> randomMaps = new();
+            /*
+                TheSkeld   = 0
+                MIRAHQ     = 1
+                Polus      = 2
+                Dleks      = 3
+                TheAirship = 4
+            */
 
-            if (!RandomMaps.Any()) return true;
+            if (Options.UseMoreRandomMapSelection.GetBool())
+            {
+                if (rand.Next(1, 100) <= Options.SkeldChance.GetInt()) randomMaps.Add(0);
+                if (rand.Next(1, 100) <= Options.MiraChance.GetInt()) randomMaps.Add(1);
+                if (rand.Next(1, 100) <= Options.PolusChance.GetInt()) randomMaps.Add(2);
+                if (rand.Next(1, 100) <= Options.AirshipChance.GetInt()) randomMaps.Add(4);
+            }
+            else
+            {
+                var tempRand = rand.Next(1, 100);
 
-            var MapsId = RandomMaps[0];
-            Main.NormalOptions.MapId = MapsId;
+                if (tempRand <= Options.SkeldChance.GetInt()) randomMaps.Add(0);
+                if (tempRand <= Options.MiraChance.GetInt()) randomMaps.Add(1);
+                if (tempRand <= Options.PolusChance.GetInt()) randomMaps.Add(2);
+                if (tempRand <= Options.AirshipChance.GetInt()) randomMaps.Add(4);
+            }
+
+            if (randomMaps.Any())
+            {
+                var mapsId = randomMaps[0];
+                
+                Logger.Info($"{mapsId}", "MapId-1");
+                Main.NormalOptions.MapId = mapsId;
+            }
+            else
+            {
+                if (Options.SkeldChance.GetInt() > 0) randomMaps.Add(0);
+                if (Options.MiraChance.GetInt() > 0) randomMaps.Add(1);
+                if (Options.PolusChance.GetInt() > 0) randomMaps.Add(2);
+                if (Options.AirshipChance.GetInt() > 0) randomMaps.Add(4);
+
+                var mapsId = randomMaps[rand.Next(randomMaps.Count)];
+                
+                Logger.Info($"{mapsId}", "MapId-2");
+                Main.NormalOptions.MapId = mapsId;
+            }
         }
         return continueStart;
     }
