@@ -650,6 +650,59 @@ class CheckMurderPatch
             }, 0.05f, "OverKiller Murder");
         }
 
+        if (killer.Is(CustomRoles.Cultivator))
+        {
+            if (Main.CultivatorKillMax[killer.PlayerId] < Options.CultivatorMax.GetInt())
+            {
+                Main.CultivatorKillMax[killer.PlayerId]++;
+                killer.Notify(string.Format(GetString("CultivatorLevelChanged"), Main.CultivatorKillMax[killer.PlayerId]));
+                Logger.Info($"Increased the lvl to {Main.CultivatorKillMax[killer.PlayerId]}", "CULTIVATOR");
+            }
+            else
+            {
+                killer.Notify(GetString("CultivatorMaxReached"));
+                Logger.Info($"Max level reached lvl =  {Main.CultivatorKillMax[killer.PlayerId]}", "CULTIVATOR");
+
+            }
+            if (Main.CultivatorKillMax[killer.PlayerId] == 1 && Options.CultivatorOneCanKillCooldown.GetBool())
+            {
+                Main.AllPlayerKillCooldown[killer.PlayerId] = Options.CultivatorOneKillCooldown.GetFloat();
+            }
+            if (Main.CultivatorKillMax[killer.PlayerId] == 2 && Options.CultivatorTwoCanScavenger.GetBool())
+            {
+                Utils.TP(killer.NetTransform, target.GetTruePosition());
+                RPC.PlaySoundRPC(killer.PlayerId, Sounds.KillSound);
+                Utils.TP(target.NetTransform, Pelican.GetBlackRoomPS());
+                target.SetRealKiller(killer);
+                Main.PlayerStates[target.PlayerId].SetDead();
+                target.RpcMurderPlayerV3(target);
+                killer.SetKillCooldownV2();
+                NameNotifyManager.Notify(target, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Cultivator), GetString("KilledByCultivator")));
+                return false;
+            }
+            if (Main.CultivatorKillMax[killer.PlayerId] == 3 && Options.CultivatorThreeCanBomber.GetBool())
+            {
+                Logger.Info("炸弹爆炸了", "Boom");
+                CustomSoundsManager.RPCPlayCustomSoundAll("Boom");
+                foreach (var player in Main.AllPlayerControls)
+                {
+                    if (!player.IsModClient()) player.KillFlash();
+                    if (!player.IsAlive() || Pelican.IsEaten(player.PlayerId)) continue;
+                    if (player == killer) continue;
+                    if (Vector2.Distance(killer.transform.position, player.transform.position) <= Options.BomberRadius.GetFloat())
+                    {
+                        Main.PlayerStates[player.PlayerId].deathReason = PlayerState.DeathReason.Bombed;
+                        player.SetRealKiller(killer);
+                        player.RpcMurderPlayerV3(player);
+                    }
+                }
+            }
+            //if (Main.CultivatorKillMax[killer.PlayerId] == 4 && Options.CultivatorFourCanFlash.GetBool())
+            //{
+            //    Main.AllPlayerSpeed[killer.PlayerId] = Options.CultivatorSpeed.GetFloat();
+            //}
+        }
+
         //==キル処理==
         __instance.RpcMurderPlayerV3(target);
         //============
@@ -960,6 +1013,15 @@ class CheckMurderPatch
                         CustomWinnerHolder.WinnerIds.Add(target.PlayerId);
                     }
                 return false;
+            case CustomRoles.Cultivator:
+                if (Main.CultivatorKillMax[killer.PlayerId] == 4 && Options.CultivatorFourCanNotKill.GetBool())
+                {
+                    Utils.TP(killer.NetTransform, target.GetTruePosition());
+                    RPC.PlaySoundRPC(killer.PlayerId, Sounds.KillSound);
+                    killer.SetKillCooldown(target: target, forceAnime: true);
+                    return false;
+                }
+                break;
             case CustomRoles.Glitch:
                     if (killer.Is(CustomRoles.Pestilence)) break;
                     killer.SetRealKiller(target);

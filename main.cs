@@ -112,6 +112,7 @@ public class Main : BasePlugin
     public static Dictionary<byte, Vector2> LastEnteredVentLocation = new();
     public static Dictionary<byte, Vector2> TimeMasterBackTrack = new();
     public static Dictionary<byte, int> MasochistKillMax = new();
+    public static Dictionary<byte, int> CultivatorKillMax = new();
     public static Dictionary<byte, int> TimeMasterNum = new();
     public static Dictionary<byte, long> TimeMasterInProtect = new();
     //public static Dictionary<byte, long> FlashbangInProtect = new();
@@ -643,6 +644,7 @@ public enum CustomRoles
     Twister,
     Lurker,
     Convict,
+    Cultivator,
     Visionary,
     Refugee,
     Underdog,
