@@ -228,7 +228,7 @@ class CheckMurderPatch
                     break;
                 case CustomRoles.Witness:
                     killer.SetKillCooldown();
-                    if (Main.AllKillers.TryGetValue(target.PlayerId, out var killerId) && target.PlayerId == killerId)
+                    if (Main.AllKillers.ContainsKey(target.PlayerId))
                         killer.Notify(GetString("WitnessFoundKiller"));
                     else killer.Notify(GetString("WitnessFoundInnocent"));
                     return false;
@@ -1174,8 +1174,8 @@ class MurderPlayerPatch
         if (target.Is(CustomRoles.Trapper) && killer != target)
             killer.TrapperKilled(target);
 
-        Main.AllKillers.Add(killer.PlayerId, 1);
-        new LateTask(() => { Main.AllKillers.Remove(killer.PlayerId); }, Options.WitnessTime.GetInt());
+        Main.AllKillers.Remove(killer.PlayerId);
+        Main.AllKillers.Add(killer.PlayerId, Utils.GetTimeStamp());
 
         switch (target.GetCustomRole())
         {
@@ -2318,7 +2318,9 @@ class FixedUpdatePatch
                     CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Vulture);
                     CustomWinnerHolder.WinnerIds.Add(player.PlayerId);
                 }
-                
+
+                if (Main.AllKillers.TryGetValue(player.PlayerId, out var ktime) && ktime + Options.WitnessTime.GetInt() < Utils.GetTimeStamp()) 
+                    Main.AllKillers.Remove(player.PlayerId);
 
                 Pelican.OnFixedUpdate();
                 BallLightning.OnFixedUpdate();
