@@ -1034,7 +1034,7 @@
 "SunglassesInfoLong","(附加职业):\n患者的视野会下降","(Add-ons):\nAs the Sunglasses, your vision is reduced.","(Атрибут)\nКак Солнцезащитный, твой обзор уменьшен.","",""
 "MareInfoLong","(附加职业):\n梦魇只能在停电时下进行击杀。且梦魇击杀冷却很短。但是请注意，停电时间内所有玩家都能看到梦魇的名字以红色表示。\n仅分配给伪装者，无法被赌怪赌杀。","(Add-ons):\nAs the Mare, you have a low kill cooldown but can only kill during lights.\n\nAdditionally, your name will appear in red during lights.\n\nOnly assigned to Impostors and cannot be guessed.","(Атрибут):\nУ Ночного маленький откат убийства, но он может убивать только при саботаже света.\n\nКроме того, его никнейм будет отображаться красным цветом при саботаже света.\n\nНазначается только Предателям и не может быть угадан.","",""
 "BurstInfoLong","(附加职业):\n如果带刀玩家击杀了爆破者，那么该玩家要在一定时间内进入通风管，否则就会爆炸","(Add-ons):\nAs the Burst, your killer explodes if they aren't inside a vent after a set amount of time.","(Атрибут)\nЕсли кто-то убъёт Взрывого и если он не находится в вентиляции то через определенное время он умрёт.","",""
-"SleuthInfoLong","(附加职业):\n侦查员可以从尸体中获得信息。在选择上，你也可能获得击杀玩家的身份。该附加职业不会分配给侦探或入殓师","(Add-ons):\nAs the Sleuth, you gain info from dead bodies.\n\nOptionally, you may also gain the killer's role.\n\nNot assigned to Detective or Mortician.","(Атрибут):\nКогда Сыщик репортит турп, он будет видеть его роль","",""
+"SleuthInfoLong","(附加职业):\n侦察员可以从尸体中获得信息。在选择上，你也可能获得击杀玩家的身份。该附加职业不会分配给侦探或入殓师","(Add-ons):\nAs the Sleuth, you gain info from dead bodies.\n\nOptionally, you may also gain the killer's role.\n\nNot assigned to Detective or Mortician.","(Атрибут):\nКогда Сыщик репортит турп, он будет видеть его роль","",""
 "ClumsyInfoLong","(附加职业):\n笨蛋有机会错过击杀机会。当错过时，击杀冷却时间会重置，目标不会受到影响。只分配给带刀职业","(Add-ons):\nAs the Clumsy, you have a chance to miss your kill.\n\nWhen you miss, your cooldown is reset and the target remains untouched.\n\nOnly assigned to killers.","(Атрибут):\nУ Неуклюжого есть шанс упустить свою добычу.\n\n Когда он промахивается, его откат убийства сбрасывается, и цель остается нетронутой.\n\nНазначается только убийцам","",""
 "NimbleInfoLong","(附加职业):\n敏捷的您可以使用通风管","(Add-ons):\nAs the Nimble, you gain access to the vent button.\n\nOnly assigned to certain crewmates.","(Атрибут)\nКак Шустрый, вы получаете доступ к кнопке вентиляции.\n\nДоступно только некоторым Членам Экипажа.","",""
 
@@ -1986,8 +1986,8 @@
 "BittenByInfectious","你被传染性感染了","You were infected by the Infectious!","Вас заразили!","",""
 "InfectiousBittenPlayer","你成功感染了一名玩家","You successfully infected a player","Вы успешно заразили игрока","",""
 "GuessNotAllowed","您的身份无权进行猜测","Sorry, your role does not have access to guessing.","Извините, ваша роль не имеет доступа к угадыванию","",""
-"GuessOnbound","该玩家附加职业是防赌\n因此您对他们的猜测被取消","This player has the Onbound add-on, so your guess on them was canceled.","Этот игрок имеет Атрибут Непобедимого, поэтому вы не можете его угадать","",""
-"GuessPhantom","你猜测不到幻影，这会让他们赢了！","You can't guess a Phantom, that allows them to win!","Вы не можете угадать Фантома, это позволит ему победить!","",""
+"GuessOnbound","该玩家附加职业是不可被赌\n因此您对他们的猜测被取消","This player has the Onbound add-on, so your guess on them was canceled.","Этот игрок имеет Атрибут Непобедимого, поэтому вы не можете его угадать","",""
+"GuessPhantom","你无法赌幻影，这会让他们赢了！","You can't guess a Phantom, that allows them to win!","Вы не можете угадать Фантома, это позволит ему победить!","",""
 "DovesOfNeaceOnGuard","技能已生效，剩余{0}次","Ability used, {0} uses remain","Навык активирован, осталось ещё {0} ","和平技能已生效，剩餘{0}次",""
 "DovesOfNeaceMaxUsage","已达到技能使用次数上限","Ability use limit reached","Вы использовали все свои способности","已達到技能使用次數上限",""
 "DovesOfNeaceSkillNotify","和平之鸽重置了您的击杀/技能冷却","Pacifist reset your kill cooldown","Пацифист сбросил ваш откат убийства / способности","和平之鴿重置了您的殺人/技能冷卻",""
@@ -2450,8 +2450,8 @@
 "DivinatorCheck.Result3","<b>{0}</b>是资本家、赝品商、贪婪者、商人、灵魂收集者或骗术师其中之一","<b>{0}</b> is either Capitalist, Deceiver, Greedy, Witness, Merchant, Soul Collector, or Trickster","<b>{0}</b> может быть Капиталист, Обманщик, Жадина, Торговец, или Трюкач","",""
 "DivinatorCheck.Result4","<b>{0}</b>是瘟疫、瘟疫使者、观察者、嗜血骑士、护盾巫师、守护者或野人其中之一","<b>{0}</b> is either Pestilence, Plaguebearer, Banshee, Observer, Blood Knight, Guardian, or Wildling","<b>{0}</b> может быть Чума, Носитель Чумы, Аудитор, Кровный Рыцарь, Страж, или Одичалый","",""
 "DivinatorCheck.Result5","<b>{0}</b>是吟游诗人、天启、遐想者、狂妄杀手、杀戳机器或肢解者其中之一","<b>{0}</b> is either Bard, Juggernaut, Reverie, Arrogance, Killing Machine, or Butcher","<b>{0}</b> может быть Бард, Джаггернаут, Мечтатель, Высокомер, Машина для Убийств, или Мясник","",""
-"DivinatorCheck.Result6","<b>{0}</b>是验尸官、邪恶追踪者、验尸官、探索者、寻迹者或正义追踪者其中之一","<b>{0}</b> is either Coroner, Agent, Mortician, Seeker, Tracefinder, or Tracker","<b>{0}</b> может быть Сыщик, Злой Трекер, Гробовщик, Искатель, или Трекер","",""
-"DivinatorCheck.Result7","<b>{0}</b>是保镖、自爆兵、烟花商人、煽动者、瞭望员或核武器其中之一","<b>{0}</b> is either Bodyguard, Bomber, Fireworker, Agitator, Lookout, or Nuker","<b>{0}</b> может быть Телохранитель, Бомбер, Фейерверк, или Крипер","",""
+"DivinatorCheck.Result6","<b>{0}</b>是验尸官、邪恶追踪者、验尸官、探索者、寻迹者、浪漫者或正义追踪者其中之一","<b>{0}</b> is either Coroner, Agent, Mortician, Seeker, Tracefinder, Romantic, or Tracker","<b>{0}</b> может быть Сыщик, Злой Трекер, Гробовщик, Искатель, или Трекер","",""
+"DivinatorCheck.Result7","<b>{0}</b>是保镖、自爆兵、烟花商人、煽动者、瞭望员、复仇主义者、无情主义者或核武器其中之一","<b>{0}</b> is either Bodyguard, Bomber, Fireworker, Agitator, Lookout, Ruthless Romantic, Vengeful Romantic, or Nuker","<b>{0}</b> может быть Телохранитель, Бомбер, Фейерверк, или Крипер","",""
 "DivinatorCheck.Result8","<b>{0}</b>是赏金猎人、侦探、FFF团、清理工、美杜莎或愚者其中之一","<b>{0}</b> is either Bounty Hunter, Detective, Hater, Cleaner, Medusa, or Psychic","<b>{0}</b> может быть Охотник за Головами, Детектив, Бессердечник, Очиститель, Медуза, или Экстрасенс","",""
 "DivinatorCheck.Result9","<b>{0}</b>是罪犯、处刑者、律师、告密者、分散者或法医其中之一","<b>{0}</b> is either Convict, Executioner, Lawyer, Snitch, Disperser, or Doctor","<b>{0}</b> может быть Осужденный, Палач, Адвокат, Стукач, Разбрасыватель, или Доктор","",""
 "DivinatorCheck.Result10","<b>{0}</b>是议员、独裁者、法官、被诅咒的灵魂、清洗者或呪狼其中之一","<b>{0}</b> is either Councillor, Dictator, Judge, Cursed Soul, Cleanser, or Cursed Wolf","<b>{0}</b> может быть Взяточник, Диктатор, Судья, Проклятый, или Проклятый Волк","",""
@@ -2514,7 +2514,7 @@
 "ImpCanBeClumsy","<color=#ff1919>内鬼阵营</color>可以成为笨蛋","<color=#ff1919>Impostors</color> can become Clumsy","<color=#ff1919>Предатели</color> могут стать <color=#FF1919>Неуклюжими</color>","",""
 "NeutralCanBeClumsy","<color=#7f8c8d>带刀中立</color>可以成为笨蛋","<color=#7f8c8d>Neutral Killers</color> can become Clumsy","<color=#7f8c8d>Нейтральные Убийцы</color> могут стать <color=#FF1919>Неуклюжими</color>","",""
 
-"## Shade Text Strings"
+"## 遮蔽者设置 / Shade Text Strings"
 "ShadeCooldown","遮蔽冷却","Shade Cooldown","Откат способности","",""
 "ShadeDuration","遮蔽时间","Shade Duration","Длительность способности","",""
 "ShadeCanVent","可以使用通风口来隐形","Vent to turn invisible","Используйте Вентиляцию чтобы стать невидимым","",""
@@ -2524,7 +2524,7 @@
 "ShadeInvisStateCountdown","隐形将在 {0} 秒后失效","Invisibility will expire in {0}s","Невидимость пропадёт в {0}c","",""
 "ShadeInvisCooldownRemain","{0}秒可以隐形","{0}s left in invisibility","{0}c осталось для Невидимости","",""
 
-"## Soul Collector Text Strings"
+"## 灵魂收集者设置 / Soul Collector Text Strings"
 "SoulCollectorPointsToWin","所需灵魂数量","Required number of souls","Требуемое количество душ","",""
 "SoulCollectorTarget","您曾预言<b>{0}</b>会在下轮会议死亡","You have predicted the death of <b>{0}</b>","Ты предугадал смерть <b>{0}</b>","",""
 "SoulCollectorTitle","【★ 灵魂贡献 ★】","SOUL COLLECTOR","КОЛЛЕКТОР ДУШ","",""
@@ -2534,7 +2534,7 @@
 "## 天文学家设置 / Chronomancer Text Strings"
 "ChronomancerKillCooldown","为夺命按钮充电的时间","Time to fully charge the kill button","Время для полной зарядки кнопки убийтсва","",""
 
-"Occultist Text Strings"
+"## 神秘者设置 / Occultist Text Strings"
 "CursesLookLikeSpells","<color=#375d91>诅咒</color>看起来像<color=#ff1919>咒语</color>","<color=#375d91>Curses</color> look like <color=#ff1919>spells</color>","<color=#375d91>Проклятия</color> выглядят как <color=#ff1919>проклинания</color>","",""
 "OccultistModeDouble","单击诅咒&双击击杀","Double Click = Kill, Single Click = Curse","Двойное нажатие = Убийство, Единичное = Проклятие","",""
 "OccultistModeCurse","诅咒","Curse","Проклять","",""
@@ -2553,7 +2553,7 @@
 "## 逃亡者设置 / Refugee Text Strings"
 "RefugeeSettings","<color=#ff1919>逃亡者</color>设置","<color=#ff1919>Refugee</color> Settings","Настройки <color=#ff1919>Беженца</color>","",""
 
-"## 侦查员/监管者设置 / Disruptor / Monitor Text Strings"
+"## 侦察员/监管者设置 / Disruptor / Monitor Text Strings"
 "AntiAdminerAD","管理室地图警告","Warning about Admin","Оповещение о Админке","管理室地圖警告","管理室地图警告"
 "AntiAdminerVI","生命检测仪警告","Warning about Vitals","Оповещение о Пульсах ","心電圖警告","生命检测仪警告"
 "AntiAdminerDL","通行记录警告","Warning about DoorLog","Оповещение о Журналах","通行記錄警告","日志警告"
@@ -2594,18 +2594,18 @@
 "ShroudCooldown","裹尸布冷却","Shroud Cooldown","Откат накрытия","",""
 "Message.Shrouded","一个或多个玩家被<b><color=#6697FF>裹尸布覆盖</color></b>！\n\n除掉<b><color=#6697FF>裹尸布</b>，否则所有被裹尸的玩家都会<color=#ff1919>自杀</color>！","One or more players were shrouded by a <b><color=#6697FF>Shroud</color></b>!\n\nGet rid of the <b><color=#6697FF>Shroud</color></b> or all shrouded players will <color=#ff1919>suicide</color>!","Один или несколько игроков были накрыты <b><color=#6697FF>Накрывателем</color></b>!\n\nИзбавьтесь от <b><color=#6697FF>Накрывателя</color></b> или все накрытые игроки совершат <color=#ff1919>самоубийство</color>!","",""
 
-"## Ludopath Text Strings"
+"## 速度者设置 / Ludopath Text Strings"
 "LudopathRandomKillCD","最大击杀冷却时间","Maximum kill cooldown","Максимальный откат убийства","",""
 
 "## 失败者设置 Underdog Text Strings"
 "UnderdogMaximumPlayersNeededToKill","开始击杀所需的玩家数量上限","Maximum players needed to start killing","Количество игроков требуется для открытия убийств","",""
 
-"## Godfather Text Strings"
+"## 教父设置 / Godfather Text Strings"
 "GodfatherTargetCountMode","带刀玩家变成","Killer turns into","Убийца превращается в ","",""
 "GodfatherCount.Refugee","<color=#ff1919>逃亡者</color>","<color=#ff1919>Refugee</color>","<color=#ff1919>Беженеца</color>","",""
 "GodfatherCount.Madmate","<color=#ff1919>叛徒</color>","<color=#ff1919>Madmate</color>","<color=#ff1919>Безумца</color>","",""
 
-"## Unlucky Text Strings"
+"## 倒霉蛋设置 / Unlucky Text Strings"
 "ImpCanBeUnlucky","<color=#ff1919>内鬼阵营</color>可以成为<color=#b8d7a3>倒霉蛋</color>","<color=#ff1919>Impostors</color> can become <color=#b8d7a3>Unlucky</color>","<color=#ff1919>Предатели</color> могут стать <color=#b8d7a3>Невезучим</color>","",""
 "CrewCanBeUnlucky","<color=#8cffff>船员阵营</color>可以成为<color=#b8d7a3>倒霉蛋</color>","<color=#8cffff>Crewmates</color> can become <color=#b8d7a3>Unlucky</color>","<color=#8cffff>Члены Экипажа</color> могут стать <color=#b8d7a3>Невезучим</color>","",""
 "NeutralCanBeUnlucky","<color=#7f8c8d>中立阵营</color>可以成为<color=#b8d7a3>倒霉蛋</color>","<color=#7f8c8d>Neutrals</color> can become <color=#b8d7a3>Unlucky</color>","<color=#7f8c8d>Нейтралы</color> могут стать <color=#b8d7a3>Невезучим</color>","",""
@@ -2616,12 +2616,12 @@
 "UnluckySabotageSuicideChance","开门而自杀的概率","Chance to suicide from opening a door","Шанс суицида от Открытия дверей","",""
 "UnluckyShapeshiftSuicideChance","变形而自杀的概率","Chance to suicide from shapeshifting","Шанс суицида от Морфа","",""
 
-"## VoidBallot Text Strings"
+"## 无效投票设置 / VoidBallot Text Strings"
 "ImpCanBeVoidBallot","<color=#ff1919>内鬼阵营</color>可以成为<color=#FF3399>无效投票</color>","<color=#ff1919>Impostors</color> can become <color=#FF3399>VoidBallot</color>","<color=#ff1919>Предатели</color> могут стать <color=#FF3399>Пустыми</color>","",""
 "CrewCanBeVoidBallot","<color=#8cffff>船员阵营</color>可以成为<color=#FF3399>无效投票</color>","<color=#8cffff>Crewmates</color> can become <color=#FF3399>VoidBallot</color>","<color=#8cffff>Члены Экипажа</color> могут стать <color=#FF3399>Пустыми</color>","",""
 "NeutralCanBeVoidBallot","<color=#7f8c8d>中立阵营</color>可以成为<color=#FF3399>无效投票</color>","<color=#7f8c8d>Neutrals</color> can become <color=#FF3399>VoidBallot</color>","<color=#7f8c8d>Нейтралы</color> могут стать <color=#FF3399>Пустыми</color>","",""
 
-"## Aware Text Strings"
+"## 意识到设置 / Aware Text Strings"
 "ImpCanBeAware","<color=#ff1919>内鬼阵营</color>可以成为<color=#4B0082>意识到</color>","<color=#ff1919>Impostors</color> can become <color=#4B0082>Aware</color>","<color=#ff1919>Предатели</color> могут стать <color=#4B0082>Внимательным</color>","",""
 "NeutralCanBeAware","<color=#7f8c8d>中立阵营</color>可以成为<color=#4B0082>意识到</color>","<color=#7f8c8d>Neutrals</color> can become <color=#4B0082>Aware</color>","<color=#7f8c8d>Нейтралы</color> могут стать <color=#4B0082>Внимательным</color>","",""
 "CrewCanBeAware","<color=#8cffff>船员阵营</color>可以成为<color=#4B0082>意识到</color>","<color=#8cffff>Crewmates</color> can become <color=#4B0082>Aware</color>","<color=#8cffff>Члены Экипажа</color> могут стать <color=#4B0082>Внимательным</color>","",""
@@ -2629,7 +2629,7 @@
 "AwareInteracted","{0} 试图揭示你的身份","{0} tried to reveal your role.","{0} попытался раскрыть твою роль.","",""
 "AwareTitle","【★ 警告信息 ★】","AWARE MESSAGE","ЗАМЕТКИ ВНИМАТЕЛЬНОГО","",""
 
-"## Lighter Text Strings"
+"## 执灯人设置 / Lighter Text Strings"
 "LighterVentButtonText","点灯","Light","ЗАЖЕЧЬ","",""
 "LighterSkillCooldown","<color=#eee5be>点灯</color>冷却时间","<color=#eee5be>Light</color> Cooldown","Откат <color=#eee5be>Зажигания</color>","",""
 "LighterSkillDuration","<color=#eee5be>点灯</color>持续时间","<color=#eee5be>Light</color> Duration","Длительность <color=#eee5be>Зажигания</color>","",""
@@ -2638,13 +2638,13 @@
 "LighterSkillInUse","使用技能","Ability in use","Способность использована","",""
 "LighterSkillStop","点灯技能使用次数上限","Ability expired","Срок действия способности истек","",""
 
-"## Witness"
+"## 目击者设置 / Witness Text Strings"
 "WitnessTime","击杀后的玩家出现红名的最长时间","Max Time after killing where killer appears red","Максимальное время после убийства, когда убийца становится красным","",""
 "WitnessButtonText","目击","Examine","ИССЛЕДОВАТЬ","",""
 "WitnessFoundInnocent","<color=#00ff00>✓</color>","<color=#00ff00>✓</color>","<color=#00ff00>✓</color>","<color=#00ff00>✓</color>","<color=#00ff00>✓</color>"
 "WitnessFoundKiller","<color=#ffff00>⚠</color>","<color=#ffff00>⚠</color>","<color=#ffff00>⚠</color>","<color=#ffff00>⚠</color>","<color=#ffff00>⚠</color>"
 
-"## Fragile Text Strings"
+"## 脆弱设置 / Fragile Text Strings"
 "ImpCanBeFragile","<color=#ff1919>内鬼阵营</color>可以成为<color=#D3D3D3>脆弱</color>","<color=#ff1919>Impostors</color> can become <color=#D3D3D3>Fragile</color>","<color=#ff1919>Предатели</color> могут стать <color=#D3D3D3>Хрупкими</color>","",""
 "NeutralCanBeFragile","<color=#7f8c8d>中立阵营</color>可以成为<color=#D3D3D3>脆弱</color>","<color=#7f8c8d>Neutrals</color> can become <color=#D3D3D3>Fragile</color>","<color=#7f8c8d>Нейтралы</color> могут стать <color=#D3D3D3>Хрупкими</color>","",""
 "CrewCanBeFragile","<color=#8cffff>船员阵营</color>可以成为<color=#D3D3D3>脆弱</color>","<color=#8cffff>Crewmates</color> can become <color=#D3D3D3>Fragile</color>","<color=#8cffff>Члены Экипажа</color> могут стать <color=#D3D3D3>Хрупкими</color>","",""
@@ -2654,12 +2654,12 @@
 "FragileKillerLunge","击杀时玩家会突刺","Killer lunge on kill","Убийца телепортируются на труп при убийстве","",""
 
 
-"## Crusader Text Strings"
+"## 十字军设置 / Crusader Text Strings"
 "CrusaderSkillLimit","十字军最大护盾数量","Maximum Crusades","Количество защит","",""
 "CrusaderSkillCooldown","十字军护盾冷却","Crusade Cooldown","Откат защиты","",""
 "CrusaderKillButtonText","护盾","Crusade","Защитить","",""
 
-"## Serial Killer Text Strings"
+"## 连环杀手设置 / Serial Killer Text Strings"
 "HasSerialKillerBuddy","连环杀手有同伴","Has Serial Killer buddy","Может иметь приятеля","",""
 "ChanceToSpawn","出现概率","Chance to spawn","Шанс появления","",""
 "ChanceToSpawnAnother","出现概率另一个的概率","Chance to spawn another","Шанс появления еще одного","",""
@@ -2668,57 +2668,57 @@
 "BloodlustPlayerCount","<color=#630000>嗜血杀手</color>的最大玩家存活","Max players alive for <color=#630000>Bloodlust</color>","Максимальное количество живых игроков для <color=#630000>Кровожадного</color>","",""
 "ReflectHarmfulInteractions","反射<color=#ff1919>有害的</color>交互","Reflect <color=#ff1919>harmful</color> interactions","Отражение <color=#ff1919>Вредных</color> взаимодействий","",""
 
-"## Glow Text Strings"
+"## 光辉设置 / Glow Text Strings"
 "GlowVision","<color=#E2F147>光辉</color>的视野","<color=#E2F147>Glow</color> Vision","Обзор <color=#E2F147>Светящего</color>","",""
 "ImpCanBeGlow","<color=#ff1919>内鬼阵营</color>可以成为<color=#E2F147>光辉</color>","<color=#ff1919>Impostors</color> can become <color=#E2F147>Glow</color>","<color=#ff1919>Предатели</color> могут стать <color=#E2F147>Светящимися</color>","",""
 "CrewCanBeGlow","<color=#8cffff>船员阵营</color>可以成为<color=#E2F147>光辉</color>","<color=#8cffff>Crewmates</color> can become <color=#E2F147>Glow</color>","<color=#8cffff>Члены Экипажа</color> могут стать <color=#E2F147>Светящимися</color>","",""
 "NeutralCanBeGlow","<color=#7f8c8d>中立阵营</color>可以成为<color=#E2F147>光辉</color>","<color=#7f8c8d>Neutrals</color> can become <color=#E2F147>Glow</color>","<color=#7f8c8d>Нейтралы</color> могут стать <color=#E2F147>Светящимися</color>","",""
 
-"## Diseased Text Strings"
+"## 患病设置 / Diseased Text Strings"
 "ImpCanBeDiseased","<color=#ff1919>内鬼阵营</color>可能成为患病","<color=#ff1919>Impostors</color> can become Diseased","<color=#ff1919>Предатели</color> могут стать Мучеником","",""
 "NeutralCanBeDiseased","<color=#7f8c8d>中立阵营</color>可能成为患病","<color=#7f8c8d>Neutrals</color> can become Diseased","<color=#8cffff>Члены Экипажа</color> могут стать Мучеником","",""
 "CrewCanBeDiseased","<color=#8cffff>船员阵营</color>可能成为患病","<color=#8cffff>Crewmates</color> can become Diseased","<color=#7f8c8d>Нейтралы</color> могут стать Мучеником","",""
 "DiseasedCDOpt","冷却时间增加","Increase the cooldown by","Увеличить откат на","",""
 "DiseasedCDReset","会议结束后冷却恢复正常","Cooldown returns to normal after a meeting","Откат возращается к норме после собрания","",""
 
-"## Antidote Text Strings"
-"ImpCanBeAntidote","<color=#ff1919>内鬼阵营</color>可以成为健康的","<color=#ff1919>Impostors</color> can become <color=#FF9876>Antidote</color>","<color=#ff1919>Предатели</color> могут стать <color=#FF9876>Антидотом</color>","",""
-"NeutralCanBeAntidote","<color=#7f8c8d>中立阵营</color>可以成为健康的","<color=#7f8c8d>Neutrals</color> can become <color=#FF9876>Antidote</color>","<color=#8cffff>Члены Экипажа</color> могут стать <color=#FF9876>Антидотом</color>","",""
-"CrewCanBeAntidote","<color=#8cffff>船员阵营</color>可以成为健康的","<color=#8cffff>Crewmates</color> can become <color=#FF9876>Antidote</color>","<color=#7f8c8d>Нейтралы</color> могут стать <color=#FF9876>Антидотом</color>","",""
+"## 健康设置 / Antidote Text Strings"
+"ImpCanBeAntidote","<color=#ff1919>内鬼阵营</color>可以成为健康","<color=#ff1919>Impostors</color> can become <color=#FF9876>Antidote</color>","<color=#ff1919>Предатели</color> могут стать <color=#FF9876>Антидотом</color>","",""
+"NeutralCanBeAntidote","<color=#7f8c8d>中立阵营</color>可以成为健康","<color=#7f8c8d>Neutrals</color> can become <color=#FF9876>Antidote</color>","<color=#8cffff>Члены Экипажа</color> могут стать <color=#FF9876>Антидотом</color>","",""
+"CrewCanBeAntidote","<color=#8cffff>船员阵营</color>可以成为健康","<color=#8cffff>Crewmates</color> can become <color=#FF9876>Antidote</color>","<color=#7f8c8d>Нейтралы</color> могут стать <color=#FF9876>Антидотом</color>","",""
 "AntidoteCDOpt","冷却时间减少","Decrease the cooldown by","Уменьшить откат на","",""
 "AntidoteCDReset","会议结束后冷却恢复正常","Cooldown returns to normal after a meeting","Откат возращается к норме после собрания","",""
 
-"## Avenger Text Strings"
+"## 复仇者设置 / Avenger Text Strings"
 "ImpCanBeAvanger","<color=#ff1919>内鬼阵营</color>可以成为复仇者","<color=#ff1919>Impostors</color> can become Avenger","<color=#ff1919>Предатели</color> могут стать <color=#ff1919>Мстителем</color>","",""
 "NeutralCanBeAvanger","<color=#7f8c8d>中立阵营</color>可以成为复仇者","<color=#7f8c8d>Neutrals</color> can become Avenger","<color=#8cffff>Члены Экипажа</color> могут стать <color=#ff1919>Мстителем</color>","",""
 "CrewCanBeAvanger","<color=#8cffff>船员阵营</color>可以成为复仇者","<color=#8cffff>Crewmates</color> can become Avenger","<color=#7f8c8d>Нейтралы</color> могут стать <color=#ff1919>Мстителем</color>","",""
 
-"## Sleuth Text Strings"
-"ImpCanBeSleuth","<color=#ff1919>内鬼阵营</color>可以成为侦查员","<color=#ff1919>Impostors</color> can become Sleuth","<color=#ff1919>Предатели</color> могут стать <color=#803333>Сыщиком</color>","",""
-"CrewCanBeSleuth","<color=#7f8c8d>中立阵营</color>可以成为侦查员","<color=#7f8c8d>Neutrals</color> can become Sleuth","<color=#8cffff>Члены Экипажа</color> могут стать <color=#803333>Сыщиком</color>","",""
-"NeutralCanBeSleuth","<color=#8cffff>船员阵营</color>可以成为侦查员","<color=#8cffff>Crewmates</color> can become Sleuth","<color=#7f8c8d>Нейтралы</color> могут стать <color=#803333>Сыщиком</color>","",""
+"## 侦察员设置 / Sleuth Text Strings"
+"ImpCanBeSleuth","<color=#ff1919>内鬼阵营</color>可以成为侦察员","<color=#ff1919>Impostors</color> can become Sleuth","<color=#ff1919>Предатели</color> могут стать <color=#803333>Сыщиком</color>","",""
+"CrewCanBeSleuth","<color=#7f8c8d>中立阵营</color>可以成为侦察员","<color=#7f8c8d>Neutrals</color> can become Sleuth","<color=#8cffff>Члены Экипажа</color> могут стать <color=#803333>Сыщиком</color>","",""
+"NeutralCanBeSleuth","<color=#8cffff>船员阵营</color>可以成为侦察员","<color=#8cffff>Crewmates</color> can become Sleuth","<color=#7f8c8d>Нейтралы</color> могут стать <color=#803333>Сыщиком</color>","",""
 "SleuthCanKnowKillerRole","可以发现凶手的身份","Can find the role of the killer","Может знать роль убийцы","",""
 "SleuthNoticeKiller","\n凶手的身份是<b>{0}</b>","\nThe killer's role is <b>{0}</b>.","\nРоль убийцы является <b>{0}</b>","",""
 "SleuthNoticeVictim","{0}的身份是<b>{1}</b>","{0}'s role is <b>{1}</b>.","У игрока {0} была роль <b>{1}</b>","",""
 "SleuthNoticeKillerNotFound","\n凶手身份不明，可能是<b>自杀</b>","\nThe killer could not be identified, this was possibly a <b>suicide</b>.","\nУбийцу установить не удалось, возможно это было <b>самоубийство</b>","",""
 
-"## Glitch Text Strings"
+"## 缺点者设置 / Glitch Text Strings"
 "HackButtonText","黑客入侵","Hack","ВЗЛОМАТЬ","",""
 
-"## Bomber Text Strings"
+"## 自爆兵设置 / Bomber Text Strings"
 "BomberDiesInExplosion","<color=#ff1919>自爆兵</color>在爆炸中死亡","<color=#ff1919>Bomber</color> dies in their explosion","<color=#ff1919>Бомбер</color> умирает после его взрыва","",""
-"ImpostorsSurviveBombs","<color=#ff1919>内鬼</color>在爆炸中幸存","<color=#ff1919>Impostors</color> survive bombs","<color=#ff1919>Предатели</color> выживают после бомбы","",""
+"ImpostorsSurviveBombs","<color=#ff1919>内鬼阵营</color>可以在爆炸中幸存","<color=#ff1919>Impostors</color> survive bombs","<color=#ff1919>Предатели</color> выживают после бомбы","",""
 "NukeRadius","零半径（12x非常大）","Nuke radius (12x is very large)","Радиус взрыва (12х это ГИГАНСКАЯ територия взрыва)","",""
 "NukeCooldown","核武器冷却","Nuke Cooldown","Откат Взрыва","",""
 
-"Masochist Text Strings"
+"## 受虐狂设置 / Masochist Text Strings"
 "MasochistKillMax","获胜所需的击杀次数","Amount of attacks needed to win","Количество аттак для победы","",""
 "GuessMasochist","你只是想猜一个受虐狂！\n他们现在离胜利又近了一步！\n别再猜了","You just tried to guess a Masochist!\nThey're now one step closer to winning!\n\nDo not guess them again.","Ты попытался угадать Мазохиста!\nТеперь они на шаг ближе к победе!\n\nНе пробуй их снова угадывать.","",""
 "MasochistKill","你被袭击了！","You were attacked!","Вас атаковали!","",""
 "SelfGuessMasochist","你不能自我猜测是受虐狂，你这个骗子！","You can't self guess as a Masochist, you cheater!","Ты не можешь угадать сам себя за Мазохиста, ты грязный читер!","",""
 "GuessMasochistBlocked","受虐狂由于自我猜测而无法猜测","Masochist cannot guess due to self guessing.","Мазохист не может угадывать из-за самоугадывания.","",""
 
-"## Amnesiac Text Strings"
+"## 失忆者设置 / Amnesiac Text Strings"
 "RememberCooldown","记忆冷却","Remember Cooldown","Откат Воспоминания","",""
 "RefugeeKillCD","<color=#ff1919>逃亡者</color>的击杀冷却","<color=#ff1919>Refugee</color>'s Kill Cooldown","Откат убийства <color=#ff1919>Беженца</color>","",""
 "AmnesiacRemembered","一个失忆者记得你的角色！","An Amnesiac remembered your role!","Амнезияк вспомнил твою роль!","",""
@@ -2739,7 +2739,7 @@
 "YouRememberedRole","你还记得自己是谁！","You remembered who you were!","Ты вспомнил, кем ты был!","",""
 
 
-"## Retributionist Text Strings"
+"## 惩罚者设置 / Retributionist Text Strings"
 "RetributionistDeadMsg","惩罚者的死亡意味着报应的开始，请使用/ret [玩家编号]杀死指定的玩家\n您可以在他们的名字前面看到玩家ID或输入 /id 以获得玩家ID列表","The death of the Retributionist means the beginning of retribution. \nPlease use /ret + [player ID] to kill the specified player \nYou can see player IDs in front of their names. \nOr type /ret to get a list of player IDs","Смерть Возмездника означает начало возмездии. \nИспользуйте /ret + [номер игрока], чтобы убить указанного игрока \nВы можете увидеть номер игрока перед его именем. \nИли введите /ret, чтобы получить список номеров игроков","",""
 "RetributionistAliveKill","惩罚者的惩罚只能在他们死后开始","Retribution for the Retributionist may only begin after their death.","Возмездие для Возмезника может начаться только после его смерти.","",""
 "RetributionistKillMax","你已经达到了杀人次数的上限，你不能再杀人了！","You've reached the maximum amount of kills, you can't kill anymore!","Вы достигли максимального количества убийств, вы больше не можете убивать!","",""
@@ -2751,7 +2751,7 @@
 "RetributionistKillTooManyDead","有太多玩家死亡，您无法重试","Too many players are dead, you can't retribute.","Слишком много трупов, ты не можешь мстить.","",""
 "MinimumPlayersAliveToRetri","阻止惩罚所需的最大玩家数","Maximum players needed to block retributions","Максимально количество игроков чтобы заблокировать месть","",""
 
-"## Necromancer Text Strings"
+"## 亡灵巫师设置 / Necromancer Text Strings"
 "NecromancerDeadMsg","亡灵巫师的死意味着亡灵术的开始。\请使用/rv [玩家编号]杀死指定的玩家\n您可以在他们的名字前面看到玩家ID\n输入/id以获取玩家ID列表","The death of the Necromancer means the beginning of necromancy. \nPlease use /rv + [player ID] to kill the specified player \nYou can see player IDs in front of their names. \nOr type /rv to get a list of player IDs","Смерть Некроманта означает начало некромантии.\nПожалуйста, используйте: /rv [номер игрока], чтобы убить указанного игрока\nВы можете увидеть номера игроков перед их именами.\nИли введите /rv, чтобы получить список номеров игроков","",""
 "NecromancerAliveKill","亡灵巫师的亡灵术只能在他们死后开始","Necromancy for the Necromancer may only begin after their death.","Некромантия у Некроманта может начаться только после его смерти","",""
 "NecromancerKillMax","你已经达到了击杀次数的上限，你不能再击杀了！","You've reached the maximum amount of kills, you can't kill anymore!","Вы достигли максимального количества убийств, вы больше не можете убивать!","",""
@@ -2759,7 +2759,7 @@
 "NecromancerKillSucceed","<b>{0}</b> 被亡灵巫师的亡灵送走了！","<b>{0}</b> was killed by the Necromancer's ghoul!","<b>{0}</b> был убит Некромантом!","",""
 "NecromancerCanKillNum","最大亡灵巫师数量","Max necromances","Максимум некромантии","",""
 
-"## Baker/Famine Text Strings"
+"## 面包师/饥荒 设置 / Baker/Famine Text Strings"
 "BakerChangeChances","<color=#b58428>面包师</color>变成<color=#cb4d4d>饥荒</color>的概率","Chance that <color=#b58428>Baker</color> turns into <color=#cb4d4d>Famine</color>","Шанс при котором <color=#b58428>Пекарь</color> превратится в <color=#cb4d4d>Голод</color>","",""
 "BakerChange","面包师变成了饥荒！\n面包现在中毒了\n如果饥荒没有被驱逐，所有吃了毒面包的玩家都会死","The Baker has turned into Famine!\nThe bread is now poisoned.\nIf the Famine is not exiled, all players with poisoned bread die.","Пекарь превратился в Голод!\nВаш Хлеб теперь отравлен.\nЕсли Голод не будет изганан, все игроки с отравленным хлебом умрут.","",""
 "BakerChangeNow","一个玩家在面包里下毒了！\n驱逐饥荒，否则那个玩家会死","A player has poisoned bread!\nExile the Famine or that player dies.","Голод отравил хлеб!\nЕсли Голод не будет изган, то игроки с отравленным хлебом умрут","",""
@@ -2767,10 +2767,10 @@
 "PanAliveMessageTitle","[ 面包师 ]","BAKER ","ПЕКАРЬ","",""
 "PanAlive","面包师分发了面包","The Baker has given out bread.","Пекарь раздал хлеб","",""
 
-"## Opportunist Text Strings"
+"## 投机者设置 / Opportunist Text Strings"
 "ImmuneToAttacksWhenTasksDone","对任务完成的投机者的击杀免疫","Immune to attacks on task completion","Невосприимчим к атакам после завершения задач","",""
 
-"## Merchant Add-on Text Strings"
+"## 商人卖出附加职业设置 / Merchant Add-on Text Strings"
 "OptionWatcher","可以出售<color=#800080>窥视者</color>","Can sell <color=#800080>Watcher</color>","Может продать <color=#800080>Наблюдателя</color>","",""
 "OptionKnighted","可以出售<color=#FFA500>骑士</color>","Can sell <color=#FFA500>Knighted</color>","Может продать <color=#FFA500>Рыцаря</color>","",""
 "OptionSeer","可以出售<color=#61b26c>灵媒</color>","Can sell <color=#61b26c>Seer</color>","Может продать <color=#61b26c>Провидца</color>","",""
@@ -2789,11 +2789,11 @@
 "OptionBewilder","可以出售<color=#c894f5>迷幻者</color>","Can sell <color=#c894f5>Bewilder</color>","Может продать <color=#c894f5>Растерянного</color>","",""
 "OptionAvenger","可以出售<color=#ffab1c>复仇者</color>","Can sell <color=#ffab1c>Avenger</color>","Может продать <color=#ffab1c>Мстителя</color>","",""
 
-"## Twister Text Strings"
+"## 龙卷风设置 / Twister Text Strings"
 "TwisterCooldown","交换位置冷却","Twist Cooldown","Откат телеорта","",""
 "TwisterButtonText","交换","Twist","ТЕЛЕПОРТ","",""
 
-"## Inspector Text Strings"
+"## 检查员设置 / Inspector Text Strings"
 "ParityCopTryHideMsg","尝试混淆<color=#0D57AF>检查员</color>指令（试验性）","Hide <color=#0D57AF>Inspector</color>'s commands","Скрыть команду <color=#0D57AF>Инспектора</color>","",""
 "MaxParityCheckLimit","每场比赛的最大检查次数","Max inspections per game","Максимум проверок за всю игру","",""
 "ParityCheckLimitPerMeeting","每次会议的最大检查次数","Max inspections per meeting","Максимум проверок за встречу","",""
@@ -2817,7 +2817,7 @@
 "ParityCheckRevealTarget","当任务完成时，目标将会知道其他目标的阵营","When tasks done, target knows team of other target","Когда задания выполнены, цель знает команду другой цели","",""
 "ParityCopTargetReveal","看起来<b>{0}</b>与团队<b>{1}</b>一致"," Looks like <b>{0}</b> is aligned with team <b>{1}</b>","Похоже что <b>{0}</b> присоединяется к команде <b>{1}</b>","",""
 
-"## Jailer Text Strings"
+"## 狱警设置 / Jailer Text Strings"
 "JailerJailCooldown","监狱冷却时间","Jail cooldown","Откат способности","",""
 "JailerMaxExecution","最多处决玩家","Maximum executions","Максимум казней","",""
 "JailerNBCanBeExe","可以处决<color=#7f8c8d>友好中立</color>","Can execute <color=#7f8c8d>Neutral Benign</color>","Может казнить <color=#7f8c8d>Добрых Нейтралов</color>","",""
@@ -2835,7 +2835,7 @@
 "JailedNotifyMsg","你被狱警关进了监狱。没有人可以猜测或审判你，你只能猜测狱警\n如果狱警投票给你，你将在会议结束后被处决","You have been locked up in jail by the Jailor. No one can guess or judge you and you can only guess Jailor.\n\nIf Jailor votes you, you will be executed after the meeting ends.","Вы были заперты в тюрьме Тюремщика. Никто не может угадать или осудить вас, а вы можете угадывать только роль Тюремщика.\n\nЕсли Тюремщик проголосует за вас, то после окончания встрачи вы будете казнены.","",""
 "JailerTitle","【★ 监狱信息 ★】","Jailor","ТЮРЬМА","",""
 
-"## CopyCat Text Strings"
+"## 模仿者设置 / CopyCat Text Strings"
 "CopyCatCopyCooldown","模仿冷却时间","Copy cooldown","Откат подражания","",""
 "CopyCatMiscopyLimit","直到自杀的错误模仿次数","Number of miscopy until suicide","Количество промахов до суицида","",""
 "CopyCatRoleChange","您的身份已模仿为<b>{0}</b>","Your role has been changed to <b>{0}</b>","Твоя роль была изменена на <b>{0}</b>","",""
@@ -2845,7 +2845,7 @@
 "CopyButtonText","模仿","Copy","СКОПИРОВАТЬ","",""
 "CopyCrewVar","可以复制船员身份的邪恶体","Can copy evil variants of crew roles","Может копировать злые варианты ролей Члено Экипажа","",""
 
-"## Cleanser Text Strings"
+"## 清洗者设置 / Cleanser Text Strings"
 "MaxCleanserUses","最大清洗次数","Max cleanses","Максимум очищенний","",""
 "CleansedCanGetAddon","被清洗的玩家能否再获得附加职业","Cleansed player can get Add-on","Очищенный игрок сможет получить Атрибуты","",""
 "CleanserTitle","【★ 清洗信息 ★】","CLEANSER","Сообщение о очищении","",""
@@ -2853,35 +2853,35 @@
 "CleanserRemovedRole","<b>{0}</b> 已被清洗。所有附加职业将在会议结束后删除","<b>{0}</b> has been cleansed. All their Addons will be removed after the meeting.","<b>{0}</b> был очищен. Все его Атрибуты будут удалены после встречи","",""
 "LostAddonByCleanser","您的所有附加职业都已被清洗者移除","All your Addons were removed by the cleanser","Все ваши Атрибуты были удалены Очистителем","",""
 
-"## Werewolf Text Strings"
+"## 狼人设置 /  Text Strings"
 "MaulKillButtonText","伤害","Maul","РАСТЕРЗАТЬ","",""
 "KillCooldownAfterKilling","击杀后冷却","Kill Cooldown After Killing","Откат убийства после убийства","",""
 
-"## Autopsy Text Strings"
+"## 尸检设置 / Autopsy Text Strings"
 "ImpCanBeAutopsy","<color=#ff1919>内鬼阵营</color>可以成为<color=#80ffdd>尸检</color>","<color=#ff1919>Impostors</color> can become <color=#80ffdd>Autopsy</color>","<color=#ff1919>Предатели</color> могут стать <color=#80ffdd>Врачом</color>","",""
 "CrewCanBeAutopsy","<color=#8cffff>船员阵营</color>可以成为<color=#80ffdd>尸检</color>","<color=#8cffff>Crewmates</color> can become <color=#80ffdd>Autopsy</color>","<color=#8cffff>Члены Экипажа</color> могут стать <color=#80ffdd>Врачом</color>","",""
 "NeutralCanBeAutopsy","<color=#7f8c8d>中立阵营</color>可以成为<color=#80ffdd>尸检</color>","<color=#7f8c8d>Neutrals</color> can become <color=#80ffdd>Autopsy</color>","<color=#7f8c8d>Нейтралы</color> могут стать <color=#80ffdd>Врачом</color>","",""
 
-"## Bewilder Text Strings"
+"## 迷幻者设置 / Bewilder Text Strings"
 "ImpCanBeBewilder","<color=#ff1919>内鬼阵营</color>可以成为<color=#c894f5>迷幻者</color>","<color=#ff1919>Impostors</color> can become <color=#c894f5>Bewilder</color>","<color=#ff1919>Предатели</color> могут стать <color=#c894f5>Растёрянным</color>","",""
 "CrewCanBeBewilder","<color=#8cffff>船员阵营</color>可以成为<color=#c894f5>迷幻者</color>","<color=#8cffff>Crewmates</color> can become <color=#c894f5>Bewilder</color>","<color=#8cffff>Члены Экипажа</color> могут стать <color=#c894f5>Растёрянным</color>","",""
 "NeutralCanBeBewilder","<color=#7f8c8d>中立阵营</color>可以成为<color=#c894f5>迷幻者</color>","<color=#7f8c8d>Neutrals</color> can become <color=#c894f5>Bewilder</color>","<color=#7f8c8d>Нейтралы</color> могут стать <color=#c894f5>Растёрянным</color>","",""
 
-"## Sunglasses Text Strings"
+"## 患者设置 / Sunglasses Text Strings"
 "ImpCanBeSunglasses","<color=#ff1919>内鬼阵营</color>可以变成<color=#E7C12B>患者</color>","<color=#ff1919>Impostors</color> can become <color=#E7C12B>Sunglasses</color>","<color=#ff1919>Предатели</color> могут стать <color=#E7C12B>Солнцезащитным</color>","",""
 "CrewCanBeSunglasses","<color=#8cffff>船员阵营</color>可以变成<color=#E7C12B>患者</color>","<color=#8cffff>Crewmates</color> can become <color=#E7C12B>Sunglasses</color>","<color=#8cffff>Члены Экипажа</color> могут стать <color=#E7C12B>Солнцезащитным</color>","",""
 "NeutralCanBeSunglasses","<color=#7f8c8d>中立阵营</color>可以变成<color=#E7C12B>患者</color>","<color=#7f8c8d>Neutrals</color> can become <color=#E7C12B>Sunglasses</color>","<color=#7f8c8d>Нейтралы</color> могут стать <color=#E7C12B>Солнцезащитным</color>","",""
 "SunglassesVision","<color=#E7C12B>患者</color>的视野","<color=#E7C12B>Sunglasses</color> Vision","Обзор <color=#E7C12B>Солнцезащитного</color>","",""
 
-"## Loyal Text Strings"
+"## 忠诚设置 / Loyal Text Strings"
 "ImpCanBeLoyal","<color=#ff1919>内鬼阵营</color>可以成为<color=#B71556>忠诚</color>","<color=#ff1919>Impostors</color> can become <color=#B71556>Loyal</color>","<color=#ff1919>Предатели</color> могут стать <color=#B71556>Лояльным</color>","",""
 "CrewCanBeLoyal","<color=#8cffff>船员阵营</color>可以成为<color=#B71556>忠诚</color>","<color=#8cffff>Crewmates</color> can become <color=#B71556>Loyal</color>","<color=#8cffff>Члены Экипажа</color> могут стать <color=#B71556>Лояльным</color>","",""
 
-"## Lazy Text Strings"
+"## 懒人设置 / Lazy Text Strings"
 "TasklessCrewCanBeLazy","没有任务的<color=#8cffff>船员阵营</color>可以成为<color=#A4DFFE>懒人</color>","<color=#8cffff>Crewmates</color> without tasks can be <color=#A4DFFE>Lazy</color>","<color=#8cffff>Члены Экипажа</color> без заданий могут стать <color=#A4DFFE>Ленивым</color>","",""
 "TaskBasedCrewCanBeLazy","以任务为基础<color=#8cffff>船员阵营</color>可以成为<color=#A4DFFE>懒人</color>","Task based <color=#8cffff>crewmates</color> can be <color=#A4DFFE>Lazy</color>","<color=#8cffff>Члены Экипажа</color> основанные на заданиях, могут стать <color=#A4DFFE>Ленивыми</color>","",""
 
-"## Madmate Text Strings"
+"## 招募叛徒设置 / Madmate Text Strings"
 "SheriffCanBeMadmate","<color=#f8cd46>警长</color>可以成为<color=#ff1919>叛徒</color>","<color=#ffb347>Sheriff</color> can become <color=#ff1919>Madmate</color>","<color=#f8cd46>Шериф</color> может стать <color=#ff1919>Безумцем</color>","<color=#f8cd46>警長</color>可以成為<color=#ff1919>叛徒</color>","<color=#f8cd46>警长</color>可以成为<color=#ff1919>叛徒</color>"
 "MayorCanBeMadmate","<color=#204d42>市长</color>可以成为<color=#ff1919>叛徒</color>","<color=#204d42>Mayor</color> can become <color=#ff1919>Madmate</color>","<color=#204d42>Мэр</color> может стать <color=#ff1919>Безумцем</color>","<color=#204d42>市長</color>可以成為<color=#ff1919>叛徒</color>","<color=#204d42>市长</color>可以成为<color=#ff1919>叛徒</color>"
 "NGuesserCanBeMadmate","<color=#f0e68c>正义赌怪</color>可以成为<color=#ff1919>叛徒</color>","<color=#f0e68c>Vigilante</color> can become <color=#ff1919>Madmate</color>","<color=#f0e68c>Добрый Угадыватель</color> может стать <color=#ff1919>Безумцем</color>","<color=#f0e68c>正義賭怪</color>可以成為<color=#ff1919>叛徒</color>","<color=#f0e68c>正义赌怪</color>可以成为<color=#ff1919>叛徒</color>"
@@ -2891,7 +2891,7 @@
 "FarseerCanBeMadmate","<color=#BA55D3>预言家</color>可以成为<color=#ff1919>叛徒</color>","<color=#BA55D3>Overseer</color> can become <color=#ff1919>Madmate</color>","<color=#BA55D3>Смотритель</color> может стать <color=#ff1919>Безумцем</color>","",""
 "RetributionistCanBeMadmate","<color=#228B22>惩罚者</color>可以成为<color=#ff1919>叛徒</color>","<color=#228B22>Retributionist</color> can become <color=#ff1919>Madmate</color>","<color=#228B22>Возмездник</color> может стать <color=#ff1919>Безумцем</color>","",""
 
-"## Gangster Text Strings"
+"## 招募设置 / Gangster Text Strings"
 "GanSheriffCanBeMadmate","可以招募<color=#f8cd46>警长</color>","<color=#f8cd46>Sheriff</color> can be converted","<color=#f8cd46>Шериф</color> может быть превращен","可以招募<color=#f8cd46>警長</color>","可以招募<color=#f8cd46>警长</color>"
 "GanMayorCanBeMadmate","可以招募<color=#204d42>市长</color>","<color=#204d42>Mayor</color> can be converted","<color=#204d42>Мэр</color> может быть превращен","可以招募<color=#204d42>市長</color>","可以招募<color=#204d42>市长</color>"
 "GanNGuesserCanBeMadmate","可以招募<color=#f0e68c>正义赌怪</color>","<color=#f0e68c>Vigilante</color> can be converted","<color=#f0e68c>Добрый Угадыватель</color> может быть превращен","可以招募<color=#f0e68c>正義賭怪</color>","可以招募<color=#f0e68c>正义赌怪</color>"
@@ -2900,10 +2900,10 @@
 "GanRetributionistCanBeMadmate","可以招募<color=#228B22>惩罚者</color>","<color=#228B22>Retributionist</color> can be converted","<color=#228B22>Возмездник</color> может быть превращен","",""
 "GanFarseerCanBeMadmate","可以招募<color=#BA55D3>预言家</color>","<color=#BA55D3>Overseer</color> can be converted","<color=#BA55D3>Смотритель</color> может быть превращен","",""
 
-"## Rascal Text Strings"
+"## 流氓设置 / Rascal Text Strings"
 "RascalAppearAsMadmate","驱逐显示为<color=#ff1919>叛徒</color>","Appear As <color=#ff1919>Madmate</color> On Ejection","Отображать как <color=#ff1919>Безумца</color> при изгнании","",""
 
-"## Councillor Text Strings"
+"## 议员设置 / Councillor Text Strings"
 "CouncillorDead","对不起，你不能谋杀","Sorry, you can't murder from the dead.","Извините, вы не можете убить из мертвых","",""
 "CouncillorMurderMax","对不起，你已经达到谋杀案的最高数量","Sorry, you've reached the maximum amount of murders.","Извините, вы достигли максимального количества убийств","",""
 "LaughToWhoMurderSelf","哈哈哈，谁会想到有人愚蠢到会自杀呢？\n我猜它恰好是…你！","Hahaha, who would've thought someone was stupid enough to murder themselves?\n\nGuess it happens to be... YOU!","Хахаха, кто бы мог подумать, что кто-то настолько глуп, чтобы убить себя?\n\nПохоже это... ТЫ!","",""
@@ -2916,7 +2916,7 @@
 "CouncillorCanMurderImpostor","可以谋杀<color=#ff1919>内鬼</color>","Can Murder <color=#ff1919>Impostors</color>","Может убить <color=#ff1919>Предателей</color>","",""
 "CouncillorTryHideMsg","尝试混淆议员指令","Try to hide Councillor's commands","Спрятать команду Взяточника","",""
 
-"## Dazzler Text Strings"
+"## 眩晕者设置 / Dazzler Text Strings"
 "DazzlerDazzled","你被眩晕者弄得眼花缭乱！","You were dazzled by the Dazzler!","Вы были ослеплены Ослепителем!","",""
 "DazzlerCauseVision","视野下降","Reduced vision","Снижать зрение на","",""
 "DazzlerDazzleLimit","受视野下降影响的最大玩家人数","Max number of players affected by reduced vision","Максимум ослепленных игроков","",""
@@ -2924,13 +2924,13 @@
 "DazzleCooldown","眩晕冷却","Dazzle Cooldown","Откат ослепления","",""
 "DazzleButtonText","眩晕","Dazzle","Ослепить","",""
 
-"## Addict Text Strings"
+"## 瘾君子设置 / Addict Text Strings"
 "AddictVentButtonText","获取护盾","Get Fix","Получить исправление","",""
 "AddictInvulnerbilityTimeAfterVent","<color=#008000>瘾君子</color>的护盾持续时间","<color=#008000>Invulnerbility</color> Time","Время <color=#008000>неуязвимости</color>","",""
 "AddictSpeedWhileInvulnerble","移动速度<color=#008000>不可修复</color>","Movement speed while <color=#008000>Invulnerble</color>","Скорость игрока в состоянии <color=#008000>неуязвимости</color>","",""
 "AddictFreezeTimeAfterInvulnerbility","<color=#008000>瘾君子</color>的护盾结束后被冻结的持续时间","Time the <color=#008000>Addict</color> gets frozen in place after <color=#008000>Invulnerbility</color>","Время, когда <color=#008000>Зависимый</color> замирает на месте после <color=#008000>неуязвимости</color>","",""
 
-"## Deathpact Text Strings"
+"## 死亡契约设置 / Deathpact Text Strings"
 "DeathpactDuration","<color=#ff1919>死亡契约</color>持续时间","<color=#ff1919>Death Pact</color> duration","Продолжительность <color=#ff1919>Заключения Договора</color>","",""
 "DeathPactCooldown","<color=#ff1919>死亡契约</color>冷却时间","<color=#ff1919>Death Pact</color> Assign Cooldown","Откат назначения <color=#ff1919>Заключения Договора</color>","",""
 "DeathpactNumberOfPlayersInPact","死亡契约的玩家数量","Number of players in <color=#ff1919>Death Pact</color>","Максимум игроков в <color=#ff1919>Заключении Договора</color>","",""
@@ -2945,7 +2945,7 @@
 "DeathpactAverted","死亡契约得以避免","Death Pact was averted.","Пакт смерти был предотвращен","",""
 "DeathpactButtonText","约定","Assign","НАЗНАЧИТЬ","",""
 
-"## Devourer Text Strings"
+"## 吞噬者设置 / Devourer Text Strings"
 "DevourerHideNameConsumed","隐藏已吞噬玩家的姓名","Hide the names of consumed players","Скрыть никнеймы пожираемых игроков","",""
 "DevourCooldown","吞噬冷却","Devour Cooldown","Откат пожирания","",""
 "DevourerButtonText","吞噬","Devour","ПОЖИРАТЬ","",""
@@ -2953,7 +2953,7 @@
 "DevourerEatenSkin","目标装扮被吃掉","Target skin eaten","Вы съели скин цели","",""
 "DevouredName","被吞噬","Devoured","Поглощен","",""
 
-"## Pitfall Text Strings"
+"## 设陷者设置 / Pitfall Text Strings"
 "PitfallTrapCooldown","陷阱冷却时间","Trap Cooldown","Откат способности","",""
 "PitfallMaxTrapCount","可设置的陷阱数量","Number of Traps that can be set","Количество Ловушек которые могут быть поставлены","",""
 "PitfallTrapMaxPlayerCount","陷阱可捕捉的玩家数量","Number of Players that can be caught per Trap","Количество игроков которые могут попасть в ловушку","",""
@@ -2970,7 +2970,7 @@
 "## PotionMaster Text Strings"
 "RitualMaxCount","最大显示次数","Maximum Reveals","Максимум раскрытий","",""
 
-"## Oracle Text Strings"
+"## 神谕设置 / Oracle Text Strings"
 "OracleSkillLimit","最大使用量","Maximum Uses","Максимум использований","",""
 "OracleHideVote","隐藏<color=#6666FF>神谕</color>的投票","Hide <color=#6666FF>Oracle</color>'s vote","Скрыть голоса <color=#6666FF>Оракла</color>","",""
 "OracleCheckReachLimit","你已经没有任何用处了！","You're out of uses!","У вас закончилось количество использований","",""
@@ -2986,7 +2986,7 @@
 "FailChance","显示错误结果的概率","Chance of showing incorrect result","Результат:","",""
 "OracleCheckAddons","神谕可以看到附加职业","Oracle checks add-ons","","",""
 
-"## Chameleon Text Strings"
+"## 变色龙设置 / Chameleon Text Strings"
 "ChameleonCanVent","隐形的通风口","Vent to disguise","Вентанитесь чтобы стать невидимым","",""
 "ChameleonInvisState","你在隐形！","You are disguising!","Вы невидимы!","",""
 "ChameleonInvisStateOut","你的隐形结束了","Your disguise ended","Вы снова видимы!","",""
@@ -2998,15 +2998,15 @@
 "ChameleonRevertDisguise","暴露","Expose","РАЗОБЛАЧИТЬ","",""
 "ChameleonDisguise","隐形","Disguise","СКРЫТЬСЯ","",""
 
-"## Cleaner Text Strings"
+"## 清洗者设置 / Cleaner Text Strings"
 "KillCooldownAfterCleaning","清洁时的击杀冷却时间","Kill Cooldown On Clean","Откат убийства при очистке","",""
 
-"## Medusa Text Strings"
+"## 美杜莎设置 / Medusa Text Strings"
 "KillCooldownAfterStoneGazing","击杀石头的石化冷却","Kill Cooldown On Stone Gaze","Откат убийства при каменном взгляде","",""
 "MedusaStoneBody","尸体可以被石化","Body stoned","Труп окаменел","",""
 "MedusaReportButtonText","石化","Stone","ОКАМЕНИТЬ","",""
 
-"## Cursed Soul Text Strings"
+"## 被诅咒的灵魂设置 / Cursed Soul Text Strings"
 "CursedSoulCurseCooldown","夺魂冷却","Soul Snatch Cooldown","Откат заклинания","",""
 "CursedSoulCurseCooldownIncrese","夺魂冷却增加","Soul Snatch Cooldown Increase","Увеличение отката заклинания","",""
 "CursedSoulCurseMax","最大夺魂次数","Maximum Soul Snatches","Максимум заклинаний","",""
@@ -3018,7 +3018,7 @@
 "CursedSoulInvalidTarget","找不到灵魂","No soul found","Душа не найдена","",""
 "Soulless-","没有灵魂","Soulless ","Бездушный ","",""
 
-"## Admirer Text Strings"
+"## 仰慕者设置 / Admirer Text Strings"
 "AdmireCooldown","仰慕冷却","Admire Cooldown","Откат признания","",""
 "AdmirerKnowTargetRole","了解<color=#ee43c3>仰慕</color>玩家的身份","Know the roles of <color=#ee43c3>Admired</color> players","Знает роли <color=#ee43c3>Поклонных</color> игроков","",""
 "AdmireButtonText","仰慕","Admire","ПРИЗНАТЬСЯ","",""
@@ -3027,7 +3027,7 @@
 "AdmirerInvalidTarget","目标不容钦佩","Target cannot be admired","Игрок не принял ваше признание","",""
 "Admired-","仰慕","Admired ","Поклонный ","",""
 
-"## Spiritualist Text Strings"
+"## 灵魂论者设置 / Spiritualist Text Strings"
 "SpiritualistNoticeTitle","[ ★ 灵魂联系 ★ ]","SPIRITUALIST ","МИСТИК ","",""
 "SpiritualistNoticeMessage","灵魂论者有个箭头指向你!\n你可以用它们来对付带刀玩家或陷害船员","The Spiritualist has an arrow pointing to you!\nYou can use them to a killer or frame a crewmate","У Мистика есть стрелка которая указывает на вас!\nВы можете показать на одного из Предателей, или подставить одного из Членов Экипажа!","",""
 "SpiritualistShowGhostArrowForSeconds","灵魂箭头持续时间","Ghost arrow duration","Продолжительность стрелки","",""
@@ -3037,7 +3037,7 @@
 "VotesPerKill","每击杀一次获得的选票","Votes gained for each kill","Количество голоса полученные за каждое убийство","",""
 "PickpocketGetVote","你有{0}张选票","You've got {0} votes","У вас {0} голосов","",""
 
-"## Vulture Text Strings"
+"## 秃鹫设置 / Vulture Text Strings"
 "VultureArrowsPointingToDeadBody","指向尸体的箭头","Arrows pointing to dead bodies","Может видеть стрелки указывающие на трупы","",""
 "VultureNumberOfReportsToWin","获胜需要的尸体数量为","Bodies needed to win","Количество трупов необходимые для победы","",""
 "VultureReportBody","尸体被吃掉了！","Body eaten!","Труп съеден","",""
@@ -3046,7 +3046,7 @@
 "VultureMaxEatenInOneRound","每回合可能吃掉的最大尸体数","Maximum eaten bodies possible per round","Максимум трупов которые он может съесть","",""
 "VultureCooldownUp","可以继续吃了！","Eat Cooldown finished","Откат съедения завершён","",""
 
-"## Pirate Text Strings"
+"## 决斗者设置 / Pirate Text Strings"
 "PirateTryHideMsg","尝试混淆<color=#EDC240>决斗者</color>的指令","Hide <color=#EDC240>Pirate</color>'s commands","Скрыть команду <color=#EDC240>Пирата</color>","",""
 "SuccessfulDuelsToWin","获胜所需的决斗胜利次数","Number of successful duels needed to win","Количество успешных дуэлей, необходимое для победы","",""
 "PirateMeetingMsg","你正在与目标决斗。\n决斗指令:⦿/duel 0(选择石头)\n⦿/duel 1(选择布)\n⦿/duel 2(选择剪刀)\n如果选择了与目标相同的选项，您将赢得这次决斗。","Duel with your target.\n\nDuel command:\n⦿ /duel 0\n⦿ /duel 1\n⦿ /duel 2\n\nYou win the duel if you choose the same option as the target","Дуэль с вашей целью.\n\n Команда дуэли:-\n⦿ /duel 0 (чтобы выбрать камень)\n⦿ /duel 1 (чтобы выбрать бумагу)\n⦿ /duel 2 (чтобы выбрать ножницы)\n\nВы выиграете, если вы выберете тот же вариант, что и цель","",""
@@ -3063,7 +3063,7 @@
 "Paper","布","Paper","Бумага","",""
 "Scissors","剪刀","Scissors","Ножницы","",""
 
-"## Agitater Text Strings"
+"## 煽动者设置 / Agitater Text Strings"
 "AgitaterBombCooldown","<color=#F4A460>煽动者</color>炸弹冷却时间","<color=#F4A460>Agitator</color> bomb coolodown","Откат бомбы <color=#F4A460>Агитатора</color>","",""
 "AgitaterPassCooldown","炸弹传递冷却时间","Bomb pass cooldown","Откат передачи бомбы","",""
 "BombExplodeCooldown","炸弹爆炸冷却时间","Bomb explode cooldown","Откат взрыва бомбы","",""
@@ -3072,13 +3072,13 @@
 "AgitaterCanGetBombed","<color=#F4A460>煽动者</color>可以得到炸弹","<color=#F4A460>Agitator</color> can get bomb","<color=#F4A460>Агитатор</color> может получить бомбу","",""
 "AgitaterAutoReportBait","<color=#F4A460>煽动者</color>自动报告诱饵","<color=#F4A460>Agitator</color> Auto Report Bait","<color=#F4A460>Агитатор</color> репортит <color=#00f7ff>Приманку</color>","",""
 
-"## Seeker Text Strings"
+"## 搜寻者设置 / Seeker Text Strings"
 "SeekerPointsToWin","胜利所需分数","Number of points required to win","Количество очков необходимое для победы","",""
 "SeekerTagCooldown","选择目标的冷却时间","Tag Cooldown","Откат навыка","",""
 "SeekerNotify","您的目标是 <b>{0}</b>","Your target is <b>{0}</b>","Ваша цель <b>{0}</b>","",""
 "SeekerTargetNotify","你们是搜寻者的目标！在找到你之前躲起来","You are Seekers target!! Hide before they tag you","Вы цель Искателя!! Спрячься, пока тебя не отметили","",""
 
-"## PlagueBearer Text Strings"
+"## 瘟疫使者设置 / PlagueBearer Text Strings"
 "PlagueBearerCD","瘟疫使者冷却时间","Plague cooldown","Откат заражения","",""
 "PestilenceCD","<color=#343136>瘟疫</color>击杀冷却","<color=#343136>Pestilence</color> Kill cooldown","Откак убийства <color=#343136>Чумы</color>","",""
 "PlagueBearerAlreadyPlagued","玩家已经受到瘟疫使者攻击","Player has already been plagued","Игрок уже заражён","",""
@@ -3088,7 +3088,7 @@
 "GuessPestilence","你只是想猜测瘟疫！\n抱歉，瘟疫杀死了你","You just tried to guess Pestilence!\n\nSorry, Pestilence killed you.","Ты только что попытался угадать Чуму!\n\nВ подарок, Чума убила тебя.","",""
 "PestilenceImmune","你不能杀死瘟疫","You can't kill Pestilence.","Ты не можешь убить Чуму.","",""
 
-"## Romantic Text Strings"
+"## 浪漫者设置 / Romantic Text Strings"
 "RomanticBetCooldown","挑选恋人的冷却时间","Pick Partner Cooldown","","",""
 "RomanticProtectCooldown","保护冷却时间","Protect Cooldown","","",""
 "RomanticBetPlayer","你选择了你的恋人","You picked your partner","","",""
@@ -3105,7 +3105,7 @@
 "RomanticKnowTargetRole","<color=#ff1493>浪漫者</color>知道目标身份","<color=#ff1493>Romantic</color> knows their target's role","","",""
 "RomanticBetTargetKnowRomantic","目标知道谁是<color=#ff1493>浪漫者</color>","Target knows who the <color=#ff1493>Romantic</color> is","","",""
 
-"## Doomsayer Text Strings"
+"## 末日赌怪设置 / Doomsayer Text Strings"
 "DoomsayerAmountOfGuessesToWin","获胜需猜测数量","Amount of Guesses to win","Количество угадываний для победы","",""
 "DCanGuessImpostors","可以猜测<color=#ff1919>内鬼阵营</color>","Can Guess <color=#ff1919>Impostors</color>","Может угадывать <color=#ff1919>Предателей</color>","",""
 "DCanGuessCrewmates","可以猜测<color=#8cffff>船员阵营</color>","Can Guess <color=#8cffff>Crewmates</color>","Может угадывать <color=#8cffff>Членов Экипажа</color>","",""
@@ -3156,7 +3156,7 @@
 "DCNotify.InvalidSettings","检测到游戏设置无效\n输入 Enter 以重置它们，然后重试","Game settings have been detected to be invalid.\n\nEnter local play to reset them, then try again.","Обнаружено, что игровые настройки недействительны.\n\nВойдите в локальную игру, чтобы сбросить их, затем повторите попытку.","",""
 "ModeDescribe.SoloKombat","本房间模式为[个人竞技模式]\n没有职业分配，所有人拥有血量，可以使用击杀键对其他人造成伤害。游戏结束时击杀数量最多的玩家获胜。","Current mode is [Solo PVP]\nNo role assignment. Everyone has HP and can use the kill button to cause damage to other players. The player with the highest number of kills wins at the end of the game.","Текущий режим - [ПВП]. У каждого есть здоровье, и может использовать кнопку 'Убить', чтобы нанести урон другим игрокам. Игрок, совершивший наибольшее количество убийств, выигрывает в конце игры.","本房間模式為[個人競技模式]\n沒有職業分配，所有人擁有血量，可以使用殺人鍵對其他人造成傷害。遊戲結束時殺人數量最多的玩家獲勝。","本房间模式为[个人竞技模式]\n没有职业分配，所有人拥有血量，可以使用击杀键对其他人造成伤害。游戏结束时击杀数量最多的玩家获胜。"
 
-"## Role Types in Role Options"
+"## 身份选项中的身份类型 / Role Types in Role Options"
 "RoleType.VanillaRoles","★ 原版职业","★ Vanilla Roles","★ Ванильные Роли","",""
 "RoleType.ImpKilling","<color=#6a0000>★</color> 内鬼<color=#6a0000>击杀类</color>身份","<color=#6a0000>★</color> Impostor <color=#6a0000>Killing</color> Roles","<color=#6a0000>★</color> Предатели <color=#6a0000>Убийцы</color>","",""
 "RoleType.ImpSupport","<color=#00ffff>★</color> 内鬼<color=#00ffff>帮助类</color>身份","<color=#00ffff>★</color> Impostor <color=#00ffff>Support</color> Roles","<color=#00ffff>★</color> <color=#00ffff>Помогающие</color> Предатели","",""
@@ -3242,7 +3242,7 @@
 "WinnerRoleText.Shade","遮蔽者胜利！","Shade Wins!","Тень Победила!","",""
 "WinnerRoleText.SoulCollector","灵魂收集者胜利！","Soul Collector Wins!","Коллектор Душ Победил!","",""
 
-"## Additional Winner Text"
+"## 其他获胜者 / Additional Winner Text"
 "AdditionalWinnerRoleText.Sidekick","跟班","Sidekick","Союзник","",""
 "AdditionalWinnerRoleText.Opportunist","投机者","Opportunist","Выжившие","投機主義者",""
 "AdditionalWinnerRoleText.Lawyer","律师","Lawyer","Адвокат","",""
@@ -3259,7 +3259,7 @@
 "AdditionalWinnerRoleText.Maverick","独行者","Maverick","Бродяга","",""
 "AdditionalWinnerRoleText.Shaman","萨满","Shaman","Шаман","",""
 
-"## Misc End Screen Text"
+"## 其他结束屏幕 / Misc End Screen Text"
 "ErrorEndText","发生错误","An error occurred","Произошла Ошибка","",""
 "ErrorEndTextDescription","为避免卡房已强制结束","To avoid crashing, the game was forcibly ended.","Во избежание ошибки, игра была завершена","",""
 "ForceEnd","强制结束游戏","Aborted","Прервано","強制結束遊戲","强制结束游戏"
