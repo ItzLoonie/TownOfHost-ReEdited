@@ -1609,12 +1609,16 @@ public static class Utils
     public static void ApplySuffix(PlayerControl player)
     {
         if (!AmongUsClient.Instance.AmHost || player == null) return;
-        if (!IsPlayerModerator(player.FriendCode))
+        
+        if (!(player.AmOwner || (player.FriendCode.GetDevUser().HasTag())))
         {
-            string name1 = Main.AllPlayerNames.TryGetValue(player.PlayerId, out var n1) ? n1 : "";
-            if (GameStates.IsLobby) player.RpcSetName(name1);
+            if (!IsPlayerModerator(player.FriendCode))
+            {
+                string name1 = Main.AllPlayerNames.TryGetValue(player.PlayerId, out var n1) ? n1 : "";
+                if (GameStates.IsLobby && name1 != player.name && player.CurrentOutfitType == PlayerOutfitType.Default) player.RpcSetName(name1);
+                return;
+            }
         }
-        if (!(player.AmOwner || (player.FriendCode.GetDevUser().HasTag()) || IsPlayerModerator(player.FriendCode))) return;
         string name = Main.AllPlayerNames.TryGetValue(player.PlayerId, out var n) ? n : "";
         if (Main.nickName != "" && player.AmOwner) name = Main.nickName;
         if (name == "") return;
