@@ -64,6 +64,7 @@ internal static class CustomRolesHelper
          //       CustomRoles.Mare => CustomRoles.Impostor,
                 CustomRoles.Inhibitor => CustomRoles.Impostor,
                 CustomRoles.Saboteur => CustomRoles.Impostor,
+                CustomRoles.Cultivator => CustomRoles.Impostor,
                 CustomRoles.Doctor => CustomRoles.Scientist,
                 CustomRoles.ScientistTOHE => CustomRoles.Scientist,
                 CustomRoles.Tracefinder => CustomRoles.Scientist,
@@ -628,6 +629,7 @@ internal static class CustomRolesHelper
             CustomRoles.Zombie or
             CustomRoles.Warlock or
             CustomRoles.Assassin or
+            CustomRoles.Cultivator or
             CustomRoles.Hacker or
             CustomRoles.Visionary or
             CustomRoles.Miner or
