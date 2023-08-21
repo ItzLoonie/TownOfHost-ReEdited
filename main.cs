@@ -33,7 +33,7 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = " ";
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "3.0.0.045";
+    public const string PluginVersion = "3.0.0.046";
     public const string PluginDisplayVersion = "3.0.0 dev 4";
     public const bool Canary = false;
 
@@ -112,6 +112,7 @@ public class Main : BasePlugin
     public static Dictionary<byte, Vector2> LastEnteredVentLocation = new();
     public static Dictionary<byte, Vector2> TimeMasterBackTrack = new();
     public static Dictionary<byte, int> MasochistKillMax = new();
+    public static Dictionary<byte, int> CultivatorKillMax = new();
     public static Dictionary<byte, int> TimeMasterNum = new();
     public static Dictionary<byte, long> TimeMasterInProtect = new();
     //public static Dictionary<byte, long> FlashbangInProtect = new();
@@ -177,7 +178,7 @@ public class Main : BasePlugin
     public static Dictionary<byte, float> GrenadierNumOfUsed = new();
     public static Dictionary<byte, long> Lighter = new();
     public static Dictionary<byte, float> LighterNumOfUsed = new();
-    public static Dictionary<byte, byte> AllKillers = new();
+    public static Dictionary<byte, long> AllKillers = new();
     public static Dictionary<byte, float> TimeMasterNumOfUsed = new();
     public static Dictionary<byte, int> CursedWolfSpellCount = new();
     public static Dictionary<byte, int> JinxSpellCount = new();
@@ -643,6 +644,7 @@ public enum CustomRoles
     Twister,
     Lurker,
     Convict,
+    Cultivator,
     Visionary,
     Refugee,
     Underdog,

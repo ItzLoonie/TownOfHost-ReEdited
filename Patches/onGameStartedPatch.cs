@@ -113,6 +113,7 @@ internal class ChangeRoleSettings
             Main.BardCreations = 0;
             Main.DovesOfNeaceNumOfUsed = new();
             Main.GodfatherTarget = new();
+            Main.CultivatorKillMax = new();
             Main.AwareInteracted = new();
             Main.ShamanTarget = byte.MaxValue;
             Main.ShamanTargetChoosen = false;
@@ -478,6 +479,9 @@ internal class SelectRolesPatch
                 {
                     case CustomRoles.BountyHunter:
                         BountyHunter.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Cultivator:
+                        Main.CultivatorKillMax[pc.PlayerId] = 0;
                         break;
                     case CustomRoles.Reverie:
                         Reverie.Add(pc.PlayerId);
