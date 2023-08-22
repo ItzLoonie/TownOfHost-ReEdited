@@ -2339,7 +2339,7 @@ public static class Options
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(19, 188, 233, byte.MaxValue));
         AirshipAdditionalSpawn = BooleanOptionItem.Create(22010, "AirshipAdditionalSpawn", false, TabGroup.GameSettings, false)
-        .SetParent(RandomSpawn)
+            .SetParent(RandomSpawn)
             .SetGameMode(CustomGameMode.Standard);
 
         // Airship Variable Electrical
@@ -2365,7 +2365,7 @@ public static class Options
             .SetColor(new Color32(243, 96, 96, byte.MaxValue));
         DisableReportWhenCC = BooleanOptionItem.Create(22300, "DisableReportWhenCC", false, TabGroup.GameSettings, false)
             .SetGameMode(CustomGameMode.Standard)
-            .SetColor(new Color32(243, 96, 96, byte.MaxValue));
+            .SetParent(CommsCamouflage);
 
         // SabotageTimeControl
         SabotageTimeControl = BooleanOptionItem.Create(22400, "SabotageTimeControl", false, TabGroup.GameSettings, false)

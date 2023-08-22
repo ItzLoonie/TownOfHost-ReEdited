@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TOHE.Roles.Crewmate;
+using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
 
@@ -106,6 +107,9 @@ class RepairSystemPatch
             }
         }
 
+        if (systemType == SystemTypes.Comms)
+            if (player.Is(CustomRoles.Camouflager) && !Camouflager.CanUseCommsSabotage.GetBool()) return false;
+
         if (systemType == SystemTypes.Sabotage && AmongUsClient.Instance.NetworkMode != NetworkModes.FreePlay)
         {
             if (player.Is(CustomRoleTypes.Impostor) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
@@ -119,6 +123,7 @@ class RepairSystemPatch
             if (player.Is(CustomRoles.Glitch) && player.IsAlive()) return true;
             return false;
         }
+
       /*if (systemType == SystemTypes.Doors && AmongUsClient.Instance.NetworkMode != NetworkModes.FreePlay)
         {
             if (player.Is(CustomRoleTypes.Impostor) && (player.IsAlive() || !Options.DeadImpCantSabotage.GetBool())) return true;
