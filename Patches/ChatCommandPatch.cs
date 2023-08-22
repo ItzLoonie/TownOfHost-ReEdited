@@ -1117,7 +1117,7 @@ internal class ChatCommands
                 Utils.SendMessage(msgText, player.PlayerId);
                 break;
             case "/mid":
-                canceled = true;
+                //canceled = true;
                 //checking if modlist on or not
                 if (Options.ApplyModeratorList.GetValue() == 0)
                 {
