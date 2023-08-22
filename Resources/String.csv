@@ -212,6 +212,7 @@
 "Godfather","教父","Godfather","Крестный","Godfather","Padrino"
 "Chronomancer","天文学家","Chronomancer","Хрономант","Chronomancer","Cronomante"
 "Pitfall","设陷者","Pitfall","Ловушка","Pitfall","Trampa"
+"Cultivator","","Berserker","","",""
 
 "# 船员阵营 / Crewmates"
 "Luckey","幸运儿","Luckey","Удачник","幸運兒","Suertudo"
@@ -582,6 +583,7 @@
 "GodfatherInfo","给我变成逃亡者吧！","Convert players to Refugees by voting","Превращайте игроков в Беженцев путем голосования","Convert players to Refugees by voting","Transforma a los jugadores en refugiados votando"
 "ChronomancerInfo","爆发式击杀！","Kill in bursts","Убивайте очередями","Kill in bursts","Mata a quemarropa"
 "PitfallInfo","小样，被我捕捉到了吧","Setup traps around the map","Устанавливайте ловушки","Setup traps around the map","Pon trampas alrededor del mapa"
+"CultivatorInfo","","Kill to increase your level","","",""
 
 "# 船员阵营 / Crewmate descriptions"
 "LuckeyInfo","你擅长治疗内鬼的低血压","Dodge attacks","Уклоняйтесь от атак","是生是死，看你是歐還是非","Esquiva ataques"
@@ -848,6 +850,7 @@
 "GodfatherInfoLong","(内鬼阵营):\n教父投票给某人，让他们成为你的目标。在下一轮中，如果有人击杀了目标，凶手将变成逃亡者","(Impostors):\nAs the Godfather, you vote someone to make them your target.\nIn the next round if someone kills the target, the killer will turn into a Refugee.","(Предатель):\nКрестный голосует за кого-то, чтобы сделать его своей целью.\в следующем раунде, если кто-то убьет вашу цель, убийца превратится в Беженца","(Impostors):\nAs the Godfather, you vote someone to make them your target.\nIn the next round if someone kills the target, the killer will turn into a Refugee.","(Impostors):\nAs the Godfather, you vote someone to make them your target.\nIn the next round if someone kills the target, the killer will turn into a Refugee."
 "ChronomancerInfoLong","(内鬼阵营):\n天文学家可以为自己的击杀按钮充电。一旦激活，天文学家就可以无限使用他们的必杀按钮，直到电量耗尽为止","(Impostors):\nAs the Chronomancer, you can charge up your kill button. Once activated the Chronomancer can use their kill button infinitely until they run out of charge.","(Предатель):\nХрономант может зарядить свою кнопку ''Убить''. После активации Хрономант может использовать свою кнопку убийства бесконечно, пока у него не закончится заряд","(Impostors):\nAs the Chronomancer, you can charge up your kill button. Once activated the Chronomancer can use their kill button infinitely until they run out of charge.","(Impostors):\nAs the Chronomancer, you can charge up your kill button. Once activated the Chronomancer can use their kill button infinitely until they run out of charge."
 "PitfallInfoLong","(内鬼阵营):\n设陷者使用变形可以将变形周围的区域标记为陷阱。进入该区域的玩家会在短时间内无法动弹，视野也会受到影响","(Impostors):\nAs the Pitfall, you use your shapeshift to mark the area around the shapeshift as a trap. Players who enter this area will be immobilized for a short period of time and their vision will be affected.","(Предатели):\nКак Ловушка, вы используете свое изменение формы, чтобы пометить область вокруг него как ловушку. Игроки, попавшие в эту зону, будут обездвижены на короткий период времени, а их зрение будет нарушено.","(Impostors):\nAs the Pitfall, you use your shapeshift to mark the area around the shapeshift as a trap. Players who enter this area will be immobilized for a short period of time and their vision will be affected.","(Impostors):\nAs the Pitfall, you use your shapeshift to mark the area around the shapeshift as a trap. Players who enter this area will be immobilized for a short period of time and their vision will be affected."
+"CultivatorInfoLong","","(Impostors):\nAs Berserker, you kill to increase your level. Every time you increase your level you will Unlock a new power.\n1. Level 1 => Decreased Cooldown\n2. Level 2 => Kills like scavenger\n3. Level 3 => Kills like Bomber (but using kill button instead of SS button)\n4. Level 4 => You become immortal.","","",""
 
 "# 船员阵营 / Crewmates descriptions"
 "LuckeyInfoLong","(船员阵营):\n幸运儿被击杀时，有概率抵挡这次死亡，具体概率根据房主设定。抵挡生效时凶手会看到幸运儿的身上出现护盾破碎的效果，但幸运儿自己什么都不会知道。","(Crewmates):\nWhen a player attempts to kill the Luckey, there is a probability for the Luckey to evade the kill, and the specific probability is set by the host. When the evasion takes effect, the killer will see the shield-animation on Luckey's body, but Luckey themselves will not know anything.","(Член Экипажа):\nУ Удачника будет возникать определенная вероятность того, что Убийца не сможет убить Удачника, вероятность устанавливается в зависимости от настроек Хоста. Убийца увидит эффект разрушения щита ангела на теле Удачника, но сам Удачник при этом ничего не узнает.","(船員陣營):\n幸運兒被嘗試殺死時，有機率抵擋這次死亡，具體機率依房主設定。抵擋生效時兇手會看到幸運兒身上出現盾牌破碎的效果，但幸運兒自己甚麼都不知道。此外，如果幸運兒被劊子手絞殺，那麼技能將不會生效。","(船员阵营):\n幸运儿被击杀时，有概率抵挡这次死亡，具体概率根据房主设定。抵挡生效时凶手会看到幸运儿的身上出现护盾破碎的效果，但幸运儿自己什么都不会知道。"
@@ -2604,6 +2607,17 @@
 "GodfatherTargetCountMode","带刀玩家变成","Killer turns into","Убийца превращается в ","Killer turns into","Killer turns into"
 "GodfatherCount.Refugee","<color=#ff1919>逃亡者</color>","<color=#ff1919>Refugee</color>","<color=#ff1919>Беженеца</color>","<color=#ff1919>Refugee</color>","<color=#ff1919>Refugee</color>"
 "GodfatherCount.Madmate","<color=#ff1919>叛徒</color>","<color=#ff1919>Madmate</color>","<color=#ff1919>Безумца</color>","<color=#ff1919>Madmate</color>","<color=#ff1919>Madmate</color>"
+
+"## Cultivator (Berserker) Text Strings"
+"CultivatorKillCooldown","","Berserker kill cooldown","","",""
+"CultivatorMax","","Max level that Berserker can reach","","",""
+"CultivatorOneCanKillCooldown","","Unlock Level 1 power (Lower kill cooldown)","","",""
+"CultivatorOneKillCooldown","","Kill cooldown after reaching Level 1","","",""
+"CultivatorTwoCanScavenger","","Unlock Level 2 power (Kills like Scavenger)","","",""
+"CultivatorThreeCanBomber","","Unlock Level 3 power (Kills like Bomber)","","",""
+"CultivatorFourCanNotKill","","Unlock Level 3 power (Become Immortal)","","",""
+"CultivatorMaxReached","","Maximum Level Reached!!","","",""
+"CultivatorLevelChanged","","Increased Level to {0}","","",""
 
 "## Unlucky Text Strings"
 "ImpCanBeUnlucky","<color=#ff1919>内鬼阵营</color>可以成为<color=#b8d7a3>倒霉蛋</color>","<color=#ff1919>Impostors</color> can become <color=#b8d7a3>Unlucky</color>","<color=#ff1919>Предатели</color> могут стать <color=#b8d7a3>Невезучим</color>","<color=#ff1919>Impostors</color> can become <color=#b8d7a3>Unlucky</color>","<color=#ff1919>Impostors</color> can become <color=#b8d7a3>Unlucky</color>"
