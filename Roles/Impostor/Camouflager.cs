@@ -10,6 +10,8 @@ namespace TOHE.Roles.Impostor
 
         private static OptionItem CamouflageCooldown;
         private static OptionItem CamouflageDuration;
+        public static OptionItem CanUseCommsSabotage;
+        public static OptionItem DisableReportWhenCamouflageIsActive;
 
         public static bool IsActive;
 
@@ -20,6 +22,9 @@ namespace TOHE.Roles.Impostor
                 .SetValueFormat(OptionFormat.Seconds);
             CamouflageDuration = FloatOptionItem.Create(Id + 4, "CamouflageDuration", new(1f, 180f, 1f), 10f, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Camouflager])
                 .SetValueFormat(OptionFormat.Seconds);
+            CanUseCommsSabotage = BooleanOptionItem.Create(Id + 6, "CanUseCommsSabotage", false, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Camouflager]);
+            DisableReportWhenCamouflageIsActive = BooleanOptionItem.Create(Id + 8, "DisableReportWhenCamouflageIsActive", false, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Camouflager]);
+
         }
         public static void Init()
         {

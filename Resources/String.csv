@@ -1732,6 +1732,8 @@
 "CanBeGuessed","可以猜测","Can be guessed","Может быть угадан","Can be guessed","Puede ser adivinado"
 "GuessTaskDone","抱歉，你猜不死已经完成了任务的玩家","Sorry, you can't guess someone who has finished their tasks.","К сожалению, вы не можете угадать роль игрока, который выполнил все задания","Sorry, you can't guess someone who has finished their tasks.","Desgraciadamente, no puedes adivinar a alguien que haya hecho todas sus tareas."
 "CanBeInLove","可能<color=#ff9ace>坠入爱河</color>","Can be <color=#ff9ace>in love</color>","Может стать <color=#ff9ace>Любовником</color>","Can be <color=#ff9ace>in love</color>","Puede <color=#ff9ace>enamorarse</color>"
+"DisableReportWhenCamouflageIsActive","","Disable body reporting when сamouflage is active","Запретить репортить трупы когда маскировка <color=#ff1919>Камуфляжера</color> активена","",""
+"CanUseCommsSabotage","","Can use comms sabotage","Может вызвать саботаж связи","",""
 
 "## 自动房主的管理 / Moderation for Auto-Hosters"
 "ModTag","房主♥","Moderator♥","Модератор♥️","Moderator♥","Moderator♥"
