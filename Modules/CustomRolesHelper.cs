@@ -1092,7 +1092,9 @@ internal static class CustomRolesHelper
                 break;
 
             case CustomRoles.VoidBallot:
-                if (pc.Is(CustomRoles.Glitch))
+                if (pc.Is(CustomRoles.Mayor)
+                    || pc.Is(CustomRoles.Vindicator) || pc.Is(CustomRoles.TicketsStealer)
+                    || pc.Is(CustomRoles.Pickpocket) || pc.Is(CustomRoles.Glitch))
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeVoidBallot.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeVoidBallot.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeVoidBallot.GetBool()))
                     return false;
@@ -1184,7 +1186,8 @@ internal static class CustomRolesHelper
             case CustomRoles.Madmate:
                 if (pc.Is(CustomRoles.Sidekick)
                     || pc.Is(CustomRoles.SuperStar)
-                    || pc.Is(CustomRoles.Egoist))
+                    || pc.Is(CustomRoles.Egoist)
+                    || pc.Is(CustomRoles.Rascal))
                     return false;
                 if (!Utils.CanBeMadmate(pc))
                     return false;
@@ -1240,7 +1243,8 @@ internal static class CustomRolesHelper
                 break;
 
             case CustomRoles.Rascal:
-                if (pc.Is(CustomRoles.SuperStar))
+                if (pc.Is(CustomRoles.SuperStar)
+                    || pc.Is(CustomRoles.Madmate))
                     return false;
                 if (!pc.GetCustomRole().IsCrewmate())
                     return false;
@@ -1261,7 +1265,8 @@ internal static class CustomRolesHelper
                     || pc.Is(CustomRoles.Bomber)
                     || pc.Is(CustomRoles.Nuker)
                     || pc.Is(CustomRoles.BoobyTrap)
-                    || pc.Is(CustomRoles.Capitalism))
+                    || pc.Is(CustomRoles.Capitalism)
+                    || pc.Is(CustomRoles.VoidBallot))
                     return false;
                 if (!pc.GetCustomRole().IsImpostor())
                     return false;
