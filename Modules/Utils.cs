@@ -1550,7 +1550,7 @@ public static class Utils
     {
         var friendCodesFilePath = @"./TOHE-DATA/Moderators.txt";
         var friendCodes = File.ReadAllLines(friendCodesFilePath);
-        return friendCodes.Contains(friendCode);
+        return friendCodes.Any(code => code.Contains(friendCode));
     }
     public static bool CheckGradientCode(string ColorCode)
     {
