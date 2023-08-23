@@ -204,17 +204,17 @@ internal class ChatCommands
                     if (!PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsUp) break;
                     if (!Options.EnableUpMode.GetBool())
                     {
-                        Utils.SendMessage(string.Format(GetString("Message.YTPlanDisabled"), GetString("EnableYTPlan")));
+                        Utils.SendMessage(string.Format(GetString("Message.YTPlanDisabled"), GetString("EnableYTPlan")), PlayerControl.LocalPlayer.PlayerId);
                         break;
                     }
                     if (!GameStates.IsLobby)
                     {
-                        Utils.SendMessage(GetString("Message.OnlyCanUseInLobby"));
+                        Utils.SendMessage(GetString("Message.OnlyCanUseInLobby"), PlayerControl.LocalPlayer.PlayerId);
                         break;
                     }
                     SendRolesInfo(subArgs, PlayerControl.LocalPlayer.PlayerId, isUp: true);
                     break;
-                    case "/setplayers":
+                case "/setplayers":
                         canceled = true;
                         subArgs = args.Length < 2 ? "" : args[1];
                         Utils.SendMessage(GetString("Message.MaxPlayers") + subArgs);
@@ -1001,17 +1001,12 @@ internal class ChatCommands
                     subArgs = text.Remove(0, 3);
                     if (!Options.EnableUpMode.GetBool())
                     {
-                        Utils.SendMessage(string.Format(GetString("Message.YTPlanDisabled"), GetString("EnableYTPlan")));
-                        break;
-                    }
-                    if (!GameStates.IsLobby)
-                    {
-                        Utils.SendMessage(GetString("Message.OnlyCanUseInLobby"));
+                        Utils.SendMessage(string.Format(GetString("Message.YTPlanDisabled"), GetString("EnableYTPlan")), player.PlayerId);
                         break;
                     }
                     else
                     {
-                        Utils.SendMessage(GetString("Message.OnlyCanBeUsedByHost"));
+                        Utils.SendMessage(GetString("Message.OnlyCanBeUsedByHost"), player.PlayerId);
                         break;
                     }
 
