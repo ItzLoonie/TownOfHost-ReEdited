@@ -4,6 +4,7 @@ using HarmonyLib;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
 
 using TOHE.Roles.AddOns.Crewmate;
+using TOHE.Roles.Neutral;
 
 namespace TOHE;
 
@@ -134,6 +135,11 @@ class RpcSetTasksPatch
             NumLongTasks = 0;
         }
 
+        //Speed Runner loves its hunter
+        if (pc.Is(CustomRoles.SpeedRunner))
+        {
+            NumShortTasks = NumShortTasks + SpeedRunner.AddShortTasks;
+        }
         //加班狂加班咯~
         if (pc.Is(CustomRoles.Workhorse))
             (hasCommonTasks, NumLongTasks, NumShortTasks) = Workhorse.TaskData;

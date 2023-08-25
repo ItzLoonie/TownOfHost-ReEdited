@@ -15,9 +15,11 @@ namespace TOHE.Roles.Neutral
         public static OptionItem SpeedRunnerCanVent;
         public static OptionItem SpeedRunnerCanGuess;
         public static OverrideTasksData SpeedRunnerTasks;
+        public static OptionItem AddTasksPreKill;
 
         public static bool MurderCheck;
         public static float OriginalSpeed;
+        public static int AddShortTasks;
         public static void SetupCustomOption()
         {
             SetupSingleRoleOptions(Id, TabGroup.OtherRoles, CustomRoles.SpeedRunner, 1);
@@ -27,7 +29,9 @@ namespace TOHE.Roles.Neutral
                 .SetParent(CustomRoleSpawnChances[CustomRoles.SpeedRunner]);
             SpeedRunnerCanGuess = BooleanOptionItem.Create(Id + 12, "CanGuess", false, TabGroup.OtherRoles, false)
                 .SetParent(CustomRoleSpawnChances[CustomRoles.SpeedRunner]);
-            OverrideTasksData.Create(Id + 13, TabGroup.OtherRoles, CustomRoles.SpeedRunner);
+            AddTasksPreKill = IntegerOptionItem.Create(Id + 13, "AddTasksPreKill", new(0, 15, 1), 1, TabGroup.OtherRoles, false)
+                .SetParent(CustomRoleSpawnChances[CustomRoles.SpeedRunner]);
+            SpeedRunnerTasks = OverrideTasksData.Create(Id + 14, TabGroup.OtherRoles, CustomRoles.SpeedRunner);
         }
         public static void ApplyGameOptions()
         {
@@ -39,6 +43,7 @@ namespace TOHE.Roles.Neutral
             playerIdList = new();
             MurderCheck = false;
             OriginalSpeed = Main.NormalOptions.PlayerSpeedMod;
+            AddShortTasks = 0;
         }
 
         public static void Add(byte playerId)
@@ -69,9 +74,13 @@ namespace TOHE.Roles.Neutral
             {
                 CheckTask(target);
                 MurderCheck = true;
+                AddShortTasks = AddShortTasks + AddTasksPreKill.GetValue();
+                var taskState = target.GetPlayerTaskState();
+                taskState.AllTasksCount = taskState.AllTasksCount + AddTasksPreKill.GetValue();
+
                 Utils.TP(target.NetTransform, GetBlackRoomPS());
                 OriginalSpeed = Main.AllPlayerSpeed[target.PlayerId];
-                Main.AllPlayerSpeed[target.PlayerId] = Main.MinSpeed; //I'm too lazy to do tp like pelican LOL
+                Main.AllPlayerSpeed[target.PlayerId] = 0.01f; //I'm too lazy to do tp like pelican LOL
                 ReportDeadBodyPatch.CanReport[target.PlayerId] = false;
                 NameNotifyManager.Notify(target, string.Format(GetString("SpeedRunnerMurdered"), killer.GetRealName()));
                 target.RpcGuardAndKill();
@@ -89,7 +98,7 @@ namespace TOHE.Roles.Neutral
                 if (pc == null || !pc.Is(CustomRoles.SpeedRunner)) continue;
                 if (MurderCheck || Main.AllPlayerSpeed[pc.PlayerId] < 0.1f)
                 {
-                    Main.AllPlayerSpeed[pc.PlayerId] = Main.AllPlayerSpeed[pc.PlayerId] - Main.MinSpeed + OriginalSpeed;
+                    Main.AllPlayerSpeed[pc.PlayerId] = Main.AllPlayerSpeed[pc.PlayerId] - 0.01f + OriginalSpeed;
                     ReportDeadBodyPatch.CanReport[pc.PlayerId] = true;
                     pc.MarkDirtySettings();
                 }
@@ -107,8 +116,8 @@ namespace TOHE.Roles.Neutral
             {
                 if (taskState.IsTaskFinished)
                 {
-                        CustomWinnerHolder.ResetAndSetWinner(CustomWinner.SpeedRunner);
-                        CustomWinnerHolder.WinnerIds.Add(player.PlayerId); 
+                    CustomWinnerHolder.ResetAndSetWinner(CustomWinner.SpeedRunner);
+                    CustomWinnerHolder.WinnerIds.Add(player.PlayerId);
                 }
             }
             else ResetTasks();
@@ -119,8 +128,8 @@ namespace TOHE.Roles.Neutral
             {
                 if (pc == null || !pc.Is(CustomRoles.SpeedRunner)) continue;
                 var taskState = pc.GetPlayerTaskState();
-                taskState.CompletedTasksCount = 0;
                 GameData.Instance.RpcSetTasks(pc.PlayerId, new byte[0]);
+                taskState.CompletedTasksCount = 0;                
                 pc.RpcGuardAndKill();
                 NameNotifyManager.Notify(pc, GetString("SpeedRunnerTasksReset"));
             }
