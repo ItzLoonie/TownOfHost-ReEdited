@@ -88,7 +88,13 @@ public static class GuessManager
 
         if (!AmongUsClient.Instance.AmHost) return false;
         if (!GameStates.IsInGame || pc == null) return false;
-        if (!pc.Is(CustomRoles.NiceGuesser) && !pc.Is(CustomRoles.EvilGuesser) && !pc.Is(CustomRoles.Ritualist) && !pc.Is(CustomRoles.Doomsayer) && !pc.Is(CustomRoles.Judge) && !pc.Is(CustomRoles.Councillor) && !pc.Is(CustomRoles.Guesser) && !Options.GuesserMode.GetBool()) return false;
+        if (!pc.Is(CustomRoles.NiceGuesser) && !pc.Is(CustomRoles.EvilGuesser) 
+            && !pc.Is(CustomRoles.Ritualist) 
+            && !pc.Is(CustomRoles.Doomsayer) 
+            && !pc.Is(CustomRoles.Judge) 
+            && !pc.Is(CustomRoles.Councillor) 
+            && !pc.Is(CustomRoles.Guesser) 
+            && !Options.GuesserMode.GetBool()) return false;
 
         int operate = 0; // 1:ID 2:猜测
         msg = msg.ToLower().TrimStart().TrimEnd();
@@ -161,7 +167,8 @@ public static class GuessManager
             (pc.Is(CustomRoles.EvilGuesser) && Options.EGTryHideMsg.GetBool()) ||
             (pc.Is(CustomRoles.Ritualist) && Options.ConjTryHideMsg.GetBool()) ||
             (pc.Is(CustomRoles.Doomsayer) && Doomsayer.DoomsayerTryHideMsg.GetBool()) ||
-            (pc.Is(CustomRoles.Guesser) && Options.GTryHideMsg.GetBool() || Options.GuesserMode.GetBool() && Options.HideGuesserCommands.GetBool())
+            (pc.Is(CustomRoles.Guesser) && Options.GTryHideMsg.GetBool()) || 
+            (Options.GuesserMode.GetBool() && Options.HideGuesserCommands.GetBool())
             ) TryHideMsg();
             else if (pc.AmOwner && !isUI) Utils.SendMessage(originMsg, 255, pc.GetRealName());
 
@@ -172,6 +179,11 @@ public static class GuessManager
                 return true;
             }
             var target = Utils.GetPlayerById(targetId);
+
+            Logger.Msg($" {pc.PlayerId}", "Guesser - pc.PlayerId");
+            Logger.Msg($" {target.PlayerId}", "Guesser - target.PlayerId");
+            Logger.Msg($" {role}", "Guesser - role");
+
             if (target != null)
             {
                 bool guesserSuicide = false;
