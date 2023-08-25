@@ -91,11 +91,25 @@ class SetEverythingUpPatch
         //#######################################
         //          ==勝利陣営表示==
         //#######################################
-
+        if (Main.EnableRoleSummary.Value)
+        {        
         __instance.WinText.alignment = TMPro.TextAlignmentOptions.Right;
+        }
+        if (!Main.EnableRoleSummary.Value)
+        {        
+        __instance.WinText.alignment = TMPro.TextAlignmentOptions.Center;
+        }
         var WinnerTextObject = UnityEngine.Object.Instantiate(__instance.WinText.gameObject);
-        WinnerTextObject.transform.position = new(__instance.WinText.transform.position.x + 2.4f, __instance.WinText.transform.position.y - 0.5f, __instance.WinText.transform.position.z);
         WinnerTextObject.transform.localScale = new(0.6f, 0.6f, 0.6f);
+
+        if (Main.EnableRoleSummary.Value)
+        {
+            WinnerTextObject.transform.position = new(__instance.WinText.transform.position.x + 2.4f, __instance.WinText.transform.position.y - 0.5f, __instance.WinText.transform.position.z);
+        }
+        if (!Main.EnableRoleSummary.Value)
+        {
+            WinnerTextObject.transform.position = new(__instance.WinText.transform.position.x, __instance.WinText.transform.position.y - 0.5f, __instance.WinText.transform.position.z);
+        }
         var WinnerText = WinnerTextObject.GetComponent<TMPro.TextMeshPro>(); //WinTextと同じ型のコンポーネントを取得
         WinnerText.fontSizeMin = 3f;
         WinnerText.text = "";
@@ -256,11 +270,19 @@ class SetEverythingUpPatch
             }
         }
         var RoleSummary = RoleSummaryObject.GetComponent<TMPro.TextMeshPro>();
-        RoleSummary.alignment = TMPro.TextAlignmentOptions.TopLeft;
-        RoleSummary.color = Color.white;
-        RoleSummary.outlineWidth *= 1.2f;
-        RoleSummary.fontSizeMin = RoleSummary.fontSizeMax = RoleSummary.fontSize = 1.25f;
-
+        {
+            RoleSummary.alignment = TMPro.TextAlignmentOptions.TopLeft;
+            RoleSummary.color = Color.white;
+            RoleSummary.outlineWidth *= 1.2f;
+            if (Main.EnableRoleSummary.Value)
+            {
+                RoleSummary.fontSizeMin = RoleSummary.fontSizeMax = RoleSummary.fontSize = 1.25f;
+            }
+            if (!Main.EnableRoleSummary.Value)
+            {
+                RoleSummary.fontSizeMin = RoleSummary.fontSizeMax = RoleSummary.fontSize = 0f;
+            }
+        }
         var RoleSummaryRectTransform = RoleSummary.GetComponent<RectTransform>();
         RoleSummaryRectTransform.anchoredPosition = new Vector2(Pos.x + 3.5f, Pos.y - 0.1f);
         RoleSummary.text = sb.ToString();
