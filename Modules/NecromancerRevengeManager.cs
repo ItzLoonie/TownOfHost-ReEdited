@@ -78,6 +78,12 @@ public static class NecromancerRevengeManager
             else pc.ShowPopUp(GetString("PestilenceImmune"));
             return true;
         }
+        if (target.Is(CustomRoles.SpeedRunner))
+        {
+            if (!isUI) Utils.SendMessage(GetString("SpeedRunnerImmune"), pc.PlayerId);
+            else pc.ShowPopUp(GetString("SpeedRunnerImmune"));
+            return true;
+        }
 
         Logger.Info($"{pc.GetNameWithRole()} 复仇了 {target.GetNameWithRole()}", "Necromancer");
 

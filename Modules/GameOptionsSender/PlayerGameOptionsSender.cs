@@ -405,8 +405,8 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Pitfall:
                 Pitfall.ApplyGameOptions();
                 break;
-            case CustomRoles.Solsticer:
-                Solsticer.ApplyGameOptions();
+            case CustomRoles.SpeedRunner:
+                SpeedRunner.ApplyGameOptions();
                 break;
         }
 

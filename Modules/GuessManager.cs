@@ -270,7 +270,7 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("GuessDisabled"));
                     return true;
                 }
-                if (pc.Is(CustomRoles.Solsticer) && !Solsticer.SolsticerCanGuess.GetBool())
+                if (pc.Is(CustomRoles.SpeedRunner) && !SpeedRunner.SpeedRunnerCanGuess.GetBool())
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessDisabled"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessDisabled"));
@@ -282,10 +282,10 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("GuessSuperStar"));
                     return true;
                 }
-                if (role == CustomRoles.Solsticer || target.Is(CustomRoles.Solsticer))
+                if (role == CustomRoles.SpeedRunner || target.Is(CustomRoles.SpeedRunner))
                 {
-                    if (!isUI) Utils.SendMessage(GetString("GuessSolsticer"), pc.PlayerId);
-                    else pc.ShowPopUp(GetString("GuessSolsticer"));
+                    if (!isUI) Utils.SendMessage(GetString("SpeedRunnerImmune"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("SpeedRunnerImmune"));
                     return true;
                 }
                 if (role == CustomRoles.Bait && target.Is(CustomRoles.Bait) && Options.BaitNotification.GetBool())

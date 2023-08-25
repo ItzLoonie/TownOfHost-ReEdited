@@ -165,8 +165,17 @@ class CheckMurderPatch
             }
         }
 
-        if (target.Is(CustomRoles.Solsticer))
-            return Solsticer.OnCheckMurder(killer, target);
+        if (target.Is(CustomRoles.SpeedRunner))
+        {
+            //My idea is to encourage everyone to kill speedrunner and won't waste shoots on it.
+            if (Main.FirstDied == byte.MaxValue && target.Is(CustomRoles.Youtuber))
+            {
+                CustomSoundsManager.RPCPlayCustomSoundAll("Congrats");
+                CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Youtuber); //SpeedRunner can also win as youtuber LOLOLOL.
+                CustomWinnerHolder.WinnerIds.Add(target.PlayerId);
+            }
+            return SpeedRunner.OnCheckMurder(killer, target);
+        }
 
         if (target.Is(CustomRoles.Shaman) && !killer.GetCustomRole().IsCoven())
         {
@@ -691,7 +700,7 @@ class CheckMurderPatch
                 foreach (var player in Main.AllPlayerControls)
                 {
                     if (!player.IsModClient()) player.KillFlash();
-                    if (!player.IsAlive() || Pelican.IsEaten(player.PlayerId)) continue;
+                    if (!player.IsAlive() || Pelican.IsEaten(player.PlayerId) || player.Is(CustomRoles.SpeedRunner)) continue;
                     if (player == killer) continue;
                     if (Vector2.Distance(killer.transform.position, player.transform.position) <= Options.BomberRadius.GetFloat())
                     {
@@ -1082,6 +1091,8 @@ class CheckMurderPatch
                     return false;
                 }
                 break;
+            case CustomRoles.SpeedRunner: //Make sure speedrunner wont die
+                return false;
         }
 
         //保镖保护
@@ -1286,7 +1297,7 @@ class MurderPlayerPatch
         {
             var pcList = Main.AllAlivePlayerControls.Where(x => x.PlayerId != target.PlayerId).ToList();
             var rp = pcList[IRandom.Instance.Next(0, pcList.Count)];
-            if (!rp.Is(CustomRoles.Pestilence) && !rp.Is(CustomRoles.Solsticer))
+            if (!rp.Is(CustomRoles.Pestilence) && !rp.Is(CustomRoles.SpeedRunner))
             {
             Main.PlayerStates[rp.PlayerId].deathReason = PlayerState.DeathReason.Revenge;
             rp.SetRealKiller(target);
@@ -2672,7 +2683,7 @@ class FixedUpdatePatch
                 else if (__instance.Is(CustomRoles.Sidekick) && (PlayerControl.LocalPlayer.Is(CustomRoles.Jackal) || PlayerControl.LocalPlayer.Is(CustomRoles.Recruit) || PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick))) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Recruit) && (PlayerControl.LocalPlayer.Is(CustomRoles.Jackal) || PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick) || PlayerControl.LocalPlayer.Is(CustomRoles.Recruit))) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoles.Solsticer) && Solsticer.EveryOneKnowSolsticer.GetBool()) RoleText.enabled = true;
+                else if (__instance.Is(CustomRoles.SpeedRunner) && SpeedRunner.EveryOneKnowSpeedRunner.GetBool()) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Doctor) && !__instance.IsEvilAddons() && Options.DoctorVisibleToEveryone.GetBool()) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && __instance.GetPlayerTaskState().IsTaskFinished) RoleText.enabled = true;
                 else if (__instance.Is(CustomRoles.Marshall) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Crewmate) && __instance.GetPlayerTaskState().IsTaskFinished) RoleText.enabled = true;
@@ -3402,7 +3413,7 @@ class PlayerControlCompleteTaskPatch
     {
         var pc = __instance;
         Snitch.OnCompleteTask(pc);
-        Solsticer.OnCompleteTask(pc);
+        SpeedRunner.OnCompleteTask(pc);
 
         var isTaskFinish = pc.GetPlayerTaskState().IsTaskFinished;
         if (isTaskFinish && pc.Is(CustomRoles.Snitch) && pc.Is(CustomRoles.Madmate))

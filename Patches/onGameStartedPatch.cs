@@ -303,7 +303,7 @@ internal class ChangeRoleSettings
             Seeker.Init();
             Pitfall.Init();
             Agitater.Init();
-            Solsticer.Init();
+            SpeedRunner.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
@@ -864,8 +864,8 @@ internal class SelectRolesPatch
                     case CustomRoles.Pitfall:
                         Pitfall.Add(pc.PlayerId);
                         break;
-                    case CustomRoles.Solsticer:
-                        Solsticer.Add(pc.PlayerId);
+                    case CustomRoles.SpeedRunner:
+                        SpeedRunner.Add(pc.PlayerId);
                         break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())

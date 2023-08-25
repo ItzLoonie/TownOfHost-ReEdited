@@ -449,7 +449,7 @@ public class Main : BasePlugin
                 {CustomRoles.Werewolf, "#191970"},
                 {CustomRoles.Seeker, "#ffaa00"},
                 {CustomRoles.SoulCollector, "#A675A1"},
-                {CustomRoles.Solsticer, "#fbac13"},
+                {CustomRoles.SpeedRunner, "#fbac13"},
             
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
@@ -789,7 +789,7 @@ public enum CustomRoles
     Banshee,
     Occultist,
     Shade,
-    Solsticer,
+    SpeedRunner,
    // Sorcerer,
    // Flux,
     
@@ -927,7 +927,7 @@ public enum CustomWinner
     Seeker = CustomRoles.Seeker,
     SoulCollector = CustomRoles.SoulCollector,
     RuthlessRomantic = CustomRoles.RuthlessRomantic,
-    Solsticer = CustomRoles.Solsticer,    
+    SpeedRunner = CustomRoles.SpeedRunner,    
 }
 public enum AdditionalWinners
 {

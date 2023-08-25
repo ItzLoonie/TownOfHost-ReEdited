@@ -1,36 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using static TOHE.Options;
 using static TOHE.Translator;
 
 namespace TOHE.Roles.Neutral
 {
-    public static class Solsticer
+    public static class SpeedRunner
     {
         private static readonly int Id = 96000;
         public static List<byte> playerIdList = new();
 
-        public static OptionItem EveryOneKnowSolsticer;
-        public static OptionItem SolsticerCanVent;
-        public static OptionItem SolsticerCanGuess;
-        public static OverrideTasksData SolsticerTasks;
+        public static OptionItem EveryOneKnowSpeedRunner;
+        public static OptionItem SpeedRunnerCanVent;
+        public static OptionItem SpeedRunnerCanGuess;
+        public static OverrideTasksData SpeedRunnerTasks;
 
         public static bool MurderCheck;
         public static float OriginalSpeed;
         public static void SetupCustomOption()
         {
-            SetupSingleRoleOptions(Id, TabGroup.OtherRoles, CustomRoles.Solsticer, 1);
-            EveryOneKnowSolsticer = BooleanOptionItem.Create(Id + 10, "EveryOneKnowSolsticer", true, TabGroup.OtherRoles, false)
-                .SetParent(Options.CustomRoleSpawnChances[CustomRoles.Solsticer]);
-            SolsticerCanVent = BooleanOptionItem.Create(Id + 11, "CanVent", false, TabGroup.OtherRoles, false)
-                .SetParent(CustomRoleSpawnChances[CustomRoles.Solsticer]);
-            SolsticerCanGuess = BooleanOptionItem.Create(Id + 12, "CanGuess", false, TabGroup.OtherRoles, false)
-                .SetParent(CustomRoleSpawnChances[CustomRoles.Solsticer]);
-            OverrideTasksData.Create(Id + 13, TabGroup.OtherRoles, CustomRoles.Solsticer);
+            SetupSingleRoleOptions(Id, TabGroup.OtherRoles, CustomRoles.SpeedRunner, 1);
+            EveryOneKnowSpeedRunner = BooleanOptionItem.Create(Id + 10, "EveryOneKnowSpeedRunner", true, TabGroup.OtherRoles, false)
+                .SetParent(Options.CustomRoleSpawnChances[CustomRoles.SpeedRunner]);
+            SpeedRunnerCanVent = BooleanOptionItem.Create(Id + 11, "CanVent", false, TabGroup.OtherRoles, false)
+                .SetParent(CustomRoleSpawnChances[CustomRoles.SpeedRunner]);
+            SpeedRunnerCanGuess = BooleanOptionItem.Create(Id + 12, "CanGuess", false, TabGroup.OtherRoles, false)
+                .SetParent(CustomRoleSpawnChances[CustomRoles.SpeedRunner]);
+            OverrideTasksData.Create(Id + 13, TabGroup.OtherRoles, CustomRoles.SpeedRunner);
         }
         public static void ApplyGameOptions()
         {
@@ -62,7 +59,7 @@ namespace TOHE.Roles.Neutral
         public static void OnCompleteTask(PlayerControl player)
         {
             if (player == null) return;
-            if (!player.Is(CustomRoles.Solsticer)) return;
+            if (!player.Is(CustomRoles.SpeedRunner)) return;
             CheckTask(player);
         }
         public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
@@ -74,22 +71,22 @@ namespace TOHE.Roles.Neutral
                 MurderCheck = true;
                 Utils.TP(target.NetTransform, GetBlackRoomPS());
                 OriginalSpeed = Main.AllPlayerSpeed[target.PlayerId];
-                Main.AllPlayerSpeed[target.PlayerId] = Main.MinSpeed;
+                Main.AllPlayerSpeed[target.PlayerId] = Main.MinSpeed; //I'm too lazy to do tp like pelican LOL
                 ReportDeadBodyPatch.CanReport[target.PlayerId] = false;
-                NameNotifyManager.Notify(target, string.Format(GetString("SolsticerMurdered"), killer.GetRealName()));
+                NameNotifyManager.Notify(target, string.Format(GetString("SpeedRunnerMurdered"), killer.GetRealName()));
                 target.RpcGuardAndKill();
                 target.MarkDirtySettings();
-                NameNotifyManager.Notify(killer, GetString("MurderSolsticer"));
+                NameNotifyManager.Notify(killer, GetString("MurderSpeedRunner"));
                 RPC.PlaySoundRPC(killer.PlayerId, Sounds.TaskComplete);
                 killer.SetKillCooldown(time: Main.AllPlayerKillCooldown[killer.PlayerId], forceAnime: true);
             }
             return false;
-        } //My idea is to encourage everyone to kill solsticer and won't waste shoots on it, only resets cd.
+        } //My idea is to encourage everyone to kill SpeedRunner and won't waste shoots on it, only resets cd.
         public static void AfterMeetingTasks()
         {
             foreach (var pc in Main.AllAlivePlayerControls.Where(x => playerIdList.Contains(x.PlayerId)))
             {
-                if (pc == null || !pc.Is(CustomRoles.Solsticer)) continue;
+                if (pc == null || !pc.Is(CustomRoles.SpeedRunner)) continue;
                 if (MurderCheck || Main.AllPlayerSpeed[pc.PlayerId] < 0.1f)
                 {
                     Main.AllPlayerSpeed[pc.PlayerId] = Main.AllPlayerSpeed[pc.PlayerId] - Main.MinSpeed + OriginalSpeed;
@@ -101,39 +98,31 @@ namespace TOHE.Roles.Neutral
                 ResetTasks();
             }
         }
-        public static void CheckTask(PlayerControl player)  //Check solsticer win
+        public static void CheckTask(PlayerControl player)  //Check SpeedRunner win
         {
             if (player == null) return;
-            if (!player.Is(CustomRoles.Solsticer)) return;
+            if (!player.Is(CustomRoles.SpeedRunner)) return;
             var taskState = player.GetPlayerTaskState();
             if (!MurderCheck)
             {
                 if (taskState.IsTaskFinished)
                 {
-                    if (!player.Is(CustomRoles.Admired))
-                    {
-                        CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Solsticer);
-                        CustomWinnerHolder.WinnerIds.Add(player.PlayerId);
-                    }
-                    if (player.Is(CustomRoles.Admired))
-                    {
-                        CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Crewmate);
-                        CustomWinnerHolder.WinnerIds.Add(player.PlayerId);
-                    }
+                        CustomWinnerHolder.ResetAndSetWinner(CustomWinner.SpeedRunner);
+                        CustomWinnerHolder.WinnerIds.Add(player.PlayerId); 
                 }
             }
             else ResetTasks();
-        }
+        } //Because all the checkmurder is patched on speedrunner , we don't need to consider other winning condition.
         public static void ResetTasks()
         {
             foreach (var pc in Main.AllAlivePlayerControls.Where(x => playerIdList.Contains(x.PlayerId)))
             {
-                if (pc == null || !pc.Is(CustomRoles.Solsticer)) continue;
+                if (pc == null || !pc.Is(CustomRoles.SpeedRunner)) continue;
                 var taskState = pc.GetPlayerTaskState();
                 taskState.CompletedTasksCount = 0;
                 GameData.Instance.RpcSetTasks(pc.PlayerId, new byte[0]);
                 pc.RpcGuardAndKill();
-                NameNotifyManager.Notify(pc, GetString("SolsticerTasksReset"));
+                NameNotifyManager.Notify(pc, GetString("SpeedRunnerTasksReset"));
             }
         }
     }
