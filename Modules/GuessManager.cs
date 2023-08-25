@@ -323,6 +323,7 @@ public static class GuessManager
                     if (!isUI) Utils.SendMessage(GetString("GuessPestilence"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessPestilence"));
                     guesserSuicide = true;
+                    Logger.Msg($" {guesserSuicide}", "guesserSuicide - Is Active 1");
                 }
                 if (role == CustomRoles.Phantom && target.Is(CustomRoles.Phantom))
                 {
@@ -348,6 +349,7 @@ public static class GuessManager
                     if (!isUI) Utils.SendMessage(GetString("SelfGuessMasochist"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("SelfGuessMasochist"));
                     guesserSuicide = true;
+                    Logger.Msg($" {guesserSuicide}", "guesserSuicide - Is Active 2");
                 }
 
                 if (role == CustomRoles.GM || target.Is(CustomRoles.GM))
