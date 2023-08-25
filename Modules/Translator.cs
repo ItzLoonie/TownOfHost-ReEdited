@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Text.Json;
 
 namespace TOHE;
 
@@ -23,37 +24,30 @@ public static class Translator
     }
     public static void LoadLangs()
     {
-        var assembly = System.Reflection.Assembly.GetExecutingAssembly();
-        var stream = assembly.GetManifestResourceStream("TOHE.Resources.String.csv");
-        translateMaps = new Dictionary<string, Dictionary<int, string>>();
+        try
+        {
+            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            var stream = assembly.GetManifestResourceStream("TOHE.Resources.NewString.json");
+            translateMaps = new Dictionary<string, Dictionary<int, string>>();
 
-        var options = new CsvOptions()
-        {
-            HeaderMode = HeaderMode.HeaderPresent,
-            AllowNewLineInEnclosedFieldValues = false,
-        };
-        foreach (var line in CsvReader.ReadFromStream(stream, options))
-        {
-            if (line.Values[0][0] == '#') continue;
-            try
+
+            if (stream == null)
             {
-                Dictionary<int, string> dic = new();
-                for (int i = 1; i < line.ColumnCount; i++)
-                {
-                    int id = int.Parse(line.Headers[i]);
-                    dic[id] = line.Values[i].Replace("\\n", "\n").Replace("\\r", "\r");
-                }
-                if (!translateMaps.TryAdd(line.Values[0], dic))
-                    Logger.Warn($"待翻译的 CSV 文件中存在重复项：第{line.Index}行 => \"{line.Values[0]}\"", "Translator");
+                Logger.Warn("Json Translation file does not exist.", "Translator");
+                return;
             }
-            catch (Exception ex)
+            using (var reader = new StreamReader(stream))
             {
-                Logger.Warn($"翻译文件错误：第{line.Index}行 => \"{line.Values[0]}\"", "Translator");
-                Logger.Warn(ex.ToString(), "Translator");
+                Logger.Warn("INSIDE READER", "TRANSLATOR");
+                string json = reader.ReadToEnd();
+                translateMaps = JsonSerializer.Deserialize<Dictionary<string, Dictionary<int, string>>>(json);
             }
         }
-
-        // カスタム翻訳ファイルの読み込み
+        catch (Exception ex)
+        {
+            Logger.Error($"Error: {ex}", "Translator");
+        }
+        //カスタム翻訳ファイルの読み込み
         if (!Directory.Exists(LANGUAGE_FOLDER_NAME)) Directory.CreateDirectory(LANGUAGE_FOLDER_NAME);
 
         // 翻訳テンプレートの作成
@@ -64,6 +58,49 @@ public static class Translator
                 LoadCustomTranslation($"{lang}.dat", (SupportedLangs)lang);
         }
     }
+    //public static void LoadLangs()
+    //{
+    //    var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+    //    var stream = assembly.GetManifestResourceStream("TOHE.Resources.String.csv");
+    //    translateMaps = new Dictionary<string, Dictionary<int, string>>();
+
+    //    var options = new CsvOptions()
+    //    {
+    //        HeaderMode = HeaderMode.HeaderPresent,
+    //        AllowNewLineInEnclosedFieldValues = false,
+    //    };
+    //    foreach (var line in CsvReader.ReadFromStream(stream, options))
+    //    {
+    //        if (line.Values[0][0] == '#') continue;
+    //        try
+    //        {
+    //            Dictionary<int, string> dic = new();
+    //            for (int i = 1; i < line.ColumnCount; i++)
+    //            {
+    //                int id = int.Parse(line.Headers[i]);
+    //                dic[id] = line.Values[i].Replace("\\n", "\n").Replace("\\r", "\r");
+    //            }
+    //            if (!translateMaps.TryAdd(line.Values[0], dic))
+    //                Logger.Warn($"待翻译的 CSV 文件中存在重复项：第{line.Index}行 => \"{line.Values[0]}\"", "Translator");
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            Logger.Warn($"翻译文件错误：第{line.Index}行 => \"{line.Values[0]}\"", "Translator");
+    //            Logger.Warn(ex.ToString(), "Translator");
+    //        }
+    //    }
+
+    //    // カスタム翻訳ファイルの読み込み
+    //    if (!Directory.Exists(LANGUAGE_FOLDER_NAME)) Directory.CreateDirectory(LANGUAGE_FOLDER_NAME);
+
+    //    // 翻訳テンプレートの作成
+    //    CreateTemplateFile();
+    //    foreach (var lang in Enum.GetValues(typeof(SupportedLangs)))
+    //    {
+    //        if (File.Exists(@$"./{LANGUAGE_FOLDER_NAME}/{lang}.dat"))
+    //            LoadCustomTranslation($"{lang}.dat", (SupportedLangs)lang);
+    //    }
+    //}
 
     public static string GetString(string s, Dictionary<string, string> replacementDic = null, bool console = false)
     {
