@@ -2135,6 +2135,7 @@ public static class Options
         GodCanGuess = BooleanOptionItem.Create(18211, "CanGuess", false, TabGroup.OtherRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.God]);
         Spiritcaller.SetupCustomOption();
+        Solsticer.SetupCustomOption();
 
         // 副职
         TextOptionItem.Create(100021, "OtherRoles.Addons", TabGroup.OtherRoles)

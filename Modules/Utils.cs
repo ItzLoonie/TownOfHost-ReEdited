@@ -2407,6 +2407,7 @@ public static class Utils
         Pirate.AfterMeetingTask();
         Chronomancer.AfterMeetingTask();
         Seeker.AfterMeetingTasks();
+        Solsticer.AfterMeetingTasks();
         Main.ShamanTarget = byte.MaxValue;
         Main.ShamanTargetChoosen = false;
         Main.BurstBodies.Clear();

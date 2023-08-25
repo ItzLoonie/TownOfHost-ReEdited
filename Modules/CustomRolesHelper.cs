@@ -171,6 +171,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Doomsayer => CustomRoles.Crewmate,
                 CustomRoles.Agitater => CustomRoles.Impostor,
                 CustomRoles.Pitfall => CustomRoles.Shapeshifter,
+                CustomRoles.Solsticer => Solsticer.SolsticerCanVent.GetBool() ? CustomRoles.Engineer : CustomRoles.Crewmate,
 
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
@@ -405,7 +406,7 @@ internal static class CustomRolesHelper
             CustomRoles.CursedSoul or
             CustomRoles.Phantom or
             CustomRoles.DarkHide or
-       //     CustomRoles.PotionMaster or
+            //     CustomRoles.PotionMaster or
             CustomRoles.Doomsayer or
             CustomRoles.SoulCollector or
             CustomRoles.Pirate or
@@ -417,7 +418,8 @@ internal static class CustomRolesHelper
             //      CustomRoles.Jinx or
             //     CustomRoles.Poisoner or
             //     CustomRoles.HexMaster or
-            CustomRoles.Totocalcio;
+            CustomRoles.Totocalcio or
+            CustomRoles.Solsticer;
     }
     public static bool IsAmneNK(this CustomRoles role)
     {
@@ -509,7 +511,8 @@ internal static class CustomRolesHelper
             CustomRoles.Baker or
             CustomRoles.Romantic or
             CustomRoles.VengefulRomantic or
-            CustomRoles.Provocateur;
+            CustomRoles.Provocateur or
+            CustomRoles.Solsticer;
     }
     public static bool IsNB(this CustomRoles role)
     {
@@ -555,7 +558,8 @@ internal static class CustomRolesHelper
             CustomRoles.Famine or
             CustomRoles.Baker or
             CustomRoles.Revolutionist or
-            CustomRoles.Provocateur;
+            CustomRoles.Provocateur or
+            CustomRoles.Solsticer;
     }
     public static bool IsSnitchTarget(this CustomRoles role)
     {
@@ -757,7 +761,8 @@ internal static class CustomRolesHelper
             CustomRoles.Virus or
             CustomRoles.Succubus or
             CustomRoles.Doomsayer or
-            CustomRoles.Spiritcaller;
+            CustomRoles.Spiritcaller or
+            CustomRoles.Solsticer;
     }
     public static bool IsCoven(this CustomRoles role)
     {
@@ -888,7 +893,8 @@ internal static class CustomRolesHelper
             CustomRoles.Romantic or
             CustomRoles.RuthlessRomantic or
             CustomRoles.VengefulRomantic or
-            CustomRoles.Seeker;
+            CustomRoles.Seeker or
+            CustomRoles.Solsticer;
     }
     public static bool IsMadmate(this CustomRoles role)
     {

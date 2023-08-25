@@ -164,6 +164,10 @@ class CheckMurderPatch
                     break;
             }
         }
+
+        if (target.Is(CustomRoles.Solsticer))
+            return Solsticer.OnCheckMurder(killer, target);
+
         if (target.Is(CustomRoles.Shaman) && !killer.GetCustomRole().IsCoven())
         {
             if (Main.ShamanTarget != byte.MaxValue && target.IsAlive())
@@ -1282,7 +1286,7 @@ class MurderPlayerPatch
         {
             var pcList = Main.AllAlivePlayerControls.Where(x => x.PlayerId != target.PlayerId).ToList();
             var rp = pcList[IRandom.Instance.Next(0, pcList.Count)];
-            if (!rp.Is(CustomRoles.Pestilence))
+            if (!rp.Is(CustomRoles.Pestilence) && !rp.Is(CustomRoles.Solsticer))
             {
             Main.PlayerStates[rp.PlayerId].deathReason = PlayerState.DeathReason.Revenge;
             rp.SetRealKiller(target);
@@ -3397,6 +3401,7 @@ class PlayerControlCompleteTaskPatch
     {
         var pc = __instance;
         Snitch.OnCompleteTask(pc);
+        Solsticer.OnCompleteTask(pc);
 
         var isTaskFinish = pc.GetPlayerTaskState().IsTaskFinished;
         if (isTaskFinish && pc.Is(CustomRoles.Snitch) && pc.Is(CustomRoles.Madmate))
