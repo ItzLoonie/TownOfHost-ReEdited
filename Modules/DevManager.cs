@@ -154,7 +154,7 @@ public static class DevManager
         // Patreons
         DevUserList.Add(new(code: "firmshame#7569", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "Yankee"));
         DevUserList.Add(new(code: "ghostapt#7243", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "MasterKy"));
-        DevUserList.Add(new(code: "moonmodest#5133", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "Allie"));
+        DevUserList.Add(new(code: "moonmodest#5153", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "Allie"));
         DevUserList.Add(new(code: "woolrusty#4204", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "jo"));
     }
     public static bool IsDevUser(this string code) => DevUserList.Any(x => x.Code == code);
