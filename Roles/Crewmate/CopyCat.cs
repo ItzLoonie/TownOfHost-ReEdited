@@ -212,7 +212,7 @@ public static class CopyCat
             if (role == CustomRoles.Eraser) role = CustomRoles.Cleanser;
             if (role == CustomRoles.Mafia || role == CustomRoles.Necromancer) role = CustomRoles.Retributionist;
             if (role == CustomRoles.Visionary) role = CustomRoles.Oracle;
-            if (role == CustomRoles.Workaholic) role = CustomRoles.Snitch;
+            if (role == CustomRoles.Workaholic || role == CustomRoles.Solsticer) role = CustomRoles.Snitch;
             if (role == CustomRoles.Sunnyboy) role = CustomRoles.Doctor;
             if (role == CustomRoles.Vindicator || role == CustomRoles.Pickpocket) role = CustomRoles.Mayor;
             else if (role == CustomRoles.Councillor) role = CustomRoles.Judge;

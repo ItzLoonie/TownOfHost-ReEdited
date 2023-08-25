@@ -2481,7 +2481,7 @@
 "DivinatorCheck.Result26","<b>{0}</b>是通灵师、灵魂召唤师、灵魂论者、寄生虫、隐匿者或魅影其中之一","<b>{0}</b> is either Medium, Spiritcaller, Spiritualist, Parasite, Swooper, or Wraith","<b>{0}</b> может быть Медиум, Призыватель, Мистик, Паразит, Невидимка, или Дух","<b>{0}</b> is either Medium, Spiritcaller, Spiritualist, Parasite, Swooper, or Wraith","<b>{0}</b> is either Medium, Spiritcaller, Spiritualist, Parasite, Swooper, or Wraith"
 "DivinatorCheck.Result27","<b>{0}</b>可能是时间操控者、时间之主、蚀时者、千面鬼、狼人或者狙击手其中之一","<b>{0}</b> is either Time Manager, Time Master, Time Thief, Shapemaster, Sniper, or Werewolf","<b>{0}</b> может быть Мастер Времени, Повелитель Времени, Вор Времени, Шпион, Снайпер, или Оборотень","<b>{0}</b> is either Time Manager, Time Master, Time Thief, Shapemaster, Sniper, or Werewolf","<b>{0}</b> is either Time Manager, Time Master, Time Thief, Shapemaster, Sniper, or Werewolf"
 "DivinatorCheck.Result28","<b>{0}</b>可能是傀儡师、巫婆、捕快、传送师、龙卷风、或者嗜血杀手其中之一","<b>{0}</b> is either Puppeteer, Witch, Deputy, Transporter, Twister, Mercenary","<b>{0}</b> может быть Кукловод, Заклинатель, Заместитель, Транспортер, Твистер, Серийный Убийца","<b>{0}</b> is either Puppeteer, Witch, Deputy, Transporter, Twister, Mercenary","<b>{0}</b> is either Puppeteer, Witch, Deputy, Transporter, Twister, Mercenary"
-"DivinatorCheck.Result29","<b>{0}</b>可能是船鬼, 展现者, 工作狂, 幻影, 或者恐怖分子其中之一","<b>{0}</b> is either Crewpostor, Marshall, Workaholic, Phantom, or Terrorist","<b>{0}</b> может быть Двуликий, Маршалл, Трудоголик, Фантом, или Террорист","<b>{0}</b> is either Crewpostor, Marshall, Workaholic, Phantom, or Terrorist","<b>{0}</b> is either Crewpostor, Marshall, Workaholic, Phantom, or Terrorist"
+"DivinatorCheck.Result29","<b>{0}</b>可能是船鬼, 展现者, 工作狂, 至日者, 幻影, 或者恐怖分子其中之一","<b>{0}</b> is either Crewpostor, Marshall, Workaholic, Solsticer, Phantom, or Terrorist","<b>{0}</b> может быть Двуликий, Маршалл, Трудоголик, Фантом, или Террорист","<b>{0}</b> is either Crewpostor, Marshall, Workaholic, Phantom, or Terrorist","<b>{0}</b> is either Crewpostor, Marshall, Workaholic, Phantom, or Terrorist"
 
 "## 隐藏职业的概率 / Hidden Role Chances"
 "SunnyboyChance","<color=#ff9902>阳光开朗大男孩</color>概率","<color=#ff9902>Sunnyboy</color> Chance","Процент на <color=#ff9902>Солнечного Мальчика</color>","<color=#ff9902>Sunnyboy</color> Chance","<color=#ff9902>Sunnyboy</color> Chance"
@@ -3150,8 +3150,9 @@
 "SolsticerMurdered","{0}试图杀死你！","{0} tried to kill you!","","",""
 "SolsticerTasksReset","你的任务已被重置！","Your tasks have been reset","","",""
 "SolsticerNoticeTitle","【★ 至日永恒 ★】","Solsticer","","",""
-"SolsticerNoticeExist","<b>{0}</b>踏上了他的朝圣旅途...","<b>{0}</b> started his trail","","",""
+"SolsticerNoticeExist","<b>至日者</b>踏上了他的朝圣旅途...","<b>Solsticer</b> started his trail to his win alone","","",""
 "EveryOneKnowSolsticer","所有人知道至日者","Everyone knows Solsticer","","",""
+"GuessSolsticer","很抱歉，你不能猜测至日者","Sorry, you can't guess Solsticer."
 
 "## 模组信息 / Mod Info"
 "Developer","开发者","Developer","Разработчики","開發者","开发者"

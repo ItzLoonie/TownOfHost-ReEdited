@@ -270,10 +270,22 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("GuessDisabled"));
                     return true;
                 }
+                if (pc.Is(CustomRoles.Solsticer) && !Solsticer.SolsticerCanGuess.GetBool())
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessDisabled"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessDisabled"));
+                    return true;
+                }
                 if (role == CustomRoles.SuperStar || target.Is(CustomRoles.SuperStar))
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessSuperStar"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessSuperStar"));
+                    return true;
+                }
+                if (role == CustomRoles.Solsticer || target.Is(CustomRoles.Solsticer))
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessSolsticer"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessSolsticer"));
                     return true;
                 }
                 if (role == CustomRoles.Bait && target.Is(CustomRoles.Bait) && Options.BaitNotification.GetBool())

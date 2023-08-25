@@ -653,6 +653,10 @@ class MeetingHudStartPatch
             string separator = TranslationController.Instance.currentLanguage.languageID is SupportedLangs.English or SupportedLangs.Russian ? "], [" : "】, 【";
             AddMsg(string.Format(GetString("WorkaholicAdviceAlive"), string.Join(separator, workaholicAliveList)), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Workaholic), GetString("WorkaholicAliveTitle")));
         }
+        //Notify solsticer exist
+        if (MeetingStates.FirstMeeting && CustomRoles.Solsticer.RoleExist())
+            AddMsg(GetString("SolsticerNoticeExist"), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Solsticer), GetString("SolsticerNoticeTitle")));
+
         //Bait Notify
         if (MeetingStates.FirstMeeting && CustomRoles.Bait.RoleExist() && Options.BaitNotification.GetBool())
         {
@@ -775,6 +779,7 @@ class MeetingHudStartPatch
                 (pc.Is(CustomRoles.Sidekick) && (PlayerControl.LocalPlayer.Is(CustomRoles.Jackal) || PlayerControl.LocalPlayer.Is(CustomRoles.Recruit) || PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick))) ||
                 (pc.Is(CustomRoles.Recruit) && (PlayerControl.LocalPlayer.Is(CustomRoles.Jackal) || PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick) || PlayerControl.LocalPlayer.Is(CustomRoles.Recruit))) ||
                 (pc.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) ||
+                (pc.Is(CustomRoles.Solsticer) && Solsticer.EveryOneKnowSolsticer.GetBool()) ||
                 (pc.Is(CustomRoles.Doctor) && !pc.IsEvilAddons() && Options.DoctorVisibleToEveryone.GetBool()) ||
                 (pc.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && pc.GetPlayerTaskState().IsTaskFinished) ||
                 (pc.Is(CustomRoles.Marshall) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Crewmate) && pc.GetPlayerTaskState().IsTaskFinished) ||

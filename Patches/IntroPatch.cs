@@ -239,6 +239,7 @@ class BeginCrewmatePatch
             case CustomRoles.Workaholic:
             case CustomRoles.Snitch:
             case CustomRoles.TaskManager:
+            case CustomRoles.Solsticer:
                 PlayerControl.LocalPlayer.Data.Role.IntroSound = DestroyableSingleton<HudManager>.Instance.TaskCompleteSound;
                 break;
 

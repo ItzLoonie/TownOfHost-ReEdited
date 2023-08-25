@@ -1470,6 +1470,7 @@ internal static class CustomRolesHelper
              ((role is CustomRoles.SuperStar) && (Options.EveryOneKnowSuperStar.GetBool())) ||
             ((role is CustomRoles.Marshall) && target.AllTasksCompleted()) ||
             ((role is CustomRoles.Workaholic) && (Options.WorkaholicVisibleToEveryone.GetBool())) ||
+            ((role is CustomRoles.Solsticer) && (Solsticer.EveryOneKnowSolsticer.GetBool())) ||
             ((role is CustomRoles.Doctor) && (Options.DoctorVisibleToEveryone.GetBool())) ||
             ((role is CustomRoles.Bait) && (Options.BaitNotification.GetBool()) && ParityCop.ParityCheckBaitCountType.GetBool()));
     }
