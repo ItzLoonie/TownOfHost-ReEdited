@@ -1,4 +1,11 @@
 {
+    "TextBelowVersionText": {
+        "13": "",
+        "0": "",
+        "5": "",
+        "14": "",
+        "12": ""
+    },
     "HostText": {
         "13": "TOH-RE",
         "0": "Host",
@@ -200,7 +207,7 @@
         "0": "Find and exile the <color=#ff1919>Impostors</color>",
         "5": "Найди и кикни <color=#ff1919>Предателей</color>",
         "14": "",
-        "12": "Busca y exilia a los <color=#ff1919>Impostores</color>"
+        "12": ""
     },
     "ImpostorSub": {
         "13": "破坏设施或击杀所有的<color=#8cffff>船员</color>",
@@ -6944,16 +6951,16 @@
         "12": "Desactivar tarea de preparar escudos"
     },
     "DisableMeasureWeather": {
-        "13": "",
+        "13": "禁用测量天侯任务",
         "0": "",
-        "5": "",
+        "5": "Отключить Задание ''Изучить Погодные Условия''",
         "14": "",
         "12": ""
     },
     "DisableBuyBeverage": {
-        "13": "",
+        "13": "禁用购买饮品任务",
         "0": "",
-        "5": "",
+        "5": "Отключить Задание ''Изучить Погодные Условия''",
         "14": "",
         "12": ""
     },
@@ -9790,7 +9797,14 @@
         "0": "<color=#b8fb4f>Snitch</color> can become <color=#00ffff>Workhorse</color>",
         "5": "<color=#b8fb4f>Стукач</color> может стать <color=#00ffff>Рабочим</color>",
         "14": "<color=#b8fb4f>告密者</color>可以成為加班狂",
-        "12": "El <color=#b8fb4f>Chivato</color> puede ser <color=#00ffff>Caballo de tiro</color>\"\nInnocentCanWinByImp\""
+        "12": "El <color=#b8fb4f>Chivato</color> puede ser <color=#00ffff>Caballo de tiro</color>"
+    },
+    "InnocentCanWinByImp": {
+        "13": "栽赃<color=#ff1919>内鬼</color>时可以获胜",
+        "0": "If their target was an <color=#ff1919>Impostor</color> then they win with them",
+        "5": "Если его цель был <color=#ff1919>Предателем</color> то он победит вместе с ним",
+        "14": "栽贓<color=#ff1919>偽裝者</color>時可以獲勝",
+        "12": "Si tu blanco era un <color=#ff1919>Impostor</color>, él gana contigo"
     },
     "CapitalismSkillCooldown": {
         "13": "技能使用冷却",
@@ -10980,7 +10994,14 @@
         "0": "<color=#7f8c8d>Neutrals</color> can become <color=#663399>Necroview</color>",
         "5": "<color=#7f8c8d>Нейтралы</color> могут стать <color=#663399>Некровидящим</color>",
         "14": "",
-        "12": "Los <color=#7f8c8d>Neutros</color> pueden ser <color=#663399>Nigrovidentes</color>\"\nImpCanBeInLove\""
+        "12": "Los <color=#7f8c8d>Neutros</color> pueden ser <color=#663399>Nigrovidentes</color>"
+    },
+    "ImpCanBeInLove": {
+        "13": "<color=#ff1919>内鬼阵营</color>可以成为<color=#ff9ace>恋人</color>",
+        "0": "<color=#ff1919>Impostors</color> can be <color=#ff9ace>in love</color>",
+        "5": "<color=#ff1919>Предатели</color> могут стать <color=#ff9ace>Любовником</color>",
+        "14": "<color=#ff1919>Impostors</color> can be <color=#ff9ace>in love</color>",
+        "12": "Los <color=#ff1919>Impostores</color> pueden <color=#ff9ace>enamorarse</color>"
     },
     "CrewCanBeInLove": {
         "13": "<color=#8cffff>船员阵营</color>可以成为<color=#ff9ace>恋人</color>",
@@ -11162,7 +11183,14 @@
         "0": "<color=#ff1919>Impostors</color> can become <color=#b8d7a3>Lucky</color>",
         "5": "<color=#ff1919>Предатели</color> могут стать <color=#b8d7a3>Удачливым</color>",
         "14": "",
-        "12": "<color=#ff1919>Impostors</color> pueden ser <color=#b8d7a3>Afortunados</color>\"\nCrewCanBeLucky\""
+        "12": "<color=#ff1919>Impostors</color> pueden ser <color=#b8d7a3>Afortunados</color>"
+    },
+    "CrewCanBeLucky": {
+        "13": "<color=#8cffff>船员阵营</color>可以成为<color=#b8d7a3>幸运加持</color>",
+        "0": "<color=#8cffff>Crewmates</color> can become <color=#b8d7a3>Lucky</color>",
+        "5": "<color=#8cffff>Члены Экипажа</color> могут стать <color=#b8d7a3>Удачливым</color>",
+        "14": "",
+        "12": ""
     },
     "NeutralCanBeLucky": {
         "13": "<color=#7f8c8d>中立阵营</color>可以成为<color=#b8d7a3>幸运加持</color>",
@@ -12014,9 +12042,9 @@
     "Command.icons": {
         "13": "<size=85%><u>图标含义</u></size>\\n<size=60%>† - 这名玩家被一个<color=#ff1919>女巫</color>的诅咒获得\\n如果<color=#ff1919>女巫</color>在会议结束时未被驱逐或死亡，那么该玩家就会在会议结束后死亡\\n<color=#663399>乂</color> - 这名玩家被一个<color=#663399>巫师</color>的诅咒获得\\n如果 <color=#663399>巫师</color>在会议结束时未被驱逐或死亡，那么该玩家就会在会议结束后死亡\\n<color=#375d91>❖</color> - 这名玩家被一个<color=#375d91>神秘者</color>的诅咒获得\\n如果<color=#375d91>神秘者</color>在会议结束时未被驱逐或死亡，那么该玩家就会在会议结束后死亡\\n<color=#6697FF>◈</color> - 这名玩家被一个<color=#6697FF>裹尸布</color>包裹住了\\n如果<color=#6697FF>裹尸布</color>在会议结束时未被驱逐或死亡，那么该玩家就会在会议结束后死亡\\n<color=#EDC240>⦿</color> - 这名玩家被一个<color=#EDC240>决斗者</color>挑战\\n<color=#ff9ace>♥</color> - 这名玩家是个<color=#ff9ace>恋人</color>\\n<color=#b8fb4f>⚠</color> - 这名玩家是个<color=#b8fb4f>告密者</color>\\n已经完成任务了</size>",
         "0": "<size=85%><u>Icon Meanings</u></size>\\n<size=60%>† - This player was spelled by a <color=#ff1919>Spellcaster</color> and will die if the <color=#ff1919>Spellcaster</color> is not killed by the end of the meeting\\n<color=#663399>乂</color> - This player was hexed by a <color=#663399>Hex Master</color> and will die if the <color=#663399>Hex Master</color> is not killed by the end of the meeting\\n<color=#375d91>❖</color> - This player was hexed by an <color=#375d91>Occultist</color> and will die if the <color=#375d91>Occultist</color> is not killed by the end of the meeting\\n<color=#6697FF>◈</color> - This player was shrouded by a <color=#6697FF>Shroud</color> and will die if the <color=#6697FF>Shroud</color> is not killed by the end of the meeting\\n<color=#EDC240>⦿</color> - This player is being dueled by a <color=#EDC240>Pirate</color>\\n<color=#ff9ace>♥</color> - This player is a <color=#ff9ace>Lover</color>\\n<color=#b8fb4f>⚠</color> - This player is a <color=#b8fb4f>Snitch</color> who has finished their tasks</size>",
-        "5": "<size=85%><u>Значение Иконок</u></size>\\n<size=60%>† - Игрок был проклят <color=#ff1919>Ведьмой</color> и умрёт после собрания если <color=#ff1919>Ведьма</color> не мертва к концу собрания.\\n<color=#663399>乂</color> - Игрок был проклят <color=#663399>Мастером Проклятий</color> и умрёт после собрания если <color=#663399>Мастер Проклятий</color> не убит к концу собрания.\\n<color=#375d91>❖</color> - Игрок был проклят <color=#375d91>Окультистом</color> и умрёт после собрания если <color=#375d91>Окультист</color> не убит к концу собрания.\\n<color=#6697FF>◈</color> - Игрок был накрыт <color=#6697FF>Накрывателем</color> и умрёт после собрание если <color=#6697FF>Накрыватель</color> не убит к концу собрания\\n<color=#EDC240>⦿</color> - Игрок был атакован <color=#EDC240>Пиратом</color>\\n<color=#ff9ace>♥</color> - Этот игрок <color=#ff9ace>Любовник</color>\\n<color=#b8fb4f>⚠</color> - Этот игрок <color=#b8fb4f>Стукач</color> который закончил свои задания</size>",
+        "5": "",
         "14": "",
-        "12": "<size=85%><u>Significados de los iconos</u></size>\\n<size=60%>† - El jugador ha sido hechizado por el <color=#ff1919>Mago</color> y morirá si el <color=#ff1919>Mago</color> sigue vivo cuando la reunión termine.\\n<color=#663399>乂</color> - El <color=#663399>Hechicero</color> le ha hechado un mal de ojo a este jugador, cual morirá si el <color=#663399>Hechicero</color> sobrevive después del fin de la reunión.\\n<color=#375d91>❖</color>Este jugador fue maldecido por el <color=#375d91>Ocultista</color> y morirá si el <color=#375d91>Ocultista</color> sigue vivo después de que la reunión haya terminado.\\n<color=#6697FF>◈</color> - Este jugador está envuelto por la <color=#6697FF>Mortaja</color> y morirá si esta sobrevive después de la reunión.\\n<color=#EDC240>⦿</color> - Este jugador está enfrentándose en un duelo con el <color=#EDC240>Pirata</color>.\\n<color=#ff9ace>♥</color> - Este jugador es un <color=#ff9ace>Amante</color>\\n<color=#b8fb4f>⚠</color> - Este jugador es un <color=#b8fb4f>Chivato</color> que ha terminado sus tareas</size>"
+        "12": ""
     },
     "Command.iconinfo": {
         "13": "→ 显示会议中图标的信息",
@@ -16428,6 +16456,13 @@
         "14": "",
         "12": ""
     },
+    "Occultist Text Strings": {
+        "13": "",
+        "0": "",
+        "5": "",
+        "14": "",
+        "12": ""
+    },
     "CursesLookLikeSpells": {
         "13": "<color=#375d91>诅咒</color>看起来像<color=#ff1919>咒语</color>",
         "0": "<color=#375d91>Curses</color> look like <color=#ff1919>spells</color>",
@@ -17335,6 +17370,13 @@
         "13": "核武器冷却",
         "0": "Nuke Cooldown",
         "5": "Откат Взрыва",
+        "14": "",
+        "12": ""
+    },
+    "Masochist Text Strings": {
+        "13": "",
+        "0": "",
+        "5": "",
         "14": "",
         "12": ""
     },
@@ -20262,7 +20304,14 @@
         "0": "Glitch Wins!",
         "5": "Глич Победила!",
         "14": "",
-        "12": "\"\nWinnerRoleText.Pestilence\""
+        "12": ""
+    },
+    "WinnerRoleText.Pestilence": {
+        "13": "瘟疫使者胜利！",
+        "0": "Pestilence Wins!",
+        "5": "Чума Победила!",
+        "14": "",
+        "12": ""
     },
     "WinnerRoleText.PlagueBearer": {
         "13": "瘟疫携带者胜利！",
