@@ -88,7 +88,14 @@ public static class GuessManager
 
         if (!AmongUsClient.Instance.AmHost) return false;
         if (!GameStates.IsInGame || pc == null) return false;
-        if (!pc.Is(CustomRoles.NiceGuesser) && !pc.Is(CustomRoles.EvilGuesser) && !pc.Is(CustomRoles.Ritualist) && !pc.Is(CustomRoles.Doomsayer) && !pc.Is(CustomRoles.Judge) && !pc.Is(CustomRoles.Councillor) && !pc.Is(CustomRoles.Guesser) && !Options.GuesserMode.GetBool()) return false;
+        if (!pc.Is(CustomRoles.NiceGuesser) 
+            && !pc.Is(CustomRoles.EvilGuesser) 
+            && !pc.Is(CustomRoles.Ritualist) 
+            && !pc.Is(CustomRoles.Doomsayer) 
+            && !pc.Is(CustomRoles.Judge) 
+            && !pc.Is(CustomRoles.Councillor) 
+            && !pc.Is(CustomRoles.Guesser) 
+            && !Options.GuesserMode.GetBool()) return false;
 
         int operate = 0; // 1:ID 2:猜测
         msg = msg.ToLower().TrimStart().TrimEnd();
@@ -161,7 +168,8 @@ public static class GuessManager
             (pc.Is(CustomRoles.EvilGuesser) && Options.EGTryHideMsg.GetBool()) ||
             (pc.Is(CustomRoles.Ritualist) && Options.ConjTryHideMsg.GetBool()) ||
             (pc.Is(CustomRoles.Doomsayer) && Doomsayer.DoomsayerTryHideMsg.GetBool()) ||
-            (pc.Is(CustomRoles.Guesser) && Options.GTryHideMsg.GetBool() || Options.GuesserMode.GetBool() && Options.HideGuesserCommands.GetBool())
+            (pc.Is(CustomRoles.Guesser) && Options.GTryHideMsg.GetBool()) || 
+            (Options.GuesserMode.GetBool() && Options.HideGuesserCommands.GetBool())
             ) TryHideMsg();
             else if (pc.AmOwner && !isUI) Utils.SendMessage(originMsg, 255, pc.GetRealName());
 
@@ -172,6 +180,11 @@ public static class GuessManager
                 return true;
             }
             var target = Utils.GetPlayerById(targetId);
+
+            Logger.Msg($" {pc.PlayerId}", "Guesser - pc.PlayerId");
+            Logger.Msg($" {target.PlayerId}", "Guesser - target.PlayerId");
+            Logger.Msg($" {role}", "Guesser - role");
+
             if (target != null)
             {
                 bool guesserSuicide = false;
@@ -311,6 +324,7 @@ public static class GuessManager
                     if (!isUI) Utils.SendMessage(GetString("GuessPestilence"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessPestilence"));
                     guesserSuicide = true;
+                    Logger.Msg($" {guesserSuicide}", "guesserSuicide - Is Active 1");
                 }
                 if (role == CustomRoles.Phantom && target.Is(CustomRoles.Phantom))
                 {
@@ -336,6 +350,7 @@ public static class GuessManager
                     if (!isUI) Utils.SendMessage(GetString("SelfGuessMasochist"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("SelfGuessMasochist"));
                     guesserSuicide = true;
+                    Logger.Msg($" {guesserSuicide}", "guesserSuicide - Is Active 2");
                 }
 
                 if (role == CustomRoles.GM || target.Is(CustomRoles.GM))
@@ -547,6 +562,7 @@ public static class GuessManager
                         if (!isUI) Utils.SendMessage(GetString("LaughToWhoGuessSelf"), pc.PlayerId, Utils.ColorString(Color.cyan, GetString("MessageFromKPD")));
                         else pc.ShowPopUp(Utils.ColorString(Color.cyan, GetString("MessageFromKPD")) + "\n" + GetString("LaughToWhoGuessSelf"));
                         guesserSuicide = true;
+                        Logger.Msg($" {guesserSuicide}", "guesserSuicide - self guess");
                     }
                 }
                 else if (pc.Is(CustomRoles.NiceGuesser) && target.Is(CustomRoleTypes.Crewmate) && !Options.GGCanGuessCrew.GetBool() && !pc.Is(CustomRoles.Madmate))
@@ -567,7 +583,7 @@ public static class GuessManager
                             DoubleShot.IsActive.Remove(pc.PlayerId);
 
                         guesserSuicide = true;
-                        Logger.Msg($"{guesserSuicide}", "guesserSuicide1");
+                        Logger.Msg($" {guesserSuicide}", "guesserSuicide - 1");
                     }
                 }
                 else if (pc.Is(CustomRoles.EvilGuesser) && target.Is(CustomRoleTypes.Impostor) && !Options.EGCanGuessImp.GetBool())
@@ -588,7 +604,7 @@ public static class GuessManager
                             DoubleShot.IsActive.Remove(pc.PlayerId);
 
                         guesserSuicide = true;
-                        Logger.Msg($"{guesserSuicide}", "guesserSuicide2");
+                        Logger.Msg($" {guesserSuicide}", "guesserSuicide - 2");
                     }
                 }
                 //  else if (pc.Is(CustomRoles.Guesser)/* && role.IsImpostor() && !Options.GCanGuessImp.GetBool()*/) guesserSuicide = true;
@@ -611,16 +627,16 @@ public static class GuessManager
                             DoubleShot.IsActive.Remove(pc.PlayerId);
 
                         guesserSuicide = true;
-                        Logger.Msg($"{guesserSuicide}", "guesserSuicide3");
+                        Logger.Msg($" {guesserSuicide}", "guesserSuicide - 3");
                     }
                 }
 
-                Logger.Info($"{pc.GetNameWithRole()} guessed {target.GetNameWithRole()}", "Guesser");
+                Logger.Info($"{pc.GetNameWithRole()} guessed => {target.GetNameWithRole()}", "Guesser");
 
                 var dp = guesserSuicide ? pc : target;
                 target = dp;
 
-                Logger.Info($"Player：{target.GetNameWithRole()} was guessed", "Guesser");
+                Logger.Info($" Player：{target.GetNameWithRole()} was guessed", "Guesser");
 
                 Main.GuesserGuessed[pc.PlayerId]++;
 
