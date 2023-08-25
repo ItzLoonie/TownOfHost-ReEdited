@@ -1960,6 +1960,17 @@ public static class Utils
             if (NameNotifyManager.GetNameNotify(seer, out var name))
                 SelfName = name;
 
+
+            // Devourer
+            bool playerDevoured = Devourer.HideNameOfConsumedPlayer.GetBool() && Devourer.PlayerSkinsCosumed.Any(a => a.Value.Contains(seer.PlayerId));
+            if (playerDevoured && !CamouflageIsForMeeting)
+                SelfName = GetString("DevouredName");
+
+            // Camouflage
+            if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive) && !CamouflageIsForMeeting)
+                SelfName = $"<size=0%>{SelfName}</size>";
+
+
             if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
             {
                 SoloKombatManager.GetNameNotify(seer, ref SelfName);
@@ -1968,10 +1979,6 @@ public static class Utils
             else SelfName = SelfRoleName + "\r\n" + SelfName;
 
             SelfName += SelfSuffix.ToString() == "" ? "" : "\r\n " + SelfSuffix.ToString();
-
-            bool playerDevoured = Devourer.HideNameOfConsumedPlayer.GetBool() && Devourer.PlayerSkinsCosumed.Any(a => a.Value.Contains(seer.PlayerId));
-            if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive || playerDevoured) && !CamouflageIsForMeeting)
-                SelfName = SelfRoleName;
 
             if (!isForMeeting) SelfName += "\r\n";
 
@@ -2341,12 +2348,16 @@ public static class Utils
                 if (seer.KnowDeathReason(target))
                     TargetDeathReason = $"({ColorString(GetRoleColor(CustomRoles.Doctor), GetVitalText(target.PlayerId))})";
 
-                if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive) && !CamouflageIsForMeeting)
-                    TargetPlayerName = $"<size=0%>{TargetPlayerName}</size>";
 
+                // Devourer
                 bool targetDevoured = Devourer.HideNameOfConsumedPlayer.GetBool() && Devourer.PlayerSkinsCosumed.Any(a => a.Value.Contains(target.PlayerId));
                 if (targetDevoured && !CamouflageIsForMeeting)
                     TargetPlayerName = GetString("DevouredName");
+
+                // Camouflage
+                if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive) && !CamouflageIsForMeeting)
+                    TargetPlayerName = $"<size=0%>{TargetPlayerName}</size>";
+
 
                 //全てのテキストを合成します。
                 string TargetName = $"{TargetRoleText}{TargetPlayerName}{TargetDeathReason}{TargetMark}";
