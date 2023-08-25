@@ -88,7 +88,8 @@ public static class GuessManager
 
         if (!AmongUsClient.Instance.AmHost) return false;
         if (!GameStates.IsInGame || pc == null) return false;
-        if (!pc.Is(CustomRoles.NiceGuesser) && !pc.Is(CustomRoles.EvilGuesser) 
+        if (!pc.Is(CustomRoles.NiceGuesser) 
+            && !pc.Is(CustomRoles.EvilGuesser) 
             && !pc.Is(CustomRoles.Ritualist) 
             && !pc.Is(CustomRoles.Doomsayer) 
             && !pc.Is(CustomRoles.Judge) 
