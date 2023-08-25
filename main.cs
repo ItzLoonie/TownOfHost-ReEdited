@@ -33,7 +33,7 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = " ";
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "3.0.0.053";
+    public const string PluginVersion = "3.0.0.068";
     public const string PluginDisplayVersion = "3.0.0 dev 3.1";
     public const bool Canary = false;
 

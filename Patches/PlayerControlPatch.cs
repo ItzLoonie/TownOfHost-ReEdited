@@ -1317,8 +1317,8 @@ class MurderPlayerPatch
         {
             __instance.MarkDirtySettings();
             target.MarkDirtySettings();
-            Utils.NotifyRoles(killer);
-            Utils.NotifyRoles(target);
+            Utils.NotifyRoles(SpecifySeer: killer);
+            Utils.NotifyRoles(SpecifySeer: target);
         }
         else
         {
@@ -2981,12 +2981,15 @@ class FixedUpdatePatch
                     Mark = isBlocked ? "(true)" : "(false)";
                 }*/
 
-                if ((Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive)
-                    RealName = $"<size=0>{RealName}</size> ";
-
+                // Devourer
                 bool targetDevoured = Devourer.HideNameOfConsumedPlayer.GetBool() && Devourer.PlayerSkinsCosumed.Any(a => a.Value.Contains(target.PlayerId));
                 if (targetDevoured)
                     RealName = GetString("DevouredName");
+
+                // Camouflage
+                if ((Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive)
+                    RealName = $"<size=0%>{RealName}</size> ";
+
 
                 string DeathReason = seer.Data.IsDead && seer.KnowDeathReason(target) ? $"({Utils.ColorString(Utils.GetRoleColor(CustomRoles.Doctor), Utils.GetVitalText(target.PlayerId))})" : "";
                 //Mark・Suffixの適用
