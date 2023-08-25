@@ -785,7 +785,7 @@ public static class Utils
                 Color TextColor141;
                 if (Main.LighterNumOfUsed[playerId] < 1) TextColor141 = Color.red;
                 else TextColor141 = Color.white;
-                ProgressText.Append(ColorString(TextColor14, $"({Completed14}/{taskState14.AllTasksCount}"));
+                ProgressText.Append(ColorString(TextColor14, $"({Completed14}/{taskState14.AllTasksCount})"));
                 ProgressText.Append(ColorString(TextColor141, $" <color=#ffffff>-</color> {Math.Round(Main.LighterNumOfUsed[playerId], 1)}"));
                 break;
             case CustomRoles.TaskManager:
@@ -797,7 +797,7 @@ public static class Utils
                 TextColor1 = comms ? Color.gray : NormalColor1;
                 string Completed1 = comms ? "?" : $"{taskState1.CompletedTasksCount}";
                 string totalCompleted1 = comms ? "?" : $"{GameData.Instance.CompletedTasks}";
-                ProgressText.Append(ColorString(TextColor1, $"({Completed1}/{taskState1.AllTasksCount}"));
+                ProgressText.Append(ColorString(TextColor1, $"({Completed1}/{taskState1.AllTasksCount})"));
                 ProgressText.Append($" <color=#777777>-</color> <color=#00ffa5>{totalCompleted1}</color><color=#ffffff>/{GameData.Instance.TotalTasks}</color>");
                 break;
         /*    case CustomRoles.Cleanser: // BROKEN
