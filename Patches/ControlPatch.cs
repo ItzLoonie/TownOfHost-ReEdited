@@ -84,7 +84,7 @@ internal class ControllerManagerUpdatePatch
             }
         }
         //更改分辨率
-        if (Input.GetKeyDown(KeyCode.F11))
+        if (GetKeysDown(KeyCode.F11, KeyCode.LeftAlt))
         {
             resolutionIndex++;
             if (resolutionIndex >= resolutions.Length) resolutionIndex = 0;
