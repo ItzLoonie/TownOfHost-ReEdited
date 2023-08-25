@@ -559,6 +559,7 @@ public static class GuessManager
                         if (!isUI) Utils.SendMessage(GetString("LaughToWhoGuessSelf"), pc.PlayerId, Utils.ColorString(Color.cyan, GetString("MessageFromKPD")));
                         else pc.ShowPopUp(Utils.ColorString(Color.cyan, GetString("MessageFromKPD")) + "\n" + GetString("LaughToWhoGuessSelf"));
                         guesserSuicide = true;
+                        Logger.Msg($" {guesserSuicide}", "guesserSuicide - self guess");
                     }
                 }
                 else if (pc.Is(CustomRoles.NiceGuesser) && target.Is(CustomRoleTypes.Crewmate) && !Options.GGCanGuessCrew.GetBool() && !pc.Is(CustomRoles.Madmate))
@@ -579,7 +580,7 @@ public static class GuessManager
                             DoubleShot.IsActive.Remove(pc.PlayerId);
 
                         guesserSuicide = true;
-                        Logger.Msg($"{guesserSuicide}", "guesserSuicide1");
+                        Logger.Msg($" {guesserSuicide}", "guesserSuicide - 1");
                     }
                 }
                 else if (pc.Is(CustomRoles.EvilGuesser) && target.Is(CustomRoleTypes.Impostor) && !Options.EGCanGuessImp.GetBool())
@@ -600,7 +601,7 @@ public static class GuessManager
                             DoubleShot.IsActive.Remove(pc.PlayerId);
 
                         guesserSuicide = true;
-                        Logger.Msg($"{guesserSuicide}", "guesserSuicide2");
+                        Logger.Msg($" {guesserSuicide}", "guesserSuicide - 2");
                     }
                 }
                 //  else if (pc.Is(CustomRoles.Guesser)/* && role.IsImpostor() && !Options.GCanGuessImp.GetBool()*/) guesserSuicide = true;
@@ -623,16 +624,16 @@ public static class GuessManager
                             DoubleShot.IsActive.Remove(pc.PlayerId);
 
                         guesserSuicide = true;
-                        Logger.Msg($"{guesserSuicide}", "guesserSuicide3");
+                        Logger.Msg($" {guesserSuicide}", "guesserSuicide - 3");
                     }
                 }
 
-                Logger.Info($"{pc.GetNameWithRole()} guessed {target.GetNameWithRole()}", "Guesser");
+                Logger.Info($"{pc.GetNameWithRole()} guessed => {target.GetNameWithRole()}", "Guesser");
 
                 var dp = guesserSuicide ? pc : target;
                 target = dp;
 
-                Logger.Info($"Player：{target.GetNameWithRole()} was guessed", "Guesser");
+                Logger.Info($" Player：{target.GetNameWithRole()} was guessed", "Guesser");
 
                 Main.GuesserGuessed[pc.PlayerId]++;
 
