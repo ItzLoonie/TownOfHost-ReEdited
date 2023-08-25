@@ -17,6 +17,7 @@ public static class Cleanser
 
     public static OptionItem CleanserUsesOpt;
     public static OptionItem CleansedCanGetAddon;
+    public static OptionItem AbilityUseGainWithEachTaskCompleted;
 
     public static void SetupCustomOption()
     {
@@ -24,6 +25,8 @@ public static class Cleanser
         CleanserUsesOpt = IntegerOptionItem.Create(Id + 10, "MaxCleanserUses", new(1, 14, 1), 3, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Cleanser])
             .SetValueFormat(OptionFormat.Times);
         CleansedCanGetAddon = BooleanOptionItem.Create(Id + 11, "CleansedCanGetAddon", false, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Cleanser]);
+    //    AbilityUseGainWithEachTaskCompleted = IntegerOptionItem.Create(Id + 12, "AbilityUseGainWithEachTaskCompleted", new(0, 5, 1), 1, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Cleanser])
+    //        .SetValueFormat(OptionFormat.Times);
 
     }
     public static void Init()
