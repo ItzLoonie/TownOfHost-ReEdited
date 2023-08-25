@@ -461,6 +461,10 @@ public class TaskState
             {
                 Oracle.CheckLimit[player.PlayerId] += Oracle.OracleAbilityUseGainWithEachTaskCompleted.GetFloat();
             }
+    /*        if (player.Is(CustomRoles.Cleanser) && player.IsAlive())
+            {
+                Cleanser.CleanserUses[player.PlayerId] += Cleanser.AbilityUseGainWithEachTaskCompleted.GetInt();
+            } */
             if (player.Is(CustomRoles.SabotageMaster) && player.IsAlive())
             {
                 SabotageMaster.UsedSkillCount -= SabotageMaster.SMAbilityUseGainWithEachTaskCompleted.GetFloat();

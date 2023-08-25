@@ -145,7 +145,7 @@ public static class DevManager
         DevUserList.Add(new(code: "singlesign#1823", color: "#ffb6cd,#ffb6cd", tag: "Princess", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: "Lauryn")); //Lauryn
         // Other
         DevUserList.Add(new(code: "peakcrown#8292", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: null)); //Hakaka
-        DevUserList.Add(new(code: "croaktense#0572", color: "#AAAAAA,#AAAAAA", tag: "Shiny Eevee", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: null)); //Eevee
+        DevUserList.Add(new(code: "croaktense#0572", color: "#C6C6C6,#6f6f6f", tag: "Shiny Eevee", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: null)); //Eevee
         DevUserList.Add(new(code: "dovebliss#9271", color: "#c67c6f,#974b53", tag: "Cherry", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: null)); //Cake
         // Chinese translation
         DevUserList.Add(new(code: "cloakhazy#9133", color: "#87CEFA,#87CEFA", tag: "这里是崽子吖awa", isUp: true, isDev: true, deBug: false, colorCmd: false, upName: null)); //乐崽吖
@@ -154,6 +154,8 @@ public static class DevManager
         // Patreons
         DevUserList.Add(new(code: "firmshame#7569", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "Yankee"));
         DevUserList.Add(new(code: "ghostapt#7243", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "MasterKy"));
+        DevUserList.Add(new(code: "moonmodest#5133", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "Allie"));
+        DevUserList.Add(new(code: "woolrusty#4204", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "jo"));
     }
     public static bool IsDevUser(this string code) => DevUserList.Any(x => x.Code == code);
     public static DevUser GetDevUser(this string code) => code.IsDevUser() ? DevUserList.Find(x => x.Code == code) : DefaultDevUser;

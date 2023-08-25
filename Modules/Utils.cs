@@ -800,6 +800,20 @@ public static class Utils
                 ProgressText.Append(ColorString(TextColor1, $"({Completed1}/{taskState1.AllTasksCount}"));
                 ProgressText.Append($" <color=#777777>-</color> <color=#00ffa5>{totalCompleted1}</color><color=#ffffff>/{GameData.Instance.TotalTasks}</color>");
                 break;
+        /*    case CustomRoles.Cleanser: // BROKEN
+                var taskState15 = Main.PlayerStates?[playerId].GetTaskState();
+                Color TextColor15;
+                var TaskCompleteColor15 = Color.green;
+                var NonCompleteColor15 = Color.yellow;
+                var NormalColor15 = taskState15.IsTaskFinished ? TaskCompleteColor15 : NonCompleteColor15;
+                TextColor15 = comms ? Color.gray : NormalColor15;
+                string Completed15 = comms ? "?" : $"{taskState15.CompletedTasksCount}";
+                Color TextColor151;
+                if (Main.LighterNumOfUsed[playerId] < 1) TextColor151 = Color.red;
+                else TextColor151 = Color.white;
+                ProgressText.Append(ColorString(TextColor15, $"({Completed15}/{taskState15.AllTasksCount}"));
+                ProgressText.Append(ColorString(TextColor151, $" <color=#ffffff>-</color> {(Cleanser.CleanserUses[playerId], 1)}"));
+                break; */
             case CustomRoles.Pirate:
                 ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Pirate).ShadeColor(0.25f), $"({Pirate.NumWin}/{Pirate.SuccessfulDuelsToWin.GetInt()})"));
                 break;
@@ -883,7 +897,7 @@ public static class Utils
                 break;
             case CustomRoles.Cleanser:
                 ProgressText.Append(Cleanser.GetProgressText(playerId));
-                break;
+                break; 
             case CustomRoles.Hacker:
                 ProgressText.Append(Hacker.GetHackLimit(playerId));
                 break;
@@ -1661,7 +1675,7 @@ public static class Utils
             if (player.FriendCode == "croaktense#0572") // Eevee (duh)
             {
                 if (GameStates.IsOnlineGame || GameStates.IsLocalGame)
-                    name = $"<color=#AAAAAA>" + "Eevee" + "</color>";
+                    name = $"{GradientColorText("C6C6C6", "6f6f6f", "Eevee")}";
             }
             var modtag = "";
             if (Options.ApplyModeratorList.GetValue() == 1 && player.FriendCode != PlayerControl.LocalPlayer.FriendCode)
