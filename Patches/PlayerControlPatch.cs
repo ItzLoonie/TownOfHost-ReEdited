@@ -1613,9 +1613,18 @@ class ReportDeadBodyPatch
             //杀戮机器无法报告或拍灯
        //     if (__instance.Is(CustomRoles.Minimalism)) return false;
             
-            if (Camouflager.IsActive && Camouflager.DisableReportWhenCamouflageIsActive.GetBool() && !(Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool())) return false;
+            // Camouflager
+            if (Camouflager.DisableReportWhenCamouflageIsActive.GetBool() && Camouflager.IsActive && !(Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool())) return false;
 
-            if (Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool() && Options.DisableReportWhenCC.GetBool()) return false;
+            // Comms Camouflage
+            if (Options.DisableReportWhenCC.GetBool() && Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool() &&
+                !(Options.DisableOnSomeMaps.GetBool() &&
+                    ((Options.DisableOnSkeld.GetBool() && Options.IsActiveSkeld) ||
+                     (Options.DisableOnMira.GetBool() && Options.IsActiveMiraHQ) ||
+                     (Options.DisableOnPolus.GetBool() && Options.IsActivePolus) ||
+                     (Options.DisableOnAirship.GetBool() && Options.IsActiveAirship)
+                    ))) return false;
+
 
             if (target == null) //拍灯事件
             {
