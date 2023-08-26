@@ -189,7 +189,7 @@ public static class Pelican
                 var target = Utils.GetPlayerById(tar);
                 if (target == null) continue;
                 var pos = GetBlackRoomPS();
-                var dis = Vector2.Distance(pos, target.GetTruePosition());
+                var dis = Vector2.Distance(pos, target.transform.position);
                 if (dis < 1f) continue;
                 target.RpcTeleport(new Vector2 (pos.x, pos.y));
                 Utils.NotifyRoles(SpecifySeer: target);

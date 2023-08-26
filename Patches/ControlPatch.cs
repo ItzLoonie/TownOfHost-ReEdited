@@ -124,7 +124,12 @@ internal class ControllerManagerUpdatePatch
         {
             HudManager.Instance.Chat.SetVisible(true);
         }
-
+        //获取现在的坐标
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Logger.Info(PlayerControl.LocalPlayer.GetTruePosition().ToString(), "GetLocalPlayerPos GetTruePosition()");
+            Logger.Info(PlayerControl.LocalPlayer.transform.position.ToString(), "GetLocalPlayerPos transform.position");
+        }
 
 
         //-- 下面是主机专用的命令--//
@@ -253,10 +258,6 @@ internal class ControllerManagerUpdatePatch
             Main.VisibleTasksCount = !Main.VisibleTasksCount;
             DestroyableSingleton<HudManager>.Instance.Notifier.AddItem("VisibleTaskCountが" + Main.VisibleTasksCount.ToString() + "に変更されました。");
         }
-
-        //获取现在的坐标
-        if (Input.GetKeyDown(KeyCode.I))
-            Logger.Info(PlayerControl.LocalPlayer.GetTruePosition().ToString(), "GetLocalPlayerPos");
 
         //マスゲーム用コード
         if (Input.GetKeyDown(KeyCode.C))

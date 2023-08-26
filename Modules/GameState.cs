@@ -548,7 +548,7 @@ public class TaskState
                 else
                 {
                     {
-                        list = list.OrderBy(x => Vector2.Distance(player.GetTruePosition(), x.GetTruePosition())).ToList();
+                        list = list.OrderBy(x => Vector2.Distance(player.transform.position, x.transform.position)).ToList();
                             var target = list[0];
                         if (!target.Is(CustomRoles.Pestilence))
                         {

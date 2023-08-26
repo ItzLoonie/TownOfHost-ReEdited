@@ -1034,7 +1034,7 @@ class CheckMurderPatch
                 if (Main.AllAlivePlayerControls.Where(x =>
                     x.PlayerId != killer.PlayerId &&
                     x.PlayerId != target.PlayerId &&
-                    Vector2.Distance(x.GetTruePosition(), target.GetTruePosition()) < 2f
+                    Vector2.Distance(x.transform.position, target.transform.position) < 2f
                     ).ToList().Count >= 1) return false;
                 break;
             //玩家被击杀事件
@@ -1418,7 +1418,7 @@ class ShapeshiftPatch
                     }
                     else
                     {
-                        Main.EscapeeLocation.Add(shapeshifter.PlayerId, shapeshifter.GetTruePosition());
+                        Main.EscapeeLocation.Add(shapeshifter.PlayerId, new Vector2(shapeshifter.transform.position.x, shapeshifter.transform.position.y));
                     }
                 }
                 break;
@@ -3156,7 +3156,7 @@ class EnterVentPatch
         Main.LastEnteredVent.Remove(pc.PlayerId);
         Main.LastEnteredVent.Add(pc.PlayerId, __instance);
         Main.LastEnteredVentLocation.Remove(pc.PlayerId);
-        Main.LastEnteredVentLocation.Add(pc.PlayerId, pc.GetTruePosition());
+        Main.LastEnteredVentLocation.Add(pc.PlayerId, new Vector2(pc.transform.position.x, pc.transform.position.y));
 
         Swooper.OnEnterVent(pc, __instance);
         Wraith.OnEnterVent(pc, __instance);
@@ -3272,7 +3272,7 @@ class EnterVentPatch
                     }
                     else
                     {
-                        Main.TimeMasterBackTrack.Add(player.PlayerId, player.GetTruePosition());
+                        Main.TimeMasterBackTrack.Add(player.PlayerId, new Vector2(player.transform.position.x, player.transform.position.y));
                     }
                 }
             }
