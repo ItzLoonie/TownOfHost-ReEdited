@@ -1,6 +1,7 @@
 using AmongUs.Data;
 using AmongUs.GameOptions;
 using Hazel;
+using Il2CppInterop.Generator.Extensions;
 using Il2CppInterop.Runtime.InteropTypes;
 using InnerNet;
 using System;
@@ -78,6 +79,9 @@ public static class Utils
 
     public static void RpcTeleport(this PlayerControl player, Vector2 location)
     {
+        Logger.Info($" {player.PlayerId}", "Teleport - Player Id");
+        Logger.Info($" {location}", "Teleport - Location");
+
         if (player.inVent)
             player.MyPhysics.RpcBootFromVent(0);
 
@@ -85,8 +89,19 @@ public static class Utils
             player.NetTransform.SnapTo(location);
 
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(player.NetTransform.NetId, (byte)RpcCalls.SnapTo, SendOption.None);
+        Logger.Info($" {writer}", "Teleport - writer");
+        Logger.Info($" {player.NetTransform.NetId}", "Teleport - NetTransform Id");
+        Logger.Info($" {(byte)RpcCalls.SnapTo}", "Teleport - RpcCalls.SnapTo");
+        Logger.Info($" {SendOption.None}", "Teleport - SendOption.None");
+
         NetHelpers.WriteVector2(location, writer);
+        Logger.Info($" {location}", "Teleport - NetHelpers.WriteVector2 - Location");
+        Logger.Info($" {writer}", "Teleport - NetHelpers.WriteVector2 - writer");
+
         writer.Write(player.NetTransform.lastSequenceId);
+        Logger.Info($" {writer}", "Teleport - Write writer");
+        Logger.Info($" {player.NetTransform.lastSequenceId}", "Teleport - Player NetTransform lastSequenceId - writer");
+
         AmongUsClient.Instance.FinishRpcImmediately(writer);
     }
     public static void RpcRandomVentTeleport(this PlayerControl player)
@@ -94,6 +109,8 @@ public static class Utils
         var vents = UnityEngine.Object.FindObjectsOfType<Vent>();
         var rand = new System.Random();
         var vent = vents[rand.Next(0, vents.Count)];
+
+        Logger.Info($" {vent.transform.position}", "Rpc Vent Teleport Position");
         player.RpcTeleport(new Vector2(vent.transform.position.x, vent.transform.position.y + 0.3636f));
     }
     public static ClientData GetClientById(int id)
