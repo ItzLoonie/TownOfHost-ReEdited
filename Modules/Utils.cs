@@ -73,18 +73,38 @@ public static class Utils
     public static void TPAll(Vector2 location)
     {
         foreach (PlayerControl pc in Main.AllAlivePlayerControls)
-            TP(pc.NetTransform, location);
+            pc.RpcTeleport(new Vector2(location.x, location.y));
     }
 
-    public static void TP(CustomNetworkTransform nt, Vector2 location)
+    //public static void TP(CustomNetworkTransform nt, Vector2 location)
+    //{
+    //    location += new Vector2(0, 0.3636f);
+    //    if (AmongUsClient.Instance.AmHost) nt.SnapTo(location);
+    //    MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(nt.NetId, (byte)RpcCalls.SnapTo, SendOption.None);
+    //    //nt.WriteVector2(location, writer);
+    //    NetHelpers.WriteVector2(location, writer);
+    //    writer.Write(nt.lastSequenceId);
+    //    AmongUsClient.Instance.FinishRpcImmediately(writer);
+    //}
+    public static void RpcTeleport(this PlayerControl player, Vector2 location)
     {
-        location += new Vector2(0, 0.3636f);
-        if (AmongUsClient.Instance.AmHost) nt.SnapTo(location);
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(nt.NetId, (byte)RpcCalls.SnapTo, SendOption.None);
-        //nt.WriteVector2(location, writer);
+        if (player.inVent)
+            player.MyPhysics.RpcBootFromVent(0);
+
+        if (AmongUsClient.Instance.AmHost)
+            player.NetTransform.SnapTo(location);
+
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(player.NetTransform.NetId, (byte)RpcCalls.SnapTo, SendOption.None);
         NetHelpers.WriteVector2(location, writer);
-        writer.Write(nt.lastSequenceId);
+        writer.Write(player.NetTransform.lastSequenceId);
         AmongUsClient.Instance.FinishRpcImmediately(writer);
+    }
+    public static void RpcRandomVentTeleport(this PlayerControl player)
+    {
+        var vents = UnityEngine.Object.FindObjectsOfType<Vent>();
+        var rand = new System.Random();
+        var vent = vents[rand.Next(0, vents.Count)];
+        player.RpcTeleport(new Vector2(vent.transform.position.x, vent.transform.position.y + 0.3636f));
     }
     public static ClientData GetClientById(int id)
     {

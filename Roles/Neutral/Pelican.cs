@@ -87,10 +87,10 @@ public static class Pelican
     {
         return Main.NormalOptions.MapId switch
         {
-            0 => new(-27f, 3.3f), // The Skeld
-            1 => new(-11.4f, 8.2f), // MIRA HQ
-            2 => new(42.6f, -19.9f), // Polus
-            4 => new(-16.8f, -6.2f), // Airship
+            0 => new Vector2(-27f, 3.3f), // The Skeld
+            1 => new Vector2(-11.4f, 8.2f), // MIRA HQ
+            2 => new Vector2(42.6f, -19.9f), // Polus
+            4 => new Vector2(-16.8f, -6.2f), // Airship
             _ => throw new System.NotImplementedException(),
         };
     }
@@ -114,7 +114,7 @@ public static class Pelican
         originalSpeed.Remove(target.PlayerId);
         originalSpeed.Add(target.PlayerId, Main.AllPlayerSpeed[target.PlayerId]);
 
-        Utils.TP(target.NetTransform, GetBlackRoomPS());
+        target.RpcTeleport(new Vector2 (GetBlackRoomPS().x, GetBlackRoomPS().y));
         Main.AllPlayerSpeed[target.PlayerId] = 0.5f;
         ReportDeadBodyPatch.CanReport[target.PlayerId] = false;
         target.MarkDirtySettings();
@@ -153,9 +153,9 @@ public static class Pelican
         foreach (var tar in eatenList[pc])
         {
             var target = Utils.GetPlayerById(tar);
-            var palyer = Utils.GetPlayerById(pc);
-            if (palyer == null || target == null) continue;
-            Utils.TP(target.NetTransform, palyer.GetTruePosition());
+            var player = Utils.GetPlayerById(pc);
+            if (player == null || target == null) continue;
+            target.RpcTeleport(player.transform.position);
             Main.AllPlayerSpeed[tar] = Main.AllPlayerSpeed[tar] - 0.5f + originalSpeed[tar];
             ReportDeadBodyPatch.CanReport[tar] = true;
             target.MarkDirtySettings();
@@ -191,7 +191,7 @@ public static class Pelican
                 var pos = GetBlackRoomPS();
                 var dis = Vector2.Distance(pos, target.GetTruePosition());
                 if (dis < 1f) continue;
-                Utils.TP(target.NetTransform, pos);
+                target.RpcTeleport(new Vector2 (pos.x, pos.y));
                 Utils.NotifyRoles(SpecifySeer: target);
             }
         }
