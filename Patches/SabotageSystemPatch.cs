@@ -39,8 +39,8 @@ public static class ElectricTaskInitializePatch
     public static void Postfix()
     {
         Utils.MarkEveryoneDirtySettings();
-        //if (!GameStates.IsMeeting)
-        //    Utils.NotifyRoles(ForceLoop: true);
+        if (!GameStates.IsMeeting)
+            Utils.NotifyRoles();
     }
 }
 [HarmonyPatch(typeof(ElectricTask), nameof(ElectricTask.Complete))]
@@ -49,7 +49,7 @@ public static class ElectricTaskCompletePatch
     public static void Postfix()
     {
         Utils.MarkEveryoneDirtySettings();
-        //if (!GameStates.IsMeeting)
-        //    Utils.NotifyRoles(ForceLoop: true);
+        if (!GameStates.IsMeeting)
+            Utils.NotifyRoles();
     }
 }
