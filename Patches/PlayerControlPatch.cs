@@ -939,17 +939,17 @@ class CheckMurderPatch
                     {
                         if (!killer.Is(CustomRoles.Pestilence))
                         {
-                        killer.SetRealKiller(target);
-                        target.RpcMurderPlayerV3(killer);
-                        Logger.Info($"{target.GetRealName()} 老兵反弹击杀：{killer.GetRealName()}", "Veteran Kill");
-                        return false;
+                            killer.SetRealKiller(target);
+                            target.RpcMurderPlayerV3(killer);
+                            Logger.Info($"{target.GetRealName()} 老兵反弹击杀：{killer.GetRealName()}", "Veteran Kill");
+                            return false;
                         }
                         if (killer.Is(CustomRoles.Pestilence))
                         {
-                        target.SetRealKiller(killer);
-                        killer.RpcMurderPlayerV3(target);
-                        Logger.Info($"{target.GetRealName()} 老兵反弹击杀：{target.GetRealName()}", "Pestilence Reflect");
-                        return false;
+                            target.SetRealKiller(killer);
+                            killer.RpcMurderPlayerV3(target);
+                            Logger.Info($"{target.GetRealName()} 老兵反弹击杀：{target.GetRealName()}", "Pestilence Reflect");
+                            return false;
                         }
                     }
                 break;
@@ -958,27 +958,27 @@ class CheckMurderPatch
             {
                 if (killer.Is(CustomRoles.Deputy))
                 {
-                        killer.SetRealKiller(target);
-                        target.RpcMurderPlayerV3(killer);                    
-                        Main.PlayerStates[killer.PlayerId].deathReason = PlayerState.DeathReason.Misfire;
+                    killer.SetRealKiller(target);
+                    target.RpcMurderPlayerV3(killer);                    
+                    Main.PlayerStates[killer.PlayerId].deathReason = PlayerState.DeathReason.Misfire;
                 }
                 if (killer.Is(CustomRoles.Pursuer))
                 {
-                        killer.SetRealKiller(target);
-                        target.RpcMurderPlayerV3(killer);                    
-                        Main.PlayerStates[killer.PlayerId].deathReason = PlayerState.DeathReason.Misfire;
+                    killer.SetRealKiller(target);
+                    target.RpcMurderPlayerV3(killer);                    
+                    Main.PlayerStates[killer.PlayerId].deathReason = PlayerState.DeathReason.Misfire;
                 }
                 if (killer.Is(CustomRoles.Counterfeiter))
                 {
-                        killer.SetRealKiller(target);
-                        target.RpcMurderPlayerV3(killer);                    
-                        Main.PlayerStates[killer.PlayerId].deathReason = PlayerState.DeathReason.Misfire;
+                    killer.SetRealKiller(target);
+                    target.RpcMurderPlayerV3(killer);                    
+                    Main.PlayerStates[killer.PlayerId].deathReason = PlayerState.DeathReason.Misfire;
                 }
                 if (killer.Is(CustomRoles.Infectious))
                 {
-                        killer.SetRealKiller(target);
-                        target.RpcMurderPlayerV3(killer);                    
-                        Main.PlayerStates[killer.PlayerId].deathReason = PlayerState.DeathReason.Misfire;
+                    killer.SetRealKiller(target);
+                    target.RpcMurderPlayerV3(killer);                    
+                    Main.PlayerStates[killer.PlayerId].deathReason = PlayerState.DeathReason.Misfire;
                 }
             }
             break;
