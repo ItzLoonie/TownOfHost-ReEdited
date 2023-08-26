@@ -56,13 +56,13 @@ public static class Mortician
     }
     public static void OnPlayerDead(PlayerControl target)
     {
-        var pos = target.GetTruePosition();
+        Vector2 pos = target.transform.position;
         float minDis = float.MaxValue;
         string minName = "";
         foreach (var pc in Main.AllAlivePlayerControls)
         {
             if (pc.PlayerId == target.PlayerId) continue;
-            var dis = Vector2.Distance(pc.GetTruePosition(), pos);
+            var dis = Vector2.Distance(pc.transform.position, pos);
             if (dis < minDis && dis < 1.5f)
             {
                 minDis = dis;
