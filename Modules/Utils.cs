@@ -1967,7 +1967,14 @@ public static class Utils
                 SelfName = GetString("DevouredName");
 
             // Camouflage
-            if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive) && !CamouflageIsForMeeting)
+            if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool() &&
+                !(Options.DisableOnSomeMaps.GetBool() &&
+                    ((Options.DisableOnSkeld.GetBool() && Options.IsActiveSkeld) ||
+                     (Options.DisableOnMira.GetBool() && Options.IsActiveMiraHQ) ||
+                     (Options.DisableOnPolus.GetBool() && Options.IsActivePolus) ||
+                     (Options.DisableOnAirship.GetBool() && Options.IsActiveAirship)
+                    )))
+                    || Camouflager.IsActive) && !CamouflageIsForMeeting)
                 SelfName = $"<size=0%>{SelfName}</size>";
 
 
@@ -2355,7 +2362,14 @@ public static class Utils
                     TargetPlayerName = GetString("DevouredName");
 
                 // Camouflage
-                if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive) && !CamouflageIsForMeeting)
+                if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool() &&
+                !(Options.DisableOnSomeMaps.GetBool() &&
+                    ((Options.DisableOnSkeld.GetBool() && Options.IsActiveSkeld) ||
+                     (Options.DisableOnMira.GetBool() && Options.IsActiveMiraHQ) ||
+                     (Options.DisableOnPolus.GetBool() && Options.IsActivePolus) ||
+                     (Options.DisableOnAirship.GetBool() && Options.IsActiveAirship)
+                    )))
+                    || Camouflager.IsActive) && !CamouflageIsForMeeting)
                     TargetPlayerName = $"<size=0%>{TargetPlayerName}</size>";
 
 

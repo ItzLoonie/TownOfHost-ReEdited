@@ -2987,7 +2987,14 @@ class FixedUpdatePatch
                     RealName = GetString("DevouredName");
 
                 // Camouflage
-                if ((Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive)
+                if ((Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool() &&
+                !(Options.DisableOnSomeMaps.GetBool() &&
+                    ((Options.DisableOnSkeld.GetBool() && Options.IsActiveSkeld) ||
+                     (Options.DisableOnMira.GetBool() && Options.IsActiveMiraHQ) ||
+                     (Options.DisableOnPolus.GetBool() && Options.IsActivePolus) ||
+                     (Options.DisableOnAirship.GetBool() && Options.IsActiveAirship)
+                    )))
+                    || Camouflager.IsActive)
                     RealName = $"<size=0%>{RealName}</size> ";
 
 
