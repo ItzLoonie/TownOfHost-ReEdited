@@ -1562,6 +1562,7 @@ public static class Utils
     }
     public static bool IsPlayerModerator(string friendCode)
     {
+        if (friendCode == "") return false;
         var friendCodesFilePath = @"./TOHE-DATA/Moderators.txt";
         var friendCodes = File.ReadAllLines(friendCodesFilePath);
         return friendCodes.Any(code => code.Contains(friendCode));
