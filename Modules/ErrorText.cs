@@ -155,6 +155,8 @@ public enum ErrorCode
     // ==========
     // 001 Main
     Main_DictionaryError = 0010003, // 001-000-3 Main Dictionary Error
+    // 002 Support related
+    UnsupportedVersion = 002_000_1,  // 002-000-1 AmongUs version is outdated
     // ==========
     // 000 Test
     NoError = 0000000, // 000-000-0 No Error

@@ -2,7 +2,7 @@ using HarmonyLib;
 using System.Text;
 using TMPro;
 using UnityEngine;
-
+using TOHE.Modules;
 using static TOHE.Translator;
 
 namespace TOHE;
@@ -101,7 +101,7 @@ public static class Credentials
                 ErrorText.Instance.AddError(ErrorCode.Main_DictionaryError);
             }
 
-            //VersionChecker.Check();
+            VersionChecker.Check();
 
             if (SpecialEventText == null && ToheLogo != null)
             {
