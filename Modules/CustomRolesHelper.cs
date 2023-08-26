@@ -1422,7 +1422,7 @@ internal static class CustomRolesHelper
 
             case CustomRoles.Fategiver:
                 if (pc.Is(CustomRoles.VoidBallot) || pc.Is(CustomRoles.DualPersonality)) return false;
-                if (pc.Is(CustomRoles.Glitch)) return false;
+                if (pc.Is(CustomRoles.Glitch) || pc.Is(CustomRoles.Dictator)) return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Fategiver.CrewCanbeFategiver.GetBool()) ||
                     (pc.GetCustomRole().IsImpostor() && !Fategiver.ImpCanbeFategiver.GetBool()) ||
                     ((pc.GetCustomRole().IsNeutral() || pc.GetCustomRole().IsCoven()) && !Fategiver.NeutralsCanbeFategiver.GetBool())) return false;
