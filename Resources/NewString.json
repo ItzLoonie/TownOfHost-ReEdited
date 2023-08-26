@@ -29285,9 +29285,9 @@
 		"11": "",
 		"15": ""
 	},
-	"FgSuperVoteChance": {
-		"13": "超级投票概率",
-		"0": "Super Vote Chance",
+	"FgDictatorVoteChance": {
+		"13": "独裁者概率",
+		"0": "Dictator Vote Chance",
 		"5": "",
 		"14": "",
 		"12": "",
@@ -29412,8 +29412,8 @@
 		"15": ""
 	},
 	"Fategiver_case6": {
-		"13": "神明目中无人，你的票数并未变化！",
-		"0": "Zzz... Your vote didn't change.",
+		"13": "无为或许亦是有福，你的票数并未变化！",
+		"0": "Zzz... Your vote didn't change.\\nMaybe next time things will be much different.",
 		"5": "",
 		"14": "",
 		"12": "",
@@ -29430,8 +29430,8 @@
 		"15": ""
 	},
 	"Fategiver_case7": {
-		"13": "神明也爱打传奇，一票999不是梦！",
-		"0": "I know u always want it: your vote turned to 999.",
+		"13": "神明的怨念化为独裁的力量,你和对方同归于尽！",
+		"0": "I know u always want it =) \\nyou vote like a dictador.",
 		"5": "",
 		"14": "",
 		"12": "",

@@ -18,7 +18,7 @@ namespace TOHE.Roles.AddOns.Common
         public static OptionItem Add2VoteChance;
         public static OptionItem Minus1VoteChance;
         public static OptionItem NormalVoteChance;
-        public static OptionItem SuperVoteChance;
+        public static OptionItem DictatorVoteChance;
 
         public static void SetupCustomOption()
         {
@@ -43,7 +43,7 @@ namespace TOHE.Roles.AddOns.Common
                 .SetParent(CustomRoleSpawnChances[CustomRoles.Fategiver]).SetValueFormat(OptionFormat.Percent);
             NormalVoteChance = IntegerOptionItem.Create(Id + 19, "FgNormalVoteChance", new(0, 100, 5), 10, TabGroup.OtherRoles, false)
                  .SetParent(CustomRoleSpawnChances[CustomRoles.Fategiver]).SetValueFormat(OptionFormat.Percent);
-            SuperVoteChance = IntegerOptionItem.Create(Id + 20, "FgSuperVoteChance", new(0, 100, 1), 0, TabGroup.OtherRoles, false)
+            DictatorVoteChance = IntegerOptionItem.Create(Id + 20, "FgDictatorVoteChance", new(0, 100, 1), 0, TabGroup.OtherRoles, false)
                  .SetParent(CustomRoleSpawnChances[CustomRoles.Fategiver]).SetValueFormat(OptionFormat.Percent);
         }
 
@@ -56,9 +56,9 @@ namespace TOHE.Roles.AddOns.Common
             int add2VoteChance = Add2VoteChance.GetInt();
             int minus1VoteChance = Minus1VoteChance.GetInt();
             int normalVoteChance = NormalVoteChance.GetInt();
-            int superVoteChance = SuperVoteChance.GetInt();
+            int dictatorVoteChance = DictatorVoteChance.GetInt();
             _ = new RandomSystem(doubleVoteChance, halfVoteChance, cancelVoteChance,
-                                            add1VoteChance, add2VoteChance, minus1VoteChance, normalVoteChance, superVoteChance);
+                                            add1VoteChance, add2VoteChance, minus1VoteChance, normalVoteChance, dictatorVoteChance);
         }
 
         public static int CalculateFategiverVotes(byte PlayerId, int VoteNum)
@@ -101,13 +101,9 @@ namespace TOHE.Roles.AddOns.Common
                     Logger.Info(player.GetNameWithRole() + ":case 5", "Fategiver");
                     break;
                 case 6:
+                case 7:
                     Utils.SendMessage(GetString("Fategiver_case6"), PlayerId, title: Utils.ColorString(Utils.GetRoleColor(CustomRoles.Fategiver), GetString("FategiverNotify")));
                     Logger.Info(player.GetNameWithRole() + ":case 6", "Fategiver");
-                    break;
-                case 7:
-                    VoteNum = 999;
-                    Utils.SendMessage(GetString("Fategiver_case7"), PlayerId, title: Utils.ColorString(Utils.GetRoleColor(CustomRoles.Fategiver), GetString("FategiverNotify")));
-                    Logger.Info(player.GetNameWithRole() + ":case 7", "Fategiver");
                     break;
             }
 

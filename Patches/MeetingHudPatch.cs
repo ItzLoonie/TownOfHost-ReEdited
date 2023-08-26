@@ -52,7 +52,6 @@ class CheckForEndVotingPatch
                     }
                 }
 
-//催眠师催眠
 
                 if (pc.Is(CustomRoles.Dictator) && pva.DidVote && pc.PlayerId != pva.VotedFor && pva.VotedFor < 253 && !pc.Data.IsDead)
                 {
@@ -80,6 +79,40 @@ class CheckForEndVotingPatch
                         ConfirmEjections(Main.LastVotedPlayerInfo);
                     return true;
                 }
+
+                if (pc.Is(CustomRoles.Fategiver) && Fategiver.DictatorVoteChance.GetInt() > 0)
+                {
+                    if (pva.DidVote && pc.PlayerId != pva.VotedFor && pva.VotedFor < 253 && !pc.Data.IsDead)
+                    {
+                        if (Fategiver.RandomSystem.GetRandomResult() == 7)
+                        {
+                            Utils.SendMessage(GetString("Fategiver_case7"), pc.PlayerId, title: Utils.ColorString(Utils.GetRoleColor(CustomRoles.Fategiver), GetString("FategiverNotify")));
+                            var voteTarget = Utils.GetPlayerById(pva.VotedFor);
+                            TryAddAfterMeetingDeathPlayers(PlayerState.DeathReason.Suicide, pc.PlayerId);
+                            statesList.Add(new()
+                            {
+                                VoterId = pva.TargetPlayerId,
+                                VotedForId = pva.VotedFor
+                            });
+                            states = statesList.ToArray();
+                            if (AntiBlackout.OverrideExiledPlayer)
+                            {
+                                __instance.RpcVotingComplete(states, null, true);
+                                ExileControllerWrapUpPatch.AntiBlackout_LastExiled = voteTarget.Data;
+                            }
+                            else __instance.RpcVotingComplete(states, voteTarget.Data, false); //通常処理
+
+                            Logger.Info($"{voteTarget.GetNameWithRole()} 被命运眷顾独裁驱逐", "Fategiver");
+                            CheckForDeathOnExile(PlayerState.DeathReason.Vote, pva.VotedFor);
+                            Logger.Info("命运眷顾独裁投票，会议强制结束", "Special Phase");
+                            voteTarget.SetRealKiller(pc);
+                            Main.LastVotedPlayerInfo = voteTarget.Data;
+                            if (Main.LastVotedPlayerInfo != null)
+                                ConfirmEjections(Main.LastVotedPlayerInfo);
+                            return true;
+                        }
+                    }
+                } //Just copy from dictator LOL
 
                 if (pva.DidVote && pva.VotedFor < 253 && !pc.Data.IsDead)
                 {
