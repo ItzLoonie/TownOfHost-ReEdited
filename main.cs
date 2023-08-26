@@ -22,19 +22,23 @@ namespace TOHE;
 public class Main : BasePlugin
 {
     // == プログラム設定 / Program Config ==
+    public const string OriginalForkId = "OriginalTOH";
+
     public static readonly string ModName = "Town of Host Re-Edited";
+    public static readonly string ForkId = "TOHE";
     public static readonly string ModColor = "#ffc0cb";
     public static readonly bool AllowPublicRoom = true;
-    public static readonly string ForkId = "TOHE";
-    public const string OriginalForkId = "OriginalTOH";
+
     public static HashAuth DebugKeyAuth { get; private set; }
     public const string DebugKeyHash = "c0fd562955ba56af3ae20d7ec9e64c664f0facecef4b3e366e109306adeae29d";
     public const string DebugKeySalt = "59687b";
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = " ";
+
     public const string PluginGuid = "com.karped1em.townofhostedited";
     public const string PluginVersion = "3.0.0.073";
     public const string PluginDisplayVersion = "3.0.0 dev 3.1";
+    public static readonly string SupportedVersionAU = "2023.7.11";
     public const bool Canary = false;
 
     public static readonly bool ShowGitHubButton = true;
@@ -558,7 +562,7 @@ public class Main : BasePlugin
 
         IRandom.SetInstance(new NetRandomWrapper());
 
-        TOHE.Logger.Info($"{Application.version}", "AmongUs Version");
+        TOHE.Logger.Info($" {Application.version}", "Among Us Version");
 
         var handler = TOHE.Logger.Handler("GitVersion");
         handler.Info($"{nameof(ThisAssembly.Git.BaseTag)}: {ThisAssembly.Git.BaseTag}");
