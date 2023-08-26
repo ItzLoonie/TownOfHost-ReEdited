@@ -38,9 +38,17 @@ public static class Translator
             }
             using (var reader = new StreamReader(stream))
             {
-                Logger.Warn("INSIDE READER", "TRANSLATOR");
+                //Logger.Warn("INSIDE READER", "TRANSLATOR");
                 string json = reader.ReadToEnd();
                 translateMaps = JsonSerializer.Deserialize<Dictionary<string, Dictionary<int, string>>>(json);
+            }
+            foreach (var key in translateMaps.Keys.ToList())
+            {
+                var translations = translateMaps[key];
+                foreach (var translationKey in translations.Keys.ToList())
+                {
+                    translations[translationKey] = translations[translationKey].Replace("\\n", "\n").Replace("\\n","\n");
+                }
             }
         }
         catch (Exception ex)
