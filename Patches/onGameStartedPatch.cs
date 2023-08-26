@@ -303,6 +303,7 @@ internal class ChangeRoleSettings
             Seeker.Init();
             Pitfall.Init();
             Agitater.Init();
+            Fategiver.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();

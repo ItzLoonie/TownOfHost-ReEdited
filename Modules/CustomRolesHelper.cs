@@ -2,6 +2,8 @@ using AmongUs.GameOptions;
 using System.Linq;
 using TOHE.Roles.Crewmate;
 using TOHE.Roles.Neutral;
+using TOHE.Roles.AddOns;
+using TOHE.Roles.AddOns.Common;
 
 namespace TOHE;
 
@@ -369,7 +371,8 @@ internal static class CustomRolesHelper
             //      CustomRoles.Cyber or
             CustomRoles.DoubleShot or
             CustomRoles.Ghoul or
-            CustomRoles.EvilSpirit;
+            CustomRoles.EvilSpirit or
+            CustomRoles.Fategiver;
     }
     public static bool IsAmneMaverick(this CustomRoles role) // ROLE ASSIGNING, NOT NEUTRAL TYPE
     {
@@ -1092,7 +1095,7 @@ internal static class CustomRolesHelper
                 break;
 
             case CustomRoles.VoidBallot:
-                if (pc.Is(CustomRoles.Mayor)
+                if (pc.Is(CustomRoles.Mayor) || pc.Is(CustomRoles.Fategiver)
                     || pc.Is(CustomRoles.Vindicator) || pc.Is(CustomRoles.TicketsStealer)
                     || pc.Is(CustomRoles.Pickpocket) || pc.Is(CustomRoles.Glitch))
                     return false;
@@ -1353,6 +1356,7 @@ internal static class CustomRolesHelper
             case CustomRoles.DualPersonality:
                 if (pc.Is(CustomRoles.Dictator)
                     || pc.Is(CustomRoles.Madmate)
+                    || pc.Is(CustomRoles.Fategiver)
                     || pc.Is(CustomRoles.GuardianAngelTOHE))
                     return false;
                 if (!pc.GetCustomRole().IsImpostor() && !pc.GetCustomRole().IsCrewmate())
@@ -1414,6 +1418,14 @@ internal static class CustomRolesHelper
                     return false;
                 if ((pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeSidekick.GetBool()) || (pc.GetCustomRole().IsCrewmate() && !Options.CrewmateCanBeSidekick.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpostorCanBeSidekick.GetBool()))
                     return false;
+                break;
+
+            case CustomRoles.Fategiver:
+                if (pc.Is(CustomRoles.VoidBallot) || pc.Is(CustomRoles.DualPersonality)) return false;
+                if (pc.Is(CustomRoles.Glitch)) return false;
+                if ((pc.GetCustomRole().IsCrewmate() && !Fategiver.CrewCanbeFategiver.GetBool()) ||
+                    (pc.GetCustomRole().IsImpostor() && !Fategiver.ImpCanbeFategiver.GetBool()) ||
+                    ((pc.GetCustomRole().IsNeutral() || pc.GetCustomRole().IsCoven()) && !Fategiver.NeutralsCanbeFategiver.GetBool())) return false;
                 break;
         }
 

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TOHE.Roles.AddOns.Crewmate;
 using TOHE.Roles.AddOns.Impostor;
+using TOHE.Roles.AddOns.Common;
 using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
@@ -522,9 +523,8 @@ public static class Options
 
     // Masochist
     public static OptionItem MasochistKillMax;
-    
 
-//Task Management
+    //Task Management
     public static OptionItem DisableShortTasks;
     public static OptionItem DisableCleanVent;
     public static OptionItem DisableCalibrateDistributor;
@@ -2179,9 +2179,7 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Fool]);
         NeutralCanBeFool = BooleanOptionItem.Create(19212, "NeutralCanBeFool", true, TabGroup.OtherRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Fool]);
-
-          
-
+        Fategiver.SetupCustomOption();
         #endregion
 
         #region 系统设置
@@ -2920,7 +2918,7 @@ public static class Options
         CustomRoleCounts.Add(role, countOption);
     }
 
-    private static void SetupAdtRoleOptions(int id, CustomRoles role, CustomGameMode customGameMode = CustomGameMode.Standard, bool canSetNum = false, TabGroup tab = TabGroup.Addons, bool canSetChance = true)
+    public static void SetupAdtRoleOptions(int id, CustomRoles role, CustomGameMode customGameMode = CustomGameMode.Standard, bool canSetNum = false, TabGroup tab = TabGroup.Addons, bool canSetChance = true)
     {
         var spawnOption = StringOptionItem.Create(id, role.ToString(), ratesZeroOne, 0, tab, false).SetColor(Utils.GetRoleColor(role))
             .SetHeader(true)
