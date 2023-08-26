@@ -73,18 +73,44 @@ public static class Utils
     public static void TPAll(Vector2 location)
     {
         foreach (PlayerControl pc in Main.AllAlivePlayerControls)
-            TP(pc.NetTransform, location);
+            pc.RpcTeleport(new Vector2(location.x, location.y));
     }
 
-    public static void TP(CustomNetworkTransform nt, Vector2 location)
+    public static void RpcTeleport(this PlayerControl player, Vector2 location)
     {
-        location += new Vector2(0, 0.3636f);
-        if (AmongUsClient.Instance.AmHost) nt.SnapTo(location);
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(nt.NetId, (byte)RpcCalls.SnapTo, SendOption.None);
-        //nt.WriteVector2(location, writer);
+        Logger.Info($" {player.PlayerId}", "Teleport - Player Id");
+        Logger.Info($" {location}", "Teleport - Location");
+
+        if (player.inVent)
+            player.MyPhysics.RpcBootFromVent(0);
+
+        if (AmongUsClient.Instance.AmHost)
+            player.NetTransform.SnapTo(location);
+
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(player.NetTransform.NetId, (byte)RpcCalls.SnapTo, SendOption.None);
+        Logger.Info($" {writer}", "Teleport - writer");
+        Logger.Info($" {player.NetTransform.NetId}", "Teleport - NetTransform Id");
+        Logger.Info($" {(byte)RpcCalls.SnapTo}", "Teleport - RpcCalls.SnapTo");
+        Logger.Info($" {SendOption.None}", "Teleport - SendOption.None");
+
         NetHelpers.WriteVector2(location, writer);
-        writer.Write(nt.lastSequenceId);
+        Logger.Info($" {location}", "Teleport - NetHelpers.WriteVector2 - Location");
+        Logger.Info($" {writer}", "Teleport - NetHelpers.WriteVector2 - writer");
+
+        writer.Write(player.NetTransform.lastSequenceId);
+        Logger.Info($" {writer}", "Teleport - Write writer");
+        Logger.Info($" {player.NetTransform.lastSequenceId}", "Teleport - Player NetTransform lastSequenceId - writer");
+
         AmongUsClient.Instance.FinishRpcImmediately(writer);
+    }
+    public static void RpcRandomVentTeleport(this PlayerControl player)
+    {
+        var vents = UnityEngine.Object.FindObjectsOfType<Vent>();
+        var rand = new System.Random();
+        var vent = vents[rand.Next(0, vents.Count)];
+
+        Logger.Info($" {vent.transform.position}", "Rpc Vent Teleport Position");
+        player.RpcTeleport(new Vector2(vent.transform.position.x, vent.transform.position.y + 0.3636f));
     }
     public static ClientData GetClientById(int id)
     {
