@@ -664,7 +664,7 @@ class CheckMurderPatch
                 Logger.Info($"Max level reached lvl =  {Main.CultivatorKillMax[killer.PlayerId]}", "CULTIVATOR");
 
             }
-            if (Main.CultivatorKillMax[killer.PlayerId] == Options.CultivatorKillCooldownLevel.GetInt() && Options.CultivatorOneCanKillCooldown.GetBool())
+            if (Main.CultivatorKillMax[killer.PlayerId] >= Options.CultivatorKillCooldownLevel.GetInt() && Options.CultivatorOneCanKillCooldown.GetBool())
             {
                 Main.AllPlayerKillCooldown[killer.PlayerId] = Options.CultivatorOneKillCooldown.GetFloat();
             }
@@ -680,7 +680,7 @@ class CheckMurderPatch
                 NameNotifyManager.Notify(target, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Cultivator), GetString("KilledByCultivator")));
                 return false;
             }
-            if (Main.CultivatorKillMax[killer.PlayerId] == Options.CultivatorBomberLevel.GetInt() && Options.CultivatorThreeCanBomber.GetBool())
+            if (Main.CultivatorKillMax[killer.PlayerId] >= Options.CultivatorBomberLevel.GetInt() && Options.CultivatorThreeCanBomber.GetBool())
             {
                 Logger.Info("炸弹爆炸了", "Boom");
                 CustomSoundsManager.RPCPlayCustomSoundAll("Boom");
@@ -1014,7 +1014,7 @@ class CheckMurderPatch
                     }
                 return false;
             case CustomRoles.Cultivator:
-                if (Main.CultivatorKillMax[killer.PlayerId] == Options.CultivatorImmortalLevel.GetInt() && Options.CultivatorFourCanNotKill.GetBool())
+                if (Main.CultivatorKillMax[killer.PlayerId] >= Options.CultivatorImmortalLevel.GetInt() && Options.CultivatorFourCanNotKill.GetBool())
                 {
                     Utils.TP(killer.NetTransform, target.GetTruePosition());
                     RPC.PlaySoundRPC(killer.PlayerId, Sounds.KillSound);
@@ -1317,8 +1317,8 @@ class MurderPlayerPatch
         {
             __instance.MarkDirtySettings();
             target.MarkDirtySettings();
-            Utils.NotifyRoles(killer);
-            Utils.NotifyRoles(target);
+            Utils.NotifyRoles(SpecifySeer: killer);
+            Utils.NotifyRoles(SpecifySeer: target);
         }
         else
         {
@@ -2981,12 +2981,15 @@ class FixedUpdatePatch
                     Mark = isBlocked ? "(true)" : "(false)";
                 }*/
 
-                if ((Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive)
-                    RealName = $"<size=0>{RealName}</size> ";
-
+                // Devourer
                 bool targetDevoured = Devourer.HideNameOfConsumedPlayer.GetBool() && Devourer.PlayerSkinsCosumed.Any(a => a.Value.Contains(target.PlayerId));
                 if (targetDevoured)
                     RealName = GetString("DevouredName");
+
+                // Camouflage
+                if ((Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive)
+                    RealName = $"<size=0%>{RealName}</size> ";
+
 
                 string DeathReason = seer.Data.IsDead && seer.KnowDeathReason(target) ? $"({Utils.ColorString(Utils.GetRoleColor(CustomRoles.Doctor), Utils.GetVitalText(target.PlayerId))})" : "";
                 //Mark・Suffixの適用

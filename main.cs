@@ -33,7 +33,7 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     public static readonly string MainMenuText = " ";
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "3.0.0.053";
+    public const string PluginVersion = "3.0.0.068";
     public const string PluginDisplayVersion = "3.0.0 dev 3.1";
     public const bool Canary = false;
 
@@ -252,7 +252,7 @@ public class Main : BasePlugin
         EnableCustomSoundEffect = Config.Bind("Client Options", "EnableCustomSoundEffect", true);
         ShowTextOverlay = Config.Bind("Client Options", "ShowTextOverlay", false);
         ModeForSmallScreen = Config.Bind("Client Options", "ModeForSmallScreen", false);
-        EnableRoleSummary = Config.Bind("Client Options", "EnableRoleSummary", false);
+        EnableRoleSummary = Config.Bind("Client Options", "EnableRoleSummary", true);
         SwitchVanilla = Config.Bind("Client Options", "SwitchVanilla", false);
         VersionCheat = Config.Bind("Client Options", "VersionCheat", false);
         GodMode = Config.Bind("Client Options", "GodMode", false);
