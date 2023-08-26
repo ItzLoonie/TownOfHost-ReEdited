@@ -61,10 +61,13 @@ public static class Options
     };
 
     // MapActive
-    public static bool IsActiveSkeld => Main.NormalOptions.MapId == 0;
-    public static bool IsActiveMiraHQ => Main.NormalOptions.MapId == 1;
-    public static bool IsActivePolus => Main.NormalOptions.MapId == 2;
-    public static bool IsActiveAirship => Main.NormalOptions.MapId == 4;
+    public static bool IsActiveSkeld => Main.NormalOptions.MapId == 0; // 0 - The Skeld
+    public static bool IsActiveMiraHQ => Main.NormalOptions.MapId == 1; // 1 - MiraHQ
+    public static bool IsActivePolus => Main.NormalOptions.MapId == 2; // 2 - Polus
+    public static bool IsActiveAirship => Main.NormalOptions.MapId == 4; // 4 - Airship
+
+    // Map not used
+    //public static bool IsActiveDleks => Main.NormalOptions.MapId == 3; // 3 - Dleks
 
     // 役職数・確率
     public static Dictionary<CustomRoles, int> roleCounts;
@@ -639,6 +642,11 @@ public static class Options
 
     // Sabotage
     public static OptionItem CommsCamouflage;
+    public static OptionItem DisableOnSomeMaps;
+    public static OptionItem DisableOnSkeld;
+    public static OptionItem DisableOnMira;
+    public static OptionItem DisableOnPolus;
+    public static OptionItem DisableOnAirship;
     public static OptionItem DisableReportWhenCC;
     public static OptionItem SabotageTimeControl;
     public static OptionItem PolusReactorTimeLimit;
@@ -2375,6 +2383,21 @@ public static class Options
             .SetGameMode(CustomGameMode.Standard)
             .SetHeader(true)
             .SetColor(new Color32(243, 96, 96, byte.MaxValue));
+        DisableOnSomeMaps = BooleanOptionItem.Create(22210, "DisableOnSomeMaps", false, TabGroup.GameSettings, false)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetParent(CommsCamouflage);
+        DisableOnSkeld = BooleanOptionItem.Create(22211, "DisableOnSkeld", false, TabGroup.GameSettings, false)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetParent(DisableOnSomeMaps);
+        DisableOnMira = BooleanOptionItem.Create(22212, "DisableOnMira", false, TabGroup.GameSettings, false)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetParent(DisableOnSomeMaps);
+        DisableOnPolus = BooleanOptionItem.Create(22213, "DisableOnPolus", false, TabGroup.GameSettings, false)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetParent(DisableOnSomeMaps);
+        DisableOnAirship = BooleanOptionItem.Create(22214, "DisableOnAirship", false, TabGroup.GameSettings, false)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetParent(DisableOnSomeMaps);
         DisableReportWhenCC = BooleanOptionItem.Create(22300, "DisableReportWhenCC", false, TabGroup.GameSettings, false)
             .SetGameMode(CustomGameMode.Standard)
             .SetParent(CommsCamouflage);
