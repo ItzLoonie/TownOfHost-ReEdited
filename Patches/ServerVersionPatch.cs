@@ -8,6 +8,7 @@ class ServerUpdatePatch
     public static bool Prefix(ref int __result)
     {
         if (GameStates.IsLocalGame)
+        if (!Main.QSM.Value)
         {
             Logger.Info($"IsLocalGame: {__result}", "VersionServer");
             return true;

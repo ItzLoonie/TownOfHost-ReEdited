@@ -71,8 +71,10 @@ public class Main : BasePlugin
     public static ConfigEntry<bool> ModeForSmallScreen { get; private set; }
     public static ConfigEntry<bool> EnableRoleSummary { get; private set; }
     public static ConfigEntry<bool> SwitchVanilla { get; private set; }
+    public static ConfigEntry<bool> QSM { get; private set; }
     public static ConfigEntry<bool> VersionCheat { get; private set; }
     public static ConfigEntry<bool> GodMode { get; private set; }
+    public static ConfigEntry<bool> CanPublic { get; private set; }
 
     public static Dictionary<byte, PlayerVersion> playerVersion = new();
     //Preset Name Options
@@ -254,8 +256,10 @@ public class Main : BasePlugin
         ModeForSmallScreen = Config.Bind("Client Options", "ModeForSmallScreen", false);
         EnableRoleSummary = Config.Bind("Client Options", "EnableRoleSummary", true);
         SwitchVanilla = Config.Bind("Client Options", "SwitchVanilla", false);
+        QSM =  Config.Bind("Client Options", "QSM", false);
         VersionCheat = Config.Bind("Client Options", "VersionCheat", false);
         GodMode = Config.Bind("Client Options", "GodMode", false);
+        //CanPublic = Config.Bind("Client Options", "CanPublic", false);
 
         Logger = BepInEx.Logging.Logger.CreateLogSource("TOHE");
         TOHE.Logger.Enable();

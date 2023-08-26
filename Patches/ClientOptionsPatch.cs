@@ -4,6 +4,10 @@ using UnityEngine;
 namespace TOHE;
 
 //��Դ��https://github.com/tukasa0001/TownOfHost/pull/1265
+public class sml
+{
+    public static int ifQSM = 0;
+}
 [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Start))]
 public static class OptionsMenuBehaviourStartPatch
 {
@@ -19,14 +23,20 @@ public static class OptionsMenuBehaviourStartPatch
     private static ClientOptionItem ModeForSmallScreen;
     private static ClientOptionItem EnableRoleSummary;
     private static ClientOptionItem SwitchVanilla;
+    private static ClientOptionItem QSM;
     //private static ClientOptionItem VersionCheat;
     //private static ClientOptionItem GodMode;
+    public static ClientOptionItem CanPublic;
+    //int ifQSM = 0;
 
     public static void Postfix(OptionsMenuBehaviour __instance)
     {
         if (__instance.DisableMouseMovement == null) return;
 
         Main.SwitchVanilla.Value = false;
+        Main.QSM.Value = false;
+
+        //Main.Devtx.Value = false;
         if (Main.ResetOptions || !DebugModeManager.AmDebugger)
         {
             Main.ResetOptions = false;
@@ -100,6 +110,28 @@ public static class OptionsMenuBehaviourStartPatch
                 Main.Instance.Unload();
             }
         }
+        
+        if (QSM == null || QSM.ToggleButton == null)
+        {
+            QSM = ClientOptionItem.Create("QSM", Main.QSM, __instance,QSMButtonToggle);
+            static void QSMButtonToggle()
+            {
+                if(sml.ifQSM == 0)
+                {
+                    sml.ifQSM = 1;
+                }
+                else
+                {
+                    Logger.SendInGame(string.Format(Translator.GetString("NoQSMInfo"), Application.targetFrameRate));
+                }
+
+            }
+
+        }
+            //  if (CanPublic == null || CanPublic.ToggleButton == null
+            //  {
+            //  CanPublic = ClientOptionItem.Create("CanPublic", Main.CanPublic, __instance);
+            //  TO }
         /*      if ((VersionCheat == null || VersionCheat.ToggleButton == null) && DebugModeManager.AmDebugger)
                 {
                     VersionCheat = ClientOptionItem.Create("VersionCheat", Main.VersionCheat, __instance);
