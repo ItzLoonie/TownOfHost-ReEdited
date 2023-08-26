@@ -347,7 +347,7 @@ internal static class SoloKombatManager
                     {
                         if (pc.inVent && KB_BootVentWhenDead.GetBool()) pc.MyPhysics.RpcExitVent(2);
                         var pos = Pelican.GetBlackRoomPS();
-                        var dis = Vector2.Distance(pos, new Vector2(pc.transform.position.x, pc.transform.position.y));
+                        var dis = Vector2.Distance(pos, pc.transform.position);
                         if (dis > 1f) pc.RpcTeleport(new Vector2(pos.x, pos.y));
                     }
                 }
@@ -375,7 +375,7 @@ internal static class SoloKombatManager
                     if (pc.SoloAlive() && !pc.inVent)
                     {
                         var pos = Pelican.GetBlackRoomPS();
-                        var dis = Vector2.Distance(pos, new Vector2(pc.transform.position.x, pc.transform.position.y));
+                        var dis = Vector2.Distance(pos, pc.transform.position);
                         if (dis < 1.1f) PlayerRandomSpwan(pc);
                     }
                     // 复活倒计时
