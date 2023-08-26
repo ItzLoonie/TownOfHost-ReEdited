@@ -1,7 +1,6 @@
 using AmongUs.Data;
 using AmongUs.GameOptions;
 using Hazel;
-using Il2CppInterop.Generator.Extensions;
 using Il2CppInterop.Runtime.InteropTypes;
 using InnerNet;
 using System;
