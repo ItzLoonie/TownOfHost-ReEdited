@@ -149,12 +149,6 @@ class RepairSystemPatch
     public static void Postfix(ShipStatus __instance)
     {
         Camouflage.CheckCamouflage();
-
-        if (!(GameStates.IsMeeting && Utils.IsActive(SystemTypes.Comms))) 
-            Utils.NotifyRoles();
-
-        if (!GameStates.IsMeeting && Utils.IsActive(SystemTypes.Comms) && !Options.CommsCamouflage.GetBool())
-            Utils.NotifyRoles();
     }
     public static void CheckAndOpenDoorsRange(ShipStatus __instance, int amount, int min, int max)
     {
