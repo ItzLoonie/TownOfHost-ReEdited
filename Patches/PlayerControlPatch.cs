@@ -3481,7 +3481,11 @@ class PlayerControlSetRolePatch
                     ghostRoles[seer] = RoleTypes.CrewmateGhost;
                 }
             }
-            if (ghostRoles.All(kvp => kvp.Value == RoleTypes.CrewmateGhost))
+            if (target.Is(CustomRoles.EvilSpirit))
+            {
+                roleType = RoleTypes.GuardianAngel;
+            }
+            else if(ghostRoles.All(kvp => kvp.Value == RoleTypes.CrewmateGhost))
             {
                 roleType = RoleTypes.CrewmateGhost;
             }
