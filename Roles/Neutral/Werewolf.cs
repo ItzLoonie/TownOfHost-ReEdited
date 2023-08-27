@@ -12,7 +12,7 @@ public static class Werewolf
     public static List<byte> playerIdList = new();
 
     public static OptionItem KillCooldown;
-    public static OptionItem KillCooldownAfterKilling;
+    public static OptionItem MaulRadius;
     public static OptionItem CanVent;
     private static OptionItem HasImpostorVision;
 
@@ -20,10 +20,11 @@ public static class Werewolf
     {
         //Werewolfは1人固定
         SetupSingleRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.Werewolf, 1, zeroOne: false);
-        KillCooldown = FloatOptionItem.Create(Id + 10, "KillCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Werewolf])
+        KillCooldown = FloatOptionItem.Create(Id + 9, "KillCooldown", new(0f, 180f, 2.5f), 35f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Werewolf])
             .SetValueFormat(OptionFormat.Seconds);
-        KillCooldownAfterKilling = FloatOptionItem.Create(Id + 12, "KillCooldownAfterKilling", new(0f, 180f, 2.5f), 5f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Werewolf])
-            .SetValueFormat(OptionFormat.Seconds);
+        MaulRadius = FloatOptionItem.Create(Id + 14, "MaulRadius", new(0.5f, 1.5f, 0.1f), 1.3f, TabGroup.NeutralRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Werewolf])
+            .SetValueFormat(OptionFormat.Multiplier);
         CanVent = BooleanOptionItem.Create(Id + 11, "CanVent", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Werewolf]);
         HasImpostorVision = BooleanOptionItem.Create(Id + 13, "ImpostorVision", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Werewolf]);
     }
