@@ -3472,7 +3472,7 @@ class PlayerControlSetRolePatch
                 {
                     ghostRoles[seer] = RoleTypes.GuardianAngel;
                 }
-                else if((self && targetIsKiller) || (!seerIsKiller && target.Is(CustomRoleTypes.Impostor)))
+                else if ((self && targetIsKiller) || (!seerIsKiller && target.Is(CustomRoleTypes.Impostor)))
                 {
                     ghostRoles[seer] = RoleTypes.ImpostorGhost;
                 }
@@ -3485,7 +3485,7 @@ class PlayerControlSetRolePatch
             {
                 roleType = RoleTypes.GuardianAngel;
             }
-            else if(ghostRoles.All(kvp => kvp.Value == RoleTypes.CrewmateGhost))
+            else if (ghostRoles.All(kvp => kvp.Value == RoleTypes.CrewmateGhost))
             {
                 roleType = RoleTypes.CrewmateGhost;
             }
