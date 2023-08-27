@@ -74,14 +74,6 @@ class RepairSystemPatch
                     }
                 }
         
-        if (player.Is(CustomRoles.Werewolf) && player.IsAlive() && 
-            (systemType is
-            SystemTypes.Reactor or
-            SystemTypes.LifeSupp or
-            SystemTypes.Comms))
-                {
-                    return false;
-                }
 
       /*if (player.Is(CustomRoles.Madmate) && !Options.MadmateCanFixSabotage.GetBool() && 
             (systemType is
@@ -118,7 +110,6 @@ class RepairSystemPatch
             if (player.Is(CustomRoles.Traitor) && Traitor.CanUseSabotage.GetBool()) return true;
             if (player.Is(CustomRoles.Parasite) && player.IsAlive()) return true;
             if (player.Is(CustomRoles.PotionMaster) && player.IsAlive()) return true;
-            if (player.Is(CustomRoles.Werewolf) && player.IsAlive()) return true;
             if (player.Is(CustomRoles.Refugee) && player.IsAlive()) return true;
             if (player.Is(CustomRoles.Glitch) && player.IsAlive()) return true;
             return false;

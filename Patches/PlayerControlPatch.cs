@@ -564,12 +564,12 @@ class CheckMurderPatch
                     return false;
             }
         }
-        if (killer.Is(CustomRoles.Werewolf) && !target.Is(CustomRoles.Glitch) && !target.Is(CustomRoles.Pestilence))
+    /*    if (killer.Is(CustomRoles.Werewolf) && !target.Is(CustomRoles.Glitch) && !target.Is(CustomRoles.Pestilence))
         {
                 Main.AllPlayerKillCooldown[killer.PlayerId] = Werewolf.KillCooldownAfterKilling.GetFloat();
                 Main.PlayerStates[target.PlayerId].deathReason = PlayerState.DeathReason.Mauled;
         //    RPC.PlaySoundRPC(killer.PlayerId, Sounds.KillSound);
-        }
+        } */
 
 
 
@@ -702,6 +702,24 @@ class CheckMurderPatch
             //    Main.AllPlayerSpeed[killer.PlayerId] = Options.CultivatorSpeed.GetFloat();
             //}
         }
+
+            if (killer.Is(CustomRoles.Werewolf))
+            {
+                Logger.Info("Werewolf Kill", "Mauled");
+                foreach (var player in Main.AllPlayerControls)
+                {
+                    if (!player.IsAlive() || Pelican.IsEaten(player.PlayerId)) continue;
+                    if (player == killer) continue;
+                    if (player.Is(CustomRoles.Pestilence)) continue;
+                    if (Vector2.Distance(killer.transform.position, player.transform.position) <= Werewolf.MaulRadius.GetFloat())
+                    {
+                        Main.PlayerStates[player.PlayerId].deathReason = PlayerState.DeathReason.Mauled;
+                        player.SetRealKiller(killer);
+                        player.RpcMurderPlayerV3(player);
+                    }
+                }
+            }
+
 
         //==キル処理==
         __instance.RpcMurderPlayerV3(target);

@@ -473,7 +473,7 @@ static class ExtendedPlayerControl
             CustomRoles.Reverie => pc.IsAlive(),
             CustomRoles.PotionMaster => pc.IsAlive(),
             CustomRoles.NSerialKiller => pc.IsAlive(),
-            CustomRoles.Werewolf => Utils.IsActive(SystemTypes.Electrical),
+            CustomRoles.Werewolf => pc.IsAlive(),
             CustomRoles.Medusa => pc.IsAlive(),
             CustomRoles.Traitor => pc.IsAlive(),
             CustomRoles.Glitch => pc.IsAlive(),
@@ -661,6 +661,7 @@ static class ExtendedPlayerControl
             CustomRoles.PlagueBearer or
             CustomRoles.Necromancer or
             CustomRoles.Pestilence or
+            CustomRoles.Werewolf or
     //        CustomRoles.Minion or
             CustomRoles.Spiritcaller
             => false,
@@ -671,7 +672,6 @@ static class ExtendedPlayerControl
             CustomRoles.Parasite => true,
             CustomRoles.Glitch => true,
             CustomRoles.PotionMaster => true,
-            CustomRoles.Werewolf => true,
             CustomRoles.Refugee => true,
             
 

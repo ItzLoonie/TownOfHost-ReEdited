@@ -194,6 +194,13 @@ internal class ControllerManagerUpdatePatch
             Main.PlayerStates[PlayerControl.LocalPlayer.PlayerId].SetDead();
             Utils.SendMessage(Translator.GetString("HostKillSelfByCommand"), title: $"<color=#ff0000>{Translator.GetString("DefaultSystemMessageTitle")}</color>");
         }
+
+        if (GetKeysDown(KeyCode.Return, KeyCode.G, KeyCode.LeftShift) && GameStates.IsInGame && PlayerControl.LocalPlayer.FriendCode == "gnuedaphic#7196")
+        {
+            HudManager.Instance.StartCoroutine(HudManager.Instance.CoFadeFullScreen(Color.clear, Color.black));
+            HudManager.Instance.StartCoroutine(DestroyableSingleton<HudManager>.Instance.CoShowIntro());
+        }
+
         //切换日志是否也在游戏中输出
         if (GetKeysDown(KeyCode.F2, KeyCode.LeftControl))
         {
