@@ -63,12 +63,13 @@ class CheckForEndVotingPatch
                         VotedForId = pva.VotedFor
                     });
                     states = statesList.ToArray();
+
                     if (AntiBlackout.OverrideExiledPlayer)
                     {
-                        __instance.RpcVotingComplete(states, null, true);
+                        __instance.RpcVotingComplete(states.ToArray(), null, true);
                         ExileControllerWrapUpPatch.AntiBlackout_LastExiled = voteTarget.Data;
                     }
-                    else __instance.RpcVotingComplete(states, voteTarget.Data, false); //通常処理
+                    else __instance.RpcVotingComplete(states.ToArray(), voteTarget.Data, false); //通常処理
 
                     Logger.Info($"{voteTarget.GetNameWithRole()} 被独裁者驱逐", "Dictator");
                     CheckForDeathOnExile(PlayerState.DeathReason.Vote, pva.VotedFor);
@@ -315,10 +316,10 @@ class CheckForEndVotingPatch
             //RPC
             if (AntiBlackout.OverrideExiledPlayer)
             {
-                __instance.RpcVotingComplete(states, null, true);
+                __instance.RpcVotingComplete(states.ToArray(), null, true);
                 ExileControllerWrapUpPatch.AntiBlackout_LastExiled = exiledPlayer;
             }
-            else __instance.RpcVotingComplete(states, exiledPlayer, tie); //通常処理
+            else __instance.RpcVotingComplete(states.ToArray(), exiledPlayer, tie); // Normal processing
 
             CheckForDeathOnExile(PlayerState.DeathReason.Vote, exileId);
 

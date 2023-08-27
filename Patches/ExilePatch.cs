@@ -42,22 +42,20 @@ class ExileControllerWrapUpPatch
     }
     static void WrapUpPostfix(GameData.PlayerInfo exiled)
     {
-        if (AntiBlackout.OverrideExiledPlayer)
-        {
-            exiled = AntiBlackout_LastExiled;
-        }
+        if (AntiBlackout.OverrideExiledPlayer) exiled = AntiBlackout_LastExiled;
 
         bool DecidedWinner = false;
         if (!AmongUsClient.Instance.AmHost) return; //ホスト以外はこれ以降の処理を実行しません
         AntiBlackout.RestoreIsDead(doSend: false);
         if (!Collector.CollectorWin(false) && exiled != null) //判断集票者胜利
         {
-            //霊界用暗転バグ対処
+            // Deal with the darkening bug for the spirit world
             if (!AntiBlackout.OverrideExiledPlayer && Main.ResetCamPlayerList.Contains(exiled.PlayerId))
                 exiled.Object?.ResetPlayerCam(1f);
 
             exiled.IsDead = true;
             Main.PlayerStates[exiled.PlayerId].deathReason = PlayerState.DeathReason.Vote;
+            
             var role = exiled.GetCustomRole();
 
             //判断冤罪师胜利
@@ -152,6 +150,7 @@ class ExileControllerWrapUpPatch
                 CustomRoles.Doctor or
                 CustomRoles.Bomber
                 ) pc.RpcResetAbilityCooldown();
+
             if (pc.Is(CustomRoles.Infected) && pc.IsAlive() && !CustomRoles.Infectious.RoleExist())
             {
                 pc.RpcMurderPlayerV3(pc);
@@ -186,6 +185,7 @@ class ExileControllerWrapUpPatch
                         break;
                 }
             }
+
             FallFromLadder.Reset();
             Utils.CountAlivePlayers(true);
             Utils.AfterMeetingTasks();
@@ -196,28 +196,30 @@ class ExileControllerWrapUpPatch
 
     static void WrapUpFinalizer(GameData.PlayerInfo exiled)
     {
-        //WrapUpPostfixで例外が発生しても、この部分だけは確実に実行されます。
+        // Even if an exception occurs in WrapUpPostfix, this is the only part that will be executed reliably.
         if (AmongUsClient.Instance.AmHost)
         {
             _ = new LateTask(() =>
             {
                 exiled = AntiBlackout_LastExiled;
                 AntiBlackout.SendGameData();
-                if (AntiBlackout.OverrideExiledPlayer && // 追放対象が上書きされる状態 (上書きされない状態なら実行不要)
-                    exiled != null && //exiledがnullでない
-                    exiled.Object != null) //exiled.Objectがnullでない
+                if (AntiBlackout.OverrideExiledPlayer && // State in which the expulsion target is overwritten (need not be executed if the expulsion target is not overwritten)
+                    exiled != null && // exiled is not null
+                    exiled.Object != null) //exiled.Object is not null
                 {
                     exiled.Object.RpcExileV2();
                 }
             }, 0.5f, "Restore IsDead Task");
+
             _ = new LateTask(() =>
             {
                 Main.AfterMeetingDeathPlayers.Do(x =>
                 {
                     var player = Utils.GetPlayerById(x.Key);
-                    Logger.Info($"{player.GetNameWithRole()}を{x.Value}で死亡させました", "AfterMeetingDeath");
-                    Main.PlayerStates[x.Key].deathReason = x.Value;
-                    Main.PlayerStates[x.Key].SetDead();
+                    var state = Main.PlayerStates[x.Key];
+                    Logger.Info($"{player.GetNameWithRole()} died with {x.Value}", "AfterMeetingDeath");
+                    state.deathReason = x.Value;
+                    state.SetDead();
                     player?.RpcExileV2();
                     if (x.Value == PlayerState.DeathReason.Suicide)
                         player?.SetRealKiller(player, true);
@@ -232,7 +234,7 @@ class ExileControllerWrapUpPatch
         GameStates.AlreadyDied |= !Utils.IsAllAlive;
         RemoveDisableDevicesPatch.UpdateDisableDevices();
         SoundManager.Instance.ChangeAmbienceVolume(DataManager.Settings.Audio.AmbienceVolume);
-        Logger.Info("タスクフェイズ開始", "Phase");
+        Logger.Info("Start of Task Phase", "Phase");
     }
 
     [HarmonyPatch(typeof(PbExileController), nameof(PbExileController.PlayerSpin))]

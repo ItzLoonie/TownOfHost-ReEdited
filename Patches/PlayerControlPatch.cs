@@ -3480,15 +3480,17 @@ class PlayerControlSetRolePatch
         {
             var targetIsKiller = target.Is(CustomRoleTypes.Impostor) || Main.ResetCamPlayerList.Contains(target.PlayerId);
             var ghostRoles = new Dictionary<PlayerControl, RoleTypes>();
+            
             foreach (var seer in Main.AllPlayerControls)
             {
                 var self = seer.PlayerId == target.PlayerId;
                 var seerIsKiller = seer.Is(CustomRoleTypes.Impostor) || Main.ResetCamPlayerList.Contains(seer.PlayerId);
+
                 if (target.Is(CustomRoles.EvilSpirit))
                 {
                     ghostRoles[seer] = RoleTypes.GuardianAngel;
                 }
-                else if((self && targetIsKiller) || (!seerIsKiller && (target.Is(CustomRoleTypes.Impostor) || Main.ResetCamPlayerList.Contains(target.PlayerId) || (target.Is(CustomRoles.Pickpocket)) || (target.Is(CustomRoles.Medusa)) || (target.Is(CustomRoles.Amnesiac)) || (target.Is(CustomRoles.Ritualist)) || (target.Is(CustomRoles.Refugee)))))
+                else if ((self && targetIsKiller) || (!seerIsKiller && target.Is(CustomRoleTypes.Impostor)))
                 {
                     ghostRoles[seer] = RoleTypes.ImpostorGhost;
                 }
