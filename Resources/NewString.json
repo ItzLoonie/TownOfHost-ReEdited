@@ -10890,7 +10890,7 @@
         "15": ""
     },
     "WerewolfInfo": {
-        "13": "把所有人都蒙在鼓里",
+        "13": "藏好了吗？你要去找你了~",
         "0": "Kill crewmates in groups",
         "5": "Растерзайте всех игроков во тьме",
         "14": "",
@@ -15894,7 +15894,7 @@
         "15": ""
     },
     "FoolInfoLong": {
-        "13": "(附加职业):\n内鬼和修理工不会成为蠢蛋。蠢蛋无法修复任何破坏。",
+        "13": "(附加职业):\n修理工不会成为蠢蛋。蠢蛋无法修复任何被破坏的设施,也无法破坏任何设施",
         "0": "(Add-ons):\nImpostor and Mechanic won't be Fool. Fools can't repair any sabotage.",
         "5": "(Атрибут):\nПредатели и Ремонтник не могут стать глупцом. Глупец не сможет чинить саботажи",
         "14": "(附加職業):\n偽裝者和修理工不會成為蠢蛋。蠢蛋無法修理任何破壞。",
@@ -20556,7 +20556,7 @@
         "15": ""
     },
     "DisableOnSomeMaps": {
-        "13": "",
+        "13": "在特定地图上禁用破坏通讯隐蔽的效果",
         "0": "Disable comms camouflage on some maps",
         "5": "Отключить камуфляж на некоторых картах",
         "14": "",
@@ -20574,7 +20574,7 @@
         "15": ""
     },
     "DisableOnSkeld": {
-        "13": "",
+        "13": "在骷髅舰禁用",
         "0": "Disable on The Skeld",
         "5": "Отключить на The Skeld",
         "14": "",
@@ -20592,7 +20592,7 @@
         "15": ""
     },
     "DisableOnMira": {
-        "13": "",
+        "13": "在米拉总部禁用",
         "0": "Disable on Mira HQ",
         "5": "Отключить на Mira HQ",
         "14": "",
@@ -20610,7 +20610,7 @@
         "15": ""
     },
     "DisableOnPolus": {
-        "13": "",
+        "13": "在波鲁斯禁用",
         "0": "Disable on Polus",
         "5": "Отключить на Polus",
         "14": "",
@@ -20628,7 +20628,7 @@
         "15": ""
     },
     "DisableOnAirship": {
-        "13": "",
+        "13": "在飞艇禁用",
         "0": "Disable on Airship",
         "5": "Отключить на Airship",
         "14": "",
@@ -22104,7 +22104,7 @@
         "15": ""
     },
     "NonNeutralKillingRolesMinPlayer": {
-        "13": "非<color=#7f8c8d>带刀中立</color>的最低数量",
+        "13": "<color=#ffff00>非带刀</color><color=#7f8c8d>中立</color>的<color=#00ffff>最低</color>数量",
         "0": "<color=#00ffff>Minimum</color> amount of <color=#ffff00>Non-Killing</color> <color=#7f8c8d>Neutrals</color>",
         "5": "<color=#00ffff>Минимальное</color> количество <color=#ffff00>Пассивных</color> <color=#7f8c8d>Нейтралов</color>",
         "14": "",
@@ -22122,7 +22122,7 @@
         "15": ""
     },
     "NonNeutralKillingRolesMaxPlayer": {
-        "13": "非<color=#7f8c8d>带刀中立</color>的最高数量",
+        "13": "<color=#ffff00>非带刀</color><color=#7f8c8d>中立</color>的<color=#00a5ff>最高</color>数量",
         "0": "<color=#00a5ff>Maximum</color> amount of <color=#ffff00>Non-Killing</color> <color=#7f8c8d>Neutrals</color>",
         "5": "<color=#00a5ff>Максимальное</color> количество <color=#ffff00>Пассивных</color> <color=#7f8c8d>Нейтралов</color>",
         "14": "",
@@ -22140,7 +22140,7 @@
         "15": ""
     },
     "NeutralKillingRolesMinPlayer": {
-        "13": "<color=#7f8c8d>带刀中立</color>的最低数量",
+        "13": "<color=#ff0000>带刀</color><color=#7f8c8d>中立</color>的<color=#00ffff>最低</color>数量",
         "0": "<color=#00ffff>Minimum</color> amount of <color=#7f8c8d>Neutral</color> <color=#ff0000>Killers</color>",
         "5": "<color=#00ffff>Минимальное</color> количество <color=#7f8c8d>Нейтральных</color> <color=#ff0000>Убийц</color>",
         "14": "",
@@ -22158,7 +22158,7 @@
         "15": ""
     },
     "NeutralKillingRolesMaxPlayer": {
-        "13": "<color=#7f8c8d>带刀中立</color>的最高数量",
+        "13": "<color=#ff0000>带刀</color><color=#7f8c8d>中立</color>的<color=#00a5ff>最高</color>数量",
         "0": "<color=#00a5ff>Maximum</color> amount of <color=#7f8c8d>Neutral</color> <color=#ff0000>Killers</color>",
         "5": "<color=#00a5ff>Максимальное</color> количество <color=#7f8c8d>Нейтральных</color> <color=#ff0000>Убийц</color>",
         "14": "",
@@ -35424,7 +35424,7 @@
         "15": ""
     },
     "ERR-002-000-1": {
-        "13": "",
+        "13": "该模组不支持《Among us》的版本，请更新《Among us》版本",
         "0": "Unsupported Among Us version. Please update Among Us",
         "5": "Неподдерживаемая версия Among Us. Пожалуйста, обновите Among Us",
         "14": "",
@@ -36522,7 +36522,7 @@
         "15": ""
     },
     "UnsupportedVersion": {
-        "13": "",
+        "13": "该模组不支持《Among us》的版本\n请更新《Among us》版本",
         "0": "Unsupported Among Us version.\nPlease update Among Us",
         "5": "Неподдерживаемая версия Among Us.\nПожалуйста, обновите Among Us",
         "14": "",
