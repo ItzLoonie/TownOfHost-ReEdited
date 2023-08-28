@@ -804,10 +804,12 @@ public static class Options
     public static OptionItem AutoKickStopWords;
     public static OptionItem AutoKickStopWordsAsBan;
     public static OptionItem AutoKickStopWordsTimes;
+    public static OptionItem KickOtherPlatformPlayer;
     public static OptionItem OptKickAndroidPlayer;
-    //public static OptionItem OptKickXboxPlayer;
-    //public static OptionItem OptKickPlayStationPlayer;
-    //public static OptionItem OptKickNintendoPlayer;
+    public static OptionItem OptKickIphonePlayer;
+    public static OptionItem OptKickXboxPlayer;
+    public static OptionItem OptKickPlayStationPlayer;
+    public static OptionItem OptKickNintendoPlayer;
     public static OptionItem ApplyDenyNameList;
     public static OptionItem KickPlayerFriendCodeNotExist;
     public static OptionItem KickLowLevelPlayer;
@@ -2197,7 +2199,17 @@ public static class Options
         KickLowLevelPlayer = IntegerOptionItem.Create(19300, "KickLowLevelPlayer", new(0, 100, 1), 0, TabGroup.SystemSettings, false)
             .SetValueFormat(OptionFormat.Level)
             .SetHeader(true);
-        OptKickAndroidPlayer = BooleanOptionItem.Create(19301, "OptKickAndroidPlayer", false, TabGroup.SystemSettings, false);
+        KickOtherPlatformPlayer = BooleanOptionItem.Create(19350, "KickOtherPlatformPlayer", false, TabGroup.SystemSettings, false);
+        OptKickAndroidPlayer = BooleanOptionItem.Create(19351, "OptKickAndroidPlayer", false, TabGroup.SystemSettings, false)
+            .SetParent(KickOtherPlatformPlayer);
+        OptKickIphonePlayer = BooleanOptionItem.Create(19352, "OptKickIphonePlayer", false, TabGroup.SystemSettings, false)
+            .SetParent(KickOtherPlatformPlayer);
+        OptKickXboxPlayer = BooleanOptionItem.Create(19353, "OptKickXboxPlayer", false, TabGroup.SystemSettings, false)
+            .SetParent(KickOtherPlatformPlayer);
+        OptKickPlayStationPlayer = BooleanOptionItem.Create(19354, "OptKickPlayStationPlayer", false, TabGroup.SystemSettings, false)
+            .SetParent(KickOtherPlatformPlayer);
+        OptKickNintendoPlayer = BooleanOptionItem.Create(19355, "OptKickNintendoPlayer", false, TabGroup.SystemSettings, false)
+            .SetParent(KickOtherPlatformPlayer); //Switch
         KickPlayerFriendCodeNotExist = BooleanOptionItem.Create(19302, "KickPlayerFriendCodeNotExist", false, TabGroup.SystemSettings, true);
         ApplyDenyNameList = BooleanOptionItem.Create(19303, "ApplyDenyNameList", true, TabGroup.SystemSettings, true);
         ApplyBanList = BooleanOptionItem.Create(19304, "ApplyBanList", true, TabGroup.SystemSettings, true);
