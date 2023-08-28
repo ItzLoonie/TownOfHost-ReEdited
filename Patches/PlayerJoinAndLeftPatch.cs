@@ -3,6 +3,7 @@ using AmongUs.GameOptions;
 using HarmonyLib;
 using Hazel;
 using InnerNet;
+using LibCpp2IL.Elf;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -68,19 +69,27 @@ class OnPlayerJoinedPatch
 {
     public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] ClientData client)
     {
-        Logger.Info($"{client.PlayerName}(ClientID:{client.Id}/FriendCode:{client.FriendCode}) 加入房间", "Session");
+        Logger.Info($"{client.PlayerName}(ClientID:{client.Id}/FriendCode:{client.FriendCode}/Platform:{client.PlatformData.Platform}) 加入房间", "Session");
         if (AmongUsClient.Instance.AmHost && client.FriendCode == "" && Options.KickPlayerFriendCodeNotExist.GetBool())
         {
             AmongUsClient.Instance.KickPlayer(client.Id, false);
             Logger.SendInGame(string.Format(GetString("Message.KickedByNoFriendCode"), client.PlayerName));
             Logger.Info($"フレンドコードがないプレイヤーを{client?.PlayerName}をキックしました。", "Kick");
         }
-        if (AmongUsClient.Instance.AmHost && client.PlatformData.Platform == (Platforms.Android | Platforms.IPhone) && Options.OptKickAndroidPlayer.GetBool())
+        Platforms platform = client.PlatformData.Platform;
+        if (AmongUsClient.Instance.AmHost && Options.KickOtherPlatformPlayer.GetBool() && platform != Platforms.Unknown)
         {
-            AmongUsClient.Instance.KickPlayer(client.Id, false);
-            string msg = string.Format(GetString("MsgKickAndriodPlayer"), client?.PlayerName);
-            Logger.SendInGame(msg);
-            Logger.Info(msg, "Android Kick");
+            if ((platform == Platforms.Android && Options.OptKickAndroidPlayer.GetBool()) ||
+                (platform == Platforms.IPhone && Options.OptKickIphonePlayer.GetBool()) ||
+                (platform == Platforms.Xbox && Options.OptKickXboxPlayer.GetBool()) ||
+                (platform == Platforms.Playstation && Options.OptKickPlayStationPlayer.GetBool()) ||
+                (platform == Platforms.Switch && Options.OptKickNintendoPlayer.GetBool()))
+            {
+                string msg = string.Format(GetString("MsgKickOtherPlatformPlayer"), client?.PlayerName, platform.ToString());
+                AmongUsClient.Instance.KickPlayer(client.Id, false);
+                Logger.SendInGame(msg);
+                Logger.Info(msg, "Other Platform Kick"); ;
+            }
         }
         if (DestroyableSingleton<FriendsListManager>.Instance.IsPlayerBlockedUsername(client.FriendCode) && AmongUsClient.Instance.AmHost)
         {
@@ -188,7 +197,7 @@ class OnPlayerLeftPatch
             break;
         }
 
-        Logger.Info($"{data?.PlayerName}(ClientID:{data?.Id}/FriendCode:{data?.FriendCode})断开连接(理由:{reason}，Ping:{AmongUsClient.Instance.Ping})", "Session");
+        Logger.Info($"{data?.PlayerName}(ClientID:{data?.Id}/FriendCode:{data?.FriendCode}/Platform:{data?.PlatformData.Platform})断开连接(理由:{reason}，Ping:{AmongUsClient.Instance.Ping})", "Session");
 
         if (AmongUsClient.Instance.AmHost)
         {
