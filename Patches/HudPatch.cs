@@ -583,11 +583,11 @@ class SetVentOutlinePatch
 class SetHudActivePatch
 {
     public static bool IsActive = false;
-    public static void Prefix(HudManager __instance, [HarmonyArgument(2)] ref bool isActive)
-    {
-        isActive &= !GameStates.IsMeeting;
-        return;
-    }
+    //public static void Prefix(HudManager __instance, [HarmonyArgument(2)] ref bool isActive)
+    //{
+    //    isActive &= !GameStates.IsMeeting;
+    //    return;
+    //}
     public static void Postfix(HudManager __instance, [HarmonyArgument(2)] bool isActive)
     {
         __instance.ReportButton.ToggleVisible(!GameStates.IsLobby && isActive);
@@ -600,10 +600,10 @@ class SetHudActivePatch
         switch (player.GetCustomRole())
         {
             case CustomRoles.Sheriff:
+            case CustomRoles.Arsonist:
             case CustomRoles.SwordsMan:
             case CustomRoles.Deputy:
             case CustomRoles.Monarch:
-            case CustomRoles.Arsonist:
             case CustomRoles.NWitch:
             case CustomRoles.CovenLeader:
             case CustomRoles.Ritualist:
@@ -664,7 +664,7 @@ class SetHudActivePatch
         }
         __instance.KillButton.ToggleVisible(player.CanUseKillButton());
         __instance.ImpostorVentButton.ToggleVisible(player.CanUseImpostorVentButton());
-        __instance.SabotageButton.ToggleVisible(player.CanUseSabotage());
+        __instance.SabotageButton.ToggleVisible(player.CanUseSabotage() && isActive);
     }
 }
 [HarmonyPatch(typeof(VentButton), nameof(VentButton.DoClick))]
