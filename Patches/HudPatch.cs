@@ -583,11 +583,11 @@ class SetVentOutlinePatch
 class SetHudActivePatch
 {
     public static bool IsActive = false;
-    //public static void Prefix(HudManager __instance, [HarmonyArgument(2)] ref bool isActive)
-    //{
-    //    isActive &= !GameStates.IsMeeting;
-    //    return;
-    //}
+    public static void Prefix(HudManager __instance, [HarmonyArgument(2)] ref bool isActive)
+    {
+        isActive &= !GameStates.IsMeeting;
+        return;
+    }
     public static void Postfix(HudManager __instance, [HarmonyArgument(2)] bool isActive)
     {
         __instance.ReportButton.ToggleVisible(!GameStates.IsLobby && isActive);
