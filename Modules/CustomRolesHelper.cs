@@ -142,7 +142,7 @@ internal static class CustomRolesHelper
             };
     }
 
-        public static CustomRoles GetErasedRole(this CustomRoles role) // Erased RoleBase - Crewmate or Engineer or Scientist
+    public static CustomRoles GetErasedRole(this CustomRoles role) // Erased RoleBase - Crewmate or Engineer or Scientist
     {
         return role.IsVanilla()
             ? role
