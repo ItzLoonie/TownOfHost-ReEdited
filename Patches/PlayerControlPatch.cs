@@ -971,7 +971,7 @@ class CheckMurderPatch
                         }
                     }
                 break;
-            case CustomRoles.NSerialKiller:
+    /*        case CustomRoles.NSerialKiller:
             if (NSerialKiller.ReflectHarmfulInteractions.GetBool())
             {
                 if (killer.Is(CustomRoles.Deputy))
@@ -999,7 +999,7 @@ class CheckMurderPatch
                     Main.PlayerStates[killer.PlayerId].deathReason = PlayerState.DeathReason.Misfire;
                 }
             }
-            break;
+            break; */
             case CustomRoles.TimeMaster:
                 if (Main.TimeMasterInProtect.ContainsKey(target.PlayerId) && killer.PlayerId != target.PlayerId)
                     if (Main.TimeMasterInProtect[target.PlayerId] + Options.TimeMasterSkillDuration.GetInt() >= Utils.GetTimeStamp(DateTime.UtcNow))

@@ -2662,6 +2662,25 @@ public static class Utils
             ? "INVALID"
             : disableColor ? summary.RemoveHtmlTags() : summary;
     }
+    public static string NewSummaryTexts(byte id, bool disableColor = true, bool check = false)
+    {
+        var RolePos = TranslationController.Instance.currentLanguage.languageID is SupportedLangs.English or SupportedLangs.Russian ? 37 : 34;
+        var KillsPos = TranslationController.Instance.currentLanguage.languageID is SupportedLangs.English or SupportedLangs.Russian ? 14 : 12;
+        var name = Main.AllPlayerNames[id].RemoveHtmlTags().Replace("\r\n", string.Empty);
+        if (id == PlayerControl.LocalPlayer.PlayerId) name = DataManager.player.Customization.Name;
+        else name = GetPlayerById(id)?.Data.PlayerName ?? name;
+        string summary = $"{ColorString(Main.PlayerColors[id], name)} - {GetDisplayRoleName(id, true)}{GetSubRolesText(id, summary: true)}{GetProgressText(id)} ({GetVitalText(id, true)}) {GetKillCountText(id)}";
+        if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
+        {
+            if (TranslationController.Instance.currentLanguage.languageID is SupportedLangs.SChinese or SupportedLangs.TChinese)
+                summary = $"{GetProgressText(id)}\t<pos=22%>{ColorString(Main.PlayerColors[id], name)}</pos>";
+            else summary = $"{ColorString(Main.PlayerColors[id], name)}<pos=30%>{GetProgressText(id)}</pos>";
+            if (GetProgressText(id).Trim() == "") return "INVALID";
+        }
+        return check && GetDisplayRoleName(id, true).RemoveHtmlTags().Contains("INVALID:NotAssigned")
+            ? "INVALID"
+            : disableColor ? summary.RemoveHtmlTags() : summary;
+    }
     public static string RemoveHtmlTagsTemplate(this string str) => Regex.Replace(str, "", "");
     public static string RemoveHtmlTags(this string str) => Regex.Replace(str, "<[^>]*?>", "");
     public static bool CanMafiaKill()
