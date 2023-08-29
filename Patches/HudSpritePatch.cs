@@ -136,7 +136,7 @@ public static class HudSpritePatch
             case CustomRoles.Sheriff:
                 newKillButton = CustomButton.Get("Kill");
                 break;
-            case CustomRoles.KB_Normal:
+            case CustomRoles.Pirate:
                 newKillButton = CustomButton.Get("Challenge");
                 break;
             case CustomRoles.BountyHunter:
@@ -162,6 +162,12 @@ public static class HudSpritePatch
                 break;
             case CustomRoles.Farseer:
                 newKillButton = CustomButton.Get("prophecies");
+                break;
+            case CustomRoles.Jailer:
+                newKillButton = CustomButton.Get("penitentiary");
+                break;
+            case CustomRoles.Agitater:
+                newKillButton = CustomButton.Get("bombshell");
                 break;
             case CustomRoles.Warlock:
                 if (!shapeshifting)
