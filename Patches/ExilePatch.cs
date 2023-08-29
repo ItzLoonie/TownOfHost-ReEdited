@@ -77,12 +77,11 @@ class ExileControllerWrapUpPatch
             foreach (var pc in Main.AllPlayerControls)
             //判断小丑胜利 (EAC封禁名单成为小丑达成胜利条件无法胜利)
             if (role == CustomRoles.Jester)
-                {
-                    if (DecidedWinner) CustomWinnerHolder.ShiftWinnerAndSetWinner(CustomWinner.Jester);
-                    else CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Jester);
-                    CustomWinnerHolder.WinnerIds.Add(exiled.PlayerId);
-                    DecidedWinner = true;
-                }
+                if (DecidedWinner) CustomWinnerHolder.ShiftWinnerAndSetWinner(CustomWinner.Jester);
+                else CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Jester);
+                CustomWinnerHolder.WinnerIds.Add(exiled.PlayerId);
+                DecidedWinner = true;
+            
 
             //判断处刑人胜利
             if (Executioner.CheckExileTarget(exiled, DecidedWinner)) DecidedWinner = true;
