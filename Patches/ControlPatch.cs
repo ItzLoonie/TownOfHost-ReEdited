@@ -147,11 +147,21 @@ internal class ControllerManagerUpdatePatch
             if (GameStates.IsMeeting) MeetingHud.Instance.RpcClose();
             else PlayerControl.LocalPlayer.NoCheckStartMeeting(null, true);
         }
-        //立即开始
-        if (Input.GetKeyDown(KeyCode.LeftShift) && GameStates.IsCountDown)
+        //立即开始        
+        if (Input.GetKeyDown(KeyCode.LeftShift) && GameStates.IsCountDown && !HudManager.Instance.Chat.IsOpenOrOpening)
         {
-            Logger.Info("倒计时修改为0", "KeyCommand");
-            GameStartManager.Instance.countDownTimer = 0;
+            var invalidColor = Main.AllPlayerControls.Where(p => p.Data.DefaultOutfit.ColorId < 0 || Palette.PlayerColors.Length <= p.Data.DefaultOutfit.ColorId);
+            if (invalidColor.Any())
+            {
+                GameStartManager.Instance.ResetStartState(); //Hope this works
+                Logger.SendInGame(GetString("Error.InvalidColorPreventStart"));
+                Logger.Info("Invalid Color Detected on force start!", "KeyCommand");
+            }
+            else
+            {
+                Logger.Info("倒计时修改为0", "KeyCommand");
+                GameStartManager.Instance.countDownTimer = 0;
+            }
         }
        
         //倒计时取消
