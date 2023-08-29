@@ -1044,7 +1044,7 @@
         "15": ""
     },
     "CovenCanGuess": {
-        "13": "<color=#663399>巫师</color>阵营的玩家可以猜测",
+        "13": "<color=#663399>巫师阵营</color>的玩家可以猜测",
         "0": "<color=#663399>Coven</color> members can guess",
         "5": "<color=#663399>Ковены</color> могут угадывать роли",
         "14": "",
@@ -2898,7 +2898,7 @@
         "15": ""
     },
     "CopyCat": {
-        "13": "模仿者",
+        "13": "模仿猫",
         "0": "Copycat",
         "5": "Подражатель",
         "14": "",
@@ -13896,7 +13896,7 @@
         "15": ""
     },
     "CopyCatInfoLong": {
-        "13": "(船员阵营):\n模仿者可以使用击杀按钮复制别人的职业\n你只能复制一些船员的职业\n如果你试图复制叛徒或流氓的职业，你将会成为叛徒\n如果你复制拥有船员变种职业的坏人，你会成为对应的船员职业。（例如复制抹除者变成清理工）\n此外，你不能进行猜测。",
+        "13": "(船员阵营):\n模仿猫可以使用击杀按钮模仿其他玩家的职业。模仿猫只能模仿一些船员的职业。如果模仿猫试图模仿叛徒，模仿猫将会成为叛徒。如果模仿猫模仿拥有船员变种职业的坏人，模仿猫会成为对应的船员职业（例如模仿抹除者变成清理工）\n此外，你不能进行猜测。",
         "0": "(Crewmate):\nAs the Copycat, you can use your kill button to copy target's role.\n\nYou can only copy some crewmate roles.\nIf you try to copy a madmate or rascal, you become the madmate variation of the target role.\nIf you target an evil that has a crewmate variant, you'll become the crewmate variant.\n\nAdditionally, You do not have access to guessing.",
         "5": "(Член Экипажа):\nПодражатель может использовать кнопку убийства, чтобы скопировать роль цели.\n\nВы можете копировать только некоторые роли Членов Экипажа.\nЕсли вы попытаетесь скопировать Бузумца или Негодяя, вы станете вариацией роли Безумца.\nЕсли вы нацелитесь на злые роли, у которого есть вариант Члена Экипажа, вы станете вариантом Члена Экипажа.\n\nКроме того, у вас нет доступа к угадыванию, и вы совершаете самоубийство после неправильного копирования определенное количество раз, установленное хостом",
         "14": "",
@@ -14850,7 +14850,7 @@
         "15": ""
     },
     "NWitchInfoLong": {
-        "13": "(中立阵营):\n巫师的操控对象会击杀其遇到的下一个船员。若后者在接触的同时死亡，则前者死亡。巫师不可以正常击杀。请注意，摆烂人不会替你办事，操控摆烂人只会浪费你的时间。",
+        "13": "(中立阵营):\n巫婆的操控对象会击杀其遇到的下一个船员。若后者在接触的同时死亡，则前者死亡。巫婆不可以正常击杀。请注意，摆烂人不会替你办事，操控摆烂人只会浪费你的时间。",
         "0": "(Neutrals):\nAs the Witch, your job is to survive to the end while preventing the crew from winning the game.\nYou can make others kill just like a Puppeteer, except you can also make the Lazy Guy and/or Lazy kill since you're using magic rather than manipulation.\n\nIf you die, you lose. If crewmates win, you also lose.",
         "5": "(Злой - Нейтрал):\nКак Заклинатель, ваша задача состоит в том, чтобы выжить до конца, не давая команде победить.\nВы можете заставить других убивать так же, как Кукловод, так как вы используете магию, а не манипулирование.\n\nЕсли вы умрете, вы проиграете. Если товарищи по команде побеждают, вы так-же проигрываете",
         "14": "",
@@ -15354,7 +15354,7 @@
         "15": ""
     },
     "WerewolfInfoLong": {
-        "13": "(中立阵营):\n狼人是一个只能在灯光下进行击杀的中立职业。狼人可以破坏灯光（也只能破坏灯光）来开始他们的击杀。你的击杀冷却时间很短，且击杀时不会瞬移",
+        "13": "(中立阵营):\n狼人是一个只能在破坏灯光下进行击杀的中立职业。狼人可以通过破坏灯光来进行击杀。狼人的击杀冷却时间很短，且击杀时不会瞬移",
         "0": "(Neutrals):\nAs the Werewolf, you can kill much like any killer.\nHowever, when you kill, any nearby players also die.\nAny player who dies to this will have their death reason as Mauled.\n\nTo balance this, you have a higher kill cooldown than anyone else.",
         "5": "(Злой - Нейтрал):\nОборотень может убивать только при саботаже света.\nОборотень может призывать саботаж света (только свет), чтобы начать свою ярость.\nУ него короткий откат убийства, и ты не телепортируешься к своим убийствам.\n\nВсе твои убийства будет иметь причину смерти как ''Растерзан''",
         "14": "",
@@ -15534,7 +15534,7 @@
         "15": ""
     },
     "HexMasterInfoLong": {
-        "13": "(巫师阵营):\n巫师拥有两种攻击方式：直接击杀与诅咒（切换方式根据房主设定）被诅咒的目标会带有对全员可见的诅咒标记紫或红色（根据房主设定）的「†」。如果会议结束时未被驱逐或击杀，则被诅咒的目标死亡。",
+        "13": "(巫师阵营):\n巫师拥有两种攻击方式：直接击杀与诅咒（切换方式根据房主设定）被诅咒的目标会带有对全员可见的诅咒标记紫色（根据房主设定）的「乂」。如果会议结束时巫师未被驱逐或击杀，则被诅咒的目标死亡。",
         "0": "(Coven):\nAs the Hex Master, you can hex players or kill them.\nHexing a player works the same as spelling as a Spellcaster.",
         "5": "(Ковен):\nМастер Проклятий может проклинать игроков или убивать их.\nПроклятие игрока работает точно так же, как заклинание у Ведьмы.",
         "14": "",
@@ -16506,7 +16506,7 @@
         "15": ""
     },
     "SwiftInfoLong": {
-        "13": "(附加职业):\n迅捷击杀不会导致你突刺（玩家视角显示自杀）",
+        "13": "(附加职业):\n迅捷的击杀不会导致你瞬移（玩家视角显示自杀）",
         "0": "(Add-ons):\nAs the Swift, your kills will not cause you to lunge.",
         "5": "(Атрибут)\nКак Ловкач, твои убийства не заставляют телепортироваться к трупу.",
         "14": "",
@@ -22356,7 +22356,7 @@
         "15": ""
     },
     "CovenKnowAlliesRole": {
-        "13": "<color=#663399>巫师</color>阵营了解其他<color=#663399>巫师</color>阵营的身份",
+        "13": "<color=#663399>巫师</color>玩家知道其他<color=#663399>巫师</color>玩家的身份",
         "0": "<color=#663399>Coven</color> know the roles of other <color=#663399>Coven</color>",
         "5": "<color=#663399>Ковены</color> знают роли других <color=#663399>Ковенов</color>",
         "14": "",
@@ -22482,7 +22482,7 @@
         "15": ""
     },
     "GuesserTryHideMsg": {
-        "13": "尝试混淆赌怪指令（试验性）",
+        "13": "尝试混淆赌怪指令",
         "0": "Try to hide guesser's command",
         "5": "Спрятать команду <color=#eede26>Угадывателя</color>",
         "14": "嘗試隱藏賭怪指令(試驗性)",
@@ -22500,7 +22500,7 @@
         "15": ""
     },
     "GCanGuessImp": {
-        "13": "<color=#ff1919>内鬼</color>可以猜测<color=#ff1919>内鬼</color>身份",
+        "13": "<color=#ff1919>内鬼阵营</color>可以猜测<color=#ff1919>内鬼</color>身份",
         "0": "<color=#ff1919>Impostor</color> can guess <color=#ff1919>Impostor</color> roles",
         "5": "<color=#ff1919>Предатели</color> могут угадывать роли <color=#ff1919>Предателей</color>ы",
         "14": "",
@@ -22518,7 +22518,7 @@
         "15": ""
     },
     "GCanGuessCrew": {
-        "13": "<color=#8cffff>成员</color>可以猜测<color=#8cffff>船员</color>身份",
+        "13": "<color=#8cffff>船员阵营</color>可以猜测<color=#8cffff>船员</color>身份",
         "0": "<color=#8cffff>Crewmate</color> can guess <color=#8cffff>Crewmate</color> roles",
         "5": "<color=#8cffff>Члены Экипажа</color> могут угадывать роли <color=#8cffff>Членов Экипажа</color>",
         "14": "",
@@ -22536,7 +22536,7 @@
         "15": ""
     },
     "GCanGuessNeutrals": {
-        "13": "<color=#8cffff>成员</color>可以猜测<color=#8cffff>中立</color>身份",
+        "13": "<color=#8cffff>船员阵营</color>可以猜测<color=#8cffff>船员</color>身份",
         "0": "<color=#8cffff>Crewmate</color> can guess <color=#8cffff>Crewmate</color> roles",
         "5": "<color=#8cffff>Члены Экипажа</color> могут угадывать роли <color=#8cffff>Членов Экипажа</color>",
         "14": "",
@@ -23418,7 +23418,7 @@
         "15": ""
     },
     "SnitchCanFindNeutralKiller": {
-        "13": "可以确认带刀<color=#7f8c8d>中立</color>",
+        "13": "可以确认带刀<color=#7f8c8d>带刀中立</color>",
         "0": "Can Find <color=#7f8c8d>Neutral Killers</color>",
         "5": "Может видеть <color=#7f8c8d>Нейтральных убийц</color>",
         "14": "可以確認帶刀<color=#7f8c8d>中立</color>",
@@ -23652,7 +23652,7 @@
         "15": ""
     },
     "ExecutionerChangeRolesAfterTargetKilled": {
-        "13": "目标死亡后将变为",
+        "13": "<color=#c0c0c0>处刑人</color>的目标死亡后将变为",
         "0": "When Target Dies, <color=#c0c0c0>Executioner</color> becomes",
         "5": "Роль после смерти его цели",
         "14": "目標死亡後將變為",
@@ -23724,7 +23724,7 @@
         "15": ""
     },
     "SidekickSheriffCanGoBerserk": {
-        "13": "<color=#00b4eb>跟班</color> <color=#f8cd46>警长</color>可以背叛",
+        "13": "<color=#00b4eb>已招募</color>的<color=#f8cd46>警长</color>可以击杀任何人",
         "0": "<color=#00b4eb>Recruited</color> <color=#f8cd46>Sheriff</color> Can Go Nuts",
         "5": "<color=#00b4eb>Союзник</color> <color=#f8cd46>Шериф</color> может убить любого",
         "14": "",
@@ -37152,7 +37152,7 @@
         "15": ""
     },
     "RoleOnNoColor": {
-        "13": "始终",
+        "13": "优先",
         "0": "ALWAYS",
         "5": "ВСЕГДА",
         "14": "優先",
@@ -39042,7 +39042,7 @@
         "15": ""
     },
     "Ego-": {
-        "13": "利己的",
+        "13": "利己的-",
         "0": "Ego-",
         "5": "Эго-",
         "14": "",
@@ -41148,7 +41148,7 @@
         "15": ""
     },
     "DivinatorCheck.Result1": {
-        "13": "<b>{0}</b>是失忆者、模仿者、抹除者、逃亡者、监管者、通信员、执灯人、眩晕者或掷雷兵其中之一",
+        "13": "<b>{0}</b>是失忆者、模仿猫、抹除者、逃亡者、监管者、通信员、执灯人、眩晕者或掷雷兵其中之一",
         "0": "<b>{0}</b> is either Amnesiac, Copycat, Eraser, Lighter, Refugee, Disruptor, Dazzler, Telecommunication, or Grenadier",
         "5": "<b>{0}</b> может быть Амнезияком, Подражатель, Стирачка, Беженец, Анти Админер, Ослепитель, Коммуникатор или Гренадёр",
         "14": "",
@@ -41940,7 +41940,7 @@
         "15": ""
     },
     "DeathCmd.YouAreRole": {
-        "13": "看起来你是",
+        "13": "看起来您是",
         "0": ", looks like you're the ",
         "5": ", похоже, ты ",
         "14": "",
@@ -41976,7 +41976,7 @@
         "15": ""
     },
     "DeathCmd.KillerName": {
-        "13": "你是被",
+        "13": "击杀你的玩家是",
         "0": "You were killed by ",
         "5": "Вы были убиты ",
         "14": "",
@@ -42012,7 +42012,7 @@
         "15": ""
     },
     "DeathCmd.DeathReason": {
-        "13": "你的死因是",
+        "13": "您的死因是",
         "0": "Your cause of death was ",
         "5": "Ваша причина смерти ",
         "14": "",
@@ -42030,7 +42030,7 @@
         "15": ""
     },
     "DeathCmd.YourName": {
-        "13": "你是",
+        "13": "您是",
         "0": "You are ",
         "5": "Ты ",
         "14": "",
@@ -44082,7 +44082,7 @@
         "15": ""
     },
     "FragileKillerLunge": {
-        "13": "击杀时玩家会突刺",
+        "13": "击杀时玩家会瞬移",
         "0": "Killer lunge on kill",
         "5": "Убийца телепортируются на труп при убийстве",
         "14": "",
@@ -45990,7 +45990,7 @@
         "15": ""
     },
     "ParityCopTryHideMsg": {
-        "13": "尝试混淆<color=#0D57AF>检查员</color>指令（试验性）",
+        "13": "尝试混淆<color=#0D57AF>检查员</color>指令",
         "0": "Hide <color=#0D57AF>Inspector</color>'s commands",
         "5": "Скрыть команду <color=#0D57AF>Инспектора</color>",
         "14": "",
@@ -46728,7 +46728,7 @@
         "15": ""
     },
     "CopyCatAlreadyCopy": {
-        "13": "你已经在本轮游戏中复制了一个身份",
+        "13": "您已经在本轮游戏中模仿了一个身份",
         "0": "You have already copied a role in this round",
         "5": "Ты уже скопировал роль в этом раунде",
         "14": "",
@@ -46764,7 +46764,7 @@
         "15": ""
     },
     "CopyCatCanKill": {
-        "13": "模仿者可以在模仿错误时被击杀",
+        "13": "模仿猫可以在模仿错误时被击杀",
         "0": "CopyCat can kill when miscopy",
         "5": "Подражатель может убить когда не может скопировать",
         "14": "",
@@ -46800,7 +46800,7 @@
         "15": ""
     },
     "CopyCrewVar": {
-        "13": "可以复制船员身份的邪恶体",
+        "13": "可以模仿船员身份的邪恶体",
         "0": "Can copy evil variants of crew roles",
         "5": "Может копировать злые варианты ролей Члено Экипажа",
         "14": "",
@@ -46944,7 +46944,7 @@
         "15": ""
     },
     "MaulRadius": {
-        "13": "",
+        "13": "袭击半径",
         "0": "Maul Radius",
         "5": "",
         "14": "",
