@@ -7,7 +7,7 @@ namespace TOHE;
 
 internal static class CustomRolesHelper
 {
-    public static CustomRoles GetVNRole(this CustomRoles role)
+    public static CustomRoles GetVNRole(this CustomRoles role) // RoleBase: Impostor, Shapeshifter, Crewmate, Engineer, Scientist
     {
         return role.IsVanilla()
             ? role
@@ -29,18 +29,8 @@ internal static class CustomRolesHelper
                 CustomRoles.Mafia => Options.LegacyMafia.GetBool() ? CustomRoles.Shapeshifter : CustomRoles.Impostor,
                 CustomRoles.Terrorist => CustomRoles.Engineer,
                 CustomRoles.Executioner => CustomRoles.Crewmate,
-                CustomRoles.Juggernaut => CustomRoles.Impostor,
                 CustomRoles.Lawyer => CustomRoles.Crewmate,
                 CustomRoles.Vampire => CustomRoles.Impostor,
-                CustomRoles.Poisoner => CustomRoles.Impostor,
-                CustomRoles.RuthlessRomantic => CustomRoles.Impostor,
-                CustomRoles.VengefulRomantic => CustomRoles.Impostor,
-                CustomRoles.Romantic => CustomRoles.Impostor,
-                CustomRoles.NSerialKiller => CustomRoles.Impostor,
-                CustomRoles.Maverick => CustomRoles.Impostor,
-                CustomRoles.CursedSoul => CustomRoles.Impostor,
-                CustomRoles.Parasite => CustomRoles.Impostor,
-        //        CustomRoles.Sorcerer => CustomRoles.Impostor,
                 CustomRoles.BountyHunter => CustomRoles.Shapeshifter,
                 CustomRoles.Trickster => CustomRoles.Impostor,
                 CustomRoles.Witch => CustomRoles.Impostor,
@@ -49,11 +39,6 @@ internal static class CustomRolesHelper
                 CustomRoles.Chronomancer => CustomRoles.Impostor,
                 CustomRoles.ImpostorTOHE => CustomRoles.Impostor,
                 CustomRoles.EvilDiviner => CustomRoles.Impostor,
-                CustomRoles.PotionMaster => CustomRoles.Impostor,
-                CustomRoles.Pickpocket => CustomRoles.Impostor,
-                CustomRoles.Traitor => CustomRoles.Impostor,
-                CustomRoles.HexMaster => CustomRoles.Impostor,
-                CustomRoles.Occultist => CustomRoles.Impostor,
                 CustomRoles.Wildling => CustomRoles.Shapeshifter,
                 CustomRoles.Morphling => CustomRoles.Shapeshifter,
                 CustomRoles.Warlock => CustomRoles.Shapeshifter,
@@ -69,9 +54,6 @@ internal static class CustomRolesHelper
                 CustomRoles.ScientistTOHE => CustomRoles.Scientist,
                 CustomRoles.Tracefinder => CustomRoles.Scientist,
                 CustomRoles.Puppeteer => CustomRoles.Impostor,
-                CustomRoles.NWitch => CustomRoles.Impostor,
-                CustomRoles.CovenLeader => CustomRoles.Impostor,
-                CustomRoles.Shroud => CustomRoles.Impostor,
                 CustomRoles.TimeThief => CustomRoles.Impostor,
                 CustomRoles.EvilTracker => CustomRoles.Shapeshifter,
                 CustomRoles.Paranoia => CustomRoles.Engineer,
@@ -92,9 +74,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Escapee => CustomRoles.Shapeshifter,
                 CustomRoles.NiceGuesser => CustomRoles.Crewmate,
                 CustomRoles.EvilGuesser => CustomRoles.Impostor,
-                CustomRoles.Ritualist => CustomRoles.Impostor,
                 CustomRoles.Detective => CustomRoles.Crewmate,
-           //     CustomRoles.Minimalism => CustomRoles.Impostor,
                 CustomRoles.God => CustomRoles.Crewmate,
                 CustomRoles.GuardianAngelTOHE => CustomRoles.GuardianAngel,
                 CustomRoles.Zombie => CustomRoles.Impostor,
@@ -103,7 +83,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Sans => CustomRoles.Impostor,
                 CustomRoles.Bomber => CustomRoles.Shapeshifter,
                 CustomRoles.Nuker => CustomRoles.Shapeshifter,
-          //      CustomRoles.Flashbang => CustomRoles.Shapeshifter,
+             //   CustomRoles.Flashbang => CustomRoles.Shapeshifter,
                 CustomRoles.BoobyTrap => CustomRoles.Impostor,
                 CustomRoles.Scavenger => CustomRoles.Impostor,
                 CustomRoles.Transporter => CustomRoles.Crewmate,
@@ -114,7 +94,6 @@ internal static class CustomRolesHelper
                 CustomRoles.Lighter => CustomRoles.Engineer,
                 CustomRoles.Gangster => CustomRoles.Impostor,
                 CustomRoles.Cleaner => CustomRoles.Impostor,
-                CustomRoles.Medusa => CustomRoles.Impostor,
                 CustomRoles.Konan => CustomRoles.Crewmate,
                 CustomRoles.Divinator => CustomRoles.Crewmate,
                 CustomRoles.Oracle => CustomRoles.Crewmate,
@@ -122,12 +101,9 @@ internal static class CustomRolesHelper
                 CustomRoles.Greedier => CustomRoles.Impostor,
                 CustomRoles.Ludopath => CustomRoles.Impostor,
                 CustomRoles.Godfather => CustomRoles.Impostor,
-                CustomRoles.Pirate => CustomRoles.Impostor,
                 CustomRoles.Workaholic => CustomRoles.Engineer,
                 CustomRoles.CursedWolf => CustomRoles.Impostor,
-                CustomRoles.Jinx => CustomRoles.Impostor,
                 CustomRoles.Collector => CustomRoles.Crewmate,
-                CustomRoles.Glitch => CustomRoles.Impostor,
                 CustomRoles.ImperiusCurse => CustomRoles.Shapeshifter,
                 CustomRoles.QuickShooter => CustomRoles.Shapeshifter,
                 CustomRoles.Eraser => CustomRoles.Impostor,
@@ -141,42 +117,32 @@ internal static class CustomRolesHelper
                 CustomRoles.Mediumshiper => CustomRoles.Crewmate,
                 CustomRoles.Bard => CustomRoles.Impostor,
                 CustomRoles.Swooper => CustomRoles.Impostor,
-                CustomRoles.Wraith => CustomRoles.Impostor,
-                CustomRoles.Shade => CustomRoles.Impostor,
                 CustomRoles.SoulCollector => CustomRoles.Crewmate,
                 CustomRoles.Crewpostor => CustomRoles.Engineer,
                 CustomRoles.Observer => CustomRoles.Crewmate,
                 CustomRoles.DovesOfNeace => CustomRoles.Engineer,
-                CustomRoles.Infectious => CustomRoles.Impostor,
-                CustomRoles.Virus => CustomRoles.Virus,
                 CustomRoles.Disperser => CustomRoles.Shapeshifter,
                 CustomRoles.Camouflager => CustomRoles.Shapeshifter,
                 CustomRoles.Dazzler => CustomRoles.Shapeshifter,
                 CustomRoles.Devourer => CustomRoles.Shapeshifter,
                 CustomRoles.Deathpact => CustomRoles.Shapeshifter,
-             //   CustomRoles.Monarch => CustomRoles.Impostor,
                 CustomRoles.Bloodhound => CustomRoles.Crewmate,
                 CustomRoles.Tracker => CustomRoles.Crewmate,
                 CustomRoles.Merchant => CustomRoles.Crewmate,
                 CustomRoles.Retributionist => CustomRoles.Crewmate,
                 CustomRoles.Guardian => CustomRoles.Crewmate,
                 CustomRoles.Addict => CustomRoles.Engineer,
-                CustomRoles.Witness => CustomRoles.Impostor,
                 CustomRoles.Chameleon => CustomRoles.Engineer,
-                CustomRoles.Spiritcaller => CustomRoles.Impostor,
                 CustomRoles.EvilSpirit => CustomRoles.GuardianAngel,
                 CustomRoles.Lurker => CustomRoles.Impostor,
-                CustomRoles.PlagueBearer => CustomRoles.Impostor,
-                CustomRoles.Pestilence => CustomRoles.Impostor,
                 CustomRoles.Doomsayer => CustomRoles.Crewmate,
-                CustomRoles.Agitater => CustomRoles.Impostor,
                 CustomRoles.Pitfall => CustomRoles.Shapeshifter,
 
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
     }
 
-        public static CustomRoles GetErasedRole(this CustomRoles role)
+    public static CustomRoles GetErasedRole(this CustomRoles role) // Erased RoleBase - Crewmate or Engineer or Scientist
     {
         return role.IsVanilla()
             ? role
@@ -191,7 +157,6 @@ internal static class CustomRolesHelper
                 CustomRoles.Cleanser => CustomRoles.CrewmateTOHE,
                 CustomRoles.Mortician => CustomRoles.CrewmateTOHE,
                 CustomRoles.Mediumshiper => CustomRoles.CrewmateTOHE,
-             //   CustomRoles.Glitch => CustomRoles.CrewmateTOHE,
                 CustomRoles.Bodyguard => CustomRoles.CrewmateTOHE,
                 CustomRoles.ParityCop => CustomRoles.CrewmateTOHE,
                 CustomRoles.Lookout => CustomRoles.CrewmateTOHE,
@@ -211,7 +176,6 @@ internal static class CustomRolesHelper
                 CustomRoles.Paranoia => CustomRoles.EngineerTOHE,
                 CustomRoles.EngineerTOHE => CustomRoles.EngineerTOHE,
                 CustomRoles.TimeMaster => CustomRoles.EngineerTOHE,
-                CustomRoles.Reverie => CustomRoles.CrewmateTOHE,
                 CustomRoles.CrewmateTOHE => CustomRoles.CrewmateTOHE,
                 CustomRoles.Doctor => CustomRoles.ScientistTOHE,
                 CustomRoles.ScientistTOHE => CustomRoles.ScientistTOHE,
@@ -222,8 +186,6 @@ internal static class CustomRolesHelper
                 CustomRoles.Marshall => CustomRoles.CrewmateTOHE,
                 CustomRoles.SabotageMaster => CustomRoles.EngineerTOHE,
                 CustomRoles.Retributionist => CustomRoles.Crewmate,
-                CustomRoles.Monarch => CustomRoles.CrewmateTOHE,
-                CustomRoles.Deputy => CustomRoles.CrewmateTOHE,
                 CustomRoles.Guardian => CustomRoles.CrewmateTOHE,
                 CustomRoles.Addict => CustomRoles.EngineerTOHE,
                 CustomRoles.Oracle => CustomRoles.EngineerTOHE,
@@ -232,12 +194,13 @@ internal static class CustomRolesHelper
             };
     }
 
-    public static RoleTypes GetDYRole(this CustomRoles role)
+    public static RoleTypes GetDYRole(this CustomRoles role) // Role has a kill button (Non-Impostor)
     {
         return role switch
         {
             //SoloKombat
             CustomRoles.KB_Normal => RoleTypes.Impostor,
+
             //Standard
             CustomRoles.Sheriff => RoleTypes.Impostor,
             CustomRoles.Jailer => RoleTypes.Impostor,
@@ -249,7 +212,6 @@ internal static class CustomRolesHelper
             CustomRoles.Shaman => RoleTypes.Impostor,
             CustomRoles.Admirer => RoleTypes.Impostor,
             CustomRoles.Refugee => RoleTypes.Impostor,
-    //        CustomRoles.Minion => RoleTypes.Impostor,
             CustomRoles.Amnesiac => RoleTypes.Impostor,
             CustomRoles.Monarch => RoleTypes.Impostor,
             CustomRoles.Deputy => RoleTypes.Impostor,
@@ -284,7 +246,6 @@ internal static class CustomRolesHelper
             CustomRoles.Werewolf => RoleTypes.Impostor,
             CustomRoles.Maverick => RoleTypes.Impostor,
             CustomRoles.Parasite => RoleTypes.Impostor,
-        //    CustomRoles.Sorcerer => RoleTypes.Impostor,
             CustomRoles.NWitch => RoleTypes.Impostor,
             CustomRoles.CovenLeader => RoleTypes.Impostor,
             CustomRoles.Necromancer => RoleTypes.Impostor,
