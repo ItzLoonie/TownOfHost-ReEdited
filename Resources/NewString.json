@@ -36197,6 +36197,24 @@
         "11": "",
         "15": ""
     },
+    "JudgeCanTrialIsCoven": {
+        "13": "可以审判<color=#663399>巫师阵营</color>",
+        "0": "Can trial <color=#663399>Coven</color>",
+        "5": "",
+        "14": "",
+        "12": "",
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "6": "",
+        "7": "",
+        "8": "",
+        "9": "",
+        "10": "",
+        "11": "",
+        "15": ""
+    },
     "JudgeCanTrialSidekick": {
         "13": "可以审判<color=#00b4eb>跟班</color>",
         "0": "Can trial <color=#00b4eb>Sidekick</color>",
