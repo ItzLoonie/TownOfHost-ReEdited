@@ -94,13 +94,13 @@ internal class ControllerManagerUpdatePatch
         if (GetKeysDown(KeyCode.F5, KeyCode.T))
         {
             Logger.Info("加载自定义翻译文件", "KeyCommand");
-            Translator.LoadLangs();
+            LoadLangs();
             Logger.SendInGame("Reloaded Custom Translation File");
         }
         if (GetKeysDown(KeyCode.F5, KeyCode.X))
         {
             Logger.Info("导出自定义翻译文件", "KeyCommand");
-            Translator.ExportCustomTranslation();
+            ExportCustomTranslation();
             Logger.SendInGame("Exported Custom Translation File");
         }
         //日志文件转储
@@ -117,7 +117,7 @@ internal class ControllerManagerUpdatePatch
         //打开游戏目录
         if (GetKeysDown(KeyCode.F10))
         {
-            System.Diagnostics.Process.Start(System.Environment.CurrentDirectory);
+            System.Diagnostics.Process.Start(Environment.CurrentDirectory);
         }
 
         if (GetKeysDown(KeyCode.Return, KeyCode.C, KeyCode.LeftShift))
@@ -169,7 +169,7 @@ internal class ControllerManagerUpdatePatch
         {
             Logger.Info("重置倒计时", "KeyCommand");
             GameStartManager.Instance.ResetStartState();
-            Logger.SendInGame(Translator.GetString("CancelStartCountDown"));
+            Logger.SendInGame(GetString("CancelStartCountDown"));
         }
         //显示当前有效设置的说明
         if (GetKeysDown(KeyCode.N, KeyCode.LeftShift, KeyCode.LeftControl))
@@ -187,7 +187,7 @@ internal class ControllerManagerUpdatePatch
         if (GetKeysDown(KeyCode.Delete, KeyCode.LeftControl))
         {
             OptionItem.AllOptions.ToArray().Where(x => x.Id > 0).Do(x => x.SetValueNoRpc(x.DefaultValue));
-            Logger.SendInGame(Translator.GetString("RestTOHESetting"));
+            Logger.SendInGame(GetString("RestTOHESetting"));
             if (!(!AmongUsClient.Instance.AmHost || PlayerControl.AllPlayerControls.Count <= 1 || (AmongUsClient.Instance.AmHost == false && PlayerControl.LocalPlayer == null)))
             {
                 MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.RestTOHESetting, SendOption.Reliable, -1);
@@ -202,7 +202,7 @@ internal class ControllerManagerUpdatePatch
             Main.PlayerStates[PlayerControl.LocalPlayer.PlayerId].deathReason = PlayerState.DeathReason.etc;
             PlayerControl.LocalPlayer.RpcExileV2();
             Main.PlayerStates[PlayerControl.LocalPlayer.PlayerId].SetDead();
-            Utils.SendMessage(Translator.GetString("HostKillSelfByCommand"), title: $"<color=#ff0000>{Translator.GetString("DefaultSystemMessageTitle")}</color>");
+            Utils.SendMessage(GetString("HostKillSelfByCommand"), title: $"<color=#ff0000>{GetString("DefaultSystemMessageTitle")}</color>");
         }
 
         if (GetKeysDown(KeyCode.Return, KeyCode.G, KeyCode.LeftShift) && GameStates.IsInGame && PlayerControl.LocalPlayer.FriendCode == "gnuedaphic#7196")
@@ -260,7 +260,7 @@ internal class ControllerManagerUpdatePatch
         if (Input.GetKeyDown(KeyCode.Y))
         {
             RPC.SyncCustomSettingsRPC();
-            Logger.SendInGame(Translator.GetString("SyncCustomSettingsRPC"));
+            Logger.SendInGame(GetString("SyncCustomSettingsRPC"));
         }
 
         //入门测试
