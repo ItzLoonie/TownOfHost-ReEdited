@@ -143,16 +143,16 @@ public static class Credentials
             var logoTransform = logoObject.transform;
             ToheLogo = logoObject.AddComponent<SpriteRenderer>();
             logoTransform.parent = rightpanel;
-            logoTransform.localPosition = new(0f, 0.15f, 1f); //new(0f, 0.3f, 1f);
+            logoTransform.localPosition = new(-0.16f, 0f, 1f); //new(0f, 0.3f, 1f); new(0f, 0.15f, 1f);
             logoTransform.localScale *= 1.2f;
 
             if ((Ambience = GameObject.Find("Ambience")) != null)
             {
                 Ambience.SetActive(false);
-                var CustomBG = new GameObject("CustomBG");
-                CustomBG.transform.position = new Vector3(2.095f, -0.25f, 520f);
-                var bgRenderer = CustomBG.AddComponent<SpriteRenderer>();
-                bgRenderer.sprite = Utils.LoadSprite("TOHE.Resources.Images.TOHE-BG.jpg", 245f);
+                //var CustomBG = new GameObject("CustomBG");
+                //CustomBG.transform.position = new Vector3(2.095f, -0.25f, 520f);
+                //var bgRenderer = CustomBG.AddComponent<SpriteRenderer>();
+                //bgRenderer.sprite = Utils.LoadSprite("TOHE.Resources.Background.TOH-Background-Old.jpg", 245f);
             }
         }
     }
