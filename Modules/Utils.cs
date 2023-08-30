@@ -1956,7 +1956,8 @@ public static class Utils
                 SelfSuffix.Append(SoloKombatManager.GetDisplayHealth(seer));
 
 
-            // Get RealName
+        // ====== Get SeerRealName ======
+
             string SeerRealName = seer.GetRealName(isForMeeting);
 
             if (MeetingStates.FirstMeeting && Options.ChangeNameToRoleInfo.GetBool() && !isForMeeting)
@@ -1980,35 +1981,47 @@ public static class Utils
                     SeerRealName = $"<size=110%><color=#663399>" + GetString("YouAreCoven") + $"</color></size>\n<size=130%>" + seer.GetRoleInfo() + $"</size>";
             }
 
-            // Combine SelfRoleName, SelfTaskText, SelfName, SelfDeathReason
+        // ====== Combine SelfRoleName, SelfTaskText, SelfName, SelfDeathReason for seer ======
+
             string SelfTaskText = GetProgressText(seer);
             string SelfRoleName = $"<size={fontSize}>{seer.GetDisplayRoleName()}{SelfTaskText}</size>";
             string SelfDeathReason = seer.KnowDeathReason(seer) ? $"({ColorString(GetRoleColor(CustomRoles.Doctor), GetVitalText(seer.PlayerId))})" : "";
             string SelfName = $"{ColorString(seer.GetRoleColor(), SeerRealName)}{SelfDeathReason}{SelfMark}";
             
-            if (seer.Is(CustomRoles.PlagueBearer) && PlagueBearer.IsPlaguedAll(seer))
+            switch (seer.GetCustomRole())
             {
-                seer.RpcSetCustomRole(CustomRoles.Pestilence);
-                seer.Notify(GetString("PlagueBearerToPestilence"));
-                seer.RpcGuardAndKill(seer);
-                if (!PlagueBearer.PestilenceList.Contains(seer.PlayerId))
-                    PlagueBearer.PestilenceList.Add(seer.PlayerId);
-                PlagueBearer.SetKillCooldownPestilence(seer.PlayerId);
-                PlagueBearer.playerIdList.Remove(seer.PlayerId);
-            }
+                case CustomRoles.PlagueBearer:
+                    if (PlagueBearer.IsPlaguedAll(seer))
+                    {
+                        seer.RpcSetCustomRole(CustomRoles.Pestilence);
+                        seer.Notify(GetString("PlagueBearerToPestilence"));
+                        seer.RpcGuardAndKill(seer);
+                        if (!PlagueBearer.PestilenceList.Contains(seer.PlayerId))
+                            PlagueBearer.PestilenceList.Add(seer.PlayerId);
+                        PlagueBearer.SetKillCooldownPestilence(seer.PlayerId);
+                        PlagueBearer.playerIdList.Remove(seer.PlayerId);
+                    }
+                    break;
 
-            if (seer.Is(CustomRoles.Arsonist) && seer.IsDouseDone())
-                SelfName = $"{ColorString(seer.GetRoleColor(), GetString("EnterVentToWin"))}";
-            if (seer.Is(CustomRoles.Revolutionist) && seer.IsDrawDone())
-                SelfName = $">{ColorString(seer.GetRoleColor(), string.Format(GetString("EnterVentWinCountDown"), Main.RevolutionistCountdown.TryGetValue(seer.PlayerId, out var x) ? x : 10))}";
+                case CustomRoles.Arsonist:
+                    if (seer.IsDouseDone())
+                        SelfName = $"{ColorString(seer.GetRoleColor(), GetString("EnterVentToWin"))}";
+                    break;
+
+                case CustomRoles.Revolutionist:
+                    if (seer.IsDrawDone())
+                        SelfName = $">{ColorString(seer.GetRoleColor(), string.Format(GetString("EnterVentWinCountDown"), Main.RevolutionistCountdown.TryGetValue(seer.PlayerId, out var x) ? x : 10))}";
+                    break;
+            }
             
             if (Pelican.IsEaten(seer.PlayerId))
                 SelfName = $"{ColorString(GetRoleColor(CustomRoles.Pelican), GetString("EatenByPelican"))}";
+
             if (Deathpact.IsInActiveDeathpact(seer))
                 SelfName = Deathpact.GetDeathpactString(seer);
+
             if (NameNotifyManager.GetNameNotify(seer, out var name))
                 SelfName = name;
-
 
             // Devourer
             bool playerDevoured = Devourer.HideNameOfConsumedPlayer.GetBool() && Devourer.PlayerSkinsCosumed.Any(a => a.Value.Contains(seer.PlayerId));
@@ -2040,6 +2053,7 @@ public static class Utils
 
             //適用
             seer.RpcSetNamePrivate(SelfName, true, force: NoCache);
+
 
             //seerが死んでいる場合など、必要なときのみ第二ループを実行する
             foreach (var target in Main.AllPlayerControls)
