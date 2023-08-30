@@ -13,7 +13,7 @@ public static class AntiBlackout
     ///<summary>
     ///Whether to override the expulsion process
     ///</summary>
-    public static bool OverrideExiledPlayer => IsRequired && (IsSingleImpostor || Diff_CrewImp == 1);
+    public static bool OverrideExiledPlayer => IsRequired && (IsSingleImpostor || Diff_CrewImp == 1 || Options.TemporaryAntiBlackoutFix.GetBool());
     ///<summary>
     ///Whether there is only one imposter present in the setting
     ///</summary>
