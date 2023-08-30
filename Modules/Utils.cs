@@ -1962,23 +1962,25 @@ public static class Utils
 
             if (MeetingStates.FirstMeeting && Options.ChangeNameToRoleInfo.GetBool() && !isForMeeting)
             {
+                var SeerRoleInfo = seer.GetRoleInfo();
+
                 if (seer.GetCustomRole().IsImpostor())
-                    SeerRealName = $"<size=110%><color=#ff1919>" + GetString("YouAreImpostor") + $"</color></size>\n<size=130%>" + seer.GetRoleInfo() + $"</size>";
+                    SeerRealName = $"<size=110%><color=#ff1919>" + GetString("YouAreImpostor") + $"</color></size>\n<size=130%>" + SeerRoleInfo + $"</size>";
                 
                 else if (seer.Is(CustomRoles.Madmate))
-                    SeerRealName = $"<size=110%><color=#ff1919>" + GetString("YouAreMadmate") + $"</color></size>\n<size=130%>" + seer.GetRoleInfo() + $"</size>";
+                    SeerRealName = $"<size=110%><color=#ff1919>" + GetString("YouAreMadmate") + $"</color></size>\n<size=130%>" + SeerRoleInfo + $"</size>";
                 
                 else if (seer.GetCustomRole().IsCrewmate() && !seer.Is(CustomRoles.Madmate))
-                    SeerRealName = $"<size=110%><color=#8cffff>" + GetString("YouAreCrewmate") + $"</color></size>\n" + seer.GetRoleInfo();
+                    SeerRealName = $"<size=110%><color=#8cffff>" + GetString("YouAreCrewmate") + $"</color></size>\n" + SeerRoleInfo;
                 
                 else if (seer.GetCustomRole().IsNeutral() && !seer.GetCustomRole().IsMadmate() && !seer.GetCustomRole().IsCoven())
-                    SeerRealName = $"<size=110%><color=#7f8c8d>" + GetString("YouAreNeutral") + $"</color></size>\n<size=130%>" + seer.GetRoleInfo() + $"</size>";
+                    SeerRealName = $"<size=110%><color=#7f8c8d>" + GetString("YouAreNeutral") + $"</color></size>\n<size=130%>" + SeerRoleInfo + $"</size>";
                 
                 else if (seer.GetCustomRole().IsMadmate())
-                    SeerRealName = $"<size=110%><color=#ff1919>" + GetString("YouAreMadmate") + $"</color></size>\n<size=130%>" + seer.GetRoleInfo() + $"</size>";
+                    SeerRealName = $"<size=110%><color=#ff1919>" + GetString("YouAreMadmate") + $"</color></size>\n<size=130%>" + SeerRoleInfo + $"</size>";
                 
                 else if (seer.GetCustomRole().IsCoven())
-                    SeerRealName = $"<size=110%><color=#663399>" + GetString("YouAreCoven") + $"</color></size>\n<size=130%>" + seer.GetRoleInfo() + $"</size>";
+                    SeerRealName = $"<size=110%><color=#663399>" + GetString("YouAreCoven") + $"</color></size>\n<size=130%>" + SeerRoleInfo + $"</size>";
             }
 
         // ====== Combine SelfRoleName, SelfTaskText, SelfName, SelfDeathReason for seer ======
