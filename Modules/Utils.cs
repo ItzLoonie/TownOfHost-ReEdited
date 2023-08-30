@@ -1962,38 +1962,25 @@ public static class Utils
             // Get RealName
             string SeerRealName = seer.GetRealName(isForMeeting);
 
-            if (MeetingStates.FirstMeeting && !isForMeeting)
+            if (MeetingStates.FirstMeeting && Options.ChangeNameToRoleInfo.GetBool() && !isForMeeting)
             {
                 if (seer.GetCustomRole().IsImpostor())
-                {
-                    if (Options.ChangeNameToRoleInfo.GetBool())
-                        SeerRealName = $"<size=110%><color=#ff1919>" + GetString("YouAreImpostor") + $"</color></size>\n<size=130%>" + seer.GetRoleInfo() + $"</size>";
-                }
+                    SeerRealName = $"<size=110%><color=#ff1919>" + GetString("YouAreImpostor") + $"</color></size>\n<size=130%>" + seer.GetRoleInfo() + $"</size>";
+                
                 else if (seer.Is(CustomRoles.Madmate))
-                {
-                    if (Options.ChangeNameToRoleInfo.GetBool())
-                        SeerRealName = $"<size=110%><color=#ff1919>" + GetString("YouAreMadmate") + $"</color></size>\n<size=130%>" + seer.GetRoleInfo() + $"</size>";
-                }
+                    SeerRealName = $"<size=110%><color=#ff1919>" + GetString("YouAreMadmate") + $"</color></size>\n<size=130%>" + seer.GetRoleInfo() + $"</size>";
+                
                 else if (seer.GetCustomRole().IsCrewmate() && !seer.Is(CustomRoles.Madmate))
-                {
-                    if (Options.ChangeNameToRoleInfo.GetBool())
-                        SeerRealName = $"<size=110%><color=#8cffff>" + GetString("YouAreCrewmate") + $"</color></size>\n" + seer.GetRoleInfo();
-                }
+                    SeerRealName = $"<size=110%><color=#8cffff>" + GetString("YouAreCrewmate") + $"</color></size>\n" + seer.GetRoleInfo();
+                
                 else if (seer.GetCustomRole().IsNeutral() && !seer.GetCustomRole().IsMadmate() && !seer.GetCustomRole().IsCoven())
-                {
-                    if (Options.ChangeNameToRoleInfo.GetBool())
-                        SeerRealName = $"<size=110%><color=#7f8c8d>" + GetString("YouAreNeutral") + $"</color></size>\n<size=130%>" + seer.GetRoleInfo() + $"</size>";
-                }
+                    SeerRealName = $"<size=110%><color=#7f8c8d>" + GetString("YouAreNeutral") + $"</color></size>\n<size=130%>" + seer.GetRoleInfo() + $"</size>";
+                
                 else if (seer.GetCustomRole().IsMadmate())
-                {
-                    if (Options.ChangeNameToRoleInfo.GetBool())
-                        SeerRealName = $"<size=110%><color=#ff1919>" + GetString("YouAreMadmate") + $"</color></size>\n<size=130%>" + seer.GetRoleInfo() + $"</size>";
-                }
+                    SeerRealName = $"<size=110%><color=#ff1919>" + GetString("YouAreMadmate") + $"</color></size>\n<size=130%>" + seer.GetRoleInfo() + $"</size>";
+                
                 else if (seer.GetCustomRole().IsCoven())
-                {
-                    if (Options.ChangeNameToRoleInfo.GetBool())
-                        SeerRealName = $"<size=110%><color=#663399>" + GetString("YouAreCoven") + $"</color></size>\n<size=130%>" + seer.GetRoleInfo() + $"</size>";
-                }
+                    SeerRealName = $"<size=110%><color=#663399>" + GetString("YouAreCoven") + $"</color></size>\n<size=130%>" + seer.GetRoleInfo() + $"</size>";
             }
 
             //seerの役職名とSelfTaskTextとseerのプレイヤー名とSelfMarkを合成
