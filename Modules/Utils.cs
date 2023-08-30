@@ -1895,11 +1895,11 @@ public static class Utils
                         break;
 
                     case CustomRoles.Mortician:
-                        SelfSuffix.Append(Bloodhound.GetTargetArrow(seer));
+                        SelfSuffix.Append(Mortician.GetTargetArrow(seer));
                         break;
 
                     case CustomRoles.Bloodhound:
-                        SelfSuffix.Append(Mortician.GetTargetArrow(seer));
+                        SelfSuffix.Append(Bloodhound.GetTargetArrow(seer));
                         break;
 
                     case CustomRoles.Tracefinder:
