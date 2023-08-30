@@ -56,15 +56,14 @@ namespace TOHE.Roles.Impostor
             DeathpactTime = new();
             ActiveDeathpacts = new();
         }
-
-        public static bool IsEnable => playerIdList.Any();
-
         public static void Add(byte playerId)
         {
             playerIdList.Add(playerId);
             PlayersInDeathpact.TryAdd(playerId, new List<PlayerControl>());
             DeathpactTime.TryAdd(playerId, 0);
         }
+
+        public static bool IsEnable => playerIdList.Any();
 
         public static void ApplyGameOptions()
         {

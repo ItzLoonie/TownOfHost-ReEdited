@@ -1103,13 +1103,13 @@ class MeetingHudStartPatch
 
             //医生护盾提示
             if (seer.PlayerId == target.PlayerId && (Medic.InProtect(seer.PlayerId) || Medic.TempMarkProtected == seer.PlayerId) && (Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 2))
-                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Medic), " ●"));
+                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Medic), "✚"));
 
             if (seer.Is(CustomRoles.Medic) && (Medic.InProtect(target.PlayerId) || Medic.TempMarkProtected == target.PlayerId) && (Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 1))
-                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Medic), " ●"));
+                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Medic), "✚"));
 
             if (seer.Data.IsDead && Medic.InProtect(target.PlayerId) && !seer.Is(CustomRoles.Medic))
-                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Medic), " ●"));
+                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Medic), "✚"));
 
             //赌徒提示
             sb.Append(Totocalcio.TargetMark(seer, target));

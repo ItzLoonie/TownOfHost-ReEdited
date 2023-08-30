@@ -138,7 +138,7 @@ public static class Snitch
     /// <returns></returns>
     public static string GetWarningArrow(PlayerControl seer, PlayerControl target = null)
     {
-        if (GameStates.IsMeeting || !IsSnitchTarget(seer)) return "";
+        if (!IsSnitchTarget(seer) || GameStates.IsMeeting) return "";
         if (target != null && seer.PlayerId != target.PlayerId) return "";
 
         var exposedSnitch = playerIdList.Where(s => !Main.PlayerStates[s].IsDead && IsExposed[s]);
