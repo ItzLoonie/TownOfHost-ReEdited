@@ -24,7 +24,16 @@ class EndGamePatch
         if (!GameStates.IsModHost) return;
         SummaryText = new();
         foreach (var id in Main.PlayerStates.Keys)
-            SummaryText[id] = Utils.SummaryTexts(id, disableColor: false);
+        {
+            if (Main.EnableRoleSummary.Value)
+            {
+                SummaryText[id] = Utils.SummaryTexts(id, disableColor: false);
+            }
+            if (!Main.EnableRoleSummary.Value)
+            {
+                SummaryText[id] = Utils.NewSummaryTexts(id, disableColor: false);
+            }
+        }
 
         var sb = new StringBuilder(GetString("KillLog") + ":");
         foreach (var kvp in Main.PlayerStates.OrderBy(x => x.Value.RealKiller.Item1.Ticks))
@@ -280,7 +289,7 @@ class SetEverythingUpPatch
             }
             if (!Main.EnableRoleSummary.Value)
             {
-                RoleSummary.fontSizeMin = RoleSummary.fontSizeMax = RoleSummary.fontSize = 0f;
+                RoleSummary.fontSizeMin = RoleSummary.fontSizeMax = RoleSummary.fontSize = 1f;
             }
         }
         var RoleSummaryRectTransform = RoleSummary.GetComponent<RectTransform>();

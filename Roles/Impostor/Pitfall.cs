@@ -72,7 +72,7 @@ namespace TOHE.Roles.Impostor
             // Remove inactive traps so there is room for new traps
             Traps = Traps.Where(a => a.IsActive).ToList();
 
-            var position = shapeshifter.GetTruePosition();
+            Vector2 position = shapeshifter.transform.position;
             var playerTraps = Traps.Where(a => a.PitfallPlayerId == shapeshifter.PlayerId);
             if (playerTraps.Count() >= MaxTrapCount.GetInt())
             {
@@ -107,7 +107,7 @@ namespace TOHE.Roles.Impostor
                 return;
             }
 
-            var position = player.GetTruePosition();
+            Vector2 position = player.transform.position;
 
             foreach (var trap in Traps.Where(a => a.IsActive))
             {

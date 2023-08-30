@@ -218,10 +218,6 @@ class HudManagerPatch
                         __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("KillButtonText"));
                         break;
-                    case CustomRoles.Werewolf:
-                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
-                        __instance.KillButton.OverrideText(GetString("MaulKillButtonText"));
-                        break;
                     case CustomRoles.Glitch:
                         __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.SabotageButton.OverrideText(GetString("HackButtonText"));
@@ -604,10 +600,10 @@ class SetHudActivePatch
         switch (player.GetCustomRole())
         {
             case CustomRoles.Sheriff:
+            case CustomRoles.Arsonist:
             case CustomRoles.SwordsMan:
             case CustomRoles.Deputy:
             case CustomRoles.Monarch:
-            case CustomRoles.Arsonist:
             case CustomRoles.NWitch:
             case CustomRoles.CovenLeader:
             case CustomRoles.Ritualist:
@@ -668,7 +664,7 @@ class SetHudActivePatch
         }
         __instance.KillButton.ToggleVisible(player.CanUseKillButton());
         __instance.ImpostorVentButton.ToggleVisible(player.CanUseImpostorVentButton());
-        __instance.SabotageButton.ToggleVisible(player.CanUseSabotage());
+        __instance.SabotageButton.ToggleVisible(player.CanUseSabotage() && isActive);
     }
 }
 [HarmonyPatch(typeof(VentButton), nameof(VentButton.DoClick))]
@@ -694,7 +690,7 @@ class MapBehaviourShowPatch
         if (opts.Mode is MapOptions.Modes.Normal or MapOptions.Modes.Sabotage)
         {
             var player = PlayerControl.LocalPlayer;
-            if (player.Is(CustomRoleTypes.Impostor) || (player.Is(CustomRoles.Parasite)) || (player.Is(CustomRoles.PotionMaster)) || (player.Is(CustomRoles.Glitch)) || (player.Is(CustomRoles.Werewolf)) || (player.Is(CustomRoles.Refugee)) || (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) || (player.Is(CustomRoles.Traitor) && Traitor.CanUseSabotage.GetBool()))
+            if (player.Is(CustomRoleTypes.Impostor) || (player.Is(CustomRoles.Parasite)) || (player.Is(CustomRoles.PotionMaster)) || (player.Is(CustomRoles.Glitch)) || (player.Is(CustomRoles.Refugee)) || (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) || (player.Is(CustomRoles.Traitor) && Traitor.CanUseSabotage.GetBool()))
                 opts.Mode = MapOptions.Modes.Sabotage;
             else
                 opts.Mode = MapOptions.Modes.Normal;

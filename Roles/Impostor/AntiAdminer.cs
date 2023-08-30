@@ -51,7 +51,7 @@ internal class AntiAdminer
             if (Pelican.IsEaten(pc.PlayerId) || pc.inVent || pc.GetCustomRole().IsImpostor()) continue;
             try
             {
-                Vector2 PlayerPos = pc.GetTruePosition();
+                Vector2 PlayerPos = pc.transform.position;
 
                 switch (Main.NormalOptions.MapId)
                 {

@@ -73,18 +73,44 @@ public static class Utils
     public static void TPAll(Vector2 location)
     {
         foreach (PlayerControl pc in Main.AllAlivePlayerControls)
-            TP(pc.NetTransform, location);
+            pc.RpcTeleport(new Vector2(location.x, location.y));
     }
 
-    public static void TP(CustomNetworkTransform nt, Vector2 location)
+    public static void RpcTeleport(this PlayerControl player, Vector2 location)
     {
-        location += new Vector2(0, 0.3636f);
-        if (AmongUsClient.Instance.AmHost) nt.SnapTo(location);
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(nt.NetId, (byte)RpcCalls.SnapTo, SendOption.None);
-        //nt.WriteVector2(location, writer);
+        Logger.Info($" {player.PlayerId}", "Teleport - Player Id");
+        Logger.Info($" {location}", "Teleport - Location");
+
+        if (player.inVent)
+            player.MyPhysics.RpcBootFromVent(0);
+
+        if (AmongUsClient.Instance.AmHost)
+            player.NetTransform.SnapTo(location);
+
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(player.NetTransform.NetId, (byte)RpcCalls.SnapTo, SendOption.None);
+        Logger.Info($" {writer}", "Teleport - writer");
+        Logger.Info($" {player.NetTransform.NetId}", "Teleport - NetTransform Id");
+        Logger.Info($" {(byte)RpcCalls.SnapTo}", "Teleport - RpcCalls.SnapTo");
+        Logger.Info($" {SendOption.None}", "Teleport - SendOption.None");
+
         NetHelpers.WriteVector2(location, writer);
-        writer.Write(nt.lastSequenceId);
+        Logger.Info($" {location}", "Teleport - NetHelpers.WriteVector2 - Location");
+        Logger.Info($" {writer}", "Teleport - NetHelpers.WriteVector2 - writer");
+
+        writer.Write(player.NetTransform.lastSequenceId);
+        Logger.Info($" {writer}", "Teleport - Write writer");
+        Logger.Info($" {player.NetTransform.lastSequenceId}", "Teleport - Player NetTransform lastSequenceId - writer");
+
         AmongUsClient.Instance.FinishRpcImmediately(writer);
+    }
+    public static void RpcRandomVentTeleport(this PlayerControl player)
+    {
+        var vents = UnityEngine.Object.FindObjectsOfType<Vent>();
+        var rand = new System.Random();
+        var vent = vents[rand.Next(0, vents.Count)];
+
+        Logger.Info($" {vent.transform.position}", "Rpc Vent Teleport Position");
+        player.RpcTeleport(new Vector2(vent.transform.position.x, vent.transform.position.y + 0.3636f));
     }
     public static ClientData GetClientById(int id)
     {
@@ -1562,6 +1588,7 @@ public static class Utils
     }
     public static bool IsPlayerModerator(string friendCode)
     {
+        if (friendCode == "") return false;
         var friendCodesFilePath = @"./TOHE-DATA/Moderators.txt";
         var friendCodes = File.ReadAllLines(friendCodesFilePath);
         return friendCodes.Any(code => code.Contains(friendCode));
@@ -1967,7 +1994,14 @@ public static class Utils
                 SelfName = GetString("DevouredName");
 
             // Camouflage
-            if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive) && !CamouflageIsForMeeting)
+            if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool() &&
+                !(Options.DisableOnSomeMaps.GetBool() &&
+                    ((Options.DisableOnSkeld.GetBool() && Options.IsActiveSkeld) ||
+                     (Options.DisableOnMira.GetBool() && Options.IsActiveMiraHQ) ||
+                     (Options.DisableOnPolus.GetBool() && Options.IsActivePolus) ||
+                     (Options.DisableOnAirship.GetBool() && Options.IsActiveAirship)
+                    )))
+                    || Camouflager.IsActive) && !CamouflageIsForMeeting)
                 SelfName = $"<size=0%>{SelfName}</size>";
 
 
@@ -2355,7 +2389,14 @@ public static class Utils
                     TargetPlayerName = GetString("DevouredName");
 
                 // Camouflage
-                if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive) && !CamouflageIsForMeeting)
+                if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool() &&
+                !(Options.DisableOnSomeMaps.GetBool() &&
+                    ((Options.DisableOnSkeld.GetBool() && Options.IsActiveSkeld) ||
+                     (Options.DisableOnMira.GetBool() && Options.IsActiveMiraHQ) ||
+                     (Options.DisableOnPolus.GetBool() && Options.IsActivePolus) ||
+                     (Options.DisableOnAirship.GetBool() && Options.IsActiveAirship)
+                    )))
+                    || Camouflager.IsActive) && !CamouflageIsForMeeting)
                     TargetPlayerName = $"<size=0%>{TargetPlayerName}</size>";
 
 
@@ -2610,6 +2651,25 @@ public static class Utils
         if (id == PlayerControl.LocalPlayer.PlayerId) name = DataManager.player.Customization.Name;
         else name = GetPlayerById(id)?.Data.PlayerName ?? name;
         string summary = $"{ColorString(Main.PlayerColors[id], name)}<pos=14%>{GetProgressText(id)}</pos><pos=24%> {GetKillCountText(id)}</pos><pos={22 + KillsPos}%> {GetVitalText(id, true)}</pos><pos={RolePos + KillsPos}%> {GetDisplayRoleName(id, true)}{GetSubRolesText(id, summary: true)}</pos>";
+        if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
+        {
+            if (TranslationController.Instance.currentLanguage.languageID is SupportedLangs.SChinese or SupportedLangs.TChinese)
+                summary = $"{GetProgressText(id)}\t<pos=22%>{ColorString(Main.PlayerColors[id], name)}</pos>";
+            else summary = $"{ColorString(Main.PlayerColors[id], name)}<pos=30%>{GetProgressText(id)}</pos>";
+            if (GetProgressText(id).Trim() == "") return "INVALID";
+        }
+        return check && GetDisplayRoleName(id, true).RemoveHtmlTags().Contains("INVALID:NotAssigned")
+            ? "INVALID"
+            : disableColor ? summary.RemoveHtmlTags() : summary;
+    }
+    public static string NewSummaryTexts(byte id, bool disableColor = true, bool check = false)
+    {
+        var RolePos = TranslationController.Instance.currentLanguage.languageID is SupportedLangs.English or SupportedLangs.Russian ? 37 : 34;
+        var KillsPos = TranslationController.Instance.currentLanguage.languageID is SupportedLangs.English or SupportedLangs.Russian ? 14 : 12;
+        var name = Main.AllPlayerNames[id].RemoveHtmlTags().Replace("\r\n", string.Empty);
+        if (id == PlayerControl.LocalPlayer.PlayerId) name = DataManager.player.Customization.Name;
+        else name = GetPlayerById(id)?.Data.PlayerName ?? name;
+        string summary = $"{ColorString(Main.PlayerColors[id], name)} - {GetDisplayRoleName(id, true)}{GetSubRolesText(id, summary: true)}{GetProgressText(id)} ({GetVitalText(id, true)}) {GetKillCountText(id)}";
         if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
         {
             if (TranslationController.Instance.currentLanguage.languageID is SupportedLangs.SChinese or SupportedLangs.TChinese)

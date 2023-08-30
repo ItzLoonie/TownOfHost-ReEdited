@@ -484,6 +484,12 @@ class IntroCutsceneDestroyPatch
                         break;
                 }
             }
+
+            var amDesyncImpostor = Main.ResetCamPlayerList.Contains(PlayerControl.LocalPlayer.PlayerId);
+            if (amDesyncImpostor)
+            {
+                PlayerControl.LocalPlayer.Data.Role.AffectedByLightAffectors = false;
+            }
         }
         Logger.Info("OnDestroy", "IntroCutscene");
     }

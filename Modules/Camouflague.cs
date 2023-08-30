@@ -83,7 +83,14 @@ public static class Camouflage
 
         var oldIsCamouflage = IsCamouflage;
 
-        IsCamouflage = (Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()) || Camouflager.IsActive;
+        IsCamouflage = (Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool()
+            && !(Options.DisableOnSomeMaps.GetBool() &&
+            ((Options.DisableOnSkeld.GetBool() && Options.IsActiveSkeld) ||
+             (Options.DisableOnMira.GetBool() && Options.IsActiveMiraHQ) ||
+             (Options.DisableOnPolus.GetBool() && Options.IsActivePolus) ||
+             (Options.DisableOnAirship.GetBool() && Options.IsActiveAirship)
+            )))
+            || Camouflager.IsActive;
 
         if (oldIsCamouflage != IsCamouflage)
         {

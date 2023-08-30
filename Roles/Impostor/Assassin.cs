@@ -99,7 +99,7 @@ internal static class Assassin
             {
                 if (!(target == null || !target.IsAlive() || Pelican.IsEaten(target.PlayerId) || target.inVent || !GameStates.IsInTask))
                 {
-                    Utils.TP(pc.NetTransform, target.GetTruePosition());
+                    pc.RpcTeleport(target.transform.position);
                     pc.ResetKillCooldown();
                     pc.RpcCheckAndMurder(target);
                 }

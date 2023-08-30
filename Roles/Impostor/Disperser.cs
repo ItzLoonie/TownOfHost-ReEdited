@@ -28,12 +28,9 @@ public static class Disperser
     }
     public static void DispersePlayers(PlayerControl shapeshifter)
     {
-        var rd = new System.Random();
-        var vents = Object.FindObjectsOfType<Vent>();
-
         foreach (var pc in PlayerControl.AllPlayerControls)
         {
-            if (shapeshifter.PlayerId == pc.PlayerId || pc.Data.IsDead || pc.onLadder || pc.inVent || GameStates.IsMeeting)
+            if (shapeshifter.PlayerId == pc.PlayerId || pc.Data.IsDead || pc.onLadder || GameStates.IsMeeting)
             {
                 if (!pc.Is(CustomRoles.Disperser))
                     pc.Notify(ColorString(GetRoleColor(CustomRoles.Disperser), string.Format(GetString("ErrorTeleport"), pc.GetRealName())));
@@ -42,8 +39,7 @@ public static class Disperser
             }
 
             pc.RPCPlayCustomSound("Teleport");
-            var vent = vents[rd.Next(0, vents.Count)];
-            TP(pc.NetTransform, new Vector2(vent.transform.position.x, vent.transform.position.y));
+            pc.RpcRandomVentTeleport();
             pc.Notify(ColorString(GetRoleColor(CustomRoles.Disperser), string.Format(GetString("TeleportedInRndVentByDisperser"), pc.GetRealName())));
         }
     }
