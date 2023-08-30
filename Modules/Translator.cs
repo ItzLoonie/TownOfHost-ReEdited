@@ -38,7 +38,7 @@ public static class Translator
             }
             using (var reader = new StreamReader(stream))
             {
-                //Logger.Warn("INSIDE READER", "TRANSLATOR");
+                Logger.Warn("you have a skill issue frfr", "Fun Fact!");
                 string json = reader.ReadToEnd();
                 translateMaps = JsonSerializer.Deserialize<Dictionary<string, Dictionary<int, string>>>(json);
             }

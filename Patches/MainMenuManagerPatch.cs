@@ -52,7 +52,7 @@ public static class MainMenuManagerPatch
         GameObject splashArt = new("SplashArt");
         splashArt.transform.position = new Vector3(0, 0f, 600f); //= new Vector3(0, 0.40f, 600f);
         var spriteRenderer = splashArt.AddComponent<SpriteRenderer>();
-        spriteRenderer.sprite = Utils.LoadSprite("TOHE.Resources.Background.TOH-RE-Background-New.jpg", 150f);
+        spriteRenderer.sprite = Utils.LoadSprite("TOHE.Resources.Background.TOH-RE-Background-New.png", 150f);
 
 
         //__instance.playLocalButton.inactiveSprites.GetComponent<SpriteRenderer>().color = new Color(0.1647f, 0f, 0.7765f);
@@ -61,7 +61,7 @@ public static class MainMenuManagerPatch
         //__instance.PlayOnlineButton.transform.position = new Vector3(0f, -0.25f, 0f);
 
 
-        __instance.playButton.inactiveSprites.GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0.35f);
+    /*    __instance.playButton.inactiveSprites.GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0.35f);
         __instance.playButton.activeSprites.GetComponent<SpriteRenderer>().color = new Color(0.929f, 0.255f, 0.773f);
         Color originalColorPlayButton = __instance.playButton.inactiveSprites.GetComponent<SpriteRenderer>().color;
         __instance.playButton.inactiveSprites.GetComponent<SpriteRenderer>().color = originalColorPlayButton * 0.5f;
@@ -126,7 +126,7 @@ public static class MainMenuManagerPatch
         Color originalColorCreditsButton = __instance.creditsButton.inactiveSprites.GetComponent<SpriteRenderer>().color;
         __instance.creditsButton.inactiveSprites.GetComponent<SpriteRenderer>().color = originalColorCreditsButton * 0.6f;
         __instance.creditsButton.activeTextColor = Color.white;
-        __instance.creditsButton.inactiveTextColor = Color.white;
+        __instance.creditsButton.inactiveTextColor = Color.white; */
 
 
 
