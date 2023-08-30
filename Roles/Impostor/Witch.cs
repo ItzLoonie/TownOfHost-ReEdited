@@ -205,7 +205,7 @@ public static class Witch
     }
     public static string GetSpelledMark(byte target, bool isMeeting)
     {
-        if (isMeeting && IsEnable && IsSpelled(target))
+        if (IsEnable && IsSpelled(target) && isMeeting)
         {
             return Utils.ColorString(Palette.ImpostorRed, "†");
         }
