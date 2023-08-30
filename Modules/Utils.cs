@@ -1806,9 +1806,6 @@ public static class Utils
             
             logger.Info("NotifyRoles-Loop1-" + seer.GetNameWithRole() + ":START");
 
-            // seer task progress
-            string SelfTaskText = GetProgressText(seer);
-
             // Clear marker after name seer
             SelfMark.Clear();
 
@@ -1983,7 +1980,8 @@ public static class Utils
                     SeerRealName = $"<size=110%><color=#663399>" + GetString("YouAreCoven") + $"</color></size>\n<size=130%>" + seer.GetRoleInfo() + $"</size>";
             }
 
-            //seerの役職名とSelfTaskTextとseerのプレイヤー名とSelfMarkを合成
+            // Combine SelfRoleName, SelfTaskText, SelfName, SelfDeathReason
+            string SelfTaskText = GetProgressText(seer);
             string SelfRoleName = $"<size={fontSize}>{seer.GetDisplayRoleName()}{SelfTaskText}</size>";
             string SelfDeathReason = seer.KnowDeathReason(seer) ? $"({ColorString(GetRoleColor(CustomRoles.Doctor), GetVitalText(seer.PlayerId))})" : "";
             string SelfName = $"{ColorString(seer.GetRoleColor(), SeerRealName)}{SelfDeathReason}{SelfMark}";
