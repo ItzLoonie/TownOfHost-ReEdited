@@ -47,7 +47,7 @@ public static class Translator
                 var translations = translateMaps[key];
                 foreach (var translationKey in translations.Keys.ToList())
                 {
-                    translations[translationKey] = translations[translationKey].Replace("\\n", "\n").Replace("\\n","\n");
+                    translations[translationKey] = translations[translationKey].Replace("\\n", "\n").Replace("\\r", "\r");
                 }
             }
         }
