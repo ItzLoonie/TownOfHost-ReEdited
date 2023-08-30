@@ -911,9 +911,10 @@ internal class ChatCommands
         foreach (CustomRoles rl in Enum.GetValues(typeof(CustomRoles)))
         {
             if (rl.IsVanilla()) continue;
-            var roleName = GetString(rl.ToString()).ToLower().Trim();
-            if (name.Contains(roleName))
-            {
+            var roleName = GetString(rl.ToString()).ToLower().Trim().Replace(" ", "");
+            string nameWithoutId = Regex.Replace(name.Replace(" ", ""), @"^\d+", "");
+            if (nameWithoutId == roleName)
+            {              
                 role = rl;
                 return true;
             }
