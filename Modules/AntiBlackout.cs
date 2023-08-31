@@ -11,11 +11,15 @@ namespace TOHE;
 public static class AntiBlackout
 {
     ///<summary>
-    ///Whether to override the expulsion process
+    ///Whether to override the expulsion process due to one Impostor and one Neutral killer / Coven
     ///</summary>
-    public static bool OverrideExiledPlayer => IsRequired && (IsSingleImpostor || Diff_CrewImp == 1 || Options.TemporaryAntiBlackoutFix.GetBool());
+    public static bool ImpostorOverrideExiledPlayer => IsRequired && (IsSingleImpostor || Diff_CrewImp == 1);
     ///<summary>
-    ///Whether there is only one imposter present in the setting
+    ///Whether to override the expulsion process due to Neutral Killers or Covens
+    ///</summary>
+    public static bool NeutralOverrideExiledPlayer => Options.TemporaryAntiBlackoutFix.GetBool() && CheckCountNeutralKiller;
+    ///<summary>
+    ///Whether there is only one impostors present in the setting
     ///</summary>
     public static bool IsSingleImpostor => Main.RealOptionsData != null ? Main.RealOptionsData.GetInt(Int32OptionNames.NumImpostors) <= 1 : Main.NormalOptions.NumImpostors <= 1;
     ///<summary>
@@ -42,7 +46,7 @@ public static class AntiBlackout
         || PotionMaster.IsEnable || Wraith.IsEnable
         || Necromancer.IsEnable;
     ///<summary>
-    ///Difference between the number of non-imposters and the number of imposters
+    ///Difference between the number of non-impostors and the number of imposters
     ///</summary>
     public static int Diff_CrewImp
     {
@@ -60,6 +64,22 @@ public static class AntiBlackout
             Logger.Info($" {numCrewmates}", "AntiBlackout Num Crewmates");
             Logger.Info($" {numImpostors}", "AntiBlackout Num Impostors");
             return numCrewmates - numImpostors;
+        }
+    }
+    public static bool CheckCountNeutralKiller
+    {
+        get
+        {
+            int numNeutrals = 0;
+
+            foreach (var pc in Main.AllPlayerControls)
+            {
+                if (pc.GetCustomRole().IsNK() || pc.GetCustomRole().IsCoven()) numNeutrals++;
+            }
+
+            Logger.Info($" {numNeutrals}", "AntiBlackout Num Neutrals");
+
+            return numNeutrals > 1;
         }
     }
     public static bool IsCached { get; private set; } = false;

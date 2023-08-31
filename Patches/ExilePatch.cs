@@ -42,7 +42,7 @@ class ExileControllerWrapUpPatch
     }
     static void WrapUpPostfix(GameData.PlayerInfo exiled)
     {
-        if (AntiBlackout.OverrideExiledPlayer) exiled = AntiBlackout_LastExiled;
+        if (AntiBlackout.ImpostorOverrideExiledPlayer || AntiBlackout.NeutralOverrideExiledPlayer) exiled = AntiBlackout_LastExiled;
 
         bool DecidedWinner = false;
         if (!AmongUsClient.Instance.AmHost) return; //ホスト以外はこれ以降の処理を実行しません
@@ -50,7 +50,7 @@ class ExileControllerWrapUpPatch
         if (!Collector.CollectorWin(false) && exiled != null) //判断集票者胜利
         {
             // Deal with the darkening bug for the spirit world
-            if (!AntiBlackout.OverrideExiledPlayer && Main.ResetCamPlayerList.Contains(exiled.PlayerId))
+            if (!(AntiBlackout.ImpostorOverrideExiledPlayer && AntiBlackout.NeutralOverrideExiledPlayer) && Main.ResetCamPlayerList.Contains(exiled.PlayerId))
                 exiled.Object?.ResetPlayerCam(1f);
 
             exiled.IsDead = true;
@@ -202,7 +202,7 @@ class ExileControllerWrapUpPatch
             {
                 exiled = AntiBlackout_LastExiled;
                 AntiBlackout.SendGameData();
-                if (AntiBlackout.OverrideExiledPlayer && // State in which the expulsion target is overwritten (need not be executed if the expulsion target is not overwritten)
+                if ((AntiBlackout.ImpostorOverrideExiledPlayer || AntiBlackout.NeutralOverrideExiledPlayer) && // State in which the expulsion target is overwritten (need not be executed if the expulsion target is not overwritten)
                     exiled != null && // exiled is not null
                     exiled.Object != null) //exiled.Object is not null
                 {

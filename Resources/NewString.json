@@ -35101,8 +35101,8 @@
     },
     "Warning.TemporaryAntiBlackoutFix": {
         "13": "",
-        "0": "<size=150%>Warning:</size>\\n\\nThe setting <b>Temporary Anti Blackout Fix</b> is enabled.\\nAll ejections will be displayed as a tie, but will not effect the outcome of the ejection.\\n\\nThis is recommended to keep enabled to prevent black screens.",
-        "5": "",
+        "0": "<size=150%>Warning:</size>\\n\\nThe setting <b>Use Protection Anti Blackout</b> is enabled.\\nAll ejections will be displayed as a tie because there are more than one Neutral Killers and/or Covens in game, but will not effect the outcome of the ejection.\\n\\nThis is recommended to keep enabled to prevent black screens.",
+        "5": "<size=150%>Внимание:</size>\\n\\nНастройка <b>Использовать защиту от чёрных экарнов</b> включена.\\nВсе изганния будут отображаться как ничья, поскольку в игре Нейтральных Убийц и/или Ковенов больше одного, но на результат изгнания это не влияет (Только визуально).\\n\\nРекомендуется оставить этот параметр включенным, чтобы избежать появления черных экранов",
         "14": "",
         "12": "",
         "1": "",
@@ -35119,8 +35119,8 @@
     },
     "TemporaryAntiBlackoutFix": {
         "13": "",
-        "0": "Temporary Anti Blackout Fix",
-        "5": "",
+        "0": "Use Protection Anti Blackout",
+        "5": "Использовать защиту от чёрных экарнов",
         "14": "",
         "12": "",
         "1": "",
@@ -35138,7 +35138,7 @@
     "AntiBlackoutFixTitle": {
         "13": "",
         "0": "ANTI BLACKOUT FIX",
-        "5": "",
+        "5": "ЗАЩИТА ОТ ЧЁРНЫХ ЭКАРНОВ",
         "14": "",
         "12": "",
         "1": "",
@@ -35156,7 +35156,7 @@
     "Warning.OverrideExiledPlayer": {
         "13": "警告：由于设置内鬼数量为1（船鬼计算为船员），为了避免黑屏错误，将会将驱逐动画显示为平票或跳过（只会影响视觉，不会影响投票结果）。请设置更多的内鬼人数或禁用船鬼以避免该问题。",
         "0": "Warning: Since the number of Impostors is set to 1, in order to avoid black screen, the voting screen will always show as a tied vote or a skip vote (only affects the visual, not the voting results). Please set more number of Impostors to avoid this problem.",
-        "5": "Предупреждение: поскольку количество предателей установлено как 1, во избежании черного экрана, все голосования всегда будут отображаться как пропущенное голосование (влияет только на визуальное представление, но не на результаты голосования). Пожалуйста, установите большее количество самозванцев, чтобы избежать этой проблемы.",
+        "5": "Предупреждение: поскольку количество предателей в игре равняется одному и присутсвует нейтральные убийцы и/или ковены, во избежании черного экрана, все голосования всегда будут отображаться как пропущенное голосование (влияет только на визуальное представление, но не на результаты голосования). Пожалуйста, установите большее количество самозванцев, чтобы избежать этой проблемы.",
         "14": "警告：由于设置内鬼数量为1（船鬼计算为船员），为了避免黑屏错误，将会将驱逐动画显示为平票或跳过（只会影响视觉，不会影响投票结果）。请设置更多的内鬼人数或禁用船鬼以避免该问题。",
         "12": "设置内鬼人数为一个时，放逐动画会显示为平票",
         "1": "",
