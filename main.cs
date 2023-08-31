@@ -24,7 +24,7 @@ public class Main : BasePlugin
     // == プログラム設定 / Program Config ==
     public const string OriginalForkId = "OriginalTOH";
 
-    public static readonly string ModName = "Town of Host Re-Edited";
+    public static readonly string ModName = "TOH-RE";
     public static readonly string ForkId = "TOHE";
     public static readonly string ModColor = "#ffc0cb";
     public static readonly bool AllowPublicRoom = true;
@@ -49,6 +49,9 @@ public class Main : BasePlugin
 
     public static readonly bool ShowWebsiteButton = true;
     public static readonly string WebsiteInviteUrl = "https://tohre.dev";
+
+//    public static readonly bool ShowPatreonButton = true;
+//    public static readonly string PatreonInviteUrl = "https://www.patreon.com/TOHRE";
 
     public Harmony Harmony { get; } = new Harmony(PluginGuid);
     public static Version version = Version.Parse(PluginVersion);

@@ -17,6 +17,7 @@ public static class MainMenuManagerPatch
     private static PassiveButton gitHubButton;
     private static PassiveButton discordButton;
     private static PassiveButton websiteButton;
+    private static PassiveButton patreonButton;
 
     [HarmonyPatch(nameof(MainMenuManager.Start)), HarmonyPostfix, HarmonyPriority(Priority.Normal)]
     public static void StartPostfix(MainMenuManager __instance)
@@ -138,7 +139,7 @@ public static class MainMenuManagerPatch
         {
             gitHubButton = CreateButton(
                 "GitHubButton",
-                new(-1.8f, -1.9f, 1f),
+                new(-1.8f, -1.5f, 1f),
                 new(153, 153, 153, byte.MaxValue),
                 new(209, 209, 209, byte.MaxValue),
                 () => Application.OpenURL(Main.GitHubInviteUrl),
@@ -151,7 +152,7 @@ public static class MainMenuManagerPatch
         {
             discordButton = CreateButton(
                 "DiscordButton",
-                new(-1.8f, -2.3f, 1f),
+                new(-1.8f, -1.9f, 1f),
                 new(88, 101, 242, byte.MaxValue),
                 new(148, 161, byte.MaxValue, byte.MaxValue),
                 () => Application.OpenURL(Main.DiscordInviteUrl),
@@ -164,14 +165,13 @@ public static class MainMenuManagerPatch
         {
             websiteButton = CreateButton(
                 "WebsiteButton",
-                new(-1.8f, -2.7f, 1f),
+                new(-1.8f, -2.3f, 1f),
                 new(251, 81, 44, byte.MaxValue),
                 new(211, 77, 48, byte.MaxValue),
                 () => Application.OpenURL(Main.WebsiteInviteUrl),
                 GetString("Website")); //"Website"
         }
         websiteButton.gameObject.SetActive(Main.ShowWebsiteButton);
-
 
         var howToPlayButton = __instance.howToPlayButton;
         var freeplayButton = howToPlayButton.transform.parent.Find("FreePlayButton");
