@@ -79,7 +79,6 @@ public static class AntiBlackout
             }
 
             Logger.Info($" {numNeutrals}", "AntiBlackout Num Neutrals");
-
             return numNeutrals;
         }
     }
