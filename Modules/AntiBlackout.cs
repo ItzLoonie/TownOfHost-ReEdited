@@ -11,13 +11,13 @@ namespace TOHE;
 public static class AntiBlackout
 {
     ///<summary>
-    ///Whether to override the expulsion process due to one Impostor and one Neutral killer / Coven
+    ///Whether to override the expulsion process due to one Impostor and Neutral killers / Covens
     ///</summary>
     public static bool ImpostorOverrideExiledPlayer => IsRequired && (IsSingleImpostor || Diff_CrewImp == 1);
     ///<summary>
     ///Whether to override the expulsion process due to Neutral Killers or Covens
     ///</summary>
-    public static bool NeutralOverrideExiledPlayer => Options.TemporaryAntiBlackoutFix.GetBool() && CheckCountNeutralKiller;
+    public static bool NeutralOverrideExiledPlayer => Options.TemporaryAntiBlackoutFix.GetBool() && CountNeutralKiller > 1 && !(IsSingleImpostor || Diff_CrewImp == 1);
     ///<summary>
     ///Whether there is only one impostors present in the setting
     ///</summary>
@@ -66,7 +66,7 @@ public static class AntiBlackout
             return numCrewmates - numImpostors;
         }
     }
-    public static bool CheckCountNeutralKiller
+    public static int CountNeutralKiller
     {
         get
         {
@@ -74,12 +74,13 @@ public static class AntiBlackout
 
             foreach (var pc in Main.AllPlayerControls)
             {
-                if (pc.GetCustomRole().IsNK() || pc.GetCustomRole().IsCoven()) numNeutrals++;
+                if ((pc.GetCustomRole().IsNK() && !pc.Is(CustomRoles.Arsonist)) || pc.GetCustomRole().IsCoven()) numNeutrals++;
+                else if (pc.Is(CustomRoles.Arsonist) && Options.ArsonistKeepsGameGoing.GetBool()) numNeutrals++;
             }
 
             Logger.Info($" {numNeutrals}", "AntiBlackout Num Neutrals");
 
-            return numNeutrals > 1;
+            return numNeutrals;
         }
     }
     public static bool IsCached { get; private set; } = false;
