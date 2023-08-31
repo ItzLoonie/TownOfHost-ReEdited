@@ -50,7 +50,7 @@ class ExileControllerWrapUpPatch
         if (!Collector.CollectorWin(false) && exiled != null) //判断集票者胜利
         {
             // Deal with the darkening bug for the spirit world
-            if (!(AntiBlackout.ImpostorOverrideExiledPlayer && AntiBlackout.NeutralOverrideExiledPlayer) && Main.ResetCamPlayerList.Contains(exiled.PlayerId))
+            if (!(AntiBlackout.ImpostorOverrideExiledPlayer || AntiBlackout.NeutralOverrideExiledPlayer) && Main.ResetCamPlayerList.Contains(exiled.PlayerId))
                 exiled.Object?.ResetPlayerCam(1f);
 
             exiled.IsDead = true;
