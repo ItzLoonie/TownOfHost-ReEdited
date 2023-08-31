@@ -2068,6 +2068,7 @@ public static class Utils
 
                     logger.Info("NotifyRoles-Loop2-" + target.GetNameWithRole() + ":START");
 
+                    seerRole = seer.GetCustomRole();
 
                 // ====== Add TargetMark for target ======
 
