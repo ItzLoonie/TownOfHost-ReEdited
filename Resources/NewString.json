@@ -48671,7 +48671,7 @@
         "11": "",
         "15": ""
     },
-    "OracleCheck.NotCrew": {
+    "OracleCheck.NotCrewmate": {
         "13": "看起来不是船员阵营",
         "0": "Appears to not be a crewmate",
         "5": "Похоже это не Член Экипажа",
@@ -48689,7 +48689,7 @@
         "11": "",
         "15": ""
     },
-    "OracleCheck.Crew": {
+    "OracleCheck.Crewmate": {
         "13": "看起来是船员阵营",
         "0": "Appears to be a crewmate",
         "5": "Похоже это Член Экипажа",
@@ -48707,7 +48707,7 @@
         "11": "",
         "15": ""
     },
-    "OracleCheck.Neut": {
+    "OracleCheck.Neutral": {
         "13": "看起来是中立阵营",
         "0": "Appears to be a neutral",
         "5": "Похоже это Нейтрал",
@@ -48725,7 +48725,7 @@
         "11": "",
         "15": ""
     },
-    "OracleCheck.Imp": {
+    "OracleCheck.Impostor": {
         "13": "看起来是内鬼阵营",
         "0": "Appears to be an Impostor",
         "5": "Похоже это Предатель",
