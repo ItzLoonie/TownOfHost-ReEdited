@@ -102,7 +102,7 @@ public static class Camouflage
                     .Where(pc => PlayerSkins[pc.PlayerId].PetId != "" && pc.Data.IsDead && !pc.IsAlive())
                     .Do(pc => pc.RpcSetPet(""));
             }
-            Utils.NotifyRoles();
+            Utils.NotifyRoles(NoCache: true);
         }
     }
     public static void RpcSetSkin(PlayerControl target, bool ForceRevert = false, bool RevertToDefault = false)
