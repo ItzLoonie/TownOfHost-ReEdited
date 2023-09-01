@@ -100,7 +100,7 @@ public static class MafiaRevengeManager
                 //死者检查
                 Utils.AfterPlayerDeathTasks(target, true);
 
-                Utils.NotifyRoles(isForMeeting: false, NoCache: true);
+                Utils.NotifyRoles(isForMeeting: GameStates.IsMeeting, NoCache: true);
             }
             else
             {
