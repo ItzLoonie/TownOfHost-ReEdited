@@ -2714,7 +2714,7 @@ class FixedUpdatePatch
                 else if (Main.GodMode.Value) RoleText.enabled = true;
                 else RoleText.enabled = false; //そうでなければロールを非表示
                 if (!PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer.IsRevealedPlayer(__instance) && __instance.Is(CustomRoles.Trickster))
-                { 
+                {
                     RoleText.text = Farseer.RandomRole[PlayerControl.LocalPlayer.PlayerId];
                     RoleText.text += Farseer.GetTaskState();
                 }
@@ -2728,7 +2728,6 @@ class FixedUpdatePatch
                     RoleText.text += Utils.GetProgressText(__instance); //ロールの横にタスクなど進行状況表示
 
 
-                //変数定義
                 var seer = PlayerControl.LocalPlayer;
                 var target = __instance;
 
@@ -2758,10 +2757,10 @@ class FixedUpdatePatch
 
                     if (Pelican.IsEaten(seer.PlayerId))
                         RealName = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Pelican), GetString("EatenByPelican"));
-                    
+
                     if (Deathpact.IsInActiveDeathpact(seer))
                         RealName = Deathpact.GetDeathpactString(seer);
-                    
+
                     if (NameNotifyManager.GetNameNotify(target, out var name))
                         RealName = name;
                 }
@@ -2797,7 +2796,7 @@ class FixedUpdatePatch
 
                 if (seer.Is(CustomRoles.EvilTracker))
                     Mark.Append(EvilTracker.GetTargetMark(seer, target));
-                
+
                 if (seer.Is(CustomRoles.Tracker))
                     Mark.Append(Tracker.GetTargetMark(seer, target));
 
@@ -2832,7 +2831,7 @@ class FixedUpdatePatch
                     case CustomRoles.Revolutionist:
                         if (seer.IsDrawPlayer(target))
                             Mark.Append($"<color={Utils.GetRoleColorCode(seerRole)}>●</color>");
-                        
+
                         else if (Main.currentDrawTarget != byte.MaxValue && Main.currentDrawTarget == target.PlayerId)
                             Mark.Append($"<color={Utils.GetRoleColorCode(seerRole)}>○</color>");
                         break;
@@ -2846,43 +2845,36 @@ class FixedUpdatePatch
                         if (Main.PuppeteerList.ContainsValue(seer.PlayerId) && Main.PuppeteerList.ContainsKey(target.PlayerId))
                             Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Impostor)}>◆</color>");
                         break;
+
+                    case CustomRoles.Medic:
+                        if ((Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 1) && (Medic.InProtect(target.PlayerId) || Medic.TempMarkProtected == target.PlayerId))
+                            Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Medic)}>✚</color>");
+                        break;
+
+                    case CustomRoles.CovenLeader:
+                        if (Main.CovenLeaderList.ContainsValue(seer.PlayerId) && Main.CovenLeaderList.ContainsKey(target.PlayerId))
+                            Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.CovenLeader)}>◆</color>");
+                        break;
+
+                    case CustomRoles.NWitch:
+                        if (Main.TaglockedList.ContainsValue(seer.PlayerId) && Main.TaglockedList.ContainsKey(target.PlayerId))
+                            Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.NWitch)}>◆</color>");
+                        break;
+
+                    case CustomRoles.Shroud:
+                        if (Main.ShroudList.ContainsValue(seer.PlayerId) && Main.ShroudList.ContainsKey(target.PlayerId))
+                            Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Shroud)}>◈</color>");
+                        break;
                 }
 
                 if ((Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 2) && seer.PlayerId == target.PlayerId && (Medic.InProtect(seer.PlayerId) || Medic.TempMarkProtected == seer.PlayerId))
                     Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Medic)}>✚</color>");
 
-                if (seer.Is(CustomRoles.Medic) && (Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 1) && (Medic.InProtect(target.PlayerId) || Medic.TempMarkProtected == target.PlayerId))
-                    Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Medic)}>✚</color>");
-
                 if (seer.Data.IsDead && Medic.InProtect(target.PlayerId) && !seer.Is(CustomRoles.Medic))
                     Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Medic)}>✚</color>");
 
-                if (seer.Is(CustomRoles.CovenLeader))
-                {
-                    if (seer.Is(CustomRoles.CovenLeader) &&
-                    Main.CovenLeaderList.ContainsValue(seer.PlayerId) &&
-                    Main.CovenLeaderList.ContainsKey(target.PlayerId))
-                        Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.CovenLeader)}>◆</color>");
-                }
-                if (seer.Is(CustomRoles.NWitch))
-                {
-                    if (seer.Is(CustomRoles.NWitch) &&
-                    Main.TaglockedList.ContainsValue(seer.PlayerId) &&
-                    Main.TaglockedList.ContainsKey(target.PlayerId))
-                        Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.NWitch)}>◆</color>");
-                }
-                if (seer.Is(CustomRoles.Shroud))
-                {
-                    if (seer.Is(CustomRoles.Shroud) &&
-                    Main.ShroudList.ContainsValue(seer.PlayerId) &&
-                    Main.ShroudList.ContainsKey(target.PlayerId))
-                        Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Shroud)}>◈</color>");
-                }
                 if (Sniper.IsEnable && target.AmOwner)
-                {
                     Mark.Append(Sniper.GetShotNotify(target.PlayerId));
-
-                }
 
                 if (target.Is(CustomRoles.Lovers) && seer.Is(CustomRoles.Lovers))
                 {
@@ -2903,56 +2895,52 @@ class FixedUpdatePatch
 
 
                 Suffix.Append(Snitch.GetSnitchArrow(seer, target));
-
                 Suffix.Append(BountyHunter.GetTargetArrow(seer, target));
-
                 Suffix.Append(Mortician.GetTargetArrow(seer, target));
-
                 Suffix.Append(EvilTracker.GetTargetArrow(seer, target));
-
                 Suffix.Append(Bloodhound.GetTargetArrow(seer, target));
-
                 Suffix.Append(Tracker.GetTrackerArrow(seer, target));
-
                 Suffix.Append(Deathpact.GetDeathpactPlayerArrow(seer, target));
                 Suffix.Append(Deathpact.GetDeathpactMark(seer, target));
                 Suffix.Append(Spiritualist.GetSpiritualistArrow(seer, target));
+                Suffix.Append(Tracefinder.GetTargetArrow(seer, target));
 
                 if (Vulture.ArrowsPointingToDeadBody.GetBool())
                     Suffix.Append(Vulture.GetTargetArrow(seer, target));
 
-                Suffix.Append(Tracefinder.GetTargetArrow(seer, target));
-
-                if (GameStates.IsInTask && seer.Is(CustomRoles.AntiAdminer))
+                if (GameStates.IsInTask)
                 {
-                    AntiAdminer.FixedUpdate();
-                    if (target.AmOwner)
+                    if (seer.Is(CustomRoles.AntiAdminer))
                     {
-                        if (AntiAdminer.IsAdminWatch) Suffix.Append("<color=#ff1919>⚠</color>" + Utils.ColorString(Utils.GetRoleColor(CustomRoles.AntiAdminer), GetString("AdminWarning")));
-                        if (AntiAdminer.IsVitalWatch) Suffix.Append("<color=#ff1919>⚠</color>" + Utils.ColorString(Utils.GetRoleColor(CustomRoles.AntiAdminer), GetString("VitalsWarning")));
-                        if (AntiAdminer.IsDoorLogWatch) Suffix.Append("<color=#ff1919>⚠</color>" + Utils.ColorString(Utils.GetRoleColor(CustomRoles.AntiAdminer), GetString("DoorlogWarning")));
-                        if (AntiAdminer.IsCameraWatch) Suffix.Append("<color=#ff1919>⚠</color>" + Utils.ColorString(Utils.GetRoleColor(CustomRoles.AntiAdminer), GetString("CameraWarning")));
+                        AntiAdminer.FixedUpdate();
+                        if (target.AmOwner)
+                        {
+                            if (AntiAdminer.IsAdminWatch) Suffix.Append("<color=#ff1919>⚠</color>" + Utils.ColorString(Utils.GetRoleColor(CustomRoles.AntiAdminer), GetString("AdminWarning")));
+                            if (AntiAdminer.IsVitalWatch) Suffix.Append("<color=#ff1919>⚠</color>" + Utils.ColorString(Utils.GetRoleColor(CustomRoles.AntiAdminer), GetString("VitalsWarning")));
+                            if (AntiAdminer.IsDoorLogWatch) Suffix.Append("<color=#ff1919>⚠</color>" + Utils.ColorString(Utils.GetRoleColor(CustomRoles.AntiAdminer), GetString("DoorlogWarning")));
+                            if (AntiAdminer.IsCameraWatch) Suffix.Append("<color=#ff1919>⚠</color>" + Utils.ColorString(Utils.GetRoleColor(CustomRoles.AntiAdminer), GetString("CameraWarning")));
+                        }
                     }
-                }
-                if (GameStates.IsInTask && seer.Is(CustomRoles.Monitor))
-                {
-                    Monitor.FixedUpdate();
-                    if (target.AmOwner)
+                    if (seer.Is(CustomRoles.Monitor))
                     {
-                        if (Monitor.IsAdminWatch) Suffix.Append("<color=#7223DA>★</color>" + Utils.ColorString(Utils.GetRoleColor(CustomRoles.Monitor), GetString("AdminWarning")));
-                        if (Monitor.IsVitalWatch) Suffix.Append("<color=#7223DA>★</color>" + Utils.ColorString(Utils.GetRoleColor(CustomRoles.Monitor), GetString("VitalsWarning")));
-                        if (Monitor.IsDoorLogWatch) Suffix.Append("<color=#7223DA>★</color>" + Utils.ColorString(Utils.GetRoleColor(CustomRoles.Monitor), GetString("DoorlogWarning")));
-                        if (Monitor.IsCameraWatch) Suffix.Append("<color=#7223DA>★</color>" + Utils.ColorString(Utils.GetRoleColor(CustomRoles.Monitor), GetString("CameraWarning")));
+                        Monitor.FixedUpdate();
+                        if (target.AmOwner)
+                        {
+                            if (Monitor.IsAdminWatch) Suffix.Append("<color=#7223DA>★</color>" + Utils.ColorString(Utils.GetRoleColor(CustomRoles.Monitor), GetString("AdminWarning")));
+                            if (Monitor.IsVitalWatch) Suffix.Append("<color=#7223DA>★</color>" + Utils.ColorString(Utils.GetRoleColor(CustomRoles.Monitor), GetString("VitalsWarning")));
+                            if (Monitor.IsDoorLogWatch) Suffix.Append("<color=#7223DA>★</color>" + Utils.ColorString(Utils.GetRoleColor(CustomRoles.Monitor), GetString("DoorlogWarning")));
+                            if (Monitor.IsCameraWatch) Suffix.Append("<color=#7223DA>★</color>" + Utils.ColorString(Utils.GetRoleColor(CustomRoles.Monitor), GetString("CameraWarning")));
+                        }
                     }
-                }
-                if (GameStates.IsInTask && player.Is(CustomRoles.TimeMaster))
-                {
-                    if (Main.TimeMasterInProtect.TryGetValue(player.PlayerId, out var vtime) && vtime + Options.TimeMasterSkillDuration.GetInt() < Utils.GetTimeStamp())
+                    if (player.Is(CustomRoles.TimeMaster))
                     {
-                        Main.TimeMasterInProtect.Remove(player.PlayerId);
-                        if (!Options.DisableShieldAnimations.GetBool()) player.RpcGuardAndKill();
-                        else player.RpcResetAbilityCooldown();
-                        player.Notify(GetString("TimeMasterSkillStop"));
+                        if (Main.TimeMasterInProtect.TryGetValue(player.PlayerId, out var vtime) && vtime + Options.TimeMasterSkillDuration.GetInt() < Utils.GetTimeStamp())
+                        {
+                            Main.TimeMasterInProtect.Remove(player.PlayerId);
+                            if (!Options.DisableShieldAnimations.GetBool()) player.RpcGuardAndKill();
+                            else player.RpcResetAbilityCooldown();
+                            player.Notify(GetString("TimeMasterSkillStop"));
+                        }
                     }
                 }
 
@@ -2960,8 +2948,7 @@ class FixedUpdatePatch
                     Suffix.Append(SoloKombatManager.GetDisplayHealth(target));
 
                 /*if(main.AmDebugger.Value && main.BlockKilling.TryGetValue(target.PlayerId, out var isBlocked)) {
-                    Mark = isBlocked ? "(true)" : "(false)";
-                }*/
+                    Mark = isBlocked ? "(true)" : "(false)";}*/
 
                 // Devourer
                 bool targetDevoured = Devourer.HideNameOfConsumedPlayer.GetBool() && Devourer.PlayerSkinsCosumed.Any(a => a.Value.Contains(target.PlayerId));
