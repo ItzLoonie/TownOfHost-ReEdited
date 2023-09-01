@@ -217,15 +217,15 @@ public static class Occultist
     public static string GetCursedMark(byte target, bool isMeeting)
     {
         
-        if (isMeeting && IsEnable && IsCursed(target))
+        if (isMeeting && IsCursed(target))
         {
             if (!CursesLookLikeSpells.GetBool())
             {
-            return Utils.ColorString(RoleColorCurse, "❖");
+                return Utils.ColorString(RoleColorCurse, "❖");
             }
             if (CursesLookLikeSpells.GetBool())
             {
-            return Utils.ColorString(RoleColorSpell, "†");
+                return Utils.ColorString(RoleColorSpell, "†");
             }
         }
         return "";

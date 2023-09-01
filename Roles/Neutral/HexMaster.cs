@@ -215,7 +215,7 @@ public static class HexMaster
     public static string GetHexedMark(byte target, bool isMeeting)
     {
         
-        if (isMeeting && IsEnable && IsHexed(target))
+        if (isMeeting && IsHexed(target))
         {
             if (!HexesLookLikeSpells.GetBool())
             {

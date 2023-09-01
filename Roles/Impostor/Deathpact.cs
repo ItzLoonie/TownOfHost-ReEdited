@@ -190,6 +190,7 @@ namespace TOHE.Roles.Impostor
 
         public static string GetDeathpactPlayerArrow(PlayerControl seer, PlayerControl target = null)
         {
+            if (!IsEnable) return "";
             if (GameStates.IsMeeting) return "";
             if (!ShowArrowsToOtherPlayersInPact.GetBool()) return "";
             if (target != null && seer.PlayerId != target.PlayerId) return "";

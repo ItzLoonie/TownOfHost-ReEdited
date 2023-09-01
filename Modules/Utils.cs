@@ -1815,41 +1815,21 @@ public static class Utils
             if (seer.Is(CustomRoles.Lovers) || CustomRoles.Ntr.RoleExist())
                 SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Lovers), "♥"));
 
-            if (Snitch.IsEnable)
-                SelfMark.Append(Snitch.GetWarningArrow(seer));
-
-            if (Witch.IsEnable) 
-                SelfMark.Append(Witch.GetSpelledMark(seer.PlayerId, isForMeeting));
-            
-            if (HexMaster.IsEnable) 
-                SelfMark.Append(HexMaster.GetHexedMark(seer.PlayerId, isForMeeting));
-
-            if (Occultist.IsEnable) 
-                SelfMark.Append(Occultist.GetCursedMark(seer.PlayerId, isForMeeting));
-
-            if (Baker.IsEnable && Baker.IsPoisoned(seer) && isForMeeting && seer.IsAlive())
-                SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Famine), "θ"));
-
-            if (Shroud.IsEnable && Main.ShroudList.ContainsKey(seer.PlayerId) && isForMeeting && seer.IsAlive())
-                SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Shroud), "◈")); 
-
-            if (Pirate.IsEnable && seer.PlayerId == Pirate.PirateTarget)
-                SelfMark.Append(Pirate.GetPlunderedMark(seer.PlayerId, isForMeeting));
-
             if (seer.Is(CustomRoles.SuperStar) && Options.EveryOneKnowSuperStar.GetBool())
                 SelfMark.Append(ColorString(GetRoleColor(CustomRoles.SuperStar), "★"));
 
             if (BallLightning.IsEnable && BallLightning.IsGhost(seer))
                 SelfMark.Append(ColorString(GetRoleColor(CustomRoles.BallLightning), "■"));
 
-            if (Medic.IsEnable && !seer.Is(CustomRoles.Medic) && (Medic.InProtect(seer.PlayerId) || Medic.TempMarkProtected == seer.PlayerId) && (Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 2))
+            if (Medic.IsEnable && (Medic.InProtect(seer.PlayerId) || Medic.TempMarkProtected == seer.PlayerId) && (Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 2))
                 SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Medic), "✚"));
 
-            if (Gamer.IsEnable)
-                SelfMark.Append(Gamer.TargetMark(seer, seer));
 
-            if (Sniper.IsEnable)
-                SelfMark.Append(Sniper.GetShotNotify(seer.PlayerId));
+            SelfMark.Append(Snitch.GetWarningArrow(seer));
+
+            SelfMark.Append(Gamer.TargetMark(seer, seer));
+
+            SelfMark.Append(Sniper.GetShotNotify(seer.PlayerId));
 
 
         // ====== Add SelfSuffix for seer ======
@@ -1857,6 +1837,11 @@ public static class Utils
             SelfSuffix.Clear();
 
             var seerRole = seer.GetCustomRole();
+
+            SelfSuffix.Append(Deathpact.GetDeathpactPlayerArrow(seer));
+
+            if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
+                SelfSuffix.Append(SoloKombatManager.GetDisplayHealth(seer));
 
             if (!isForMeeting) // Only during game
             {
@@ -1945,13 +1930,28 @@ public static class Utils
                         break;
                 }
             }
+            else // Only during meeting
+            {
+                if (seer.IsAlive())
+                {
+                    if (Baker.IsEnable && Baker.IsPoisoned(seer))
+                        SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Famine), "θ"));
+
+                    if (Shroud.IsEnable && Main.ShroudList.ContainsKey(seer.PlayerId))
+                        SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Shroud), "◈"));
+                }
+
+                if (seer.PlayerId == Pirate.PirateTarget)
+                    SelfMark.Append(Pirate.GetPlunderedMark(seer.PlayerId, true));
+
+
+                SelfMark.Append(Witch.GetSpelledMark(seer.PlayerId, true));
+
+                SelfMark.Append(HexMaster.GetHexedMark(seer.PlayerId, true));
+
+                SelfMark.Append(Occultist.GetCursedMark(seer.PlayerId, true));
+            }
             
-            if (Deathpact.IsEnable)
-                SelfSuffix.Append(Deathpact.GetDeathpactPlayerArrow(seer));
-
-            if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
-                SelfSuffix.Append(SoloKombatManager.GetDisplayHealth(seer));
-
 
         // ====== Get SeerRealName ======
 
@@ -2028,14 +2028,14 @@ public static class Utils
                 SelfName = GetString("DevouredName");
 
             // Camouflage
-            if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool() &&
+            if (!CamouflageIsForMeeting && ((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool() &&
                 !(Options.DisableOnSomeMaps.GetBool() &&
                     ((Options.DisableOnSkeld.GetBool() && Options.IsActiveSkeld) ||
                      (Options.DisableOnMira.GetBool() && Options.IsActiveMiraHQ) ||
                      (Options.DisableOnPolus.GetBool() && Options.IsActivePolus) ||
                      (Options.DisableOnAirship.GetBool() && Options.IsActiveAirship)
                     )))
-                    || Camouflager.IsActive) && !CamouflageIsForMeeting)
+                    || Camouflager.IsActive))
                 SelfName = $"<size=0%>{SelfName}</size>";
 
 
@@ -2051,6 +2051,7 @@ public static class Utils
             if (!isForMeeting) SelfName += "\r\n";
 
             seer.RpcSetNamePrivate(SelfName, true, force: NoCache);
+
 
             // Start run loop for target only if condition is "true"
             if (seer.Data.IsDead ||
@@ -2071,20 +2072,22 @@ public static class Utils
 
                     if (isForMeeting)
                     {
-                        if (Witch.IsEnable)
-                            TargetMark.Append(Witch.GetSpelledMark(target.PlayerId, isForMeeting));
+                        TargetMark.Append(Witch.GetSpelledMark(target.PlayerId, true));
+                        
+                        TargetMark.Append(HexMaster.GetHexedMark(target.PlayerId, true));
 
-                        if (HexMaster.IsEnable)
-                            TargetMark.Append(HexMaster.GetHexedMark(target.PlayerId, isForMeeting));
-
-                        if (Occultist.IsEnable)
-                            TargetMark.Append(Occultist.GetCursedMark(target.PlayerId, isForMeeting));
+                        TargetMark.Append(Occultist.GetCursedMark(target.PlayerId, true));
 
                         if (Main.ShroudList.ContainsKey(target.PlayerId) && target.IsAlive())
                             TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Shroud), "◈"));
 
                         if (target.PlayerId == Pirate.PirateTarget)
-                            TargetMark.Append(Pirate.GetPlunderedMark(target.PlayerId, isForMeeting));
+                            TargetMark.Append(Pirate.GetPlunderedMark(target.PlayerId, true));
+                    }
+                    else
+                    {
+                        if (seer.Is(CustomRoles.Shroud) && Main.ShroudList.ContainsValue(seer.PlayerId) && Main.ShroudList.ContainsKey(target.PlayerId))
+                            TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Shroud)}>◈</color>");
                     }
 
                     if (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Snitch) && target.Is(CustomRoles.Madmate) && target.GetPlayerTaskState().IsTaskFinished)
@@ -2136,11 +2139,11 @@ public static class Utils
                     }
 
 
-                    if (seer.Is(CustomRoles.Medic) && (Medic.InProtect(target.PlayerId) || Medic.TempMarkProtected == target.PlayerId) && (Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 1))
+                    if (seer.Is(CustomRoles.Medic) && (Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 1) && (Medic.InProtect(target.PlayerId) || Medic.TempMarkProtected == target.PlayerId))
                     {
                         TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Medic), "✚"));
                     }
-                    else if (seer.Data.IsDead && Medic.InProtect(target.PlayerId) && !seer.Is(CustomRoles.Medic))
+                    else if (seer.Data.IsDead && !seer.Is(CustomRoles.Medic) && (Medic.InProtect(target.PlayerId) || Medic.TempMarkProtected == target.PlayerId))
                     {
                         TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Medic), "✚"));
                     }
@@ -2189,11 +2192,6 @@ public static class Utils
                         case CustomRoles.NWitch:
                             if (Main.TaglockedList.ContainsValue(seer.PlayerId) && Main.TaglockedList.ContainsKey(target.PlayerId))
                                 TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.NWitch)}>◆</color>");
-                            break;
-
-                        case CustomRoles.Shroud:
-                            if (isForMeeting && Main.ShroudList.ContainsValue(seer.PlayerId) && Main.ShroudList.ContainsKey(target.PlayerId))
-                                TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Shroud)}>◈</color>");
                             break;
                     }
 
@@ -2393,14 +2391,14 @@ public static class Utils
                         TargetPlayerName = GetString("DevouredName");
 
                     // Camouflage
-                    if (((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool() &&
-                    !(Options.DisableOnSomeMaps.GetBool() &&
-                        ((Options.DisableOnSkeld.GetBool() && Options.IsActiveSkeld) ||
-                         (Options.DisableOnMira.GetBool() && Options.IsActiveMiraHQ) ||
-                         (Options.DisableOnPolus.GetBool() && Options.IsActivePolus) ||
-                         (Options.DisableOnAirship.GetBool() && Options.IsActiveAirship)
-                        )))
-                        || Camouflager.IsActive) && !CamouflageIsForMeeting)
+                    if (!CamouflageIsForMeeting && ((IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool() &&
+                        !(Options.DisableOnSomeMaps.GetBool() &&
+                            ((Options.DisableOnSkeld.GetBool() && Options.IsActiveSkeld) ||
+                             (Options.DisableOnMira.GetBool() && Options.IsActiveMiraHQ) ||
+                             (Options.DisableOnPolus.GetBool() && Options.IsActivePolus) ||
+                             (Options.DisableOnAirship.GetBool() && Options.IsActiveAirship)
+                            )))
+                            || Camouflager.IsActive))
                         TargetPlayerName = $"<size=0%>{TargetPlayerName}</size>";
 
 
