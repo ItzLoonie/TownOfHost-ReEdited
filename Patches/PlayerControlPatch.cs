@@ -2843,27 +2843,27 @@ class FixedUpdatePatch
 
                     case CustomRoles.Puppeteer:
                         if (Main.PuppeteerList.ContainsValue(seer.PlayerId) && Main.PuppeteerList.ContainsKey(target.PlayerId))
-                            Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Impostor)}>◆</color>");
+                            Mark.Append($"<color={Utils.GetRoleColorCode(seerRole)}>◆</color>");
                         break;
 
                     case CustomRoles.Medic:
                         if ((Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 1) && (Medic.InProtect(target.PlayerId) || Medic.TempMarkProtected == target.PlayerId))
-                            Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Medic)}>✚</color>");
+                            Mark.Append($"<color={Utils.GetRoleColorCode(seerRole)}>✚</color>");
                         break;
 
                     case CustomRoles.CovenLeader:
                         if (Main.CovenLeaderList.ContainsValue(seer.PlayerId) && Main.CovenLeaderList.ContainsKey(target.PlayerId))
-                            Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.CovenLeader)}>◆</color>");
+                            Mark.Append($"<color={Utils.GetRoleColorCode(seerRole)}>◆</color>");
                         break;
 
                     case CustomRoles.NWitch:
                         if (Main.TaglockedList.ContainsValue(seer.PlayerId) && Main.TaglockedList.ContainsKey(target.PlayerId))
-                            Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.NWitch)}>◆</color>");
+                            Mark.Append($"<color={Utils.GetRoleColorCode(seerRole)}>◆</color>");
                         break;
 
                     case CustomRoles.Shroud:
                         if (Main.ShroudList.ContainsValue(seer.PlayerId) && Main.ShroudList.ContainsKey(target.PlayerId))
-                            Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Shroud)}>◈</color>");
+                            Mark.Append($"<color={Utils.GetRoleColorCode(seerRole)}>◈</color>");
                         break;
                 }
 
