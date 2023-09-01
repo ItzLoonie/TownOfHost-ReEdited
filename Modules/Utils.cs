@@ -824,7 +824,7 @@ public static class Utils
                 string Completed1 = comms ? "?" : $"{taskState1.CompletedTasksCount}";
                 string totalCompleted1 = comms ? "?" : $"{GameData.Instance.CompletedTasks}";
                 ProgressText.Append(ColorString(TextColor1, $"({Completed1}/{taskState1.AllTasksCount})"));
-                ProgressText.Append($" <color=#777777>-</color> <color=#00ffa5>{totalCompleted1}</color><color=#ffffff>/{GameData.Instance.TotalTasks}</color>");
+                ProgressText.Append($" <color=#777777>-</color> <color=#00ffa5>{totalCompleted1}/{GameData.Instance.TotalTasks}</color>");
                 break;
         /*    case CustomRoles.Cleanser: // BROKEN
                 var taskState15 = Main.PlayerStates?[playerId].GetTaskState();
