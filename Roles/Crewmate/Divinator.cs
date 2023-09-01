@@ -123,6 +123,7 @@ public static class Divinator
                 CustomRoles.Reverie or
                 CustomRoles.Sans or
                 CustomRoles.Minimalism or
+                CustomRoles.Cultivator or
                 CustomRoles.OverKiller
                 => "Result5",
 
