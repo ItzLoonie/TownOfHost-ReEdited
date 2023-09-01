@@ -307,6 +307,8 @@ public static class Sniper
     }
     public static string GetShotNotify(byte seerId)
     {
+        if (!IsEnable) return "";
+
         if (AimAssist && IsThisRole(seerId))
         {
             //エイムアシスト中のスナイパー

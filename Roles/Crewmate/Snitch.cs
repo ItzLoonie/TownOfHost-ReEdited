@@ -138,6 +138,7 @@ public static class Snitch
     /// <returns></returns>
     public static string GetWarningArrow(PlayerControl seer, PlayerControl target = null)
     {
+        if (!IsEnable) return "";
         if (!IsSnitchTarget(seer) || GameStates.IsMeeting) return "";
         if (target != null && seer.PlayerId != target.PlayerId) return "";
 
