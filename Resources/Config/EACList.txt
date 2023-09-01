@@ -46,6 +46,8 @@ solidhay#2143,ILoveYou
 homelysofa#7210,Nagva
 moviebulky#3847,le ghoste
 cosapt#6243,卡斯特
+splaytale#9633,
+socialfee#5455,原神忠诚玩家
 
 ## Griefer
 setmolar#4374,藏族顶针
@@ -55,5 +57,4 @@ overtfeast#5802,黑影
 polkaoval#0453,自作Modな橋本環奈
 
 ## Other
-tenthrole#3476,Dronecool
 tenthrope#3476,Oldishwire
