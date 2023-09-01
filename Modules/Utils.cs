@@ -1931,12 +1931,7 @@ public static class Utils
                         if (Vulture.ArrowsPointingToDeadBody.GetBool()) 
                             SelfSuffix.Append(Vulture.GetTargetArrow(seer));
                         break;
-                }
-            }
-            else // Only during meeting
-            {
-                switch (seerRole)
-                {
+
                     case CustomRoles.Witch:
                         SelfSuffix.Append(Witch.GetSpellModeText(seer, false));
                         break;
