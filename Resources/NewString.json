@@ -126,7 +126,7 @@
         "15": ""
     },
     "Patreon": {
-        "13": "",
+        "13": "赞助",
         "0": "Patreon",
         "5": "",
         "14": "",
@@ -234,7 +234,7 @@
         "15": ""
     },
     "SubText.Madmate": {
-        "13": "帮助<color=#8cffff>内鬼阵营</color>",
+        "13": "请帮助<color=#8cffff>内鬼阵营</color>",
         "0": "Help the <color=#ff1919>Impostors</color>",
         "5": "Помогайте <color=#ff1919>Предателям</color>",
         "14": "幫助<color=#ff1919>偽裝者陣營</color>",
@@ -450,7 +450,7 @@
         "15": ""
     },
     "YouAreCrewmate": {
-        "13": "你是船员",
+        "13": "你是一名船员",
         "0": "You are a Crewmate",
         "5": "Ты - Член Экипажа",
         "14": "你是船員",
@@ -468,7 +468,7 @@
         "15": ""
     },
     "YouAreImpostor": {
-        "13": "你是内鬼",
+        "13": "你是一名内鬼",
         "0": "You are an Impostor",
         "5": "Ты - Предатель",
         "14": "你是偽裝者",
@@ -486,7 +486,7 @@
         "15": ""
     },
     "YouAreNeutral": {
-        "13": "你是中立",
+        "13": "你是一名中立",
         "0": "You are a Neutral",
         "5": "Ты - Нейтрал",
         "14": "你是中立",
@@ -504,7 +504,7 @@
         "15": ""
     },
     "YouAreMadmate": {
-        "13": "你是叛徒",
+        "13": "你是一名叛徒",
         "0": "You are a Madmate",
         "5": "Ты - Безумец",
         "14": "你是叛徒",
@@ -522,7 +522,7 @@
         "15": ""
     },
     "YouAreCoven": {
-        "13": "你是巫师阵营的其中一员",
+        "13": "你是巫师阵营的一名玩家",
         "0": "You are a member of the Coven",
         "5": "Ты - Ковен",
         "14": "你是巫師陣營的一名玩家",
@@ -558,7 +558,7 @@
         "15": ""
     },
     "ImpostorSub": {
-        "13": "破坏设施或击杀所有的<color=#8cffff>船员</color>",
+        "13": "破坏设施或击杀所有人",
         "0": "Sabotage and kill everyone",
         "5": "Убивайте и саботируйте",
         "14": "破壞並殺死所有人",
@@ -594,7 +594,7 @@
         "15": ""
     },
     "MadmateSub": {
-        "13": "帮助<color=#8cffff>内鬼阵营</color>",
+        "13": "请帮助<color=#8cffff>内鬼阵营</color>",
         "0": "Help the <color=#ff1919>Impostors</color>",
         "5": "Устраните <color=#8cffff>Членов Экипажа</color>",
         "14": "幫助<color=#ff1919>偽裝者陣營</color>",
@@ -1044,7 +1044,7 @@
         "15": ""
     },
     "PassiveNeutralsCanGuess": {
-        "13": "<color=#ffab1b>无刀中立</color>可以猜测",
+        "13": "被动<color=#ffab1b>中立</color>可以猜测",
         "0": "Passive <color=#7f8c8d>Neutrals</color> can guess",
         "5": "Пассивные <color=#7f8c8d>Нейтралы</color> могут угадывать роли",
         "14": "",
@@ -1188,7 +1188,7 @@
         "15": ""
     },
     "ClaimAddonSettings": {
-        "13": "可以猜测可申请的附加职业",
+        "13": "可以猜测索赔的附加职业",
         "0": "Can guess claimable add-ons",
         "5": "Может угадать требуемые атрибуты",
         "14": "",
@@ -13194,7 +13194,7 @@
         "15": ""
     },
     "CouncillorInfoLong": {
-        "13": "(内鬼阵营):\\n议员可以像法官一样在会议上审判玩家，议员的审判称为谋杀\\n谋杀指令/tl [玩家 id]\\n你可以在玩家名字前看到玩家的id,或使用 /id 查看所有玩家id的命令",
+        "13": "(内鬼阵营):\\n议员可以像法官一样在会议上审判玩家，议员的审判称为谋杀\\n谋杀指令/tl [玩家 id]\\n您可以在玩家名字前看到该玩家的编号，或者使用/id指令查看所有玩家的编号。",
         "0": "(Impostors):\\nAs the Councillor, you can kill players during a meeting like a Judge.\\nWhen killing in a meeting, those kills will appear as a trial from a Judge.\\n\\nThe kill command is /tl [player id]\\nYou can see the player's id before the player's name, or use the /id command to view the id of all players.",
         "5": "(Предатель):\\nКак Взяточник, вы можете убивать игроков во время встречи.\\nПри убийстве на встрече эти убийства отображаются как убийство Судьи.\\n\\nКоманда убийства: /tl [номер игрока]\\nВы можете видеть номер игрока перед именем игрока или используйте команду /id для просмотра номеров всех игроков",
         "14": "",
@@ -13698,7 +13698,7 @@
         "15": ""
     },
     "SnitchInfoLong": {
-        "13": "(船员阵营):\\n告密者完成所有任务后，将可以看到以红色昵称表示的所有内鬼。当告密者仅剩一个任务的时候，内鬼将会看到自己以及告密者的昵称旁边有「★」作为提示。告密者成为叛徒时，「★」标记变为红色。",
+        "13": "(船员阵营):\\n当告密者仅剩一个任务的时候，内鬼将会看到自己以及告密者的昵称旁边有「★」作为提示。告密者成为叛徒时，「★」标记变为红色。当告密者完成所有任务后，将可以看到\\n红色昵称表示所有内鬼。\\n灰色昵称表示带刀中立。\\n紫色昵称表示巫师阵营。",
         "0": "(Crewmates):\\nAfter the Snitch completes all tasks, they can see Impostors names being displayed in red on meeting. When the Snitch has only one task left, the Impostors will see a 「★」 mark next to the name of themselves and the Snitch. When a Snitch becomes a Madmate, the 「★」 mark turns red.",
         "5": "(Член Экипажа):\\nКак только Стукач выполнит все задания, то никнейм у всех Предателей будет отображаться \\nкрасным цветом, и наоборот, если количество ваших заданий будет близка к завершению, \\nто рядом с никнеймом Стукача появится звёздочка★, которая будет видна Предателям.",
         "14": "(船員陣營):\\n當告密者完成所有任務後，告密者將可以看到偽裝者名字顯示為紅色(根據房主設定，告密者或許也可以跟帶刀中立互認)，當告密者只剩下一個任務時，偽裝者將會看到自己和告密者的名字旁有「★」符號作為提示，如果告密者成為叛徒，那麼「★」符號將轉為紅色。",
@@ -13716,7 +13716,7 @@
         "15": ""
     },
     "MarshallInfoLong": {
-        "13": "(船员阵营):\\n作为展现者，完成任务，向其他船员展示自己的身份。其他阵营将无法看见你。然而，叛徒可以看到你。完成任务后赌怪无法赌死你。",
+        "13": "(船员阵营):\\n展现者通过完成所有任务，向其他船员展示自己的身份。其他阵营将无法看见你。\\n叛徒可以看到你。完成任务后赌怪无法赌死你。",
         "0": "(Crewmates):\\nAs the Marshall, complete your tasks to reveal yourself to the rest of the crew.\\nOther teams will not be able to see you.\\nHowever, madmates CAN see you.",
         "5": "(Crewmates):\\nИграя за Маршала, выполняйте свои задания, чтобы показать себя остальным Членам Экипажа.\\nДругие команды не смогут вас видеть.\\nТем не менее, Безумцы могут видеть вас.",
         "14": "(Crewmates):\\nInfo not provided.",
@@ -13986,7 +13986,7 @@
         "15": ""
     },
     "MedicInfoLong": {
-        "13": "(船员阵营):\\n医生可以通过使用击杀按键给目标发放一个护盾，若护盾发放成功则医生会看到目标身上出现护盾破碎动画作为提示，同时目标的名字旁会显示一个蓝色的「●」（仅医生可见）。医生可以发放护盾的数量会显示在医生的名字旁的括号内。每位玩家最多只能持有一个来自医生的护盾。根据房主设定目标可能可以看到自己是否持有护盾（显示在名字旁的蓝色「●」）。",
+        "13": "(船员阵营):\\n医生可以通过使用击杀按键给目标发放一个护盾，若护盾发放成功则医生会看到目标身上出现护盾破碎动画作为提示，同时目标的名字旁会显示一个蓝色的「✚」。医生可以发放护盾的数量会显示在医生的名字旁的括号内。每位玩家最多只能持有一个来自医生的护盾。根据房主设定目标可能可以看到自己是否持有护盾（显示在名字旁的蓝色「✚」）。",
         "0": "(Crewmates):\\nThe Medic can place a shield on the target by pressing the Kill button. The Medic can only give one shield for the whole game, when the Medic dies, the target's shield will be removed. The Medic can also see if someone is trying to break the target's shield.\\nDepending on the host's settings, the Medic or the target can see if the player has a shield (shown as a green circle 「●」 next to the name).",
         "5": "(Член Экипажа):\\nМедик может наложить на цель щит, нажав кнопку ''Убить''. Медик может дать только один щит на всю игру, когда Медик умрёт то щит у цели будет снят. Так же Медик может видеть что кто-то пытается сломать щит у цели.\\nВ зависимости от настроек хоста Медик или цель могут видеть, есть ли у игрока щит (показан зелёным кружком рядом с именем).",
         "14": "(船員陣營):\\n軍醫可以通過殺人鍵來發給某位玩家一個護盾，若護盾發放成功軍醫自己身上會出現盾牌破碎的效果作為提示，同時目標名字旁邊會出現藍色的「●」(只有軍醫可以看到)，剩餘的護盾數量會顯示在名字旁，每位玩家最多只能持有來自軍醫的一個護盾，根據房主設定，被上盾的人或許可以知道自己被上盾(名字旁有藍色的「●」)",
@@ -14094,7 +14094,7 @@
         "15": ""
     },
     "MonarchInfoLong": {
-        "13": "(船员阵营):\\n你可以让玩家成为你的骑士来给他们额外的投票权.\\n你不能让已经有额外选票的人当骑士.\\n骑士玩家有一个君主的「亗」",
+        "13": "(船员阵营):\\n君主可以让玩家成为骑士来给他们额外的票数。君主不能让已经有额外票数的人当选骑士（比如市长）",
         "0": "(Crewmates):\\nAs the Monarch, you can knight players to give them an extra vote.\\n\\nYou cannot knight someone who already have extra votes.\\n\\nKnighted players appear with a golden name.",
         "5": "(Член Экипажа):\\nМонарх может посвятить игроков, чтобы дать им дополнительный голос.\\n\\nОн не может посвятить того, у кого уже есть дополнительные голоса.\\n\\nу Монарха просвящённые игроки будут иметь значёк короны",
         "14": "",
@@ -14202,7 +14202,7 @@
         "15": ""
     },
     "RetributionistInfoLong": {
-        "13": "(船员阵营):\\n惩罚者死后可以击杀有限数量的玩家，但在任务全部完成的情况下才能击杀\\n使用 /ret [玩家 ID]进行击杀",
+        "13": "(船员阵营):\\n惩罚者死后可以击杀有限数量的玩家，但在任务全部完成的情况下才能击杀（房主设置）\\n使用 /ret [玩家 ID]进行击杀\\n您可以在玩家名字前看到该玩家的编号，或者使用/id指令查看所有玩家的编号。",
         "0": "(Crewmates):\\nAs the Retributionist, you can kill a limited amount of players after your death.\\n\\nUse /ret [playerID] to kill.",
         "5": "(Член Экипажа):\\nВозмездник может убить определённое количество игроков после своей смерти.\\n\\nИспользуйте /ret [номер игрока] чтобы убить цель",
         "14": "",
@@ -14256,7 +14256,7 @@
         "15": ""
     },
     "AddictInfoLong": {
-        "13": "(船员阵营):\\n瘾君子可以使用通风管来获得护盾。但是护盾会让瘾君子一段时间内无法移动。如果瘾君子长时间没使用通风管，则会自杀",
+        "13": "(船员阵营):\\n瘾君子可以使用通风管来获得护盾。但是护盾结束后会让瘾君子一段时间内无法移动。如果瘾君子在通风管冷却结束后，且长时间没使用通风管，则会自杀",
         "0": "(Crewmates):\\nAs the Addict, you have a suicide timer. When it expires you kill yourself.\\nThe timer is indicated by the vent cooldown. When the vent cooldown is at 0 seconds, you still have a short time to vent.\\nIf you don't make it you die, if you make it the suicide timer is reset.\\nAlso, after you are ventilated, no one can interact with you for a defined period of time.\\nAfter this period is over, you are immobilized for another defined period of time and cannot report any bodies.",
         "5": "(Член Экипажа):\\nУ Зависимого есть таймер до самоубийства. Когда он истечет, он убьет себя.\\nТаймер показывает откат вентиляции. Когда откат вентиляции составит 0 секунд, у него все еще будет короткое время для запрыгивания в вентиляцию.\\nЕсли он не успеет прыгнуть в вентиляцию.\\nПосле того как он вентанётся, никто не сможет взаимодействовать с ним в течение определенного периода времени.\\nПо истечении этого периода вы обездвижены на другой определенный период времени и не можете зарепортить какой либо труп",
         "14": "",
@@ -14832,7 +14832,7 @@
         "15": ""
     },
     "GlitchInfoLong": {
-        "13": "(中立阵营):\\n缺点者不可以投票、不能钻管道，没有内鬼视野，但可以破坏与击杀，杀光所有人取得胜利\\n顺带一提，警长不能执法你，告密者看不到你哦",
+        "13": "(中立阵营):\\n缺点者不可以投票、不能使用通风管，没有内鬼视野，但可以破坏与击杀，击杀所有人取得胜利\\n顺带一提，警长不能执法你，告密者看不到你",
         "0": "(Neutrals):\\nAs the Glitch, you are a glitch in the ship with the goal of killing everyone.\\n\\nYou cannot vote.\\nYou can hack the ship, causing sabotages\\nYou have to kill <b>everyone</b> to win.\\nYou cannot vent.\\nYou do not have Impostor vision.\\nSheriff cannot shoot you.\\nSnitch cannot find you.",
         "5": "(Нейтрал):\\nУ Глича цель убить всех.\\n\\nОн не может голосовать.\\nОн не может созывать саботаж\\nВы должны убить <b>всех</b>, чтобы победить.\\nВы не может вентоваться.\\nУ вас нет дальность обзора предателя.\\nШериф не может убить вас.\\nСнитч не сможет вас найти",
         "14": "",
@@ -15066,7 +15066,7 @@
         "15": ""
     },
     "PursuerInfoLong": {
-        "13": "(中立阵营):\\n当某人试图杀人时，追踪者可以用你的能力让他们击杀无效\\n要想获胜，就要坚持到比赛结束",
+        "13": "(中立阵营):\\n当某人试图使用击杀时，追击者可以用使用技能让他们击杀无效\\n要想获胜，就要坚持到比赛结束",
         "0": "(Neutrals):\\nAs the Pursuer, you can use your ability on someone to make them misfire when they try to kill.\\n\\nTo win, just survive to the end of the game.",
         "5": "(Добрый - Нейтрал):\\nПреследователь может использовать свою способность на ком-то, чтобы заставить его убиться, когда он попытается кого-то убить.\\n\\nЧтобы победить, просто доживите до конца игры",
         "14": "",
@@ -15084,7 +15084,7 @@
         "15": ""
     },
     "PhantomInfoLong": {
-        "13": "(中立阵营):\\n幻影要被杀死并完成你的任务\\n你可以在活着的时候完成任务\\n但是你活着就赢不了\\n如果你被杀了，且你的任务完成了，你就和获胜的团队一起获胜",
+        "13": "(中立阵营):\\n幻影要被杀死并完成你的任务，可以在活着的时候完成任务，但是活着就赢不了。如果你被杀了，且你的任务完成了，你就和获胜的阵营一起获胜。也可以抢夺胜利（房主设置）",
         "0": "(Neutrals):\\nAs the Phantom, your job is to get killed and finish your tasks.\\nYou can do your tasks while alive.\\nYou cannot win if you're alive.\\nIf you get killed, you win with the winning team if your tasks are completed.",
         "5": "(Добрый/Злой - Нейтрал):\\nФантому быть убитым и завершить свои задания.\\nОн может выполнять свои задания даже когда он жив.\\nНо не сможет победить, если он жив.\\nЕсли вас убьют, вы выиграете вместе с какой-либо командой, если его задания были завершенны",
         "14": "",
@@ -15174,7 +15174,7 @@
         "15": ""
     },
     "PickpocketInfoLong": {
-        "13": "(中立阵营):\\n小偷可以从杀戮中窃取选票。当然，这些选票是隐藏的。杀死所有人以赢得胜利",
+        "13": "(中立阵营):\\n小偷可以从击杀中窃取选票。当然，这些选票是隐藏的。",
         "0": "(Neutrals):\\nAs the Pickpocket, you steal votes from your kills.\\nThese votes are hidden.\\n\\nKill everyone to win.",
         "5": "(Злой - Нейтрал):\\nКарманник крадет голоса после каждого его убийства.\\nЭти голоса скрыты.\\n\\nКогда он убьёт всех, он победит.",
         "14": "",
@@ -15192,7 +15192,7 @@
         "15": ""
     },
     "TraitorInfoLong": {
-        "13": "(中立阵营):\\n背叛者知道内鬼，但他们不知道背叛者。内鬼可以杀了背叛者，但背叛者不能杀了内鬼。通过其他方式消灭内鬼，然后杀死其他所有人以获胜！",
+        "13": "(中立阵营):\\n背叛者知道内鬼，但他们不知道背叛者。内鬼可以杀了背叛者，但背叛者不能杀了内鬼。通过其他方式消灭内鬼，然后击杀其他所有人获胜！",
         "0": "(Neutrals):\\nAs the Traitor, you were an Impostor that betrayed the Impostors.\\nYou know the Impostors but they don't know you.\\nThe twist? They can kill you but you can't kill them.\\n\\nEliminate the Impostors by other means, then kill everyone else to win!",
         "5": "(Злой - Нейтрал):\\nТрейтор был Предателем, который предал команду Предателей.\\nОн знает кто явяется Предателем, но они не знают кто явяется Трейтором.\\nОни могут убить вас, но вы не сможете убить их.\\n\\nУбейте Предателей другими возможными способами, а затем убейте всех остальных игроков, чтобы победить!",
         "14": "",
@@ -15264,7 +15264,7 @@
         "15": ""
     },
     "FamineInfoLong": {
-        "13": "(中立阵营):\\n饥荒会分发毒面包\\n如果饥荒没有被驱逐，吃毒面包的人会在会议结束后死亡。如果饥荒在比赛结束时还存活着，饥荒就会夺取胜利",
+        "13": "(中立阵营):\\n饥荒会分发毒面包。且饥荒没有被驱逐，吃毒面包的人会在会议结束后死亡。如果饥荒在比赛结束时还存活着，饥荒就会夺取胜利",
         "0": "(Neutrals):\\nAs the Famine, you give out poisoned bread.\\nPlayers with poisoned bread die at the end of the meeting if the Famine is not exiled.\\n\\nIf the Famine is alive at the end of the game, they steal the win.",
         "5": "(Злой - Нейтрал):\\nГолод раздаёт отравленный хлеб.\\nИгроки с отравленным хлебом умирают в конце встречи, если Голод не будет изгнан.\\n\\nЕсли Голод останется жив в конце игры, то он украдёт победу чьей-то коамнды",
         "14": "",
@@ -15300,7 +15300,7 @@
         "15": ""
     },
     "AmnesiacInfoLong": {
-        "13": "(中立阵营):\\n失忆者使用的报告按钮来记住玩家的身份。如果目标是内鬼，你将成为<b><color=#ff1919>逃亡者</color></b>。如果目标是船员，你将成为<b><color=#FFB347>警长</color></b>。如果目标是被动中立或未指定的带刀中立，您将成为设置中立身份。如果目标是少数人中的带刀中立，你就会成为他们的身份",
+        "13": "(中立阵营):\\n失忆者使用的报告按钮来记住玩家的身份。如果目标是内鬼，你将成为<b><color=#ff1919>逃亡者</color></b>。如果目标是船员，你将成为<b><color=#FFB347>警长</color></b>。如果目标是被动中立或未指定的带刀中立，您将成为设置的中立身份。如果目标是少数人中的带刀中立，你就会成为他们的身份",
         "0": "(Neutrals):\\nAs the Amnesiac, use your report button to remember a role.\\n\\nIf the target was an Impostor, you'll become a <b><color=#ff1919>Refugee</color></b>.\\nIf the target was a crewmate, you'll become a <b><color=#FFB347>Sheriff</color></b>.\\nIf the target was a passive neutral or a neutral killer not specified, you'll become the role defined in the settings.\\nIf the target was a neutral killer of a select few, you'll become the role they are.\\nIf the target was a member of the Coven, you'll become a <b><color=#663399>Banshee</color></b>",
         "5": "(Нейтрал):\\nАмнезиак использует кнопку ''Репорт'', чтобы запомнить роль трупа.\\n\\nЕсли целью был Предатель, он станет <b><color=#ff1919>Беженцем</color></b>.\\nЕсли цель был Членом Экипажа, он станет <b><color=#FFB347>Шерифом</color></b>.\\nЕсли цель был Пассивным Нейтралом или Нейтральным Убийцей, он станет ролью которая определена в настройках.\\nЕсли цель был Ковеном, он станет <b><color=# 663399>Банши</color></b>",
         "14": "",
@@ -15336,7 +15336,7 @@
         "15": ""
     },
     "DoomsayerInfoLong": {
-        "13": "(中立阵营):\\n末日赌怪可以在会议期间猜测某个玩家的职业。如果是正确的，目标就会死亡，如果是错误的，就会自杀\\n猜测指令为：/bt [玩家编号] [职业名]\\n您可以在玩家名字前看到该玩家的编号，或者使用/id指令查看所有玩家的编号",
+        "13": "(中立阵营):\\n末日赌怪可以在会议期间猜测某个玩家的职业。如果是正确的，目标就会死亡，如果是错误的，就会自杀\\n猜测指令为：/bt [玩家编号] [职业名]\\n您可以在玩家名字前看到该玩家的编号，或者使用/id指令查看所有玩家的编号。",
         "0": "(Neutrals):\\nThe Doomsayer can guess the role of a certain player during the meeting.\\nIf the Doomsayer guesses a certain number of roles (the number depends on the host settings) then he wins.\\nThe guessing command is: /bt [player id] [role]\\nYou can see the player's id before the player's name, or use the /id command to view the id of all players.",
         "5": "(Злой - Нейтрал):\\nПредсказатель может угадывать роли определённых игроков во время встречи.\\nЕсли он угадает определённое количество ролей, то он победит (Количество зависит от настроек Хоста).\\nКоманда для угадываний: '/bt [Номер игрока] [Название Роли]'' \\nПример: /bt 3 Стукач \\nВы можете увидеть номер игрока перед его никнеймом, или же для просмотра номеров всех игроков нужно использовать команду ''/id''.",
         "14": "",
@@ -15480,7 +15480,7 @@
         "15": ""
     },
     "RomanticInfoLong": {
-        "13": "(中立阵营):\\n浪漫者可以使用击杀按钮挑选自己的恋人（这可以在游戏的任何时候进行）。一旦他们挑选了恋人，就可以使用击杀按钮为恋人提供一个临时护盾，保护他们免受攻击。如果浪漫者的恋人死亡，浪漫者的身份将根据以下条件发生变化：\\n1. 如果浪漫者的恋人是内鬼，浪漫者将成为逃亡者\\n2.如果浪漫者的恋人是带刀中立，那么浪漫者就会变成无情浪漫者。\\n3.如果浪漫者的恋人是巫师阵营的玩家，那么浪漫者就会变成护盾巫师\\n4.如果浪漫者的恋人是船员或不带刀中立，浪漫者就会变成复仇浪漫者\\n注：如果浪漫者的身份发生变化，浪漫者的获胜条件也会相应改变。",
+        "13": "(中立阵营):\\n浪漫者可以使用击杀按钮挑选自己的恋人（这可以在游戏的任何时候进行）。一旦他们挑选了恋人，就可以使用击杀按钮为恋人提供一个临时护盾，保护他们免受攻击。如果浪漫者的恋人死亡，浪漫者的身份将根据以下条件发生变化：\\n1. 如果浪漫者的恋人是内鬼，浪漫者将成为逃亡者\\n2.如果浪漫者的恋人是带刀中立，那么浪漫者就会变成无情浪漫者。\\n3.如果浪漫者的恋人是巫师阵营的玩家，那么浪漫者就会变成护盾巫师\\n4.如果浪漫者的恋人是船员或无刀中立，浪漫者就会变成复仇浪漫者\\n注：如果浪漫者的身份发生变化，浪漫者的获胜条件也会相应改变。",
         "0": "(Neutrals):\\nThe Romantic can pick their lover partner using their kill button (this can be done at any point of the game). Once they've picked their partner, they can use their kill button to give their partner a temporary shield which protects them from attacks. If their lover partner dies, the Romantic's role will change according to the following conditions:\\n1. If their partner was an Impostor, the Romantic becomes the Refugee\\n2. If their partner was a Neutral Killer, then they become Ruthless Romantic.\\n3. If their partner was a Coven Member, then they become Banshee.\\n4. If their partner was a Crewmate or a non-killing neutral, the Romantic becomes the Vengeful Romantic. \\n\\nThe Romantic wins with the winning team if their partner wins.\\nNote : If your role changes your win condition will be changed accordingly",
         "5": "(Нейтрал):\\nРомантик может выбрать своего любовного партнёра используя кнопку убийств (это может быть сделано в любом моменте игры). Как только они выбрали партнера, они могут использовать кнопку убийства, чтобы дать своему партнёру временный щит. Если любовный партнёр умирает, Романтик поменяет свою роль.\\n1. Если партнёр был Предателем, Романтик становятся Беженцем.\\n2. Если партнёр был Нейтральным Убийцей, Романтик становится Безжалостным.\\n3. Если партнёр был Ковеном, Романтик становится Банши.\\n4. Если их партнёр был Членом Экипажа, или не убивающим нейтралом, Романтик становтся Мстящим.\\n\\nРомантик побеждает если партнёр побеждает.\\n★Обратите внимание★: Если ваша роль меняется, то условия победы будут менятся тоже",
         "14": "",
@@ -15516,7 +15516,7 @@
         "15": ""
     },
     "VengefulRomanticInfoLong": {
-        "13": "(中立阵营):\\n如果你的恋人（船员或非带刀中立）被杀，你将从浪漫者身份转换为复仇浪漫者，复仇浪漫者的目标是为你的恋人复仇，这意味着复仇浪漫者必须击杀杀害你恋人的玩家。如果复仇浪漫者成功做到这一点，复仇浪漫者和你的恋人都会获胜，最后成为获胜方。如果复仇浪漫者试图击杀的人不是杀害您恋人的玩家，那么您将死于误杀。",
+        "13": "(中立阵营):\\n如果你的恋人（船员或无刀中立）被杀，你将从浪漫者身份转换为复仇浪漫者，复仇浪漫者的目标是为你的恋人复仇，这意味着复仇浪漫者必须击杀杀害你恋人的玩家。如果复仇浪漫者成功做到这一点，复仇浪漫者和你的恋人都会获胜，最后成为获胜方。如果复仇浪漫者试图击杀的人不是杀害您恋人的玩家，那么您将死于误杀。",
         "0": "(Neutrals):\\nYou change your roles from Romantic if your partner (A crew or non neutral killer) is killed. As a Vengeful Romantic, Your goal is to avenge your partner, which means you have to kill the killer of your partner. If you succeed to do so, the Both you and your partner win with the winning team at the end. If you try to kill someone other than your partner's killer, then the you will die by misfire.",
         "5": "(Нейтрал):\\nВы меняете свои роль с Романтика, если ваш партнер убит (Член Экипажа или не убивающий нейтрал). В качестве Мстящего Романтика, Ваша цель - отомстить за вашего партнера, а значит вы должны убить убийцу своего партнера. Если вы добились успеха, то оба вы и ваш партнер выигрывают с командой победителей в конце. Если вы пытаетесь убить кого-нибудь кроме убийцы вашего партнера, то вы умрете от промаха.",
         "14": "",
@@ -15534,7 +15534,7 @@
         "15": ""
     },
     "PoisonerInfoLong": {
-        "13": "(巫师阵营):\\n仅剩投毒阵营与船员阵营且投毒阵营人数大于船员人数，投毒者获得胜利。投毒者能放毒在一名玩家身上，那名玩家将会延迟一段时间突然暴毙（跟吸血一样）",
+        "13": "(巫师阵营):\\n投毒者能放毒在一名玩家身上，那名玩家将会延迟一段时间突然暴毙（跟吸血一样）",
         "0": "(Coven):\\nAs the Poisoner, your kills are delayed.\\nKill everyone to win.",
         "5": "(Ковен)\\nУ Отравителя убийства происходят спустя время.\\nУбейте всех, чтобы победить.",
         "14": "",
@@ -15570,7 +15570,7 @@
         "15": ""
     },
     "WraithInfoLong": {
-        "13": "(巫师阵营):\\n仅剩魅影阵营与船员阵营且魅影阵营人数大于船员人数，魅影阵营获得胜利。魅影无法正常使用管道。但可以通过跳管进入隐身状态，再次跳管则取消隐身状态",
+        "13": "(巫师阵营):\\n魅影无法正常使用管道。但可以通过通风管进入隐身状态，再次使用通风管则取消隐身状态",
         "0": "(Coven):\\nAs the Wraith, you can use vents to temporarily go invisible.\\nDue to vents toggling your ability to go invisible, you cannot vent.\\nTrying to vent while invisible will cause you to become visible again.\\nEven when on cooldown, you cannot vent.\\n\\nKill everyone to win.",
         "5": "(Ковен):\\nДух может использовать вентиляцию, чтобы временно стать невидимым.\\nИз-за того, что вентиляция переключает вашу способность стать невидимым, вы не можете выйти из него.\\nПопытка выйти из невидимости снова сделает вас видимым.\\nДаже во время отката вентиляции вы не можете этого сделать.\\n\\nУбейте всех, чтобы победить.",
         "14": "",
@@ -15588,7 +15588,7 @@
         "15": ""
     },
     "JinxInfoLong": {
-        "13": "(巫师阵营):\\n每当扫把星受到攻击时，扫把星都会诅咒他们，导致他们死于厄运。这种用途有限。杀死所有人以赢得胜利",
+        "13": "(巫师阵营):\\n每当扫把星受到攻击时，扫把星都会诅咒他们，导致他们死于厄运。这种用途有限。",
         "0": "(Coven):\\nAs the Jinx, whenever you are attacked, you jinx them, resulting in them dying to a jinx.\\nThis has limited uses.\\n\\nKill off everyone to win.",
         "5": "(Ковен):\\nВсякий раз когда Джинкс подвергается нападению, он накладывает на них порчу, в результате чего они умирают от проклятия.\\nЭта способность имеет ограниченное применение.\\n\\nУбейте всех, чтобы победить",
         "14": "",
@@ -15642,7 +15642,7 @@
         "15": ""
     },
     "RitualistInfoLong": {
-        "13": "(巫师阵营):\\n祭祀者是巫师阵营的赌怪。猜测会议中要击杀的玩家身份。猜测错误的玩家身份就会自杀\\n猜测指令：/bt [玩家编号] [职业名]\\n您可以在玩家的名字之前看到玩家的id，或者使用/id命令查看所有玩家的id",
+        "13": "(巫师阵营):\\n祭祀者是巫师阵营的赌怪。猜测会议中要击杀的玩家身份。猜测错误的玩家身份就会自杀\\n猜测指令：/bt [玩家编号] [职业名]\\n您可以在玩家名字前看到该玩家的编号，或者使用/id指令查看所有玩家的编号。",
         "0": "(Coven):\\nAs the Ritualist, you are the Coven's guesser.\\nGuess roles in meetings to kill.\\nGuessing incorrectly kills you instead.\\n\\nThe guessing command is: /bt [player id] [role]\\nYou can see the player's id before the player's name, or use the /id command to view the id of all players.",
         "5": "(Ковен):\\nФокусник может угадывать роли. Угадайте роли на встречах, чтобы убивать. Неправильное угадывание убивает вас.\\n\\nКоманда угадывания такова: /bt [номер игрока] [роль]\\nВы можете увидеть номер игрока перед именем игрока или использовать команду /id для просмотра всех номеров игроков",
         "14": "",
@@ -15660,7 +15660,7 @@
         "15": ""
     },
     "NecromancerInfoLong": {
-        "13": "(巫师阵营):\\n亡灵法师活着时没有任何能力。但在死亡后，你可以对玩家使用亡灵来谋杀他们",
+        "13": "(巫师阵营):\\n亡灵法师活着时没有任何能力。但在死亡后，你可以对玩家使用亡灵来击杀他们",
         "0": "(Coven):\\nAs the Necromancer, you don't have any abilities while alive.\\n\\nBut after dying, you can use necromanced ghouls on players to murder them.",
         "5": "(Ковен):\\nКогда Некромант живой у него нет никаких способностей. Но после смерти он может ввести команду: /rv [Номер игрока], чтобы убить назначеного игрока",
         "14": "",
@@ -15804,7 +15804,7 @@
         "15": ""
     },
     "TorchInfoLong": {
-        "13": "(附加职业):\\n只有船员会成为执灯人，执灯人视野范围很大且不受停电影响。",
+        "13": "(附加职业):\\n只能是船员才是火炬，他们拥有最大视野，不会受到灯光破坏的影响（房主设置）",
         "0": "(Add-ons):\\nOnly the Crewmate will be the Torch, who have max vision and are not affected by Lights sabotage.",
         "5": "(Атрибут):\\nУ Фонарика по умолчанию дальность обзора такое же как и у Предателей.",
         "14": "(附加職業):\\n只有船員會成為小燈人，小燈人的視野範圍很大並且不受關燈影響。",
@@ -16164,7 +16164,7 @@
         "15": ""
     },
     "InfectedInfoLong": {
-        "13": "(附加职业):\\n受感染的附加职业是通过被感染者感染而获得的。一旦被感染，你就为感染者工作，而不是与你的原始团队一起获胜",
+        "13": "(附加职业):\\n受感染的附加职业是通过被感染者感染而获得的。一旦被感染，你就为感染者工作，而不是与你的原始阵营一起获胜",
         "0": "(Betrayal Add-ons):\\nThe Infected add-on is obtained by being infected by the Infectious.\\nOnce infected, you work for the Infectious and do not win with your original team.",
         "5": "(Предательский Атрибут):\\nАтрибут Заражённого можно получить, если вас заразил Заразный.\\nПосле заразы вы работаете на Заразного и побеждаете с ним.",
         "14": "",
@@ -16182,7 +16182,7 @@
         "15": ""
     },
     "OnboundInfoLong": {
-        "13": "(附加职业):\\n不可被赌在会议中就不会被猜死了",
+        "13": "(附加职业):\\n不可被赌在会议中不会被赌死",
         "0": "(Add-ons):\\nWith the Onbound add-on, you cannot be guessed in meetings.",
         "5": "(Атрибут):\\nУ Непобедимого невозможно угадать роль во время встречи",
         "14": "",
@@ -16200,7 +16200,7 @@
         "15": ""
     },
     "KnightedInfoLong": {
-        "13": "(附加职业):\\n当君主骑士某人时，他们会获得额外的投票权",
+        "13": "(附加职业):\\n当君主授予某人骑士时，骑士的玩家会获得额外的票数",
         "0": "(Add-ons):\\nWhen a Monarch knights someone, they get an extra vote.",
         "5": "(Атрибут):\\nКогда Монарх посвящает кого-то, он получает дополнительный голос.",
         "14": "",
@@ -16218,7 +16218,7 @@
         "15": ""
     },
     "UnreportableInfoLong": {
-        "13": "(附加职业):\\n不受重视的附加职业，死后，你的尸体就无法报告了",
+        "13": "(附加职业):\\n你死亡后，因为不受重视，所以尸体无法报告",
         "0": "(Add-ons):\\nWith the Disregarded add-on, your corpse cannot be reported.",
         "5": "(Атрибут):\\nС этим Атрибутом ваш труп нельзя будет зарепортить",
         "14": "",
@@ -16272,7 +16272,7 @@
         "15": ""
     },
     "LuckyInfoLong": {
-        "13": "(附加职业):\\n幸运加持有可能逃脱杀戮，具体概率由房主设定。当躲避生效时，带刀玩家会看到破盾动画，但你什么都不知道",
+        "13": "(附加职业):\\n幸运加持有可能逃脱击杀，具体概率由房主设定。当躲避生效时，带刀玩家会看到破盾动画，但带有幸运加持的玩家什么都不知道",
         "0": "(Add-ons):\\nWith the Lucky add-on there is a probability for you to evade the kill, the specific probability is set by the host. When the evasion takes effect, the killer will see the shield-animation, but you not know anything.",
         "5": "(Атрибут):\\nУ Удачливого будет возникать определенная вероятность того, что Убийца не сможет убить игрока с Атрибутом Удачливого, вероятность устанавливается в зависимости от настроек Хоста.\\nПримечание: Это та же роль Удачника, но в виде Атрибута",
         "14": "",
@@ -16434,7 +16434,7 @@
         "15": ""
     },
     "RecruitInfoLong": {
-        "13": "(附加职业):\\n你是豺狼阵营的玩家，帮助豺狼和他们的队友。。您无法与原阵营一起获胜",
+        "13": "(附加职业):\\n你是豺狼阵营的玩家，帮助豺狼。您无法与原阵营一起获胜",
         "0": "(Betrayal Add-ons):\\nAs a recruit, you are on the Jackal's team and help out the Jackal and their Sidekicks.\\n\\nYou cannot win with your original team.",
         "5": "(Предательский Атрибут):\\nКак Завербованный, вы больше не сможете победить с вашей первоначальной командой. Взамен, вы должны помочь Шакалу и победить.",
         "14": "",
@@ -16488,7 +16488,7 @@
         "15": ""
     },
     "DiseasedInfoLong": {
-        "13": "(附加职业):\\n当有人试图对你使用击杀按钮时，他们的冷却时间将增加为房主配置的时间.",
+        "13": "(附加职业):\\n当有人试图对你使用击杀按钮时，他们的冷却时间将增加为房主配置的时间",
         "0": "(Add-ons):\\nWhen someone tries to use kill button on you, their cooldown will be increased by configurable amount of time",
         "5": "(Атрибут)\\nКогда кто-то попытается использовать кнопку убийства на тебе, его откат будет увеличен до времени в настройках.",
         "14": "",
@@ -16506,7 +16506,7 @@
         "15": ""
     },
     "AntidoteInfoLong": {
-        "13": "(附加职业):\\n当有人试图对你使用击杀按钮时，他们的冷却时间将减少为房主配置的时间..",
+        "13": "(附加职业):\\n当有人试图对你使用击杀按钮时，他们的冷却时间将减少为房主配置的时间",
         "0": "(Add-ons):\\nWhen someone tries to use kill button on you, their cooldown will be decreased by configurable amount of time",
         "5": "(Атрибут)\\nКогда кто-то попытается использовать кнопку убийства на тебе,  его откат будет увеличен до времени в настройках.",
         "14": "",
@@ -16524,7 +16524,7 @@
         "15": ""
     },
     "SwiftInfoLong": {
-        "13": "(附加职业):\\n迅捷的击杀不会导致你瞬移（玩家视角显示自杀）",
+        "13": "(附加职业):\\n迅捷的击杀不会导致瞬移（玩家视角显示自杀）",
         "0": "(Add-ons):\\nAs the Swift, your kills will not cause you to lunge.",
         "5": "(Атрибут)\\nКак Ловкач, твои убийства не заставляют телепортироваться к трупу.",
         "14": "",
@@ -16542,7 +16542,7 @@
         "15": ""
     },
     "UnluckyInfoLong": {
-        "13": "(附加职业):\\n倒霉蛋在做任务、杀人或使用通风管是为了杀死你",
+        "13": "(附加职业):\\n倒霉蛋在做任务、杀人或使用通风管是为了自杀",
         "0": "(Add-ons):\\nAs the Unlucky, doing tasks, killing, or venting as a chance to kill you.",
         "5": "(Атрибут)\\nКак Невезучий, делая задания, убивая, или используя вентиляцию, вы с каким-то шансом умрёте.",
         "14": "",
@@ -19332,7 +19332,7 @@
         "15": ""
     },
     "EnableRoleSummary": {
-        "13": "身份概述",
+        "13": "显示游戏结果",
         "0": "Old Role Summary",
         "5": "Отображать результат игры",
         "14": "",
@@ -19692,7 +19692,7 @@
         "15": ""
 	},
     "OptKickAndroidPlayer": {
-        "13": "踢出使用安卓的玩家",
+        "13": "踢出使用安卓手机的玩家",
         "0": "Kick Android players",
         "5": "Кикнуть игроков которые зашли в лобби через телефон",
         "14": "踢出使用Android平台遊玩的玩家",
@@ -19728,7 +19728,7 @@
         "15": ""
     },
     "OptKickXboxPlayer": {
-        "13": "踢出Xbox玩家",
+        "13": "踢出使用Xbox设备的玩家",
         "0": "Kick Xbox players",
         "5": "Кикнуть игроков которые зашли в лобби через Xbox",
         "14": "",
@@ -19746,7 +19746,7 @@
         "15": ""
     },
     "OptKickPlayStationPlayer": {
-        "13": "踢出PS玩家",
+        "13": "踢出使用PS设备的玩家",
         "0": "Kick PlayStation players",
         "5": "Кикнуть игроков которые зашли в лобби через PlayStation",
         "14": "",
@@ -19764,7 +19764,7 @@
         "15": ""
     },
     "OptKickNintendoPlayer": {
-        "13": "踢出任天堂Switch玩家",
+        "13": "踢出使用Switch设备的玩家",
         "0": "Kick Nintendo Switch players",
         "5": "Кикнуть игроков которые зашли в лобби через Nintendo Switch",
         "14": "",
@@ -19782,7 +19782,7 @@
         "15": ""
     },
     "ShareLobby": {
-        "13": "允许车队姬自动群发您的房号",
+        "13": "允许车队姬自动群发您的房号（失效）",
         "0": "Allow TOHE-Chan Shares Lobby Code To Discord",
         "5": "Отправлять код вашей комнаты в Discord сервер TOHE (Больше не рабоатет)",
         "14": "允許車隊姬自動發送您的房號至Discord",
@@ -20412,7 +20412,7 @@
         "15": ""
     },
     "IgnoreImpostors": {
-        "13": "忽略<color=#ff1919>内鬼</color>",
+        "13": "忽略<color=#ff1919>内鬼阵营</color>",
         "0": "Ignore <color=#ff1919>Impostors</color>",
         "5": "<color=#ff1919>Предатели</color> игнорируют условия",
         "14": "忽略<color=#ff1919>偽裝者</color>",
@@ -20430,7 +20430,7 @@
         "15": ""
     },
     "IgnoreNeutrals": {
-        "13": "忽略<color=#7f8c8d>中立</color>",
+        "13": "忽略<color=#7f8c8d>中立阵营</color>",
         "0": "Ignore <color=#7f8c8d>Neutrals</color>",
         "5": "<color=#7f8c8d>Нейтралы</color> игнорируют условия",
         "14": "忽略<color=#7f8c8d>中立</color>",
@@ -20448,7 +20448,7 @@
         "15": ""
     },
     "IgnoreCrewmates": {
-        "13": "忽略<color=#8cffff>船员</color>",
+        "13": "忽略<color=#8cffff>船员阵营</color>",
         "0": "Ignore <color=#8cffff>Crewmates</color>",
         "5": "<color=#8cffff>Члены Экипажа</color> игнорируют условия",
         "14": "忽略<color=#8cffff>船員</color>",
@@ -20592,7 +20592,7 @@
         "15": ""
     },
     "CommsCamouflage": {
-        "13": "通信破坏时小黑人",
+        "13": "通信破坏时触发小黑人",
         "0": "Camouflage during Comms Sabotage",
         "5": "Камуфляж при Саботаже Связи",
         "14": "通訊破壞時小灰人(有Bug慎開)",
@@ -20610,7 +20610,7 @@
         "15": ""
     },
     "DisableOnSomeMaps": {
-        "13": "在特定地图上禁用破坏通讯隐蔽的效果",
+        "13": "在特定地图上禁用破坏通讯触发小黑人的效果",
         "0": "Disable comms camouflage on some maps",
         "5": "Отключить камуфляж на некоторых картах",
         "14": "",
@@ -20988,7 +20988,7 @@
         "15": ""
     },
     "RemovePetsAtDeadPlayers": {
-        "13": "玩家死亡时移除宠物",
+        "13": "玩家死亡时强制移除宠物",
         "0": "Remove pets at dead players",
         "5": "Убирать питомцев у мертвых игроков",
         "14": "",
@@ -21096,7 +21096,7 @@
         "15": ""
     },
     "ShowImpRemainOnEject": {
-        "13": "驱逐确认时显示剩余<color=#ff1919>内鬼</color>的数量",
+        "13": "驱逐时显示剩余<color=#ff1919>内鬼阵营</color>的数量",
         "0": "Show remaining <color=#ff1919>Impostors</color> on ejects",
         "5": "Отображать оставшихся <color=#ff1919>Предателей</color> при изгнании",
         "14": "逐出確認時顯示剩餘<color=#ff1919>偽裝者</color>數量",
@@ -21114,7 +21114,7 @@
         "15": ""
     },
     "ShowNKRemainOnEject": {
-        "13": "同时显示剩余邪恶<color=#7f8c8d>中立</color>的数量",
+        "13": "同时显示剩余<color=#7f8c8d>带刀中立</color>的数量",
         "0": "Show remaining <color=#7f8c8d>Neutral Killers</color> on ejects",
         "5": "Отображать оставшихся <color=#7f8c8d>Нейтральных Убийц</color> при изгнании",
         "14": "同時顯示剩餘邪惡<color=#7f8c8d>中立</color>數量",
@@ -21132,7 +21132,7 @@
         "15": ""
     },
     "ShowCovenRemainOnEject": {
-        "13": "驱逐时显示剩余的<color=#663399>巫师阵营</color>的玩家",
+        "13": "同时显示剩余<color=#663399>巫师阵营</color>的玩家",
         "0": "Show remaining <color=#663399>Coven</color> members on ejection",
         "5": "Отображать оставшихся <color=#663399>Ковенов</color> при изгнании",
         "14": "",
@@ -21168,7 +21168,7 @@
         "15": ""
     },
     "ConfirmLoversOnEject": {
-        "13": "确认<color=#ff9ace>恋人</color>的数量",
+        "13": "确认<color=#ff9ace>恋人们</color>的数量",
         "0": "Confirm <color=#ff9ace>Lovers</color> on ejection",
         "5": "Отображать изгнание <color=#ff9ace>Любовников</color>",
         "14": "",
@@ -21384,7 +21384,7 @@
         "15": ""
     },
     "MenuTitle.Disable": {
-        "13": "★ 禁用相关设定",
+        "13": "★ 禁用相关设定 ★",
         "0": "★ Disable ★",
         "5": "★ Отключить ★",
         "14": "★ 禁用相關設定",
@@ -21402,7 +21402,7 @@
         "15": ""
     },
     "MenuTitle.MapsSettings": {
-        "13": "★ 地图",
+        "13": "★ 地图 ★",
         "0": "★ Maps ★",
         "5": "★ Настройка Карт ★",
         "14": "",
@@ -21420,7 +21420,7 @@
         "15": ""
     },
     "MenuTitle.Sabotage": {
-        "13": "★ 破坏相关设定",
+        "13": "★ 破坏相关设定 ★",
         "0": "★ Sabotage ★",
         "5": "★ Саботаж ★",
         "14": "★ 破壞相關設定",
@@ -21438,7 +21438,7 @@
         "15": ""
     },
     "MenuTitle.Meeting": {
-        "13": "★ 会议相关设定",
+        "13": "★ 会议相关设定 ★",
         "0": "★ Meeting ★",
         "5": "★ Собрание ★",
         "14": "★ 會議相關設定",
@@ -21456,7 +21456,7 @@
         "15": ""
     },
     "MenuTitle.Ghost": {
-        "13": "★ 幽灵相关设定",
+        "13": "★ 幽灵相关设定 ★",
         "0": "★ Ghost ★",
         "5": "★ Призраки ★",
         "14": "★ 幽靈相關設定",
@@ -21474,7 +21474,7 @@
         "15": ""
     },
     "MenuTitle.Other": {
-        "13": "★ 其它设定",
+        "13": "★ 其它设定 ★",
         "0": "★ Different ★",
         "5": "★ Другое ★",
         "14": "★ 其他設定",
@@ -21492,7 +21492,7 @@
         "15": ""
     },
     "MenuTitle.Ejections": {
-        "13": "★ 驱逐相关设定",
+        "13": "★ 驱逐相关设定 ★",
         "0": "★ Ejection ★",
         "5": "★ Выбрасивание ★",
         "14": "★ 逐出相關設定",
@@ -21510,7 +21510,7 @@
         "15": ""
     },
     "MenuTitle.Settings": {
-        "13": "★ 设置",
+        "13": "★ 设置 ★",
         "0": "★ Settings ★",
         "5": "★ Настройки ★",
         "14": "★Settings★",
@@ -21528,7 +21528,7 @@
         "15": ""
     },
     "MenuTitle.TaskSettings": {
-        "13": "★ 任务管理",
+        "13": "★ 任务管理 ★",
         "0": "★ Task Management ★",
         "5": "★ Управление Заданиями ★",
         "14": "",
@@ -21546,7 +21546,7 @@
         "15": ""
     },
     "MenuTitle.Guessers": {
-        "13": "★ 猜测模式",
+        "13": "★ 猜测模式 ★",
         "0": "★ Guesser Mode ★",
         "5": "★ Режим Угадывателей ★",
         "14": "",
@@ -21564,7 +21564,7 @@
         "15": ""
     },
     "MenuTitle.GuesserModeRoles": {
-        "13": "★ 猜测模式的身份和附加职业",
+        "13": "★ 猜测模式的身份和附加职业 ★",
         "0": "★ Roles and Add-ons for Guesser Mode ★",
         "5": "★ Роли и Атрибуты для Режима Угадывателей ★",
         "14": "",
@@ -21924,7 +21924,7 @@
         "15": ""
     },
     "SniperCanKill": {
-        "13": "<color=#ff1919>狙击手</color>可以在剩余子弹的情况下杀人",
+        "13": "<color=#ff1919>狙击手</color>可以在还有剩余子弹的情况下杀人",
         "0": "<color=#ff1919>Sniper</color> can kill with bullets remaining",
         "5": "<color=#ff1919>Снайпер</color> может убивать оставшимися пулями",
         "14": "",
@@ -22017,8 +22017,8 @@
         "13": "<color=#00b4eb>跟班</color>可以杀死<color=#00b4eb>豺狼</color>",
         "0": "<color=#00b4eb>Sidekick</color> can kill <color=#00b4eb>Jackal</color>",
         "5": "<color=#00b4eb>Союзник</color> может убить <color=#00b4eb>Шакала</color>",
-        "14": "Los <color=#00b4eb>Secuaces</color> pueden matar al <color=#00b4eb>Chacal</color>",
-        "12": "",
+        "14": "",
+        "12": "Los <color=#00b4eb>Secuaces</color> pueden matar al <color=#00b4eb>Chacal</color>",
         "1": "",
         "2": "",
         "3": "",
@@ -22068,7 +22068,7 @@
         "15": ""
     },
     "CanKillAllies": {
-        "13": "可以击杀<color=#ff1919>内鬼</color>",
+        "13": "可以击杀<color=#ff1919>内鬼阵营</color>",
         "0": "Can Kill <color=#ff1919>Impostors</color>",
         "5": "Может убить <color=#ff1919>Предателей</color>",
         "14": "可以殺死<color=#ff1919>偽裝者</color>",
@@ -22158,7 +22158,7 @@
         "15": ""
     },
     "NonNeutralKillingRolesMinPlayer": {
-        "13": "<color=#ffff00>非带刀</color><color=#7f8c8d>中立</color>的<color=#00ffff>最低</color>数量",
+        "13": "<color=#ffff00>无刀</color><color=#7f8c8d>中立</color>的<color=#00ffff>最低</color>数量",
         "0": "<color=#00ffff>Minimum</color> amount of <color=#ffff00>Non-Killing</color> <color=#7f8c8d>Neutrals</color>",
         "5": "<color=#00ffff>Минимальное</color> количество <color=#ffff00>Пассивных</color> <color=#7f8c8d>Нейтралов</color>",
         "14": "",
@@ -22176,7 +22176,7 @@
         "15": ""
     },
     "NonNeutralKillingRolesMaxPlayer": {
-        "13": "<color=#ffff00>非带刀</color><color=#7f8c8d>中立</color>的<color=#00a5ff>最高</color>数量",
+        "13": "<color=#ffff00>无刀</color><color=#7f8c8d>中立</color>的<color=#00a5ff>最高</color>数量",
         "0": "<color=#00a5ff>Maximum</color> amount of <color=#ffff00>Non-Killing</color> <color=#7f8c8d>Neutrals</color>",
         "5": "<color=#00a5ff>Максимальное</color> количество <color=#ffff00>Пассивных</color> <color=#7f8c8d>Нейтралов</color>",
         "14": "",
@@ -22734,7 +22734,7 @@
         "15": ""
     },
     "ShapeshiftDuration": {
-        "13": "变形持续时间",
+        "13": "<color=#ff1919>变形者</color>变形持续时间",
         "0": "<color=#ff1919>Shapeshift</color> Duration",
         "5": "Продолжительность <color=#ff1919>морфа</color>",
         "14": "變形持續時間",
@@ -22752,7 +22752,7 @@
         "15": ""
     },
     "ShapeshiftCooldown": {
-        "13": "变形冷却时间",
+        "13": "<color=#ff1919>变形者</color>变形冷却时间",
         "0": "<color=#ff1919>Shapeshift</color> Cooldown",
         "5": "<color=#ff1919>Откат морфа</color>",
         "14": "變形冷卻時間",
@@ -22788,7 +22788,7 @@
         "15": ""
     },
     "VitalsCooldown": {
-        "13": "生命体征冷却",
+        "13": "生命体征冷却时间",
         "0": "Vitals Cooldown",
         "5": "Откат Пульсов",
         "14": "",
@@ -22806,7 +22806,7 @@
         "15": ""
     },
     "DeadImpCantSabotage": {
-        "13": "<color=#ff1919>内鬼</color>死后不能破坏",
+        "13": "<color=#ff1919>内鬼阵营</color>死后不能破坏",
         "0": "<color=#ff1919>Impostors</color> can't sabotage after they've died",
         "5": "Мертвые <color=#ff1919>Предатели</color> не могут саботажить",
         "14": "<color=#ff1919>内鬼</color>死后不能破坏",
@@ -22824,7 +22824,7 @@
         "15": ""
     },
     "DeadCrewCantSabotage": {
-        "13": "<color=#8cffff>船员</color>死后不能破坏",
+        "13": "<color=#8cffff>船员阵营</color>死后不能破坏",
         "0": "<color=#8cffff>Crewmates</color> can't sabotage after they've died",
         "5": "Мертвые <color=#8cffff>Члены Экипажа</color> не могут саботажить",
         "14": "",
@@ -22842,7 +22842,7 @@
         "15": ""
     },
     "DeadNeutralCantSabotage": {
-        "13": "<color=#7f8c8d>中立</color>死后不能破坏",
+        "13": "<color=#7f8c8d>中立阵营</color>死后不能破坏",
         "0": "<color=#7f8c8d>Neutrals</color> can't sabotage after they've died",
         "5": "Мертвые <color=#7f8c8d>Нейтралы</color> не могут саботажить",
         "14": "",
@@ -23220,7 +23220,7 @@
         "15": ""
     },
     "SheriffCanKillCharmed": {
-        "13": "可以执法<color=#cf6acd>魅惑</color>玩家",
+        "13": "可以执法<color=#cf6acd>被魅惑</color>的玩家",
         "0": "Can kill <color=#cf6acd>Charmed</color> players",
         "5": "Может убить <color=#cf6acd>Зачарованных</color> игроков",
         "14": "可以執法被<color=#cf6acd>魅惑</color>的玩家",
@@ -23472,7 +23472,7 @@
         "15": ""
     },
     "SnitchCanFindNeutralKiller": {
-        "13": "可以确认带刀<color=#7f8c8d>带刀中立</color>",
+        "13": "可以确认<color=#7f8c8d>带刀中立</color>",
         "0": "Can Find <color=#7f8c8d>Neutral Killers</color>",
         "5": "Может видеть <color=#7f8c8d>Нейтральных убийц</color>",
         "14": "可以確認帶刀<color=#7f8c8d>中立</color>",
@@ -23724,7 +23724,7 @@
         "15": ""
     },
     "CanTargetNeutralBenign": {
-        "13": "目标可能是<color=#046300>友好</color><color=#7f8c8d>中立</color>",
+        "13": "可能是<color=#046300>友好</color><color=#7f8c8d>中立</color>的玩家作为目标",
         "0": "Can Target <color=#7f8c8d>Neutral</color> <color=#046300>Benign</color>",
         "5": "Может иметь цель изгнать <color=#046300>Доброго</color> <color=#7f8c8d>Нейтрала</color>",
         "14": "",
@@ -23742,7 +23742,7 @@
         "15": ""
     },
     "CanTargetNeutralEvil": {
-        "13": "目标可能是<color=#912900>邪恶</color><color=#7f8c8d>中立</color>",
+        "13": "可能是<color=#912900>邪恶</color><color=#7f8c8d>中立</color>的玩家作为目标",
         "0": "Can Target <color=#7f8c8d>Neutral</color> <color=#912900>Evil</color>",
         "5": "Может иметь цель изгнать <color=#912900>Злого</color> <color=#7f8c8d>Нейтрала</color>",
         "14": "",
@@ -23760,7 +23760,7 @@
         "15": ""
     },
     "CanTargetNeutralChaos": {
-        "13": "目标可能是<color=#D4AF37>混乱</color><color=#7f8c8d>中立</color>",
+        "13": "可能是<color=#D4AF37>混乱</color><color=#7f8c8d>中立</color>的玩家作为目标",
         "0": "Can Target <color=#7f8c8d>Neutral</color> <color=#D4AF37>Chaos</color>",
         "5": "Может иметь цель изгнать <color=#7f8c8d>Нейтрала</color> вносящий <color=#D4AF37>Хаос</color>",
         "14": "",
@@ -23796,7 +23796,7 @@
         "15": ""
     },
     "LawyerCanTargetImpostor": {
-        "13": "可能是<color=#ff1919>内鬼阵营</color>作为目标",
+        "13": "可能是<color=#ff1919>内鬼阵营</color>的玩家作为目标",
         "0": "Can Target <color=#ff1919>Impostors</color>",
         "5": "Может иметь <color=#ff1919>Предателя</color> как цель",
         "14": "",
@@ -23814,7 +23814,7 @@
         "15": ""
     },
     "LawyerCanTargetNeutralKiller": {
-        "13": "可能是<color=#7f8c8d>带刀中立</color>作为目标",
+        "13": "可能是<color=#7f8c8d>带刀中立</color>的玩家作为目标",
         "0": "Can Target <color=#7f8c8d>Neutral Killers</color>",
         "5": "Может иметь <color=#7f8c8d>Нейтральных Убийц</color> как цель",
         "14": "",
@@ -23832,7 +23832,7 @@
         "15": ""
     },
     "LawyerCanTargetCrewmate": {
-        "13": "可能是<color=#8cffff>船员阵营</color>作为目标",
+        "13": "可能是<color=#8cffff>船员阵营</color>的玩家作为目标",
         "0": "Can Target <color=#8cffff>Crewmates</color>",
         "5": "Может иметь <color=#8cffff>Членов Экипажа</color> как цель",
         "14": "",
@@ -23850,7 +23850,7 @@
         "15": ""
     },
     "LawyerCanTargetJester": {
-        "13": "可能是<color=#ec62a5>小丑</color>作为目标",
+        "13": "可能是<color=#ec62a5>小丑</color>的玩家作为目标",
         "0": "Can Target <color=#ec62a5>Jester</color>",
         "5": "Может иметь <color=#ec62a5>Шута</color> как цель",
         "14": "",
@@ -24768,7 +24768,7 @@
         "15": ""
     },
     "NCareRed": {
-        "13": "<color=#7f8c8d>混沌中立</color>视为邪恶",
+        "13": "<color=#7f8c8d>混乱中立</color>视为邪恶",
         "0": "<color=#7f8c8d>Neutral Chaos</color> can be red",
         "5": "<color=#7f8c8d>Нейтралыкоторые вносят Хаос</color> показываются красным",
         "14": "",
@@ -24894,7 +24894,7 @@
         "15": ""
     },
     "EveryOneKnowSuperStar": {
-        "13": "所有人知道谁是明星",
+        "13": "所有人知道谁是<color=#f6f657>大明星</color>",
         "0": "Everyone knows the <color=#f6f657>Super Star</color>",
         "5": "Все знают кто является <color=#f6f657>Супер Звездой</color>",
         "14": "所有人知道誰是大明星",
@@ -26172,7 +26172,7 @@
         "15": ""
     },
     "MadSnitchTasks": {
-        "13": "背叛的告密者的任务数",
+        "13": "背叛的<color=#b8fb4f>告密者</color>的任务数",
         "0": "<color=#b8fb4f>Snitch</color> Tasks",
         "5": "Задания <color=#b8fb4f>Стукача</color> ",
         "14": "背叛的告密者的任務數量",
@@ -26514,7 +26514,7 @@
         "15": ""
     },
     "MadmateCountMode": {
-        "13": "叛徒在人数上视为",
+        "13": "<color=#ff1919>叛徒</color>在人数上视为",
         "0": "<color=#ff1919>Madmates</color> count as",
         "5": "<color=#ff1919>Безумцы</color> считаются как ",
         "14": "叛徒在人數上視為",
@@ -27504,7 +27504,7 @@
         "15": ""
     },
     "JudgeTryHideMsg": {
-        "13": "尝试混淆法官指令",
+        "13": "尝试混淆<color=#f8d85a>法官</color>指令",
         "0": "Hide <color=#f8d85a>Judge</color>'s commands",
         "5": "Спрятать команду <color=#f8d85a>Судьи</color>",
         "14": "嘗試混淆法官指令",
@@ -27918,7 +27918,7 @@
         "15": ""
     },
     "SuccubusTargetKnowOtherTarget": {
-        "13": "被魅惑的玩家可以互认",
+        "13": "<color=#cf6acd>被魅惑</color>的玩家可以互认",
         "0": "<color=#cf6acd>Charmed</color> players know each other",
         "5": "<color=#cf6acd>Зачарованные</color> игроки могут знать друг друга",
         "14": "被魅惑的玩家可以互認",
@@ -28260,7 +28260,7 @@
         "15": ""
     },
     "JackalCanWinBySabotageWhenNoImpAlive": {
-        "13": "没有<color=#ff1919>内鬼</color>存活时破坏视作豺狼胜利",
+        "13": "没有<color=#ff1919>内鬼</color>存活时破坏视作<color=#00b4eb>豺狼</color>胜利",
         "0": "When all <color=#ff1919>Impostors</color> are dead, the <color=#00b4eb>Jackal</color> wins by sabotage instead",
         "5": "Саботаж <color=#ff1919>Предателя</color> считается победой <color=#00b4eb>Шакала</color> если все <color=#ff1919>Предатели</color> мертвы",
         "14": "沒有<color=#ff1919>偽裝者</color>時存活時破壞視作為豺狼勝利",
@@ -29160,7 +29160,7 @@
         "15": ""
     },
     "CanUseCommsSabotage": {
-        "13": "可以破坏通讯",
+        "13": "可以破坏通讯进行隐蔽",
         "0": "Can use comms sabotage",
         "5": "Может вызвать саботаж связи",
         "14": "",
@@ -30402,7 +30402,7 @@
         "15": ""
     },
     "DeathReason.Hack": {
-        "13": "黑客入侵",
+        "13": "入侵",
         "0": "Hacked",
         "5": "Взломан",
         "14": "",
@@ -30582,7 +30582,7 @@
         "15": ""
     },
     "DeputyHandcuffedPlayer": {
-        "13": "你给目标戴上了手铐！",
+        "13": "你给目标铐上了手铐！",
         "0": "Handcuffed target",
         "5": "Цель в наручниках",
         "14": "",
@@ -30618,7 +30618,7 @@
         "15": ""
     },
     "DeputyInvalidTarget": {
-        "13": "目标不能戴手铐",
+        "13": "目标不能被铐手铐",
         "0": "Target cannot be handcuffed",
         "5": "На целе не могут быть надеты наручники",
         "14": "",
@@ -30654,7 +30654,7 @@
         "15": ""
     },
     "DeputyHandcuffCDForTarget": {
-        "13": "带手铐的玩家击杀冷却时间",
+        "13": "带手铐玩家的击杀冷却时间",
         "0": "Kill Cooldown for handcuffed player",
         "5": "Откат убийства у игроков с наручниками",
         "14": "",
@@ -32004,7 +32004,7 @@
         "15": ""
     },
     "TrialNull": {
-        "13": "请选择一个在场的存活角色进行审判",
+        "13": "请选择一个在场存活的身份进行审判",
         "0": "Please choose a living player for the trial",
         "5": "Пожайлуста выберите человека который жив для суда",
         "14": "請選擇一個在場的存活角色進行審判",
@@ -32076,7 +32076,7 @@
         "15": ""
     },
     "DivinatorCheckSelfMsg": {
-        "13": "哇，你发现自己... 你看到的只是倒影",
+        "13": "哇，你发现自己...看到的只是倒影",
         "0": "Wow, you found yourself... All you see is a reflection.",
         "5": "Вау, ты нашёл сам себя... Всё что ты видишь это отражение.",
         "14": "哇靠，您查到了一位舉世人才! 目標太過耀眼，已經看不到任何東西啦!",
@@ -32094,7 +32094,7 @@
         "15": ""
     },
     "DivinatorCheckReachLimit": {
-        "13": "调查次数上限了awa",
+        "13": "调查次数上限了！不要再调查了！",
         "0": "You've run out of fortunes.",
         "5": "Вы устали от слишком частого использования хрустального шара. Вы должны уйти в отставку. (Количество гаданий достиг предела)",
         "14": "水晶球也是會累的，接下來就算沒有水晶球，也要好好努力呀!(占卜次數達到上限)",
@@ -33318,7 +33318,7 @@
         "15": ""
     },
     "KillBaitNotify": {
-        "13": "<color=#ffff00>目标为诱饵，您将在<color=#ffab1b>{0}秒</color>后报告</color>",
+        "13": "<color=#ffff00>目标为诱饵，您将在<color=#ffab1b>{0}</color>秒后报告</color>",
         "0": "<color=#ffff00>You'll self-report in <color=#ffab1b>{0}</color>s</color>",
         "5": "Вы зарепортите труп через {0} с.",
         "14": "目標為誘餌，將在{0}秒後報告",
@@ -33804,7 +33804,7 @@
         "15": ""
     },
     "VirusNoticeTitle": {
-        "13": "[受感染的尸体！]",
+        "13": "[ 受感染的尸体！]",
         "0": "[ Infected Corpse! ]",
         "5": "[ Зараженный труп! ]",
         "14": "",
@@ -33858,7 +33858,7 @@
         "15": ""
     },
     "SpiritcallerNoticeTitle": {
-        "13": "[你变成了恶灵！]",
+        "13": "你 变 成 了 恶 灵 ！",
         "0": "YOU TURNED INTO AN EVIL SPIRIT ",
         "5": "Ты превратился в Злого Духа!",
         "14": "",
@@ -33894,7 +33894,7 @@
         "15": ""
     },
     "FarseerRevealCooldown": {
-        "13": "<color=#BA55D3>预言</color>冷却",
+        "13": "<color=#BA55D3>预言</color>的冷却时间",
         "0": "<color=#BA55D3>Reveal</color> Cooldown",
         "5": "Откат раскрытия",
         "14": "",
@@ -33912,7 +33912,7 @@
         "15": ""
     },
     "FarseerRevealTime": {
-        "13": "<color=#BA55D3>预言</color>时间",
+        "13": "<color=#BA55D3>预言</color>所需要的时间",
         "0": "<color=#BA55D3>Reveal</color> Time",
         "5": "Время раскрытия",
         "14": "",
@@ -34020,7 +34020,7 @@
         "15": ""
     },
     "MerchantTargetCrew": {
-        "13": "可以出售给<color=#8cffff>船员</color>",
+        "13": "可以出售给<color=#8cffff>船员阵营</color>",
         "0": "Can sell to <color=#8cffff>Crewmates</color>",
         "5": "Может продать <color=#8cffff>Членам Экипажам</color>",
         "14": "",
@@ -34038,7 +34038,7 @@
         "15": ""
     },
     "MerchantTargetImpostor": {
-        "13": "可以出售给<color=#ff1919>内鬼</color>",
+        "13": "可以出售给<color=#ff1919>内鬼阵营</color>",
         "0": "Can sell to <color=#ff1919>Impostors</color>",
         "5": "Может продать <color=#ff1919>Предателям</color>",
         "14": "",
@@ -34056,7 +34056,7 @@
         "15": ""
     },
     "MerchantTargetNeutral": {
-        "13": "可以出售给<color=#7f8c8d>中立</color>",
+        "13": "可以出售给<color=#7f8c8d>中立阵营</color>",
         "0": "Can sell to <color=#7f8c8d>Neutrals</color>",
         "5": "Может продать <color=#7f8c8d>Нейтралам</color>",
         "14": "",
@@ -34200,7 +34200,7 @@
         "15": ""
     },
     "SpiritcallerSpiritAbilityCooldown": {
-        "13": "<color=#003366>恶灵</color>能力的冷却",
+        "13": "<color=#003366>恶灵</color>的技能冷却",
         "0": "<color=#003366>Evil Spirit</color> ability cooldown",
         "5": "Откакт навыка у <color=#003366>Злых Духов</color>",
         "14": "",
@@ -34218,7 +34218,7 @@
         "15": ""
     },
     "SpiritcallerFreezeTime": {
-        "13": "<color=#003366>恶灵</color>能力的冻结时间",
+        "13": "<color=#003366>恶灵</color>的技能冻结时间",
         "0": "<color=#003366>Evil Spirit</color> ability freeze time",
         "5": "<color=#003366>Злой Дух</color> замораживает игрока на",
         "14": "",
@@ -34236,7 +34236,7 @@
         "15": ""
     },
     "SpiritcallerProtectTime": {
-        "13": "<color=#003366>恶灵</color>能力的保护时间",
+        "13": "<color=#003366>恶灵</color>的技能保护时间",
         "0": "<color=#003366>Evil Spirit</color> ability protect time",
         "5": "<color=#003366>Злой Дух</color> даёт щит на",
         "14": "",
@@ -34254,7 +34254,7 @@
         "15": ""
     },
     "SpiritcallerCauseVision": {
-        "13": "<color=#003366>恶灵</color>能力的减小视野",
+        "13": "<color=#003366>恶灵</color>的技能减小视野",
         "0": "<color=#003366>Evil Spirit</color> ability caused vision",
         "5": "<color=#003366>Злой Дух</color> уменьшает зрение на",
         "14": "",
@@ -34272,7 +34272,7 @@
         "15": ""
     },
     "SpiritcallerCauseVisionTime": {
-        "13": "<color=#003366>恶灵</color>能力的减小视野时间",
+        "13": "<color=#003366>恶灵</color>的技能减小视野时间",
         "0": "<color=#003366>Evil Spirit</color> ability caused vision time",
         "5": "<color=#003366>Злой Дух</color> время уменьшения зрения",
         "14": "",
@@ -34380,7 +34380,7 @@
         "15": ""
     },
     "Message.Executed": {
-        "13": "<b>{0}</b>\\n被房主使用指令处决了，请不要干坏事哦~",
+        "13": "<b>{0}</b> 被房主使用指令处决了",
         "0": "<b>{0}</b> was executed",
         "5": "<b>{0}</b> был казнен",
         "14": "[{0}]\\n被房主使用指令處決了，請不要幹壞事喔~",
@@ -34794,7 +34794,7 @@
         "15": ""
     },
     "Message.OnlyCanUseInLobby": {
-        "13": "<color=#ff1919><size=150%><b>很抱歉</b></size></color>，<color=#ff1919>只有在大厅才能使用该指令</color>",
+        "13": "<color=#ff1919><size=150%><b>错误</b></size></color>\\n<color=#ff1919>很抱歉，只有在大厅才能使用该指令</color>",
         "0": "<color=#ff1919><size=150%><b>ERROR</b></size></color>\\n\\n<color=#ff1919>Sorry, this command can only be used in the lobby</color>",
         "5": "<color=#ff1919><size=150%><b>ОШИБКА</b></size></color>\\n\\n<color=#ff1919>Извините, эта команда может быть использована только в лобби</color>",
         "14": "很抱歉，只有在大廳才能使用該指令",
@@ -34812,7 +34812,7 @@
         "15": ""
     },
     "Message.CanNotUseInLobby": {
-        "13": "<color=#ff1919><size=150%><b>很抱歉</b></size></color>，<color=#ff1919>在大厅无法使用该指令</color>",
+        "13": "<color=#ff1919><size=150%><b>错误</b></size></color>\\n<color=#ff1919>很抱歉，只有在大厅才能使用该指令</color>",
         "0": "<color=#ff1919><size=150%><b>ERROR</b></size></color>\\n\\n<color=#ff1919>Sorry, this command cannot be used in the lobby</color>",
         "5": "<color=#ff1919><size=150%><b>ОШИБКА</b></size></color>\\n\\n<color=#ff1919>Извините, эта команда не может быть использована в лобби</color>",
         "14": "很抱歉，在大廳無法使用該指令",
@@ -34830,7 +34830,7 @@
         "15": ""
     },
     "Message.CanNotUseByHost": {
-        "13": "<color=#ff1919><size=150%><b>很抱歉</b></size></color>，<color=#ff1919>房主无法使用该指令</color>",
+        "13": "<color=#ff1919><size=150%><b>错误</b></size></color>\\n<color=#ff1919>很抱歉，房主无法使用该指令</color>",
         "0": "<color=#ff1919><size=150%><b>ERROR</b></size></color>\\n\\n<color=#ff1919>Sorry, Host can't use this command</color>",
         "5": "<color=#ff1919><size=150%><b>ОШИБКА</b></size></color>\\n\\n<color=#ff1919>Извините, но Хост не может воспользоваться этой командой</color>",
         "14": "很抱歉，房主無法使用該指令",
@@ -35082,7 +35082,7 @@
         "15": ""
     },
     "Message.OnlyCanBeUsedByHost": {
-        "13": "<color=#ff1919><size=150%><b>错误</b></size></color>\\n<color=#ff1919>此命令只能由房主使用.</color>",
+        "13": "<color=#ff1919><size=150%><b>错误</b></size></color>\\n<color=#ff1919>该指令只能由房主使用.</color>",
         "0": "<color=#ff1919><size=150%><b>ERROR</b></size></color>\\n\\n<color=#ff1919>This command may only be used by the host.</color>",
         "5": "<color=#ff1919><size=150%><b>ОШИБКА</b></size></color>\\n\\n<color=#ff1919>Эту команду может использовать только хост лобби</color>",
         "14": "",
@@ -35118,7 +35118,7 @@
         "15": ""
     },
     "Warning.TemporaryAntiBlackoutFix": {
-        "13": "",
+        "13": "<size=150%>警告:</size>\\n\\n设置<b>使用保护功能，防止黑屏</b>已启用.\\n由于对局中有多名带刀中立 和/或 巫师阵营，所有驱逐将显示为平局，但不会影响驱逐结果\\n\\n建议保持启用状态，以防止黑屏。",
         "0": "<size=150%>Warning:</size>\\n\\nThe setting <b>Use Protection Anti Blackout</b> is enabled.\\nAll ejections will be displayed as a tie because there are more than one Neutral Killers and/or Covens in game, but will not effect the outcome of the ejection.\\n\\nThis is recommended to keep enabled to prevent black screens.",
         "5": "<size=150%>Внимание:</size>\\n\\nНастройка <b>Использовать защиту от чёрных экарнов</b> включена.\\nВсе изганния будут отображаться как ничья, поскольку в игре Нейтральных Убийц и/или Ковенов больше одного, но на результат изгнания это не влияет (Только визуально).\\n\\nРекомендуется оставить этот параметр включенным, чтобы избежать появления черных экранов",
         "14": "",
@@ -35136,7 +35136,7 @@
         "15": ""
     },
     "TemporaryAntiBlackoutFix": {
-        "13": "",
+        "13": "使用保护功能，防止黑屏",
         "0": "Use Protection Anti Blackout",
         "5": "Использовать защиту от чёрных экарнов",
         "14": "",
@@ -35154,7 +35154,7 @@
         "15": ""
     },
     "AntiBlackoutFixTitle": {
-        "13": "",
+        "13": "防黑屏修复",
         "0": "ANTI BLACKOUT FIX",
         "5": "ЗАЩИТА ОТ ЧЁРНЫХ ЭКАРНОВ",
         "14": "",
@@ -35226,7 +35226,7 @@
         "15": ""
     },
     "Warning.MismatchedVersion": {
-        "13": "<b>{0}</b>\\n安装了其它版本的 <b>{1}</b>",
+        "13": "<b>{0}</b> 安装了其它版本的 <b>{1}</b>",
         "0": "<b>{0}</b> has a different version of <b>{1}</b>",
         "5": "<b>{0}</b> Версия \\nне соответствует версии Хоста лобби <b>{1}</b>",
         "14": "{0}\\n安裝了其他版本的 {1}",
@@ -35946,7 +35946,7 @@
         "15": ""
     },
     "TrackerTitle": {
-        "13": "[★ 曲目阅读 ★]",
+        "13": "[ ★ 曲目阅读 ★ ]",
         "0": "TRACKER ",
         "5": "ТРЕКЕР ",
         "14": "",
@@ -36684,7 +36684,7 @@
         "15": ""
     },
     "EnterVentToWin": {
-        "13": "跳管道来获得胜利！",
+        "13": "使用通风管来获得胜利！",
         "0": "Enter Vent to Win!!",
         "5": "Запрыгните в вентиляцию чтобы победить!!",
         "14": "跳管道來獲勝!",
@@ -36738,7 +36738,7 @@
         "15": ""
     },
     "FireworksPutPhase": {
-        "13": "还要安放<b>{0}</b>枚烟花",
+        "13": "还要安放 <b>{0}</b> 枚烟花",
         "0": "<b>{0}</b> Fireworks Left",
         "5": "Осталось <b>{0}</b> Фейерверков",
         "14": "還要安裝{0}枚煙花",
@@ -36792,7 +36792,7 @@
         "15": ""
     },
     "EnterVentWinCountDown": {
-        "13": "在<b>{0}</b>秒内跳管道胜利！",
+        "13": "在 <b>{0}</b> 秒内使用通风管胜利！",
         "0": "Enter vent within <b>{0}</b> seconds to win!",
         "5": "Прыгните в вентиляцию за <b>{0}</b> секунд чтобы победить!",
         "14": "在{0}秒内跳管道胜利！",
@@ -37710,7 +37710,7 @@
         "15": ""
     },
     "PressTabToNextPage": {
-        "13": "按下tab键查看更多...",
+        "13": "按下<color=#ff1919>tab</color>或<color=#ff1919>数字</color>键查看更多...",
         "0": "Press <color=#ff1919>Tab</color> or <color=#ff1919>Number</color> for Next Page...",
         "5": "Нажмите <color=#ff1919>Tab</color> или <color=#ff1919>Цифру</color> чтобы перейти на следующую страницу...",
         "14": "按下Tab鍵以顯示下一頁....",
@@ -39582,7 +39582,7 @@
         "15": ""
     },
     "PlayerLeftByAU-Anticheat": {
-        "13": "<b>{0}</b>被树懒超级厉害的反作弊踢出去啦~ QwQ",
+        "13": "<b>{0}</b> 被树懒超级厉害的反作弊踢出去啦~ QwQ",
         "0": "<b>{0}</b> was banned by the Innersloth anti-cheat.",
         "5": "<b>{0}</b> был забанен из-за античита сильнейших и ужаснейших Intersloth~ QwQ",
         "14": "[{0}]被Innersloth超級厲害的反作弊踢出去啦~ QwQ",
@@ -39708,7 +39708,7 @@
         "15": ""
     },
     "MsgKickNintendoPlayer": {
-        "13": "<b>{0}</b>由于在任天堂Switch上玩而被踢",
+        "13": "<b>{0}</b>由于在Switch上玩而被踢",
         "0": "<b>{0}</b> was kicked due to playing on Nintendo Switch.",
         "5": "<b>{0}</b> был кикнут из-за того что играет на Nintendo Switch",
         "14": "",
@@ -40356,7 +40356,7 @@
         "15": ""
     },
     "NoImpRemain": {
-        "13": "已经没有内鬼啦",
+        "13": "已经没有<color=#ff1919>内鬼</color> 啦",
         "0": "0 <color=#ff1919>Impostors</color> remain",
         "5": "<color=#ff1919>Предателей</color> больше не осталось",
         "14": "已經沒有偽裝者啦",
@@ -40446,7 +40446,7 @@
         "15": ""
     },
     "NeutralRemain": {
-        "13": "\\n还剩余 {0} 个<color=#7f8c8d>邪恶中立</color>",
+        "13": "\\n还剩余 {0} 个<color=#7f8c8d>带刀中立</color>",
         "0": "\\n{0} <color=#7f8c8d>Neutral Killers</color> remain",
         "5": "\\n<color=#7f8c8d>Нейтральных Убийц</color> осталось: {0}",
         "14": "剩下 {0} 個邪惡中立",
@@ -41346,8 +41346,8 @@
         "15": ""
     },
     "DivinatorCheck.Result5": {
-        "13": "<b>{0}</b>是吟游诗人、天启、遐想者、狂妄杀手、杀戳机器或肢解者其中之一",
-        "0": "<b>{0}</b> is either Bard, Juggernaut, Reverie, Arrogance, Killing Machine, or Butcher",
+        "13": "<b>{0}</b>是吟游诗人、天启、遐想者、狂妄杀手、杀戳机器、狂战士或肢解者其中之一",
+        "0": "<b>{0}</b> is either Bard, Juggernaut, Reverie, Arrogance, Killing Machine, Cultivator, or Butcher",
         "5": "<b>{0}</b> может быть Бард, Джаггернаут, Мечтатель, Высокомер, Машина для Убийств, или Мясник",
         "14": "",
         "12": "",
@@ -42084,7 +42084,7 @@
         "15": ""
     },
     "DeathCmd.NotDead": {
-        "13": "你还没有死，这只能在你死后使用\\n在你被残忍杀害后再次查看<b><color=#ff1919>谋杀</color></b>",
+        "13": "你还没有死，这只能在你死后使用\\n在你被残忍杀害后再次查看<b><color=#ff1919>死因</color></b>",
         "0": "You haven't died yet, this can only be used after you die\\n\\nCheck back again after you've been brutally <b><color=#ff1919>murdered</color></b>",
         "5": "Вы еще не умерли, это можно использовать только после того, как вы умрете\\n\\nПроверьте снова после того, как вы были <b><color=#ff1919>убиты</color></b>",
         "14": "",
@@ -42498,7 +42498,7 @@
         "15": ""
     },
     "SoulCollectorTitle": {
-        "13": "【★ 灵魂贡献 ★】",
+        "13": "[ ★ 灵魂贡献 ★ ]",
         "0": "SOUL COLLECTOR",
         "5": "КОЛЛЕКТОР ДУШ",
         "14": "",
@@ -43470,7 +43470,7 @@
         "15": ""
     },
     "CultivatorTwoCanScavenger": {
-        "13": "可以解锁像清道夫一样的击杀",
+        "13": "可以解锁清道夫一样的击杀",
         "0": "Unlock scavenged kills",
         "5": "Разблокировать убийства которые не оставляют трупов",
         "14": "",
@@ -43884,7 +43884,7 @@
         "15": ""
     },
     "AwareTitle": {
-        "13": "【★ 警告信息 ★】",
+        "13": "[ ★ 警告信息 ★ ]",
         "0": "AWARE MESSAGE",
         "5": "ЗАМЕТКИ ВНИМАТЕЛЬНОГО",
         "14": "",
@@ -45270,7 +45270,7 @@
         "15": ""
     },
     "RememberButtonText": {
-        "13": "回想起",
+        "13": "记住",
         "0": "Remember",
         "5": "ВСПОМНИТЬ",
         "14": "",
@@ -45360,7 +45360,7 @@
         "15": ""
     },
     "RetributionistDeadMsg": {
-        "13": "惩罚者的死亡意味着报应的开始，请使用/ret [玩家编号]杀死指定的玩家\\n您可以在他们的名字前面看到玩家ID或输入 /id 以获得玩家ID列表",
+        "13": "惩罚者的死亡意味着报应的开始，请使用/ret [玩家编号]杀死指定的玩家\\n您可以在玩家名字前看到该玩家的编号，或者使用/id指令查看所有玩家的编号。",
         "0": "The death of the Retributionist means the beginning of retribution. \\nPlease use /ret + [player ID] to kill the specified player \\nYou can see player IDs in front of their names. \\nOr type /ret to get a list of player IDs",
         "5": "Смерть Возмездника означает начало возмездии. \\nИспользуйте /ret + [номер игрока], чтобы убить указанного игрока \\nВы можете увидеть номер игрока перед его именем. \\nИли введите /ret, чтобы получить список номеров игроков",
         "14": "",
@@ -45396,7 +45396,7 @@
         "15": ""
     },
     "RetributionistKillMax": {
-        "13": "你已经达到了杀人次数的上限，你不能再杀人了！",
+        "13": "你已经达到了惩罚次数的上限，你不能再惩罚了！",
         "0": "You've reached the maximum amount of kills, you can't kill anymore!",
         "5": "Вы достигли максимального количества убийств, вы больше не можете убивать!",
         "14": "",
@@ -45450,7 +45450,7 @@
         "15": ""
     },
     "RetributionistKillDisable": {
-        "13": "任务完成后才能惩罚玩家",
+        "13": "在任务完成之前，您无法进行惩罚",
         "0": "You can't retribute until your tasks are done.",
         "5": "Ты не можешь мстить пока не выполнишь свои задания.",
         "14": "",
@@ -45540,7 +45540,7 @@
         "15": ""
     },
     "NecromancerDeadMsg": {
-        "13": "亡灵巫师的死意味着亡灵术的开始。\\请使用/rv [玩家编号]杀死指定的玩家\\n您可以在他们的名字前面看到玩家ID\\n输入/id以获取玩家ID列表",
+        "13": "亡灵巫师的死意味着亡灵术的开始。\\请使用/rv [玩家编号]杀死指定的玩家\\n您可以在玩家名字前看到该玩家的编号，或者使用/id指令查看所有玩家的编号。",
         "0": "The death of the Necromancer means the beginning of necromancy. \\nPlease use /rv + [player ID] to kill the specified player \\nYou can see player IDs in front of their names. \\nOr type /rv to get a list of player IDs",
         "5": "Смерть Некроманта означает начало некромантии.\\nПожалуйста, используйте: /rv [номер игрока], чтобы убить указанного игрока\\nВы можете увидеть номера игроков перед их именами.\\nИли введите /rv, чтобы получить список номеров игроков",
         "14": "",
@@ -45720,7 +45720,7 @@
         "15": ""
     },
     "PanAliveMessageTitle": {
-        "13": "[ 面包师 ]",
+        "13": "[ ★ 面包师 ★ ]",
         "0": "BAKER ",
         "5": "ПЕКАРЬ",
         "14": "",
@@ -46134,7 +46134,7 @@
         "15": ""
     },
     "MaxParityCheckLimit": {
-        "13": "每场比赛的最大检查次数",
+        "13": "每场游戏的最大检查次数",
         "0": "Max inspections per game",
         "5": "Максимум проверок за всю игру",
         "14": "",
@@ -46170,7 +46170,7 @@
         "15": ""
     },
     "ParityCheckEgoistickCountMode": {
-        "13": "<color=#5600ff>利己主义者</color>记为",
+        "13": "<color=#5600ff>利己主义者</color>视为",
         "0": "<color=#5600ff>Egoist</color> counts as",
         "5": "<color=#5600ff>Эгоист</color> считается как",
         "14": "",
@@ -46224,7 +46224,7 @@
         "15": ""
     },
     "ParityCopDead": {
-        "13": "死后不能使用你的力量",
+        "13": "死后不能使用你的技能",
         "0": "You can not use your power after death",
         "5": "Вы не можете использовать свою способность после смерти",
         "14": "",
@@ -46242,7 +46242,7 @@
         "15": ""
     },
     "ParityCheckMax": {
-        "13": "达到每场比赛的最大检查次数！\\n你不能再使用你的力量了",
+        "13": "达到每场比赛的最大检查次数！\\n你不能再使用你的技能了",
         "0": "Max inspections per game reached!\\nYou can not use your power anymore.",
         "5": "Достигнуто максимальное количество проверок за игру!\\nВы больше не можете использовать свою способность.",
         "14": "",
@@ -46314,7 +46314,7 @@
         "15": ""
     },
     "ParityCheckTitle": {
-        "13": "[★ 检查信息 ★]",
+        "13": "[ ★ 检查信息 ★ ]",
         "0": "INSPECTOR ",
         "5": "ИНСПЕКТОР ",
         "14": "",
@@ -46332,7 +46332,7 @@
         "15": ""
     },
     "ParityCheckTrue": {
-        "13": "<b>{0}</b>和<b>{1}</b>在同一阵营！",
+        "13": "<b>{0}</b> 和 <b>{1}</b> 在同一阵营！",
         "0": "<b>{0}</b> and <b>{1}</b> are in the same team!",
         "5": "<b>{0}</b> и <b>{1}</b> в одной команде!",
         "14": "<b>{0}</b> and <b>{1}</b> are in the same team!",
@@ -46350,7 +46350,7 @@
         "15": ""
     },
     "ParityCheckFalse": {
-        "13": "<b>{0}</b>和<b>{1}</b>不在同一阵营！",
+        "13": "<b>{0}</b> 和 <b>{1}</b> 不在同一阵营！",
         "0": "<b>{0}</b> and <b>{1}</b> are <color=#ff1919>NOT</color> in the same team!",
         "5": "<b>{0}</b> и <b>{1}</b> НЕ в одной команде!",
         "14": "",
@@ -46386,7 +46386,7 @@
         "15": ""
     },
     "ParityCheckHelp": {
-        "13": "指令：/cp [1号玩家 ID] [2号玩家 ID] \\n示例 /cp 1 5\\n你可以在每个人的名字前面看到玩家ID\\n或者使用/id指令列出玩家id",
+        "13": "指令：/cp [1号玩家 ID] [2号玩家 ID] \\n示例 /cp 1 5\\n您可以在玩家名字前看到该玩家的编号，或者使用/id指令查看所有玩家的编号。",
         "0": "Instructions: /cp [Player ID 1] [Player ID 2] \\nExample: /cp 1 5 \\nYou can see the player IDs before everyone's names \\n or use the /id command to list the player IDs",
         "5": "Инструкция: /cp [номер игрока 1] [номер игрока 2] \\nПример: /cp 1 5 \\nВы можете видеть номера игроков слева от их никнеймов\\n или использовать команду /id для просмотра номеров игроков",
         "14": "",
@@ -46494,7 +46494,7 @@
         "15": ""
     },
     "ParityCopTargetReveal": {
-        "13": "看起来<b>{0}</b>与团队<b>{1}</b>一致",
+        "13": "看起来 <b>{0}</b> 与阵营 <b>{1}</b> 一致",
         "0": " Looks like <b>{0}</b> is aligned with team <b>{1}</b>",
         "5": "Похоже что <b>{0}</b> присоединяется к команде <b>{1}</b>",
         "14": "",
@@ -46566,7 +46566,7 @@
         "15": ""
     },
     "JailerNCCanBeExe": {
-        "13": "可以处决<color=#7f8c8d>混沌中立</color>",
+        "13": "可以处决<color=#7f8c8d>混乱中立</color>",
         "0": "Can execute <color=#7f8c8d>Neutral Chaos</color>",
         "5": "Может казнить <color=#7f8c8d>Нейтральный Хаос</color>",
         "14": "",
@@ -46782,7 +46782,7 @@
         "15": ""
     },
     "JailerTitle": {
-        "13": "【★ 监狱信息 ★】",
+        "13": "[ ★ 监狱信息 ★ ]",
         "0": "Jailor",
         "5": "ТЮРЬМА",
         "14": "",
@@ -46836,7 +46836,7 @@
         "15": ""
     },
     "CopyCatRoleChange": {
-        "13": "您的身份已模仿为<b>{0}</b>",
+        "13": "您的身份已模仿为 <b>{0}</b>",
         "0": "Your role has been changed to <b>{0}</b>",
         "5": "Твоя роль была изменена на <b>{0}</b>",
         "14": "",
@@ -46980,7 +46980,7 @@
         "15": ""
     },
     "CleanserTitle": {
-        "13": "【★ 清洗信息 ★】",
+        "13": "[ ★ 清洗信息 ★ ]",
         "0": "CLEANSER",
         "5": "Сообщение о очищении",
         "14": "",
@@ -47340,7 +47340,7 @@
         "15": ""
     },
     "TaskBasedCrewCanBeLazy": {
-        "13": "以任务为基础<color=#8cffff>船员阵营</color>可以成为<color=#A4DFFE>懒人</color>",
+        "13": "任务型<color=#8cffff>船员</color>可以成为<color=#A4DFFE>懒人</color>",
         "0": "Task based <color=#8cffff>crewmates</color> can be <color=#A4DFFE>Lazy</color>",
         "5": "<color=#8cffff>Члены Экипажа</color> основанные на заданиях, могут стать <color=#A4DFFE>Ленивыми</color>",
         "14": "",
@@ -47718,7 +47718,7 @@
         "15": ""
     },
     "MurderHelp": {
-        "13": "指令：/tl [玩家 ID]\\n你可以在玩家旁边看到玩家的id\\n也可以输入 /id 查询玩家ID",
+        "13": "指令格式：/tl [玩家编号]\\n您可以在玩家的名字前看到该玩家的编号\\n或者使用/id查看玩家编号列表",
         "0": "Command: /tl [player ID]\\nYou can see the players' IDs before the players' names.\\nOr use /id to view the list of all player IDs.",
         "5": "Команда: /tl [номер игрока]\\nВы можете видеть номера игроков перед их именами.\\nИли используйте /id для просмотра списка всех номеров игроков.",
         "14": "",
@@ -47754,7 +47754,7 @@
         "15": ""
     },
     "MurderKillTitle": {
-        "13": "[★ 谋杀案件 ★]",
+        "13": "[ ★ 谋杀案件 ★ ]",
         "0": "COURT ",
         "5": "СУД ",
         "14": "",
@@ -47790,7 +47790,7 @@
         "15": ""
     },
     "CouncillorCanMurderMadmate": {
-        "13": "可以谋杀<color=#ff1919>叛徒</color>",
+        "13": "可以谋杀<color=#ff1919>叛徒阵营</color>",
         "0": "Can Murder <color=#ff1919>Madmates</color>",
         "5": "Может убить <color=#ff1919>Безумцев</color>",
         "14": "",
@@ -47808,7 +47808,7 @@
         "15": ""
     },
     "CouncillorCanMurderImpostor": {
-        "13": "可以谋杀<color=#ff1919>内鬼</color>",
+        "13": "可以谋杀<color=#ff1919>内鬼阵营</color>",
         "0": "Can Murder <color=#ff1919>Impostors</color>",
         "5": "Может убить <color=#ff1919>Предателей</color>",
         "14": "",
@@ -48060,7 +48060,7 @@
         "15": ""
     },
     "DeathpactNumberOfPlayersInPact": {
-        "13": "死亡契约的玩家数量",
+        "13": "<color=#ff1919>死亡契约</color>的玩家数量",
         "0": "Number of players in <color=#ff1919>Death Pact</color>",
         "5": "Максимум игроков в <color=#ff1919>Заключении Договора</color>",
         "14": "",
@@ -48150,7 +48150,7 @@
         "15": ""
     },
     "DeathpactActiveDeathpact": {
-        "13": "在<b>{1}</b>秒内找到<b>{0}</b>",
+        "13": "在 <b>{1}</b> 秒内找到 <b>{0}</b>",
         "0": "Find <b>{0}</b> in <b>{1}</b> seconds.",
         "5": "Найдите <b>{0}</b> за <b>{1}</b> секунд",
         "14": "",
@@ -48348,7 +48348,7 @@
         "15": ""
     },
     "DevouredName": {
-        "13": "被吞噬",
+        "13": "小 黑 人",
         "0": "Devoured",
         "5": "Поглощен",
         "14": "",
@@ -48744,7 +48744,7 @@
         "15": ""
     },
     "OracleCheck.Coven": {
-        "13": "看起来是巫师阵营的一员",
+        "13": "看起来是巫师阵营",
         "0": "Appears to be a member of the Coven",
         "5": "Похоже он в команде Ковена",
         "14": "",
@@ -49122,7 +49122,7 @@
         "15": ""
     },
     "CursedSoulKnowTargetRole": {
-        "13": "了解<color=#531269>没有灵魂</color>玩家的身份",
+        "13": "知道<color=#531269>没有灵魂</color>玩家的身份",
         "0": "Know the roles of <color=#531269>Soulless</color> players",
         "5": "Может знать роли <color=#531269>Бездушных</color> игроков",
         "14": "",
@@ -49176,7 +49176,7 @@
         "15": ""
     },
     "SoullessByCursedSoul": {
-        "13": "你的灵魂被诅咒的灵魂夺走了！",
+        "13": "你的灵魂被夺走了！",
         "0": "Your soul was snatched by a Cursed Soul",
         "5": "Твоя душа была похищена Заклинателем",
         "14": "",
@@ -49680,7 +49680,7 @@
         "15": ""
     },
     "PirateTitle": {
-        "13": "【 ★ 决斗事件 ★ 】",
+        "13": "[ ★ 决斗事件 ★ ]",
         "0": "PIRATE ",
         "5": "ПИРАТ ",
         "14": "",
@@ -50760,7 +50760,7 @@
         "15": ""
     },
     "DoomsayerGuessCountTitle": {
-        "13": "[★ 末日赌怪 ★]",
+        "13": "[ ★ 末日赌怪 ★ ]",
         "0": "DOOMSAYER",
         "5": "ПРЕДСКАЗАТЕЛЬ ",
         "14": "",
@@ -50832,7 +50832,7 @@
         "15": ""
     },
     "OriginalDev": {
-        "13": "原始开发人员",
+        "13": "原始开发者",
         "0": "Original Developer",
         "5": "Оригинальный Разрабочик",
         "14": "",
@@ -50904,7 +50904,7 @@
         "15": ""
     },
     "MainDev": {
-        "13": "主要开发者",
+        "13": "创作者",
         "0": "Creator",
         "5": "Создатель",
         "14": "主要開發者",
