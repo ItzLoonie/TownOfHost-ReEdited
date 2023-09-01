@@ -1858,7 +1858,7 @@ public static class Utils
 
             var seerRole = seer.GetCustomRole();
 
-            if (!isForMeeting)
+            if (!isForMeeting) // Only during game
             {
                 switch (seerRole)
                 {
@@ -1933,7 +1933,7 @@ public static class Utils
                         break;
                 }
             }
-            else
+            else // Only during meeting
             {
                 switch (seerRole)
                 {
