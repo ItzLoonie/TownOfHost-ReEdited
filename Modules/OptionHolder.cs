@@ -27,9 +27,9 @@ public static class Options
     [HarmonyPatch(typeof(TranslationController), nameof(TranslationController.Initialize)), HarmonyPostfix]
     public static void OptionsLoadStart()
     {
-        Logger.Info("Options.Load Start", "Options");
+        Logger.Msg("Mod option loading start", "Load Options");
         taskOptionsLoad = Task.Run(Load);
-        taskOptionsLoad.ContinueWith(t => { Logger.Msg("Mod option loading start", "Load Options"); });
+        taskOptionsLoad.ContinueWith(t => { Logger.Msg("Mod option loading end", "Load Options"); });
     }
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start)), HarmonyPostfix]
     public static void WaitOptionsLoad()
