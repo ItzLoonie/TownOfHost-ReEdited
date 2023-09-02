@@ -19,7 +19,7 @@ public static class Credentials
 
         private static void Postfix(PingTracker __instance)
         {
-            __instance.text.alignment = TMPro.TextAlignmentOptions.TopRight;
+            __instance.text.alignment = TextAlignmentOptions.TopRight;
 
             sb.Clear();
 
@@ -129,10 +129,11 @@ public static class Credentials
     }
 
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
-    class TitleLogoPatch
+    public class TitleLogoPatch
     {
         public static GameObject amongUsLogo;
         public static GameObject Ambience;
+        public static GameObject LoadingHint;
 
         private static void Postfix(MainMenuManager __instance)
         {
@@ -146,8 +147,24 @@ public static class Credentials
             logoTransform.localPosition = new(-0.16f, 0f, 1f); //new(0f, 0.3f, 1f); new(0f, 0.15f, 1f);
             logoTransform.localScale *= 1.2f;
 
+            if (!Options.IsLoaded)
+            {
+                LoadingHint = new GameObject("LoadingHint");
+                LoadingHint.transform.position = Vector3.down;
+                var LoadingHintText = LoadingHint.AddComponent<TextMeshPro>();
+                LoadingHintText.text = GetString("Loading");
+                LoadingHintText.alignment = TextAlignmentOptions.Center;
+                LoadingHintText.fontSize = 5f;
+                LoadingHintText.transform.position = amongUsLogo.transform.position;
+                LoadingHintText.transform.position += new Vector3 (-0.35f,-0.9f,0f);
+                LoadingHintText.color = new Color32(17, 255, 1, byte.MaxValue);
+                __instance.playButton.transform.gameObject.SetActive(false);
+            }
             if ((Ambience = GameObject.Find("Ambience")) != null)
             {
+                // Show playButton when mod is fully loaded
+                if (Options.IsLoaded) __instance.playButton.transform.gameObject.SetActive(true);
+
                 Ambience.SetActive(false);
                 //var CustomBG = new GameObject("CustomBG");
                 //CustomBG.transform.position = new Vector3(2.095f, -0.25f, 520f);
