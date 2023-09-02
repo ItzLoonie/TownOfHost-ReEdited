@@ -38,6 +38,8 @@ public static class Translator
             }
             using (var reader = new StreamReader(stream))
             {
+                var rand = new System.Random();
+                int splash = rand.Next(1,10);
                 Logger.Warn("you have a skill issue frfr", "Fun Fact!");
                 string json = reader.ReadToEnd();
                 translateMaps = JsonSerializer.Deserialize<Dictionary<string, Dictionary<int, string>>>(json);
