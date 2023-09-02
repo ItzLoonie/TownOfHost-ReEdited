@@ -45,7 +45,8 @@ public class ModNewsHistory
     // When creating new news, you can not delete old news 
     public static void Init()
     {
-        if (TranslationController.Instance.currentLanguage.languageID == SupportedLangs.English) // English
+    // ====== English ======
+        if (TranslationController.Instance.currentLanguage.languageID == SupportedLangs.English)
         {
             {
                 // TOHE v3.0.0
@@ -73,7 +74,6 @@ public class ModNewsHistory
                 AllModNews.Add(news);
             }
 
-            // When creating new news, you can not delete old news
             {
                 // TOHE v2.5.0
                 var news = new ModNews
@@ -126,7 +126,8 @@ public class ModNewsHistory
                 AllModNews.Add(news);
             }
         }
-        else if (TranslationController.Instance.currentLanguage.languageID == SupportedLangs.Russian) // Russian
+    // ====== Russian ======
+        else if (TranslationController.Instance.currentLanguage.languageID == SupportedLangs.Russian)
         {
             {
                 // TOHE v3.0.0
@@ -154,7 +155,8 @@ public class ModNewsHistory
                 AllModNews.Add(news);
             }
         }
-        else if (TranslationController.Instance.currentLanguage.languageID == SupportedLangs.SChinese) // SChinese
+    // ====== SChinese ======
+        else if (TranslationController.Instance.currentLanguage.languageID == SupportedLangs.SChinese)
         {
             {
                 // TOHE v3.0.0
