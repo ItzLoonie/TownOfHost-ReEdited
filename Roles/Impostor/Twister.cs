@@ -32,7 +32,7 @@ namespace TOHE.Roles.Impostor
         {
             List<byte> changePositionPlayers = new List<byte> { shapeshifter.PlayerId };
 
-            var rd = new System.Random();
+            var rd = IRandom.Instance;
             foreach (var pc in Main.AllAlivePlayerControls)
             {
                 if (changePositionPlayers.Contains(pc.PlayerId) || Pelican.IsEaten(pc.PlayerId) || !pc.IsAlive() || pc.onLadder || pc.inVent || GameStates.IsMeeting)

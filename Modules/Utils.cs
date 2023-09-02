@@ -88,17 +88,11 @@ public static class Utils
             player.NetTransform.SnapTo(location);
 
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(player.NetTransform.NetId, (byte)RpcCalls.SnapTo, SendOption.None);
-        Logger.Info($" {writer}", "Teleport - writer");
         Logger.Info($" {player.NetTransform.NetId}", "Teleport - NetTransform Id");
-        Logger.Info($" {(byte)RpcCalls.SnapTo}", "Teleport - RpcCalls.SnapTo");
-        Logger.Info($" {SendOption.None}", "Teleport - SendOption.None");
 
         NetHelpers.WriteVector2(location, writer);
-        Logger.Info($" {location}", "Teleport - NetHelpers.WriteVector2 - Location");
-        Logger.Info($" {writer}", "Teleport - NetHelpers.WriteVector2 - writer");
 
         writer.Write(player.NetTransform.lastSequenceId);
-        Logger.Info($" {writer}", "Teleport - Write writer");
         Logger.Info($" {player.NetTransform.lastSequenceId}", "Teleport - Player NetTransform lastSequenceId - writer");
 
         AmongUsClient.Instance.FinishRpcImmediately(writer);
@@ -106,7 +100,7 @@ public static class Utils
     public static void RpcRandomVentTeleport(this PlayerControl player)
     {
         var vents = UnityEngine.Object.FindObjectsOfType<Vent>();
-        var rand = new System.Random();
+        var rand = IRandom.Instance;
         var vent = vents[rand.Next(0, vents.Count)];
 
         Logger.Info($" {vent.transform.position}", "Rpc Vent Teleport Position");
