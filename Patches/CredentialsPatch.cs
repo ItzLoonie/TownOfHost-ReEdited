@@ -163,7 +163,11 @@ public static class Credentials
             if ((Ambience = GameObject.Find("Ambience")) != null)
             {
                 // Show playButton when mod is fully loaded
-                if (Options.IsLoaded) __instance.playButton.transform.gameObject.SetActive(true);
+                if (Options.IsLoaded)
+                {
+                    __instance.playButton.transform.gameObject.SetActive(true);
+                    Logger.Info("Mod option loading eng", "Load Options");
+                }
 
                 Ambience.SetActive(false);
                 //var CustomBG = new GameObject("CustomBG");
