@@ -38,7 +38,7 @@ public static class Translator
             }
             using (var reader = new StreamReader(stream))
             {
-                var rand = new System.Random();
+                var rand = IRandom.Instance;
                 int splash = rand.Next(1,10);
                 Logger.Warn("you have a skill issue frfr", "Fun Fact!");
                 string json = reader.ReadToEnd();
