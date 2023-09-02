@@ -1,6 +1,7 @@
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using UnityEngine;
+using System.Collections.Generic;
 using static TOHE.Options;
 
 namespace TOHE.Roles.AddOns.Crewmate;
@@ -70,7 +71,7 @@ public static class Workhorse
         if (AmongUsClient.Instance.AmHost)
         {
             Add(pc.PlayerId);
-            GameData.Instance.RpcSetTasks(pc.PlayerId, new byte[0]); //タスクを再配布
+            GameData.Instance.RpcSetTasks(pc.PlayerId, Array.Empty<byte>()); //タスクを再配布
             pc.SyncSettings();
             Utils.NotifyRoles();
         }

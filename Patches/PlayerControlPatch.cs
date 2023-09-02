@@ -3360,7 +3360,7 @@ class PlayerControlCompleteTaskPatch
             taskState.AllTasksCount += Main.CapitalismAddTask[player.PlayerId];
             Main.CapitalismAddTask.Remove(player.PlayerId);
             taskState.CompletedTasksCount++;
-            GameData.Instance.RpcSetTasks(player.PlayerId, new byte[0]); //タスクを再配布
+            GameData.Instance.RpcSetTasks(player.PlayerId, Array.Empty<byte>()); //タスクを再配布
             player.SyncSettings();
             Utils.NotifyRoles(SpecifySeer: player);
             return false;
