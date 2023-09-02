@@ -185,6 +185,10 @@ class ExileControllerWrapUpPatch
                 }
             }
 
+            if (Options.RemovePetsAtDeadPlayers.GetBool())
+                if (pc.Data.IsDead && Camouflage.PlayerSkins[pc.PlayerId].PetId != "")
+                    pc.RpcSetPet("");
+
             FallFromLadder.Reset();
             Utils.CountAlivePlayers(true);
             Utils.AfterMeetingTasks();
