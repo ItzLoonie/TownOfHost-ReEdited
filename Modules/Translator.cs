@@ -1,4 +1,3 @@
-using Csv;
 using HarmonyLib;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using System;
@@ -26,32 +25,57 @@ public static class Translator
     {
         try
         {
+            // Get the directory containing the JSON files (e.g., TOHE.Resources.Data)
+            string jsonDirectory = "TOHE.Resources.Data";
+            // Get the assembly containing the resources
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            var stream = assembly.GetManifestResourceStream("TOHE.Resources.NewString.json");
+            string[] jsonFileNames = GetJsonFileNames(assembly, jsonDirectory);
+
             translateMaps = new Dictionary<string, Dictionary<int, string>>();
 
 
-            if (stream == null)
+            if (jsonFileNames.Length == 0)
             {
-                Logger.Warn("Json Translation file does not exist.", "Translator");
+                Logger.Warn("Json Translation files does not exist.", "Translator");
                 return;
             }
-            using (var reader = new StreamReader(stream))
+            foreach (string jsonFileName in jsonFileNames)
             {
-                var rand = IRandom.Instance;
-                int splash = rand.Next(1,10);
-                Logger.Warn("you have a skill issue frfr", "Fun Fact!");
-                string json = reader.ReadToEnd();
-                translateMaps = JsonSerializer.Deserialize<Dictionary<string, Dictionary<int, string>>>(json);
-            }
-            foreach (var key in translateMaps.Keys.ToList())
-            {
-                var translations = translateMaps[key];
-                foreach (var translationKey in translations.Keys.ToList())
+                // Read the JSON file content
+                using (Stream resourceStream = assembly.GetManifestResourceStream(jsonFileName))
                 {
-                    translations[translationKey] = translations[translationKey].Replace("\\n", "\n").Replace("\\r", "\r");
+                    if (resourceStream != null)
+                    {
+                        using (StreamReader reader = new StreamReader(resourceStream))
+                        {
+                            string jsonContent = reader.ReadToEnd();
+
+                            // Deserialize the JSON into a dictionary
+                            Dictionary<string, string> jsonDictionary = JsonSerializer.Deserialize<Dictionary<string, string>>(jsonContent);
+                            if (jsonDictionary.TryGetValue("LanguageID", out string languageIdObj) && int.TryParse(languageIdObj, out int languageId))
+                            {
+                                // Remove the "LanguageID" entry
+                                jsonDictionary.Remove("LanguageID");
+
+                                // Handle the rest of the data and merge it into the resulting translation map
+                                MergeJsonIntoTranslationMap(translateMaps, languageId, jsonDictionary);
+                            }
+                            else
+                            {
+                                //Logger.Warn(jsonDictionary["HostText"], "Translator");
+                                Logger.Warn($"Invalid JSON format in {jsonFileName}: Missing or invalid 'LanguageID' field.", "Translator");
+                            }
+
+                        }
+                    }
                 }
             }
+
+            // Convert the resulting translation map to JSON
+            string mergedJson = JsonSerializer.Serialize(translateMaps, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
         }
         catch (Exception ex)
         {
@@ -68,6 +92,33 @@ public static class Translator
                 LoadCustomTranslation($"{lang}.dat", (SupportedLangs)lang);
         }
     }
+    static void MergeJsonIntoTranslationMap(Dictionary<string, Dictionary<int, string>> translationMaps, int languageId, Dictionary<string, string> jsonDictionary)
+    {
+        foreach (var kvp in jsonDictionary)
+        {
+            string textString = kvp.Key;
+            if (kvp.Value is string translation)
+            {
+
+                // If the textString is not already in the translation map, add it
+                if (!translationMaps.ContainsKey(textString))
+                {
+                    translationMaps[textString] = new Dictionary<int, string>();
+                }
+
+                // Add or update the translation for the current id and textString
+                translationMaps[textString][languageId] = translation.Replace("\\n", "\n").Replace("\\r", "\r");
+            }
+        }
+    }
+
+    // Function to get a list of JSON file names in a directory
+    static string[] GetJsonFileNames(System.Reflection.Assembly assembly, string directoryName)
+    {
+        string[] resourceNames = assembly.GetManifestResourceNames();
+        return resourceNames.Where(resourceName => resourceName.StartsWith(directoryName) && resourceName.EndsWith(".json")).ToArray();
+    }
+
     //public static void LoadLangs()
     //{
     //    var assembly = System.Reflection.Assembly.GetExecutingAssembly();
