@@ -99,7 +99,7 @@ public static class Camouflage
             if (Options.RemovePetsAtDeadPlayers.GetBool())
             {
                 Main.AllPlayerControls
-                    .Where(pc => PlayerSkins[pc.PlayerId].PetId != "" && pc.Data.IsDead && !pc.IsAlive())
+                    .Where(pc => pc.Data.IsDead && !pc.IsAlive() && PlayerSkins[pc.PlayerId].PetId != "")
                     .Do(pc => pc.RpcSetPet(""));
             }
             Utils.NotifyRoles(NoCache: true);
