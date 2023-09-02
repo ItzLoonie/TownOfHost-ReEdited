@@ -73,7 +73,7 @@ public static class Oracle
 
         {
 
-                string text = "Crew";
+                string text = "Crewmate";
                 if (ChangeRecruitTeam.GetBool())
                 {
                     if (target.Is(CustomRoles.Admired)) text = "Crewmate";
@@ -84,10 +84,10 @@ public static class Oracle
                 }
                 else 
                 { 
-                    if (target.GetCustomRole().IsImpostor() && !target.Is(CustomRoles.Trickster)) text = "Imp";
+                    if (target.GetCustomRole().IsImpostor() && !target.Is(CustomRoles.Trickster)) text = "Impostor";
                     else if (target.GetCustomRole().IsCoven()) text = "Coven";
-                    else if (target.GetCustomRole().IsNeutral()) text = "Neut";
-                    else text = "Crew";
+                    else if (target.GetCustomRole().IsNeutral()) text = "Neutral";
+                    else text = "Crewmate";
                 }
                 //      string text = target.GetCustomRole() switch
                 //      {
@@ -217,29 +217,29 @@ public static class Oracle
                     if (random_number_1 <= FailChance.GetInt())
                     {
                         int random_number_2 = HashRandom.Next(1, 3);
-                        if (text == "Crew")
+                        if (text == "Crewmate")
                         {
-                            if (random_number_2 == 1) text = "Neut";
-                            if (random_number_2 == 2) text = "Imp";
+                            if (random_number_2 == 1) text = "Neutral";
+                            if (random_number_2 == 2) text = "Impostor";
                             if (random_number_2 == 3) text = "Coven";
                         }
-                        if (text == "Neut")
+                        if (text == "Neutral")
                         {
-                            if (random_number_2 == 1) text = "Crew";
-                            if (random_number_2 == 2) text = "Imp";
+                            if (random_number_2 == 1) text = "Crewmate";
+                            if (random_number_2 == 2) text = "Impostor";
                             if (random_number_2 == 3) text = "Coven";
                         }
-                        if (text == "Imp")
+                        if (text == "Impostor")
                         {
-                            if (random_number_2 == 1) text = "Neut";
-                            if (random_number_2 == 2) text = "Crew";
+                            if (random_number_2 == 1) text = "Neutral";
+                            if (random_number_2 == 2) text = "Crewmate";
                             if (random_number_2 == 3) text = "Coven";
                         }
                         if (text == "Coven")
                         {
-                            if (random_number_2 == 1) text = "Neut";
-                            if (random_number_2 == 2) text = "Crew";
-                            if (random_number_2 == 3) text = "Imp";
+                            if (random_number_2 == 1) text = "Neutral";
+                            if (random_number_2 == 2) text = "Crewmate";
+                            if (random_number_2 == 3) text = "Impostor";
                         }
                     }
                 }
