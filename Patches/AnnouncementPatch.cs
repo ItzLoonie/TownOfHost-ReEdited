@@ -47,7 +47,34 @@ public class ModNewsHistory
     {
         // When creating new news, you can not delete old news
         {
-            // TOHE v2.4.3
+            // TOHE v3.0.0
+            var news = new ModNews
+            {
+                Number = 100001,
+                Title = "Town of Host Re-Edited v3.0.0",
+                SubTitle = "The next big update",
+                ShortTitle = "★TOH-RE v3.0.0",
+                Text = "<size=150%>Welcome to TOH-RE v3.0.0.</size>\n\n<size=125%>Waiting on Town of Host to support multiple neutral killers... for reasons</size>\n"
+
+                    + "\n【Base】\n - Base on TOH v4.1.2\r\n"
+                    + "\n【Fixes】\n - Various bug fixes\n\r"
+                    + "\n【Changes】\n - Poisoner, Hex Master, Jinx, and Wraith have moved over to a new faction\n\r - Ritualist reworked into Potion Master"
+
+                    + "\n【New Roles】\n - New faction: Coven (total of 10 roles)\n\r - 6 new Impostor roles\n\r - 18 new Neutral roles\n\r - 10 new Crewmate roles\n\r - 7 new add-ons\n\r"
+
+                    + "\n【New Features】\n - Improved autohosting (better moderation, auto play again, etc)\n\r - Added custom Discord RPC\n\r- Added new main menu background\n\r - Added buttons linking to the Discord, the GitHub, and the website\n\r - And more!\n\r"
+
+                    + "\n【Role Changes】\n - Various changes were made, such as an update to Serial Killer\n\r",
+
+                Date = "2023-9-03T00:00:00Z"
+
+            };
+            AllModNews.Add(news);
+        }   
+
+        // When creating new news, you can not delete old news
+        {
+            // TOHE v2.5.0
             var news = new ModNews
             {
                 Number = 100001,
