@@ -45,9 +45,12 @@ class ExileControllerWrapUpPatch
         if (AntiBlackout.ImpostorOverrideExiledPlayer || AntiBlackout.NeutralOverrideExiledPlayer) exiled = AntiBlackout_LastExiled;
 
         bool DecidedWinner = false;
-        if (!AmongUsClient.Instance.AmHost) return; //ホスト以外はこれ以降の処理を実行しません
+        if (!AmongUsClient.Instance.AmHost) return;
         AntiBlackout.RestoreIsDead(doSend: false);
-        if (!Collector.CollectorWin(false) && exiled != null) //判断集票者胜利
+
+        Logger.Info($"{!Collector.CollectorWin(false)}", "!Collector.CollectorWin(false)");
+        Logger.Info($"{exiled != null}", "exiled != null");
+        if (!Collector.CollectorWin(false) && exiled != null)
         {
             // Deal with the darkening bug for the spirit world
             if (!(AntiBlackout.ImpostorOverrideExiledPlayer || AntiBlackout.NeutralOverrideExiledPlayer) && Main.ResetCamPlayerList.Contains(exiled.PlayerId))
@@ -63,7 +66,7 @@ class ExileControllerWrapUpPatch
             {
                 if (!Options.InnocentCanWinByImp.GetBool() && role.IsImpostor())
                 {
-                    Logger.Info("冤罪的目标是内鬼，非常可惜啊", "Exeiled Winner Check");
+                    Logger.Info("Exeiled Winner Check", "Innocent");
                 }
                 else
                 {
@@ -75,16 +78,19 @@ class ExileControllerWrapUpPatch
                 }
             }
             foreach (var pc in Main.AllPlayerControls)
-            //判断小丑胜利 (EAC封禁名单成为小丑达成胜利条件无法胜利)
-            if (role == CustomRoles.Jester)
-                if (DecidedWinner) CustomWinnerHolder.ShiftWinnerAndSetWinner(CustomWinner.Jester);
-                else CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Jester);
-                CustomWinnerHolder.WinnerIds.Add(exiled.PlayerId);
-                DecidedWinner = true;
-            
+                //判断小丑胜利 (EAC封禁名单成为小丑达成胜利条件无法胜利)
+                if (role == CustomRoles.Jester)
+                    if (DecidedWinner) CustomWinnerHolder.ShiftWinnerAndSetWinner(CustomWinner.Jester);
+                    else CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Jester);
+                    CustomWinnerHolder.WinnerIds.Add(exiled.PlayerId);
+                    DecidedWinner = true;
+
 
             //判断处刑人胜利
-            if (Executioner.CheckExileTarget(exiled, DecidedWinner)) DecidedWinner = true;
+            foreach (var pc in Main.AllPlayerControls)
+                if (pc.Is(CustomRoles.Executioner))
+                    if (Executioner.CheckExileTarget(pc,exiled, DecidedWinner)) DecidedWinner = true;
+
             if (Lawyer.CheckExileTarget(exiled, DecidedWinner)) DecidedWinner = false;
 
             //判断恐怖分子胜利

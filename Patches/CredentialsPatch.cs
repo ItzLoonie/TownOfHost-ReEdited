@@ -153,17 +153,17 @@ public static class Credentials
                 LoadingHint.transform.position = Vector3.down;
                 var LoadingHintText = LoadingHint.AddComponent<TextMeshPro>();
                 LoadingHintText.text = GetString("Loading");
-                LoadingHintText.alignment = TextAlignmentOptions.Left;
-                LoadingHintText.fontSize = 2.5f;
+                LoadingHintText.alignment = TextAlignmentOptions.Center;
+                LoadingHintText.fontSize = 2f;
                 LoadingHintText.transform.position = amongUsLogo.transform.position;
-                LoadingHintText.transform.position += new Vector3 (-0.35f,-0.9f,0f);
+                LoadingHintText.transform.position += new Vector3 (-0.25f, -0.9f, 0f);
                 LoadingHintText.color = new Color32(17, 255, 1, byte.MaxValue);
                 __instance.playButton.transform.gameObject.SetActive(false);
             }
             if ((Ambience = GameObject.Find("Ambience")) != null)
             {
                 // Show playButton when mod is fully loaded
-                if (Options.IsLoaded) __instance.playButton.transform.gameObject.SetActive(true);
+                if (Options.IsLoaded && LoadingHint != null) __instance.playButton.transform.gameObject.SetActive(true);
 
                 Ambience.SetActive(false);
                 //var CustomBG = new GameObject("CustomBG");

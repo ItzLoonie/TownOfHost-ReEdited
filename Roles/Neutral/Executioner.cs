@@ -148,7 +148,7 @@ public static class Executioner
         text = string.Format(text, Utils.ColorString(Utils.GetRoleColor(CRoleChangeRoles[ChangeRolesAfterTargetKilled.GetValue()]), Translator.GetString(CRoleChangeRoles[ChangeRolesAfterTargetKilled.GetValue()].ToString())));
         executioner.Notify(text);
     }
-        public static bool KnowRole(PlayerControl player, PlayerControl target)
+    public static bool KnowRole(PlayerControl player, PlayerControl target)
     {
         if (!KnowTargetRole.GetBool()) return false;
         return player.Is(CustomRoles.Executioner) && Target.TryGetValue(player.PlayerId, out var tar) && tar == target.PlayerId;
@@ -161,27 +161,27 @@ public static class Executioner
         var GetValue = Target.TryGetValue(seer.PlayerId, out var targetId);
         return GetValue && targetId == target.PlayerId ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.Executioner), "♦") : "";
     }
-    public static bool CheckExileTarget(GameData.PlayerInfo exiled, bool DecidedWinner, bool Check = false)
+    public static bool CheckExileTarget(PlayerControl executioner, GameData.PlayerInfo exiled, bool DecidedWinner)
     {
         foreach (var kvp in Target.Where(x => x.Value == exiled.PlayerId))
         {
-            var executioner = Utils.GetPlayerById(kvp.Key);
-            if (executioner == null || !executioner.IsAlive() || executioner.Data.Disconnected) continue;
-            if (!Check) ExeWin(kvp.Key, DecidedWinner);
+            var TargetExiled = Utils.GetPlayerById(kvp.Key);
+            if (TargetExiled == null || !executioner.IsAlive() || TargetExiled.Data.Disconnected || executioner.Data.Disconnected) continue;
+            ExeWin(executioner, DecidedWinner);
             return true;
         }
         return false;
     }
-    public static void ExeWin(byte playerId, bool DecidedWinner)
+    public static void ExeWin(PlayerControl executioner, bool DecidedWinner)
     {
         if (!DecidedWinner)
         {
-            SendRPC(playerId, Progress: "WinCheck");
+            SendRPC(executioner.PlayerId, Progress: "WinCheck");
         }
-        else
+        else if (executioner.Is(CustomRoles.Executioner))
         {
             CustomWinnerHolder.AdditionalWinnerTeams.Add(AdditionalWinners.Executioner);
-            CustomWinnerHolder.WinnerIds.Add(playerId);
+            CustomWinnerHolder.WinnerIds.Add(executioner.PlayerId);
         }
     }
 }

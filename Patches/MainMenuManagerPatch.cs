@@ -23,8 +23,10 @@ public static class MainMenuManagerPatch
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.LateUpdate)), HarmonyPostfix]
     public static void Postfix(MainMenuManager __instance)
     {
+        if (__instance == null) return;
         __instance.playButton.transform.gameObject.SetActive(Options.IsLoaded);
-        TitleLogoPatch.LoadingHint?.SetActive(!Options.IsLoaded);
+        if (TitleLogoPatch.LoadingHint != null)
+            TitleLogoPatch.LoadingHint.SetActive(!Options.IsLoaded);
     }
 
     [HarmonyPatch(nameof(MainMenuManager.Start)), HarmonyPostfix, HarmonyPriority(Priority.Normal)]
