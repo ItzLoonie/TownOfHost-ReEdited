@@ -2538,8 +2538,6 @@ public static class Utils
             } */
         if (Romantic.BetPlayer.ContainsValue(target.PlayerId))
             Romantic.ChangeRole(target.PlayerId);
-        if (Executioner.Target.ContainsValue(target.PlayerId))
-            Executioner.ChangeRoleByTarget(target);
         if (Lawyer.Target.ContainsValue(target.PlayerId))
             Lawyer.ChangeRoleByTarget(target);
 
