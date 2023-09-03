@@ -25,7 +25,8 @@ public static class MainMenuManagerPatch
     {
         if (__instance == null) return;
         __instance.playButton.transform.gameObject.SetActive(Options.IsLoaded);
-        TitleLogoPatch.LoadingHint?.SetActive(!Options.IsLoaded);
+        if (TitleLogoPatch.LoadingHint != null)
+            TitleLogoPatch.LoadingHint.SetActive(!Options.IsLoaded);
     }
 
     [HarmonyPatch(nameof(MainMenuManager.Start)), HarmonyPostfix, HarmonyPriority(Priority.Normal)]
