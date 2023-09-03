@@ -209,7 +209,7 @@ public class ModNewsHistory
             }
 
             {
-            // TOHE v2.4.2
+                // TOHE v2.4.2
                 var news = new ModNews
                 {
                     Number = 80000,
