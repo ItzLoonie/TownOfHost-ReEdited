@@ -153,8 +153,8 @@ public static class Credentials
                 LoadingHint.transform.position = Vector3.down;
                 var LoadingHintText = LoadingHint.AddComponent<TextMeshPro>();
                 LoadingHintText.text = GetString("Loading");
-                LoadingHintText.alignment = TextAlignmentOptions.Center;
-                LoadingHintText.fontSize = 5f;
+                LoadingHintText.alignment = TextAlignmentOptions.Left;
+                LoadingHintText.fontSize = 2.5f;
                 LoadingHintText.transform.position = amongUsLogo.transform.position;
                 LoadingHintText.transform.position += new Vector3 (-0.35f,-0.9f,0f);
                 LoadingHintText.color = new Color32(17, 255, 1, byte.MaxValue);
