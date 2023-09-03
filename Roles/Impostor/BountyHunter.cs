@@ -100,7 +100,8 @@ public static class BountyHunter
     }
     public static void FixedUpdate(PlayerControl player)
     {
-        if (!player.Is(CustomRoles.BountyHunter)) return; //以下、バウンティハンターのみ実行
+        if (!IsEnable) return;
+        if (!player.Is(CustomRoles.BountyHunter)) return;
 
         if (GameStates.IsInTask && ChangeTimer.ContainsKey(player.PlayerId))
         {

@@ -68,7 +68,10 @@ public static class BloodKnight
     }
     public static void OnFixedUpdate(PlayerControl pc)
     {
-        if (!GameStates.IsInTask || !pc.Is(CustomRoles.BloodKnight)) return;
+        if (!IsEnable) return;
+        if (!GameStates.IsInTask) return;
+        if (!pc.Is(CustomRoles.BloodKnight)) return;
+
         if (TimeStamp[pc.PlayerId] < Utils.GetTimeStamp() && TimeStamp[pc.PlayerId] != 0)
         {
             TimeStamp[pc.PlayerId] = 0;

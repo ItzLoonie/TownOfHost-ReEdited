@@ -14,6 +14,7 @@ namespace TOHE.Roles.Crewmate
         private static readonly int Id = 9700;
 
         private static readonly string fontSize = "1.5";
+        private static bool IsEnable = false;
 
         public static OptionItem FarseerCooldown;
         public static OptionItem FarseerRevealTime;
@@ -75,8 +76,14 @@ namespace TOHE.Roles.Crewmate
             Vision = FloatOptionItem.Create(Id + 12, "FarseerVision", new(0f, 5f, 0.05f), 0.25f, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Farseer])
                 .SetValueFormat(OptionFormat.Multiplier);
         }
+        public static void Init()
+        {
+            IsEnable = false;
+        }
         public static void Add(byte playerId)
         {
+            IsEnable = true;
+
             if (!AmongUsClient.Instance.AmHost) return;
             if (!Main.ResetCamPlayerList.Contains(playerId))
                 Main.ResetCamPlayerList.Add(playerId);
@@ -86,6 +93,8 @@ namespace TOHE.Roles.Crewmate
 
         public static void OnPostFix(PlayerControl player)
         {
+            if (!IsEnable) return;
+
             if (GameStates.IsInTask && Main.FarseerTimer.ContainsKey(player.PlayerId))//アーソニストが誰かを塗っているとき
             {
                 if (!player.IsAlive() || Pelican.IsEaten(player.PlayerId))

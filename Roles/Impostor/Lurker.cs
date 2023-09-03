@@ -35,6 +35,7 @@ namespace TOHE.Roles.Impostor
 
         public static void OnEnterVent(PlayerControl pc)
         {
+            if (!IsEnable) return;
             if (!pc.Is(CustomRoles.Lurker)) return;
 
             float newCd = Main.AllPlayerKillCooldown[pc.PlayerId] - ReduceKillCooldown.GetFloat();

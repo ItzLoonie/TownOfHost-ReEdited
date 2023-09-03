@@ -65,7 +65,8 @@ namespace TOHE.Roles.Crewmate
 
         public static void FixedUpdate(PlayerControl player)
         {
-            if (!GameStates.IsInTask || !IsEnable || !SuicideTimer.ContainsKey(player.PlayerId) || !player.IsAlive()) return;
+            if (!IsEnable) return;
+            if (!GameStates.IsInTask || !SuicideTimer.ContainsKey(player.PlayerId) || !player.IsAlive()) return;
 
             if (SuicideTimer[player.PlayerId] >= TimeLimit.GetFloat())
             {
@@ -94,6 +95,7 @@ namespace TOHE.Roles.Crewmate
 
         public static void OnEnterVent(PlayerControl pc, Vent vent) 
         {
+            if (!IsEnable) return;
             if (!pc.Is(CustomRoles.Addict)) return;
 
             SuicideTimer[pc.PlayerId] = 0f;
