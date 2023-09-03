@@ -267,6 +267,7 @@ public static class HexMaster
     public static void OnEnterVent(PlayerControl pc)
     {
         if (!AmongUsClient.Instance.AmHost) return;
+        if (!IsEnable) return;
         if (playerIdList.Contains(pc.PlayerId))
         {
             if (NowSwitchTrigger is SwitchTrigger.Vent)

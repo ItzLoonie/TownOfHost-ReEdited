@@ -111,6 +111,7 @@ namespace TOHE.Roles.Neutral
 
         public static void OnFixedUpdate(PlayerControl pc)
         {
+            if (!IsEnable) return;
             if (!GameStates.IsInTask) return;
 
             if (pc.Is(CustomRoles.Spiritcaller))

@@ -95,7 +95,9 @@ namespace TOHE.Roles.Impostor
 
         public static void OnFixedUpdate(PlayerControl player)
         {
-            if (!GameStates.IsInTask || !IsEnable || Pelican.IsEaten(player.PlayerId) || player.Data.IsDead) return;
+            if (!IsEnable) return;
+            if (!GameStates.IsInTask) return;
+            if (Pelican.IsEaten(player.PlayerId) || player.Data.IsDead) return;
 
             if (player.GetCustomRole().IsImpostor())
             {

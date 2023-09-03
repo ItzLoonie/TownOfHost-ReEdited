@@ -113,6 +113,7 @@ public static class Seeker
 
     public static void FixedUpdate(PlayerControl player)
     {
+        if (!IsEnable) return;
         if (!player.Is(CustomRoles.Seeker)) return;
 
         if (GameStates.IsInTask)

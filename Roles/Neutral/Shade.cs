@@ -82,7 +82,8 @@ public static class Shade
     }
     public static void OnFixedUpdate(PlayerControl player)
     {
-        if (!GameStates.IsInTask || !IsEnable) return;
+        if (!IsEnable) return;
+        if (!GameStates.IsInTask) return;
 
         var now = Utils.GetTimeStamp();
 
@@ -153,6 +154,7 @@ public static class Shade
     }
     public static void OnEnterVent(PlayerControl pc, Vent vent)
     {
+        if (!IsEnable) return;
         if (!pc.Is(CustomRoles.Shade) || !IsInvis(pc.PlayerId)) return;
 
         InvisTime.Remove(pc.PlayerId);

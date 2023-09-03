@@ -265,6 +265,7 @@ internal class ChangeRoleSettings
             Medusa.Init();
             Marshall.Init();
             Amnesiac.Init();
+            Farseer.Init();
             Infectious.Init();
             Monarch.Init();
             Virus.Init();
