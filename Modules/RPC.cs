@@ -48,7 +48,6 @@ enum CustomRPC
 
     // TOHE
     AntiBlackout,
-    RestTOHESetting,
     PlayCustomSound,
     SetKillTimer,
     SyncAllPlayerNames,
@@ -464,10 +463,10 @@ internal class RPCHandlerPatch
             case CustomRPC.SetQuickShooterShotLimit:
                 QuickShooter.ReceiveRPC(reader);
                 break;
-            case CustomRPC.RestTOHESetting:
-                OptionItem.AllOptions.ToArray().Where(x => x.Id > 0).Do(x => x.SetValueNoRpc(x.DefaultValue));
-                OptionShower.GetText();
-                break;
+            //case CustomRPC.RestTOHESetting:
+            //    OptionItem.AllOptions.ToArray().Where(x => x.Id > 0).Do(x => x.SetValueNoRpc(x.DefaultValue));
+            //    OptionShower.GetText();
+            //    break;
             case CustomRPC.SetEraseLimit:
                 Eraser.ReceiveRPC(reader);
                 break;
@@ -620,43 +619,15 @@ internal class RPCHandlerPatch
 
 internal static class RPC
 {
-    //来源：https://github.com/music-discussion/TownOfHost-TheOtherRoles/blob/main/Modules/RPC.cs
-    public static void SyncCustomSettingsRPC(int targetId = -1)
+    //SyncCustomSettingsRPC Sender
+    public static void SyncCustomSettingsRPC()
     {
-        if (targetId != -1)
+        if (!AmongUsClient.Instance.AmHost) return;
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, 80, Hazel.SendOption.Reliable, -1);
+        foreach (var co in OptionItem.AllOptions)
         {
-            var client = Utils.GetClientById(targetId);
-            if (client == null || client.Character == null || !Main.playerVersion.ContainsKey(client.Character.PlayerId)) return;
+            writer.Write(co.GetValue());
         }
-        if (!AmongUsClient.Instance.AmHost || PlayerControl.AllPlayerControls.Count <= 1 || (AmongUsClient.Instance.AmHost == false && PlayerControl.LocalPlayer == null)) return;
-        var amount = OptionItem.AllOptions.Count;
-        int divideBy = amount / 10;
-        for (var i = 0; i <= 10; i++)
-            SyncOptionsBetween(i * divideBy, (i + 1) * divideBy, targetId);
-    }
-    public static void SyncCustomSettingsRPCforOneOption(OptionItem option)
-    {
-        List<OptionItem> allOptions = new(OptionItem.AllOptions);
-        var placement = allOptions.IndexOf(option);
-        if (placement != -1)
-            SyncOptionsBetween(placement, placement);
-    }
-    static void SyncOptionsBetween(int startAmount, int lastAmount, int targetId = -1)
-    {
-        if (targetId != -1)
-        {
-            var client = Utils.GetClientById(targetId);
-            if (client == null || client.Character == null || !Main.playerVersion.ContainsKey(client.Character.PlayerId)) return;
-        }
-        if (!AmongUsClient.Instance.AmHost || PlayerControl.AllPlayerControls.Count <= 1 || (AmongUsClient.Instance.AmHost == false && PlayerControl.LocalPlayer == null)) return;
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, 80, SendOption.Reliable, targetId);
-        List<OptionItem> list = new();
-        writer.Write(startAmount);
-        writer.Write(lastAmount);
-        for (var i = startAmount; i < OptionItem.AllOptions.Count && i <= lastAmount; i++)
-            list.Add(OptionItem.AllOptions[i]);
-        Logger.Info($"{startAmount}-{lastAmount}:{list.Count}/{OptionItem.AllOptions.Count}", "SyncCustomSettings");
-        foreach (var co in list) writer.Write(co.GetValue());
         AmongUsClient.Instance.FinishRpcImmediately(writer);
     }
     public static void PlaySoundRPC(byte PlayerID, Sounds sound)

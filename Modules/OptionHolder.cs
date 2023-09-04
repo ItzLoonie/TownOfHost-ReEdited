@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TOHE.Modules;
 using TOHE.Roles.AddOns.Crewmate;
 using TOHE.Roles.AddOns.Impostor;
 using TOHE.Roles.Crewmate;
@@ -37,8 +38,6 @@ public static class Options
         //taskOptionsLoad.Wait();
         //Logger.Info("Mod option loading eng", "Load Options");
     }
-    // オプションId
-    public const int PresetId = 0;
 
     // プリセット
     private static readonly string[] presets =
@@ -963,6 +962,8 @@ public static class Options
     public static void Load()
     {
         if (IsLoaded) return;
+        OptionSaver.Initialize();
+
         // 预设
         _ = PresetOptionItem.Create(0, TabGroup.SystemSettings)
             .SetColor(new Color32(255, 235, 4, byte.MaxValue))
@@ -2905,6 +2906,7 @@ public static class Options
 
         #endregion 
 
+        OptionSaver.Load();
         IsLoaded = true;
     }
 
