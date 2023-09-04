@@ -4,6 +4,7 @@ using System.Text.Json;
 
 namespace TOHE.Modules;
 
+// https://github.com/tukasa0001/TownOfHost/blob/main/Modules/OptionSaver.cs
 public static class OptionSaver
 {
     private static readonly DirectoryInfo SaveDataDirectoryInfo = new("./TOHE-DATA/SaveData/");
@@ -33,12 +34,12 @@ public static class OptionSaver
             {
                 if (!singleOptions.TryAdd(option.Id, option.SingleValue))
                 {
-                    logger.Warn($"SingleOptionのID {option.Id} が重複");
+                    logger.Warn($"Duplicate SingleOption ID: {option.Id}");
                 }
             }
             else if (!presetOptions.TryAdd(option.Id, option.AllValues))
             {
-                logger.Warn($"プリセットオプションのID {option.Id} が重複");
+                logger.Warn($"Duplicate preset option ID: {option.Id}");
             }
         }
         return new SerializableOptionsData
