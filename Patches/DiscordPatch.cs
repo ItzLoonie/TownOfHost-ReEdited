@@ -1,9 +1,10 @@
 using HarmonyLib;
 using Discord;
 using System;
-// Originally from Town of Us Rewritten, by Det
+
 namespace TOHE.Patches
 {
+    // Originally from Town of Us Rewritten, by Det
     [HarmonyPatch(typeof(ActivityManager), nameof(ActivityManager.UpdateActivity))]
     public class DiscordRPC
     {

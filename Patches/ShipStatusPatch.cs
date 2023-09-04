@@ -6,6 +6,7 @@ using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
+using static TOHE.Translator;
 
 namespace TOHE;
 
@@ -74,15 +75,6 @@ class RepairSystemPatch
                     }
                 }
         
-
-      /*if (player.Is(CustomRoles.Madmate) && !Options.MadmateCanFixSabotage.GetBool() && 
-            (systemType is
-            SystemTypes.Reactor or
-            SystemTypes.LifeSupp or
-            SystemTypes.Comms or
-            SystemTypes.Electrical))
-        { return false; }*/
-
         //SabotageMaster
         if (player.Is(CustomRoles.SabotageMaster))
             SabotageMaster.RepairSystem(__instance, systemType, amount);
@@ -185,7 +177,7 @@ class StartPatch
 
         Utils.CountAlivePlayers(true);
 
-        if (Options.AllowConsole.GetBool() || PlayerControl.LocalPlayer.FriendCode.GetDevUser().IsDev)
+        if (Options.AllowConsole.GetBool())
         {
             if (!BepInEx.ConsoleManager.ConsoleActive && BepInEx.ConsoleManager.ConsoleEnabled)
                 BepInEx.ConsoleManager.CreateConsole();
@@ -195,7 +187,7 @@ class StartPatch
             if (BepInEx.ConsoleManager.ConsoleActive && !DebugModeManager.AmDebugger)
             {
                 BepInEx.ConsoleManager.DetachConsole();
-                Logger.SendInGame("很抱歉，本房间禁止使用控制台，因此已将您的控制台关闭");
+                Logger.SendInGame(GetString("Warning.CanNotUseBepInExConsole"));
             }
         }
     }

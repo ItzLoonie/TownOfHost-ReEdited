@@ -1,7 +1,5 @@
 using HarmonyLib;
-//using Newtonsoft.Json.Linq;
 using System;
-//using System.Globalization;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
