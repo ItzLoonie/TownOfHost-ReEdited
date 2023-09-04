@@ -1,6 +1,7 @@
 using HarmonyLib;
 using Discord;
 using System;
+using AmongUs.Data;
 
 namespace TOHE.Patches
 {
@@ -19,7 +20,7 @@ namespace TOHE.Patches
             {
                 if (activity.State != "In Menus")
                 {
-                    if (Options.ShowLobbyCode.GetBool())
+                    if (!DataManager.Settings.Gameplay.StreamerMode)
                     {
                         int maxSize = GameOptionsManager.Instance.currentNormalGameOptions.MaxPlayers;
                         if (GameStates.IsLobby)
