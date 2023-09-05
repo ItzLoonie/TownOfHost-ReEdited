@@ -11,7 +11,7 @@ public static class Werewolf
     private static readonly int Id = 12850;
     public static List<byte> playerIdList = new();
     public static bool IsEnable = false;
-    ]
+    
     public static OptionItem KillCooldown;
     public static OptionItem MaulRadius;
     public static OptionItem CanVent;

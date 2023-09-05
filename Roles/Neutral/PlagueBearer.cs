@@ -54,7 +54,6 @@ public static class PlagueBearer
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
 
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = PlagueBearerCD[id];
     public static void SetKillCooldownPestilence(byte id) => Main.AllPlayerKillCooldown[id] = PestilenceCDOpt.GetFloat();
