@@ -2215,6 +2215,7 @@ public static class Utils
                         (target.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && target.GetPlayerTaskState().IsTaskFinished) ||
                         (target.Is(CustomRoles.Gravestone) && target.Data.IsDead) ||
                         (target.Is(CustomRoles.Ntr) && Options.LoverKnowRoles.GetBool()) ||
+                        (Main.PlayerStates[target.PlayerId].deathReason == PlayerState.DeathReason.Vote && Options.SeeEjectedRolesInMeeting.GetBool()) ||
                         Totocalcio.KnowRole(seer, target) ||
                         Romantic.KnowRole(seer, target) ||
                         Lawyer.KnowRole(seer, target) ||

@@ -629,6 +629,8 @@ public static class Options
 
     // Temporary Settings
     public static OptionItem TemporaryAntiBlackoutFix;
+    public static OptionItem EnableKillerLeftCommand;
+    public static OptionItem SeeEjectedRolesInMeeting;
 
     // Maps
     public static OptionItem RandomMapsMode;
@@ -2205,6 +2207,10 @@ public static class Options
         TemporaryAntiBlackoutFix = BooleanOptionItem.Create(44427, "TemporaryAntiBlackoutFix", true, TabGroup.SystemSettings, false)
             .SetHeader(true)
             .SetColor(Color.red);
+        EnableKillerLeftCommand = BooleanOptionItem.Create(44428, "EnableKillerLeftCommand", true, TabGroup.SystemSettings, false)
+            .SetColor(Color.green);
+        SeeEjectedRolesInMeeting = BooleanOptionItem.Create(44429, "SeeEjectedRolesInMeeting", true, TabGroup.SystemSettings, false)
+            .SetColor(Color.green);
         KickLowLevelPlayer = IntegerOptionItem.Create(19300, "KickLowLevelPlayer", new(0, 100, 1), 0, TabGroup.SystemSettings, false)
             .SetValueFormat(OptionFormat.Level)
             .SetHeader(true);
@@ -2252,8 +2258,8 @@ public static class Options
         AutoPlayAgainCountdown = IntegerOptionItem.Create(44425, "AutoPlayAgainCountdown", new(1, 20, 1), 10, TabGroup.SystemSettings, false)
             .SetParent(AutoPlayAgain)
             .SetValueFormat(OptionFormat.Seconds);
-    //    ShowLobbyCode = BooleanOptionItem.Create(44426, "ShowLobbyCode", true, TabGroup.SystemSettings, false)
-    //        .SetColor(Color.blue);
+    /*    ShowLobbyCode = BooleanOptionItem.Create(44426, "ShowLobbyCode", true, TabGroup.SystemSettings, false)
+            .SetColor(Color.blue); */
 
         LowLoadMode = BooleanOptionItem.Create(19316, "LowLoadMode", true, TabGroup.SystemSettings, false)
             .SetHeader(true)
