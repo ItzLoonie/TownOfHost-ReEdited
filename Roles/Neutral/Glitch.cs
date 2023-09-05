@@ -9,6 +9,7 @@ public static class Glitch
 {
     private static readonly int Id = 18125;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     private static OptionItem KillCooldown;
 //    public static OptionItem CanVent;
@@ -28,16 +29,17 @@ public static class Glitch
     public static void Init()
     {
         playerIdList = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
     public static void SetHudActive(HudManager __instance, bool isActive)
     {
         __instance.SabotageButton.ToggleVisible(isActive);

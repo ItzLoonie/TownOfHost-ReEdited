@@ -11,6 +11,7 @@ public static class Hacker
 {
     private static readonly int Id = 2200;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     private static OptionItem HackLimitOpt;
     private static OptionItem KillCooldown;
@@ -31,13 +32,14 @@ public static class Hacker
         playerIdList = new();
         HackLimit = new();
         DeadBodyList = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         HackLimit.TryAdd(playerId, HackLimitOpt.GetInt());
+        IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(byte playerId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetHackerHackLimit, SendOption.Reliable, -1);

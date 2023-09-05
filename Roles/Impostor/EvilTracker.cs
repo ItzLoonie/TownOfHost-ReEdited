@@ -13,6 +13,7 @@ public static class EvilTracker
 {
     private static readonly int Id = 500;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     private static OptionItem OptionCanSeeKillFlash;
     private static OptionItem OptionTargetMode;
@@ -57,6 +58,7 @@ public static class EvilTracker
         Target = new();
         CanSetTarget = new();
         ImpostorsId = new();
+        IsEnable = false;
 
         CanSeeKillFlash = OptionCanSeeKillFlash.GetBool();
         CurrentTargetMode = (TargetMode)OptionTargetMode.GetValue();
@@ -66,6 +68,7 @@ public static class EvilTracker
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
         Target.Add(playerId, byte.MaxValue);
         CanSetTarget.Add(playerId, CurrentTargetMode != TargetMode.Never);
         //ImpostorsIdはEvilTracker内で共有
@@ -80,7 +83,6 @@ public static class EvilTracker
             }
         }
     }
-    public static bool IsEnable => playerIdList.Any();
     public static void ApplyGameOptions(byte playerId)
     {
         AURoleOptions.ShapeshifterCooldown = CanTarget(playerId) ? 1f : 255f;
@@ -122,6 +124,8 @@ public static class EvilTracker
     }
     public static void AfterMeetingTasks()
     {
+        if (!IsEnable) return;
+
         if (CurrentTargetMode == TargetMode.EveryMeeting)
         {
             SetTarget();

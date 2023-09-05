@@ -9,6 +9,7 @@ using Hazel;
 using InnerNet;
 using UnityEngine;
 using TOHE.Modules;
+using TOHE.Patches;
 using TOHE.Roles.AddOns.Crewmate;
 using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
@@ -2349,10 +2350,6 @@ class FixedUpdatePatch
             Addict.FixedUpdate(player);
             Deathpact.OnFixedUpdate(player);
             Pelican.OnFixedUpdate();
-            Swooper.OnFixedUpdate(player);
-            Wraith.OnFixedUpdate(player);
-            Shade.OnFixedUpdate(player);
-            Chameleon.OnFixedUpdate(player);
 
             if (!lowLoad)
             {
@@ -2425,6 +2422,10 @@ class FixedUpdatePatch
                 Wildling.OnFixedUpdate(player);
                 Spiritcaller.OnFixedUpdate(player);
                 Pitfall.OnFixedUpdate(player);
+                Swooper.OnFixedUpdate(player);
+                Wraith.OnFixedUpdate(player);
+                Shade.OnFixedUpdate(player);
+                Chameleon.OnFixedUpdate(player);
 
                 if (Options.LadderDeath.GetBool() && GameStates.IsInTask && player.IsAlive()) FallFromLadder.FixedUpdate(player);
 
@@ -3321,10 +3322,8 @@ public static class PlayerControlDiePatch
     public static void Postfix(PlayerControl __instance)
     {
         if (!AmongUsClient.Instance.AmHost) return;
-        if (!GameStates.IsInGame) return;
-        if (!Options.RemovePetsAtDeadPlayers.GetBool()) return;
 
-        __instance.RpcSetPet("");
+        __instance.RpcRemovePet();
     }
 }
 [HarmonyPatch(typeof(GameData), nameof(GameData.CompleteTask))]

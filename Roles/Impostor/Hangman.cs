@@ -8,7 +8,7 @@ namespace TOHE.Roles.Impostor;
 public static class Hangman
 {
     private static readonly int Id = 1400;
-    private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     private static OptionItem ShapeshiftCooldown;
     private static OptionItem ShapeshiftDuration;
@@ -23,13 +23,12 @@ public static class Hangman
     }
     public static void Init()
     {
-        playerIdList = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
-        playerIdList.Add(playerId);
+        IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Any();
     public static void ApplyGameOptions()
     {
         AURoleOptions.ShapeshifterCooldown = ShapeshiftCooldown.GetFloat();

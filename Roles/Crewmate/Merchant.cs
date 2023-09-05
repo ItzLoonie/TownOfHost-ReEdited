@@ -10,6 +10,7 @@ namespace TOHE.Roles.Crewmate
     {
         private static readonly int Id = 7300;
         private static readonly List<byte> playerIdList = new();
+        public static bool IsEnable = false;
 
         public static Dictionary<byte, int> addonsSold = new();
         public static Dictionary<byte, List<byte>> bribedKiller = new();
@@ -99,6 +100,7 @@ namespace TOHE.Roles.Crewmate
         public static void Init()
         {
             playerIdList.Clear();
+            IsEnable = false;
 
             addons = new List<CustomRoles>();
             addonsSold = new Dictionary<byte, int>();
@@ -130,9 +132,8 @@ namespace TOHE.Roles.Crewmate
             playerIdList.Add(playerId);
             addonsSold.Add(playerId, 0);
             bribedKiller.Add(playerId, new List<byte>());
+            IsEnable = true;
         }
-
-        public static bool IsEnable => playerIdList.Any();
 
         public static void OnTaskFinished(PlayerControl player)
         {

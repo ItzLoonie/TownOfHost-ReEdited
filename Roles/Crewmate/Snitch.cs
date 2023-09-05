@@ -10,6 +10,7 @@ public static class Snitch
 {
     private static readonly int Id = 8000;
     private static readonly List<byte> playerIdList = new();
+    public static bool IsEnable = false;
     private static Color RoleColor = Utils.GetRoleColor(CustomRoles.Snitch);
 
     private static OptionItem OptionEnableTargetArrow;
@@ -43,6 +44,7 @@ public static class Snitch
     public static void Init()
     {
         playerIdList.Clear();
+        IsEnable = false;
 
         EnableTargetArrow = OptionEnableTargetArrow.GetBool();
         CanGetColoredArrow = OptionCanGetColoredArrow.GetBool();
@@ -60,12 +62,12 @@ public static class Snitch
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
 
         IsExposed[playerId] = false;
         IsComplete[playerId] = false;
     }
 
-    public static bool IsEnable => playerIdList.Any();
     public static bool IsThisRole(byte playerId) => playerIdList.Contains(playerId);
     private static bool GetExpose(PlayerControl pc)
     {

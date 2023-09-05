@@ -9,6 +9,7 @@ public static class Mortician
 {
     private static readonly int Id = 7400;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     private static OptionItem ShowArrows;
 
@@ -25,12 +26,13 @@ public static class Mortician
         playerIdList = new();
         lastPlayerName = new();
         msgToSend = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(byte playerId, bool add, Vector3 loc = new())
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetMorticianArrow, SendOption.Reliable, -1);

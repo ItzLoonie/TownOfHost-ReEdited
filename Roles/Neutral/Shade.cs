@@ -13,6 +13,7 @@ public static class Shade
 {
     private static readonly int Id = 13350;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     private static OptionItem ShadeCooldown;
     private static OptionItem ShadeDuration;
@@ -37,17 +38,18 @@ public static class Shade
         InvisTime = new();
         lastTime = new();
         ventedId = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
 
     }
-    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(PlayerControl pc)
     {
         if (pc.AmOwner) return;
@@ -72,6 +74,8 @@ public static class Shade
     private static long lastFixedTime = 0;
     public static void AfterMeetingTasks()
     {
+        if (!IsEnable) return;
+
         lastTime = new();
         InvisTime = new();
         foreach (var pc in Main.AllAlivePlayerControls.Where(x => playerIdList.Contains(x.PlayerId)))

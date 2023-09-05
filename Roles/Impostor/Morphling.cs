@@ -8,6 +8,7 @@ public static class Morphling
 {
     private static readonly int Id = 3000;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     public static OptionItem KillCooldown;
     public static OptionItem ShapeshiftCD;
@@ -27,12 +28,13 @@ public static class Morphling
     public static void Init()
     {
         playerIdList = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
-        playerIdList.Add(playerId);      
+        playerIdList.Add(playerId);
+        IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Any();
 
     public static bool CanUseKillButton(byte playerId)
         => !Main.PlayerStates[playerId].IsDead

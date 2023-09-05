@@ -10,6 +10,7 @@ internal static class Eraser
 {
     private static readonly int Id = 16800;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     private static OptionItem EraseLimitOpt;
     public static OptionItem HideVote;
@@ -29,14 +30,16 @@ internal static class Eraser
     {
         playerIdList = new();
         EraseLimit = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         EraseLimit.TryAdd(playerId, EraseLimitOpt.GetInt());
+        IsEnable = true;
+
         Logger.Info($"{Utils.GetPlayerById(playerId)?.GetNameWithRole()} : 剩余{EraseLimit[playerId]}次", "Eraser");
     }
-    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(byte playerId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetEraseLimit, SendOption.Reliable, -1);
@@ -92,6 +95,8 @@ internal static class Eraser
     }
     public static void AfterMeetingTasks()
     {
+        if (!IsEnable) return;
+
         foreach (var pc in PlayerToErase)
         {
             var player = Utils.GetPlayerById(pc);

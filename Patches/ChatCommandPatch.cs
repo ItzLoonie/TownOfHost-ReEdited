@@ -240,6 +240,34 @@ internal class ChatCommands
                                 Utils.SendMessage(GetString("Command.icons"));
                                 break;
                             }*/
+                case "/kcount":
+                    canceled = true;
+                        int impnum = 0;
+                        int neutralnum = 0;
+                        int covennum = 0;
+                    {
+                        foreach (var players in Main.AllAlivePlayerControls)
+                        {
+                            if (Options.ShowImpRemainOnEject.GetBool())
+                            {
+                                if (players.GetCustomRole().IsImpostor())
+                                impnum++;
+                            }
+                            if (Options.ShowNKRemainOnEject.GetBool())
+                            {
+                                if (players.GetCustomRole().IsNK())
+                                neutralnum++;
+                            }
+                            if (Options.ShowCovenRemainOnEject.GetBool())
+                            {
+                                if (players.GetCustomRole().IsCoven())
+                                covennum++;
+                            }
+                        }
+                        if (!GameStates.IsLobby && Options.EnableKillerLeftCommand.GetBool()) 
+                        Utils.SendMessage(GetString("Remaining.ImpostorCount") + impnum + "\n\r" + GetString("Remaining.NeutralCount") + neutralnum + "\n\r" + GetString("Remaining.CovenCount") + covennum, PlayerControl.LocalPlayer.PlayerId);
+                        break;
+                    }
 
 
                 case "/d":
@@ -1109,6 +1137,33 @@ internal class ChatCommands
                             break;
                         } */
 
+                case "/kcount":
+                        int impnum = 0;
+                        int neutralnum = 0;
+                        int covennum = 0;
+                    {
+                        foreach (var players in Main.AllAlivePlayerControls)
+                        {
+                            if (Options.ShowImpRemainOnEject.GetBool())
+                            {
+                                if (players.GetCustomRole().IsImpostor())
+                                impnum++;
+                            }
+                            if (Options.ShowNKRemainOnEject.GetBool())
+                            {
+                                if (players.GetCustomRole().IsNK())
+                                neutralnum++;
+                            }
+                            if (Options.ShowCovenRemainOnEject.GetBool())
+                            {
+                                if (players.GetCustomRole().IsCoven())
+                                covennum++;
+                            }
+                        }
+                        if (!GameStates.IsLobby && Options.EnableKillerLeftCommand.GetBool()) 
+                        Utils.SendMessage(GetString("Remaining.ImpostorCount") + impnum + "\n\r" + GetString("Remaining.NeutralCount") + neutralnum + "\n\r" + GetString("Remaining.CovenCount") + covennum, player.PlayerId);
+                        break;
+                    }
 
             case "/d":
             case "/death":

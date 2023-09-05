@@ -1,14 +1,13 @@
 ﻿using Hazel;
-using System.Linq;
 using System.Collections.Generic;
 using static TOHE.Translator;
-
 
 namespace TOHE.Roles.Neutral;
 public static class Agitater
 {
     private static readonly int Id = 12420;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     public static OptionItem BombExplodeCooldown;
     public static OptionItem PassCooldown;
@@ -39,18 +38,18 @@ public static class Agitater
         LastBombedPlayer = byte.MaxValue;
         AgitaterHasBombed = false;
         CurrentBombedPlayerTime = new();
+        IsEnable = false;
     }
 
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-
-    public static bool IsEnable => playerIdList.Any();
 
     public static void ResetBomb()
     {

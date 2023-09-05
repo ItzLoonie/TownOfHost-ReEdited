@@ -13,6 +13,7 @@ namespace TOHE.Roles.Neutral
     {
         private static readonly int Id = 13000;
         public static List<byte> playerIdList = new();
+        public static bool IsEnable = false;
 
         private static OptionItem KillCooldown;
         private static OptionItem RitualMaxCount;
@@ -38,12 +39,15 @@ namespace TOHE.Roles.Neutral
             playerIdList = new();
             RitualCount = new();
             RitualTarget = new();
+            IsEnable = false;
         }
         public static void Add(byte playerId)
         {
             playerIdList.Add(playerId);
             RitualCount.TryAdd(playerId, RitualMaxCount.GetInt());
             RitualTarget.TryAdd(playerId, new());
+            IsEnable = true;
+
             var pc = Utils.GetPlayerById(playerId);
             pc.AddDoubleTrigger();
 
@@ -51,8 +55,6 @@ namespace TOHE.Roles.Neutral
                 if (!Main.ResetCamPlayerList.Contains(playerId))
                 Main.ResetCamPlayerList.Add(playerId);
         }
-
-        public static bool IsEnable => playerIdList.Any();
 
         private static void SendRPC(byte playerId, byte targetId)
         {

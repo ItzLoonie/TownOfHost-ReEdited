@@ -12,6 +12,7 @@ internal class AntiAdminer
 {
     private static readonly int Id = 2300;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     private static OptionItem CanCheckCamera;
     public static bool IsAdminWatch;
@@ -31,12 +32,13 @@ internal class AntiAdminer
         IsVitalWatch = false;
         IsDoorLogWatch = false;
         IsCameraWatch = false;
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Any();
 
     private static int Count = 0;
     public static void FixedUpdate()

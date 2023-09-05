@@ -8,6 +8,7 @@ public static class Seeker
 {
     private static readonly int Id = 34000;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     public static OptionItem PointsToWin;
     private static OptionItem TagCooldownOpt;
@@ -29,11 +30,13 @@ public static class Seeker
         DefaultSpeed = new();
         Targets = new();
         TotalPoints = new();
+        IsEnable = false;
     }
 
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
 
         TotalPoints.Add(playerId, 0);
         DefaultSpeed = Main.AllPlayerSpeed[playerId];
@@ -48,8 +51,6 @@ public static class Seeker
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-
-    public static bool IsEnable => playerIdList.Any();
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = TagCooldownOpt.GetFloat();
 
     private static void SendRPC(byte seekerId, byte targetId = 0xff, bool setTarget = true)

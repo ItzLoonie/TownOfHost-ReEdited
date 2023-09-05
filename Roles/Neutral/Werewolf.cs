@@ -10,7 +10,8 @@ public static class Werewolf
 {
     private static readonly int Id = 12850;
     public static List<byte> playerIdList = new();
-
+    public static bool IsEnable = false;
+    
     public static OptionItem KillCooldown;
     public static OptionItem MaulRadius;
     public static OptionItem CanVent;
@@ -31,16 +32,17 @@ public static class Werewolf
     public static void Init()
     {
         playerIdList = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
     public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(HasImpostorVision.GetBool());
     public static void CanUseVent(PlayerControl player)

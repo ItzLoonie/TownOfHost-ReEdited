@@ -13,6 +13,7 @@ namespace TOHE.Roles.Impostor
     {
         private static readonly int Id = 1100;
         public static List<byte> playerIdList = new();
+        public static bool IsEnable = false;
 
         public static Dictionary<byte, List<PlayerControl>> PlayersInDeathpact = new();
         public static Dictionary<byte, long> DeathpactTime = new();
@@ -55,15 +56,15 @@ namespace TOHE.Roles.Impostor
             PlayersInDeathpact = new();
             DeathpactTime = new();
             ActiveDeathpacts = new();
+            IsEnable = false;
         }
         public static void Add(byte playerId)
         {
             playerIdList.Add(playerId);
             PlayersInDeathpact.TryAdd(playerId, new List<PlayerControl>());
             DeathpactTime.TryAdd(playerId, 0);
+            IsEnable = true;
         }
-
-        public static bool IsEnable => playerIdList.Any();
 
         public static void ApplyGameOptions()
         {

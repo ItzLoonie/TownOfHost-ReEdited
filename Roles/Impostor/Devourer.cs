@@ -13,6 +13,7 @@ namespace TOHE.Roles.Impostor
 
         private static readonly int Id = 3550;
         public static List<byte> playerIdList = new();
+        public static bool IsEnable = false;
 
         private static OptionItem DefaultKillCooldown;
         private static OptionItem ReduceKillCooldown;
@@ -46,14 +47,15 @@ namespace TOHE.Roles.Impostor
             PlayerSkinsCosumed = new();
             OriginalPlayerSkins = new();
             NowCooldown = new();
+            IsEnable = false;
         }
         public static void Add(byte playerId)
         {
             playerIdList.Add(playerId);
             PlayerSkinsCosumed.TryAdd(playerId, new List<byte>());
             NowCooldown.TryAdd(playerId, DefaultKillCooldown.GetFloat());
+            IsEnable = true;
         }
-        public static bool IsEnable => playerIdList.Any();
 
         public static void ApplyGameOptions()
         {

@@ -7,11 +7,15 @@ namespace TOHE.Roles.Neutral;
 public static class Collector
 {
     private static readonly int Id = 11100;
-    public static OptionItem CollectorCollectAmount;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
+
     public static Dictionary<byte, byte> CollectorVoteFor = new();
     public static Dictionary<byte, int> CollectVote = new();
     public static Dictionary<byte, int> NewVote = new();
+
+    public static OptionItem CollectorCollectAmount;
+
     public static void SetupCustomOption()
     {
         Options.SetupRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.Collector);
@@ -23,13 +27,14 @@ public static class Collector
         playerIdList = new();
         CollectorVoteFor = new();
         CollectVote = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         CollectVote.TryAdd(playerId, 0);
+        IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(byte playerId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetCollectorVotes, SendOption.Reliable, -1);

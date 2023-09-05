@@ -10,6 +10,8 @@ public static class Cleanser
 {
     private static readonly int Id = 23420;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
+
     public static Dictionary<byte,byte> CleanserTarget = new();
     public static Dictionary<byte, int> CleanserUses = new();
     public static List<byte> CleansedPlayers = new();
@@ -36,6 +38,7 @@ public static class Cleanser
         CleanserUses = new();
         CleansedPlayers = new();
         DidVote = new();
+        IsEnable = false;
     }
 
     public static void Add(byte playerId)
@@ -44,9 +47,8 @@ public static class Cleanser
         CleanserTarget.Add(playerId, byte.MaxValue);
         CleanserUses.Add(playerId, 0);
         DidVote.Add(playerId, false);
+        IsEnable = true;
     }
-
-    public static bool IsEnable => playerIdList.Any();
 
     //public static string GetProgressText(byte playerId) => Utils.ColorString(CleanserUsesOpt.GetInt() - CleanserUses[playerId] > 0 ? Utils.GetRoleColor(CustomRoles.Cleanser).ShadeColor(0.25f) : Color.gray, CleanserUses.TryGetValue(playerId, out var x) ? $"({CleanserUsesOpt.GetInt() - x})" : "Invalid");
     public static string GetProgressText(byte playerId)
@@ -99,7 +101,9 @@ public static class Cleanser
 
     public static void AfterMeetingTasks()
     {
-        foreach(var pid in CleanserTarget.Keys)
+        if (!IsEnable) return;
+
+        foreach (var pid in CleanserTarget.Keys)
         {
             DidVote[pid] = false;
             if (pid == byte.MaxValue) continue;
@@ -120,8 +124,5 @@ public static class Cleanser
 
         }
         Utils.MarkEveryoneDirtySettings();
-
-
     }
-
 }

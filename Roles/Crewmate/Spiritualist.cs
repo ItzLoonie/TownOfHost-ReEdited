@@ -9,14 +9,14 @@ namespace TOHE.Roles.Crewmate
     internal class Spiritualist
     {
         private static readonly int Id = 8100;
-
         private static List<byte> playerIdList = new();
-
-        public static OptionItem ShowGhostArrowEverySeconds;
-        public static OptionItem ShowGhostArrowForSeconds;
+        public static bool IsEnable = false;
 
         private static Dictionary<byte, long> ShowGhostArrowUntil = new();
         private static Dictionary<byte, long> LastGhostArrowShowTime = new();
+
+        public static OptionItem ShowGhostArrowEverySeconds;
+        public static OptionItem ShowGhostArrowForSeconds;
 
         public static byte SpiritualistTarget = new();
 
@@ -34,6 +34,7 @@ namespace TOHE.Roles.Crewmate
             SpiritualistTarget = new();
             LastGhostArrowShowTime = new();
             ShowGhostArrowUntil = new();
+            IsEnable = false;
         }
         public static void Add(byte playerId)
         {
@@ -41,8 +42,8 @@ namespace TOHE.Roles.Crewmate
             SpiritualistTarget = byte.MaxValue;
             LastGhostArrowShowTime.Add(playerId, 0);
             ShowGhostArrowUntil.Add(playerId, 0);
+            IsEnable = true;
         }
-        public static bool IsEnable => playerIdList.Any();
 
         private static bool ShowArrow(byte playerId)
         {
