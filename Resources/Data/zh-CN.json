@@ -2467,7 +2467,7 @@
   "CancelSwap2": "取消选择目标2",
   "CantSwapSelf": "不可交换自身选票",
   "SwapTitle": "[ ★ 换票事件 ★ ]",
-  "SwapperTryHideMsg": "尝试混淆换票师指令"
+  "SwapperTryHideMsg": "尝试混淆换票师指令",
   "ImpCanBeFragile": "<color=#ff1919>内鬼阵营</color>可以成为<color=#D3D3D3>脆弱</color>",
   "NeutralCanBeFragile": "<color=#7f8c8d>中立阵营</color>可以成为<color=#D3D3D3>脆弱</color>",
   "CrewCanBeFragile": "<color=#8cffff>船员阵营</color>可以成为<color=#D3D3D3>脆弱</color>",

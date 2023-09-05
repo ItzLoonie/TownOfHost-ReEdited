@@ -53,10 +53,6 @@ public static class Swapper
     {
         byte PlayerId = reader.ReadByte();
         SwapMsg(pc, $"/sw {PlayerId}");
-        if (Options.NewHideMsg.GetBool())
-        {
-            ChatManager.SendPreviousMessagesToAll();
-        }
     }
     public static string GetSwappermax(byte playerId) => Utils.ColorString((Swappermax.TryGetValue(playerId, out var x) && x >= 1) ? Color.green : Color.gray, Swappermax.TryGetValue(playerId, out var changermax) ? $"({changermax})" : "Invalid");
     public static bool SwapMsg(PlayerControl pc, string msg, bool isUI = false)
