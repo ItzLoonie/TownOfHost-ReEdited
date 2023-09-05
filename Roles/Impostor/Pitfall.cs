@@ -66,7 +66,7 @@ namespace TOHE.Roles.Impostor
         {
             playerIdList.Add(playerId);
             DefaultSpeed = Main.AllPlayerSpeed[playerId];
-            IsEnable = false;
+            IsEnable = true;
         }
 
         public static void OnShapeshift(PlayerControl shapeshifter)
