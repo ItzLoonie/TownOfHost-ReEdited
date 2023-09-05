@@ -18,6 +18,7 @@ public static class Swapper
     public static OptionItem CanStartMeeting;
     public static OptionItem TryHideMsg;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
     public static List<byte> Vote = new();
     public static List<byte> VoteTwo = new();
     public static Dictionary<byte, int> Swappermax = new();
@@ -41,6 +42,7 @@ public static class Swapper
     {
         playerIdList.Add(playerId);
         Swappermax.TryAdd(playerId, SwapMax.GetInt());
+        IsEnable = true;
     }
     public static bool IsEnable => playerIdList.Count > 0;
     public static void SendRPC(byte playerId)

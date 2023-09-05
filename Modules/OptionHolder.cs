@@ -1508,7 +1508,7 @@ public static class Options
         Monarch.SetupCustomOption();
         Farseer.SetupCustomOption();
         Monitor.SetupCustomOption();
-        Swapper.SetupCustomOption();
+
         // Neutral
         TextOptionItem.Create(100010, "RoleType.NeutralBenign", TabGroup.NeutralRoles)
             .SetGameMode(CustomGameMode.Standard)
@@ -2129,6 +2129,7 @@ public static class Options
         TextOptionItem.Create(100019, "OtherRoles.CrewmateRoles", TabGroup.OtherRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(140, 255, 255, byte.MaxValue));
+        Swapper.SetupCustomOption();
      /*   SetupRoleOptions(18000, TabGroup.OtherRoles, CustomRoles.SpeedBooster);
         SpeedBoosterUpSpeed = FloatOptionItem.Create(18010, "SpeedBoosterUpSpeed", new(0.1f, 1.0f, 0.1f), 0.2f, TabGroup.OtherRoles, false)
         .SetParent(CustomRoleSpawnChances[CustomRoles.SpeedBooster])
