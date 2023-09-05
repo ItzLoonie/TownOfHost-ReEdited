@@ -1303,6 +1303,11 @@ class MeetingHudUpdatePatch
 
         }
     }
+
+    internal static void ClearShootButton(MeetingHud instance, bool v)
+    {
+        throw new NotImplementedException();
+    }
 }
 [HarmonyPatch(typeof(PlayerVoteArea), nameof(PlayerVoteArea.SetHighlighted))]
 class SetHighlightedPatch

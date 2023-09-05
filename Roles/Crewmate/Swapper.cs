@@ -234,8 +234,9 @@ public static class Swapper
 
         if (AmongUsClient.Instance.AmHost) SwapMsg(PlayerControl.LocalPlayer, $"/sw {playerId}", true);       
         else SendRPC(playerId);
-        {
         if (PlayerControl.LocalPlayer.Is(CustomRoles.Swapper) && PlayerControl.LocalPlayer.IsAlive())
+        {
+            MeetingHudUpdatePatch.ClearShootButton(__instance, true);
             CreateSwapperButton(__instance);
         }
     }
