@@ -10,6 +10,7 @@ public static class PlagueBearer
 {
     private static readonly int Id = 26000;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
     public static Dictionary<byte, List<byte>> PlaguedList = new();
     public static Dictionary<byte, float> PlagueBearerCD = new();
     public static Dictionary<byte, int> PestilenceCD = new();
@@ -40,12 +41,15 @@ public static class PlagueBearer
         PlaguedList = new();
         PlagueBearerCD = new();
         PestilenceList = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         PlagueBearerCD.Add(playerId, PlagueBearerCDOpt.GetFloat());
         PlaguedList[playerId] = new();
+        IsEnable = true;
+
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);

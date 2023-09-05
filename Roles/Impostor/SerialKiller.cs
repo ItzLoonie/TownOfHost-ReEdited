@@ -9,6 +9,7 @@ public static class SerialKiller
 {
     private static readonly int Id = 1700;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     private static OptionItem KillCooldown;
     private static OptionItem TimeLimit;
@@ -27,12 +28,13 @@ public static class SerialKiller
     {
         playerIdList = new();
         SuicideTimer = new();
+        IsEnable = false;
     }
     public static void Add(byte serial)
     {
         playerIdList.Add(serial);
+        IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Any();
     public static void ApplyKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
     public static void ApplyGameOptions(PlayerControl pc)
     {
@@ -87,6 +89,8 @@ public static class SerialKiller
     }
     public static void AfterMeetingTasks()
     {
+        if (!IsEnable) return;
+
         foreach (var id in playerIdList)
         {
             if (!Main.PlayerStates[id].IsDead)

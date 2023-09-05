@@ -4,6 +4,7 @@ using Hazel;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static TOHE.Options;
 using static TOHE.Translator;
 
@@ -13,6 +14,7 @@ public static class Jackal
 {
     private static readonly int Id = 12100;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     public static OptionItem KillCooldown;
     public static OptionItem CanVent;
@@ -79,6 +81,7 @@ public static class Jackal
     {
         playerIdList = new();
         RecruitLimit = new();
+        IsEnable = false;
         ResetKillCooldownWhenSbGetKilled = OptionResetKillCooldownWhenSbGetKilled;
 
     }
@@ -86,12 +89,12 @@ public static class Jackal
     {
         playerIdList.Add(playerId);
         RecruitLimit.TryAdd(playerId, SidekickRecruitLimitOpt.GetInt());
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
 
     private static void SendRPC(byte playerId)
     {

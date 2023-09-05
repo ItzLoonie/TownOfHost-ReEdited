@@ -10,6 +10,8 @@ public static class Counterfeiter
 {
     private static readonly int Id = 8500;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
+
     private static Dictionary<byte, List<byte>> clientList = new();
     private static List<byte> notActiveList = new();
     public static Dictionary<byte, int> SeelLimit = new();
@@ -29,17 +31,18 @@ public static class Counterfeiter
         clientList = new();
         notActiveList = new();
         SeelLimit = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         SeelLimit.Add(playerId, CounterfeiterSkillLimitTimes.GetInt());
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(byte playerId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetCounterfeiterSellLimit, SendOption.Reliable, -1);

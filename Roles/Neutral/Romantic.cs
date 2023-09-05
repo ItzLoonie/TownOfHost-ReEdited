@@ -13,6 +13,7 @@ public static class Romantic
 {
     private static readonly int Id = 9850;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     private static readonly int MaxBetTimes = 1;
     public static bool isProtect = false;
@@ -57,17 +58,18 @@ public static class Romantic
         BetPlayer = new();
         isProtect = false;
         isPartnerProtected = false;
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         BetTimes.Add(playerId, MaxBetTimes);
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(byte playerId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SyncRomanticTarget, SendOption.Reliable, -1);
@@ -228,6 +230,7 @@ public static class Romantic
 public static class VengefulRomantic
 {
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     public static bool hasKilledKiller = false;
     public static Dictionary<byte, byte> VengefulTarget = new();
@@ -237,17 +240,18 @@ public static class VengefulRomantic
         playerIdList = new();
         VengefulTarget = new();
         hasKilledKiller = false;
+        IsEnable = false;
     }
     public static void Add(byte playerId, byte killerId = byte.MaxValue)
     {
         playerIdList.Add(playerId);
         VengefulTarget.Add(playerId, killerId);
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
 
     public static bool CanUseKillButton(PlayerControl player) => !player.Data.IsDead && !hasKilledKiller;
 
@@ -293,17 +297,19 @@ public static class VengefulRomantic
 public static class RuthlessRomantic
 {
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
     public static void Init()
     {
         playerIdList = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
 }

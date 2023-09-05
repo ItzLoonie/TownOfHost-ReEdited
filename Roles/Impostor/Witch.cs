@@ -24,6 +24,7 @@ public static class Witch
 
     private static readonly int Id = 2000;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     public static Dictionary<byte, bool> SpellMode = new();
     public static Dictionary<byte, List<byte>> SpelledPlayer = new();
@@ -40,6 +41,7 @@ public static class Witch
         playerIdList = new();
         SpellMode = new();
         SpelledPlayer = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
@@ -47,11 +49,12 @@ public static class Witch
         SpellMode.Add(playerId, false);
         SpelledPlayer.Add(playerId, new());
         NowSwitchTrigger = (SwitchTrigger)ModeSwitchAction.GetValue();
+        IsEnable = true;
+
         var pc = Utils.GetPlayerById(playerId);
         pc.AddDoubleTrigger();
 
     }
-    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(bool doSpell, byte witchId, byte target = 255)
     {
         if (doSpell)

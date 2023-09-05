@@ -2449,7 +2449,7 @@ public static class Utils
         SerialKiller.AfterMeetingTasks();
         Spiritualist.AfterMeetingTasks();
         Vulture.AfterMeetingTasks();
-        Baker.AfterMeetingTasks();
+        //Baker.AfterMeetingTasks();
         Jailer.AfterMeetingTasks();
         CopyCat.AfterMeetingTasks();  //all crew after meeting task should be before this
         Pirate.AfterMeetingTask();

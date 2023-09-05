@@ -26,6 +26,7 @@ public static class HexMaster
     private static Color RoleColorSpell = Utils.GetRoleColor(CustomRoles.Impostor);
 
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     public static Dictionary<byte, bool> HexMode = new();
     public static Dictionary<byte, List<byte>> HexedPlayer = new();
@@ -44,10 +45,12 @@ public static class HexMaster
         playerIdList = new();
         HexMode = new();
         HexedPlayer = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
         HexMode.Add(playerId, false);
         HexedPlayer.Add(playerId, new());
         NowSwitchTrigger = (SwitchTrigger)ModeSwitchAction.GetValue();
@@ -58,7 +61,6 @@ public static class HexMaster
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(bool doHex, byte hexId, byte target = 255)
     {
         if (doHex)

@@ -11,6 +11,7 @@ public static class Pirate
 {
     private static readonly int Id = 32000;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
     public static byte PirateTarget;
     private static Dictionary<byte, bool> DuelDone = new();
     private static int pirateChose, targetChose;
@@ -47,19 +48,18 @@ public static class Pirate
         pirateChose = -1;
         targetChose = -1;
         NumWin = 0;
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         DuelDone.Add(playerId, false);
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-
-    public static bool IsEnable => playerIdList.Any();
-
     public static void OnMeetingStart()
     {
         if (!IsEnable || PirateTarget == byte.MaxValue) return;

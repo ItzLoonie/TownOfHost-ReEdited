@@ -11,6 +11,7 @@
     {
         private static readonly int Id = 6400;
         private static List<byte> playerIdList = new();
+        public static bool IsEnable = false;
 
         public static List<byte> UnreportablePlayers = new();
         public static Dictionary<byte, List<byte>> BloodhoundTargets = new();
@@ -34,6 +35,7 @@
         }
         public static void Init()
         {
+            IsEnable = false;
             playerIdList = new();
             UseLimit = new();
             UnreportablePlayers = new List<byte>();
@@ -44,8 +46,8 @@
             playerIdList.Add(playerId);
             UseLimit.Add(playerId, UseLimitOpt.GetInt());
             BloodhoundTargets.Add(playerId, new List<byte>());
+            IsEnable = true;
         }
-        public static bool IsEnable => playerIdList.Any();
 
         private static void SendRPC(byte playerId, bool add, Vector3 loc = new())
         {

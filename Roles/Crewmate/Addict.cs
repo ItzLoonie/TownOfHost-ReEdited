@@ -9,6 +9,7 @@ namespace TOHE.Roles.Crewmate
     {
         private static readonly int Id = 5200;
         private static List<byte> playerIdList = new();
+        public static bool IsEnable = false;
 
         public static OptionItem VentCooldown;
         public static OptionItem TimeLimit;
@@ -41,6 +42,7 @@ namespace TOHE.Roles.Crewmate
             SuicideTimer = new();
             ImmortalTimer = new();
             DefaultSpeed = new();
+            IsEnable = false;
         }
         public static void Add(byte playerId)
         {
@@ -48,8 +50,8 @@ namespace TOHE.Roles.Crewmate
             SuicideTimer.TryAdd(playerId, -10f);
             ImmortalTimer.TryAdd(playerId, 420f);
             DefaultSpeed = Main.AllPlayerSpeed[playerId];
+            IsEnable = true;
         }
-        public static bool IsEnable => playerIdList.Any();
 
         public static bool IsImmortal(PlayerControl player) => player.Is(CustomRoles.Addict) && ImmortalTimer[player.PlayerId] <= ImmortalTimeAfterVent.GetFloat();
 

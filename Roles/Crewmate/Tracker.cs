@@ -10,8 +10,8 @@ namespace TOHE.Roles.Crewmate
     public static class Tracker
     {
         private static readonly int Id = 8300;
-
         private static List<byte> playerIdList = new();
+        public static bool IsEnable = false;
 
         private static OptionItem TrackLimitOpt;
         private static OptionItem OptionCanSeeLastRoomInMeeting;
@@ -44,14 +44,15 @@ namespace TOHE.Roles.Crewmate
             TrackerTarget = new();
             msgToSend = new();
             CanSeeLastRoomInMeeting = OptionCanSeeLastRoomInMeeting.GetBool();
+            IsEnable = false;
         }
         public static void Add(byte playerId)
         {
             playerIdList.Add(playerId);
             TrackLimit.TryAdd(playerId, TrackLimitOpt.GetInt());
             TrackerTarget.Add(playerId, byte.MaxValue);
+            IsEnable = true;
         }
-        public static bool IsEnable => playerIdList.Any();
         public static void SendRPC(byte trackerId = byte.MaxValue, byte targetId = byte.MaxValue)
         {
             MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetTrackerTarget, SendOption.Reliable, -1);

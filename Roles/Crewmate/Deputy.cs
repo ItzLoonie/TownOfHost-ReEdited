@@ -11,6 +11,7 @@ public static class Deputy
 {
     private static readonly int Id = 6500;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     public static OptionItem HandcuffCooldown;
     public static OptionItem HandcuffMax;
@@ -33,17 +34,18 @@ public static class Deputy
     {
         playerIdList = new();
         HandcuffLimit = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         HandcuffLimit = HandcuffMax.GetInt();
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
 
     private static void SendRPC()
     {

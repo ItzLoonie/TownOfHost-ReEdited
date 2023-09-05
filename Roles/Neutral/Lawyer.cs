@@ -10,6 +10,7 @@ public static class Lawyer
 {
     private static readonly int Id = 9900;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
     public static byte WinnerID;
 
     private static OptionItem CanTargetImpostor;
@@ -63,10 +64,12 @@ public static class Lawyer
     {
         playerIdList = new();
         Target = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
 
         //ターゲット割り当て
         if (AmongUsClient.Instance.AmHost)
@@ -93,7 +96,6 @@ public static class Lawyer
             Logger.Info($"{Utils.GetPlayerById(playerId)?.GetNameWithRole()}:{SelectedTarget.GetNameWithRole()}", "Lawyer");
         }
     }
-    public static bool IsEnable => playerIdList.Any();
     public static void SendRPC(byte lawyerId, byte targetId = 0x73, string Progress = "")
     {
         MessageWriter writer;

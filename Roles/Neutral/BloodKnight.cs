@@ -11,6 +11,7 @@ public static class BloodKnight
 {
     private static readonly int Id = 11800;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     private static OptionItem KillCooldown;
     public static OptionItem CanVent;
@@ -33,17 +34,18 @@ public static class BloodKnight
     {
         playerIdList = new();
         TimeStamp = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         TimeStamp.TryAdd(playerId, 0);
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(byte playerId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetBKTimer, SendOption.Reliable, -1);

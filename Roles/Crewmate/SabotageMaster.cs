@@ -7,6 +7,7 @@ public static class SabotageMaster
 {
     private static readonly int Id = 7000;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     public static OptionItem SkillLimit;
     public static OptionItem FixesDoors;
@@ -45,12 +46,13 @@ public static class SabotageMaster
     {
         playerIdList = new();
         UsedSkillCount = 0;
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
     }
-    public static bool IsEnable() => playerIdList.Any();
     public static void RepairSystem(ShipStatus __instance, SystemTypes systemType, byte amount)
     {
         switch (systemType)

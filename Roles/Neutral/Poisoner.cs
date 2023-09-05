@@ -23,6 +23,7 @@ public static class Poisoner
 
     private static readonly int Id = 12700;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
     private static OptionItem OptionKillDelay;
     private static float KillDelay;
     public static OptionItem CanVent;
@@ -42,19 +43,19 @@ public static class Poisoner
     {
         playerIdList = new();
         PoisonedPlayers.Clear();
+        IsEnable = false;
 
         KillDelay = OptionKillDelay.GetFloat();
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-
-    public static bool IsEnable => playerIdList.Any();
     public static bool IsThisRole(byte playerId) => playerIdList.Contains(playerId);
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
 

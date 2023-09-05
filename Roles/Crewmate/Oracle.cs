@@ -10,6 +10,7 @@ public static class Oracle
 {
     private static readonly int Id = 7600;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     public static OptionItem CheckLimitOpt;
     //  private static OptionItem OracleCheckMode;
@@ -41,13 +42,14 @@ public static class Oracle
     {
         playerIdList = new();
         CheckLimit = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         CheckLimit.TryAdd(playerId, CheckLimitOpt.GetInt());
+        IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Any();
     public static void OnVote(PlayerControl player, PlayerControl target)
     {
         if (player == null || target == null) return;

@@ -11,6 +11,7 @@ public static class DarkHide
 {
     public static readonly int Id = 12900;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     public static OptionItem KillCooldown;
     public static OptionItem HasImpostorVision;
@@ -35,12 +36,14 @@ public static class DarkHide
         playerIdList = new();
         CurrentKillCooldown = new();
         IsWinKill = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         CurrentKillCooldown.Add(playerId, KillCooldown.GetFloat());
         IsWinKill[playerId] = false;
+        IsEnable = true;
 
         Utils.GetPlayerById(playerId)?.DRpcSetKillCount();
 
@@ -48,7 +51,6 @@ public static class DarkHide
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
 
     public static void ReceiveRPC(MessageReader msg)
     {

@@ -12,6 +12,7 @@ namespace TOHE.Roles.Impostor
     {
         private static readonly int Id = 3500;
         public static List<byte> playerIdList = new();
+        public static bool IsEnable = false;
 
         public static Dictionary<byte, List<byte>> PlayersDazzled = new();
 
@@ -42,15 +43,15 @@ namespace TOHE.Roles.Impostor
         {
             playerIdList = new();
             PlayersDazzled = new();
+            IsEnable = false;
         }
 
         public static void Add(byte playerId)
         {
             playerIdList.Add(playerId);
             PlayersDazzled.TryAdd(playerId, new List<byte>());
+            IsEnable = true;
         }
-
-        public static bool IsEnable => playerIdList.Any();
 
         public static void ApplyGameOptions()
         {

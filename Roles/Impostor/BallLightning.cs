@@ -12,6 +12,7 @@ public static class BallLightning
 {
     private static readonly int Id = 16700;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     private static OptionItem KillCooldown;
     private static OptionItem ConvertTime;
@@ -33,12 +34,13 @@ public static class BallLightning
         playerIdList = new();
         GhostPlayer = new();
         RealKiller = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(byte playerId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetGhostPlayer, SendOption.Reliable, -1);

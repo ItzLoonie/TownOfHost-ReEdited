@@ -8,6 +8,7 @@ public static class Mediumshiper
 {
     private static readonly int Id = 7200;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     public static OptionItem ContactLimitOpt;
     public static OptionItem OnlyReceiveMsgFromCrew;
@@ -31,13 +32,14 @@ public static class Mediumshiper
         playerIdList = new();
         ContactPlayer = new();
         ContactLimit = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         ContactLimit.Add(playerId, ContactLimitOpt.GetInt());
+        IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Any();
     public static void OnReportDeadBody(GameData.PlayerInfo target)
     {
         ContactPlayer = new();

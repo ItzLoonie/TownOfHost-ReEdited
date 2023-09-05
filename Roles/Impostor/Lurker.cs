@@ -8,6 +8,7 @@ namespace TOHE.Roles.Impostor
     {
         private static readonly int Id = 2100;
         public static List<byte> playerIdList = new();
+        public static bool IsEnable = false;
 
         private static OptionItem DefaultKillCooldown;
         private static OptionItem ReduceKillCooldown;
@@ -23,13 +24,13 @@ namespace TOHE.Roles.Impostor
         public static void Init()
         {
             playerIdList = new();
+            IsEnable = false;
         }
         public static void Add(byte playerId)
         {
             playerIdList.Add(playerId);
+            IsEnable = true;
         }
-
-        public static bool IsEnable => playerIdList.Any();
 
         public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = DefaultKillCooldown.GetFloat();
 

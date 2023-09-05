@@ -9,7 +9,8 @@ public static class SwordsMan
 {
     private static readonly int Id = 9000;
     public static List<byte> playerIdList = new();
-    //public static bool isKilled = false;
+    public static bool IsEnable = false;
+
     public static List<byte> killed = new();
     public static OptionItem CanVent;
 
@@ -22,16 +23,17 @@ public static class SwordsMan
     {
         killed = new();
         playerIdList = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
 
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = IsKilled(id) ? 300f : 1f;
     public static string GetKillLimit(byte id) => Utils.ColorString(!IsKilled(id) ? Utils.GetRoleColor(CustomRoles.SwordsMan).ShadeColor(0.25f) : Color.gray, !IsKilled(id) ? "(1)" : "(0)");

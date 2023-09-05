@@ -10,6 +10,7 @@ public static class CovenLeader
 {
     private static readonly int Id = 10350;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     private static OptionItem ControlCooldown;
     public static OptionItem CanVent;
@@ -27,16 +28,17 @@ public static class CovenLeader
     public static void Init()
     {
         playerIdList = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = ControlCooldown.GetFloat();
     public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(true);
     public static void CanUseVent(PlayerControl player)

@@ -1,3 +1,4 @@
+using Rewired.Demos;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,6 +11,8 @@ public static class Marshall
 {
     private static readonly int Id = 9400;
     private static readonly List<byte> playerIdList = new();
+    public static bool IsEnable = false;
+
     private static Color RoleColor = Utils.GetRoleColor(CustomRoles.Marshall);
 
     public static OptionItem OptionMadmateCanFindMarshall;
@@ -31,6 +34,7 @@ public static class Marshall
     public static void Init()
     {
         playerIdList.Clear();
+        IsEnable = false;
 
         //MadmateCanFindMarshall = OptionMadmateCanFindMarshall.GetBool();
 
@@ -44,12 +48,11 @@ public static class Marshall
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
 
         IsExposed[playerId] = false;
         IsComplete[playerId] = false;
     }
-
-    public static bool IsEnable => playerIdList.Any();
     public static bool IsThisRole(byte playerId) => playerIdList.Contains(playerId);
     private static bool GetExpose(PlayerControl pc)
     {
