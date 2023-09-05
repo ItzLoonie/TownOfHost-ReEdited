@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using TOHE.Modules.ChatManager;
 using UnityEngine;
 using static TOHE.Translator;
 using static UnityEngine.ParticleSystem.PlaybackState;
@@ -229,17 +228,6 @@ public static class Swapper
             }
         }
         return false;
-    }
-    public static void SendRPC(byte playerId)
-    {
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetSwapperVotes, SendOption.Reliable, -1);
-        writer.Write(playerId);
-        AmongUsClient.Instance.FinishRpcImmediately(writer);
-    }
-    public static void ReceiveRPC(MessageReader reader, PlayerControl pc)
-    {
-        byte PlayerId = reader.ReadByte();
-        SwapMsg(pc, $"/sw {PlayerId}");
     }
     private static void SwapperOnClick(byte playerId, MeetingHud __instance)
     {
