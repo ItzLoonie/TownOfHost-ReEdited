@@ -1646,6 +1646,7 @@ class ReportDeadBodyPatch
             if (target == null) //拍灯事件
             {
                 if (__instance.Is(CustomRoles.Jester) && !Options.JesterCanUseButton.GetBool()) return false;
+                if (__instance.Is(CustomRoles.Swapper) && !Swapper.CanStartMeeting.GetBool()) return false;
             }
             if (target != null) //拍灯事件
             {

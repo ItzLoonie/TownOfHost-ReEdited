@@ -1508,7 +1508,7 @@ public static class Options
         Monarch.SetupCustomOption();
         Farseer.SetupCustomOption();
         Monitor.SetupCustomOption();
-
+        Swapper.SetupCustomOption();
         // Neutral
         TextOptionItem.Create(100010, "RoleType.NeutralBenign", TabGroup.NeutralRoles)
             .SetGameMode(CustomGameMode.Standard)

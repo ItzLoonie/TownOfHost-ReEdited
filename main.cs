@@ -36,8 +36,8 @@ public class Main : BasePlugin
     public static readonly string MainMenuText = " ";
 
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "3.0.0.100";
-    public const string PluginDisplayVersion = "3.0.0 c1";
+    public const string PluginVersion = "3.0.0.101";
+    public const string PluginDisplayVersion = "3.0.0 c3";
     public static readonly string SupportedVersionAU = "2023.7.11";
     public const bool Canary = false;
 
@@ -215,6 +215,7 @@ public class Main : BasePlugin
     public static int BardCreations = 0;
     public static Dictionary<byte, byte> Provoked = new();
     public static Dictionary<byte, float> DovesOfNeaceNumOfUsed = new();
+    public static bool SwapSend;
 
     public static Dictionary<byte, CustomRoles> DevRole = new();
     public static List<byte> GodfatherTarget = new();
@@ -382,6 +383,7 @@ public class Main : BasePlugin
                 {CustomRoles.Crusader, "#C65C39"},
                 {CustomRoles.Reverie, "#00BFFF"},
                 {CustomRoles.Monitor, "#7223DA"},
+                {CustomRoles.Swapper, "#922348"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Agitater, "#F4A460"},
@@ -728,6 +730,7 @@ public enum CustomRoles
     Reverie,
     Lookout,
     Monitor,
+    Swapper,
     //Neutral
     Arsonist,
     Agitater,
