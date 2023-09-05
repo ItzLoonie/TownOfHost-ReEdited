@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using AmongUs.GameOptions;
 using Hazel;
 using UnityEngine;
@@ -12,6 +11,7 @@ namespace TOHE.Roles.Neutral
     {
         private static readonly int Id = 13400;
         private static List<byte> playerIdList = new();
+        public static bool IsEnable = false;
         private static int SpiritLimit = new();
 
         private static Dictionary<byte, long> PlayersHaunted = new();
@@ -55,18 +55,19 @@ namespace TOHE.Roles.Neutral
             SpiritLimit = new();
             ProtectTimeStamp = new();
             PlayersHaunted = new();
+            IsEnable = false;
         }
         public static void Add(byte playerId)
         {
             playerIdList.Add(playerId);
             SpiritLimit = SpiritMax.GetInt();
             ProtectTimeStamp = 0;
+            IsEnable = true;
 
             if (!AmongUsClient.Instance.AmHost) return;
             if (!Main.ResetCamPlayerList.Contains(playerId))
                 Main.ResetCamPlayerList.Add(playerId);
         }
-        public static bool IsEnable => playerIdList.Any();
         public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
         public static bool InProtect(PlayerControl player) => player.Is(CustomRoles.Spiritcaller) && ProtectTimeStamp > Utils.GetTimeStamp();
 

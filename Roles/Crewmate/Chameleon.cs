@@ -12,6 +12,7 @@ public static class Chameleon
 {
     private static readonly int Id = 6300;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     public static OptionItem ChameleonCooldown;
     private static OptionItem ChameleonDuration;
@@ -43,13 +44,14 @@ public static class Chameleon
         lastTime = new();
         ventedId = new();
         UseLimit = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         UseLimit.Add(playerId, UseLimitOpt.GetInt());
+        IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Count > 0;
     private static void SendRPC(PlayerControl pc)
     {
         if (pc.AmOwner) return;
@@ -74,6 +76,8 @@ public static class Chameleon
     private static long lastFixedTime = 0;
     public static void AfterMeetingTasks()
     {
+        if (!IsEnable) return;
+
         lastTime = new();
         InvisTime = new();
         foreach (var pc in Main.AllAlivePlayerControls.Where(x => playerIdList.Contains(x.PlayerId)))

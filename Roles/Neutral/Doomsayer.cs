@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Hazel;
 using UnityEngine;
 
@@ -9,6 +8,8 @@ public static class Doomsayer
 {
     private static readonly int Id = 27000;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
+
     public static List<CustomRoles> GuessedRoles = new();
     public static Dictionary<byte, int> GuessingToWin = new();
 
@@ -69,13 +70,14 @@ public static class Doomsayer
         GuessesCount = 0;
         GuessesCountPerMeeting = 0;
         CantGuess = false;
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         GuessingToWin.TryAdd(playerId, GuessesCount);
+        IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Any();
     public static void SendRPC(PlayerControl player)
     {
         MessageWriter writer;

@@ -13,6 +13,7 @@ public static class Totocalcio
 {
     private static readonly int Id = 9800;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     private static OptionItem MaxBetTimes;
     public static OptionItem BetCooldown;
@@ -43,17 +44,18 @@ public static class Totocalcio
         playerIdList = new();
         BetTimes = new();
         BetPlayer = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         BetTimes.Add(playerId, MaxBetTimes.GetInt());
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(byte playerId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SyncTotocalcioTargetAndTimes, SendOption.Reliable, -1);

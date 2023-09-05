@@ -12,6 +12,7 @@ public static class Amnesiac
 {
     private static readonly int Id = 35000;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     public static OptionItem RememberCooldown;
     public static OptionItem RefugeeKillCD;
@@ -40,17 +41,18 @@ public static class Amnesiac
     {
         playerIdList = new();
         RememberLimit = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         RememberLimit = 1;
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
 
     private static void SendRPC()
     {

@@ -7,6 +7,7 @@ public static class TimeThief
 {
     private static readonly int Id = 3300;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     public static OptionItem KillCooldown;
     public static OptionItem DecreaseMeetingTime;
@@ -26,12 +27,13 @@ public static class TimeThief
     public static void Init()
     {
         playerIdList = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Any();
 
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
     private static int StolenTime(byte id)

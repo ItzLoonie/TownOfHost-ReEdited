@@ -14,6 +14,8 @@ public static class Councillor
 {
     private static readonly int Id = 900;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
+
     private static OptionItem MurderLimitPerMeeting;
   //  private static OptionItem MurderLimitPerGame;
     private static OptionItem TryHideMsg;
@@ -41,15 +43,14 @@ public static class Councillor
     {
         playerIdList = new();
         MurderLimit = new();
-      //  MurderLimitGame = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         MurderLimit.Add(playerId, MurderLimitPerMeeting.GetInt());
-     //   MurderLimitGame.Add(playerId, MurderLimitPerGame.GetInt());
+        IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Any();
     public static void OnReportDeadBody()
     {
         MurderLimit.Clear();

@@ -11,6 +11,8 @@ public static class Medic
 {
     private static readonly int Id = 7100;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
+
     public static List<byte> ProtectList = new();
     public static byte TempMarkProtected;
     public static Dictionary<byte, int> ProtectLimit = new();
@@ -70,11 +72,13 @@ public static class Medic
         ProtectLimit = new();
         TempMarkProtected = byte.MaxValue;
         SkillLimit = 1;
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         ProtectLimit.TryAdd(playerId, SkillLimit);
+        IsEnable = true;
 
         Logger.Info($"{Utils.GetPlayerById(playerId)?.GetNameWithRole()} : {ProtectLimit[playerId]} shields left", "Medicaler");
 
@@ -82,7 +86,6 @@ public static class Medic
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(byte playerId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetMedicalerProtectLimit, SendOption.Reliable, -1);

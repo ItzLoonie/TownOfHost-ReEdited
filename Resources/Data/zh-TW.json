@@ -1959,6 +1959,7 @@
   "Warning.NoModHost": "非TOHE房",
   "Warning.MismatchedVersion": "{0}\n安裝了其他版本的 {1}",
   "Warning.AutoExitAtMismatchedVersion": "您的 {0} 版本與房主不同\n您將在 {1} 秒後被踢出",
+  "Warning.CanNotUseBepInExConsole": "",
   "Error.MeetingException": "錯誤: {0}\n請使用 Shift+M+Enter 強制結束會議",
   "Error.InvalidRoleAssignment": "錯誤: 在分配職業時發現職業無效的玩家 ({0})",
   "Error.InvalidColor": "警告: 存在使用非正常顏色的玩家，可能引起遊戲錯誤",

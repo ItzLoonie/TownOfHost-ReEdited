@@ -13,6 +13,7 @@ namespace TOHE.Roles.Impostor
         private static readonly int Id = 8050;
 
         public static List<byte> playerIdList = new();
+        public static bool IsEnable = false;
 
         private static List<PitfallTrap> Traps = new();
         private static List<byte> ReducedVisionPlayers = new();
@@ -59,13 +60,14 @@ namespace TOHE.Roles.Impostor
             playerIdList = new();
             Traps = new();
             ReducedVisionPlayers = new();
+            IsEnable = false;
         }
         public static void Add(byte playerId)
         {
             playerIdList.Add(playerId);
             DefaultSpeed = Main.AllPlayerSpeed[playerId];
+            IsEnable = true;
         }
-        public static bool IsEnable => playerIdList.Any();
 
         public static void OnShapeshift(PlayerControl shapeshifter)
         {

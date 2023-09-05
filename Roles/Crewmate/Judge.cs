@@ -13,6 +13,8 @@ public static class Judge
 {
     private static readonly int Id = 9300;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
+
     public static OptionItem TrialLimitPerMeeting;
     private static OptionItem TryHideMsg;
     private static OptionItem CanTrialMadmate;
@@ -51,13 +53,14 @@ public static class Judge
     {
         playerIdList = new();
         TrialLimit = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         TrialLimit.Add(playerId, TrialLimitPerMeeting.GetInt());
+        IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Any();
     public static void OnReportDeadBody()
     {
         TrialLimit.Clear();

@@ -10,6 +10,7 @@ public static class Sheriff
 {
     private static readonly int Id = 8800;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     public static OptionItem KillCooldown;
     private static OptionItem MisfireKillsTarget;
@@ -63,6 +64,26 @@ public static class Sheriff
         NonCrewCanKillCrew = BooleanOptionItem.Create(Id + 21, "SheriffMadCanKillCrew", true, TabGroup.CrewmateRoles, false).SetParent(SetNonCrewCanKill);
         NonCrewCanKillNeutral = BooleanOptionItem.Create(Id + 20, "SheriffMadCanKillNeutral", true, TabGroup.CrewmateRoles, false).SetParent(SetNonCrewCanKill);
     }
+    public static void Init()
+    {
+        playerIdList = new();
+        ShotLimit = new();
+        CurrentKillCooldown = new();
+        IsEnable = false;
+    }
+    public static void Add(byte playerId)
+    {
+        playerIdList.Add(playerId);
+        CurrentKillCooldown.Add(playerId, KillCooldown.GetFloat());
+        IsEnable = true;
+
+        ShotLimit.TryAdd(playerId, ShotLimitOpt.GetInt());
+        Logger.Info($"{Utils.GetPlayerById(playerId)?.GetNameWithRole()} : 残り{ShotLimit[playerId]}発", "Sheriff");
+
+        if (!AmongUsClient.Instance.AmHost) return;
+        if (!Main.ResetCamPlayerList.Contains(playerId))
+            Main.ResetCamPlayerList.Add(playerId);
+    }
     public static void SetUpNeutralOptions(int Id)
     {
         foreach (var neutral in Enum.GetValues(typeof(CustomRoles)).Cast<CustomRoles>().Where(x => x.IsNeutral() && x is not CustomRoles.KB_Normal && x is not CustomRoles.Glitch && x is not CustomRoles.Ritualist && x is not CustomRoles.Konan && x is not CustomRoles.Baker && x is not CustomRoles.Famine && x is not CustomRoles.Pestilence && x is not CustomRoles.Glitch))
@@ -79,25 +100,6 @@ public static class Sheriff
         KillTargetOptions[role] = BooleanOptionItem.Create(Id, "SheriffCanKill%role%", defaultValue, TabGroup.CrewmateRoles, false).SetParent(parent);
         KillTargetOptions[role].ReplacementDictionary = replacementDic;
     }
-    public static void Init()
-    {
-        playerIdList = new();
-        ShotLimit = new();
-        CurrentKillCooldown = new();
-    }
-    public static void Add(byte playerId)
-    {
-        playerIdList.Add(playerId);
-        CurrentKillCooldown.Add(playerId, KillCooldown.GetFloat());
-
-        ShotLimit.TryAdd(playerId, ShotLimitOpt.GetInt());
-        Logger.Info($"{Utils.GetPlayerById(playerId)?.GetNameWithRole()} : 残り{ShotLimit[playerId]}発", "Sheriff");
-
-        if (!AmongUsClient.Instance.AmHost) return;
-        if (!Main.ResetCamPlayerList.Contains(playerId))
-            Main.ResetCamPlayerList.Add(playerId);
-    }
-    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(byte playerId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetSheriffShotLimit, SendOption.Reliable, -1);

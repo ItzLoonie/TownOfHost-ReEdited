@@ -9,6 +9,7 @@ public static class Juggernaut
 {
     private static readonly int Id = 12300;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     private static OptionItem DefaultKillCooldown;
     private static OptionItem ReduceKillCooldown;
@@ -34,17 +35,18 @@ public static class Juggernaut
     {
         playerIdList = new();
         NowCooldown = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         NowCooldown.TryAdd(playerId, DefaultKillCooldown.GetFloat());
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = NowCooldown[id];
     public static void OnCheckMurder(PlayerControl killer)
     {

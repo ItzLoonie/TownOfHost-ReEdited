@@ -1962,6 +1962,7 @@
   "Warning.NoModHost": "非TOH-RE房",
   "Warning.MismatchedVersion": "<b>{0}</b> 安装了其它版本的 <b>{1}</b>",
   "Warning.AutoExitAtMismatchedVersion": "您的 {0} 版本与房主不同\n您将在 {1} 秒内被踢出",
+  "Warning.CanNotUseBepInExConsole": "",
   "Error.MeetingException": "错误: {0}\n使用 Shift+M+Enter 强制结束会议",
   "Error.InvalidRoleAssignment": "错误：在分配职业时发现职业无效的玩家 ({0})",
   "Error.InvalidColor": "警告：存在使用非法颜色的玩家，可能引起游戏错误",

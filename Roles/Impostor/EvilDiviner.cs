@@ -12,6 +12,7 @@ namespace TOHE.Roles.Impostor
     {
         private static readonly int Id = 2700;
         public static List<byte> playerIdList = new();
+        public static bool IsEnable = false;
 
         private static OptionItem KillCooldown;
         private static OptionItem DivinationMaxCount;
@@ -33,16 +34,18 @@ namespace TOHE.Roles.Impostor
             playerIdList = new();
             DivinationCount = new();
             DivinationTarget = new();
+            IsEnable = false;
         }
         public static void Add(byte playerId)
         {
             playerIdList.Add(playerId);
             DivinationCount.TryAdd(playerId, DivinationMaxCount.GetInt());
             DivinationTarget.TryAdd(playerId, new());
+            IsEnable = true;
+
             var pc = Utils.GetPlayerById(playerId);
             pc.AddDoubleTrigger();
         }
-        public static bool IsEnable => playerIdList.Any();
 
         private static void SendRPC(byte playerId, byte targetId)
         {

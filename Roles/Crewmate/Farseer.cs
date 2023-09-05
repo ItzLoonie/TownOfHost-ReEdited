@@ -14,7 +14,7 @@ namespace TOHE.Roles.Crewmate
         private static readonly int Id = 9700;
 
         private static readonly string fontSize = "1.5";
-        private static bool IsEnable = false;
+        public static bool IsEnable = false;
 
         public static OptionItem FarseerCooldown;
         public static OptionItem FarseerRevealTime;

@@ -9,13 +9,13 @@ public static class CopyCat
 {
     private static readonly int Id = 31000;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
+
     public static Dictionary<byte, float> CurrentKillCooldown = new();
     public static Dictionary<byte, int> MiscopyLimit = new();
 
     public static OptionItem KillCooldown;
-
     public static OptionItem CopyCrewVar;
-
     public static OptionItem CanKill;
     public static OptionItem MiscopyLimitOpt;
 
@@ -35,20 +35,19 @@ public static class CopyCat
         playerIdList = new();
         CurrentKillCooldown = new();
         MiscopyLimit = new();
+        IsEnable = false;
     }
 
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         CurrentKillCooldown.Add(playerId, KillCooldown.GetFloat());
-    //    MiscopyLimit.TryAdd(playerId, MiscopyLimitOpt.GetInt());
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-
-    public static bool IsEnable => playerIdList.Any();
 
 
     /*  private static void SendRPC(byte playerId)

@@ -10,6 +10,8 @@ internal static class QuickShooter
 {
     private static readonly int Id = 1800;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
+
     private static OptionItem KillCooldown;
     private static OptionItem MeetingReserved;
     public static OptionItem ShapeshiftCooldown;
@@ -30,13 +32,14 @@ internal static class QuickShooter
     {
         playerIdList = new();
         ShotLimit = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         ShotLimit.TryAdd(playerId, 0);
+        IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(byte playerId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetQuickShooterShotLimit, SendOption.Reliable, -1);

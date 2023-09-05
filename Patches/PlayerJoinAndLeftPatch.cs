@@ -3,9 +3,7 @@ using AmongUs.GameOptions;
 using HarmonyLib;
 using Hazel;
 using InnerNet;
-using LibCpp2IL.Elf;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 using TOHE.Modules;
 using TOHE.Roles.Crewmate;
@@ -239,7 +237,7 @@ class CreatePlayerPatch
             }, 1f, "Name Format");
         }
 
-        _ = new LateTask(() => { if (client.Character == null || !GameStates.IsLobby) return; OptionItem.SyncAllOptions(client.Id); }, 3f, "Sync All Options For New Player");
+        _ = new LateTask(() => { OptionItem.SyncAllOptions(); }, 2f, "Sync All Options For New Player");
 
         _ = new LateTask(() =>
         {

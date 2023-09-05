@@ -11,6 +11,7 @@ public static class Succubus
 {
     private static readonly int Id = 11200;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     public static OptionItem CharmCooldown;
     public static OptionItem CharmCooldownIncrese;
@@ -47,17 +48,18 @@ public static class Succubus
     {
         playerIdList = new();
         CharmLimit = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         CharmLimit = CharmMax.GetInt();
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
 
     private static void SendRPC()
     {
