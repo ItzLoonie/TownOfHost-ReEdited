@@ -2,12 +2,12 @@
 
 public static class PetsPatch
 {
-    public static void RpsRemovePet(this PlayerControl pc)
+    public static void RpcRemovePet(this PlayerControl pc)
     {
+        if (pc == null || !pc.Data.IsDead) return;
         if (!GameStates.IsInGame) return;
         if (!Options.RemovePetsAtDeadPlayers.GetBool()) return;
-        if (Camouflage.PlayerSkins[pc.PlayerId].PetId != "" && !pc.IsAlive() && pc.Data.IsDead) return;
-
+        
         pc.RpcSetPet("");
     }
 }

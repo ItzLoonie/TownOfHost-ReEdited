@@ -3322,7 +3322,7 @@ public static class PlayerControlDiePatch
     {
         if (!AmongUsClient.Instance.AmHost) return;
 
-        __instance.RpsRemovePet();
+        __instance.RpcRemovePet();
     }
 }
 [HarmonyPatch(typeof(GameData), nameof(GameData.CompleteTask))]

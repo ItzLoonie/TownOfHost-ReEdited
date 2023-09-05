@@ -169,6 +169,8 @@ class ExileControllerWrapUpPatch
 
             }
 
+            pc.RpcRemovePet();
+
             Main.ShroudList.Clear();
 
             if (Options.RandomSpawn.GetBool() || Options.CurrentGameMode == CustomGameMode.SoloKombat)
@@ -190,8 +192,6 @@ class ExileControllerWrapUpPatch
                         break;
                 }
             }
-
-            pc.RpsRemovePet();
 
             FallFromLadder.Reset();
             Utils.CountAlivePlayers(true);
