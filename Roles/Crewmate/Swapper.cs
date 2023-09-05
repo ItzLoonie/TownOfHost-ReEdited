@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using TOHE.Modules.ChatManager;
 using UnityEngine;
 using static TOHE.Translator;
 using static UnityEngine.ParticleSystem.PlaybackState;
@@ -16,7 +17,7 @@ public static class Swapper
     public static OptionItem SwapMax;
     public static OptionItem CanSwapSelf;
     public static OptionItem CanStartMeeting;
-    private static OptionItem TryHideMsg;
+    public static OptionItem TryHideMsg;
     public static List<byte> playerIdList = new();
     public static List<byte> Vote = new();
     public static List<byte> VoteTwo = new();
@@ -43,6 +44,21 @@ public static class Swapper
         Swappermax.TryAdd(playerId, SwapMax.GetInt());
     }
     public static bool IsEnable => playerIdList.Count > 0;
+    public static void SendRPC(byte playerId)
+    {
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetSwapperVotes, SendOption.Reliable, -1);
+        writer.Write(playerId);
+        AmongUsClient.Instance.FinishRpcImmediately(writer);
+    }
+    public static void ReceiveRPC(MessageReader reader, PlayerControl pc)
+    {
+        byte PlayerId = reader.ReadByte();
+        SwapMsg(pc, $"/sw {PlayerId}");
+        if (Options.NewHideMsg.GetBool())
+        {
+            ChatManager.SendPreviousMessagesToAll();
+        }
+    }
     public static string GetSwappermax(byte playerId) => Utils.ColorString((Swappermax.TryGetValue(playerId, out var x) && x >= 1) ? Color.green : Color.gray, Swappermax.TryGetValue(playerId, out var changermax) ? $"({changermax})" : "Invalid");
     public static bool SwapMsg(PlayerControl pc, string msg, bool isUI = false)
     {
@@ -74,6 +90,7 @@ public static class Swapper
         else if (operate == 2)
         {
             if (TryHideMsg.GetBool()) GuessManager.TryHideMsg();
+
             else if (pc.AmOwner && !isUI) Utils.SendMessage(originMsg, 255, pc.GetRealName());
 
             if (!MsgToPlayerAndRole(msg, out byte targetId, out string error))
@@ -94,6 +111,8 @@ public static class Swapper
                 var dp = target;
                 target = dp;
 
+                string Name = dp.GetRealName();
+                var sw = dp;
 
                     if (Vote.Count < 1 && !Vote.Contains(dp.PlayerId) && !VoteTwo.Contains(dp.PlayerId) && CanSwapSelf.GetBool()
                 || Vote.Count < 1 && !Vote.Contains(dp.PlayerId) && !VoteTwo.Contains(dp.PlayerId) && dp != pc && !CanSwapSelf.GetBool())
@@ -130,7 +149,7 @@ public static class Swapper
                     if (!isUI) Utils.SendMessage(Translator.GetString("CantSwapSelf"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("CantSwapSelf"));
                 }
-                new LateTask(() =>
+                _= new LateTask(() =>
                 {
                         if (Vote.Count > 0 && VoteTwo.Count > 0)
                         {
@@ -227,8 +246,14 @@ public static class Swapper
         Logger.Msg($"Click: ID {playerId}", "Swapper UI");
         var pc = Utils.GetPlayerById(playerId);
         if (pc == null || !pc.IsAlive() || !GameStates.IsVoting) return;
+
+        if (AmongUsClient.Instance.AmHost) SwapMsg(PlayerControl.LocalPlayer, $"/sw {playerId}", true);
         else SendRPC(playerId);
+        if (PlayerControl.LocalPlayer.Is(CustomRoles.Swapper) && PlayerControl.LocalPlayer.IsAlive())
+        {
+            CreateSwapperButton(__instance);
         }
+    }
 
     [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
     class StartMeetingPatch
