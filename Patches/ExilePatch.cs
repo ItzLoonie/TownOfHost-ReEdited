@@ -169,6 +169,8 @@ class ExileControllerWrapUpPatch
 
             }
 
+            pc.RpcRemovePet();
+
             Main.ShroudList.Clear();
 
             if (Options.RandomSpawn.GetBool() || Options.CurrentGameMode == CustomGameMode.SoloKombat)
@@ -190,10 +192,6 @@ class ExileControllerWrapUpPatch
                         break;
                 }
             }
-
-            if (Options.RemovePetsAtDeadPlayers.GetBool())
-                if (pc.Data.IsDead && Camouflage.PlayerSkins[pc.PlayerId].PetId != "")
-                    pc.RpcSetPet("");
 
             FallFromLadder.Reset();
             Utils.CountAlivePlayers(true);
