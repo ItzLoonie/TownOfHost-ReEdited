@@ -10,6 +10,7 @@ public static class BountyHunter
 {
     private static readonly int Id = 800;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     private static OptionItem OptionTargetChangeTime;
     private static OptionItem OptionSuccessKillCooldown;
@@ -38,6 +39,7 @@ public static class BountyHunter
     public static void Init()
     {
         playerIdList = new();
+        IsEnable = false;
 
         Targets = new();
         ChangeTimer = new();
@@ -45,6 +47,7 @@ public static class BountyHunter
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
 
         TargetChangeTime = OptionTargetChangeTime.GetFloat();
         SuccessKillCooldown = OptionSuccessKillCooldown.GetFloat();
@@ -54,7 +57,6 @@ public static class BountyHunter
         if (AmongUsClient.Instance.AmHost)
             ResetTarget(Utils.GetPlayerById(playerId));
     }
-    public static bool IsEnable => playerIdList.Any();
     private static void SendRPC(byte bountyId, byte targetId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetBountyTarget, SendOption.Reliable, -1);
@@ -178,6 +180,8 @@ public static class BountyHunter
     public static void SetAbilityButtonText(HudManager __instance) => __instance.AbilityButton.OverrideText(GetString("BountyHunterChangeButtonText"));
     public static void AfterMeetingTasks()
     {
+        if (!IsEnable) return;
+
         foreach (var id in playerIdList)
         {
             if (!Main.PlayerStates[id].IsDead)

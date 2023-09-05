@@ -12,6 +12,7 @@ public static class Vulture
 {
     private static readonly int Id = 11600;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     public static List<byte> UnreportablePlayers = new();
     public static Dictionary<byte, int> BodyReportCount = new();
@@ -43,11 +44,12 @@ public static class Vulture
         BodyReportCount = new();
         AbilityLeftInRound = new();
         LastReport = new();
-
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
         BodyReportCount[playerId] = 0;
         AbilityLeftInRound[playerId] = MaxEaten.GetInt();
         LastReport[playerId] = Utils.GetTimeStamp();
@@ -61,7 +63,6 @@ public static class Vulture
             return;
         }, VultureReportCD.GetFloat() + 8f, "Vulture CD");  //for some reason that idk vulture cd completes 8s faster when the game starts, so I added 8f for now 
     }
-    public static bool IsEnable => playerIdList.Any();
 
     public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(HasImpVision.GetBool());
 

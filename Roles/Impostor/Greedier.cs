@@ -9,6 +9,7 @@ public static class Greedier
 {
     private static readonly int Id = 1300;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     private static OptionItem OddKillCooldown;
     private static OptionItem EvenKillCooldown;
@@ -27,13 +28,14 @@ public static class Greedier
     {
         playerIdList = new();
         IsOdd = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         IsOdd.Add(playerId, true);
+        IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Any();
 
     private static void SendRPC(byte playerId)
     {

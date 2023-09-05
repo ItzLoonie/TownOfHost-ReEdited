@@ -22,6 +22,8 @@ public static class FireWorks
 
     private static readonly int Id = 2800;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
+
     private static OptionItem FireWorksCount;
     private static OptionItem FireWorksRadius;
     public static OptionItem CanKill;
@@ -46,6 +48,7 @@ public static class FireWorks
     public static void Init()
     {
         playerIdList = new();
+        IsEnable = false;
         nowFireWorksCount = new();
         fireWorksPosition = new();
         state = new();
@@ -60,9 +63,8 @@ public static class FireWorks
         fireWorksPosition[playerId] = new();
         state[playerId] = FireWorksState.Initial;
         fireWorksBombKill[playerId] = 0;
+        IsEnable = true;
     }
-
-    public static bool IsEnable => playerIdList.Any();
 
     public static void SendRPC(byte playerId)
     {

@@ -7,6 +7,8 @@ public static class Chronomancer
 {
     private static readonly int Id = 33420;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
+
     public static Dictionary<byte, long> firstKill = new();
     public static Dictionary<byte, long> lastCooldownStart = new();
     public static Dictionary<byte, float> ChargedTime = new();
@@ -26,6 +28,7 @@ public static class Chronomancer
         firstKill = new();
         lastCooldownStart = new();
         ChargedTime = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
@@ -34,9 +37,8 @@ public static class Chronomancer
         firstKill.Add(playerId, -1);
         ChargedTime.Add(playerId, 0);
         lastCooldownStart.Add(playerId, now);
+        IsEnable = true;
     }
-
-    public static bool IsEnable => playerIdList.Any();
 
     public static void SetKillCooldown(byte id)
     {

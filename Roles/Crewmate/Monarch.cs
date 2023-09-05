@@ -11,6 +11,7 @@ public static class Monarch
 {
     private static readonly int Id = 9600;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     public static OptionItem KnightCooldown;
     public static OptionItem KnightMax;
@@ -30,17 +31,18 @@ public static class Monarch
     {
         playerIdList = new();
         KnightLimit = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         KnightLimit = KnightMax.GetInt();
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
 
     private static void SendRPC()
     {

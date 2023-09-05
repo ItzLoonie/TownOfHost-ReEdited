@@ -11,13 +11,10 @@ public static class ParityCop
 {
     private static readonly int Id = 6900;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
+
     public static Dictionary<byte, float> MaxCheckLimit = new();
     public static Dictionary<byte, int> RoundCheckLimit = new();
-    public static readonly string[] pcEgoistCountMode =
-    {
-        "EgoistCountMode.Original",
-        "EgoistCountMode.Neutral",
-    };
 
     private static OptionItem TryHideMsg;
     public static OptionItem ParityCheckLimitMax;
@@ -29,6 +26,11 @@ public static class ParityCop
     public static OptionItem ParityCheckRevealTargetTeam;
     public static OptionItem ParityAbilityUseGainWithEachTaskCompleted;
 
+    public static readonly string[] pcEgoistCountMode =
+{
+        "EgoistCountMode.Original",
+        "EgoistCountMode.Neutral",
+    };
 
     public static void SetupCustomOption()
     {
@@ -59,6 +61,7 @@ public static class ParityCop
         playerIdList = new();
         MaxCheckLimit = new();
         RoundCheckLimit = new();
+        IsEnable = false;
     }
 
     public static void Add(byte playerId)
@@ -66,8 +69,8 @@ public static class ParityCop
         playerIdList.Add(playerId);
         MaxCheckLimit.Add(playerId, ParityCheckLimitMax.GetInt());
         RoundCheckLimit.Add(playerId, ParityCheckLimitPerMeeting.GetInt());
+        IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Any();
     public static void OnReportDeadBody()
     {
         foreach (var pid in RoundCheckLimit.Keys) RoundCheckLimit[pid] = ParityCheckLimitPerMeeting.GetInt();

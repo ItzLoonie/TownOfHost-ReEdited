@@ -10,6 +10,8 @@ public static class Jailer
 {
     private static readonly int Id = 63420;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
+
     public static Dictionary<byte, byte> JailerTarget = new();
     public static Dictionary<byte, int> JailerExeLimit = new();
     public static Dictionary<byte, bool> JailerHasExe = new();
@@ -49,6 +51,7 @@ public static class Jailer
         JailerTarget = new();
         JailerHasExe = new();
         JailerDidVote = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
@@ -57,12 +60,12 @@ public static class Jailer
         JailerTarget.Add(playerId, byte.MaxValue);
         JailerHasExe.Add(playerId, false);
         JailerDidVote.Add(playerId, false);
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = Utils.GetPlayerById(id).IsAlive() ? JailCooldown.GetFloat() : 0f;
     public static string GetProgressText(byte playerId) => Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jailer).ShadeColor(0.25f), JailerExeLimit.TryGetValue(playerId, out var exeLimit) ? $"({exeLimit})" : "Invalid");
 
@@ -174,6 +177,8 @@ public static class Jailer
 
     public static void AfterMeetingTasks()
     {
+        if (!IsEnable) return;
+
         foreach (var pid in JailerHasExe.Keys)
         {
             var targetId = JailerTarget[pid];

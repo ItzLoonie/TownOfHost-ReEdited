@@ -1,15 +1,15 @@
 using Hazel;
-using System.Linq;
 using System.Collections.Generic;
 using static TOHE.Options;
 using static TOHE.Translator;
-using System.Diagnostics.Metrics;
 
 namespace TOHE.Roles.Neutral;
 public static class SoulCollector
 {
     private static readonly int Id = 34420;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
+
     public static Dictionary<byte, byte> SoulCollectorTarget = new();
     public static Dictionary<byte, int> SoulCollectorPoints = new();
     public static Dictionary<byte, bool> DidVote = new();
@@ -30,6 +30,7 @@ public static class SoulCollector
         SoulCollectorTarget = new();
         SoulCollectorPoints = new();
         DidVote = new();
+        IsEnable = false;
     }
 
     public static void Add(byte playerId)
@@ -38,9 +39,8 @@ public static class SoulCollector
         SoulCollectorTarget.Add(playerId, byte.MaxValue);
         SoulCollectorPoints.Add(playerId, 0);
         DidVote[playerId] = false;
+        IsEnable = true;
     }
-
-    public static bool IsEnable => playerIdList.Any();
 
     public static string GetProgressText(byte playerId) => Utils.ColorString(Utils.GetRoleColor(CustomRoles.SoulCollector).ShadeColor(0.25f), SoulCollectorPoints.TryGetValue(playerId, out var x) ? $"({x}/{SoulCollectorPointsOpt.GetInt()})" : "Invalid");
 

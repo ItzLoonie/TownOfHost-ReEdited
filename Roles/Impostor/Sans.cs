@@ -9,6 +9,7 @@ public static class Sans
 {
     private static readonly int Id = 600;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
 
     private static OptionItem DefaultKillCooldown;
     private static OptionItem ReduceKillCooldown;
@@ -34,13 +35,14 @@ public static class Sans
     {
         playerIdList = new();
         NowCooldown = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
         NowCooldown.TryAdd(playerId, DefaultKillCooldown.GetFloat());
+        IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Any();
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = NowCooldown[id];
     public static void OnCheckMurder(PlayerControl killer)
     {

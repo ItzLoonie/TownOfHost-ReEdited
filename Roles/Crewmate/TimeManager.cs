@@ -7,6 +7,8 @@ public static class TimeManager
 {
     private static readonly int Id = 8200;
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
+
     public static OptionItem IncreaseMeetingTime;
     public static OptionItem MeetingTimeLimit;
     public static OptionItem MadMinMeetingTimeLimit;
@@ -25,12 +27,13 @@ public static class TimeManager
     public static void Init()
     {
         playerIdList = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Any();
     private static int AdditionalTime(byte id)
     {
         var pc = Utils.GetPlayerById(id);

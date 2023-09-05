@@ -7,6 +7,7 @@ namespace TOHE.Roles.Impostor
     {
         private static readonly int Id = 2500;
         public static List<byte> playerIdList = new();
+        public static bool IsEnable = false;
 
         private static OptionItem CamouflageCooldown;
         private static OptionItem CamouflageDuration;
@@ -30,12 +31,13 @@ namespace TOHE.Roles.Impostor
         {
             playerIdList = new();
             IsActive = false;
+            IsEnable = false;
         }
         public static void Add(byte playerId)
         {
             playerIdList.Add(playerId);
+            IsEnable = true;
         }
-        public static bool IsEnable => playerIdList.Any();
 
         public static void ApplyGameOptions()
         {

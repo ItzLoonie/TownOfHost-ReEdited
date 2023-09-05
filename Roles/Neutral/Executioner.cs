@@ -10,6 +10,7 @@ public static class Executioner
 {
     private static readonly int Id = 10700;
     public static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
     public static byte WinnerID;
 
     private static OptionItem CanTargetImpostor;
@@ -60,10 +61,12 @@ public static class Executioner
     {
         playerIdList = new();
         Target = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
 
         //ターゲット割り当て
         if (AmongUsClient.Instance.AmHost)
@@ -90,7 +93,6 @@ public static class Executioner
             Logger.Info($"{Utils.GetPlayerById(playerId)?.GetNameWithRole()}:{SelectedTarget.GetNameWithRole()}", "Executioner");
         }
     }
-    public static bool IsEnable => playerIdList.Any();
     public static void SendRPC(byte executionerId, byte targetId = 0x73, string Progress = "")
     {
         MessageWriter writer;

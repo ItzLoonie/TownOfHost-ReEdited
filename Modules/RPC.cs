@@ -262,15 +262,10 @@ internal class RPCHandlerPatch
                 RPC.RpcVersionCheck();
                 break;
             case CustomRPC.SyncCustomSettings:
-                if (AmongUsClient.Instance.AmHost) break;
-                List<OptionItem> list = new();
-                var startAmount = reader.ReadInt32();
-                var lastAmount = reader.ReadInt32();
-                for (var i = startAmount; i < OptionItem.AllOptions.Count && i <= lastAmount; i++)
-                    list.Add(OptionItem.AllOptions[i]);
-                Logger.Info($"{startAmount}-{lastAmount}:{list.Count}/{OptionItem.AllOptions.Count}", "SyncCustomSettings");
-                foreach (var co in list) co.SetValue(reader.ReadInt32());
-                OptionShower.GetText();
+                foreach (var co in OptionItem.AllOptions)
+                {
+                    co.SetValue(reader.ReadInt32());
+                }
                 break;
             case CustomRPC.SetDeathReason:
                 RPC.GetDeathReason(reader);

@@ -13,6 +13,7 @@ public static class Sniper
 {
     private static readonly int Id = 1900;
     private static List<byte> PlayerIdList = new();
+    public static bool IsEnable = false;
 
     private static OptionItem SniperBulletCount;
     private static OptionItem SniperPrecisionShooting;
@@ -55,6 +56,7 @@ public static class Sniper
         IsAim = new();
         AimTime = new();
         meetingReset = false;
+        IsEnable = false;
 
         maxBulletCount = SniperBulletCount.GetInt();
         precisionShooting = SniperPrecisionShooting.GetBool();
@@ -64,6 +66,7 @@ public static class Sniper
     public static void Add(byte playerId)
     {
         PlayerIdList.Add(playerId);
+        IsEnable = true;
 
         snipeBasePosition[playerId] = new();
         LastPosition[playerId] = new();
@@ -73,7 +76,6 @@ public static class Sniper
         IsAim[playerId] = false;
         AimTime[playerId] = 0f;
     }
-    public static bool IsEnable => PlayerIdList.Any();
     public static bool IsThisRole(byte playerId) => PlayerIdList.Contains(playerId);
     public static void SendRPC(byte playerId)
     {
