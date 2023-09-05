@@ -44,7 +44,6 @@ public static class Swapper
         Swappermax.TryAdd(playerId, SwapMax.GetInt());
         IsEnable = true;
     }
-    public static bool IsEnable => playerIdList.Count > 0;
     public static void SendRPC(byte playerId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetSwapperVotes, SendOption.Reliable, -1);
@@ -143,7 +142,7 @@ public static class Swapper
                 }
                 else if (pc == dp && !CanSwapSelf.GetBool())
                 {
-                    if (!isUI) Utils.SendMessage(Translator.GetString("CantSwapSelf"), pc.PlayerId);
+                    if (!isUI) Utils.SendMessage(GetString("CantSwapSelf"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("CantSwapSelf"));
                 }
                 _= new LateTask(() =>
@@ -233,10 +232,10 @@ public static class Swapper
         var pc = Utils.GetPlayerById(playerId);
         if (pc == null || !pc.IsAlive() || !GameStates.IsVoting) return;
 
-        if (AmongUsClient.Instance.AmHost) SwapMsg(PlayerControl.LocalPlayer, $"/sw {playerId}", true);
+        if (AmongUsClient.Instance.AmHost) SwapMsg(PlayerControl.LocalPlayer, $"/sw {playerId}", true);       
         else SendRPC(playerId);
-        if (PlayerControl.LocalPlayer.Is(CustomRoles.Swapper) && PlayerControl.LocalPlayer.IsAlive())
         {
+        if (PlayerControl.LocalPlayer.Is(CustomRoles.Swapper) && PlayerControl.LocalPlayer.IsAlive())
             CreateSwapperButton(__instance);
         }
     }
@@ -275,5 +274,6 @@ public static class Swapper
             button.OnClick.RemoveAllListeners();
             button.OnClick.AddListener((Action)(() => SwapperOnClick(pva.TargetPlayerId, __instance)));
         }
+    
     }
 }
