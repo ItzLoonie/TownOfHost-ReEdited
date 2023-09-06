@@ -1154,7 +1154,7 @@
   "DisableReportWhenCC": "Запретить репортить трупы при камуфляже",
   "EnableDebugMode": "Включить режим отладки",
   "ChangeNameToRoleInfo": "Показать краткую информацию о роли",
-  "SendRoleDescriptionFirstMeeting": "Показать полное описание роли первой встрече",
+  "SendRoleDescriptionFirstMeeting": "Показать полное описание роли на первой встрече",
   "RoleAssigningAlgorithm": "Алгоритм назначения Ролей",
   "RoleAssigningAlgorithm.Default": "По Умолчанию",
   "RoleAssigningAlgorithm.NetRandom": ".NET System.Random",
