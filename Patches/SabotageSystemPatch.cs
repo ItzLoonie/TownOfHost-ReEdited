@@ -33,6 +33,33 @@ public static class HeliSabotageSystemPatch
                 __instance.Countdown = Options.AirshipReactorTimeLimit.GetFloat();
     }
 }
+[HarmonyPatch(typeof(SwitchSystem), nameof(SwitchSystem.RepairDamage))]
+public static class SwitchSystemRepairDamagePatch
+{
+    public static bool Prefix(SwitchSystem __instance, [HarmonyArgument(1)] byte amount)
+    {
+        if (!AmongUsClient.Instance.AmHost) return true;
+
+        if (!amount.HasBit(SwitchSystem.DamageSystem) && Options.BlockDisturbancesToSwitches.GetBool())
+        {
+            // Shift 1 to the left by amount
+            // Each digit corresponds to each switch
+            // Far left switch - (amount: 0) 00001
+            // Far right switch - (amount: 4) 10000
+            // ref: SwitchSystem.RepairDamage, SwitchMinigame.FixedUpdate
+            var switchedKnob = (byte)(0b_00001 << amount);
+
+            // ExpectedSwitches: Up and down state of switches when all are on
+            // ActualSwitches: Actual up/down state of switch
+            // if Expected and Actual are the same for the operated knob, the knob is already fixed
+            if ((__instance.ActualSwitches & switchedKnob) == (__instance.ExpectedSwitches & switchedKnob))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+}
 [HarmonyPatch(typeof(ElectricTask), nameof(ElectricTask.Initialize))]
 public static class ElectricTaskInitializePatch
 {

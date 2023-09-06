@@ -660,6 +660,7 @@ public static class Options
     public static OptionItem DisableAirshipViewingDeckLightsPanel;
     public static OptionItem DisableAirshipGapRoomLightsPanel;
     public static OptionItem DisableAirshipCargoLightsPanel;
+    public static OptionItem BlockDisturbancesToSwitches;
 
     //Guesser Mode//
     public static OptionItem GuesserMode;
@@ -2445,6 +2446,9 @@ public static class Options
         // LightsOutSpecialSettings
         LightsOutSpecialSettings = BooleanOptionItem.Create(22500, "LightsOutSpecialSettings", false, TabGroup.GameSettings, false)
             .SetColor(new Color32(243, 96, 96, byte.MaxValue))
+            .SetGameMode(CustomGameMode.Standard);
+        BlockDisturbancesToSwitches = BooleanOptionItem.Create(22513, "BlockDisturbancesToSwitches", false, TabGroup.GameSettings, false)
+            .SetParent(LightsOutSpecialSettings)
             .SetGameMode(CustomGameMode.Standard);
         DisableAirshipViewingDeckLightsPanel = BooleanOptionItem.Create(22510, "DisableAirshipViewingDeckLightsPanel", false, TabGroup.GameSettings, false)
             .SetParent(LightsOutSpecialSettings)
