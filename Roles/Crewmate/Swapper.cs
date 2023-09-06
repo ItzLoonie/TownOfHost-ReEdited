@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using TOHE.Modules;
+using TOHE.Roles.Crewmate;
 using UnityEngine;
 using static TOHE.Translator;
 using static UnityEngine.ParticleSystem.PlaybackState;
@@ -231,14 +233,8 @@ public static class Swapper
         Logger.Msg($"Click: ID {playerId}", "Swapper UI");
         var pc = Utils.GetPlayerById(playerId);
         if (pc == null || !pc.IsAlive() || !GameStates.IsVoting) return;
-
         if (AmongUsClient.Instance.AmHost) SwapMsg(PlayerControl.LocalPlayer, $"/sw {playerId}", true);       
         else SendRPC(playerId);
-        if (PlayerControl.LocalPlayer.Is(CustomRoles.Swapper) && PlayerControl.LocalPlayer.IsAlive())
-        {
-            MeetingHudUpdatePatch.ClearShootButton(__instance, true);
-            CreateSwapperButton(__instance);
-        }
     }
 
     [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
