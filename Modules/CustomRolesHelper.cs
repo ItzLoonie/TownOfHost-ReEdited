@@ -1054,7 +1054,7 @@ internal static class CustomRolesHelper
                 break;
 
             case CustomRoles.VoidBallot:
-                if (pc.Is(CustomRoles.Mayor)
+                if (pc.Is(CustomRoles.Mayor) || pc.Is(CustomRoles.Fategiver)
                     || pc.Is(CustomRoles.Vindicator) || pc.Is(CustomRoles.TicketsStealer)
                     || pc.Is(CustomRoles.Pickpocket) || pc.Is(CustomRoles.Glitch))
                     return false;
@@ -1315,6 +1315,7 @@ internal static class CustomRolesHelper
             case CustomRoles.DualPersonality:
                 if (pc.Is(CustomRoles.Dictator)
                     || pc.Is(CustomRoles.Madmate)
+                    || pc.Is(CustomRoles.Fategiver)
                     || pc.Is(CustomRoles.GuardianAngelTOHE))
                     return false;
                 if (!pc.GetCustomRole().IsImpostor() && !pc.GetCustomRole().IsCrewmate())
@@ -1379,6 +1380,11 @@ internal static class CustomRolesHelper
                 break;
 
             case CustomRoles.Fategiver:
+                if (pc.Is(CustomRoles.VoidBallot) || pc.Is(CustomRoles.DualPersonality)) return false;
+                if (pc.Is(CustomRoles.Glitch) || pc.Is(CustomRoles.Dictator)) return false;
+                if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanbeFategiver.GetBool()) ||
+                    (pc.GetCustomRole().IsImpostor() && !Options.ImpCanbeFategiver.GetBool()) ||
+                    ((pc.GetCustomRole().IsNeutral() || pc.GetCustomRole().IsCoven()) && !Options.NeutralsCanbeFategiver.GetBool())) return false;
                 break;
 
         }
