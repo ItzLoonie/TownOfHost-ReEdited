@@ -1511,6 +1511,7 @@ public static class Options
         Monarch.SetupCustomOption();
         Farseer.SetupCustomOption();
         Monitor.SetupCustomOption();
+        Swapper.SetupCustomOption();
         ChiefOfPolice.SetupCustomOption();
 
         // Neutral

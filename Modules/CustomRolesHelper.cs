@@ -137,6 +137,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Lurker => CustomRoles.Impostor,
                 CustomRoles.Doomsayer => CustomRoles.Crewmate,
                 CustomRoles.Pitfall => CustomRoles.Shapeshifter,
+                CustomRoles.Swapper => CustomRoles.Crewmate,
 
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };

@@ -215,6 +215,7 @@ public class Main : BasePlugin
     public static int BardCreations = 0;
     public static Dictionary<byte, byte> Provoked = new();
     public static Dictionary<byte, float> DovesOfNeaceNumOfUsed = new();
+    public static bool SwapSend;
 
     public static Dictionary<byte, CustomRoles> DevRole = new();
     public static List<byte> GodfatherTarget = new();
@@ -382,6 +383,7 @@ public class Main : BasePlugin
                 {CustomRoles.Crusader, "#C65C39"},
                 {CustomRoles.Reverie, "#00BFFF"},
                 {CustomRoles.Monitor, "#7223DA"},
+                {CustomRoles.Swapper, "#922348"},
                 {CustomRoles.ChiefOfPolice,"#f8cd46"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
@@ -729,7 +731,9 @@ public enum CustomRoles
     Reverie,
     Lookout,
     Monitor,
+    Swapper,
     ChiefOfPolice,
+
     //Neutral
     Arsonist,
     Agitater,

@@ -51,6 +51,7 @@ internal class ChatCommands
         if (MafiaRevengeManager.MafiaMsgCheck(PlayerControl.LocalPlayer, text)) goto Canceled;
         if (NecromancerRevengeManager.NecromancerMsgCheck(PlayerControl.LocalPlayer, text)) goto Canceled;
         if (RetributionistRevengeManager.RetributionistMsgCheck(PlayerControl.LocalPlayer, text)) goto Canceled;
+        if (Swapper.SwapMsg(PlayerControl.LocalPlayer, text)) goto Canceled;   
         Directory.CreateDirectory(modTagsFiles);
         Directory.CreateDirectory(sponsorTagsFiles);
         switch (args[0])
@@ -1027,6 +1028,7 @@ internal class ChatCommands
         if (ParityCop.ParityCheckMsg(player, text)) { canceled = true; return; }
         if (Pirate.DuelCheckMsg(player, text)) { canceled = true; return; }
         if (Councillor.MurderMsg(player, text)) { canceled = true; return; }
+        if (Swapper.SwapMsg(player, text)) { canceled = true; return; }
         if (Mediumshiper.MsMsg(player, text)) return;
         if (MafiaRevengeManager.MafiaMsgCheck(player, text)) return;
         if (NecromancerRevengeManager.NecromancerMsgCheck(player, text)) return;

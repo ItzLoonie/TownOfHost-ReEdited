@@ -80,6 +80,7 @@ enum CustomRPC
     SetCursedWolfSpellCount,
     SetJinxSpellCount,
     SetCollectorVotes,
+    SetSwapperVotes,
     SetQuickShooterShotLimit,
     SetEraseLimit,
     GuessKill,
@@ -610,6 +611,8 @@ internal class RPCHandlerPatch
             case CustomRPC.SetSoulCollectorLimit:
                 SoulCollector.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetSwapperVotes:
+                Swapper.ReceiveRPC(reader, __instance);
             case CustomRPC.SetPoliceLimlit:
                 ChiefOfPolice.ReceiveRPC(reader);
                 break;
@@ -1111,6 +1114,8 @@ internal static class RPC
             case CustomRoles.Pitfall:
                 Pitfall.Add(targetId);
                 break;
+            case CustomRoles.Swapper: 
+                Swapper.Add(targetId);
             case CustomRoles.ChiefOfPolice:
                 ChiefOfPolice.Add(targetId);
                 break;
