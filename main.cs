@@ -865,6 +865,7 @@ public enum CustomRoles
     Sleuth,
     Clumsy,
     Nimble,
+    Fategiver,
   //  Cyber,
     // QuickFix
 }

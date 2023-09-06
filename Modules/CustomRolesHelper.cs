@@ -319,7 +319,7 @@ internal static class CustomRolesHelper
             CustomRoles.Infected or
             CustomRoles.Onbound or
             CustomRoles.Lazy or
-       //     CustomRoles.Reflective or
+            //     CustomRoles.Reflective or
             CustomRoles.Rascal or
             CustomRoles.Contagious or
             CustomRoles.Guesser or
@@ -330,7 +330,8 @@ internal static class CustomRolesHelper
             //      CustomRoles.Cyber or
             CustomRoles.DoubleShot or
             CustomRoles.Ghoul or
-            CustomRoles.EvilSpirit;
+            CustomRoles.EvilSpirit or
+            CustomRoles.Fategiver;
     }
     public static bool IsAmneMaverick(this CustomRoles role) // ROLE ASSIGNING, NOT NEUTRAL TYPE
     {
@@ -1376,6 +1377,10 @@ internal static class CustomRolesHelper
                 if ((pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeSidekick.GetBool()) || (pc.GetCustomRole().IsCrewmate() && !Options.CrewmateCanBeSidekick.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpostorCanBeSidekick.GetBool()))
                     return false;
                 break;
+
+            case CustomRoles.Fategiver:
+                break;
+
         }
 
         // Code not used:

@@ -18,6 +18,7 @@ using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using UnityEngine;
+using UnityEngine.XR;
 using static TOHE.Translator;
 
 namespace TOHE;
@@ -2582,6 +2583,64 @@ public static class Utils
         if (num == 254) name = "None";
         if (num == 255) name = "Dead";
         return name;
+    }
+
+    public static int FategiverVote(int voteNum, byte PlayerId)
+    {
+        if (voteNum < 1 || voteNum > 10) return voteNum;
+
+        var rand = IRandom.Instance;
+        int FategiverCase;
+        List<byte> FategiverRandom = new();
+
+        //Random system from random map select
+        if (rand.Next(1, 100) <= Options.NormalVoteChance.GetInt()) FategiverRandom.Add(0);
+        if (rand.Next(1, 100) <= Options.DoubleVoteChance.GetInt()) FategiverRandom.Add(1);
+        if (rand.Next(1, 100) <= Options.HalfVoteChance.GetInt()) FategiverRandom.Add(2);
+        if (rand.Next(1, 100) <= Options.CancelVoteChance.GetInt()) FategiverRandom.Add(3);
+        if (rand.Next(1, 100) <= Options.Add1VoteChance.GetInt()) FategiverRandom.Add(4);
+        if (rand.Next(1, 100) <= Options.Add2VoteChance.GetInt()) FategiverRandom.Add(5);
+        if (rand.Next(1, 100) <= Options.Minus1VoteChance.GetInt()) FategiverRandom.Add(6);
+        //case 7 happens with dictator check in meetinghud
+
+        if (FategiverRandom.Any())
+            FategiverCase = FategiverRandom[0];
+        else
+            FategiverCase = 9; //No more random. For logger
+
+        switch (FategiverCase)
+        {
+            case 0:
+            case 9:
+                SendMessage(GetString("Fategiver_case0"), PlayerId, title: ColorString(GetRoleColor(CustomRoles.Fategiver), GetString("FategiverNotify")));
+                break;
+            case 1:
+                voteNum *= 2;
+                SendMessage(GetString("Fategiver_case1"), PlayerId, title: ColorString(GetRoleColor(CustomRoles.Fategiver), GetString("FategiverNotify")));
+                break;
+            case 2:
+                SendMessage(GetString("Fategiver_case2"), PlayerId, title: ColorString(GetRoleColor(CustomRoles.Fategiver), GetString("FategiverNotify")));
+                voteNum /= 2;
+                break;
+            case 3:
+                SendMessage(GetString("Fategiver_case3"), PlayerId, title: ColorString(GetRoleColor(CustomRoles.Fategiver), GetString("FategiverNotify")));
+                voteNum = 0;
+                break;
+            case 4:
+                SendMessage(GetString("Fategiver_case4"), PlayerId, title: ColorString(GetRoleColor(CustomRoles.Fategiver), GetString("FategiverNotify")));
+                voteNum += 1;
+                break;
+            case 5:
+                SendMessage(GetString("Fategiver_case5"), PlayerId, title: ColorString(GetRoleColor(CustomRoles.Fategiver), GetString("FategiverNotify")));
+                voteNum += 2;
+                break;
+            case 6:
+                SendMessage(GetString("Fategiver_case6"), PlayerId, title: ColorString(GetRoleColor(CustomRoles.Fategiver), GetString("FategiverNotify")));
+                voteNum -= 1;
+                break;
+        }
+        Logger.Info("Case " + FategiverCase.ToString() + "VoteNum " + voteNum.ToString() + " for " + GetPlayerById(PlayerId).GetNameWithRole(), "FategiverVote");
+        return voteNum;
     }
     public static string PadRightV2(this object text, int num)
     {
