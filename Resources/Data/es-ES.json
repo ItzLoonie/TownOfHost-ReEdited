@@ -1139,6 +1139,7 @@
   "IgnoreCrewmates": "Ignorar <color=#8cffff>Tripulación</color>",
   "IgnoreAfterAnyoneDied": "Ignorar después de la primera muerte",
   "LightsOutSpecialSettings": "Opciones extras (Arreglo de luces)",
+  "BlockDisturbancesToSwitches": "",
   "DisableAirshipViewingDeckLightsPanel": "Desactivar panel de luces del observatorio (Airship)",
   "DisableAirshipGapRoomLightsPanel": "Desactivar panel de luces de la sala del foso (Airship)",
   "DisableAirshipCargoLightsPanel": "Desactivar panel de luces de la bodega de carga (Airship)",
