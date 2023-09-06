@@ -12,6 +12,7 @@ public static class ChiefOfPolice
     private static readonly int Id = 1748596;
     private static List<byte> playerIdList = new();
     public static Dictionary<byte, int> PoliceLimit = new();
+    public static bool IsEnable = false;
     public static OptionItem SkillCooldown;
     public static OptionItem CanImpostorAndNeutarl;
     public static OptionItem ChiefOfPoliceCountMode;
@@ -38,12 +39,12 @@ public static class ChiefOfPolice
     {
         playerIdList.Add(playerId);
         PoliceLimit.TryAdd(playerId, 1);
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Count > 0;
     private static void SendRPC(byte playerId)
     {
         MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetPoliceLimlit, SendOption.Reliable, -1);
