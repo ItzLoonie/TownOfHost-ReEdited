@@ -335,10 +335,9 @@ public class StringOptionIncreasePatch
         var option = OptionItem.AllOptions.FirstOrDefault(opt => opt.OptionBehaviour == __instance);
         if (option == null) return true;
 
-        option.SetValue(option.CurrentValue + 1);
+        option.SetValue(option.CurrentValue + (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) ? 5 : 1));
         return false;
     }
-    public static void Postfix(StringOption __instance) => OptionShower.GetText();
 }
 
 [HarmonyPatch(typeof(StringOption), nameof(StringOption.Decrease))]
@@ -349,10 +348,9 @@ public class StringOptionDecreasePatch
         var option = OptionItem.AllOptions.FirstOrDefault(opt => opt.OptionBehaviour == __instance);
         if (option == null) return true;
 
-        option.SetValue(option.CurrentValue - 1);
+        option.SetValue(option.CurrentValue - (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) ? 5 : 1));
         return false;
     }
-    public static void Postfix(StringOption __instance) => OptionShower.GetText();
 }
 
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.RpcSyncSettings))]
