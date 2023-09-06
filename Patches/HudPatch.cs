@@ -410,6 +410,10 @@ class HudManagerPatch
                         __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.OverrideText(GetString("DevourerButtonText"));
                         break;
+                    case CustomRoles.ChiefOfPolice:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
+                        __instance.KillButton.OverrideText(GetString("ChiefOfPoliceKillButtonText"));
+                        break;
 
                     default:
                         __instance.KillButton.OverrideText(GetString("KillButtonText"));

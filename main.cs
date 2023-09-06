@@ -36,7 +36,7 @@ public class Main : BasePlugin
     public static readonly string MainMenuText = " ";
 
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "3.0.0.110";
+    public const string PluginVersion = "3.0.0.111";
     public const string PluginDisplayVersion = "3.0.0 c4";
     public static readonly string SupportedVersionAU = "2023.7.11";
     public const bool Canary = false;
@@ -382,6 +382,7 @@ public class Main : BasePlugin
                 {CustomRoles.Crusader, "#C65C39"},
                 {CustomRoles.Reverie, "#00BFFF"},
                 {CustomRoles.Monitor, "#7223DA"},
+                {CustomRoles.ChiefOfPolice,"#f8cd46"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Agitater, "#F4A460"},
@@ -728,6 +729,7 @@ public enum CustomRoles
     Reverie,
     Lookout,
     Monitor,
+    ChiefOfPolice,
     //Neutral
     Arsonist,
     Agitater,

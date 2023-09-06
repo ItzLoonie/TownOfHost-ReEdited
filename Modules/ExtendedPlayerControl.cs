@@ -524,6 +524,7 @@ static class ExtendedPlayerControl
             CustomRoles.Pirate => pc.IsAlive(),
             CustomRoles.Seeker => pc.IsAlive(),
             CustomRoles.Agitater => pc.IsAlive(),
+            CustomRoles.ChiefOfPolice => ChiefOfPolice.CanUseKillButton(pc.PlayerId),
 
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
@@ -558,6 +559,7 @@ static class ExtendedPlayerControl
             CustomRoles.Amnesiac or
             CustomRoles.Glitch or
             CustomRoles.Crusader or
+            CustomRoles.ChiefOfPolice or
             CustomRoles.Wildling
             => false,
 
@@ -1001,6 +1003,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Seeker:
                 Seeker.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.ChiefOfPolice:
+                ChiefOfPolice.SetKillCooldown(player.PlayerId);
                 break;
         }
         if (player.PlayerId == LastImpostor.currentId)

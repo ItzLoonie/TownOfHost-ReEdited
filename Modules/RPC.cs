@@ -609,6 +609,9 @@ internal class RPCHandlerPatch
             case CustomRPC.SetSoulCollectorLimit:
                 SoulCollector.ReceiveRPC(reader);
                 break;
+            case CustomRPC.SetPoliceLimlit:
+                ChiefOfPolice.ReceiveRPC(reader);
+                break;
         }
     }
 }
@@ -1106,6 +1109,9 @@ internal static class RPC
                 break;
             case CustomRoles.Pitfall:
                 Pitfall.Add(targetId);
+                break;
+            case CustomRoles.ChiefOfPolice:
+                ChiefOfPolice.Add(targetId);
                 break;
         }
         HudManager.Instance.SetHudActive(true);
