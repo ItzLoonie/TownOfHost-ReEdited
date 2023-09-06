@@ -2768,6 +2768,7 @@
   "SheriffSuccessfullyRecruited": "You recruited a sheriff.",
   "BeSheriffByPolice": "You've been recruited by the police chief! Serve the crew!",
   "NotSheriff!!!": "He looks non-kill. Get someone else.",
+  "ChiefOfPoliceKillButtonText": "Recruitment of sheriffs",
   "VotesPerKill": "Votes gained for each kill",
   "PickpocketGetVote": "You've got {0} votes",
   "VultureArrowsPointingToDeadBody": "Arrows pointing to dead bodies",

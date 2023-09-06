@@ -2761,6 +2761,7 @@
   "SheriffSuccessfullyRecruited": "你招募了一名警长",
   "BeSheriffByPolice": "你被警察局长招募了！为船员效力吧！",
   "NotSheriff!!!": "他看起来不带刀，换个人吧",
+  "ChiefOfPoliceKillButtonText": "招募警长",
   "VotesPerKill": "每击杀一次获得的选票",
   "PickpocketGetVote": "你有{0}张选票",
   "VultureArrowsPointingToDeadBody": "指向尸体的箭头",

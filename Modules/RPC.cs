@@ -118,6 +118,7 @@ enum CustomRPC
     SetTrackerTarget,
     SetSeekerTarget,
     SetSeekerPoints,
+    SetPoliceLimlit,
 
     //SoloKombat
     SyncKBPlayer,
