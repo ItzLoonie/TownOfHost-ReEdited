@@ -104,7 +104,7 @@ class CheckForEndVotingPatch
                         }
                         else __instance.RpcVotingComplete(states.ToArray(), voteTarget.Data, false); //通常処理
 
-                        Utils.SendMessage(GetString("Fategiver_case7"), pc.PlayerId, title: Utils.ColorString(Utils.GetRoleColor(CustomRoles.Fategiver), GetString("FategiverNotify")));
+                        Utils.SendMessage(GetString("FategiverCase.7"), pc.PlayerId, title: Utils.ColorString(Utils.GetRoleColor(CustomRoles.Fategiver), GetString("FategiverNotify")));
                         Logger.Info($"{voteTarget.GetNameWithRole()} got voted out by Dictator Fategiver", "Fategiver");
                         CheckForDeathOnExile(PlayerState.DeathReason.Vote, pva.VotedFor);
                         Logger.Info("Dictator Fategiver，force end meeting", "Special Phase");

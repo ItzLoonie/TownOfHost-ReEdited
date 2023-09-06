@@ -2606,40 +2606,33 @@ public static class Utils
         if (FategiverRandom.Any())
             FategiverCase = FategiverRandom[0];
         else
-            FategiverCase = 9; //No more random. For logger
+            FategiverCase = 0; //No more random.
 
         switch (FategiverCase)
         {
             case 0:
-            case 9:
-                SendMessage(GetString("Fategiver_case0"), PlayerId, title: ColorString(GetRoleColor(CustomRoles.Fategiver), GetString("FategiverNotify")));
                 break;
             case 1:
                 voteNum *= 2;
-                SendMessage(GetString("Fategiver_case1"), PlayerId, title: ColorString(GetRoleColor(CustomRoles.Fategiver), GetString("FategiverNotify")));
                 break;
             case 2:
-                SendMessage(GetString("Fategiver_case2"), PlayerId, title: ColorString(GetRoleColor(CustomRoles.Fategiver), GetString("FategiverNotify")));
                 voteNum /= 2;
                 break;
             case 3:
-                SendMessage(GetString("Fategiver_case3"), PlayerId, title: ColorString(GetRoleColor(CustomRoles.Fategiver), GetString("FategiverNotify")));
                 voteNum = 0;
                 break;
             case 4:
-                SendMessage(GetString("Fategiver_case4"), PlayerId, title: ColorString(GetRoleColor(CustomRoles.Fategiver), GetString("FategiverNotify")));
                 voteNum += 1;
                 break;
             case 5:
-                SendMessage(GetString("Fategiver_case5"), PlayerId, title: ColorString(GetRoleColor(CustomRoles.Fategiver), GetString("FategiverNotify")));
                 voteNum += 2;
                 break;
             case 6:
-                SendMessage(GetString("Fategiver_case6"), PlayerId, title: ColorString(GetRoleColor(CustomRoles.Fategiver), GetString("FategiverNotify")));
                 voteNum -= 1;
                 break;
         }
-        Logger.Info("Case " + FategiverCase.ToString() + "VoteNum " + voteNum.ToString() + " for " + GetPlayerById(PlayerId).GetNameWithRole(), "FategiverVote");
+        SendMessage(GetString("FategiverCase." + FategiverCase.ToString()), PlayerId, title: ColorString(GetRoleColor(CustomRoles.Fategiver), GetString("FategiverNotifyTitle")));
+        Logger.Info("Case " + FategiverCase.ToString() + " VoteNum " + voteNum.ToString() + " for " + GetPlayerById(PlayerId).GetNameWithRole(), "FategiverVote");
         return voteNum;
     }
     public static string PadRightV2(this object text, int num)
