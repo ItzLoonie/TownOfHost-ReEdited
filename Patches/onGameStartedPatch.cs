@@ -868,6 +868,7 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Swapper:
                         Swapper.Add(pc.PlayerId);
+                        break;
                     case CustomRoles.ChiefOfPolice:
                         ChiefOfPolice.Add(pc.PlayerId);
                         break;

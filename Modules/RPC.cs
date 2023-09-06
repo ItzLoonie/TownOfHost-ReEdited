@@ -1116,6 +1116,7 @@ internal static class RPC
                 break;
             case CustomRoles.Swapper: 
                 Swapper.Add(targetId);
+                break;
             case CustomRoles.ChiefOfPolice:
                 ChiefOfPolice.Add(targetId);
                 break;

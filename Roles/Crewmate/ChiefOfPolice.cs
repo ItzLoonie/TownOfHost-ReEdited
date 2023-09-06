@@ -23,11 +23,11 @@ public static class ChiefOfPolice
     };
     public static void SetupCustomOption()
     {
-        Options.SetupRoleOptions(Id, TabGroup.OtherRoles, CustomRoles.ChiefOfPolice);
-        SkillCooldown = FloatOptionItem.Create(Id + 10, "ChiefOfPoliceSkillCooldown", new(2.5f, 900f, 2.5f), 20f, TabGroup.OtherRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.ChiefOfPolice])
+        Options.SetupRoleOptions(Id, TabGroup.CrewmateRoles, CustomRoles.ChiefOfPolice);
+        SkillCooldown = FloatOptionItem.Create(Id + 10, "ChiefOfPoliceSkillCooldown", new(2.5f, 900f, 2.5f), 20f, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.ChiefOfPolice])
             .SetValueFormat(OptionFormat.Seconds);
-        CanImpostorAndNeutarl = BooleanOptionItem.Create(Id + 16, "PolicCanImpostorAndNeutarl", false, TabGroup.OtherRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.ChiefOfPolice]);
-        ChiefOfPoliceCountMode = StringOptionItem.Create(Id + 18, "ChiefOfPoliceCountMode", chiefOfPoliceCountMode, 0, TabGroup.OtherRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.ChiefOfPolice]);
+        CanImpostorAndNeutarl = BooleanOptionItem.Create(Id + 16, "PolicCanImpostorAndNeutarl", false, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.ChiefOfPolice]);
+        ChiefOfPoliceCountMode = StringOptionItem.Create(Id + 18, "ChiefOfPoliceCountMode", chiefOfPoliceCountMode, 0, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.ChiefOfPolice]);
     }
     public static void Init()
     {
