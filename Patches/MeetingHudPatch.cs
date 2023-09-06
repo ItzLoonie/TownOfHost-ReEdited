@@ -261,26 +261,26 @@ class CheckForEndVotingPatch
                     List<byte> NiceList2 = new();
                     PlayerVoteArea pva = new();
                     var meetingHud = MeetingHud.Instance;
-                        PlayerControl swap1 = null;
-                        foreach (var playerId in Swapper.Vote)
+                    PlayerControl swap1 = null;
+                    foreach (var playerId in Swapper.Vote)
+                    {
+                        var player = Utils.GetPlayerById(playerId);
+                        if (player != null)
                         {
-                            var player = Utils.GetPlayerById(playerId);
-                            if (player != null)
-                            {
-                                swap1 = player;
-                                break;
-                            }
+                            swap1 = player;
+                            break;
                         }
-                        PlayerControl swap2 = null;
-                        foreach (var playerId in Swapper.VoteTwo)
+                    }
+                    PlayerControl swap2 = null;
+                    foreach (var playerId in Swapper.VoteTwo)
+                    {
+                        var player = Utils.GetPlayerById(playerId);
+                        if (player != null)
                         {
-                            var player = Utils.GetPlayerById(playerId);
-                            if (player != null)
-                            {
-                                swap2 = player;
-                                break;
-                            }
+                            swap2 = player;
+                            break;
                         }
+                    }
                     if (swap1 != null && swap2 != null)
                     {
                         foreach (var playerVoteArea in meetingHud.playerStates)

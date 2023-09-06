@@ -121,6 +121,7 @@ class ExileControllerWrapUpPatch
                 }
             }
         }
+        
         foreach (var pc in Main.AllPlayerControls)
         {
             pc.ResetKillCooldown();

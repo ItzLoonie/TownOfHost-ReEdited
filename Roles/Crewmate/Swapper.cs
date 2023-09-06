@@ -30,7 +30,7 @@ public static class Swapper
         SwapMax = IntegerOptionItem.Create(Id + 3, "SwapperMax", new(1, 999, 1), 3, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Swapper])
             .SetValueFormat(OptionFormat.Times);
         CanSwapSelf = BooleanOptionItem.Create(Id + 2, "CanSwapSelfVotes", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Swapper]);
-        CanStartMeeting = BooleanOptionItem.Create(Id + 4, "JesterCanUseButton", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Swapper]);
+        CanStartMeeting = BooleanOptionItem.Create(Id + 4, "JesterCanUseButton", false, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Swapper]);
         TryHideMsg = BooleanOptionItem.Create(Id + 5, "SwapperTryHideMsg", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Swapper]);
     }
     public static void Init()
@@ -45,17 +45,6 @@ public static class Swapper
         playerIdList.Add(playerId);
         Swappermax.TryAdd(playerId, SwapMax.GetInt());
         IsEnable = true;
-    }
-    public static void SendRPC(byte playerId)
-    {
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetSwapperVotes, SendOption.Reliable, -1);
-        writer.Write(playerId);
-        AmongUsClient.Instance.FinishRpcImmediately(writer);
-    }
-    public static void ReceiveRPC(MessageReader reader, PlayerControl pc)
-    {
-        byte PlayerId = reader.ReadByte();
-        SwapMsg(pc, $"/sw {PlayerId}");
     }
     public static string GetSwappermax(byte playerId) => Utils.ColorString((Swappermax.TryGetValue(playerId, out var x) && x >= 1) ? Color.green : Color.gray, Swappermax.TryGetValue(playerId, out var changermax) ? $"({changermax})" : "Invalid");
     public static bool SwapMsg(PlayerControl pc, string msg, bool isUI = false)
@@ -108,9 +97,6 @@ public static class Swapper
 
                 var dp = target;
                 target = dp;
-
-                string Name = dp.GetRealName();
-                var sw = dp;
 
                     if (Vote.Count < 1 && !Vote.Contains(dp.PlayerId) && !VoteTwo.Contains(dp.PlayerId) && CanSwapSelf.GetBool()
                 || Vote.Count < 1 && !Vote.Contains(dp.PlayerId) && !VoteTwo.Contains(dp.PlayerId) && dp != pc && !CanSwapSelf.GetBool())
@@ -228,13 +214,30 @@ public static class Swapper
         }
         return false;
     }
+    public static void SendRPC(byte playerId)
+    {
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetSwapperVotes, SendOption.Reliable, -1);
+        writer.Write(playerId);
+        AmongUsClient.Instance.FinishRpcImmediately(writer);
+    }
+    public static void ReceiveRPC(MessageReader reader, PlayerControl pc)
+    {
+        byte PlayerId = reader.ReadByte();
+        SwapMsg(pc, $"/sw {PlayerId}");
+    }
     private static void SwapperOnClick(byte playerId, MeetingHud __instance)
     {
         Logger.Msg($"Click: ID {playerId}", "Swapper UI");
         var pc = Utils.GetPlayerById(playerId);
         if (pc == null || !pc.IsAlive() || !GameStates.IsVoting) return;
-        if (AmongUsClient.Instance.AmHost) SwapMsg(PlayerControl.LocalPlayer, $"/sw {playerId}", true);       
+        
+        if (AmongUsClient.Instance.AmHost) SwapMsg(PlayerControl.LocalPlayer, $"/sw {playerId}", true);
         else SendRPC(playerId);
+
+        if (PlayerControl.LocalPlayer.Is(CustomRoles.Swapper) && PlayerControl.LocalPlayer.IsAlive())
+        {
+            CreateSwapperButton(__instance);
+        }
     }
 
     [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
