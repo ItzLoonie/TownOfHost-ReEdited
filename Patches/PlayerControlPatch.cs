@@ -506,6 +506,9 @@ class CheckMurderPatch
                     if (Pursuer.CanBeClient(target) && Pursuer.CanSeel(killer.PlayerId))
                         Pursuer.SeelToClient(killer, target);
                     return false;
+                case CustomRoles.ChiefOfPolice:
+                    ChiefOfPolice.OnCheckMurder(killer, target);
+                    return false;
             }
         }
 

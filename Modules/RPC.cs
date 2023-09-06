@@ -119,6 +119,7 @@ enum CustomRPC
     SetTrackerTarget,
     SetSeekerTarget,
     SetSeekerPoints,
+    SetPoliceLimlit,
 
     //SoloKombat
     SyncKBPlayer,
@@ -612,6 +613,8 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetSwapperVotes:
                 Swapper.ReceiveRPC(reader, __instance);
+            case CustomRPC.SetPoliceLimlit:
+                ChiefOfPolice.ReceiveRPC(reader);
                 break;
         }
     }
@@ -1113,6 +1116,8 @@ internal static class RPC
                 break;
             case CustomRoles.Swapper: 
                 Swapper.Add(targetId);
+            case CustomRoles.ChiefOfPolice:
+                ChiefOfPolice.Add(targetId);
                 break;
         }
         HudManager.Instance.SetHudActive(true);

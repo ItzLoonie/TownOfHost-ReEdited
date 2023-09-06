@@ -1512,6 +1512,7 @@ public static class Options
         Farseer.SetupCustomOption();
         Monitor.SetupCustomOption();
         Swapper.SetupCustomOption();
+        ChiefOfPolice.SetupCustomOption();
 
         // Neutral
         TextOptionItem.Create(100010, "RoleType.NeutralBenign", TabGroup.NeutralRoles)

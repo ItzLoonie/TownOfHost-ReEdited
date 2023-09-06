@@ -384,6 +384,7 @@ public class Main : BasePlugin
                 {CustomRoles.Reverie, "#00BFFF"},
                 {CustomRoles.Monitor, "#7223DA"},
                 {CustomRoles.Swapper, "#922348"},
+                {CustomRoles.ChiefOfPolice,"#f8cd46"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Agitater, "#F4A460"},
@@ -731,6 +732,8 @@ public enum CustomRoles
     Lookout,
     Monitor,
     Swapper,
+    ChiefOfPolice,
+
     //Neutral
     Arsonist,
     Agitater,

@@ -267,6 +267,7 @@ internal static class CustomRolesHelper
             CustomRoles.Pestilence => RoleTypes.Impostor,
             CustomRoles.Agitater => RoleTypes.Impostor,
             CustomRoles.Spiritcaller => RoleTypes.Impostor,
+            CustomRoles.ChiefOfPolice => RoleTypes.Impostor,
             _ => RoleTypes.GuardianAngel
         };
     }

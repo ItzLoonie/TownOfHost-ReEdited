@@ -970,6 +970,9 @@ public static class Utils
             case CustomRoles.Swapper:
                 ProgressText.Append(Swapper.GetSwappermax(playerId));
                 break;
+            case CustomRoles.ChiefOfPolice:
+                ProgressText.Append(ChiefOfPolice.GetSkillLimit(playerId));
+                break; 
             default:
                 //タスクテキスト
                 var taskState = Main.PlayerStates?[playerId].GetTaskState();

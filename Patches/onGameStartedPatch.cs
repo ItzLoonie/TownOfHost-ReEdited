@@ -305,6 +305,7 @@ internal class ChangeRoleSettings
             Pitfall.Init();
             Agitater.Init();
             Swapper.Init();
+            ChiefOfPolice.Init();
 
             SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
@@ -867,6 +868,8 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Swapper:
                         Swapper.Add(pc.PlayerId);
+                    case CustomRoles.ChiefOfPolice:
+                        ChiefOfPolice.Add(pc.PlayerId);
                         break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())
