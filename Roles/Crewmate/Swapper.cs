@@ -16,7 +16,6 @@ public static class Swapper
 {
     private static readonly int Id = 1986523;
     public static OptionItem SwapMax;
-    public static OptionItem CanSwapSelf;
     public static OptionItem CanStartMeeting;
     public static OptionItem TryHideMsg;
     public static List<byte> playerIdList = new();
@@ -29,7 +28,6 @@ public static class Swapper
         Options.SetupRoleOptions(Id, TabGroup.OtherRoles, CustomRoles.Swapper);
         SwapMax = IntegerOptionItem.Create(Id + 3, "SwapperMax", new(1, 999, 1), 3, TabGroup.OtherRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Swapper])
             .SetValueFormat(OptionFormat.Times);
-        CanSwapSelf = BooleanOptionItem.Create(Id + 2, "CanSwapSelfVotes", true, TabGroup.OtherRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Swapper]);
         CanStartMeeting = BooleanOptionItem.Create(Id + 4, "JesterCanUseButton", false, TabGroup.OtherRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Swapper]);
         TryHideMsg = BooleanOptionItem.Create(Id + 5, "SwapperTryHideMsg", true, TabGroup.OtherRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Swapper]);
     }
@@ -127,11 +125,6 @@ public static class Swapper
                     if (!isUI) Utils.SendMessage(GetString("CancelSwap2"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("CancelSwap2"));
                     Logger.Info($"{pc.GetNameWithRole()} 取消选择 {target.GetNameWithRole()}", "Swapper");
-                }
-                else if (pc == dp && !CanSwapSelf.GetBool())
-                {
-                    if (!isUI) Utils.SendMessage(GetString("CantSwapSelf"), pc.PlayerId);
-                    else pc.ShowPopUp(GetString("CantSwapSelf"));
                 }
                 _= new LateTask(() =>
                 {
