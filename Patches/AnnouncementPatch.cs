@@ -62,7 +62,7 @@ public class ModNewsHistory
                         + "\n【Fixes】\n - Various bug fixes\n\r"
                         + "\n【Changes】\n - Poisoner, Hex Master, Jinx, and Wraith have moved over to a new faction\n\r - Ritualist reworked into Potion Master"
 
-                        + "\n【New Roles】\n - New faction: Coven (total of 10 roles)\n\r - 6 new Impostor roles\n\r - 18 new Neutral roles\n\r - 10 new Crewmate roles\n\r - 7 new add-ons\n\r"
+                        + "\n【New Roles】\n - New faction: Coven (total of 10 roles)\n\r - 6 new Impostor roles\n\r - 18 new Neutral roles\n\r - 11 new Crewmate roles\n\r - 7 new add-ons\n\r"
 
                         + "\n【New Features】\n - Improved autohosting (better moderation, auto play again, etc)\n\r - Added custom Discord RPC\n\r- Added new main menu background\n\r - Added buttons linking to the Discord, the GitHub, and the website\n\r - And more!\n\r"
 
