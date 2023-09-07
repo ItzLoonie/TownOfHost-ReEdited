@@ -2333,7 +2333,7 @@ public static class Utils
                                 var GetTragetId = ColorString(GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + TargetPlayerName;
 
                                 //Crewmates
-                                if (Options.CrewmatesCanGuess.GetBool() && seer.GetCustomRole().IsCrewmate() && !seer.Is(CustomRoles.Judge) && !seer.Is(CustomRoles.ParityCop) && !seer.Is(CustomRoles.Lookout))
+                                if (Options.CrewmatesCanGuess.GetBool() && seer.GetCustomRole().IsCrewmate() && !seer.Is(CustomRoles.Judge) && !seer.Is(CustomRoles.ParityCop) && !seer.Is(CustomRoles.Lookout) && !seer.Is(CustomRoles.Swapper))
                                     TargetPlayerName = GetTragetId;
 
                                 else if (seer.Is(CustomRoles.NiceGuesser) && !Options.CrewmatesCanGuess.GetBool())

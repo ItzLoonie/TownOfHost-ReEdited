@@ -1213,6 +1213,7 @@ public static class GuessManager
                     or CustomRoles.Oblivious
                     or CustomRoles.Baker
                     or CustomRoles.Famine
+                    or CustomRoles.ChiefOfPolice
                     or CustomRoles.Rogue
                     or CustomRoles.Scientist
                     or CustomRoles.Impostor

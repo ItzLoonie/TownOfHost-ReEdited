@@ -37,8 +37,8 @@ public class Main : BasePlugin
 
     public const string PluginGuid = "com.karped1em.townofhostedited";
 
-    public const string PluginVersion = "3.0.0.115";
-    public const string PluginDisplayVersion = "3.0.0 c5";
+    public const string PluginVersion = "3.0.0.120";
+    public const string PluginDisplayVersion = "3.0.0 c6";
     public static readonly string SupportedVersionAU = "2023.7.11";
     public const bool Canary = false;
 
@@ -384,7 +384,7 @@ public class Main : BasePlugin
                 {CustomRoles.Crusader, "#C65C39"},
                 {CustomRoles.Reverie, "#00BFFF"},
                 {CustomRoles.Monitor, "#7223DA"},
-                {CustomRoles.Swapper, "#922348"},
+                {CustomRoles.Swapper, "#66E666"},
                 {CustomRoles.ChiefOfPolice,"#f8cd46"},
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},

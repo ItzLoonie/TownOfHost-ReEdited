@@ -977,7 +977,7 @@ class MeetingHudStartPatch
             // Guesser Mode //
             if (Options.GuesserMode.GetBool())
             {
-                if (Options.CrewmatesCanGuess.GetBool() && seer.GetCustomRole().IsCrewmate() && !seer.Is(CustomRoles.Judge) && !seer.Is(CustomRoles.Lookout) && !seer.Is(CustomRoles.ParityCop))
+                if (Options.CrewmatesCanGuess.GetBool() && seer.GetCustomRole().IsCrewmate() && !seer.Is(CustomRoles.Judge) && !seer.Is(CustomRoles.Lookout) && !seer.Is(CustomRoles.Swapper) && !seer.Is(CustomRoles.ParityCop))
                     if (!seer.Data.IsDead && !target.Data.IsDead)
                         pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + pva.NameText.text;
                 if (Options.ImpostorsCanGuess.GetBool() && seer.GetCustomRole().IsImpostor() && !seer.Is(CustomRoles.Councillor))
@@ -1115,6 +1115,10 @@ class MeetingHudStartPatch
                 case CustomRoles.Judge:
                     if (!seer.Data.IsDead && !target.Data.IsDead)
                         pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Judge), target.PlayerId.ToString()) + " " + pva.NameText.text;
+                    break;
+                case CustomRoles.Swapper:
+                    if (!seer.Data.IsDead && !target.Data.IsDead)
+                        pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Swapper), target.PlayerId.ToString()) + " " + pva.NameText.text;
                     break;
                 case CustomRoles.Ritualist:
                     sb.Append(Snitch.GetWarningMark(seer, target));
