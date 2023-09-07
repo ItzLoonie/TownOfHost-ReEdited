@@ -3110,7 +3110,7 @@ class EnterVentPatch
         Main.LastEnteredVent.Remove(pc.PlayerId);
         Main.LastEnteredVent.Add(pc.PlayerId, __instance);
         Main.LastEnteredVentLocation.Remove(pc.PlayerId);
-        Main.LastEnteredVentLocation.Add(pc.PlayerId, new Vector2(pc.transform.position.x, pc.transform.position.y));
+        Main.LastEnteredVentLocation.Add(pc.PlayerId, pc.GetTruePosition());
 
         Swooper.OnEnterVent(pc, __instance);
         Wraith.OnEnterVent(pc, __instance);
