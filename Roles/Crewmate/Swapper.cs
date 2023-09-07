@@ -252,7 +252,7 @@ public static class Swapper
             GameObject template = pva.Buttons.transform.Find("CancelButton").gameObject;
             GameObject targetBox = UnityEngine.Object.Instantiate(template, pva.transform);
             targetBox.name = "ShootButton";
-            targetBox.transform.localPosition = new Vector3(-0.95f, 0.03f, -1.31f);
+            targetBox.transform.localPosition = new Vector3(-0.35f, 0.03f, -1.31f);
             SpriteRenderer renderer = targetBox.GetComponent<SpriteRenderer>();
             PassiveButton button = targetBox.GetComponent<PassiveButton>(); 
             if (pc.PlayerId == pva.TargetPlayerId && (Vote.Contains(pc.PlayerId) || VoteTwo.Contains(pc.PlayerId))) 
