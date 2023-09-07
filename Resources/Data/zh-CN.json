@@ -1711,6 +1711,8 @@
   "DeputyInvalidTarget": "目标不能被铐手铐",
   "DeputyHandcuffText": "手铐",
   "DeputyHandcuffCDForTarget": "带手铐玩家的击杀冷却时间",
+  "SabotageCooldownControl": "",
+  "SabotageCooldown": "",
   "SabotageTimeControl": "更改修理时限",
   "PolusReactorTimeLimit": "波鲁斯抗震稳定器修理时限",
   "AirshipReactorTimeLimit": "飞艇坠毁路线修理时限",

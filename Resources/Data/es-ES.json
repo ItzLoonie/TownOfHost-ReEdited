@@ -1705,6 +1705,8 @@
   "DeputyInvalidTarget": "El objetivo no puede ser esposado",
   "DeputyHandcuffText": "Esposas",
   "DeputyHandcuffCDForTarget": "Tiempo de espera para el jugador esposado",
+  "SabotageCooldownControl": "",
+  "SabotageCooldown": "",
   "SabotageTimeControl": "更改修理时限",
   "PolusReactorTimeLimit": "波鲁斯抗震稳定器修理时限",
   "AirshipReactorTimeLimit": "飞艇坠毁路线修理时限",

@@ -653,6 +653,8 @@ public static class Options
     public static OptionItem DisableOnPolus;
     public static OptionItem DisableOnAirship;
     public static OptionItem DisableReportWhenCC;
+    public static OptionItem SabotageCooldownControl;
+    public static OptionItem SabotageCooldown;
     public static OptionItem SabotageTimeControl;
     public static OptionItem PolusReactorTimeLimit;
     public static OptionItem AirshipReactorTimeLimit;
@@ -2432,15 +2434,24 @@ public static class Options
             .SetGameMode(CustomGameMode.Standard)
             .SetParent(CommsCamouflage);
 
-        // SabotageTimeControl
-        SabotageTimeControl = BooleanOptionItem.Create(22400, "SabotageTimeControl", false, TabGroup.GameSettings, false)
+        // Sabotage Cooldown Control
+        SabotageCooldownControl = BooleanOptionItem.Create(22400, "SabotageCooldownControl", false, TabGroup.GameSettings, false)
             .SetColor(new Color32(243, 96, 96, byte.MaxValue))
             .SetGameMode(CustomGameMode.Standard);
-        PolusReactorTimeLimit = FloatOptionItem.Create(22410, "PolusReactorTimeLimit", new(1f, 60f, 1f), 30f, TabGroup.GameSettings, false)
+        SabotageCooldown = FloatOptionItem.Create(22405, "SabotageCooldown", new(1f, 60f, 1f), 30f, TabGroup.GameSettings, false)
+            .SetParent(SabotageCooldownControl)
+            .SetValueFormat(OptionFormat.Seconds)
+            .SetGameMode(CustomGameMode.Standard);
+
+        // Sabotage Duration Control
+        SabotageTimeControl = BooleanOptionItem.Create(22410, "SabotageTimeControl", false, TabGroup.GameSettings, false)
+            .SetColor(new Color32(243, 96, 96, byte.MaxValue))
+            .SetGameMode(CustomGameMode.Standard);
+        PolusReactorTimeLimit = FloatOptionItem.Create(22412, "PolusReactorTimeLimit", new(1f, 60f, 1f), 30f, TabGroup.GameSettings, false)
             .SetParent(SabotageTimeControl)
             .SetValueFormat(OptionFormat.Seconds)
             .SetGameMode(CustomGameMode.Standard);
-        AirshipReactorTimeLimit = FloatOptionItem.Create(22411, "AirshipReactorTimeLimit", new(1f, 90f, 1f), 60f, TabGroup.GameSettings, false)
+        AirshipReactorTimeLimit = FloatOptionItem.Create(22414, "AirshipReactorTimeLimit", new(1f, 90f, 1f), 60f, TabGroup.GameSettings, false)
             .SetParent(SabotageTimeControl)
             .SetValueFormat(OptionFormat.Seconds)
             .SetGameMode(CustomGameMode.Standard);

@@ -44,7 +44,7 @@ public static class Swapper
         Swappermax.TryAdd(playerId, SwapMax.GetInt());
         IsEnable = true;
     }
-    public static string GetSwappermax(byte playerId) => Utils.ColorString((Swappermax.TryGetValue(playerId, out var x) && x >= 1) ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.Swapper).ShadeColor(0.25f) : Color.gray, Swappermax.TryGetValue(playerId, out var changermax) ? $"({changermax})" : "Invalid");
+    public static string GetSwappermax(byte playerId) => Utils.ColorString((Swappermax.TryGetValue(playerId, out var x) && x >= 1) ? Utils.GetRoleColor(CustomRoles.Swapper).ShadeColor(0.25f) : Color.gray, Swappermax.TryGetValue(playerId, out var changermax) ? $"({changermax})" : "Invalid");
     public static bool SwapMsg(PlayerControl pc, string msg, bool isUI = false)
     {
         var originMsg = msg;
