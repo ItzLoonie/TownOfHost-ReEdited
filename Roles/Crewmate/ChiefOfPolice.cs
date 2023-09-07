@@ -86,10 +86,21 @@ public static class ChiefOfPolice
         }
         else
         {
+            //if (ChiefOfPoliceCountMode.GetInt() == 1)
+            //{
+            //    killer.RpcMurderPlayerV3(killer);
+            //    return true;
+            //}
+            //if (ChiefOfPoliceCountMode.GetInt() == 2)
+            //{
+            //    killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Sheriff), GetString("NotSheriff!!!")));
+            //    return true;
+            //}
+        }
+        return false;
     }
     public static bool CanBeSheriff(this PlayerControl pc)
-        {
+    {
         return pc != null && (pc.GetCustomRole().IsCrewmate() && pc.CanUseKillButton()) || pc.GetCustomRole().IsNeutral() && pc.CanUseKillButton() && CanImpostorAndNeutarl.GetBool()|| pc.GetCustomRole().IsImpostor() && CanImpostorAndNeutarl.GetBool();
-        }
     }
 }
