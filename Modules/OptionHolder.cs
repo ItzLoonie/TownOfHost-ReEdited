@@ -1514,7 +1514,7 @@ public static class Options
         Monarch.SetupCustomOption();
         Farseer.SetupCustomOption();
         Monitor.SetupCustomOption();
-        ChiefOfPolice.SetupCustomOption();
+    //    ChiefOfPolice.SetupCustomOption();
 
         // Neutral
         TextOptionItem.Create(100010, "RoleType.NeutralBenign", TabGroup.NeutralRoles)

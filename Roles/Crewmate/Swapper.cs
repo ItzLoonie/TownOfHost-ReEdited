@@ -16,7 +16,6 @@ public static class Swapper
 {
     private static readonly int Id = 1986523;
     public static OptionItem SwapMax;
-    public static OptionItem CanSwapSelf;
     public static OptionItem CanStartMeeting;
     public static OptionItem TryHideMsg;
     public static List<byte> playerIdList = new();
@@ -27,9 +26,8 @@ public static class Swapper
     public static void SetupCustomOption()
     {
         Options.SetupRoleOptions(Id, TabGroup.OtherRoles, CustomRoles.Swapper);
-        SwapMax = IntegerOptionItem.Create(Id + 3, "SwapperMax", new(1, 999, 1), 3, TabGroup.OtherRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Swapper])
+        SwapMax = IntegerOptionItem.Create(Id + 3, "SwapperMax", new(1, 999, 1), 10, TabGroup.OtherRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Swapper])
             .SetValueFormat(OptionFormat.Times);
-        CanSwapSelf = BooleanOptionItem.Create(Id + 2, "CanSwapSelfVotes", true, TabGroup.OtherRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Swapper]);
         CanStartMeeting = BooleanOptionItem.Create(Id + 4, "JesterCanUseButton", false, TabGroup.OtherRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Swapper]);
         TryHideMsg = BooleanOptionItem.Create(Id + 5, "SwapperTryHideMsg", true, TabGroup.OtherRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Swapper]);
     }
@@ -46,7 +44,7 @@ public static class Swapper
         Swappermax.TryAdd(playerId, SwapMax.GetInt());
         IsEnable = true;
     }
-    public static string GetSwappermax(byte playerId) => Utils.ColorString((Swappermax.TryGetValue(playerId, out var x) && x >= 1) ? Color.green : Color.gray, Swappermax.TryGetValue(playerId, out var changermax) ? $"({changermax})" : "Invalid");
+    public static string GetSwappermax(byte playerId) => Utils.ColorString((Swappermax.TryGetValue(playerId, out var x) && x >= 1) ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.Swapper).ShadeColor(0.25f) : Color.gray, Swappermax.TryGetValue(playerId, out var changermax) ? $"({changermax})" : "Invalid");
     public static bool SwapMsg(PlayerControl pc, string msg, bool isUI = false)
     {
         var originMsg = msg;
@@ -98,16 +96,16 @@ public static class Swapper
                 var dp = target;
                 target = dp;
 
-                    if (Vote.Count < 1 && !Vote.Contains(dp.PlayerId) && !VoteTwo.Contains(dp.PlayerId) && CanSwapSelf.GetBool()
-                || Vote.Count < 1 && !Vote.Contains(dp.PlayerId) && !VoteTwo.Contains(dp.PlayerId) && dp != pc && !CanSwapSelf.GetBool())
+                    if (Vote.Count < 1 && !Vote.Contains(dp.PlayerId) && !VoteTwo.Contains(dp.PlayerId)
+                || Vote.Count < 1 && !Vote.Contains(dp.PlayerId) && !VoteTwo.Contains(dp.PlayerId))
                 {
                     Vote.Add(dp.PlayerId);
                     if (!isUI) Utils.SendMessage(GetString("Swap1"), pc.PlayerId); 
                     else pc.ShowPopUp(GetString("Swap1"));
                     Logger.Info($"{pc.GetNameWithRole()} 选择 {target.GetNameWithRole()}", "Swapper");
                 }
-                else if (Vote.Count == 1 && VoteTwo.Count < 1 && !Vote.Contains(dp.PlayerId) && !VoteTwo.Contains(dp.PlayerId) && CanSwapSelf.GetBool()
-                || Vote.Count == 1 && VoteTwo.Count < 1 && !Vote.Contains(dp.PlayerId) && !VoteTwo.Contains(dp.PlayerId) && dp != pc && !CanSwapSelf.GetBool())
+                else if (Vote.Count == 1 && VoteTwo.Count < 1 && !Vote.Contains(dp.PlayerId) && !VoteTwo.Contains(dp.PlayerId)
+                || Vote.Count == 1 && VoteTwo.Count < 1 && !Vote.Contains(dp.PlayerId) && !VoteTwo.Contains(dp.PlayerId))
                 {
                     VoteTwo.Add(dp.PlayerId);
                     if (!isUI) Utils.SendMessage(GetString("Swap2"), pc.PlayerId);
@@ -127,11 +125,6 @@ public static class Swapper
                     if (!isUI) Utils.SendMessage(GetString("CancelSwap2"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("CancelSwap2"));
                     Logger.Info($"{pc.GetNameWithRole()} 取消选择 {target.GetNameWithRole()}", "Swapper");
-                }
-                else if (pc == dp && !CanSwapSelf.GetBool())
-                {
-                    if (!isUI) Utils.SendMessage(GetString("CantSwapSelf"), pc.PlayerId);
-                    else pc.ShowPopUp(GetString("CantSwapSelf"));
                 }
                 _= new LateTask(() =>
                 {
@@ -259,7 +252,7 @@ public static class Swapper
             GameObject template = pva.Buttons.transform.Find("CancelButton").gameObject;
             GameObject targetBox = UnityEngine.Object.Instantiate(template, pva.transform);
             targetBox.name = "ShootButton";
-            targetBox.transform.localPosition = new Vector3(-0.95f, 0.03f, -1.31f);
+            targetBox.transform.localPosition = new Vector3(-0.35f, 0.03f, -1.31f);
             SpriteRenderer renderer = targetBox.GetComponent<SpriteRenderer>();
             PassiveButton button = targetBox.GetComponent<PassiveButton>(); 
             if (pc.PlayerId == pva.TargetPlayerId && (Vote.Contains(pc.PlayerId) || VoteTwo.Contains(pc.PlayerId))) 
