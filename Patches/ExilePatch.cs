@@ -1,6 +1,7 @@
 using AmongUs.Data;
 using HarmonyLib;
 using System.Linq;
+using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 
@@ -107,6 +108,20 @@ class ExileControllerWrapUpPatch
         HexMaster.RemoveHexedPlayer();
         Occultist.RemoveCursedPlayer();
 
+        if (Swapper.Vote.Count > 0 && Swapper.VoteTwo.Count > 0)
+        {
+            foreach (var swapper in Main.AllAlivePlayerControls)
+            {
+                if (swapper.Is(CustomRoles.Swapper))
+                {
+                    Swapper.Swappermax[swapper.PlayerId]--;
+                    Swapper.Vote.Clear();
+                    Swapper.VoteTwo.Clear();
+                    Main.SwapSend = false;
+                }
+            }
+        }
+        
         foreach (var pc in Main.AllPlayerControls)
         {
             pc.ResetKillCooldown();

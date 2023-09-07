@@ -80,6 +80,7 @@ enum CustomRPC
     SetCursedWolfSpellCount,
     SetJinxSpellCount,
     SetCollectorVotes,
+    SetSwapperVotes,
     SetQuickShooterShotLimit,
     SetEraseLimit,
     GuessKill,
@@ -118,6 +119,7 @@ enum CustomRPC
     SetTrackerTarget,
     SetSeekerTarget,
     SetSeekerPoints,
+    SetPoliceLimlit,
 
     //SoloKombat
     SyncKBPlayer,
@@ -608,6 +610,12 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetSoulCollectorLimit:
                 SoulCollector.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetSwapperVotes:
+                Swapper.ReceiveRPC(reader, __instance);
+                break;
+            case CustomRPC.SetPoliceLimlit:
+                ChiefOfPolice.ReceiveRPC(reader);
                 break;
         }
     }
@@ -1106,6 +1114,12 @@ internal static class RPC
                 break;
             case CustomRoles.Pitfall:
                 Pitfall.Add(targetId);
+                break;
+            case CustomRoles.Swapper: 
+                Swapper.Add(targetId);
+                break;
+            case CustomRoles.ChiefOfPolice:
+                ChiefOfPolice.Add(targetId);
                 break;
         }
         HudManager.Instance.SetHudActive(true);

@@ -137,6 +137,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Lurker => CustomRoles.Impostor,
                 CustomRoles.Doomsayer => CustomRoles.Crewmate,
                 CustomRoles.Pitfall => CustomRoles.Shapeshifter,
+                CustomRoles.Swapper => CustomRoles.Crewmate,
 
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
@@ -266,6 +267,7 @@ internal static class CustomRolesHelper
             CustomRoles.Pestilence => RoleTypes.Impostor,
             CustomRoles.Agitater => RoleTypes.Impostor,
             CustomRoles.Spiritcaller => RoleTypes.Impostor,
+            CustomRoles.ChiefOfPolice => RoleTypes.Impostor,
             _ => RoleTypes.GuardianAngel
         };
     }
