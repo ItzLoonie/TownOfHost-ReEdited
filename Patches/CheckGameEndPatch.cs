@@ -361,7 +361,7 @@ class GameEndChecker
                 if (Options.NeutralWinTogether.GetBool() && !CustomWinnerHolder.WinnerIds.Where(x => Utils.GetPlayerById(x) != null && Utils.GetPlayerById(x).GetCustomRole().IsCrewmate() && Utils.GetPlayerById(x).GetCustomRole().IsImpostor() && Utils.GetPlayerById(x).GetCustomRole().IsCoven()).Any())
                 {
                     foreach (var pc in Main.AllPlayerControls)
-                        if (pc.GetCustomRole().IsNeutral() && !CustomWinnerHolder.WinnerIds.Contains(pc.PlayerId) && !CustomWinnerHolder.WinnerRoles.Contains(pc.GetCustomRole()))
+                        if (pc.GetCustomRole().IsNeutral() && !pc.GetCustomRole().IsCoven() && !CustomWinnerHolder.WinnerIds.Contains(pc.PlayerId) && !CustomWinnerHolder.WinnerRoles.Contains(pc.GetCustomRole()))
                             CustomWinnerHolder.WinnerIds.Add(pc.PlayerId);
                 }
                 else if (!Options.NeutralWinTogether.GetBool() && Options.NeutralRoleWinTogether.GetBool())
@@ -370,6 +370,7 @@ class GameEndChecker
                     {
                         var pc = Utils.GetPlayerById(id);
                         if (pc == null || !pc.GetCustomRole().IsNeutral()) continue;
+                        if (pc.GetCustomRole().IsCoven()) continue;
                         foreach (var tar in Main.AllPlayerControls)
                             if (!CustomWinnerHolder.WinnerIds.Contains(tar.PlayerId) && tar.GetCustomRole() == pc.GetCustomRole())
                                 CustomWinnerHolder.WinnerIds.Add(tar.PlayerId);
