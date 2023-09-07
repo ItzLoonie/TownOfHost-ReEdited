@@ -212,49 +212,7 @@ class CheckForEndVotingPatch
                     VotedForId = ps.VotedFor
                 });
 
-                /*#region 正义换票判断
-                if (Swapper.Vote.Count > 0 && Swapper.VoteTwo.Count > 0)
-                {
-                    List<byte> NiceList1 = new();
-                    List<byte> BeSwapped = new();
-                    var meetingHud = MeetingHud.Instance;
-                    PlayerControl swap1 = null;
-                    foreach (var playerId in Swapper.Vote)
-                    {
-                        swap1 = Utils.GetPlayerById(playerId);
-                    }
-                    PlayerControl swap2 = null;
-                    foreach (var playerId in Swapper.VoteTwo)
-                    {
-                        swap2 = Utils.GetPlayerById(playerId);
-                    }
-                    if (swap1 != null && swap2 != null)
-                    {
-                        
-                        if (ps.VotedFor == swap1.PlayerId && !BeSwapped.Contains(ps.TargetPlayerId) && voter.IsAlive())
-                        {
-                            ps.VotedFor = swap2.PlayerId;
-                            voteLog.Info($"{voter.GetNameWithRole()}投给{swap1.GetNameWithRole()}的票选交换给了{swap2.GetNameWithRole()}");
-                            NiceList1.Add(ps.TargetPlayerId);
-                            BeSwapped.Add(ps.TargetPlayerId);
-                        }
-                        else if (ps.VotedFor == swap2.PlayerId && !NiceList1.Contains(ps.TargetPlayerId) &&!BeSwapped.Contains(ps.TargetPlayerId) && voter.IsAlive())
-                        {
-                            ps.VotedFor = swap1.PlayerId;
-                            BeSwapped.Add(ps.TargetPlayerId);
-                            voteLog.Info($"{voter.GetNameWithRole()}投给{swap2.GetNameWithRole()}的票选交换给了{swap1.GetNameWithRole()}");
-                        }
-                        if (Main.SwapSend == false)
-                        {
-                            Utils.SendMessage(string.Format(GetString("SwapVote"), swap1.GetRealName(), swap2.GetRealName()), 255, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Swapper), GetString("SwapTitle")));
-                            Main.SwapSend = true;
-                            NiceList1.Clear();
-                        }
-                    }
-                }
-        
-                #endregion*/
-                #region 换票判断
+                #region 换票师换票处理
                 if (Swapper.Vote.Count > 0 && Swapper.VoteTwo.Count > 0)
                 {
                     List<byte> NiceList1 = new();
@@ -311,7 +269,8 @@ class CheckForEndVotingPatch
                         Swapper.VoteTwo.Clear();
                     }
                 }
-                #endregion*/
+                #endregion
+
                 if (CheckRole(ps.TargetPlayerId, CustomRoles.Mayor) && !Options.MayorHideVote.GetBool()) //Mayorの投票数
                 {
                     for (var i2 = 0; i2 < Options.MayorAdditionalVote.GetFloat(); i2++)

@@ -88,7 +88,8 @@ public static class ChiefOfPolice
         {
     }
     public static bool CanBeSheriff(this PlayerControl pc)
-    {
+        {
         return pc != null && (pc.GetCustomRole().IsCrewmate() && pc.CanUseKillButton()) || pc.GetCustomRole().IsNeutral() && pc.CanUseKillButton() && CanImpostorAndNeutarl.GetBool()|| pc.GetCustomRole().IsImpostor() && CanImpostorAndNeutarl.GetBool();
+        }
     }
 }
