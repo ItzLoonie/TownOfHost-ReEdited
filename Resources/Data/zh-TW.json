@@ -1705,6 +1705,8 @@
   "DeputyInvalidTarget": "",
   "DeputyHandcuffText": "",
   "DeputyHandcuffCDForTarget": "",
+  "SabotageCooldownControl": "",
+  "SabotageCooldown": "",
   "SabotageTimeControl": "更改修理時限",
   "PolusReactorTimeLimit": "Polus抗震穩定器修理時限",
   "AirshipReactorTimeLimit": "The Airship避開墜毀路線修理時限",
