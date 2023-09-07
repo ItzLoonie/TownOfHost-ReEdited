@@ -15,20 +15,13 @@ public static class ChiefOfPolice
     public static bool IsEnable = false;
     public static OptionItem SkillCooldown;
     public static OptionItem CanImpostorAndNeutarl;
-    public static OptionItem ChiefOfPoliceCountMode;
 
-    public static readonly string[] chiefOfPoliceCountMode =
-    {
-        "ChiefOfPoliceCountMode.KillKiller",
-        "ChiefOfPoliceCountMode.Warn",
-    };
     public static void SetupCustomOption()
     {
         Options.SetupRoleOptions(Id, TabGroup.CrewmateRoles, CustomRoles.ChiefOfPolice);
         SkillCooldown = FloatOptionItem.Create(Id + 10, "ChiefOfPoliceSkillCooldown", new(2.5f, 900f, 2.5f), 20f, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.ChiefOfPolice])
             .SetValueFormat(OptionFormat.Seconds);
         CanImpostorAndNeutarl = BooleanOptionItem.Create(Id + 16, "PolicCanImpostorAndNeutarl", false, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.ChiefOfPolice]);
-        ChiefOfPoliceCountMode = StringOptionItem.Create(Id + 18, "ChiefOfPoliceCountMode", chiefOfPoliceCountMode, 0, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.ChiefOfPolice]);
     }
     public static void Init()
     {
@@ -93,16 +86,16 @@ public static class ChiefOfPolice
         }
         else
         {
-            if (ChiefOfPoliceCountMode.GetInt() == 1)
-            {
-                killer.RpcMurderPlayerV3(killer);
-                return true;
-            }
-            if (ChiefOfPoliceCountMode.GetInt() == 2)
-            {
-                killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Sheriff), GetString("NotSheriff!!!")));
-                return true;
-            }
+            //if (ChiefOfPoliceCountMode.GetInt() == 1)
+            //{
+            //    killer.RpcMurderPlayerV3(killer);
+            //    return true;
+            //}
+            //if (ChiefOfPoliceCountMode.GetInt() == 2)
+            //{
+            //    killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Sheriff), GetString("NotSheriff!!!")));
+            //    return true;
+            //}
         }
         return false;
     }
