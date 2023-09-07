@@ -1139,6 +1139,7 @@
   "IgnoreCrewmates": "忽略<color=#8cffff>船員</color>",
   "IgnoreAfterAnyoneDied": "忽略<color=#d9daff>幽靈</color>",
   "LightsOutSpecialSettings": "關燈特殊設定(The Airship)",
+  "BlockDisturbancesToSwitches": "",
   "DisableAirshipViewingDeckLightsPanel": "禁用觀景台配電箱",
   "DisableAirshipGapRoomLightsPanel": "禁用間隙室配電箱",
   "DisableAirshipCargoLightsPanel": "禁用貨倉配電箱",

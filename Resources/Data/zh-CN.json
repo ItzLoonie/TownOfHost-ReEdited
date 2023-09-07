@@ -1145,6 +1145,7 @@
   "IgnoreCrewmates": "忽略<color=#8cffff>船员阵营</color>",
   "IgnoreAfterAnyoneDied": "忽略<color=#d9daff>幽灵</color>",
   "LightsOutSpecialSettings": "停电特殊设定（飞艇地图）",
+  "BlockDisturbancesToSwitches": "",
   "DisableAirshipViewingDeckLightsPanel": "禁用瞭望台配电箱（飞艇地图）",
   "DisableAirshipGapRoomLightsPanel": "禁用升降机配电箱（飞艇地图）",
   "DisableAirshipCargoLightsPanel": "禁用货舱配电箱（飞艇地图）",

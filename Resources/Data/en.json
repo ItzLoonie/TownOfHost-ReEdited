@@ -1145,6 +1145,7 @@
   "IgnoreCrewmates": "Ignore <color=#8cffff>Crewmates</color>",
   "IgnoreAfterAnyoneDied": "Ignore After First Death",
   "LightsOutSpecialSettings": "Fix Lights Special Settings",
+  "BlockDisturbancesToSwitches": "Block Switches When They Are Up",
   "DisableAirshipViewingDeckLightsPanel": "Disable Viewing Deck Lights Panel (Airship)",
   "DisableAirshipGapRoomLightsPanel": "Disable Gap Room Lights Panel (Airship)",
   "DisableAirshipCargoLightsPanel": "Disable Cargo Lights Panel (Airship)",
