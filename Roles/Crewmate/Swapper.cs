@@ -26,7 +26,7 @@ public static class Swapper
     public static void SetupCustomOption()
     {
         Options.SetupRoleOptions(Id, TabGroup.OtherRoles, CustomRoles.Swapper);
-        SwapMax = IntegerOptionItem.Create(Id + 3, "SwapperMax", new(1, 999, 1), 3, TabGroup.OtherRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Swapper])
+        SwapMax = IntegerOptionItem.Create(Id + 3, "SwapperMax", new(1, 999, 1), 10, TabGroup.OtherRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Swapper])
             .SetValueFormat(OptionFormat.Times);
         CanStartMeeting = BooleanOptionItem.Create(Id + 4, "JesterCanUseButton", false, TabGroup.OtherRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Swapper]);
         TryHideMsg = BooleanOptionItem.Create(Id + 5, "SwapperTryHideMsg", true, TabGroup.OtherRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Swapper]);
@@ -44,7 +44,7 @@ public static class Swapper
         Swappermax.TryAdd(playerId, SwapMax.GetInt());
         IsEnable = true;
     }
-    public static string GetSwappermax(byte playerId) => Utils.ColorString((Swappermax.TryGetValue(playerId, out var x) && x >= 1) ? Color.green : Color.gray, Swappermax.TryGetValue(playerId, out var changermax) ? $"({changermax})" : "Invalid");
+    public static string GetSwappermax(byte playerId) => Utils.ColorString((Swappermax.TryGetValue(playerId, out var x) && x >= 1) ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.Swapper).ShadeColor(0.25f) : Color.gray, Swappermax.TryGetValue(playerId, out var changermax) ? $"({changermax})" : "Invalid");
     public static bool SwapMsg(PlayerControl pc, string msg, bool isUI = false)
     {
         var originMsg = msg;
