@@ -2475,10 +2475,7 @@ public static class Utils
 
         if (Options.AirshipVariableElectrical.GetBool())
             AirshipElectricalDoors.Initialize();
-     /*   if (Options.DiseasedCDReset.GetBool())
-            Main.KilledDiseased.Clear();
-        if (Options.AntidoteCDReset.GetBool())
-            Main.KilledAntidote.Clear(); */
+        DoorsReset.ResetDoors();
 
     }
     public static void AfterPlayerDeathTasks(PlayerControl target, bool onMeeting = false)

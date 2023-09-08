@@ -27,6 +27,7 @@ public static class ChiefOfPolice
     {
         playerIdList = new();
         PoliceLimit = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {

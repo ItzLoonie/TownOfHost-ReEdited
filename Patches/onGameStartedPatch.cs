@@ -312,6 +312,7 @@ internal class ChangeRoleSettings
             AntiBlackout.Reset();
             NameNotifyManager.Reset();
             SabotageSystemTypeRepairDamagePatch.Initialize();
+            DoorsReset.Initialize();
 
             IRandom.SetInstanceById(Options.RoleAssigningAlgorithm.GetValue());
 

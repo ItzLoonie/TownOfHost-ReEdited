@@ -37,6 +37,7 @@ public static class Swapper
         Vote = new();
         VoteTwo = new();
         Swappermax = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
