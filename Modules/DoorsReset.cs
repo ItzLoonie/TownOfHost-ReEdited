@@ -17,27 +17,27 @@ public static class DoorsReset
         }
         isEnabled = Options.ResetDoorsEveryTurns.GetBool();
         mode = (ResetMode)Options.DoorsResetMode.GetValue();
-        logger.Info($"初期化: [ {isEnabled}, {mode} ]");
+        Logger.Info($"initialization: [ {isEnabled}, {mode} ]", "Reset Doors");
     }
 
-    /// <summary>設定に応じてドア状況をリセット</summary>
+    /// <summary>Reset door status according to settings</summary>
     public static void ResetDoors()
     {
         if (!isEnabled || DoorsSystem == null)
         {
             return;
         }
-        logger.Info("リセット");
+        Logger.Info("Reset", "Reset Doors");
 
         switch (mode)
         {
             case ResetMode.AllOpen: OpenAllDoors(); break;
             case ResetMode.AllClosed: CloseAllDoors(); break;
             case ResetMode.RandomByDoor: OpenOrCloseAllDoorsRandomly(); break;
-            default: logger.Warn($"無効なモード: {mode}"); break;
+            default: Logger.Warn($"Invalid Reset Doors Mode: {mode}", "Reset Doors"); break;
         }
     }
-    /// <summary>マップ上の全ドアを開放</summary>
+    /// <summary>Open all doors on the map</summary>
     private static void OpenAllDoors()
     {
         foreach (var door in ShipStatus.Instance.AllDoors)
@@ -46,7 +46,7 @@ public static class DoorsReset
         }
         DoorsSystem.IsDirty = true;
     }
-    /// <summary>マップ上の全ドアを閉鎖</summary>
+    /// <summary>Close all doors on the map</summary>
     private static void CloseAllDoors()
     {
         foreach (var door in ShipStatus.Instance.AllDoors)
@@ -55,7 +55,7 @@ public static class DoorsReset
         }
         DoorsSystem.IsDirty = true;
     }
-    /// <summary>マップ上の全ドアをランダムに開閉</summary>
+    /// <summary>Randomly opens and closes all doors on the map</summary>
     private static void OpenOrCloseAllDoorsRandomly()
     {
         foreach (var door in ShipStatus.Instance.AllDoors)
@@ -66,9 +66,9 @@ public static class DoorsReset
         DoorsSystem.IsDirty = true;
     }
 
-    /// <summary>ドアの開閉状況を設定する．サボタージュで閉められないドアに対しては何もしない</summary>
-    /// <param name="door">対象のドア</param>
-    /// <param name="isOpen">開けるならtrue，閉めるならfalse</param>
+    /// <summary>Sets the open/close status of the door. Do nothing for doors that cannot be closed by sabotage</summary>
+    /// <param name="door">Target door</param>
+    /// <param name="isOpen">true for open, false for close</param>
     private static void SetDoorOpenState(PlainDoor door, bool isOpen)
     {
         if (IsValidDoor(door))
@@ -76,11 +76,11 @@ public static class DoorsReset
             door.SetDoorway(isOpen);
         }
     }
-    /// <summary>リセット対象のドアかどうか判定する</summary>
-    /// <returns>リセット対象ならtrue</returns>
+    /// <summary>Determine if the door is subject to reset</summary>
+    /// <returns>true if it is subject to reset</returns>
     private static bool IsValidDoor(PlainDoor door)
     {
-        // エアシラウンジトイレとPolus除染室のドアは対象外
+        // Airship lounge toilets and Polus decontamination room doors are not closed
         if (door.Room is SystemTypes.Lounge or SystemTypes.Decontamination)
         {
             return false;
