@@ -1,15 +1,16 @@
-using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HarmonyLib;
+using UnityEngine;
+
 using TOHE.Modules;
 using TOHE.Roles.AddOns.Crewmate;
 using TOHE.Roles.AddOns.Impostor;
 using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
-using UnityEngine;
 
 namespace TOHE;
 
@@ -644,6 +645,8 @@ public static class Options
     public static OptionItem AirshipAdditionalSpawn;
     public static OptionItem AirshipVariableElectrical;
     public static OptionItem DisableAirshipMovingPlatform;
+    public static OptionItem ResetDoorsEveryTurns;
+    public static OptionItem DoorsResetMode;
 
     // Sabotage
     public static OptionItem CommsCamouflage;
@@ -2403,6 +2406,13 @@ public static class Options
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(19, 188, 233, byte.MaxValue));
 
+        // Reset Doors After Meeting
+        ResetDoorsEveryTurns = BooleanOptionItem.Create(22120, "ResetDoorsEveryTurns", false, TabGroup.GameSettings, false)
+            .SetColor(new Color32(19, 188, 233, byte.MaxValue));
+        // Reset Doors Mode
+        DoorsResetMode = StringOptionItem.Create(22122, "DoorsResetMode", EnumHelper.GetAllNames<DoorsReset.ResetMode>(), 2, TabGroup.GameSettings, false)
+            .SetColor(new Color32(19, 188, 233, byte.MaxValue))
+            .SetParent(ResetDoorsEveryTurns);
 
         // Sabotage
         TextOptionItem.Create(100025, "MenuTitle.Sabotage", TabGroup.GameSettings)
