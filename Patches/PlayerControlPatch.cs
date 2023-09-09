@@ -3035,7 +3035,8 @@ class PlayerStartPatch
         var roleText = UnityEngine.Object.Instantiate(__instance.cosmetics.nameText);
         roleText.transform.SetParent(__instance.cosmetics.nameText.transform);
         roleText.transform.localPosition = new Vector3(0f, 0.2f, 0f);
-        roleText.fontSize -= 1.2f;
+        roleText.transform.localScale = new(0.9f, 1f, 1f);
+        roleText.fontSize = 1.8f;
         roleText.text = "RoleText";
         roleText.gameObject.name = "RoleText";
         roleText.enabled = false;
