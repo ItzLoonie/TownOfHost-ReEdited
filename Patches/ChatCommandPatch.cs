@@ -880,14 +880,14 @@ internal class ChatCommands
             "感染者"=> GetString("Infectious"),
             "病毒"=> GetString("Virus"),
             "追击者"=> GetString("Pursuer"),
-            "幻影"=> GetString("Phantorm"),
+            "幻影"=> GetString("Phantom"),
             "决斗者"=> GetString("Pirate"),
             "煽动者"=> GetString("Agitater"),
             "独行者"=> GetString("Maverick"),
             "被诅咒的灵魂"=> GetString("CursedSoul"),
             "小偷"=> GetString("Pickpocket"),
             "背叛者"=> GetString("Traitor"),
-            "秃鹫"=> GetString("Yulture"),
+            "秃鹫"=> GetString("Vulture"),
             "美杜莎"=> GetString("Medusa"),
             "面包师"=> GetString("Baker"),
             "饥荒"=> GetString("Famine"),
@@ -1127,7 +1127,7 @@ internal class ChatCommands
 
             case "/win":
             case "/winner":
-                if (!Main.winnerNameList.Any()) Utils.SendMessage(GetString("NoInfoExists"));
+                if (!Main.winnerNameList.Any()) Utils.SendMessage(GetString("NoInfoExists"), player.PlayerId);
                 else Utils.SendMessage("Winner: " + string.Join(", ", Main.winnerNameList), player.PlayerId);
                 break;
 
