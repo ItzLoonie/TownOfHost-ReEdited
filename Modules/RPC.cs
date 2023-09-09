@@ -12,6 +12,7 @@ using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using static TOHE.Translator;
+using static UnityEngine.RemoteConfigSettingsHelper;
 
 namespace TOHE;
 
@@ -234,9 +235,10 @@ internal class RPCHandlerPatch
                         Main.playerVersion[__instance.PlayerId] = Main.playerVersion[0];
 
                     // Kick Unmached Player Start
-                    if (AmongUsClient.Instance.AmHost && tag != $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})")
+                    if (AmongUsClient.Instance.AmHost)
                     {
-                        if (forkId != Main.ForkId)
+                        if (!IsVersionMatch(__instance.PlayerId))
+                        {
                             _ = new LateTask(() =>
                             {
                                 if (__instance?.Data?.Disconnected is not null and not true)
@@ -247,6 +249,7 @@ internal class RPCHandlerPatch
                                     AmongUsClient.Instance.KickPlayer(__instance.GetClientId(), false);
                                 }
                             }, 5f, "Kick");
+                        }
                     }
                     // Kick Unmached Player End
                 }
@@ -264,6 +267,20 @@ internal class RPCHandlerPatch
                 RPC.RpcVersionCheck();
                 break;
             case CustomRPC.SyncCustomSettings:
+                if (AmongUsClient.Instance.AmClient)
+                {
+                    if (!GameStates.IsModHost)
+                    {
+                        Logger.Fatal("You should not receive this rpc", "SyncCustomSettings");
+                        break;
+                    }
+                    else if (!IsVersionMatch(0))
+                    {
+                        Logger.Fatal("Ignored SyncCustomSettings because version check failed", "SyncCustomSettings");
+                        break;
+                    }
+                }
+
                 foreach (var co in OptionItem.AllOptions)
                 {
                     co.SetValue(reader.ReadInt32());
@@ -619,6 +636,21 @@ internal class RPCHandlerPatch
                 break;
         }
     }
+
+    public static bool IsVersionMatch(Byte PlayerId)
+    {
+        if (Main.VersionCheat.Value) return true;
+        Version version = Main.playerVersion[PlayerId].version;
+        string tag = Main.playerVersion[PlayerId].tag;
+        string forkId = Main.playerVersion[PlayerId].forkId;
+        
+        if (version != Main.version
+            || tag != $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})"
+            || forkId != Main.ForkId)
+            return false;
+
+        return true;
+    }
 }
 
 internal static class RPC
@@ -627,7 +659,7 @@ internal static class RPC
     public static void SyncCustomSettingsRPC()
     {
         if (!AmongUsClient.Instance.AmHost) return;
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, 80, Hazel.SendOption.Reliable, -1);
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, 80, SendOption.Reliable, -1);
         foreach (var co in OptionItem.AllOptions)
         {
             writer.Write(co.GetValue());
@@ -638,7 +670,7 @@ internal static class RPC
     {
         if (AmongUsClient.Instance.AmHost)
             PlaySound(PlayerID, sound);
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.PlaySound, Hazel.SendOption.Reliable, -1);
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.PlaySound, SendOption.Reliable, -1);
         writer.Write(PlayerID);
         writer.Write((byte)sound);
         AmongUsClient.Instance.FinishRpcImmediately(writer);
@@ -1254,3 +1286,4 @@ internal class StartRpcImmediatelyPatch
         RPC.SendRpcLogger(targetNetId, callId, targetClientId);
     }
 }
+
