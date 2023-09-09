@@ -51,7 +51,6 @@ public static class BanManager
       //         if (line.Contains("actorour#0029")) continue;
                 if (line.Contains("gnuedaphic#7196")) continue;
                 if (line.Contains("loonietoons")) continue;
-                if (line.Contains("keepchirpy#6354")) continue;
                 EACList.Add(line);
             }
 
@@ -92,7 +91,6 @@ public static class BanManager
            //     if (line.Contains("actorour#0029")) continue;
                 if (line.Contains("gnuedaphic#7196")) continue;
                 if (line.Contains("loonietoons")) continue;
-                if (line.Contains("keepchirpy#6354")) continue;
                 if (line.Contains("Amogus"))
                 {
                     AmongUsClient.Instance.KickPlayer(player.Id, false);
