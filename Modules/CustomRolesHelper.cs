@@ -972,7 +972,6 @@ internal static class CustomRolesHelper
                     || pc.Is(CustomRoles.Judge)
                     || pc.Is(CustomRoles.CopyCat)
                     || pc.Is(CustomRoles.Doomsayer)
-                    || pc.Is(CustomRoles.DoubleShot)
                     || pc.Is(CustomRoles.Mafia)
                     || pc.Is(CustomRoles.Councillor)
                     || pc.Is(CustomRoles.GuardianAngelTOHE)
