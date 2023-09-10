@@ -1449,6 +1449,7 @@
   "BaitDelayNotify": "Notificar al asesino sobre el auto-informe que va a suceder",
   "BaitNotification": "Revelar el <color=#00f7ff>Cebo</color> en la primera reunión",
   "BaitAdviceAlive": "<b>{0}</b> es el Cebo. Quien lo mate hará un auto-informe.",
+  "BaitCanBeReportedUnderAllConditions": "",
   "CounterfeiterSkillCooldown": "Tiempo de espera de la abilidad",
   "CounterfeiterSkillLimitTimes": "Usos máximos",
   "PursuerSkillCooldown": "Tiempo de espera de la abilidad",

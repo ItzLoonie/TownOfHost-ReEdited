@@ -9,7 +9,6 @@ using Hazel;
 using InnerNet;
 using UnityEngine;
 using TOHE.Modules;
-using TOHE.Patches;
 using TOHE.Roles.AddOns.Crewmate;
 using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
@@ -1632,19 +1631,23 @@ class ReportDeadBodyPatch
             var killerRole = killer?.GetCustomRole();
 
             //杀戮机器无法报告或拍灯
-       //     if (__instance.Is(CustomRoles.Minimalism)) return false;
-            
-            // Camouflager
-            if (Camouflager.DisableReportWhenCamouflageIsActive.GetBool() && Camouflager.IsActive && !(Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool())) return false;
+            //     if (__instance.Is(CustomRoles.Minimalism)) return false;
 
-            // Comms Camouflage
-            if (Options.DisableReportWhenCC.GetBool() && Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool() &&
-                !(Options.DisableOnSomeMaps.GetBool() &&
-                    ((Options.DisableOnSkeld.GetBool() && Options.IsActiveSkeld) ||
-                     (Options.DisableOnMira.GetBool() && Options.IsActiveMiraHQ) ||
-                     (Options.DisableOnPolus.GetBool() && Options.IsActivePolus) ||
-                     (Options.DisableOnAirship.GetBool() && Options.IsActiveAirship)
-                    ))) return false;
+            // if Bait is killed, check the setting condition
+            if (!(target.Object.Is(CustomRoles.Bait) && Options.BaitCanBeReportedUnderAllConditions.GetBool()))
+            {
+                // Camouflager
+                if (Camouflager.DisableReportWhenCamouflageIsActive.GetBool() && Camouflager.IsActive && !(Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool())) return false;
+
+                // Comms Camouflage
+                if (Options.DisableReportWhenCC.GetBool() && Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool() &&
+                    !(Options.DisableOnSomeMaps.GetBool() &&
+                        ((Options.DisableOnSkeld.GetBool() && Options.IsActiveSkeld) ||
+                         (Options.DisableOnMira.GetBool() && Options.IsActiveMiraHQ) ||
+                         (Options.DisableOnPolus.GetBool() && Options.IsActivePolus) ||
+                         (Options.DisableOnAirship.GetBool() && Options.IsActiveAirship)
+                        ))) return false;
+            }
 
 
             if (target == null) //拍灯事件
