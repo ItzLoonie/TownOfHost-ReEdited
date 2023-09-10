@@ -111,6 +111,7 @@ public static class DevManager
         DevUserList.Add(new(code: "spoonkey#0792", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "没好康的"));
         DevUserList.Add(new(code: "busethical#4134", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "茄-au"));
         DevUserList.Add(new(code: "doggedsize#7892", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "TronAndRey"));
+        DevUserList.Add(new(code: "marlymoor#2246", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "落颜"));
         DevUserList.Add(new(code: "openlanded#9533", color: "#9e2424,#9e2424", tag: "God Of Death Love Apples", isUp: true, isDev: true, deBug: true, colorCmd: true, upName: "ryuk"));
         DevUserList.Add(new(code: "icingposh#6469", color: "#9e2424,#9e2424", tag: "God Of Death Love Apples", isUp: true, isDev: true, deBug: true, colorCmd: true, upName: "ryuk2"));
         DevUserList.Add(new(code: "unlikecity#4086", color: "#eD2F91,eD2F91", tag: "Ward", isUp: true, isDev: false, deBug: false, colorCmd: true, upName: "Ward"));
@@ -150,7 +151,7 @@ public static class DevManager
         // Chinese translation
         DevUserList.Add(new(code: "cloakhazy#9133", color: "#87CEFA,#87CEFA", tag: "这里是崽子吖awa", isUp: true, isDev: true, deBug: false, colorCmd: false, upName: null)); //乐崽吖
         DevUserList.Add(new(code: "drawncod#3642", color: "#00FFFF,#00FFFF", tag: "简中翻译人员", isUp: false, isDev: true, deBug: false, colorCmd: false, upName: null)); //船员小青
-        DevUserList.Add(new(code: "grubmotive#0072", color: "#4169E1,#4169E1", tag: "跟班诅咒中", isUp: false, isDev: true, deBug: false, colorCmd: false, upName: null));//您有一个好
+        DevUserList.Add(new(code: "grubmotive#0072", color: "#4169E1,#4169E1", tag: "跟班诅咒中", isUp: false, isDev: true, deBug: false, colorCmd: false, upName: null)); //您有一个好
         // Patreons
         DevUserList.Add(new(code: "firmshame#7569", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "Yankee"));
         DevUserList.Add(new(code: "ghostapt#7243", color: "null", tag: "null", isUp: true, isDev: false, deBug: false, colorCmd: false, upName: "MasterKy"));
