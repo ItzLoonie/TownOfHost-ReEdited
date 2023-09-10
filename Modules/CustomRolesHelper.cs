@@ -467,8 +467,6 @@ internal static class CustomRolesHelper
             CustomRoles.God or
             CustomRoles.Mario or
             CustomRoles.Revolutionist or
-            CustomRoles.Famine or
-            CustomRoles.Baker or
             CustomRoles.Romantic or
             CustomRoles.VengefulRomantic or
             CustomRoles.Provocateur;
@@ -514,8 +512,6 @@ internal static class CustomRolesHelper
             CustomRoles.Terrorist or
             CustomRoles.Vulture or
             CustomRoles.Workaholic or
-            CustomRoles.Famine or
-            CustomRoles.Baker or
             CustomRoles.Revolutionist or
             CustomRoles.Provocateur;
     }
@@ -651,8 +647,6 @@ internal static class CustomRolesHelper
             CustomRoles.Amnesiac or
             CustomRoles.Medusa or
             CustomRoles.Ritualist or
-            CustomRoles.Famine or
-            CustomRoles.Baker or
             CustomRoles.HexMaster or
             CustomRoles.Occultist or
             CustomRoles.Glitch or

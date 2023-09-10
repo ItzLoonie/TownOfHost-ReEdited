@@ -466,8 +466,6 @@ public static class Utils
     //        case CustomRoles.Minion:
             case CustomRoles.Jester:
             case CustomRoles.Pirate:
-         //   case CustomRoles.Baker:
-            case CustomRoles.Famine:
             case CustomRoles.NWitch:
             case CustomRoles.Shroud:
             case CustomRoles.Mario:
@@ -526,8 +524,6 @@ public static class Utils
             case CustomRoles.Convict:
             case CustomRoles.Opportunist:
             case CustomRoles.Phantom:
-            case CustomRoles.Baker:
-         //   case CustomRoles.Famine:
                 if (ForRecompute)
                     hasTasks = false;
                     break;
@@ -1904,9 +1900,6 @@ public static class Utils
             {
                 if (seer.IsAlive())
                 {
-                    if (Baker.IsEnable && Baker.IsPoisoned(seer))
-                        SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Famine), "θ"));
-
                     if (Shroud.IsEnable && Main.ShroudList.ContainsKey(seer.PlayerId))
                         SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Shroud), "◈"));
                 }

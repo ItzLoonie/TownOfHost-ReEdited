@@ -1211,8 +1211,6 @@ public static class GuessManager
                     or CustomRoles.Crewmate
                     //   or CustomRoles.Loyal
                     or CustomRoles.Oblivious
-                    or CustomRoles.Baker
-                    or CustomRoles.Famine
                     or CustomRoles.ChiefOfPolice
                     or CustomRoles.Rogue
                     or CustomRoles.Scientist

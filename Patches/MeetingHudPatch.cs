@@ -817,8 +817,6 @@ class MeetingHudStartPatch
             roleTextMeeting.enableWordWrapping = false;
             roleTextMeeting.enabled = pc.AmOwner || ExtendedPlayerControl.KnowRoleTraget(PlayerControl.LocalPlayer, pc);
 
-            Baker.SendAliveMessage(pc);
-
             if (!PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer.IsRevealedPlayer(pc) && pc.Is(CustomRoles.Trickster))
             {
                 roleTextMeeting.text = Farseer.RandomRole[PlayerControl.LocalPlayer.PlayerId];
@@ -1118,8 +1116,6 @@ class MeetingHudStartPatch
             sb.Append(Witch.GetSpelledMark(target.PlayerId, true));
             sb.Append(HexMaster.GetHexedMark(target.PlayerId, true));
             sb.Append(Occultist.GetCursedMark(target.PlayerId, true));
-            if (Baker.IsPoisoned(target))
-                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Famine), "θ"));
 
             if (Main.ShroudList.ContainsKey(target.PlayerId))
                 sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Shroud), "◈")); 
