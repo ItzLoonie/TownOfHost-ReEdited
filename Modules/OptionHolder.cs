@@ -927,7 +927,7 @@ public static class Options
         roleCounts = new Dictionary<CustomRoles, int>();
         roleSpawnChances = new Dictionary<CustomRoles, float>();
 
-        foreach (var role in Enum.GetValues(typeof(CustomRoles)).Cast<CustomRoles>())
+        foreach (var role in CustomRolesHelper.AllRoles)
         {
             roleCounts.Add(role, 0);
             roleSpawnChances.Add(role, 0);
