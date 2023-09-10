@@ -267,20 +267,6 @@ internal class RPCHandlerPatch
                 RPC.RpcVersionCheck();
                 break;
             case CustomRPC.SyncCustomSettings:
-                if (AmongUsClient.Instance.AmClient)
-                {
-                    if (!GameStates.IsModHost)
-                    {
-                        Logger.Fatal("You should not receive this rpc", "SyncCustomSettings");
-                        break;
-                    }
-                    else if (!IsVersionMatch(0))
-                    {
-                        Logger.Fatal("Ignored SyncCustomSettings because version mis-match !", "SyncCustomSettings");
-                        break;
-                    }
-                }
-
                 foreach (var co in OptionItem.AllOptions)
                 {
                     co.SetValue(reader.ReadInt32());
