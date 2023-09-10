@@ -18,7 +18,6 @@ namespace TOHE;
 public enum CustomGameMode
 {
     Standard = 0x01,
-    SoloKombat = 0x02,
     All = int.MaxValue
 }
 
@@ -52,13 +51,12 @@ public static class Options
     public static CustomGameMode CurrentGameMode
         => GameMode.GetInt() switch
         {
-            1 => CustomGameMode.SoloKombat,
             _ => CustomGameMode.Standard
         };
 
     public static readonly string[] gameModes =
     {
-        "Standard", "SoloKombat"
+        "Standard"
     };
 
     // MapActive
@@ -978,6 +976,7 @@ public static class Options
 
         // 游戏模式
         GameMode = StringOptionItem.Create(1, "GameMode", gameModes, 0, TabGroup.GameSettings, false)
+            .SetHidden(true)
             .SetHeader(true);
 
         #region 职业详细设置
@@ -2321,10 +2320,6 @@ public static class Options
         #endregion 
 
         #region 游戏设置
-
-        //SoloKombat
-        SoloKombatManager.SetupCustomOption();
-
 
         //驱逐相关设定
         TextOptionItem.Create(100023, "MenuTitle.Ejections", TabGroup.GameSettings)

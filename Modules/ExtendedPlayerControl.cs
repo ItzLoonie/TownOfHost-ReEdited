@@ -444,8 +444,6 @@ static class ExtendedPlayerControl
 
         return pc.GetCustomRole() switch
         {
-            //SoloKombat
-            CustomRoles.KB_Normal => pc.SoloAlive(),
             //Standard
             CustomRoles.FireWorks => FireWorks.CanUseKillButton(pc),
             CustomRoles.Mafia => Utils.CanMafiaKill(),
@@ -929,9 +927,6 @@ static class ExtendedPlayerControl
             case CustomRoles.Hacker:
                 Hacker.SetKillCooldown(player.PlayerId);
                 break;
-            case CustomRoles.KB_Normal:
-                Main.AllPlayerKillCooldown[player.PlayerId] = SoloKombatManager.KB_ATKCooldown.GetFloat();
-                break;
             case CustomRoles.BloodKnight:
                 BloodKnight.SetKillCooldown(player.PlayerId);
                 break;
@@ -1081,10 +1076,6 @@ static class ExtendedPlayerControl
     }
     public static void RpcMurderPlayerV3(this PlayerControl killer, PlayerControl target)
     {
-        //用于TOHE的击杀前判断
-
-        if (Options.CurrentGameMode == CustomGameMode.SoloKombat) return;
-
         if (killer.PlayerId == target.PlayerId && killer.shapeshifting)
         {
             _ = new LateTask(() => { killer.RpcMurderPlayer(target); }, 1.5f, "Shapeshifting Suicide Delay");

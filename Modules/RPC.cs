@@ -121,11 +121,6 @@ enum CustomRPC
     SetSeekerTarget,
     SetSeekerPoints,
     SetPoliceLimlit,
-
-    //SoloKombat
-    SyncKBPlayer,
-    SyncKBBackCountdown,
-    SyncKBNameNotify,
     SetPotionMaster,
     SetChameleonTimer,
     DoPoison,
@@ -490,20 +485,11 @@ internal class RPCHandlerPatch
                 float time = reader.ReadSingle();
                 PlayerControl.LocalPlayer.SetKillTimer(time);
                 break;
-            case CustomRPC.SyncKBPlayer:
-                SoloKombatManager.ReceiveRPCSyncKBPlayer(reader);
-                break;
             case CustomRPC.SyncAllPlayerNames:
                 Main.AllPlayerNames = new();
                 int num = reader.ReadInt32();
                 for (int i = 0; i < num; i++)
                     Main.AllPlayerNames.TryAdd(reader.ReadByte(), reader.ReadString());
-                break;
-            case CustomRPC.SyncKBBackCountdown:
-                SoloKombatManager.ReceiveRPCSyncBackCountdown(reader);
-                break;
-            case CustomRPC.SyncKBNameNotify:
-                SoloKombatManager.ReceiveRPCSyncNameNotify(reader);
                 break;
             case CustomRPC.SetMorticianArrow:
                 Mortician.ReceiveRPC(reader);

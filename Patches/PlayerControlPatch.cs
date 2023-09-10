@@ -101,7 +101,7 @@ class CheckMurderPatch
             return false;
         }
 
-        var divice = Options.CurrentGameMode == CustomGameMode.SoloKombat ? 3000f : 2000f;
+        var divice = 2000f;
         float minTime = Mathf.Max(0.02f, AmongUsClient.Instance.Ping / divice * 6f); //※AmongUsClient.Instance.Pingの値はミリ秒(ms)なので÷1000
         //TimeSinceLastKillに値が保存されていない || 保存されている時間がminTime以上 => キルを許可
         //↓許可されない場合
@@ -184,12 +184,6 @@ class CheckMurderPatch
         if (killer.PlayerId != target.PlayerId && !killer.CanUseKillButton())
         {
             Logger.Info(killer.GetNameWithRole() + "击杀者不被允许使用击杀键，击杀被取消", "CheckMurder");
-            return false;
-        }
-
-        if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
-        {
-            SoloKombatManager.OnPlayerAttack(killer, target);
             return false;
         }
 
@@ -1601,7 +1595,6 @@ class ReportDeadBodyPatch
     {
         if (GameStates.IsMeeting) return false;
         if (Options.DisableMeeting.GetBool()) return false;
-        if (Options.CurrentGameMode == CustomGameMode.SoloKombat) return false;
         if (!CanReport[__instance.PlayerId])
         {
             WaitReport[__instance.PlayerId].Add(target);
@@ -2673,10 +2666,8 @@ class FixedUpdatePatch
                 var RoleTextData = Utils.GetRoleText(PlayerControl.LocalPlayer.PlayerId, __instance.PlayerId);
 
                 RoleText.text = RoleTextData.Item1;
-                if (Options.CurrentGameMode == CustomGameMode.SoloKombat) RoleText.text = "";
                 RoleText.color = RoleTextData.Item2;
                 if (__instance.AmOwner) RoleText.enabled = true; //自分ならロールを表示
-                else if (Options.CurrentGameMode == CustomGameMode.SoloKombat) RoleText.enabled = true;
                 else if (Main.VisibleTasksCount && PlayerControl.LocalPlayer.Data.IsDead && Options.GhostCanSeeOtherRoles.GetBool()) RoleText.enabled = true; //他プレイヤーでVisibleTasksCountが有効なおかつ自分が死んでいるならロールを表示
                 else if (PlayerControl.LocalPlayer.Is(CustomRoles.Mimic) && Main.VisibleTasksCount && __instance.Data.IsDead && Options.MimicCanSeeDeadRoles.GetBool()) RoleText.enabled = true; //他プレイヤーでVisibleTasksCountが有効なおかつ自分が死んでいるならロールを表示
                 else if (__instance.Is(CustomRoles.Mimic) && Main.VisibleTasksCount && __instance.Data.IsDead) RoleText.enabled = true; //他プレイヤーでVisibleTasksCountが有効なおかつ自分が死んでいるならロールを表示
@@ -2757,9 +2748,6 @@ class FixedUpdatePatch
                                 RealName = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Revolutionist), string.Format(GetString("EnterVentWinCountDown"), Main.RevolutionistCountdown.TryGetValue(seer.PlayerId, out var x) ? x : 10));
                             break;
                     }
-
-                    if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
-                        SoloKombatManager.GetNameNotify(target, ref RealName);
 
                     if (Pelican.IsEaten(seer.PlayerId))
                         RealName = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Pelican), GetString("EatenByPelican"));
@@ -2949,9 +2937,6 @@ class FixedUpdatePatch
                         }
                     }
                 }
-
-                if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
-                    Suffix.Append(SoloKombatManager.GetDisplayHealth(target));
 
                 /*if(main.AmDebugger.Value && main.BlockKilling.TryGetValue(target.PlayerId, out var isBlocked)) {
                     Mark = isBlocked ? "(true)" : "(false)";}*/
