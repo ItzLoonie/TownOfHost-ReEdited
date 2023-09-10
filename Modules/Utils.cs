@@ -2019,9 +2019,9 @@ public static class Utils
 
 
             // Start run loop for target only if condition is "true"
-            if (seer.Data.IsDead ||
-                NoCache ||
-                ForceLoop)
+            if (seer.Data.IsDead
+                || NoCache
+                || ForceLoop)
                 foreach (var target in Main.AllPlayerControls)
                 {
                     // if the target is the seer itself, do nothing
@@ -2163,42 +2163,7 @@ public static class Utils
 
                 // ====== Seer know target role ======
 
-                    string TargetRoleText =
-                        (seer.Data.IsDead && Options.GhostCanSeeOtherRoles.GetBool()) ||
-                        (seer.Is(CustomRoles.Mimic) && target.Data.IsDead && Options.MimicCanSeeDeadRoles.GetBool()) ||
-                        (seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers) && Options.LoverKnowRoles.GetBool()) ||
-                        (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoleTypes.Impostor) && Options.ImpKnowAlliesRole.GetBool()) ||
-                        (seer.GetCustomRole().IsCoven() && target.GetCustomRole().IsCoven() && Options.CovenKnowAlliesRole.GetBool()) ||
-                        (seer.Is(CustomRoles.Madmate) && target.Is(CustomRoleTypes.Impostor) && Options.MadmateKnowWhosImp.GetBool()) ||
-                        (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Madmate) && Options.ImpKnowWhosMadmate.GetBool()) ||
-                        (seer.Is(CustomRoles.Crewpostor) && target.Is(CustomRoleTypes.Impostor) && Options.CrewpostorKnowsAllies.GetBool()) ||
-                        (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Crewpostor) && Options.AlliesKnowCrewpostor.GetBool()) ||
-                        (seer.Is(CustomRoles.Madmate) && target.Is(CustomRoles.Madmate) && Options.MadmateKnowWhosMadmate.GetBool()) ||
-                        (seer.Is(CustomRoles.Rogue) && target.Is(CustomRoles.Rogue) && Options.RogueKnowEachOther.GetBool() && Options.RogueKnowEachOtherRoles.GetBool()) ||
-                        (seer.Is(CustomRoles.Jackal) && (target.Is(CustomRoles.Sidekick) || target.Is(CustomRoles.Recruit))) ||
-                        (seer.Is(CustomRoles.Sidekick) && (target.Is(CustomRoles.Jackal) || target.Is(CustomRoles.Recruit) || target.Is(CustomRoles.Sidekick))) ||
-                        (seer.Is(CustomRoles.Recruit) && (target.Is(CustomRoles.Jackal) || target.Is(CustomRoles.Sidekick) || target.Is(CustomRoles.Recruit))) ||
-                        (seer.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoles.Marshall) && target.GetPlayerTaskState().IsTaskFinished) ||
-                        (seer.IsRevealedPlayer(target) && !target.Is(CustomRoles.Trickster)) ||
-                        (seer.Is(CustomRoles.God) || target.Is(CustomRoles.GM)) ||
-                        (target.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) ||
-                        (target.Is(CustomRoles.Doctor) && !target.IsEvilAddons() && Options.DoctorVisibleToEveryone.GetBool()) ||
-                        (target.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && target.GetPlayerTaskState().IsTaskFinished) ||
-                        (target.Is(CustomRoles.Gravestone) && target.Data.IsDead) ||
-                        (target.Is(CustomRoles.Ntr) && Options.LoverKnowRoles.GetBool()) ||
-                        (Main.PlayerStates[target.PlayerId].deathReason == PlayerState.DeathReason.Vote && Options.SeeEjectedRolesInMeeting.GetBool()) ||
-                        Totocalcio.KnowRole(seer, target) ||
-                        Romantic.KnowRole(seer, target) ||
-                        Lawyer.KnowRole(seer, target) ||
-                        EvilDiviner.IsShowTargetRole(seer, target) ||
-                        PotionMaster.IsShowTargetRole(seer, target) ||
-                        Executioner.KnowRole(seer, target) ||
-                        Succubus.KnowRole(seer, target) ||
-                        CursedSoul.KnowRole(seer, target) ||
-                        Admirer.KnowRole(seer, target) ||
-                        Amnesiac.KnowRole(seer, target) ||
-                        Infectious.KnowRole(seer, target) ||
-                        Virus.KnowRole(seer, target)
+                    string TargetRoleText = ExtendedPlayerControl.KnowRoleTraget(seer, target)
                             ? $"<size={fontSize}>{target.GetDisplayRoleName(seer.PlayerId != target.PlayerId && !seer.Data.IsDead)}{GetProgressText(target)}</size>\r\n" : "";
 
 
