@@ -291,6 +291,7 @@ internal static class CustomRolesHelper
             CustomRoles.VoidBallot or
             CustomRoles.Aware or
             CustomRoles.Swift or
+            CustomRoles.Cleansed or
             CustomRoles.Gravestone or
             CustomRoles.Trapper or
             CustomRoles.Mare or
