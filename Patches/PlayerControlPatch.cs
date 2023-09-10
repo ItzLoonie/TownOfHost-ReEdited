@@ -1630,7 +1630,7 @@ class ReportDeadBodyPatch
             //     if (__instance.Is(CustomRoles.Minimalism)) return false;
 
             // if Bait is killed, check the setting condition
-            if (!(target.Object.Is(CustomRoles.Bait) && Options.BaitCanBeReportedUnderAllConditions.GetBool()))
+            if (!(target != null && target.Object.Is(CustomRoles.Bait) && Options.BaitCanBeReportedUnderAllConditions.GetBool()))
             {
                 // Camouflager
                 if (Camouflager.DisableReportWhenCamouflageIsActive.GetBool() && Camouflager.IsActive && !(Utils.IsActive(SystemTypes.Comms) && Options.CommsCamouflage.GetBool())) return false;

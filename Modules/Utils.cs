@@ -1003,7 +1003,8 @@ public static class Utils
         if (Options.SabotageTimeControl.GetBool()) { SendMessage(GetString("SabotageTimeControlInfo"), PlayerId); }
         if (Options.RandomMapsMode.GetBool()) { SendMessage(GetString("RandomMapsModeInfo"), PlayerId); }
         if (Main.EnableGM.Value) { SendMessage(GetRoleName(CustomRoles.GM) + GetString("GMInfoLong"), PlayerId); }
-        foreach (var role in Enum.GetValues(typeof(CustomRoles)).Cast<CustomRoles>())
+        
+        foreach (var role in CustomRolesHelper.AllRoles)
         {
             if (role.IsEnable() && !role.IsVanilla()) SendMessage(GetRoleName(role) + GetRoleMode(role) + GetString(Enum.GetName(typeof(CustomRoles), role) + "InfoLong"), PlayerId);
         }
@@ -1127,7 +1128,7 @@ public static class Utils
         //var crewsb = new StringBuilder();
         //var addonsb = new StringBuilder();
         //int headCount = -1;
-        foreach (CustomRoles role in Enum.GetValues(typeof(CustomRoles)))
+        foreach (var role in CustomRolesHelper.AllRoles)
         {
             string mode = role.GetMode() == 1 ? GetString("RoleRateNoColor") : GetString("RoleOnNoColor");
             if (role.IsEnable())
@@ -2482,7 +2483,7 @@ public static class Utils
         if (sendLog)
         {
             var sb = new StringBuilder(100);
-            foreach (var countTypes in Enum.GetValues(typeof(CountTypes)).Cast<CountTypes>())
+            foreach (var countTypes in EnumHelper.GetAllValues<CountTypes>())
             {
                 var playersCount = PlayersCount(countTypes);
                 if (playersCount == 0) continue;
