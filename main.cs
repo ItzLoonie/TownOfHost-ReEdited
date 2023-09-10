@@ -529,9 +529,6 @@ public class Main : BasePlugin
 
              //   {CustomRoles.QuickFix, "#3333ff"},
 
-
-                //SoloKombat
-                {CustomRoles.KB_Normal, "#f55252"}
             };
             foreach (var role in Enum.GetValues(typeof(CustomRoles)).Cast<CustomRoles>())
             {
@@ -803,9 +800,6 @@ public enum CustomRoles
     Shade,
    // Sorcerer,
    // Flux,
-    
-    //SoloKombat
-    KB_Normal,
 
     //GM
     GM,
