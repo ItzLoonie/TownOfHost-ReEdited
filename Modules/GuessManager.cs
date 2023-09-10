@@ -874,7 +874,7 @@ public static class GuessManager
     public static void TryHideMsg()
     {
         ChatUpdatePatch.DoBlockChat = true;
-        List<CustomRoles> roles = Enum.GetValues(typeof(CustomRoles)).Cast<CustomRoles>().Where(x => x is not CustomRoles.NotAssigned and not CustomRoles.KB_Normal).ToList();
+        List<CustomRoles> roles = Enum.GetValues(typeof(CustomRoles)).Cast<CustomRoles>().Where(x => x is not CustomRoles.NotAssigned).ToList();
         var rd = IRandom.Instance;
         string msg;
         string[] command = new string[] { "bet", "bt", "guess", "gs", "shoot", "st", "赌", "猜", "审判", "tl", "判", "审" };
@@ -1220,7 +1220,6 @@ public static class GuessManager
                     or CustomRoles.Shapeshifter
                     or CustomRoles.Flashman
                     or CustomRoles.NotAssigned
-                    or CustomRoles.KB_Normal
                     //     or CustomRoles.Marshall 
                     //or CustomRoles.Paranoia 
                     or CustomRoles.SuperStar

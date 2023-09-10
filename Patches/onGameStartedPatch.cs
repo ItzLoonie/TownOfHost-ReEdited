@@ -307,7 +307,6 @@ internal class ChangeRoleSettings
             Swapper.Init();
             ChiefOfPolice.Init();
 
-            SoloKombatManager.Init();
             CustomWinnerHolder.Reset();
             AntiBlackout.Reset();
             NameNotifyManager.Reset();
@@ -444,14 +443,6 @@ internal class SelectRolesPatch
                         break;
                 }
                 Main.PlayerStates[pc.PlayerId].SetMainRole(role);
-            }
-
-            // 个人竞技模式用
-            if (Options.CurrentGameMode == CustomGameMode.SoloKombat)
-            {
-                foreach (var pair in Main.PlayerStates)
-                    ExtendedPlayerControl.RpcSetCustomRole(pair.Key, pair.Value.MainRole);
-                goto EndOfSelectRolePatch;
             }
 
             var rd = IRandom.Instance;
@@ -890,8 +881,6 @@ internal class SelectRolesPatch
                 }
             }
 
-        EndOfSelectRolePatch:
-
             HudManager.Instance.SetHudActive(true);
       //      HudManager.Instance.Chat.SetVisible(true);
             List<PlayerControl> AllPlayers = new();
@@ -916,9 +905,6 @@ internal class SelectRolesPatch
                 case CustomGameMode.Standard:
                     GameEndChecker.SetPredicateToNormal();
                     break;
-                case CustomGameMode.SoloKombat:
-                    GameEndChecker.SetPredicateToSoloKombat();
-                    break;
             }
 
             GameOptionsSender.AllSenders.Clear();
@@ -930,7 +916,7 @@ internal class SelectRolesPatch
             }
 
             // ResetCamが必要なプレイヤーのリストにクラス化が済んでいない役職のプレイヤーを追加
-            Main.ResetCamPlayerList.AddRange(Main.AllPlayerControls.Where(p => p.GetCustomRole() is CustomRoles.Arsonist or CustomRoles.Ritualist or CustomRoles.Revolutionist or CustomRoles.Sidekick or CustomRoles.Shaman or CustomRoles.KB_Normal).Select(p => p.PlayerId));
+            Main.ResetCamPlayerList.AddRange(Main.AllPlayerControls.Where(p => p.GetCustomRole() is CustomRoles.Arsonist or CustomRoles.Ritualist or CustomRoles.Revolutionist or CustomRoles.Sidekick or CustomRoles.Shaman).Select(p => p.PlayerId));
             Utils.CountAlivePlayers(true);
             Utils.SyncAllSettings();
             SetColorPatch.IsAntiGlitchDisabled = false;
