@@ -222,6 +222,7 @@ public static class Options
     public static OptionItem WorkaholicVisibleToEveryone;
     public static OptionItem WorkaholicGiveAdviceAlive;
     public static OptionItem BaitNotification;
+    public static OptionItem BaitCanBeReportedUnderAllConditions;
     public static OptionItem DoctorVisibleToEveryone;
     public static OptionItem JackalWinWithSidekick;
     public static OptionItem ArsonistDouseTime;
@@ -1758,10 +1759,13 @@ public static class Options
         BaitDelayMax = FloatOptionItem.Create(13714, "BaitDelayMax", new(0f, 10f, 1f), 0f, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Bait])
             .SetValueFormat(OptionFormat.Seconds);
-        BaitDelayNotify = BooleanOptionItem.Create(13715, "BaitDelayNotify", true, TabGroup.Addons, false)
+        BaitDelayNotify = BooleanOptionItem.Create(13715, "BaitDelayNotify", false, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Bait]);
         BaitNotification = BooleanOptionItem.Create(13716, "BaitNotification", false, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Bait]);
+        BaitCanBeReportedUnderAllConditions = BooleanOptionItem.Create(13717, "BaitCanBeReportedUnderAllConditions", false, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Bait]);
+
         SetupAdtRoleOptions(13800, CustomRoles.Trapper, canSetNum: true);
         ImpCanBeTrapper = BooleanOptionItem.Create(13810, "ImpCanBeTrapper", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Trapper]);
