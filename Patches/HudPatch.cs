@@ -277,10 +277,6 @@ class HudManagerPatch
                         __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         Hacker.GetAbilityButtonText(__instance, player.PlayerId);
                         break;
-                    case CustomRoles.KB_Normal:
-                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
-                        __instance.KillButton.OverrideText(GetString("GamerButtonText"));
-                        break;
                     case CustomRoles.Cleaner:
                         __instance.ReportButton.OverrideText(GetString("CleanerReportButtonText"));
                         break;
@@ -629,7 +625,6 @@ class SetHudActivePatch
                 break;
 
             case CustomRoles.Minimalism:
-            case CustomRoles.KB_Normal:
                 __instance.SabotageButton.ToggleVisible(false);
                 __instance.AbilityButton.ToggleVisible(false);
                 __instance.ReportButton.ToggleVisible(false);

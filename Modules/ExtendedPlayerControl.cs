@@ -600,9 +600,6 @@ static class ExtendedPlayerControl
             CustomRoles.Arsonist => pc.IsDouseDone(),
             CustomRoles.Revolutionist => pc.IsDrawDone(),
 
-            //SoloKombat
-            CustomRoles.KB_Normal => true,
-
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
     }
