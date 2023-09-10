@@ -123,7 +123,6 @@ enum CustomRPC
     SetPoliceLimlit,
     SetPotionMaster,
     SetChameleonTimer,
-    DoPoison,
     SetAdmireLimit,
     SetRememberLimit,
 }
@@ -579,9 +578,6 @@ internal class RPCHandlerPatch
             case CustomRPC.SetVultureArrow:
                 Vulture.ReceiveRPC(reader);
                 break;
-            case CustomRPC.DoPoison:
-                Baker.ReceiveRPC(reader);
-                break;
             case CustomRPC.SetSpiritcallerSpiritLimit:
                 Spiritcaller.ReceiveRPC(reader);
                 break;
@@ -959,9 +955,6 @@ internal static class RPC
                 break;
             case CustomRoles.ParityCop:
                 ParityCop.Add(targetId);
-                break;
-            case CustomRoles.Baker:
-                Baker.Add(targetId);
                 break;
             case CustomRoles.Councillor:
                 Councillor.Add(targetId);

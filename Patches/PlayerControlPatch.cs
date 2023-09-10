@@ -250,10 +250,6 @@ class CheckMurderPatch
                 case CustomRoles.Assassin:
                     if (!Assassin.OnCheckMurder(killer, target)) return false;
                     break;
-                case CustomRoles.Famine:
-                    Baker.FamineKilledTasks(target.PlayerId);
-                    break;
-
                 case CustomRoles.Witch:
                     if (!Witch.OnCheckMurder(killer, target)) return false;
                     break;

@@ -291,7 +291,6 @@ internal class ChangeRoleSettings
             Wildling.Init();
             Morphling.Init();
             ParityCop.Init(); // *giggle* party cop
-            Baker.Init();
             Spiritcaller.Init();
             Lurker.Init();
             PlagueBearer.Init();
@@ -560,9 +559,6 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Sidekick:
                         Sidekick.Add(pc.PlayerId);
-                        break;
-                    case CustomRoles.Baker:
-                        Baker.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Poisoner:
                         Poisoner.Add(pc.PlayerId);
