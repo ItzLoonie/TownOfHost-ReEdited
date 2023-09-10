@@ -1310,6 +1310,13 @@ class MurderPlayerPatch
 
         if (Executioner.Target.ContainsValue(target.PlayerId))
             Executioner.ChangeRoleByTarget(target);
+
+        if (target.Is(CustomRoles.Executioner) && Executioner.Target.ContainsKey(target.PlayerId))
+        {
+            Executioner.Target.Remove(target.PlayerId);
+            Executioner.SendRPC(target.PlayerId);
+        }
+
         if (Lawyer.Target.ContainsValue(target.PlayerId))
             Lawyer.ChangeRoleByTarget(target);
         Hacker.AddDeadBody(target);

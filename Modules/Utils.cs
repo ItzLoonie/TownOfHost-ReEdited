@@ -538,7 +538,7 @@ public static class Utils
                     hasTasks = false;
                 break;
             case CustomRoles.Executioner:
-                if (Executioner.ChangeRolesAfterTargetKilled.GetValue() != 1)
+                if (Executioner.ChangeRolesAfterTargetKilled.GetValue() <= 5)
                     hasTasks = !ForRecompute;
                 else hasTasks = false;
                 break;
@@ -2444,13 +2444,6 @@ public static class Utils
             case CustomRoles.Terrorist:
                 Logger.Info(target?.Data?.PlayerName + "はTerroristだった", "MurderPlayer");
                 CheckTerroristWin(target.Data);
-                break;
-            case CustomRoles.Executioner:
-                if (Executioner.Target.ContainsKey(target.PlayerId))
-                {
-                    Executioner.Target.Remove(target.PlayerId);
-                    Executioner.SendRPC(target.PlayerId);
-                }
                 break;
             case CustomRoles.Lawyer:
                 if (Lawyer.Target.ContainsKey(target.PlayerId))
