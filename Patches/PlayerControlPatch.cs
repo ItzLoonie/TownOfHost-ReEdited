@@ -2675,50 +2675,10 @@ class FixedUpdatePatch
                 RoleText.text = RoleTextData.Item1;
                 if (Options.CurrentGameMode == CustomGameMode.SoloKombat) RoleText.text = "";
                 RoleText.color = RoleTextData.Item2;
-                if (__instance.AmOwner) RoleText.enabled = true; //自分ならロールを表示
-                else if (Options.CurrentGameMode == CustomGameMode.SoloKombat) RoleText.enabled = true;
-                else if (Main.VisibleTasksCount && PlayerControl.LocalPlayer.Data.IsDead && Options.GhostCanSeeOtherRoles.GetBool()) RoleText.enabled = true; //他プレイヤーでVisibleTasksCountが有効なおかつ自分が死んでいるならロールを表示
-                else if (PlayerControl.LocalPlayer.Is(CustomRoles.Mimic) && Main.VisibleTasksCount && __instance.Data.IsDead && Options.MimicCanSeeDeadRoles.GetBool()) RoleText.enabled = true; //他プレイヤーでVisibleTasksCountが有効なおかつ自分が死んでいるならロールを表示
-                else if (__instance.Is(CustomRoles.Mimic) && Main.VisibleTasksCount && __instance.Data.IsDead) RoleText.enabled = true; //他プレイヤーでVisibleTasksCountが有効なおかつ自分が死んでいるならロールを表示
-                else if (__instance.Is(CustomRoles.Lovers) && PlayerControl.LocalPlayer.Is(CustomRoles.Lovers) && Options.LoverKnowRoles.GetBool()) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoles.Ntr) && Options.LoverKnowRoles.GetBool()) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoleTypes.Impostor) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Impostor) && Options.ImpKnowAlliesRole.GetBool()) RoleText.enabled = true;
-                else if (__instance.GetCustomRole().IsCoven() && PlayerControl.LocalPlayer.GetCustomRole().IsCoven() && Options.CovenKnowAlliesRole.GetBool()) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoleTypes.Impostor) && PlayerControl.LocalPlayer.Is(CustomRoles.Madmate) && Options.MadmateKnowWhosImp.GetBool()) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoles.Madmate) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Impostor) && Options.ImpKnowWhosMadmate.GetBool()) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoleTypes.Impostor) && PlayerControl.LocalPlayer.Is(CustomRoles.Crewpostor) && Options.AlliesKnowCrewpostor.GetBool()) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoles.Crewpostor) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Impostor) && Options.CrewpostorKnowsAllies.GetBool()) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoles.Madmate) && PlayerControl.LocalPlayer.Is(CustomRoles.Madmate) && Options.MadmateKnowWhosMadmate.GetBool()) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoles.Rogue) && PlayerControl.LocalPlayer.Is(CustomRoles.Rogue) && Options.RogueKnowEachOther.GetBool() && Options.RogueKnowEachOtherRoles.GetBool()) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoles.Jackal) && (PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick) || PlayerControl.LocalPlayer.Is(CustomRoles.Recruit))) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoles.Sidekick) && (PlayerControl.LocalPlayer.Is(CustomRoles.Jackal) || PlayerControl.LocalPlayer.Is(CustomRoles.Recruit) || PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick))) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoles.Recruit) && (PlayerControl.LocalPlayer.Is(CustomRoles.Jackal) || PlayerControl.LocalPlayer.Is(CustomRoles.Sidekick) || PlayerControl.LocalPlayer.Is(CustomRoles.Recruit))) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoles.Workaholic) && Options.WorkaholicVisibleToEveryone.GetBool()) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoles.Doctor) && !__instance.IsEvilAddons() && Options.DoctorVisibleToEveryone.GetBool()) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && __instance.GetPlayerTaskState().IsTaskFinished) RoleText.enabled = true;
-                else if (__instance.Is(CustomRoles.Marshall) && PlayerControl.LocalPlayer.Is(CustomRoleTypes.Crewmate) && __instance.GetPlayerTaskState().IsTaskFinished) RoleText.enabled = true;
-                else if (Totocalcio.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
-                else if (Romantic.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
-                else if (Lawyer.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
-                else if (EvilDiviner.IsShowTargetRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
-                else if (PotionMaster.IsShowTargetRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
-                else if (Executioner.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
-                else if (Succubus.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
-                else if (CursedSoul.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
-                else if (Admirer.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
-                else if (Amnesiac.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
-                else if (Infectious.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
-                else if (Virus.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
-                else if (PlayerControl.LocalPlayer.IsRevealedPlayer(__instance)) RoleText.enabled = true;
-                else if (PlayerControl.LocalPlayer.Is(CustomRoles.God)) RoleText.enabled = true;
-                else if (PlayerControl.LocalPlayer.Is(CustomRoles.GM)) RoleText.enabled = true;
-                else if (Totocalcio.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
-                else if (Lawyer.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
-                else if (EvilDiviner.IsShowTargetRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
-                else if (PotionMaster.IsShowTargetRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
-                else if (Executioner.KnowRole(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
-                else if (Main.GodMode.Value) RoleText.enabled = true;
-                else RoleText.enabled = false; //そうでなければロールを非表示
+                if (__instance.AmOwner) RoleText.enabled = true;
+                else if (ExtendedPlayerControl.KnowRoleTraget(PlayerControl.LocalPlayer, __instance)) RoleText.enabled = true;
+                else RoleText.enabled = false; 
+
                 if (!PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer.IsRevealedPlayer(__instance) && __instance.Is(CustomRoles.Trickster))
                 {
                     RoleText.text = Farseer.RandomRole[PlayerControl.LocalPlayer.PlayerId];
