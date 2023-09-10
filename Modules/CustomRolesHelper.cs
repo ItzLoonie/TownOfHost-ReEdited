@@ -2,12 +2,14 @@ using AmongUs.GameOptions;
 using System.Linq;
 using TOHE.Roles.Crewmate;
 using TOHE.Roles.Neutral;
-using static UnityEngine.GraphicsBuffer;
 
 namespace TOHE;
 
-internal static class CustomRolesHelper
+static class CustomRolesHelper
 {
+    public static readonly CustomRoles[] AllRoles = EnumHelper.GetAllValues<CustomRoles>();
+    public static readonly CustomRoleTypes[] AllRoleTypes = EnumHelper.GetAllValues<CustomRoleTypes>();
+
     public static CustomRoles GetVNRole(this CustomRoles role) // RoleBase: Impostor, Shapeshifter, Crewmate, Engineer, Scientist
     {
         return role.IsVanilla()
