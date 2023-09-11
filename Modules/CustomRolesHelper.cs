@@ -5,8 +5,11 @@ using TOHE.Roles.Neutral;
 
 namespace TOHE;
 
-internal static class CustomRolesHelper
+static class CustomRolesHelper
 {
+    public static readonly CustomRoles[] AllRoles = EnumHelper.GetAllValues<CustomRoles>();
+    public static readonly CustomRoleTypes[] AllRoleTypes = EnumHelper.GetAllValues<CustomRoleTypes>();
+
     public static CustomRoles GetVNRole(this CustomRoles role) // RoleBase: Impostor, Shapeshifter, Crewmate, Engineer, Scientist
     {
         return role.IsVanilla()
@@ -189,7 +192,7 @@ internal static class CustomRolesHelper
                 CustomRoles.Retributionist => CustomRoles.Crewmate,
                 CustomRoles.Guardian => CustomRoles.CrewmateTOHE,
                 CustomRoles.Addict => CustomRoles.EngineerTOHE,
-                CustomRoles.Oracle => CustomRoles.EngineerTOHE,
+                CustomRoles.Oracle => CustomRoles.CrewmateTOHE,
                 CustomRoles.Chameleon => CustomRoles.EngineerTOHE,
                 _ => role.IsImpostor() ? CustomRoles.ImpostorTOHE : CustomRoles.CrewmateTOHE,
             };
@@ -199,9 +202,6 @@ internal static class CustomRolesHelper
     {
         return role switch
         {
-            //SoloKombat
-            CustomRoles.KB_Normal => RoleTypes.Impostor,
-
             //Standard
             CustomRoles.Sheriff => RoleTypes.Impostor,
             CustomRoles.Jailer => RoleTypes.Impostor,
@@ -469,8 +469,6 @@ internal static class CustomRolesHelper
             CustomRoles.God or
             CustomRoles.Mario or
             CustomRoles.Revolutionist or
-            CustomRoles.Famine or
-            CustomRoles.Baker or
             CustomRoles.Romantic or
             CustomRoles.VengefulRomantic or
             CustomRoles.Provocateur;
@@ -516,8 +514,6 @@ internal static class CustomRolesHelper
             CustomRoles.Terrorist or
             CustomRoles.Vulture or
             CustomRoles.Workaholic or
-            CustomRoles.Famine or
-            CustomRoles.Baker or
             CustomRoles.Revolutionist or
             CustomRoles.Provocateur;
     }
@@ -646,9 +642,6 @@ internal static class CustomRolesHelper
     public static bool IsNeutral(this CustomRoles role)
     {
         return role is
-            //SoloKombat
-            CustomRoles.KB_Normal or
-            //Standard
             CustomRoles.Jester or
             CustomRoles.Opportunist or
             CustomRoles.Mario or
@@ -656,8 +649,6 @@ internal static class CustomRolesHelper
             CustomRoles.Amnesiac or
             CustomRoles.Medusa or
             CustomRoles.Ritualist or
-            CustomRoles.Famine or
-            CustomRoles.Baker or
             CustomRoles.HexMaster or
             CustomRoles.Occultist or
             CustomRoles.Glitch or
@@ -799,9 +790,6 @@ internal static class CustomRolesHelper
     public static bool IsNeutralWithGuessAccess(this CustomRoles role)
     {
         return role is
-            //SoloKombat
-            CustomRoles.KB_Normal or
-            //Standard
             CustomRoles.Jester or
             CustomRoles.Opportunist or
             CustomRoles.Mario or
@@ -949,6 +937,7 @@ internal static class CustomRolesHelper
                 if (pc.Is(CustomRoles.Trapper)
                     || pc.Is(CustomRoles.Unreportable)
                     || pc.Is(CustomRoles.Burst)
+                    || (pc.Is(CustomRoles.Onbound) && Options.BaitNotification.GetBool())
                     || pc.Is(CustomRoles.GuardianAngelTOHE))
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeBait.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeBait.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeBait.GetBool()))
@@ -972,20 +961,27 @@ internal static class CustomRolesHelper
                     || pc.Is(CustomRoles.Judge)
                     || pc.Is(CustomRoles.CopyCat)
                     || pc.Is(CustomRoles.Doomsayer)
-                    || pc.Is(CustomRoles.DoubleShot)
                     || pc.Is(CustomRoles.Mafia)
                     || pc.Is(CustomRoles.Councillor)
                     || pc.Is(CustomRoles.GuardianAngelTOHE)
                     || pc.Is(CustomRoles.Ritualist)
                     || pc.Is(CustomRoles.God))
                     return false;
+                if ((pc.Is(CustomRoles.Phantom) && !Options.PhantomCanGuess.GetBool())
+                    || (pc.Is(CustomRoles.Terrorist) && (!Options.TerroristCanGuess.GetBool() || Options.CanTerroristSuicideWin.GetBool()))
+                    || (pc.Is(CustomRoles.Workaholic) && !Options.WorkaholicCanGuess.GetBool())
+                    || (pc.Is(CustomRoles.God) && !Options.GodCanGuess.GetBool()))
+                    return false; //Based on guess manager
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeGuesser.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeGuesser.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeGuesser.GetBool()))
                     return false;
                 break;
 
             case CustomRoles.Onbound:
-                if (pc.Is(CustomRoles.SuperStar))
-                    return false;
+                if (pc.Is(CustomRoles.SuperStar)
+                    || (pc.Is(CustomRoles.Doctor) && Options.DoctorVisibleToEveryone.GetBool())
+                    || (pc.Is(CustomRoles.Bait) && Options.BaitNotification.GetBool())
+                    || pc.Is(CustomRoles.Glow) || pc.Is(CustomRoles.LastImpostor) || pc.Is(CustomRoles.Mare))
+                    return false; //Based on guess manager
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeOnbound.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeOnbound.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeOnbound.GetBool()))
                     return false;
                 break;
@@ -1256,7 +1252,8 @@ internal static class CustomRolesHelper
                     || pc.Is(CustomRoles.Bomber)
                     || pc.Is(CustomRoles.Nuker)
                     || pc.Is(CustomRoles.BoobyTrap)
-                    || pc.Is(CustomRoles.Capitalism))
+                    || pc.Is(CustomRoles.Capitalism)
+                    || pc.Is(CustomRoles.Onbound))
                     return false;
                 if (!pc.GetCustomRole().IsImpostor())
                     return false;
@@ -1342,6 +1339,7 @@ internal static class CustomRolesHelper
                 break;
 
             case CustomRoles.Glow:
+                if (pc.Is(CustomRoles.Onbound)) return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeGlow.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeGlow.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeGlow.GetBool()))
                     return false;
                 break;
