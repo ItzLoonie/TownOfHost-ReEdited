@@ -192,7 +192,7 @@ static class CustomRolesHelper
                 CustomRoles.Retributionist => CustomRoles.Crewmate,
                 CustomRoles.Guardian => CustomRoles.CrewmateTOHE,
                 CustomRoles.Addict => CustomRoles.EngineerTOHE,
-                CustomRoles.Oracle => CustomRoles.EngineerTOHE,
+                CustomRoles.Oracle => CustomRoles.CrewmateTOHE,
                 CustomRoles.Chameleon => CustomRoles.EngineerTOHE,
                 _ => role.IsImpostor() ? CustomRoles.ImpostorTOHE : CustomRoles.CrewmateTOHE,
             };
