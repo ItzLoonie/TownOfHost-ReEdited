@@ -1196,7 +1196,8 @@ static class ExtendedPlayerControl
         if (seer.PlayerId == target.PlayerId) knowRoleAddonsTarget = true;
         if (seer.Data.IsDead || seer.Is(CustomRoles.GM) || (seer.AmOwner && Main.GodMode.Value)) knowRoleAddonsTarget = true;
         if (seer.Is(CustomRoles.God) && Options.GodKnowAddons.GetBool()) knowRoleAddonsTarget = true;
-        if (Options.LoverKnowAddons.GetBool() && seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers)) knowRoleAddonsTarget = true;
+        if (Options.LoverKnowAddons.GetBool() && Options.LoverKnowRoles.GetBool() 
+            && seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers)) knowRoleAddonsTarget = true;
 
         //Niko also want to add imposters and some neutrals here. But things related with converted roles and task states confused Niko.
         //Maybe these stuffs will be added later!
