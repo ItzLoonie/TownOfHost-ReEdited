@@ -98,8 +98,8 @@ public static class Puppeteer
         PuppeteerList.Clear();
     }
 
-    public static string TargetMark(PlayerControl seer, PlayerControl target) 
-        => (PuppeteerList.ContainsKey(seer.PlayerId) && PuppeteerList.ContainsKey(target.PlayerId)) ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.Puppeteer), "◆") : "";
+    public static string TargetMark(PlayerControl seer, PlayerControl target)
+        => (PuppeteerList.ContainsValue(seer.PlayerId) && PuppeteerList.ContainsValue(target.PlayerId)) ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.Puppeteer), "◆") : "";
 
     public static void SetKillButtonText(HudManager __instance)
         => __instance.KillButton.OverrideText(GetString("PuppeteerOperateButtonText"));

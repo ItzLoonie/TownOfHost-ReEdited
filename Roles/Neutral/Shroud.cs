@@ -104,7 +104,7 @@ public static class Shroud
     }
 
     public static string TargetMark(PlayerControl seer, PlayerControl target)
-        => (seer.Is(CustomRoles.Shroud) && ShroudList.ContainsKey(seer.PlayerId) && ShroudList.ContainsKey(target.PlayerId)) ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.Shroud), "◈") : "";
+        => (ShroudList.ContainsValue(seer.PlayerId) && ShroudList.ContainsValue(target.PlayerId)) ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.Shroud), "◈") : "";
     
     public static string GetShroudMark(byte target, bool isMeeting)
     {

@@ -147,6 +147,7 @@ public class ModNewsHistory
                             "\n     - Fixed bug where role Tracefinder sometime did not have arrows" +
                             "\n     - Fixed bug when setting \"Neutrals Win Together\" doesn't work" +
                             "\n     - Fixed Bug When Some Neutrals Cant Click Sabotage Button (Host)" +
+                            "\n     - Fixed Bug When Puppeteer and Witch Dont Sees Target Mark" +
                             "\n     - Fixed Zoom" +
                             "\n     - Some fixes black screen" +
                             "\n     - Some Fix for Sheriff" +
@@ -386,6 +387,7 @@ public class ModNewsHistory
                             "\n     - Исправлена ​​ошибка, из-за которой у роли Искателя иногда не было стрелок" +
                             "\n     - Исправлена ​​ошибка, из-за которой настройка «Нейтралы побеждают вместе» не работала." +
                             "\n     - Исправлена ​​ошибка, когда некоторые нейтральные роли не могли нажать кнопку саботажа (Хост)." +
+                            "\n     - Исправлена ​​ошибка, когда Кукловод и Заклинатель не могли видеть марку у цели." +
                             "\n     - Исправлен сломанный Зум" +
                             "\n     - Некоторые исправления черного экрана (И некоторая защита)" +
                             "\n     - Некоторые исправления у Шерифа" +

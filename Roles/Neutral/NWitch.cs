@@ -104,7 +104,7 @@ public static class NWitch
         TaglockedList.Clear();
     }
     public static string TargetMark(PlayerControl seer, PlayerControl target)
-        => (TaglockedList.ContainsKey(seer.PlayerId) && TaglockedList.ContainsKey(target.PlayerId)) ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.NWitch), "◆") : "";
+        => (TaglockedList.ContainsValue(seer.PlayerId) && TaglockedList.ContainsValue(target.PlayerId)) ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.NWitch), "◆") : "";
 
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = ControlCooldown.GetFloat();
     public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(HasImpostorVision.GetBool());
