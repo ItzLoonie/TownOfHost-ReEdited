@@ -799,6 +799,9 @@ internal static class RPC
             case CustomRoles.TimeThief:
                 TimeThief.Add(targetId);
                 break;
+            case CustomRoles.Puppeteer:
+                Puppeteer.Add();
+                break;
             case CustomRoles.Sniper:
                 Sniper.Add(targetId);
                 break;
