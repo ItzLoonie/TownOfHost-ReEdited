@@ -805,7 +805,7 @@ class MeetingHudStartPatch
         {
             var pc = Utils.GetPlayerById(pva.TargetPlayerId);
             if (pc == null) continue;
-            var RoleTextData = Utils.GetRoleText(PlayerControl.LocalPlayer.PlayerId, pc.PlayerId);
+            var RoleTextData = Utils.GetRoleText(PlayerControl.LocalPlayer.PlayerId, pc.PlayerId, ExtendedPlayerControl.KnowRoleAddonsTarget(PlayerControl.LocalPlayer, pc));
             var roleTextMeeting = UnityEngine.Object.Instantiate(pva.NameText);
             roleTextMeeting.transform.SetParent(pva.NameText.transform);
             roleTextMeeting.transform.localPosition = new Vector3(0f, -0.18f, 0f);
@@ -1071,8 +1071,6 @@ class MeetingHudStartPatch
                     break;
             }
 
-            bool isLover = false;
-
             foreach (var SeerSubRole in seer.GetCustomSubRoles())
             {
                 switch (SeerSubRole)
@@ -1089,10 +1087,10 @@ class MeetingHudStartPatch
                 switch (TargetSubRole)
                 {
                     case CustomRoles.Lovers:
-                        if (seer.Is(CustomRoles.Lovers) || seer.Data.IsDead)
+                        if (seer.Is(CustomRoles.Lovers) || seer.Data.IsDead
+                            || (seer.Is(CustomRoles.God) && Options.GodKnowAddons.GetBool()))
                         {
                             sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lovers), "♥"));
-                            isLover = true;
                         }
                         break;
                      /*     case CustomRoles.Sidekick:
@@ -1107,9 +1105,8 @@ class MeetingHudStartPatch
             //add checks for both seer and target's subrole, maybe one day we can use them...
 
             //海王相关显示
-            if ((seer.Is(CustomRoles.Ntr) || target.Is(CustomRoles.Ntr)) && !seer.Data.IsDead && !isLover)
-                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lovers), "♥"));
-            else if (seer == target && CustomRolesHelper.RoleExist(CustomRoles.Ntr) && !isLover)
+            if (!seer.Data.IsDead && target.Is(CustomRoles.Ntr)
+                && !(seer.Is(CustomRoles.God) && Options.GodKnowAddons.GetBool()))
                 sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lovers), "♥"));
 
             //呪われている場合

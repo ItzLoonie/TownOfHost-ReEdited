@@ -2669,7 +2669,7 @@ class FixedUpdatePatch
             }
             if (GameStates.IsInGame)
             {
-                var RoleTextData = Utils.GetRoleText(PlayerControl.LocalPlayer.PlayerId, __instance.PlayerId);
+                var RoleTextData = Utils.GetRoleText(PlayerControl.LocalPlayer.PlayerId, __instance.PlayerId, !ExtendedPlayerControl.KnowRoleAddonsTarget(PlayerControl.LocalPlayer, __instance));
                 RoleText.text = RoleTextData.Item1;
                 RoleText.color = RoleTextData.Item2;
                 if (__instance.AmOwner) RoleText.enabled = true;
@@ -2835,22 +2835,16 @@ class FixedUpdatePatch
                 if (Sniper.IsEnable && target.AmOwner)
                     Mark.Append(Sniper.GetShotNotify(target.PlayerId));
 
-                if (target.Is(CustomRoles.Lovers) && seer.Is(CustomRoles.Lovers))
-                {
+                if ((seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers))
+                    || (seer.Data.IsDead && target.Is(CustomRoles.Lovers))
+                    || (seer.AmOwner && Main.GodMode.Value && target.Is(CustomRoles.Lovers))
+                    || (!seer.Data.IsDead && !seer.Is(CustomRoles.God) && target.Is(CustomRoles.Ntr))
+                    || (seer.Is(CustomRoles.God) && target.Is(CustomRoles.Lovers) && Options.GodKnowAddons.GetBool())
+                    || (seer.Is(CustomRoles.God) && target.Is(CustomRoles.Ntr) && !Options.GodKnowAddons.GetBool())
+                    || (!seer.Data.IsDead && seer.Is(CustomRoles.Ntr) && !seer.Is(CustomRoles.God))
+                    || (!seer.Data.IsDead && seer.Is(CustomRoles.Ntr) && seer.Is(CustomRoles.God) && !Options.GodKnowAddons.GetBool())
+                    || (seer.PlayerId == target.PlayerId && CustomRolesHelper.RoleExist(CustomRoles.Ntr) && !seer.Is(CustomRoles.God)))
                     Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
-                }
-                else if (target.Is(CustomRoles.Lovers) && seer.Data.IsDead)
-                {
-                    Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
-                }
-                else if (target.Is(CustomRoles.Ntr) || seer.Is(CustomRoles.Ntr))
-                {
-                    Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
-                }
-                else if (target == seer && CustomRolesHelper.RoleExist(CustomRoles.Ntr))
-                {
-                    Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
-                }
 
 
                 Suffix.Append(Snitch.GetSnitchArrow(seer, target));

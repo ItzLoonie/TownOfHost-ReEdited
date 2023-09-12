@@ -334,7 +334,7 @@ public static class Utils
         if (LastImpostor.currentId == targetId)
             RoleText = GetRoleString("Last-") + RoleText;
 
-        if (Options.NameDisplayAddons.GetBool() && !pure && self)
+        if (Options.NameDisplayAddons.GetBool() && (!pure || self))
         {     
             if (Options.AddBracketsToAddons.GetBool())       
             {
@@ -2083,20 +2083,16 @@ public static class Utils
                     if (Deathpact.IsEnable)
                         TargetMark.Append(Deathpact.GetDeathpactMark(seer, target));
 
-
-                    if (seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers))
-                    {
+                    if ((seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers))
+                        || (seer.Data.IsDead && target.Is(CustomRoles.Lovers))
+                        || (seer.AmOwner && Main.GodMode.Value && target.Is(CustomRoles.Lovers))
+                        || (!seer.Data.IsDead && !seer.Is(CustomRoles.God) && target.Is(CustomRoles.Ntr))
+                        || (seer.Is(CustomRoles.God) && target.Is(CustomRoles.Lovers) && Options.GodKnowAddons.GetBool())
+                        || (seer.Is(CustomRoles.God) && target.Is(CustomRoles.Ntr) && !Options.GodKnowAddons.GetBool())
+                        || (!seer.Data.IsDead && seer.Is(CustomRoles.Ntr) && !seer.Is(CustomRoles.God))
+                        || (!seer.Data.IsDead && seer.Is(CustomRoles.Ntr) && seer.Is(CustomRoles.God) && !Options.GodKnowAddons.GetBool()))
                         TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
-                    }
-                    else if (seer.Data.IsDead && !seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers))
-                    {
-                        TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
-                    }
-                    else if (target.Is(CustomRoles.Ntr) || seer.Is(CustomRoles.Ntr))
-                    {
-                        TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
-                    }
-
+                    //Those clearly know ntr won't get influenced by ntr
 
                     if (seer.Is(CustomRoles.Medic) && (Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 1) && (Medic.InProtect(target.PlayerId) || Medic.TempMarkProtected == target.PlayerId))
                     {
@@ -2158,7 +2154,7 @@ public static class Utils
                 // ====== Seer know target role ======
 
                     string TargetRoleText = ExtendedPlayerControl.KnowRoleTarget(seer, target)
-                            ? $"<size={fontSize}>{target.GetDisplayRoleName(seer.PlayerId != target.PlayerId && !seer.Data.IsDead)}{GetProgressText(target)}</size>\r\n" : "";
+                            ? $"<size={fontSize}>{target.GetDisplayRoleName(!ExtendedPlayerControl.KnowRoleAddonsTarget(seer, target))}{GetProgressText(target)}</size>\r\n" : "";
 
 
                     if (!seer.Data.IsDead && seer.IsRevealedPlayer(target) && target.Is(CustomRoles.Trickster))

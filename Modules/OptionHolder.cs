@@ -233,6 +233,8 @@ public static class Options
     public static OptionItem HideJesterVote;
     public static OptionItem LegacyMafia;
     public static OptionItem NotifyGodAlive;
+    public static OptionItem GodKnowAddons;
+    public static OptionItem KnowNtrRole;
     public static OptionItem MarioVentNumWin;
     public static OptionItem MarioVentCD;
     public static OptionItem VeteranSkillCooldown;
@@ -868,6 +870,7 @@ public static class Options
     public static OptionItem ButtonBarryButtons;
     public static OptionItem LoverSpawnChances;
     public static OptionItem LoverKnowRoles;
+    public static OptionItem LoverKnowAddons;
     public static OptionItem LoverSuicide;
     public static OptionItem ImpCanBeEgoist;
     public static OptionItem ImpEgoistVisibalToAllies;
@@ -2162,6 +2165,8 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.God]);
         GodCanGuess = BooleanOptionItem.Create(18211, "CanGuess", false, TabGroup.OtherRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.God]);
+        GodKnowAddons = BooleanOptionItem.Create(18212, "GodKnowAddons", true, TabGroup.OtherRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.God]);
         Spiritcaller.SetupCustomOption();
 
         // 副职
@@ -2170,10 +2175,12 @@ public static class Options
             .SetColor(new Color32(255, 154, 206, byte.MaxValue));
 
         SetupAdtRoleOptions(18600, CustomRoles.Ntr, tab: TabGroup.OtherRoles);
-   /*     SetupAdtRoleOptions(18700, CustomRoles.Flashman, canSetNum: true, tab: TabGroup.OtherRoles);
-        FlashmanSpeed = FloatOptionItem.Create(6050335, "FlashmanSpeed", new(0.25f, 5f, 0.25f), 2.5f, TabGroup.OtherRoles, false)
-        .SetParent(CustomRoleSpawnChances[CustomRoles.Flashman])
-            .SetValueFormat(OptionFormat.Multiplier); */
+        KnowNtrRole = BooleanOptionItem.Create(18610, "KnowNtrRole", true, TabGroup.OtherRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Ntr]);
+        /*     SetupAdtRoleOptions(18700, CustomRoles.Flashman, canSetNum: true, tab: TabGroup.OtherRoles);
+             FlashmanSpeed = FloatOptionItem.Create(6050335, "FlashmanSpeed", new(0.25f, 5f, 0.25f), 2.5f, TabGroup.OtherRoles, false)
+             .SetParent(CustomRoleSpawnChances[CustomRoles.Flashman])
+                 .SetValueFormat(OptionFormat.Multiplier); */
         SetupAdtRoleOptions(18800, CustomRoles.Youtuber, canSetNum: true, tab: TabGroup.OtherRoles);
     /*    SetupAdtRoleOptions(19000, CustomRoles.Sidekick, canSetNum: true, tab: TabGroup.OtherRoles);
         SidekickCountMode = StringOptionItem.Create(19010, "SidekickCountMode", sidekickCountMode, 0, TabGroup.OtherRoles, false)
@@ -2967,6 +2974,10 @@ public static class Options
             .SetGameMode(customGameMode);
 
         LoverKnowRoles = BooleanOptionItem.Create(id + 4, "LoverKnowRoles", true, TabGroup.Addons, false)
+        .SetParent(spawnOption)
+            .SetGameMode(customGameMode);
+
+        LoverKnowAddons = BooleanOptionItem.Create(id + 8, "LoverKnowAddons", true, TabGroup.Addons, false)
         .SetParent(spawnOption)
             .SetGameMode(customGameMode);
 
