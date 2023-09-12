@@ -1199,6 +1199,25 @@ static class ExtendedPlayerControl
         //Maybe these stuffs will be added later!
         else return false;
     }
+
+    public static bool CanSeeLoversMark(PlayerControl seer, PlayerControl target)
+    {
+        bool canSeeLoversMark = false;
+        if (seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers)) canSeeLoversMark = true;
+        else if ((seer.Data.IsDead || seer.Is(CustomRoles.GM) || (seer.AmOwner && Main.GodMode.Value)) 
+            && target.Is(CustomRoles.Lovers)) canSeeLoversMark = true;
+        else if (seer.Is(CustomRoles.God) && !seer.Data.IsDead)
+        {
+            if (Options.GodKnowAddons.GetBool())
+            {
+                if (target.Is(CustomRoles.Lovers)) canSeeLoversMark = true;                
+            }
+            else if (target.Is(CustomRoles.Ntr) && !seer.Data.IsDead) canSeeLoversMark = true;
+        }
+        else if (target.Is(CustomRoles.Ntr)) canSeeLoversMark = true;
+        
+        return canSeeLoversMark;
+    }
     public static string GetRoleInfo(this PlayerControl player, bool InfoLong = false)
     {
         var role = player.GetCustomRole();
