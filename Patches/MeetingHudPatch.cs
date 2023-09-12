@@ -815,7 +815,7 @@ class MeetingHudStartPatch
             roleTextMeeting.color = RoleTextData.Item2;
             roleTextMeeting.gameObject.name = "RoleTextMeeting";
             roleTextMeeting.enableWordWrapping = false;
-            roleTextMeeting.enabled = pc.AmOwner || ExtendedPlayerControl.KnowRoleTraget(PlayerControl.LocalPlayer, pc);
+            roleTextMeeting.enabled = pc.AmOwner || ExtendedPlayerControl.KnowRoleTarget(PlayerControl.LocalPlayer, pc);
 
             if (!PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer.IsRevealedPlayer(pc) && pc.Is(CustomRoles.Trickster))
             {

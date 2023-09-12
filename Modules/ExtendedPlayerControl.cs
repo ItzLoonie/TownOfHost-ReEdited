@@ -1148,7 +1148,7 @@ static class ExtendedPlayerControl
         => (seer.Is(CustomRoles.Visionary))
         && !target.Data.IsDead;
 
-    public static bool KnowRoleTraget(PlayerControl seer, PlayerControl target)
+    public static bool KnowRoleTarget(PlayerControl seer, PlayerControl target)
     {
         if (seer.Is(CustomRoles.God) || target.Is(CustomRoles.GM)) return true;
         else if (Main.VisibleTasksCount && seer.Data.IsDead && Options.GhostCanSeeOtherRoles.GetBool()) return true;

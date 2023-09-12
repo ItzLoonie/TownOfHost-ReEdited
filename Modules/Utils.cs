@@ -2157,7 +2157,7 @@ public static class Utils
 
                 // ====== Seer know target role ======
 
-                    string TargetRoleText = ExtendedPlayerControl.KnowRoleTraget(seer, target)
+                    string TargetRoleText = ExtendedPlayerControl.KnowRoleTarget(seer, target)
                             ? $"<size={fontSize}>{target.GetDisplayRoleName(seer.PlayerId != target.PlayerId && !seer.Data.IsDead)}{GetProgressText(target)}</size>\r\n" : "";
 
 
