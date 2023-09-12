@@ -47,7 +47,7 @@ public static class Shroud
         ShroudList[target.PlayerId] = killer.PlayerId;
         killer.SetKillCooldown();
 
-        Utils.NotifyRoles(SpecifySeer: killer, ForceLoop: false);
+        Utils.NotifyRoles(SpecifySeer: killer);
 
         return false;
     }
@@ -91,7 +91,7 @@ public static class Shroud
                         shroud.RpcMurderPlayerV3(target);
                         Utils.MarkEveryoneDirtySettings();
                         ShroudList.Remove(shroud.PlayerId);
-                        Utils.NotifyRoles(SpecifySeer: shroud, ForceLoop: false);
+                        Utils.NotifyRoles(SpecifySeer: shroud);
                     }
                 }
             }
@@ -104,7 +104,7 @@ public static class Shroud
     }
 
     public static string TargetMark(PlayerControl seer, PlayerControl target)
-        => (seer.Is(CustomRoles.Shroud) && ShroudList.ContainsKey(seer.PlayerId) && ShroudList.ContainsKey(target.PlayerId)) ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.Shroud), "◈") : "";
+        => (ShroudList.ContainsValue(seer.PlayerId) && ShroudList.ContainsKey(target.PlayerId)) ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.Shroud), "◈") : "";
     
     public static string GetShroudMark(byte target, bool isMeeting)
     {

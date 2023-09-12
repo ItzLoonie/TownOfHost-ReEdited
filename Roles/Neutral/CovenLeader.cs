@@ -46,7 +46,7 @@ public static class CovenLeader
         CovenLeaderList[target.PlayerId] = killer.PlayerId;
         killer.SetKillCooldown();
 
-        Utils.NotifyRoles(SpecifySeer: killer, ForceLoop: false);
+        Utils.NotifyRoles(SpecifySeer: killer);
 
         return false;
     }
@@ -92,7 +92,7 @@ public static class CovenLeader
                         leader.RpcMurderPlayerV3(target);
                         Utils.MarkEveryoneDirtySettings();
                         CovenLeaderList.Remove(leader.PlayerId);
-                        Utils.NotifyRoles(SpecifySeer: leader, ForceLoop: false);
+                        Utils.NotifyRoles(SpecifySeer: leader);
                     }
                 }
             }
@@ -104,7 +104,7 @@ public static class CovenLeader
         CovenLeaderList.Clear();
     }
     public static string TargetMark(PlayerControl seer, PlayerControl target)
-        => (CovenLeaderList.ContainsKey(seer.PlayerId) && CovenLeaderList.ContainsKey(target.PlayerId)) ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.CovenLeader), "◆") : "";
+        => (CovenLeaderList.ContainsValue(seer.PlayerId) && CovenLeaderList.ContainsKey(target.PlayerId)) ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.CovenLeader), "◆") : "";
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = ControlCooldown.GetFloat();
     public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(true);
     public static void CanUseVent(PlayerControl player)

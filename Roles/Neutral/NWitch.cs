@@ -47,7 +47,7 @@ public static class NWitch
         TaglockedList[target.PlayerId] = killer.PlayerId;
         killer.SetKillCooldown();
 
-        Utils.NotifyRoles(SpecifySeer: killer, ForceLoop: false);
+        Utils.NotifyRoles(SpecifySeer: killer);
 
         return false;
     }
@@ -93,7 +93,7 @@ public static class NWitch
                         taglocked.RpcMurderPlayerV3(target);
                         Utils.MarkEveryoneDirtySettings();
                         TaglockedList.Remove(taglocked.PlayerId);
-                        Utils.NotifyRoles(SpecifySeer: taglocked, ForceLoop: false);
+                        Utils.NotifyRoles(SpecifySeer: taglocked);
                     }
                 }
             }
@@ -104,7 +104,7 @@ public static class NWitch
         TaglockedList.Clear();
     }
     public static string TargetMark(PlayerControl seer, PlayerControl target)
-        => (TaglockedList.ContainsKey(seer.PlayerId) && TaglockedList.ContainsKey(target.PlayerId)) ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.NWitch), "◆") : "";
+        => (TaglockedList.ContainsValue(seer.PlayerId) && TaglockedList.ContainsKey(target.PlayerId)) ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.NWitch), "◆") : "";
 
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = ControlCooldown.GetFloat();
     public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(HasImpostorVision.GetBool());

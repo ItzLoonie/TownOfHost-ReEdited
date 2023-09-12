@@ -40,7 +40,7 @@ public static class Puppeteer
         killer.SetKillCooldown();
         killer.RPCPlayCustomSound("Line");
 
-        Utils.NotifyRoles(SpecifySeer: killer, ForceLoop: false);
+        Utils.NotifyRoles(SpecifySeer: killer);
 
         return false;
     }
@@ -86,7 +86,7 @@ public static class Puppeteer
                         puppet.RpcMurderPlayerV3(target);
                         Utils.MarkEveryoneDirtySettings();
                         PuppeteerList.Remove(puppet.PlayerId);
-                        Utils.NotifyRoles(SpecifySeer: puppet, ForceLoop: false);
+                        Utils.NotifyRoles(SpecifySeer: puppet);
                     }
                 }
             }
@@ -98,8 +98,8 @@ public static class Puppeteer
         PuppeteerList.Clear();
     }
 
-    public static string TargetMark(PlayerControl seer, PlayerControl target) 
-        => (PuppeteerList.ContainsKey(seer.PlayerId) && PuppeteerList.ContainsKey(target.PlayerId)) ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.Puppeteer), "◆") : "";
+    public static string TargetMark(PlayerControl seer, PlayerControl target)
+        => (PuppeteerList.ContainsValue(seer.PlayerId) && PuppeteerList.ContainsKey(target.PlayerId)) ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.Puppeteer), "◆") : "";
 
     public static void SetKillButtonText(HudManager __instance)
         => __instance.KillButton.OverrideText(GetString("PuppeteerOperateButtonText"));
