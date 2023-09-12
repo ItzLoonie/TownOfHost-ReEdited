@@ -1151,58 +1151,53 @@ static class ExtendedPlayerControl
 
     public static bool KnowRoleTarget(PlayerControl seer, PlayerControl target)
     {
-        bool knowRoleTarget = false;
-        if (seer.AmOwner && Main.GodMode.Value) knowRoleTarget = true;
-        if (seer.Is(CustomRoles.God) || target.Is(CustomRoles.GM)) knowRoleTarget = true;
-        if (Main.VisibleTasksCount && seer.Data.IsDead && Options.GhostCanSeeOtherRoles.GetBool()) knowRoleTarget = true;
-        if (target.Is(CustomRoles.Gravestone) && target.Data.IsDead) knowRoleTarget = true;
-        if (Options.SeeEjectedRolesInMeeting.GetBool() && Main.PlayerStates[target.PlayerId].deathReason == PlayerState.DeathReason.Vote) knowRoleTarget = true;
-        if (Options.MimicCanSeeDeadRoles.GetBool() && Main.VisibleTasksCount && seer.Is(CustomRoles.Mimic) && target.Data.IsDead) knowRoleTarget = true;
-        if (Options.LoverKnowRoles.GetBool() && seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers)) knowRoleTarget = true;
-        if (Options.KnowNtrRole.GetBool() && target.Is(CustomRoles.Ntr)) knowRoleTarget = true;
-        if (Options.ImpKnowAlliesRole.GetBool() && seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoleTypes.Impostor)) knowRoleTarget = true;
-        if (Options.CovenKnowAlliesRole.GetBool() && seer.GetCustomRole().IsCoven() && target.GetCustomRole().IsCoven()) knowRoleTarget = true;
-        if (Options.MadmateKnowWhosImp.GetBool() && seer.Is(CustomRoles.Madmate) && target.Is(CustomRoleTypes.Impostor)) knowRoleTarget = true;
-        if (Options.ImpKnowWhosMadmate.GetBool() && target.Is(CustomRoles.Madmate) && seer.Is(CustomRoleTypes.Impostor)) knowRoleTarget = true;
-        if (Options.AlliesKnowCrewpostor.GetBool() && seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Crewpostor)) knowRoleTarget = true;
-        if (Options.CrewpostorKnowsAllies.GetBool() && seer.Is(CustomRoles.Crewpostor) && target.Is(CustomRoleTypes.Impostor)) knowRoleTarget = true;
-        if (Options.WorkaholicVisibleToEveryone.GetBool() && target.Is(CustomRoles.Workaholic)) knowRoleTarget = true;
-        if (Options.DoctorVisibleToEveryone.GetBool() && target.Is(CustomRoles.Doctor) && !target.IsEvilAddons()) knowRoleTarget = true;
-        if (Options.MayorRevealWhenDoneTasks.GetBool() && target.Is(CustomRoles.Mayor) && target.GetPlayerTaskState().IsTaskFinished) knowRoleTarget = true;
-        if (target.GetPlayerTaskState().IsTaskFinished && seer.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoles.Marshall)) knowRoleTarget = true;
-        if (seer.Is(CustomRoles.Jackal) && (target.Is(CustomRoles.Sidekick) || target.Is(CustomRoles.Recruit))) knowRoleTarget = true;
-        if (seer.Is(CustomRoles.Sidekick) && (target.Is(CustomRoles.Jackal) || target.Is(CustomRoles.Recruit) || target.Is(CustomRoles.Sidekick))) knowRoleTarget = true;
-        if (seer.Is(CustomRoles.Recruit) && (target.Is(CustomRoles.Jackal) || target.Is(CustomRoles.Sidekick) || target.Is(CustomRoles.Recruit))) knowRoleTarget = true;
-        if (seer.IsRevealedPlayer(target) && !target.Is(CustomRoles.Trickster)) knowRoleTarget = true;
-        if (Totocalcio.KnowRole(seer, target)) knowRoleTarget = true;
-        if (Romantic.KnowRole(seer, target)) knowRoleTarget = true;
-        if (Lawyer.KnowRole(seer, target)) knowRoleTarget = true;
-        if (EvilDiviner.IsShowTargetRole(seer, target)) knowRoleTarget = true;
-        if (PotionMaster.IsShowTargetRole(seer, target)) knowRoleTarget = true;
-        if (Executioner.KnowRole(seer, target)) knowRoleTarget = true;
-        if (Succubus.KnowRole(seer, target)) knowRoleTarget = true;
-        if (CursedSoul.KnowRole(seer, target)) knowRoleTarget = true;
-        if (Admirer.KnowRole(seer, target)) knowRoleTarget = true;
-        if (Amnesiac.KnowRole(seer, target)) knowRoleTarget = true;
-        if (Infectious.KnowRole(seer, target)) knowRoleTarget = true;
-        if (Virus.KnowRole(seer, target)) knowRoleTarget = true;
+        if (seer.Is(CustomRoles.God) || target.Is(CustomRoles.GM)) return true;
+        else if (Main.VisibleTasksCount && seer.Data.IsDead && Options.GhostCanSeeOtherRoles.GetBool()) return true;
+        else if (target.Is(CustomRoles.Gravestone) && target.Data.IsDead) return true;
+        else if (Options.SeeEjectedRolesInMeeting.GetBool() && Main.PlayerStates[target.PlayerId].deathReason == PlayerState.DeathReason.Vote) return true;
+        else if (Options.MimicCanSeeDeadRoles.GetBool() && Main.VisibleTasksCount && seer.Is(CustomRoles.Mimic) && target.Data.IsDead) return true;
+        else if (Options.LoverKnowRoles.GetBool() && seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers)) return true;
+        else if (Options.KnowNtrRole.GetBool() && target.Is(CustomRoles.Ntr)) return true;
+        else if (Options.ImpKnowAlliesRole.GetBool() && seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoleTypes.Impostor)) return true;
+        else if (Options.CovenKnowAlliesRole.GetBool() && seer.GetCustomRole().IsCoven() && target.GetCustomRole().IsCoven()) return true;
+        else if (Options.MadmateKnowWhosImp.GetBool() && seer.Is(CustomRoles.Madmate) && target.Is(CustomRoleTypes.Impostor)) return true;
+        else if (Options.ImpKnowWhosMadmate.GetBool() && target.Is(CustomRoles.Madmate) && seer.Is(CustomRoleTypes.Impostor)) return true;
+        else if (Options.AlliesKnowCrewpostor.GetBool() && seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Crewpostor)) return true;
+        else if (Options.CrewpostorKnowsAllies.GetBool() && seer.Is(CustomRoles.Crewpostor) && target.Is(CustomRoleTypes.Impostor)) return true;
+        else if (Options.WorkaholicVisibleToEveryone.GetBool() && target.Is(CustomRoles.Workaholic)) return true;
+        else if (Options.DoctorVisibleToEveryone.GetBool() && target.Is(CustomRoles.Doctor) && !target.IsEvilAddons()) return true;
+        else if (Options.MayorRevealWhenDoneTasks.GetBool() && target.Is(CustomRoles.Mayor) && target.GetPlayerTaskState().IsTaskFinished) return true;
+        else if (target.GetPlayerTaskState().IsTaskFinished && seer.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoles.Marshall)) return true;
+        else if (seer.Is(CustomRoles.Jackal) && (target.Is(CustomRoles.Sidekick) || target.Is(CustomRoles.Recruit))) return true;
+        else if (seer.Is(CustomRoles.Sidekick) && (target.Is(CustomRoles.Jackal) || target.Is(CustomRoles.Recruit) || target.Is(CustomRoles.Sidekick))) return true;
+        else if (seer.Is(CustomRoles.Recruit) && (target.Is(CustomRoles.Jackal) || target.Is(CustomRoles.Sidekick) || target.Is(CustomRoles.Recruit))) return true;
+        else if (seer.IsRevealedPlayer(target) && !target.Is(CustomRoles.Trickster)) return true;
+        else if (Totocalcio.KnowRole(seer, target)) return true;
+        else if (Romantic.KnowRole(seer, target)) return true;
+        else if (Lawyer.KnowRole(seer, target)) return true;
+        else if (EvilDiviner.IsShowTargetRole(seer, target)) return true;
+        else if (PotionMaster.IsShowTargetRole(seer, target)) return true;
+        else if (Executioner.KnowRole(seer, target)) return true;
+        else if (Succubus.KnowRole(seer, target)) return true;
+        else if (CursedSoul.KnowRole(seer, target)) return true;
+        else if (Admirer.KnowRole(seer, target)) return true;
+        else if (Amnesiac.KnowRole(seer, target)) return true;
+        else if (Infectious.KnowRole(seer, target)) return true;
+        else if (Virus.KnowRole(seer, target)) return true;
 
-        return knowRoleTarget;
-    } //else if sucks because if a former condition meets, others will be ignored.
-    //Check all may slow the program, but we wont miss stuffs
+        else return false;
+    }
     public static bool KnowRoleAddonsTarget(PlayerControl seer, PlayerControl target)
     {
-        bool knowRoleAddonsTarget = false;
-        if (seer.PlayerId == target.PlayerId) knowRoleAddonsTarget = true;
-        if (seer.Data.IsDead || seer.Is(CustomRoles.GM) || (seer.AmOwner && Main.GodMode.Value)) knowRoleAddonsTarget = true;
-        if (seer.Is(CustomRoles.God) && Options.GodKnowAddons.GetBool()) knowRoleAddonsTarget = true;
-        if (Options.LoverKnowAddons.GetBool() && Options.LoverKnowRoles.GetBool() 
-            && seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers)) knowRoleAddonsTarget = true;
+        if (seer.PlayerId == target.PlayerId) return true;
+        else if (seer.Data.IsDead || seer.Is(CustomRoles.GM) || (seer.AmOwner && Main.GodMode.Value)) return true;
+        else if (seer.Is(CustomRoles.God) && Options.GodKnowAddons.GetBool()) return true;
+        else if (Options.LoverKnowAddons.GetBool() && Options.LoverKnowRoles.GetBool()
+            && seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers)) return true;
 
         //Niko also want to add imposters and some neutrals here. But things related with converted roles and task states confused Niko.
         //Maybe these stuffs will be added later!
-        
-        return knowRoleAddonsTarget;
+        else return false;
     }
     public static string GetRoleInfo(this PlayerControl player, bool InfoLong = false)
     {
