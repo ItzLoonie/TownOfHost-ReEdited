@@ -40,7 +40,7 @@ public static class Puppeteer
         killer.SetKillCooldown();
         killer.RPCPlayCustomSound("Line");
 
-        Utils.NotifyRoles(SpecifySeer: killer, ForceLoop: false);
+        Utils.NotifyRoles(SpecifySeer: killer);
 
         return false;
     }

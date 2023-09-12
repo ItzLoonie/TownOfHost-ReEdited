@@ -47,7 +47,7 @@ public static class Shroud
         ShroudList[target.PlayerId] = killer.PlayerId;
         killer.SetKillCooldown();
 
-        Utils.NotifyRoles(SpecifySeer: killer, ForceLoop: false);
+        Utils.NotifyRoles(SpecifySeer: killer);
 
         return false;
     }
