@@ -178,17 +178,17 @@ class ExileControllerWrapUpPatch
                 pc.RpcMurderPlayerV3(pc);
                 Main.PlayerStates[pc.PlayerId].deathReason = PlayerState.DeathReason.Suicide;
             }
-            if (Main.ShroudList.ContainsKey(pc.PlayerId) && CustomRoles.Shroud.RoleExist())
+            if (Shroud.ShroudList.ContainsKey(pc.PlayerId) && Shroud.IsEnable)
             {
                 pc.RpcMurderPlayerV3(pc);
                 Main.PlayerStates[pc.PlayerId].deathReason = PlayerState.DeathReason.Suicide;
-                Main.ShroudList.Clear();
+                Shroud.ShroudList.Clear();
 
             }
 
             pc.RpcRemovePet();
 
-            Main.ShroudList.Clear();
+            Shroud.ShroudList.Clear();
 
             if (Options.RandomSpawn.GetBool())
             {

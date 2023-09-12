@@ -1250,7 +1250,7 @@ public static class Options
         MinerSSCD = FloatOptionItem.Create(3614, "ShapeshiftCooldown", new(1f, 180f, 1f), 15f, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Miner])
             .SetValueFormat(OptionFormat.Seconds);
-        SetupRoleOptions(3900, TabGroup.ImpostorRoles, CustomRoles.Puppeteer);
+        Puppeteer.SetupCustomOption();
         SetupRoleOptions(4000, TabGroup.ImpostorRoles, CustomRoles.Scavenger);
         ScavengerKillCooldown = FloatOptionItem.Create(4010, "KillCooldown", new(5f, 180f, 2.5f), 40f, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Scavenger])

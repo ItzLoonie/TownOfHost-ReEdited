@@ -57,10 +57,6 @@ internal class ChangeRoleSettings
             Main.RetributionistRevenged = new();
             Main.isCurseAndKill = new();
             Main.isCursed = false;
-            Main.PuppeteerList = new();
-            Main.CovenLeaderList = new();
-            Main.TaglockedList = new();
-            Main.ShroudList = new();
             Main.DetectiveNotify = new();
             Main.SleuthNotify = new();
             Main.ForCrusade = new();
@@ -194,6 +190,7 @@ internal class ChangeRoleSettings
             FireWorks.Init();
             Sniper.Init();
             TimeThief.Init();
+            Puppeteer.Init();
         //    Mare.Init();
             Witch.Init();
             HexMaster.Init();
@@ -510,6 +507,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Camouflager:
                         Camouflager.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Puppeteer:
+                        Puppeteer.Add();
                         break;
                     case CustomRoles.Sniper:
                         Sniper.Add(pc.PlayerId);

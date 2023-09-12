@@ -1901,13 +1901,12 @@ public static class Utils
             {
                 if (seer.IsAlive())
                 {
-                    if (Shroud.IsEnable && Main.ShroudList.ContainsKey(seer.PlayerId))
+                    if (Shroud.IsEnable && Shroud.ShroudList.ContainsKey(seer.PlayerId))
                         SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Shroud), "◈"));
                 }
 
                 if (seer.PlayerId == Pirate.PirateTarget)
                     SelfMark.Append(Pirate.GetPlunderedMark(seer.PlayerId, true));
-
 
                 SelfMark.Append(Witch.GetSpelledMark(seer.PlayerId, true));
 
@@ -2037,16 +2036,11 @@ public static class Utils
 
                         TargetMark.Append(Occultist.GetCursedMark(target.PlayerId, true));
 
-                        if (Main.ShroudList.ContainsKey(target.PlayerId) && target.IsAlive())
-                            TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Shroud), "◈"));
+                        if (target.IsAlive()) 
+                            TargetMark.Append(Shroud.GetShroudMark(target.PlayerId, true));
 
                         if (target.PlayerId == Pirate.PirateTarget)
                             TargetMark.Append(Pirate.GetPlunderedMark(target.PlayerId, true));
-                    }
-                    else
-                    {
-                        if (seer.Is(CustomRoles.Shroud) && Main.ShroudList.ContainsValue(seer.PlayerId) && Main.ShroudList.ContainsKey(target.PlayerId))
-                            TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Shroud)}>◈</color>");
                     }
 
                     if (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Snitch) && target.Is(CustomRoles.Madmate) && target.GetPlayerTaskState().IsTaskFinished)
@@ -2139,18 +2133,19 @@ public static class Utils
                             break;
 
                         case CustomRoles.Puppeteer:
-                            if (Main.PuppeteerList.ContainsValue(seer.PlayerId) && Main.PuppeteerList.ContainsKey(target.PlayerId))
-                                TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Impostor)}>◆</color>");
+                            TargetMark.Append(Puppeteer.TargetMark(seer, target));
                             break;
 
                         case CustomRoles.CovenLeader:
-                            if (Main.CovenLeaderList.ContainsValue(seer.PlayerId) && Main.CovenLeaderList.ContainsKey(target.PlayerId))
-                                TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.CovenLeader)}>◆</color>");
+                            TargetMark.Append(CovenLeader.TargetMark(seer, target));
+                            break;
+
+                        case CustomRoles.Shroud:
+                            TargetMark.Append(Shroud.TargetMark(seer, target));
                             break;
 
                         case CustomRoles.NWitch:
-                            if (Main.TaglockedList.ContainsValue(seer.PlayerId) && Main.TaglockedList.ContainsKey(target.PlayerId))
-                                TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.NWitch)}>◆</color>");
+                            TargetMark.Append(NWitch.TargetMark(seer, target));
                             break;
                     }
 
