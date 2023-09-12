@@ -547,6 +547,10 @@ class CheckMurderPatch
             RPC.PlaySoundRPC(killer.PlayerId, Sounds.KillSound);
                 return false;
         }
+        if (killer.Is(CustomRoles.BoobyTrap))
+        {
+            Main.BoobyTrapBody.Add(target.PlayerId);
+        }
         if (killer.Is(CustomRoles.Clumsy))
         {
             var miss = IRandom.Instance;
@@ -860,11 +864,11 @@ class CheckMurderPatch
             Jackal.AfterPlayerDiedTask(killer);
 
 
-        if (target.Is(CustomRoles.BoobyTrap) && Options.TrapOnlyWorksOnTheBodyBoobyTrap.GetBool() && !GameStates.IsMeeting)
+    /*    if (target.Is(CustomRoles.BoobyTrap) && Options.TrapOnlyWorksOnTheBodyBoobyTrap.GetBool() && !GameStates.IsMeeting)
         {
             Main.BoobyTrapBody.Add(target.PlayerId);
             Main.BoobyTrapKiller.Add(target.PlayerId);
-        }
+        } */
 
         if (target.Is(CustomRoles.Lucky))
         {
@@ -1259,7 +1263,7 @@ class MurderPlayerPatch
         }
         switch (killer.GetCustomRole())
         {
-            case CustomRoles.BoobyTrap:
+        /*    case CustomRoles.BoobyTrap:
                 if (!Options.TrapOnlyWorksOnTheBodyBoobyTrap.GetBool() && killer != target)
                 {
                     if (!Main.BoobyTrapBody.Contains(target.PlayerId)) Main.BoobyTrapBody.Add(target.PlayerId);
@@ -1267,7 +1271,7 @@ class MurderPlayerPatch
                     Main.PlayerStates[killer.PlayerId].deathReason = PlayerState.DeathReason.Misfire;
                     killer.RpcMurderPlayerV3(killer);
                 }
-                break;
+                break; */
             case CustomRoles.SwordsMan:
                 if (killer != target)
                     SwordsMan.OnMurder(killer);
@@ -1861,13 +1865,25 @@ class ReportDeadBodyPatch
                         Main.PlayerStates[__instance.PlayerId].deathReason = PlayerState.DeathReason.Suicide;
                         return false;
                     }
-                }
+                }   
+
+                if (target.Object.Is(CustomRoles.BoobyTrap) && Options.TrapTrapsterBody.GetBool() && !__instance.Is(CustomRoles.Pestilence))
+                    {
+                        var killerID = target.PlayerId;
+                        Main.PlayerStates[__instance.PlayerId].deathReason = PlayerState.DeathReason.Trap;
+                        __instance.SetRealKiller(Utils.GetPlayerById(killerID));
+
+                        __instance.RpcMurderPlayerV3(__instance);
+                        RPC.PlaySoundRPC(killerID, Sounds.KillSound);
+                        return false;
+                    } 
+
 
 
                 // 报告了诡雷尸体
-                if (Main.BoobyTrapBody.Contains(target.PlayerId) && __instance.IsAlive())
+                if (Main.BoobyTrapBody.Contains(target.PlayerId) && __instance.IsAlive() && !__instance.Is(CustomRoles.Pestilence))
                 {
-                    if (!Options.TrapOnlyWorksOnTheBodyBoobyTrap.GetBool())
+                /*    if (!Options.TrapOnlyWorksOnTheBodyBoobyTrap.GetBool())
                     {
                         var killerID = Main.KillerOfBoobyTrapBody[target.PlayerId];
                         Main.PlayerStates[__instance.PlayerId].deathReason = PlayerState.DeathReason.Bombed;
@@ -1880,14 +1896,18 @@ class ReportDeadBodyPatch
                         if (!Main.KillerOfBoobyTrapBody.ContainsKey(__instance.PlayerId)) Main.KillerOfBoobyTrapBody.Add(__instance.PlayerId, killerID);
                         return false;
                     }
-                    else
+                    else */
                     {
                         var killerID2 = target.PlayerId;
-                        Main.PlayerStates[__instance.PlayerId].deathReason = PlayerState.DeathReason.Bombed;
+                        Main.PlayerStates[__instance.PlayerId].deathReason = PlayerState.DeathReason.Trap;
                         __instance.SetRealKiller(Utils.GetPlayerById(killerID2));
 
                         __instance.RpcMurderPlayerV3(__instance);
                         RPC.PlaySoundRPC(killerID2, Sounds.KillSound);
+                        if (Options.TrapConsecutiveBodies.GetBool())
+                        {
+                            Main.BoobyTrapBody.Add(__instance.PlayerId);
+                        }
                         return false;
                     } 
                 }
