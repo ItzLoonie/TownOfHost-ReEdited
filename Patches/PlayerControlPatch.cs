@@ -2203,7 +2203,7 @@ class FixedUpdatePatch
 
 
             #region Warlock Timer
-            if (CustomRoles.Warlock.RoleExist() && GameStates.IsInTask && Main.WarlockTimer.ContainsKey(player.PlayerId))//処理を1秒遅らせる
+            if (GameStates.IsInTask && Main.WarlockTimer.ContainsKey(player.PlayerId))//処理を1秒遅らせる
             {
                 if (player.IsAlive())
                 {
@@ -2224,7 +2224,7 @@ class FixedUpdatePatch
             #endregion
 
             #region Arsonist Timer
-            if (CustomRoles.Arsonist.RoleExist() && GameStates.IsInTask && Main.ArsonistTimer.ContainsKey(player.PlayerId))//アーソニストが誰かを塗っているとき
+            if (GameStates.IsInTask && Main.ArsonistTimer.ContainsKey(player.PlayerId))//アーソニストが誰かを塗っているとき
             {
                 if (!player.IsAlive() || Pelican.IsEaten(player.PlayerId))
                 {
@@ -2272,7 +2272,7 @@ class FixedUpdatePatch
             #endregion
 
             #region Revolutionist Timer
-            if (CustomRoles.Revolutionist.RoleExist() && GameStates.IsInTask && Main.RevolutionistTimer.ContainsKey(player.PlayerId))//当革命家拉拢一个玩家时
+            if (GameStates.IsInTask && Main.RevolutionistTimer.ContainsKey(player.PlayerId))//当革命家拉拢一个玩家时
             {
                 if (!player.IsAlive() || Pelican.IsEaten(player.PlayerId))
                 {
@@ -2324,7 +2324,7 @@ class FixedUpdatePatch
                     }
                 }
             }
-            if (CustomRoles.Revolutionist.RoleExist() && GameStates.IsInTask && player.IsDrawDone() && player.IsAlive())
+            if (GameStates.IsInTask && player.IsDrawDone() && player.IsAlive())
             {
                 if (Main.RevolutionistStart.ContainsKey(player.PlayerId)) //如果存在字典
                 {
@@ -2451,10 +2451,10 @@ class FixedUpdatePatch
 
                 if (Options.LadderDeath.GetBool() && GameStates.IsInTask && player.IsAlive()) FallFromLadder.FixedUpdate(player);
 
-                if (CustomRoles.Lovers.IsEnable() && GameStates.IsInGame) LoversSuicide();
+                if (GameStates.IsInGame && CustomRoles.Lovers.IsEnable()) LoversSuicide();
 
                 #region Puppeteer List
-                if (CustomRoles.Puppeteer.RoleExist(true) && GameStates.IsInTask && Main.PuppeteerList.ContainsKey(player.PlayerId))
+                if (GameStates.IsInTask && Main.PuppeteerList.ContainsKey(player.PlayerId))
                 {
                     if (!player.IsAlive() || Pelican.IsEaten(player.PlayerId))
                     {
@@ -2497,7 +2497,7 @@ class FixedUpdatePatch
                         }
                     }
                 }
-                if (CustomRoles.CovenLeader.RoleExist(true) && GameStates.IsInTask && Main.CovenLeaderList.ContainsKey(player.PlayerId))
+                if (GameStates.IsInTask && Main.CovenLeaderList.ContainsKey(player.PlayerId))
                 {
                     if (!player.IsAlive() || Pelican.IsEaten(player.PlayerId))
                     {
@@ -2547,7 +2547,7 @@ class FixedUpdatePatch
                         }
                     }
                 }
-                if (CustomRoles.NWitch.RoleExist(true) && GameStates.IsInTask && Main.TaglockedList.ContainsKey(player.PlayerId))
+                if (GameStates.IsInTask && Main.TaglockedList.ContainsKey(player.PlayerId))
                 {
                     if (!player.IsAlive() || Pelican.IsEaten(player.PlayerId))
                     {
@@ -2590,7 +2590,7 @@ class FixedUpdatePatch
                         }
                     }
                 }
-                if (CustomRoles.Shroud.RoleExist(true) && GameStates.IsInTask && Main.ShroudList.ContainsKey(player.PlayerId))
+                if (GameStates.IsInTask && Main.ShroudList.ContainsKey(player.PlayerId))
                 {
                     if (!player.IsAlive() || Pelican.IsEaten(player.PlayerId))
                     {
@@ -2612,7 +2612,7 @@ class FixedUpdatePatch
                                 }
                             }
                         }
-                        if (targetDistance.Count() != 0)
+                        if (targetDistance.Any())
                         {
                             var min = targetDistance.OrderBy(c => c.Value).FirstOrDefault();//一番値が小さい
                             PlayerControl target = Utils.GetPlayerById(min.Key);
