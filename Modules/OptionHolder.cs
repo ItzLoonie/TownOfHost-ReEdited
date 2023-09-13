@@ -414,6 +414,7 @@ public static class Options
     public static OptionItem ImpCanBeGravestone;
     public static OptionItem CrewCanBeGravestone;
     public static OptionItem NeutralCanBeGravestone;
+    public static OptionItem KnowGravestoneAddons;
 
     // Mare Add-on
     public static OptionItem MareKillCD;
@@ -1810,6 +1811,8 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Gravestone]);
         NeutralCanBeGravestone = BooleanOptionItem.Create(14012, "NeutralCanBeGravestone", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Gravestone]);
+        KnowGravestoneAddons = BooleanOptionItem.Create(14013, "KnowGravestoneAddons", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Gravestone]);
         SetupAdtRoleOptions(19100, CustomRoles.Guesser, canSetNum: true, tab: TabGroup.Addons);
         ImpCanBeGuesser = BooleanOptionItem.Create(19110, "ImpCanBeGuesser", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Guesser]);
@@ -2978,7 +2981,7 @@ public static class Options
             .SetGameMode(customGameMode);
 
         LoverKnowAddons = BooleanOptionItem.Create(id + 8, "LoverKnowAddons", true, TabGroup.Addons, false)
-        .SetParent(spawnOption)
+        .SetParent(LoverKnowRoles)
             .SetGameMode(customGameMode);
 
         LoverSuicide = BooleanOptionItem.Create(id + 3, "LoverSuicide", true, TabGroup.Addons, false)

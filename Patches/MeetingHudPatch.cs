@@ -1078,36 +1078,35 @@ class MeetingHudStartPatch
                     case CustomRoles.Guesser:
                         if (!seer.Data.IsDead && !target.Data.IsDead)
                             pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Guesser), target.PlayerId.ToString()) + " " + pva.NameText.text;
-                        break;
-                    case CustomRoles.Ntr:
-                        if (ExtendedPlayerControl.CanSeeLoverMark(__instance, target))
-                            {
-                                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lovers), "♥"));
-                            }           
-                        break;             
+                        break;         
                 }
             }
 
-            foreach (var TargetSubRole in target.GetCustomSubRoles())
-            {
-                switch (TargetSubRole)
-                {
-                    case CustomRoles.Lovers:
-                    case CustomRoles.Ntr:
-                        if (ExtendedPlayerControl.CanSeeLoverMark(__instance, target))
-                        {
-                            sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lovers), "♥"));
-                        }
-                        break;
-                     /*     case CustomRoles.Sidekick:
-                          if (seer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Sidekick) && Options.SidekickKnowOtherSidekick.GetBool())
-                          {
-                              sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jackal), " ♥")); //変更対象にSnitchマークをつける
-                          sb.Append(Snitch.GetWarningMark(seer, target));
-                          }
-                          break; */
-                }
-            }
+            //foreach (var TargetSubRole in target.GetCustomSubRoles())
+            //{
+            //    switch (TargetSubRole)
+            //    {
+            //        //case CustomRoles.Lovers:
+            //        //case CustomRoles.Ntr:
+            //            //if (ExtendedPlayerControl.CanSeeLoverMark(seer, target))
+            //            //{
+            //                    //sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lovers), "♥"));
+            //            //}
+            //            //break;
+            //         /*     case CustomRoles.Sidekick:
+            //              if (seer.Is(CustomRoles.Sidekick) && target.Is(CustomRoles.Sidekick) && Options.SidekickKnowOtherSidekick.GetBool())
+            //              {
+            //                  sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Jackal), " ♥")); //変更対象にSnitchマークをつける
+            //              sb.Append(Snitch.GetWarningMark(seer, target));
+            //              }
+            //              break; */
+            //    }
+            //}
+            
+            // Currenyly we are not using target sub role =(
+
+            if (ExtendedPlayerControl.CanSeeLoverMark(seer, target))
+                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lovers), "♥"));
 
             //呪われている場合
             sb.Append(Witch.GetSpelledMark(target.PlayerId, true));

@@ -315,7 +315,7 @@ public static class Utils
         if (!Main.roleColors.TryGetValue(role, out var hexColor)) hexColor = "#ffffff";
         return hexColor;
     }
-    public static (string, Color) GetRoleText(byte seerId, byte targetId, bool pure = false)
+    public static (string, Color) GetRoleText(byte seerId, byte targetId, bool pure = true)
     {
         string RoleText = "Invalid Role";
         Color RoleColor;
@@ -326,7 +326,9 @@ public static class Utils
         var targetMainRole = Main.PlayerStates[targetId].MainRole;
         var targetSubRoles = Main.PlayerStates[targetId].SubRoles;
 
-        var self = seerId == targetId || Main.PlayerStates[seerId].IsDead;
+        //var self = seerId == targetId || Main.PlayerStates[seerId].IsDead; 
+        //getdisplayroletext always make bool self true, this will cause more bugs.
+        //We use bool pure to decide show addons & let other functions to check seerid = targetid
 
         RoleText = GetRoleName(targetMainRole);
         RoleColor = GetRoleColor(targetMainRole);
@@ -334,7 +336,7 @@ public static class Utils
         if (LastImpostor.currentId == targetId)
             RoleText = GetRoleString("Last-") + RoleText;
 
-        if (Options.NameDisplayAddons.GetBool() && (!pure || self))
+        if (Options.NameDisplayAddons.GetBool() && !pure) //Removed self
         {     
             if (Options.AddBracketsToAddons.GetBool())       
             {

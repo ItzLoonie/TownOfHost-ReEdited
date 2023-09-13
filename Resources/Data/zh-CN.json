@@ -1375,6 +1375,7 @@
   "ImpCanBeGravestone": "<color=#ff1919>内鬼阵营</color>可以成为<color=#2EA8E7>墓碑</color>",
   "CrewCanBeGravestone": "<color=#8cffff>船员阵营</color>可以成为<color=#2EA8E7>墓碑</color>",
   "NeutralCanBeGravestone": "<color=#7f8c8d>中立阵营</color>可以成为<color=#2EA8E7>墓碑</color>",
+  "KnowGravestoneAddons": "<color=#2EA8E7>墓碑</color>死后透露附加职业",
   "TimeThiefDecreaseMeetingTime": "每次击杀缩短的会议时间",
   "TimeThiefLowerLimitVotingTime": "存活时会议时间下限",
   "TimeThiefReturnStolenTimeUponDeath": "死亡后会议时间重置",
