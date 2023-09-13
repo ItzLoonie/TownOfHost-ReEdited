@@ -129,6 +129,7 @@ public class ModNewsHistory
                             "\n     - Bomber" +
                             "\n     - Medic" +
                             "\n     - Jackal" +
+                            "\n     - Trapster" +
                             "\n     - Mare (is now an add-on)\n\r" +
 
                         "\n\r<b>【Bug Fixes】</b>" +
@@ -146,6 +147,7 @@ public class ModNewsHistory
                             "\n     - Fixed bug where role Tracefinder sometime did not have arrows" +
                             "\n     - Fixed bug when setting \"Neutrals Win Together\" doesn't work" +
                             "\n     - Fixed Bug When Some Neutrals Cant Click Sabotage Button (Host)" +
+                            "\n     - Fixed Bug When Puppeteer and Witch Dont Sees Target Mark" +
                             "\n     - Fixed Zoom" +
                             "\n     - Some fixes black screen" +
                             "\n     - Some Fix for Sheriff" +
@@ -204,7 +206,7 @@ public class ModNewsHistory
                             "\n     - Tasks from a crewmate lover now count towards a task win" +
                             "\n     - Infected players now die after a meeting if there's no alive Infectious" +
                             "\n     - Body reports during camouflage is now separated" +
-                            "\n     - Vector, Egoist, Revolutionist, Provocateur, Guesser are no longer experimental" +
+                            "\n     - Trapster, Vector, Egoist, Revolutionist, Provocateur, Guesser are no longer experimental" +
                             "\n     - Added ability to change settings by 5 instead of 1 when holding the Left/Right Shift key" +
                             "\n     - All ability cooldowns are now reset after meetings" +
                             "\n     - Lovers сan not become Sunnyboy" +
@@ -368,6 +370,7 @@ public class ModNewsHistory
                             "\n     - Бомбер" +
                             "\n     - Медик" +
                             "\n     - Шакал" +
+                            "\n     - Ловец" +
                             "\n     - Ночной (теперь это атрибут)\n\r" +
 
                         "\n\r<b>【Исправление Багов】</b>" +
@@ -384,6 +387,7 @@ public class ModNewsHistory
                             "\n     - Исправлена ​​ошибка, из-за которой у роли Искателя иногда не было стрелок" +
                             "\n     - Исправлена ​​ошибка, из-за которой настройка «Нейтралы побеждают вместе» не работала." +
                             "\n     - Исправлена ​​ошибка, когда некоторые нейтральные роли не могли нажать кнопку саботажа (Хост)." +
+                            "\n     - Исправлена ​​ошибка, когда Кукловод и Заклинатель не могли видеть марку у цели." +
                             "\n     - Исправлен сломанный Зум" +
                             "\n     - Некоторые исправления черного экрана (И некоторая защита)" +
                             "\n     - Некоторые исправления у Шерифа" +
@@ -443,7 +447,7 @@ public class ModNewsHistory
                             "\n     - Задания от Членов Экипажа Любовников теперь засчитываются в счет победы по заданиям" +
                             "\n     - Зараженные игроки теперь умирают после встречи, если в живых нет Заразного" +
                             "\n     - Репорт трупа во время камуфляжа теперь разделены" +
-                            "\n     - Вектор, Эгоист, Революционист, Провокатор, Угадыватель больше не являются эксперементальными ролями" +
+                            "\n     - Ловец, Вектор, Эгоист, Революционист, Провокатор, Угадыватель больше не являются эксперементальными ролями" +
                             "\n     - Добавлена ​​возможность менять настройки на 5 вместо 1 при удержании Левого/Правого Shift." +
                             "\n     - Откат всех способностей теперь сбрасывается после встреч" +
                             "\n     - Любовники больше не могут стать Солнечным Мальчиком" +

@@ -491,6 +491,10 @@ public static class Options
     public static OptionItem NeutralCanBeDoubleShot;
     public static OptionItem MimicCanSeeDeadRoles;
 
+    // Trapster
+    public static OptionItem TrapConsecutiveBodies;
+    public static OptionItem TrapTrapsterBody;
+
     //public static OptionItem NSerialKillerKillCD;
     //public static OptionItem NSerialKillerHasImpostorVision;
     //public static OptionItem NSerialKillerCanVent;
@@ -1175,6 +1179,14 @@ public static class Options
 
         Sniper.SetupCustomOption();
         Witch.SetupCustomOption(); //spellcaster
+        SetupRoleOptions(16500, TabGroup.ImpostorRoles, CustomRoles.BoobyTrap);
+        BTKillCooldown = FloatOptionItem.Create(16515, "KillCooldown", new(2.5f, 180f, 2.5f), 30f, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.BoobyTrap])
+            .SetValueFormat(OptionFormat.Seconds);
+        TrapConsecutiveBodies = BooleanOptionItem.Create(16516, "TrapConsecutiveBodies", true, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.BoobyTrap]);
+        TrapTrapsterBody = BooleanOptionItem.Create(16517, "TrapTrapsterBody", true, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.BoobyTrap]);
         SetupRoleOptions(10025, TabGroup.ImpostorRoles, CustomRoles.Underdog);
         UnderdogMaximumPlayersNeededToKill = IntegerOptionItem.Create(10030, "UnderdogMaximumPlayersNeededToKill", new(1, 15, 1), 5, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Underdog])
@@ -1242,7 +1254,7 @@ public static class Options
         MinerSSCD = FloatOptionItem.Create(3614, "ShapeshiftCooldown", new(1f, 180f, 1f), 15f, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Miner])
             .SetValueFormat(OptionFormat.Seconds);
-        SetupRoleOptions(3900, TabGroup.ImpostorRoles, CustomRoles.Puppeteer);
+        Puppeteer.SetupCustomOption();
         SetupRoleOptions(4000, TabGroup.ImpostorRoles, CustomRoles.Scavenger);
         ScavengerKillCooldown = FloatOptionItem.Create(4010, "KillCooldown", new(5f, 180f, 2.5f), 40f, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Scavenger])
@@ -2128,12 +2140,6 @@ public static class Options
         ZombieSpeedReduce = FloatOptionItem.Create(16411, "ZombieSpeedReduce", new(0.0f, 1.0f, 0.1f), 0.1f, TabGroup.OtherRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Zombie])
             .SetValueFormat(OptionFormat.Multiplier);
-        SetupRoleOptions(16500, TabGroup.OtherRoles, CustomRoles.BoobyTrap);
-        BTKillCooldown = FloatOptionItem.Create(16510, "KillCooldown", new(2.5f, 180f, 2.5f), 20f, TabGroup.OtherRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.BoobyTrap])
-            .SetValueFormat(OptionFormat.Seconds);
-        TrapOnlyWorksOnTheBodyBoobyTrap = BooleanOptionItem.Create(16511, "TrapOnlyWorksOnTheBodyBoobyTrap", true, TabGroup.OtherRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.BoobyTrap]);
         SetupRoleOptions(16600, TabGroup.OtherRoles, CustomRoles.Capitalism);
         CapitalismSkillCooldown = FloatOptionItem.Create(16610, "CapitalismSkillCooldown", new(2.5f, 180f, 2.5f), 20f, TabGroup.OtherRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Capitalism])

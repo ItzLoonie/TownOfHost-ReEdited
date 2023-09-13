@@ -36,8 +36,8 @@ public class Main : BasePlugin
     public static readonly string MainMenuText = " ";
 
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "3.0.0.147";
-    public const string PluginDisplayVersion = "3.0.0 c7";
+    public const string PluginVersion = "3.0.0.168";
+    public const string PluginDisplayVersion = "3.0.0 c9";
     public static readonly string SupportedVersionAU = "2023.7.11";
     public const bool Canary = false;
 
@@ -171,10 +171,6 @@ public class Main : BasePlugin
     public static Dictionary<byte, long> RevolutionistStart = new();
     public static Dictionary<byte, long> RevolutionistLastTime = new();
     public static Dictionary<byte, int> RevolutionistCountdown = new();
-    public static Dictionary<byte, byte> PuppeteerList = new();
-    public static Dictionary<byte, byte> CovenLeaderList = new();
-    public static Dictionary<byte, byte> TaglockedList = new();
-    public static Dictionary<byte, byte> ShroudList = new();
     public static Dictionary<byte, byte> SpeedBoostTarget = new();
     public static Dictionary<byte, int> MayorUsedButtonCount = new();
     public static Dictionary<byte, int> ParaUsedButtonCount = new();
