@@ -2835,17 +2835,8 @@ class FixedUpdatePatch
                 if (Sniper.IsEnable && target.AmOwner)
                     Mark.Append(Sniper.GetShotNotify(target.PlayerId));
 
-                if ((seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers))
-                    || (seer.Data.IsDead && target.Is(CustomRoles.Lovers))
-                    || (seer.AmOwner && Main.GodMode.Value && target.Is(CustomRoles.Lovers))
-                    || (!seer.Data.IsDead && !seer.Is(CustomRoles.God) && target.Is(CustomRoles.Ntr))
-                    || (seer.Is(CustomRoles.God) && target.Is(CustomRoles.Lovers) && Options.GodKnowAddons.GetBool())
-                    || (seer.Is(CustomRoles.God) && target.Is(CustomRoles.Ntr) && !Options.GodKnowAddons.GetBool())
-                    || (!seer.Data.IsDead && seer.Is(CustomRoles.Ntr) && !seer.Is(CustomRoles.God))
-                    || (!seer.Data.IsDead && seer.Is(CustomRoles.Ntr) && seer.Is(CustomRoles.God) && !Options.GodKnowAddons.GetBool())
-                    || (seer.PlayerId == target.PlayerId && CustomRolesHelper.RoleExist(CustomRoles.Ntr) && !seer.Is(CustomRoles.God)))
+                if (ExtendedPlayerControl.CanSeeLoverMark(seer, target))
                     Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
-
 
                 Suffix.Append(Snitch.GetSnitchArrow(seer, target));
                 Suffix.Append(BountyHunter.GetTargetArrow(seer, target));

@@ -2083,16 +2083,8 @@ public static class Utils
                     if (Deathpact.IsEnable)
                         TargetMark.Append(Deathpact.GetDeathpactMark(seer, target));
 
-                    if ((seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers))
-                        || (seer.Data.IsDead && target.Is(CustomRoles.Lovers))
-                        || (seer.AmOwner && Main.GodMode.Value && target.Is(CustomRoles.Lovers))
-                        || (!seer.Data.IsDead && !seer.Is(CustomRoles.God) && target.Is(CustomRoles.Ntr))
-                        || (seer.Is(CustomRoles.God) && target.Is(CustomRoles.Lovers) && Options.GodKnowAddons.GetBool())
-                        || (seer.Is(CustomRoles.God) && target.Is(CustomRoles.Ntr) && !Options.GodKnowAddons.GetBool())
-                        || (!seer.Data.IsDead && seer.Is(CustomRoles.Ntr) && !seer.Is(CustomRoles.God))
-                        || (!seer.Data.IsDead && seer.Is(CustomRoles.Ntr) && seer.Is(CustomRoles.God) && !Options.GodKnowAddons.GetBool()))
+                    if (ExtendedPlayerControl.CanSeeLoverMark(seer, target))
                         TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
-                    //Those clearly know ntr won't get influenced by ntr
 
                     if (seer.Is(CustomRoles.Medic) && (Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 1) && (Medic.InProtect(target.PlayerId) || Medic.TempMarkProtected == target.PlayerId))
                     {

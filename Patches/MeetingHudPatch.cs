@@ -1079,6 +1079,12 @@ class MeetingHudStartPatch
                         if (!seer.Data.IsDead && !target.Data.IsDead)
                             pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Guesser), target.PlayerId.ToString()) + " " + pva.NameText.text;
                         break;
+                    case CustomRoles.Ntr:
+                        if (ExtendedPlayerControl.CanSeeLoverMark(__instance, target))
+                            {
+                                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lovers), "♥"));
+                            }           
+                        break;             
                 }
             }
 
@@ -1087,8 +1093,8 @@ class MeetingHudStartPatch
                 switch (TargetSubRole)
                 {
                     case CustomRoles.Lovers:
-                        if (seer.Is(CustomRoles.Lovers) || seer.Data.IsDead
-                            || (seer.Is(CustomRoles.God) && Options.GodKnowAddons.GetBool()))
+                    case CustomRoles.Ntr:
+                        if (ExtendedPlayerControl.CanSeeLoverMark(__instance, target))
                         {
                             sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lovers), "♥"));
                         }
@@ -1102,12 +1108,6 @@ class MeetingHudStartPatch
                           break; */
                 }
             }
-            //add checks for both seer and target's subrole, maybe one day we can use them...
-
-            //海王相关显示
-            if (!seer.Data.IsDead && target.Is(CustomRoles.Ntr)
-                && !(seer.Is(CustomRoles.God) && Options.GodKnowAddons.GetBool()))
-                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lovers), "♥"));
 
             //呪われている場合
             sb.Append(Witch.GetSpelledMark(target.PlayerId, true));

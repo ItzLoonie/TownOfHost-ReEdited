@@ -1151,7 +1151,7 @@ static class ExtendedPlayerControl
 
     public static bool KnowRoleTarget(PlayerControl seer, PlayerControl target)
     {
-        if (seer.Is(CustomRoles.God) || target.Is(CustomRoles.GM)) return true;
+        if (seer.Is(CustomRoles.God) || target.Is(CustomRoles.GM) || (seer.AmOwner && Main.GodMode.Value)) return true;
         else if (Main.VisibleTasksCount && seer.Data.IsDead && Options.GhostCanSeeOtherRoles.GetBool()) return true;
         else if (target.Is(CustomRoles.Gravestone) && target.Data.IsDead) return true;
         else if (Options.SeeEjectedRolesInMeeting.GetBool() && Main.PlayerStates[target.PlayerId].deathReason == PlayerState.DeathReason.Vote) return true;
@@ -1189,8 +1189,8 @@ static class ExtendedPlayerControl
     }
     public static bool KnowRoleAddonsTarget(PlayerControl seer, PlayerControl target)
     {
-        if (seer.PlayerId == target.PlayerId) return true;
-        else if (seer.Data.IsDead || seer.Is(CustomRoles.GM) || (seer.AmOwner && Main.GodMode.Value)) return true;
+
+        if (seer.Data.IsDead || seer.Is(CustomRoles.GM) || (seer.AmOwner && Main.GodMode.Value)) return true;
         else if (seer.Is(CustomRoles.God) && Options.GodKnowAddons.GetBool()) return true;
         else if (Options.LoverKnowAddons.GetBool() && Options.LoverKnowRoles.GetBool()
             && seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers)) return true;
@@ -1199,24 +1199,15 @@ static class ExtendedPlayerControl
         //Maybe these stuffs will be added later!
         else return false;
     }
-
-    public static bool CanSeeLoversMark(PlayerControl seer, PlayerControl target)
+    public static bool CanSeeLoverMark(PlayerControl seer, PlayerControl target)
     {
-        bool canSeeLoversMark = false;
-        if (seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers)) canSeeLoversMark = true;
-        else if ((seer.Data.IsDead || seer.Is(CustomRoles.GM) || (seer.AmOwner && Main.GodMode.Value)) 
-            && target.Is(CustomRoles.Lovers)) canSeeLoversMark = true;
-        else if (seer.Is(CustomRoles.God) && !seer.Data.IsDead)
-        {
-            if (Options.GodKnowAddons.GetBool())
-            {
-                if (target.Is(CustomRoles.Lovers)) canSeeLoversMark = true;                
-            }
-            else if (target.Is(CustomRoles.Ntr) && !seer.Data.IsDead) canSeeLoversMark = true;
-        }
-        else if (target.Is(CustomRoles.Ntr)) canSeeLoversMark = true;
+        if (seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers)) return true;
+        else if ((seer.Data.IsDead || seer.Is(CustomRoles.GM) 
+        || (seer.AmOwner && Main.GodMode.Value)) && target.Is(CustomRoles.Lovers)) return true;
+        else if (seer.Is(CustomRoles.God) && Options.GodKnowAddons.GetBool() && target.Is(CustomRoles.Lovers)) return true;
+        else if (seer.Is(CustomRoles.Ntr) || target.Is(CustomRoles.Ntr)) return true;
         
-        return canSeeLoversMark;
+        else return false;
     }
     public static string GetRoleInfo(this PlayerControl player, bool InfoLong = false)
     {
