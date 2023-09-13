@@ -1112,11 +1112,7 @@ class MeetingHudStartPatch
             sb.Append(Witch.GetSpelledMark(target.PlayerId, true));
             sb.Append(HexMaster.GetHexedMark(target.PlayerId, true));
             sb.Append(Occultist.GetCursedMark(target.PlayerId, true));
-
-            if (Main.ShroudList.ContainsKey(target.PlayerId))
-                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Shroud), "◈")); 
-          //      Utils.SendMessage(string.Format(GetString("Message.Shrouded"), target.PlayerId));
-            
+            sb.Append(Shroud.GetShroudMark(target.PlayerId, true));            
             
             if (target.PlayerId == Pirate.PirateTarget)
                 sb.Append(Pirate.GetPlunderedMark(target.PlayerId, true));

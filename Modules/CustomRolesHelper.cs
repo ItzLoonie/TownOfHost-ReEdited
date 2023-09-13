@@ -1228,7 +1228,6 @@ static class CustomRolesHelper
                 if (pc.Is(CustomRoles.Vindicator)
                     || pc.Is(CustomRoles.Bomber)
                     || pc.Is(CustomRoles.Nuker)
-                    || pc.Is(CustomRoles.BoobyTrap)
                     || pc.Is(CustomRoles.Capitalism)
                     || pc.Is(CustomRoles.VoidBallot))
                     return false;
@@ -1292,7 +1291,6 @@ static class CustomRolesHelper
                 if (pc.Is(CustomRoles.Swift)
                     || pc.Is(CustomRoles.Bomber)
                     || pc.Is(CustomRoles.Nuker)
-                    || pc.Is(CustomRoles.BoobyTrap)
                     || pc.Is(CustomRoles.Capitalism))
                     return false;
                 if (!pc.GetCustomRole().IsImpostor())
