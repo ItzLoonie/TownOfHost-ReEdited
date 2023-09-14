@@ -1782,9 +1782,9 @@ public static class Utils
             SelfMark.Clear();
 
 
-        // ====== Add SelfMark for seer ======
+            // ====== Add SelfMark for seer ======
 
-            if (seer.Is(CustomRoles.Lovers) || CustomRoles.Ntr.RoleExist())
+            if (ExtendedPlayerControl.CanSeeLoverMark(seer, seer))
                 SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Lovers), "♥"));
 
             if (seer.Is(CustomRoles.SuperStar) && Options.EveryOneKnowSuperStar.GetBool())
