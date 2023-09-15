@@ -276,7 +276,7 @@ public class GameStartRandomMap
             The Skeld    = 0
             MIRA HQ      = 1
             Polus        = 2
-            Dleks        = 3
+            Dleks        = 3 (Not used)
             The Airship  = 4
             Fungle       = 5?
         */

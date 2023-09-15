@@ -120,8 +120,15 @@ public static class Utils
     }
     public static bool IsActive(SystemTypes type)
     {
-        //Logger.Info($"SystemTypes:{type}", "IsActive");
         int mapId = Main.NormalOptions.MapId;
+        /*
+            The Skeld    = 0
+            MIRA HQ      = 1
+            Polus        = 2
+            Dleks        = 3 (Not used)
+            The Airship  = 4
+            Fungle       = 5?
+        */
         switch (type)
         {
             case SystemTypes.Electrical:
@@ -1791,7 +1798,7 @@ public static class Utils
             if (BallLightning.IsEnable && BallLightning.IsGhost(seer))
                 SelfMark.Append(ColorString(GetRoleColor(CustomRoles.BallLightning), "■"));
 
-            if (Medic.IsEnable && (Medic.InProtect(seer.PlayerId) || Medic.TempMarkProtected == seer.PlayerId) && (Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 2))
+            if (Medic.IsEnable && (Medic.InProtect(seer.PlayerId) || Medic.TempMarkProtected == seer.PlayerId) && (Medic.WhoCanSeeProtect.GetInt() is 0 or 2))
                 SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Medic), "✚"));
 
 
@@ -2091,7 +2098,7 @@ public static class Utils
                     }
 
 
-                    if (seer.Is(CustomRoles.Medic) && (Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 1) && (Medic.InProtect(target.PlayerId) || Medic.TempMarkProtected == target.PlayerId))
+                    if (seer.Is(CustomRoles.Medic) && (Medic.WhoCanSeeProtect.GetInt() is 0 or 1) && (Medic.InProtect(target.PlayerId) || Medic.TempMarkProtected == target.PlayerId))
                     {
                         TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Medic), "✚"));
                     }
