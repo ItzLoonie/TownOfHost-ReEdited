@@ -2341,7 +2341,7 @@
   "DivinatorCheck.Result14": "<b>{0}</b> is either Anonymous, Mayor, Paranoid, Pickpocket, or Vindicator",
   "DivinatorCheck.Result15": "<b>{0}</b> is either Infectious, Virus, Monarch, Revolutionist, or Cultist",
   "DivinatorCheck.Result16": "<b>{0}</b> is either Innocent, Masochist, Inhibitor, Mechanic, Shaman, or Saboteur",
-  "DivinatorCheck.Result17": "<b>{0}</b> is either Medic, Vector, Jester, Lurker, Jailor, or Sunnyboy",
+  "DivinatorCheck.Result17": "<b>{0}</b> is either Medic, Vector, Jester, Lurker, Jailor, Swapper, or Sunnyboy",
   "DivinatorCheck.Result18": "<b>{0}</b> is either Nemesis, Retributionist, Necromancer, Gangster, Glitch, Luckey, Godfather, or Underdog",
   "DivinatorCheck.Result19": "<b>{0}</b> is either Assassin, Vigilante, Stalker, Camouflager, Shade, or Chameleon",
   "DivinatorCheck.Result20": "<b>{0}</b> is either Jackal, Sidekick, Maverick, Opportunist, Pursuer, or Provocateur",
