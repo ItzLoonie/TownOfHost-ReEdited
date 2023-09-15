@@ -98,7 +98,7 @@ public static class Infectious
         Logger.Info($"{killer.GetNameWithRole()} : 剩余{BiteLimit}次招募机会", "Infectious");
         return false;
     }
-    public static void MurderShroudedPlayers(PlayerControl infected)
+    public static void MurderInfectedPlayers(PlayerControl infected)
     {
         if (infected.Is(CustomRoles.Infected) && infected.IsAlive())
         {

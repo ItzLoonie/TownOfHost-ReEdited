@@ -177,7 +177,7 @@ class ExileControllerWrapUpPatch
 
             if (Infectious.IsEnable)
             {
-                Infectious.MurderShroudedPlayers(pc);
+                Infectious.MurderInfectedPlayers(pc);
             }
 
             if (Shroud.IsEnable)
