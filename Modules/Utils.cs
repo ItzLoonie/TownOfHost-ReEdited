@@ -1901,7 +1901,7 @@ public static class Utils
             {
                 if (seer.IsAlive())
                 {
-                    if (Shroud.IsEnable && Shroud.ShroudList.ContainsKey(seer.PlayerId))
+                    if (Shroud.IsEnable && Shroud.ShroudList.ContainsValue(seer.PlayerId))
                         SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Shroud), "◈"));
                 }
 
@@ -2036,11 +2036,11 @@ public static class Utils
 
                         TargetMark.Append(Occultist.GetCursedMark(target.PlayerId, true));
 
+                        if (Pirate.IsEnable)
+                            TargetMark.Append(Pirate.GetPlunderedMark(target.PlayerId, true));
+
                         if (target.IsAlive()) 
                             TargetMark.Append(Shroud.GetShroudMark(target.PlayerId, true));
-
-                        if (target.PlayerId == Pirate.PirateTarget)
-                            TargetMark.Append(Pirate.GetPlunderedMark(target.PlayerId, true));
                     }
 
                     if (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Snitch) && target.Is(CustomRoles.Madmate) && target.GetPlayerTaskState().IsTaskFinished)
@@ -2051,7 +2051,6 @@ public static class Utils
 
                     if (target.Is(CustomRoles.SuperStar) && Options.EveryOneKnowSuperStar.GetBool())
                         TargetMark.Append(ColorString(GetRoleColor(CustomRoles.SuperStar), "★"));
-
 
                     if (BallLightning.IsEnable && BallLightning.IsGhost(target))
                         TargetMark.Append(ColorString(GetRoleColor(CustomRoles.BallLightning), "■"));

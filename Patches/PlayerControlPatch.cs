@@ -2016,7 +2016,6 @@ class ReportDeadBodyPatch
         Doomsayer.OnReportDeadBody();
         BallLightning.OnReportDeadBody();
         CovenLeader.OnReportDeadBody();
-        Shroud.OnReportDeadBody();
         NWitch.OnReportDeadBody();
         Seeker.OnReportDeadBody();
         Jailer.OnReportDeadBody();
