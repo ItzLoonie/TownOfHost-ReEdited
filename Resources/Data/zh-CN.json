@@ -2900,6 +2900,7 @@
   "DCNotify.Auth": "您未通过身份验证，\n您可能需要重新启动游戏",
   "DCNotify.DupeLogin": "检测到重复登录",
   "DCNotify.InvalidSettings": "检测到游戏设置无效\n输入 Enter 以重置它们，然后重试",
+  "DCNotify.EacHost": "检测你在EAC名单中\n我们不为不受欢迎的用户提供服务",
   "ModeDescribe.SoloKombat": "本房间模式为[个人竞技模式]\n没有职业分配，所有人拥有初始的血量，可以使用击杀键对其他人造成伤害。游戏结束时击杀数量最多的玩家获胜。",
   "RoleType.VanillaRoles": "★ 原版职业",
   "RoleType.ImpKilling": "<color=#6a0000>★</color> 内鬼<color=#6a0000>击杀类</color>身份",

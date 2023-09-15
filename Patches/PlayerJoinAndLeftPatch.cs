@@ -52,8 +52,9 @@ class OnGameJoinedPatch
             {
                 if (BanManager.CheckEACList(PlayerControl.LocalPlayer.FriendCode) && GameStates.IsOnlineGame)
                 {
-                    AmongUsClient.Instance.ExitGame(DisconnectReasons.Banned);
+                    AmongUsClient.Instance.ExitGame(DisconnectReasons.Banned);                    
                     SceneChanger.ChangeScene("MainMenu");
+                    ModUpdater.ShowPopup(GetString("DCNotify.EacHost"), StringNames.ExitGame, true, true);
                 }
             }, 1f, "OnGameJoinedPatch");
         }
