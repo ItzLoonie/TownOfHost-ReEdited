@@ -9,7 +9,6 @@ using TOHE.Modules;
 using TOHE.Roles.Crewmate;
 using static TOHE.Options;
 using static TOHE.Translator;
-using MS.Internal.Xml.XPath;
 
 
 namespace TOHE.Roles.Impostor;
