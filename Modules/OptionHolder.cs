@@ -65,6 +65,8 @@ public static class Options
     public static bool IsActivePolus => Main.NormalOptions.MapId == 2; // 2 - Polus
     public static bool IsActiveAirship => Main.NormalOptions.MapId == 4; // 4 - Airship
 
+    //public static bool IsActiveFungle => Main.NormalOptions.MapId == 5; // 5 - Fungle
+
     // Map not used
     //public static bool IsActiveDleks => Main.NormalOptions.MapId == 3; // 3 - Dleks
 
@@ -643,6 +645,7 @@ public static class Options
     public static OptionItem MiraChance;
     public static OptionItem PolusChance;
     public static OptionItem AirshipChance;
+ // public static OptionItem FungleChance;
     public static OptionItem UseMoreRandomMapSelection;
     public static OptionItem AddedDleks;
     public static OptionItem RandomSpawn;
