@@ -847,8 +847,6 @@ static class CustomRolesHelper
             CustomRoles.Farseer or
             CustomRoles.SwordsMan or
             CustomRoles.Admirer or
-            CustomRoles.Divinator or
-            CustomRoles.Merchant or
             CustomRoles.Reverie or
             CustomRoles.Deputy;
     }
