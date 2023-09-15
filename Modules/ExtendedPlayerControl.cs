@@ -1151,6 +1151,8 @@ static class ExtendedPlayerControl
 
     public static bool KnowRoleTarget(PlayerControl seer, PlayerControl target)
     {
+        if (seer == null || target == null) return false;
+
         if (seer.Is(CustomRoles.GM) || target.Is(CustomRoles.GM) 
             || (seer.AmOwner && Main.GodMode.Value) || (seer.PlayerId == target.PlayerId)) return true;
         else if (seer.Is(CustomRoles.God)) return true;
@@ -1159,7 +1161,7 @@ static class ExtendedPlayerControl
         else if (Options.SeeEjectedRolesInMeeting.GetBool() && Main.PlayerStates[target.PlayerId].deathReason == PlayerState.DeathReason.Vote) return true;
         else if (Options.MimicCanSeeDeadRoles.GetBool() && Main.VisibleTasksCount && seer.Is(CustomRoles.Mimic) && target.Data.IsDead) return true;
         else if (Options.LoverKnowRoles.GetBool() && seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers)) return true;
-        else if (Options.KnowNtrRole.GetBool() && target.Is(CustomRoles.Ntr)) return true;
+        //else if (Options.KnowNtrRole.GetBool() && target.Is(CustomRoles.Ntr)) return true;
         else if (Options.ImpKnowAlliesRole.GetBool() && seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoleTypes.Impostor)) return true;
         else if (Options.CovenKnowAlliesRole.GetBool() && seer.GetCustomRole().IsCoven() && target.GetCustomRole().IsCoven()) return true;
         else if (Options.MadmateKnowWhosImp.GetBool() && seer.Is(CustomRoles.Madmate) && target.Is(CustomRoleTypes.Impostor)) return true;
@@ -1191,41 +1193,32 @@ static class ExtendedPlayerControl
     }
     public static bool KnowRoleAddonsTarget(PlayerControl seer, PlayerControl target)
     {
+        if (seer == null || target == null) return false;
+        
         if (seer.Data.IsDead || seer.Is(CustomRoles.GM) 
             || (seer.AmOwner && Main.GodMode.Value) || seer.PlayerId == target.PlayerId) return true;
         else if (seer.Is(CustomRoles.God) && Options.GodKnowAddons.GetBool()) return true;
         else if (Options.LoverKnowAddons.GetBool() && Options.LoverKnowRoles.GetBool()
-            && seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers) && !target.Is(CustomRoles.Ntr)) return true;
+            && seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers) /* && !target.Is(CustomRoles.Ntr) */) return true;
         else if (target.Data.IsDead && target.Is(CustomRoles.Gravestone) && Options.KnowGravestoneAddons.GetBool()) return true;
 
-        //Niko also want to add imposters and some neutrals here. But things related with converted roles and task states confused Niko.
-        //Maybe these stuffs will be added later!
+        ////Niko also want to add imposters and some neutrals here. But things related with converted roles and task states confused Niko.
+        ////Maybe these stuffs will be added later!
         else return false;
     }
     public static bool CanSeeLoverMark(PlayerControl seer, PlayerControl target)
     {
         if (seer == null || target == null) return false;
-        if (seer.Data.IsDead || (seer.AmOwner && Main.GodMode.Value) || seer.Is(CustomRoles.GM))
-            if (target.Is(CustomRoles.Lovers)) return true;
-            else return false;
 
-        if (seer.Is(CustomRoles.God) && Options.GodKnowAddons.GetBool())
-        {
-            if (target.Is(CustomRoles.Lovers)) return true;
-            else if (target.Is(CustomRoles.Ntr)) return false;
-            else if (seer.PlayerId == target.PlayerId && CustomRoles.Ntr.RoleExist(false)) return false;
-        }
+        if ((seer.Data.IsDead || seer.Is(CustomRoles.GM) /*|| (seer.AmOwner && Main.GodMode.Value)*/)
+            && target.Is(CustomRoles.Lovers)) return true;
+        else if (seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers)) return true;
+        else if (seer.Is(CustomRoles.God) && Options.GodKnowAddons.GetBool() && target.Is(CustomRoles.Lovers)) return true;
+        else if (target.Is(CustomRoles.Gravestone) && Options.KnowGravestoneAddons.GetBool()
+            && target.Data.IsDead && target.Is(CustomRoles.Lovers)) return true;
 
-        if (seer.Is(CustomRoles.Lovers) && target.Is(CustomRoles.Lovers)) return true;
-        if (target.Is(CustomRoles.Gravestone) && target.Data.IsDead && Options.KnowGravestoneAddons.GetBool()) return true;
-        if (CustomRoles.Ntr.RoleExist(false))
-        {
-            if (seer.Is(CustomRoles.Ntr) || target.Is(CustomRoles.Ntr)) return true;
-            else if (seer.PlayerId == target.PlayerId) return true;
-        }
-
-        return false;
-        // It would be a sweat to improve these codes
+        else return false;
+        //No ntr = ez
     }
     public static string GetRoleInfo(this PlayerControl player, bool InfoLong = false)
     {

@@ -2086,7 +2086,7 @@ public static class Utils
                         TargetMark.Append(Deathpact.GetDeathpactMark(seer, target));
 
                     if (ExtendedPlayerControl.CanSeeLoverMark(seer, target))
-                        TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
+                        TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Lovers), "♥"));
 
                     if (seer.Is(CustomRoles.Medic) && (Medic.WhoCanSeeProtect.GetInt() is 0 or 1) && (Medic.InProtect(target.PlayerId) || Medic.TempMarkProtected == target.PlayerId))
                     {

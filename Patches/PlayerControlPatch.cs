@@ -2671,7 +2671,7 @@ class FixedUpdatePatch
                     Mark.Append(Sniper.GetShotNotify(target.PlayerId));
 
                 if (ExtendedPlayerControl.CanSeeLoverMark(seer, target))
-                    Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
+                    Mark.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Lovers), "♥"));
 
                 Suffix.Append(Snitch.GetSnitchArrow(seer, target));
                 Suffix.Append(BountyHunter.GetTargetArrow(seer, target));
