@@ -71,9 +71,9 @@ internal static class Eraser
             return;
         }
 
-        if (target.GetCustomRole().IsNeutral() || target.GetCustomRole().IsCoven())
+        if (target.GetCustomRole().IsTasklessCrewmate() || target.GetCustomRole().IsNeutral() || target.GetCustomRole().IsCoven())
         {
-            Utils.SendMessage(string.Format(GetString("EraserEraseNeutralNotice"), target.GetRealName()), player.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Eraser), GetString("EraserEraseMsgTitle")));
+            Utils.SendMessage(string.Format(GetString("EraserEraseBaseImpostorOrNeutralRoleNotice"), target.GetRealName()), player.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Eraser), GetString("EraserEraseMsgTitle")));
             return;
         }
 
