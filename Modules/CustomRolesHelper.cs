@@ -942,7 +942,6 @@ static class CustomRolesHelper
                 if (pc.Is(CustomRoles.Trapper)
                     || pc.Is(CustomRoles.Unreportable)
                     || pc.Is(CustomRoles.Burst)
-                    || (pc.Is(CustomRoles.Onbound) && Options.BaitNotification.GetBool())
                     || pc.Is(CustomRoles.GuardianAngelTOHE))
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeBait.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeBait.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeBait.GetBool()))
@@ -980,10 +979,7 @@ static class CustomRolesHelper
                 break;
 
             case CustomRoles.Onbound:
-                if (pc.Is(CustomRoles.SuperStar)
-                    || (pc.Is(CustomRoles.Doctor) && Options.DoctorVisibleToEveryone.GetBool())
-                    || (pc.Is(CustomRoles.Bait) && Options.BaitNotification.GetBool())
-                    || pc.Is(CustomRoles.Glow) || pc.Is(CustomRoles.LastImpostor) || pc.Is(CustomRoles.Mare))
+                if (pc.Is(CustomRoles.SuperStar))
                     return false; //Based on guess manager
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeOnbound.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeOnbound.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeOnbound.GetBool()))
                     return false;
@@ -1258,8 +1254,7 @@ static class CustomRolesHelper
                     || pc.Is(CustomRoles.Bomber)
                     || pc.Is(CustomRoles.Nuker)
                     || pc.Is(CustomRoles.BoobyTrap)
-                    || pc.Is(CustomRoles.Capitalism)
-                    || pc.Is(CustomRoles.Onbound))
+                    || pc.Is(CustomRoles.Capitalism))
                     return false;
                 if (!pc.GetCustomRole().IsImpostor())
                     return false;
@@ -1344,7 +1339,6 @@ static class CustomRolesHelper
                 break;
 
             case CustomRoles.Glow:
-                if (pc.Is(CustomRoles.Onbound)) return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeGlow.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeGlow.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeGlow.GetBool()))
                     return false;
                 break;

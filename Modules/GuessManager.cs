@@ -283,7 +283,7 @@ public static class GuessManager
                     else pc.ShowPopUp(GetString("GuessDisabled"));
                     return true;
                 }
-                if (role == CustomRoles.SuperStar || target.Is(CustomRoles.SuperStar))
+                if (target.Is(CustomRoles.SuperStar) && Options.EveryOneKnowSuperStar.GetBool())
                 {
                     if (!isUI) Utils.SendMessage(GetString("GuessSuperStar"), pc.PlayerId);
                     else pc.ShowPopUp(GetString("GuessSuperStar"));
