@@ -196,6 +196,7 @@ internal class ChangeRoleSettings
             HexMaster.Init();
             Occultist.Init();
             SabotageMaster.Init();
+            Repairman.Init();
             Executioner.Init();
             Lawyer.Init();
             Jackal.Init();
@@ -599,6 +600,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.SabotageMaster:
                         SabotageMaster.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Repairman:
+                        Repairman.Add(pc.PlayerId);
                         break;
                     case CustomRoles.EvilTracker:
                         EvilTracker.Add(pc.PlayerId);

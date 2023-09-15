@@ -1862,6 +1862,10 @@ class ReportDeadBodyPatch
 
                         __instance.RpcMurderPlayerV3(__instance);
                         RPC.PlaySoundRPC(killerID, Sounds.KillSound);
+                        if (Options.TrapConsecutiveTrapsterBodies.GetBool())
+                        {
+                            Main.BoobyTrapBody.Add(__instance.PlayerId);
+                        }
                         return false;
                     } 
 
