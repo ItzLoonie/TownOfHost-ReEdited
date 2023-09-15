@@ -41,9 +41,37 @@ public static class CovenLeader
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
+    private static void SendRPC(byte leaderId, byte targetId, byte typeId)
+    {
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SyncCovenLeader, SendOption.Reliable, -1);
+        writer.Write(typeId);
+        writer.Write(leaderId);
+        writer.Write(targetId);
+        AmongUsClient.Instance.FinishRpcImmediately(writer);
+    }
+    public static void ReceiveRPC(MessageReader reader)
+    {
+        var typeId = reader.ReadByte();
+        var leaderId = reader.ReadByte();
+        var targetId = reader.ReadByte();
+
+        switch (typeId)
+        {
+            case 0:
+                CovenLeaderList.Clear();
+                break;
+            case 1:
+                CovenLeaderList[targetId] = leaderId;
+                break;
+            case 2:
+                CovenLeaderList.Remove(targetId);
+                break;
+        }
+    }
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
     {
         CovenLeaderList[target.PlayerId] = killer.PlayerId;
+        SendRPC(killer.PlayerId, target.PlayerId, 1);
         killer.SetKillCooldown();
 
         Utils.NotifyRoles(SpecifySeer: killer);
@@ -92,6 +120,7 @@ public static class CovenLeader
                         leader.RpcMurderPlayerV3(target);
                         Utils.MarkEveryoneDirtySettings();
                         CovenLeaderList.Remove(leader.PlayerId);
+                        SendRPC(byte.MaxValue, leader.PlayerId, 2);
                         Utils.NotifyRoles(SpecifySeer: leader);
                         if (!leader.Is(CustomRoles.Pestilence))
                         {
@@ -108,6 +137,7 @@ public static class CovenLeader
     public static void OnReportDeadBody()
     {
         CovenLeaderList.Clear();
+        SendRPC(byte.MaxValue, byte.MaxValue, 0);
     }
     public static string TargetMark(PlayerControl seer, PlayerControl target)
         => (CovenLeaderList.ContainsValue(seer.PlayerId) && CovenLeaderList.ContainsKey(target.PlayerId)) ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.CovenLeader), "◆") : "";
