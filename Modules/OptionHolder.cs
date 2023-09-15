@@ -65,6 +65,8 @@ public static class Options
     public static bool IsActivePolus => Main.NormalOptions.MapId == 2; // 2 - Polus
     public static bool IsActiveAirship => Main.NormalOptions.MapId == 4; // 4 - Airship
 
+    //public static bool IsActiveFungle => Main.NormalOptions.MapId == 5; // 5 - Fungle
+
     // Map not used
     //public static bool IsActiveDleks => Main.NormalOptions.MapId == 3; // 3 - Dleks
 
@@ -493,6 +495,7 @@ public static class Options
 
     // Trapster
     public static OptionItem TrapConsecutiveBodies;
+    public static OptionItem TrapConsecutiveTrapsterBodies;
     public static OptionItem TrapTrapsterBody;
 
     //public static OptionItem NSerialKillerKillCD;
@@ -645,6 +648,7 @@ public static class Options
     public static OptionItem MiraChance;
     public static OptionItem PolusChance;
     public static OptionItem AirshipChance;
+ // public static OptionItem FungleChance;
     public static OptionItem UseMoreRandomMapSelection;
     public static OptionItem AddedDleks;
     public static OptionItem RandomSpawn;
@@ -1156,7 +1160,6 @@ public static class Options
             .SetValueFormat(OptionFormat.Times);
         Deathpact.SetupCustomOption();
         Greedier.SetupCustomOption(); //TOH_Y
-        Hangman.SetupCustomOption();
         SetupRoleOptions(1500, TabGroup.ImpostorRoles, CustomRoles.Inhibitor);
         InhibitorCD = FloatOptionItem.Create(1510, "KillCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Inhibitor])
@@ -1187,6 +1190,8 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.BoobyTrap]);
         TrapTrapsterBody = BooleanOptionItem.Create(16517, "TrapTrapsterBody", true, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.BoobyTrap]);
+        TrapConsecutiveTrapsterBodies = BooleanOptionItem.Create(16518, "TrapConsecutiveBodies", true, TabGroup.ImpostorRoles, false)
+            .SetParent(TrapTrapsterBody);
         SetupRoleOptions(10025, TabGroup.ImpostorRoles, CustomRoles.Underdog);
         UnderdogMaximumPlayersNeededToKill = IntegerOptionItem.Create(10030, "UnderdogMaximumPlayersNeededToKill", new(1, 15, 1), 5, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Underdog])
@@ -1830,6 +1835,7 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Nimble]);
         NeutralCanBeNimble = BooleanOptionItem.Create(14062, "NeutralCanBeNimble", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Nimble]); */
+        Repairman.SetupCustomOption(); //Repairman
         SetupAdtRoleOptions(14800, CustomRoles.Seer, canSetNum: true);
         ImpCanBeSeer = BooleanOptionItem.Create(14810, "ImpCanBeSeer", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Seer]);
@@ -2132,14 +2138,15 @@ public static class Options
         ZombieSpeedReduce = FloatOptionItem.Create(16411, "ZombieSpeedReduce", new(0.0f, 1.0f, 0.1f), 0.1f, TabGroup.OtherRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Zombie])
             .SetValueFormat(OptionFormat.Multiplier);
-        SetupRoleOptions(16600, TabGroup.OtherRoles, CustomRoles.Capitalism);
+    /*    SetupRoleOptions(16600, TabGroup.OtherRoles, CustomRoles.Capitalism);
         CapitalismSkillCooldown = FloatOptionItem.Create(16610, "CapitalismSkillCooldown", new(2.5f, 180f, 2.5f), 20f, TabGroup.OtherRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Capitalism])
-            .SetValueFormat(OptionFormat.Seconds);
+            .SetValueFormat(OptionFormat.Seconds); */
         BallLightning.SetupCustomOption();
         Eraser.SetupCustomOption();
         SetupRoleOptions(16900, TabGroup.OtherRoles, CustomRoles.OverKiller);
         Disperser.SetupCustomOption();
+        Hangman.SetupCustomOption();
 
         // 船员
         TextOptionItem.Create(100019, "OtherRoles.CrewmateRoles", TabGroup.OtherRoles)
@@ -2174,14 +2181,13 @@ public static class Options
         TextOptionItem.Create(100021, "OtherRoles.Addons", TabGroup.OtherRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 154, 206, byte.MaxValue));
+      
+    //    SetupAdtRoleOptions(18600, CustomRoles.Ntr, tab: TabGroup.OtherRoles);
+   /*     SetupAdtRoleOptions(18700, CustomRoles.Flashman, canSetNum: true, tab: TabGroup.OtherRoles);
+        FlashmanSpeed = FloatOptionItem.Create(6050335, "FlashmanSpeed", new(0.25f, 5f, 0.25f), 2.5f, TabGroup.OtherRoles, false)
+        .SetParent(CustomRoleSpawnChances[CustomRoles.Flashman])
+            .SetValueFormat(OptionFormat.Multiplier); */
 
-        SetupAdtRoleOptions(18600, CustomRoles.Ntr, tab: TabGroup.OtherRoles);
-        KnowNtrRole = BooleanOptionItem.Create(18610, "KnowNtrRole", true, TabGroup.OtherRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Ntr]);
-        /*     SetupAdtRoleOptions(18700, CustomRoles.Flashman, canSetNum: true, tab: TabGroup.OtherRoles);
-             FlashmanSpeed = FloatOptionItem.Create(6050335, "FlashmanSpeed", new(0.25f, 5f, 0.25f), 2.5f, TabGroup.OtherRoles, false)
-             .SetParent(CustomRoleSpawnChances[CustomRoles.Flashman])
-                 .SetValueFormat(OptionFormat.Multiplier); */
         SetupAdtRoleOptions(18800, CustomRoles.Youtuber, canSetNum: true, tab: TabGroup.OtherRoles);
     /*    SetupAdtRoleOptions(19000, CustomRoles.Sidekick, canSetNum: true, tab: TabGroup.OtherRoles);
         SidekickCountMode = StringOptionItem.Create(19010, "SidekickCountMode", sidekickCountMode, 0, TabGroup.OtherRoles, false)
@@ -3008,7 +3014,7 @@ public static class Options
         CustomRoleCounts.Add(role, countOption);
     }
 
-    private static void SetupAdtRoleOptions(int id, CustomRoles role, CustomGameMode customGameMode = CustomGameMode.Standard, bool canSetNum = false, TabGroup tab = TabGroup.Addons, bool canSetChance = true)
+    public static void SetupAdtRoleOptions(int id, CustomRoles role, CustomGameMode customGameMode = CustomGameMode.Standard, bool canSetNum = false, TabGroup tab = TabGroup.Addons, bool canSetChance = true)
     {
         var spawnOption = StringOptionItem.Create(id, role.ToString(), ratesZeroOne, 0, tab, false).SetColor(Utils.GetRoleColor(role))
             .SetHeader(true)

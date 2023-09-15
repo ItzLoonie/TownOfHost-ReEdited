@@ -1862,6 +1862,10 @@ class ReportDeadBodyPatch
 
                         __instance.RpcMurderPlayerV3(__instance);
                         RPC.PlaySoundRPC(killerID, Sounds.KillSound);
+                        if (Options.TrapConsecutiveTrapsterBodies.GetBool())
+                        {
+                            Main.BoobyTrapBody.Add(__instance.PlayerId);
+                        }
                         return false;
                     } 
 
@@ -2016,7 +2020,6 @@ class ReportDeadBodyPatch
         Doomsayer.OnReportDeadBody();
         BallLightning.OnReportDeadBody();
         CovenLeader.OnReportDeadBody();
-        Shroud.OnReportDeadBody();
         NWitch.OnReportDeadBody();
         Seeker.OnReportDeadBody();
         Jailer.OnReportDeadBody();
@@ -2637,7 +2640,7 @@ class FixedUpdatePatch
                         break;
 
                     case CustomRoles.Medic:
-                        if ((Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 1) && (Medic.InProtect(target.PlayerId) || Medic.TempMarkProtected == target.PlayerId))
+                        if ((Medic.WhoCanSeeProtect.GetInt() is 0 or 1) && (Medic.InProtect(target.PlayerId) || Medic.TempMarkProtected == target.PlayerId))
                             Mark.Append($"<color={Utils.GetRoleColorCode(seerRole)}>✚</color>");
                         break;
 
@@ -2658,7 +2661,7 @@ class FixedUpdatePatch
                         break;
                 }
 
-                if ((Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 2) && seer.PlayerId == target.PlayerId && (Medic.InProtect(seer.PlayerId) || Medic.TempMarkProtected == seer.PlayerId))
+                if ((Medic.WhoCanSeeProtect.GetInt() is 0 or 2) && seer.PlayerId == target.PlayerId && (Medic.InProtect(seer.PlayerId) || Medic.TempMarkProtected == seer.PlayerId))
                     Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Medic)}>✚</color>");
 
                 if (seer.Data.IsDead && Medic.InProtect(target.PlayerId) && !seer.Is(CustomRoles.Medic))

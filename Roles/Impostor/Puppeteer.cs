@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Hazel;
+using UnityEngine;
 using System.Linq;
 using AmongUs.GameOptions;
 using System.Collections.Generic;
@@ -32,11 +33,40 @@ public static class Puppeteer
     {
         IsEnable = true;
     }
+    private static void SendRPC(byte puppetId, byte targetId, byte typeId)
+    {
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SyncPuppet, SendOption.Reliable, -1);
+        writer.Write(typeId);
+        writer.Write(puppetId);
+        writer.Write(targetId);
+        AmongUsClient.Instance.FinishRpcImmediately(writer);
+    }
+    public static void ReceiveRPC(MessageReader reader)
+    {
+        var typeId = reader.ReadByte();
+        var puppetId = reader.ReadByte();
+        var targetId = reader.ReadByte();
+
+        switch (typeId)
+        {
+            case 0:
+                PuppeteerList.Clear();
+                break;
+            case 1:
+                PuppeteerList[targetId] = puppetId;
+                break;
+            case 2:
+                PuppeteerList.Remove(targetId);
+                break;
+        }
+    }
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
     {
         if (target.Is(CustomRoles.Needy) || target.Is(CustomRoles.Lazy) || Medic.ProtectList.Contains(target.PlayerId)) return false;
 
         PuppeteerList[target.PlayerId] = killer.PlayerId;
+        SendRPC(killer.PlayerId, target.PlayerId, 1);
+
         killer.SetKillCooldown();
         killer.RPCPlayCustomSound("Line");
 
@@ -86,6 +116,7 @@ public static class Puppeteer
                         puppet.RpcMurderPlayerV3(target);
                         Utils.MarkEveryoneDirtySettings();
                         PuppeteerList.Remove(puppet.PlayerId);
+                        SendRPC(byte.MaxValue, puppet.PlayerId, 2);
                         Utils.NotifyRoles(SpecifySeer: puppet);
                     }
                 }
@@ -96,6 +127,7 @@ public static class Puppeteer
     public static void OnReportDeadBody()
     {
         PuppeteerList.Clear();
+        SendRPC(byte.MaxValue, byte.MaxValue, 0);
     }
 
     public static string TargetMark(PlayerControl seer, PlayerControl target)

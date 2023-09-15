@@ -120,8 +120,15 @@ public static class Utils
     }
     public static bool IsActive(SystemTypes type)
     {
-        //Logger.Info($"SystemTypes:{type}", "IsActive");
         int mapId = Main.NormalOptions.MapId;
+        /*
+            The Skeld    = 0
+            MIRA HQ      = 1
+            Polus        = 2
+            Dleks        = 3 (Not used)
+            The Airship  = 4
+            Fungle       = 5?
+        */
         switch (type)
         {
             case SystemTypes.Electrical:
@@ -1793,7 +1800,7 @@ public static class Utils
             if (BallLightning.IsEnable && BallLightning.IsGhost(seer))
                 SelfMark.Append(ColorString(GetRoleColor(CustomRoles.BallLightning), "■"));
 
-            if (Medic.IsEnable && (Medic.InProtect(seer.PlayerId) || Medic.TempMarkProtected == seer.PlayerId) && (Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 2))
+            if (Medic.IsEnable && (Medic.InProtect(seer.PlayerId) || Medic.TempMarkProtected == seer.PlayerId) && (Medic.WhoCanSeeProtect.GetInt() is 0 or 2))
                 SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Medic), "✚"));
 
 
@@ -1903,7 +1910,7 @@ public static class Utils
             {
                 if (seer.IsAlive())
                 {
-                    if (Shroud.IsEnable && Shroud.ShroudList.ContainsKey(seer.PlayerId))
+                    if (Shroud.IsEnable && Shroud.ShroudList.ContainsValue(seer.PlayerId))
                         SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Shroud), "◈"));
                 }
 
@@ -2038,11 +2045,11 @@ public static class Utils
 
                         TargetMark.Append(Occultist.GetCursedMark(target.PlayerId, true));
 
+                        if (Pirate.IsEnable)
+                            TargetMark.Append(Pirate.GetPlunderedMark(target.PlayerId, true));
+
                         if (target.IsAlive()) 
                             TargetMark.Append(Shroud.GetShroudMark(target.PlayerId, true));
-
-                        if (target.PlayerId == Pirate.PirateTarget)
-                            TargetMark.Append(Pirate.GetPlunderedMark(target.PlayerId, true));
                     }
 
                     if (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Snitch) && target.Is(CustomRoles.Madmate) && target.GetPlayerTaskState().IsTaskFinished)
@@ -2053,7 +2060,6 @@ public static class Utils
 
                     if (target.Is(CustomRoles.SuperStar) && Options.EveryOneKnowSuperStar.GetBool())
                         TargetMark.Append(ColorString(GetRoleColor(CustomRoles.SuperStar), "★"));
-
 
                     if (BallLightning.IsEnable && BallLightning.IsGhost(target))
                         TargetMark.Append(ColorString(GetRoleColor(CustomRoles.BallLightning), "■"));
@@ -2082,7 +2088,7 @@ public static class Utils
                     if (ExtendedPlayerControl.CanSeeLoverMark(seer, target))
                         TargetMark.Append($"<color={GetRoleColorCode(CustomRoles.Lovers)}>♥</color>");
 
-                    if (seer.Is(CustomRoles.Medic) && (Medic.WhoCanSeeProtect.GetInt() == 0 || Medic.WhoCanSeeProtect.GetInt() == 1) && (Medic.InProtect(target.PlayerId) || Medic.TempMarkProtected == target.PlayerId))
+                    if (seer.Is(CustomRoles.Medic) && (Medic.WhoCanSeeProtect.GetInt() is 0 or 1) && (Medic.InProtect(target.PlayerId) || Medic.TempMarkProtected == target.PlayerId))
                     {
                         TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Medic), "✚"));
                     }

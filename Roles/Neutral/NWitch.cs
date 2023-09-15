@@ -1,3 +1,4 @@
+using Hazel;
 using UnityEngine;
 using System.Linq;
 using AmongUs.GameOptions;
@@ -10,7 +11,6 @@ namespace TOHE.Roles.Neutral;
 public static class NWitch
 {
     private static readonly int Id = 10300;
-    public static List<byte> playerIdList = new();
     public static bool IsEnable = false;
 
     public static Dictionary<byte, byte> TaglockedList = new();
@@ -29,22 +29,49 @@ public static class NWitch
     }
     public static void Init()
     {
-        playerIdList = new();
         TaglockedList = new();
         IsEnable = false;
     }
     public static void Add(byte playerId)
     {
-        playerIdList.Add(playerId);
         IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
+    private static void SendRPC(byte taglockedId, byte targetId, byte typeId)
+    {
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SyncNWitch, SendOption.Reliable, -1);
+        writer.Write(typeId);
+        writer.Write(taglockedId);
+        writer.Write(targetId);
+        AmongUsClient.Instance.FinishRpcImmediately(writer);
+    }
+    public static void ReceiveRPC(MessageReader reader)
+    {
+        var typeId = reader.ReadByte();
+        var taglockedId = reader.ReadByte();
+        var targetId = reader.ReadByte();
+
+        switch (typeId)
+        {
+            case 0:
+                TaglockedList.Clear();
+                break;
+            case 1:
+                TaglockedList[targetId] = taglockedId;
+                break;
+            case 2:
+                TaglockedList.Remove(targetId);
+                break;
+        }
+    }
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
     {
         TaglockedList[target.PlayerId] = killer.PlayerId;
+        SendRPC(killer.PlayerId, target.PlayerId, 1);
+        
         killer.SetKillCooldown();
 
         Utils.NotifyRoles(SpecifySeer: killer);
@@ -71,7 +98,7 @@ public static class NWitch
             {
 
                 {
-                    if (target.PlayerId != taglocked.PlayerId && !target.Is(CustomRoles.NWitch) && !target.Is(CustomRoles.Glitch) && !target.Is(CustomRoles.Pestilence))
+                    if (target.PlayerId != taglocked.PlayerId && !(target.Is(CustomRoles.NWitch) || target.Is(CustomRoles.Glitch) || target.Is(CustomRoles.Pestilence)))
                     {
                         dis = Vector2.Distance(taglockedPos, target.transform.position);
                         targetDistance.Add(target.PlayerId, dis);
@@ -93,6 +120,7 @@ public static class NWitch
                         taglocked.RpcMurderPlayerV3(target);
                         Utils.MarkEveryoneDirtySettings();
                         TaglockedList.Remove(taglocked.PlayerId);
+                        SendRPC(byte.MaxValue, taglocked.PlayerId, 2);
                         Utils.NotifyRoles(SpecifySeer: taglocked);
                     }
                 }
@@ -102,6 +130,7 @@ public static class NWitch
     public static void OnReportDeadBody()
     {
         TaglockedList.Clear();
+        SendRPC(byte.MaxValue, byte.MaxValue, 0);
     }
     public static string TargetMark(PlayerControl seer, PlayerControl target)
         => (TaglockedList.ContainsValue(seer.PlayerId) && TaglockedList.ContainsKey(target.PlayerId)) ? Utils.ColorString(Utils.GetRoleColor(CustomRoles.NWitch), "◆") : "";

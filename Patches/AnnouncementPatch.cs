@@ -68,7 +68,7 @@ public class ModNewsHistory
                             "\n     - Ludopath" +
                             "\n     - Berserker\n\r" +
 
-                        "\n\r<b><i>Crewmate: (16 roles)</i></b>" +
+                        "\n\r<b><i>Crewmate: (13 roles)</i></b>" +
                             "\n     - Admirer" +
                             "\n     - Copycat" +
                             "\n     - Time Master" +
@@ -80,12 +80,10 @@ public class ModNewsHistory
                             "\n     - Cleanser" +
                             "\n     - Lighter (Add-on: Lighter renamed to Torch)" +
                             "\n     - Task Manager" +
-                            "\n     - Romantic (Vengeful Romantic & Ruthless Romantic)" +
                             "\n     - Jailor" +
-                            "\n     - Swapper (Experimental role)" +
-                            "\n     - Police Commissioner\n\r" +
+                            "\n     - Swapper (Experimental role)\n\r" +
 
-                        "\n\r<b><i>Neutral: (13 roles)</i></b>" +
+                        "\n\r<b><i>Neutral: (17 roles)</i></b>" +
                             "\n     - Amnesiac" +
                             "\n     - Plaguebearer/Pestilence" +
                             "\n     - Masochist" +
@@ -96,6 +94,7 @@ public class ModNewsHistory
                             "\n     - Shaman" +
                             "\n     - Occultist" +
                             "\n     - Shade" +
+                            "\n     - Romantic (Vengeful Romantic & Ruthless Romantic)" +
                             "\n     - Seeker" +
                             "\n     - Agitater" +
                             "\n     - Soul Collector\n\r" +
@@ -112,10 +111,10 @@ public class ModNewsHistory
                             "\n     - Moved Ritualist to coven" +
                             "\n     - Moved Wraith to coven\n\r" +
 
-                        "\n\r<b><i>Add-on: (11 add-ons)</i></b>" +
+                        "\n\r<b><i>Add-on: (12 add-ons)</i></b>" +
                             "\n     - Ghoul" +
                             "\n     - Unlucky" +
-                            "\n     - Oblivious (returnet)" +
+                            "\n     - Oblivious (returned)" +
                             "\n     - Diseased" +
                             "\n     - Antidote" +
                             "\n     - Burst" +
@@ -123,6 +122,7 @@ public class ModNewsHistory
                             "\n     - Sleuth" +
                             "\n     - Aware" +
                             "\n     - Fragile" +
+                            "\n     - Repairman" +
                             "\n     - Void Ballot\n\r" +
 
                         "\n\r<b>【Rework Roles/Add-ons】</b>" +
@@ -209,8 +209,10 @@ public class ModNewsHistory
                             "\n     - Trapster, Vector, Egoist, Revolutionist, Provocateur, Guesser are no longer experimental" +
                             "\n     - Added ability to change settings by 5 instead of 1 when holding the Left/Right Shift key" +
                             "\n     - All ability cooldowns are now reset after meetings" +
-                            "\n     - Lovers сan not become Sunnyboy" +
-                            "\n     - Tasks bar always set to none" +
+                            "\n     - Lovers can not become Sunnyboy" +
+                            "\n     - Task bar always set to none" +
+                            "\n     - Hangman moved to experimental due to bugs" +
+                            "\n     - Roles with an add-on equivalent will not spawn if the add-on is enabled" +
                             "\n     - \"/r\" command has been improved\n\r" +
 
                         "\n\r<b>【New Features】</b>" +
@@ -226,9 +228,13 @@ public class ModNewsHistory
                             "\n     - Default template file has been updated" +
                             "\n     - Reworked end game summary (In the settings you can also return the old)" +
                             "\n     - Improvement platform kick" +
-                            "\n     - Check Supported Version Among Us",
+                            "\n     - Check Supported Version Among Us\n\r" +
 
-                    Date = "2023-9-10T00:00:00Z"
+                        "\n\r<b>【Removals】</b>" +
+                            "\n     - Removed Solo PVP mode" +
+                            "\n     - Removed Neptune" +
+                            "\n     - Removed Capitalist",
+                    Date = "2023-9-16T00:00:00Z"
 
                 };
                 AllModNews.Add(news);

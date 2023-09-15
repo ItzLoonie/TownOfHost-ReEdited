@@ -303,6 +303,7 @@ static class CustomRolesHelper
             CustomRoles.Workhorse or
             CustomRoles.Fool or
             CustomRoles.Autopsy or
+            CustomRoles.Repairman or
             CustomRoles.Necroview or
             CustomRoles.Avanger or
             CustomRoles.Sleuth or
@@ -923,13 +924,17 @@ static class CustomRolesHelper
         switch (role)
         {
             case CustomRoles.Autopsy:
-                if (pc.Is(CustomRoles.Doctor)
-                    || pc.Is(CustomRoles.Tracefinder)
-                    || pc.Is(CustomRoles.Scientist)
-                    || pc.Is(CustomRoles.ScientistTOHE)
-                    || pc.Is(CustomRoles.Sunnyboy))
+                if (pc.Is(CustomRoles.Doctor))
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeAutopsy.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeAutopsy.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeAutopsy.GetBool())) 
+                    return false;
+                break;
+
+            case CustomRoles.Repairman:
+                if (pc.Is(CustomRoles.SabotageMaster) 
+                || pc.Is(CustomRoles.Fool))
+                    return false;
+                if ((pc.GetCustomRole().IsCrewmate() && !Repairman.CanBeOnCrew.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Repairman.CanBeOnNeutral.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Repairman.CanBeOnImp.GetBool())) 
                     return false;
                 break;
 
@@ -1045,7 +1050,10 @@ static class CustomRolesHelper
 
             case CustomRoles.Fragile:
                 if (pc.Is(CustomRoles.Lucky)
-                    || pc.Is(CustomRoles.Luckey))
+                    || pc.Is(CustomRoles.Luckey)
+                    || pc.Is(CustomRoles.Guardian)
+                    || pc.Is(CustomRoles.Jinx)
+                    || pc.Is(CustomRoles.CursedWolf))
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeFragile.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeFragile.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeFragile.GetBool()))
                     return false;

@@ -26,6 +26,7 @@ enum CustomRPC
     PlaySound,
     SetCustomRole,
     SetBountyTarget,
+    SyncPuppet,
     SetKillOrSpell,
     SetKillOrHex,
     SetKillOrCurse,
@@ -105,7 +106,6 @@ enum CustomRPC
     SetBansheeTimer,
     SyncTotocalcioTargetAndTimes,
     SetSuccubusCharmLimit,
-    SetInfectiousBiteLimit,
     SetCursedSoulCurseLimit,
     SetMonarchKnightLimit,
     SetDeputyHandcuffLimit,
@@ -125,6 +125,9 @@ enum CustomRPC
     SetChameleonTimer,
     SetAdmireLimit,
     SetRememberLimit,
+    SyncCovenLeader,
+    SyncNWitch,
+    SyncShroud,
 }
 public enum Sounds
 {
@@ -293,6 +296,9 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetBountyTarget:
                 BountyHunter.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SyncPuppet:
+                Puppeteer.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetKillOrSpell:
                 Witch.ReceiveRPC(reader, false);
@@ -495,6 +501,15 @@ internal class RPCHandlerPatch
                 for (int i = 0; i < num; i++)
                     Main.AllPlayerNames.TryAdd(reader.ReadByte(), reader.ReadString());
                 break;
+            case CustomRPC.SyncCovenLeader:
+                CovenLeader.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SyncNWitch:
+                NWitch.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SyncShroud:
+                Shroud.ReceiveRPC(reader);
+                break;
             case CustomRPC.SetMorticianArrow:
                 Mortician.ReceiveRPC(reader);
                 break;
@@ -554,9 +569,6 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetCursedSoulCurseLimit:
                 CursedSoul.ReceiveRPC(reader);
-                break;
-            case CustomRPC.SetInfectiousBiteLimit:
-                Infectious.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetMonarchKnightLimit:
                 Monarch.ReceiveRPC(reader);
@@ -873,6 +885,9 @@ internal static class RPC
                 break;
             case CustomRoles.SabotageMaster:
                 SabotageMaster.Add(targetId);
+                break;
+            case CustomRoles.Repairman:
+                Repairman.Add(targetId);
                 break;
             case CustomRoles.Snitch:
                 Snitch.Add(targetId);
