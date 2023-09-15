@@ -1,3 +1,4 @@
+using Hazel;
 using UnityEngine;
 using System.Linq;
 using AmongUs.GameOptions;
