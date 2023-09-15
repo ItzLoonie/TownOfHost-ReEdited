@@ -1785,7 +1785,7 @@
   "DivinatorCheckSelfMsg": "哇靠，您查到了一位举世人才！目标太过耀眼，已经看不到任何东西啦！",
   "DivinatorCheckReachLimit": "水晶球也是会累哒，接下来就算没有水晶球，也要好好努力呀！（占卜次数达到上限）",
   "EraserEraseNotice": "您发动了抹除技能\n[{0}]的技能将在会议结束后失效。",
-  "EraserEraseNeutralNotice": "很抱歉，您发动技能的目标属于中立阵营，无法被抹除。",
+  "EraserEraseBaseImpostorOrNeutralRoleNotice": "",
   "EraserEraseSelf": "Desgraciadamente, no puedes borrarte a ti mismo... Espera un momento, ¿Por qué lo has intentado hacer?",
   "KB_Buff_HPMax": "奖励：血量上限 +{0}",
   "KB_Buff_HPReco": "奖励：每秒血量回复 +{0}",

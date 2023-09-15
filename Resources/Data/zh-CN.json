@@ -1813,7 +1813,7 @@
   "DivinatorCheckSelfMsg": "哇，你发现自己...看到的只是倒影",
   "DivinatorCheckReachLimit": "调查次数上限了！不要再调查了！",
   "EraserEraseNotice": "您发动了抹除技能\n<b>{0}</b>的技能将在会议结束后失效。",
-  "EraserEraseNeutralNotice": "很抱歉，您发动技能的目标属于中立阵营，无法被抹除。",
+  "EraserEraseBaseImpostorOrNeutralRoleNotice": "",
   "EraserEraseSelf": "很抱歉，世界上最帅的人是无法被抹除的，就像真理永不泯灭一般。",
   "KB_Buff_HPMax": "奖励：血量上限 +{0}",
   "KB_Buff_HPReco": "奖励：每秒血量回复 +{0}",
