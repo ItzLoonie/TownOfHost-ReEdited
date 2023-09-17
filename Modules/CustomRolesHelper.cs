@@ -915,6 +915,7 @@ static class CustomRolesHelper
                 if (pc.Is(CustomRoles.Trapper)
                     || pc.Is(CustomRoles.Unreportable)
                     || pc.Is(CustomRoles.Burst)
+                    || pc.Is(CustomRoles.NiceMini)
                     || (pc.Is(CustomRoles.Onbound) && Options.BaitNotification.GetBool())
                     || pc.Is(CustomRoles.GuardianAngelTOHE))
                     return false;
@@ -956,7 +957,10 @@ static class CustomRolesHelper
                 if (pc.Is(CustomRoles.SuperStar)
                     || (pc.Is(CustomRoles.Doctor) && Options.DoctorVisibleToEveryone.GetBool())
                     || (pc.Is(CustomRoles.Bait) && Options.BaitNotification.GetBool())
-                    || pc.Is(CustomRoles.Glow) || pc.Is(CustomRoles.LastImpostor) || pc.Is(CustomRoles.Mare))
+                    || pc.Is(CustomRoles.Glow) 
+                    || pc.Is(CustomRoles.LastImpostor) 
+                    || pc.Is(CustomRoles.NiceMini)
+                    || pc.Is(CustomRoles.Mare))
                     return false; //Based on guess manager
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeOnbound.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeOnbound.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeOnbound.GetBool()))
                     return false;
@@ -1161,6 +1165,7 @@ static class CustomRolesHelper
 
             case CustomRoles.Youtuber:
                 if (pc.Is(CustomRoles.Madmate)
+                    || pc.Is(CustomRoles.NiceMini)
                     || pc.Is(CustomRoles.Sheriff)
                     || pc.Is(CustomRoles.GuardianAngelTOHE))
                     return false;
@@ -1188,6 +1193,7 @@ static class CustomRolesHelper
 
             case CustomRoles.Rascal:
                 if (pc.Is(CustomRoles.SuperStar)
+                    || pc.Is(CustomRoles.NiceMini)
                     || pc.Is(CustomRoles.Madmate))
                     return false;
                 if (!pc.GetCustomRole().IsCrewmate())
@@ -1287,7 +1293,8 @@ static class CustomRolesHelper
                 break;
 
             case CustomRoles.Avanger:
-                if (pc.Is(CustomRoles.Burst))
+                if (pc.Is(CustomRoles.Burst)
+                    || pc.Is(CustomRoles.NiceMini))
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeAvanger.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeAvanger.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeAvanger.GetBool()))
                     return false;
@@ -1324,7 +1331,8 @@ static class CustomRolesHelper
 
             case CustomRoles.Gravestone:
                 if (pc.Is(CustomRoles.SuperStar))
-                if (pc.Is(CustomRoles.Innocent))
+                if (pc.Is(CustomRoles.Innocent)
+                    || pc.Is(CustomRoles.NiceMini))
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeGravestone.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeGravestone.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeGravestone.GetBool()))
                     return false;
