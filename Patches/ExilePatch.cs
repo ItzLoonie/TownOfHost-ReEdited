@@ -100,20 +100,19 @@ class ExileControllerWrapUpPatch
             {
                 if (MiniCrew.Age < 18)
                 {
-                    if (MiniCrew.IsEvilMini)
-                    {
-                        CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Impostor);
-                    }
-                    else if (exiledPC.Is(CustomRoles.Admired))
-                    {
-                        CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Crewmate);
-                        CustomWinnerHolder.WinnerIds.Add(exiled.PlayerId);
-                    }
-                    else
-                    {
+                    //if (MiniCrew.IsEvilMini)
+                    //{
+                    //    //CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Impostor);
+                    //    //Should I enable this?
+                    //}
+                    //else if (exiledPC.Is(CustomRoles.Admired))
+                    //{
+                    //    CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Crewmate);
+                    //    CustomWinnerHolder.WinnerIds.Add(exiled.PlayerId);
+                    //}
+                    //else
                         CustomWinnerHolder.ResetAndSetWinner(CustomWinner.MiniCrew);
                         CustomWinnerHolder.WinnerIds.Add(exiled.PlayerId);
-                    }
                     DecidedWinner = true;
                 }
             }

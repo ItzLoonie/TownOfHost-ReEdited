@@ -1291,7 +1291,7 @@ class MurderPlayerPatch
         {
             var pcList = Main.AllAlivePlayerControls.Where(x => x.PlayerId != target.PlayerId).ToList();
             var rp = pcList[IRandom.Instance.Next(0, pcList.Count)];
-            if (!rp.Is(CustomRoles.Pestilence))
+            if (!rp.Is(CustomRoles.Pestilence) && !rp.Is(CustomRoles.MiniCrew))
             {
                 Main.PlayerStates[rp.PlayerId].deathReason = PlayerState.DeathReason.Revenge;
                 rp.SetRealKiller(target);

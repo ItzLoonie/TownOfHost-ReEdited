@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Hazel;
+using InnerNet;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TOHE.Roles.Crewmate
@@ -17,7 +19,7 @@ namespace TOHE.Roles.Crewmate
             }
             else IsEvilMini = false;
         }
-        private static List<byte> playerIdList = new();
+        //private static List<byte> playerIdList = new();
         public static int Age = new();
         public static float GrowUpTime = new();
         private static long LastFixedUpdate = new();
@@ -59,9 +61,8 @@ namespace TOHE.Roles.Crewmate
 
         public static void Init()
         {
-            playerIdList = new();
-            Age = 0;
             SetMiniTeam();
+            Age = 0;
             isEnable = false;
             LastFixedUpdate = new();
             DKillCoolDownPreAge = MiniFinalCD.GetFloat() < MiniBeginCD.GetFloat() ? (MiniFinalCD.GetFloat() - MiniBeginCD.GetFloat()) / 18 : 0f;
@@ -71,14 +72,11 @@ namespace TOHE.Roles.Crewmate
         {
             //playerIdList.Add(playerId);
             isEnable = true;
-
-            if (!AmongUsClient.Instance.AmHost) return;
-            if (!Main.ResetCamPlayerList.Contains(playerId))
-                Main.ResetCamPlayerList.Add(playerId);
         }
 
         public static void OnFixedUpdate(PlayerControl player)
         {
+            if (!GameStates.IsInGame || !AmongUsClient.Instance.AmHost) return;
             if (!player.Is(CustomRoles.MiniCrew) || !isEnable) return;
             if (Age >= 18 || (!CountMeetingTime.GetBool() && GameStates.IsMeeting)) return;
 
@@ -97,14 +95,27 @@ namespace TOHE.Roles.Crewmate
             if (GrowUpUpdate)
             {
                 Utils.NotifyRoles();
+                SendRPC(player.PlayerId);
                 if (IsEvilMini)
                 {
                     MiniKillCoolDown -= DKillCoolDownPreAge;
                     Main.AllPlayerKillCooldown[player.PlayerId] = MiniKillCoolDown;
-                    player.MarkDirtySettings();
                     player.SetKillCooldown(forceAnime: true);
+                    player.MarkDirtySettings();
                 }
             }
+        }
+
+        private static void SendRPC(byte playerId)
+        {
+            MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SyncMiniCrewAge, SendOption.Reliable, -1);
+            writer.Write(Age);
+            AmongUsClient.Instance.FinishRpcImmediately(writer);
+        }
+
+        public static void ReceiveRPC(MessageReader reader)
+        {
+            Age = reader.ReadInt32();
         }
 
         public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = MiniKillCoolDown;

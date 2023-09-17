@@ -909,6 +909,7 @@ static class CustomRolesHelper
                     || pc.Is(CustomRoles.Unreportable)
                     || pc.Is(CustomRoles.Burst)
                     || (pc.Is(CustomRoles.Onbound) && Options.BaitNotification.GetBool())
+                    || pc.Is(CustomRoles.MiniCrew)
                     || pc.Is(CustomRoles.GuardianAngelTOHE))
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeBait.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeBait.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeBait.GetBool()))
@@ -918,6 +919,7 @@ static class CustomRolesHelper
             case CustomRoles.Trapper:
                 if (pc.Is(CustomRoles.Bait)
                     || pc.Is(CustomRoles.Burst)
+                    || pc.Is(CustomRoles.MiniCrew)
                     || pc.Is(CustomRoles.GuardianAngelTOHE)) 
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeTrapper.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeTrapper.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeTrapper.GetBool()))
@@ -1273,14 +1275,16 @@ static class CustomRolesHelper
             case CustomRoles.Burst:
                 if (pc.Is(CustomRoles.Avanger)
                     || pc.Is(CustomRoles.Trapper)
-                    || pc.Is(CustomRoles.Bait))
+                    || pc.Is(CustomRoles.Bait)
+                    || pc.Is(CustomRoles.MiniCrew))
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeBurst.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeBurst.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeBurst.GetBool()))
                     return false;
                 break;
 
             case CustomRoles.Avanger:
-                if (pc.Is(CustomRoles.Burst))
+                if (pc.Is(CustomRoles.Burst)
+                    || pc.Is(CustomRoles.MiniCrew))
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeAvanger.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeAvanger.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeAvanger.GetBool()))
                     return false;
@@ -1324,7 +1328,8 @@ static class CustomRolesHelper
                 break;
 
             case CustomRoles.Unreportable:
-                if (pc.Is(CustomRoles.Bait))
+                if (pc.Is(CustomRoles.Bait)
+                    || pc.Is(CustomRoles.MiniCrew))
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeUnreportable.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeUnreportable.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeUnreportable.GetBool()))
                     return false;

@@ -2816,6 +2816,7 @@
   "EvilMiniSpawnChances": "Chances to spawn Evil MiniCrew",
   "MiniBeginCD": "Initial kill cd for Evil MiniCrew",
   "MiniFinalCD": "Final kill cd for Evil MiniCrew",
+  "GuessMiniCrew": "MiniCrew: Do not hurt kid pls!!!",
   "VotesPerKill": "Votes gained for each kill",
   "PickpocketGetVote": "You've got {0} votes",
   "VultureArrowsPointingToDeadBody": "Arrows pointing to dead bodies",
