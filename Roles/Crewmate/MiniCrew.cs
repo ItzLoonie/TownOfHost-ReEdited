@@ -65,7 +65,7 @@ namespace TOHE.Roles.Crewmate
             Age = 0;
             isEnable = false;
             LastFixedUpdate = new();
-            DKillCoolDownPreAge = MiniFinalCD.GetFloat() < MiniBeginCD.GetFloat() ? (MiniFinalCD.GetFloat() - MiniBeginCD.GetFloat()) / 18 : 0f;
+            DKillCoolDownPreAge = MiniFinalCD.GetFloat() < MiniBeginCD.GetFloat() ? (MiniBeginCD.GetFloat() - MiniFinalCD.GetFloat()) / 18 : 0f;
             MiniKillCoolDown = MiniBeginCD.GetFloat();
     }
         public static void Add(byte playerId)
@@ -98,7 +98,14 @@ namespace TOHE.Roles.Crewmate
                 SendRPC(player.PlayerId);
                 if (IsEvilMini)
                 {
-                    MiniKillCoolDown -= DKillCoolDownPreAge;
+                    if (Age < 18)
+                    {
+                        MiniKillCoolDown -= DKillCoolDownPreAge;
+                    }
+                    else
+                    {
+                        MiniKillCoolDown = MiniFinalCD.GetFloat();
+                    }
                     Main.AllPlayerKillCooldown[player.PlayerId] = MiniKillCoolDown;
                     player.SetKillCooldown(forceAnime: true);
                     player.MarkDirtySettings();

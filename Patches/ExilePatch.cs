@@ -111,9 +111,12 @@ class ExileControllerWrapUpPatch
                     //    CustomWinnerHolder.WinnerIds.Add(exiled.PlayerId);
                     //}
                     //else
+                    if (!MiniCrew.IsEvilMini)
+                    {
                         CustomWinnerHolder.ResetAndSetWinner(CustomWinner.MiniCrew);
                         CustomWinnerHolder.WinnerIds.Add(exiled.PlayerId);
-                    DecidedWinner = true;
+                        DecidedWinner = true;
+                    }
                 }
             }
             Executioner.CheckExileTarget(exiled, DecidedWinner);

@@ -2817,6 +2817,7 @@
   "MiniBeginCD": "迷你船员的初始cd",
   "MiniFinalCD": "迷你船员的最终cd",
   "GuessMiniCrew": "迷你船员：不要杀小孩！！！",
+  "KillMiniCrew": "你不能伤害小孩！",
   "VotesPerKill": "每击杀一次获得的选票",
   "PickpocketGetVote": "你有{0}张选票",
   "VultureArrowsPointingToDeadBody": "指向尸体的箭头",

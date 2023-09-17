@@ -1021,7 +1021,8 @@ static class CustomRolesHelper
                     || pc.Is(CustomRoles.Luckey)
                     || pc.Is(CustomRoles.Guardian)
                     || pc.Is(CustomRoles.Jinx)
-                    || pc.Is(CustomRoles.CursedWolf))
+                    || pc.Is(CustomRoles.CursedWolf)
+                    || pc.Is(CustomRoles.MiniCrew))
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeFragile.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeFragile.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeFragile.GetBool()))
                     return false;

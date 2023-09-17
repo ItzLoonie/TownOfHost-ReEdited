@@ -1083,7 +1083,7 @@ class CheckMurderPatch
             case CustomRoles.MiniCrew:
                 if (MiniCrew.Age < 18)
                 {
-                    killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.MiniCrew), GetString("Cantkillkid")));
+                    killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.MiniCrew), GetString("KillMiniCrew")));
                     return false;
                 }
                 break;
