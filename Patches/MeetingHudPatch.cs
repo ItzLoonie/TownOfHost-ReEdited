@@ -472,6 +472,14 @@ class CheckForEndVotingPatch
                 break;
         }
         var DecidedWinner = false;
+
+        //迷你船员长大前被驱逐抢夺胜利
+        if (crole == CustomRoles.NiceMini && Mini.Age !< 18)
+        {
+            name = string.Format(GetString("ExiledNiceMini"), realName, coloredRole);
+            DecidedWinner = true;
+        }
+
         //小丑胜利
    /*     if (crole == CustomRoles.Jester)
         {
@@ -1133,7 +1141,7 @@ class MeetingHudStartPatch
 
             //迷你船员
             if (target.Is(CustomRoles.EvilMini) && Mini.EveryoneCanKnowMini.GetBool())
-                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.EvilMini), Mini.Age != 18 ? $"({Mini.Age})" : ""));
+                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.NiceMini), Mini.Age != 18 ? $"({Mini.Age})" : ""));
 
             //球状闪电提示
             if (BallLightning.IsGhost(target))
