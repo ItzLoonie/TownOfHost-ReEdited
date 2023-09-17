@@ -973,6 +973,12 @@ public static class Utils
             case CustomRoles.ChiefOfPolice:
                 ProgressText.Append(ChiefOfPolice.GetSkillLimit(playerId));
                 break; 
+            case CustomRoles.NiceMini:
+                ProgressText.Append(Mini.GetAge(playerId));
+                break;
+            case CustomRoles.EvilMini:
+                ProgressText.Append(Mini.GetAge(playerId));
+                break;
             default:
                 //タスクテキスト
                 var taskState = Main.PlayerStates?[playerId].GetTaskState();
@@ -2049,6 +2055,11 @@ public static class Utils
                         if (target.IsAlive()) 
                             TargetMark.Append(Shroud.GetShroudMark(target.PlayerId, true));
                     }
+                    if (target.Is(CustomRoles.NiceMini) && Mini.EveryoneCanKnowMini.GetBool())
+                        TargetMark.Append(Utils.ColorString(Color.yellow, Mini.Age != 18 ? $"({Mini.Age})" : ""));
+
+                    if (target.Is(CustomRoles.EvilMini) && Mini.EveryoneCanKnowMini.GetBool())
+                        TargetMark.Append(Utils.ColorString(Color.yellow, Mini.Age != 18 ? $"({Mini.Age})" : ""));
 
                     if (seer.Is(CustomRoleTypes.Impostor) && target.Is(CustomRoles.Snitch) && target.Is(CustomRoles.Madmate) && target.GetPlayerTaskState().IsTaskFinished)
                         TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Impostor), "★"));

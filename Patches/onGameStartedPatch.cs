@@ -303,7 +303,8 @@ internal class ChangeRoleSettings
             Agitater.Init();
             Swapper.Init();
             ChiefOfPolice.Init();
-
+            Mini.Init();
+            
             CustomWinnerHolder.Reset();
             AntiBlackout.Reset();
             NameNotifyManager.Reset();

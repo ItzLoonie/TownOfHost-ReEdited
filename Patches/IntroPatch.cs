@@ -227,6 +227,12 @@ class BeginCrewmatePatch
                 .MinigamePrefab.OpenSound;
                 PlayerControl.LocalPlayer.Data.Role.IntroSound = sound;
                 break;
+                
+            case CustomRoles.Terrorist:
+                var sound = ShipStatus.Instance.CommonTasks.Where(task => task.TaskType == TaskTypes.FixWiring).FirstOrDefault()
+                .MinigamePrefab.OpenSound;
+                PlayerControl.LocalPlayer.Data.Role.IntroSound = sound;
+                break;
 
             case CustomRoles.Workaholic:
             case CustomRoles.Snitch:

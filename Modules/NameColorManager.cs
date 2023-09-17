@@ -38,6 +38,9 @@ public static class NameColorManager
         if (seer.Is(CustomRoles.Madmate) && target.Is(CustomRoles.Madmate) && Options.MadmateKnowWhosMadmate.GetBool()) color = Main.roleColors[CustomRoles.Madmate];
         if (seer.Is(CustomRoles.Gangster) && target.Is(CustomRoles.Madmate)) color = Main.roleColors[CustomRoles.Madmate];
 
+        //СС��Ҳ�ܿɰ�))))
+        if (!seer.GetCustomRole().IsImpostorTeam() && (target.Is(CustomRoles.NiceMini) || target.Is(CustomRoles.EvilMini))) color = Main.roleColors[CustomRoles.NiceMini];
+
         // Succubus
         if (seer.Is(CustomRoles.Charmed) && target.Is(CustomRoles.Succubus)) color = Main.roleColors[CustomRoles.Succubus];
         if (seer.Is(CustomRoles.Succubus) && target.Is(CustomRoles.Charmed)) color = Main.roleColors[CustomRoles.Charmed];
@@ -179,6 +182,8 @@ public static class NameColorManager
          //   || Mare.KnowTargetRoleColor(target, isMeeting)
             || EvilDiviner.IsShowTargetRole(seer, target)
             || PotionMaster.IsShowTargetRole(seer, target);
+            || (target.Is(CustomRoles.NiceMini) && Mini.EveryoneCanKnowMini.GetBool())
+            || (target.Is(CustomRoles.EvilMini) && Mini.EveryoneCanKnowMini.GetBool())
     }
     public static bool TryGetData(PlayerControl seer, PlayerControl target, out string colorCode)
     {

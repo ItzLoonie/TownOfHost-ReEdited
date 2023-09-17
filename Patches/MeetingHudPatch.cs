@@ -50,7 +50,7 @@ class CheckForEndVotingPatch
                     }
                 }
 
-//催眠师催眠
+                //催眠师催眠
 
                 if (pc.Is(CustomRoles.Dictator) && pva.DidVote && pc.PlayerId != pva.VotedFor && pva.VotedFor < 253 && !pc.Data.IsDead)
                 {
@@ -1125,6 +1125,14 @@ class MeetingHudStartPatch
             //如果是大明星
             if (target.Is(CustomRoles.SuperStar) && Options.EveryOneKnowSuperStar.GetBool())
                 sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.SuperStar), "★"));
+                
+            //迷你船员
+            if (target.Is(CustomRoles.NiceMini) && Mini.EveryoneCanKnowMini.GetBool())
+                sb.Append(Utils.ColorString(Color.yellow, Mini.Age != 18 ? $"({Mini.Age})" : ""));
+
+            //迷你船员
+            if (target.Is(CustomRoles.EvilMini) && Mini.EveryoneCanKnowMini.GetBool())
+                sb.Append(Utils.ColorString(Color.yellow, Mini.Age != 18 ? $"({Mini.Age})" : ""));
 
             //球状闪电提示
             if (BallLightning.IsGhost(target))

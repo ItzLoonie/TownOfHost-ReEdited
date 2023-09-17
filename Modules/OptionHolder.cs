@@ -1310,6 +1310,9 @@ public static class Options
         ParasiteCD = FloatOptionItem.Create(4910, "KillCooldown", new(0f, 180f, 2.5f), 30f, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Parasite])
             .SetValueFormat(OptionFormat.Seconds);
+        SetupRoleOptions(901635, TabGroup.OtherRoles, CustomRoles.Minimalism);
+        MNKillCooldown = FloatOptionItem.Create(901638, "KillCooldown", new(2.5f, 999f, 2.5f), 10f, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Minimalism])
+            .SetValueFormat(OptionFormat.Seconds);
 //==================================================================================================================================//
 
         // Crewmate
@@ -1536,6 +1539,7 @@ public static class Options
         Farseer.SetupCustomOption();
         Monitor.SetupCustomOption();
     //    ChiefOfPolice.SetupCustomOption();
+        Mini.SetupCustomOption();
 
         // Neutral
         TextOptionItem.Create(100010, "RoleType.NeutralBenign", TabGroup.NeutralRoles)

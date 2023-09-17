@@ -141,6 +141,8 @@ static class CustomRolesHelper
                 CustomRoles.Doomsayer => CustomRoles.Crewmate,
                 CustomRoles.Pitfall => CustomRoles.Shapeshifter,
                 CustomRoles.Swapper => CustomRoles.Crewmate,
+                CustomRoles.NiceMini => CustomRoles.Crewmate,
+                CustomRoles.EvilMini => CustomRoles.Impostor,
 
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
@@ -535,6 +537,11 @@ static class CustomRolesHelper
             CustomRoles.Sheriff or
             CustomRoles.Jailer;
     }
+    public static bool IsMini(this CustomRoles role) // �Ƿ��ڹ�
+    {
+        return role is
+            CustomRoles.Mini;
+    }
     public static bool IsImpostor(this CustomRoles role) // IsImp
     {
         return role is
@@ -601,6 +608,7 @@ static class CustomRolesHelper
             CustomRoles.Camouflager or
             CustomRoles.Twister or
             CustomRoles.Lurker or
+            CustomRoles.EvilMini or
             CustomRoles.Pitfall;
     }
     public static bool IsNeutral(this CustomRoles role)

@@ -74,6 +74,8 @@ enum CustomRPC
     SetCounterfeiterSellLimit,
     SetPursuerSellLimit,
     SetMedicalerProtectLimit,
+    SetMiniLimit,
+    SetMiniSellLimit,
     SetGangsterRecruitLimit,
     SetGhostPlayer,
     SetDarkHiderKillCount,
@@ -1168,6 +1170,12 @@ internal static class RPC
                 break;
             case CustomRoles.ChiefOfPolice:
                 ChiefOfPolice.Add(targetId);
+                break;
+            case CustomRoles.NiceMini:
+                Mini.Add(targetId);
+                break;
+            case CustomRoles.EvilMini:
+                Mini.Add(targetId);
                 break;
         }
         HudManager.Instance.SetHudActive(true);

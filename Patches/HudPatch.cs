@@ -649,6 +649,7 @@ class SetHudActivePatch
             case CustomRoles.Glitch:
                 Glitch.SetHudActive(__instance, isActive);
                 break;
+            case CustomRoles.Minimalism:
             
         }
 
