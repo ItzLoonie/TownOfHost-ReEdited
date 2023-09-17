@@ -3027,5 +3027,6 @@
   "ErrorEndTextDescription": "To avoid crashing, the game was forcibly ended.",
   "ForceEnd": "Aborted",
   "EveryoneDied": "Everyone died",
-  "ForceEndText": "Host has aborted the game"
+  "ForceEndText": "Host has aborted the game",
+  "NiceMiniDied": "Nice Mini was killed"
 }
