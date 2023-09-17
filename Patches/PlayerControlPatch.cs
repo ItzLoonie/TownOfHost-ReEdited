@@ -2515,7 +2515,7 @@ class FixedUpdatePatch
                     if (GameStates.IsInTask && mini.Is(CustomRoles.NiceMini) && Mini.Age < 18 && !mini.IsAlive())
                     {
                         CustomWinnerHolder.ResetAndSetWinner(CustomWinner.NiceMini);
-                        CustomWinnerHolder.WinnerIds.Add(mini.PlayerId);
+                    //    CustomWinnerHolder.WinnerIds.Add(mini.PlayerId); // Nice Mini does not win (Crewmates should not solo win unless Egoist)
                     }
                 }
 
