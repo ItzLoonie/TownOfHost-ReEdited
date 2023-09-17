@@ -1080,6 +1080,13 @@ class CheckMurderPatch
                     return false;
                 }
                 break;
+            case CustomRoles.MiniCrew:
+                if (MiniCrew.Age < 18)
+                {
+                    killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.MiniCrew), GetString("Cantkillkid")));
+                    return false;
+                }
+                break;
         }
 
         //保镖保护
@@ -2446,6 +2453,7 @@ class FixedUpdatePatch
                 Wraith.OnFixedUpdate(player);
                 Shade.OnFixedUpdate(player);
                 Chameleon.OnFixedUpdate(player);
+                MiniCrew.OnFixedUpdate(player);
 
                 if (GameStates.IsInTask)
                 {

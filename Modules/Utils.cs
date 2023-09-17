@@ -972,7 +972,10 @@ public static class Utils
                 break;
             case CustomRoles.ChiefOfPolice:
                 ProgressText.Append(ChiefOfPolice.GetSkillLimit(playerId));
-                break; 
+                break;
+            case CustomRoles.MiniCrew:
+                ProgressText.Append(MiniCrew.GetAge());
+                break;
             default:
                 //タスクテキスト
                 var taskState = Main.PlayerStates?[playerId].GetTaskState();

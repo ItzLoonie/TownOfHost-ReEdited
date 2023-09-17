@@ -141,7 +141,7 @@ static class CustomRolesHelper
                 CustomRoles.Doomsayer => CustomRoles.Crewmate,
                 CustomRoles.Pitfall => CustomRoles.Shapeshifter,
                 CustomRoles.Swapper => CustomRoles.Crewmate,
-
+                CustomRoles.MiniCrew => MiniCrew.IsEvilMini ? CustomRoles.Impostor : CustomRoles.Crewmate,
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
     }
@@ -601,7 +601,8 @@ static class CustomRolesHelper
             CustomRoles.Camouflager or
             CustomRoles.Twister or
             CustomRoles.Lurker or
-            CustomRoles.Pitfall;
+            CustomRoles.Pitfall
+            || (role is CustomRoles.MiniCrew && MiniCrew.IsEvilMini);
     }
     public static bool IsNeutral(this CustomRoles role)
     {
@@ -1380,7 +1381,8 @@ static class CustomRolesHelper
             _ => role.IsImpostor() ? RoleTypes.Impostor : RoleTypes.Crewmate,
         };
     public static bool IsDesyncRole(this CustomRoles role) => role.GetDYRole() != RoleTypes.GuardianAngel;
-    public static bool IsImpostorTeam(this CustomRoles role) => role.IsImpostor() || role == CustomRoles.Madmate;
+    public static bool IsImpostorTeam(this CustomRoles role) => role.IsImpostor() || role == CustomRoles.Madmate 
+        || (role == CustomRoles.MiniCrew && MiniCrew.IsEvilMini);
     public static bool IsCrewmate(this CustomRoles role) => !role.IsImpostor() && !role.IsNeutral() && !role.IsMadmate();
 
     public static bool IsImpostorTeamV2(this CustomRoles role) => (role.IsImpostorTeamV3() && role != CustomRoles.Trickster && !role.IsConverted()) || role == CustomRoles.Rascal;
@@ -1407,7 +1409,8 @@ static class CustomRolesHelper
             ((role is CustomRoles.Doctor) && (Options.DoctorVisibleToEveryone.GetBool())) ||
             ((role is CustomRoles.Bait) && (Options.BaitNotification.GetBool()) && ParityCop.ParityCheckBaitCountType.GetBool()));
     }
-    public static bool IsImpostorTeamV3(this CustomRoles role) => (role.IsImpostor() || role.IsMadmate());
+    public static bool IsImpostorTeamV3(this CustomRoles role) => (role.IsImpostor() || role.IsMadmate() 
+        || (role == CustomRoles.MiniCrew && MiniCrew.IsEvilMini));
     public static bool IsNeutralKillerTeam(this CustomRoles role) => (role.IsNK() || !role.IsMadmate());
     public static bool IsPassiveNeutralTeam(this CustomRoles role) => (role.IsNonNK() || !role.IsMadmate());
     public static bool IsNNK(this CustomRoles role) => role.IsNeutral() && !role.IsNK();
