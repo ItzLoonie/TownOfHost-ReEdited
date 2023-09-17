@@ -268,8 +268,9 @@ public static class GuessManager
                 }
                 if (role == CustomRoles.NiceMini && Mini.Age != 18 || target.Is(CustomRoles.NiceMini) && Mini.Age != 18 )
                 {
-                Utils.SendMessage(GetString("GuessMini"), pc.PlayerId);
-                return true;
+                    if (!isUI) Utils.SendMessage(GetString("GuessMini"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessMini"));
+                    return true;
                 }
                 if (pc.Is(CustomRoles.Terrorist) && !Options.TerroristCanGuess.GetBool())
                 {
