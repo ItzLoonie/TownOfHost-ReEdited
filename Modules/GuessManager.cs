@@ -11,6 +11,7 @@ using TOHE.Roles.Crewmate;
 using TOHE.Roles.Neutral;
 using TOHE.Roles.AddOns.Common;
 using static TOHE.Translator;
+using TOHE.Roles.Double;
 
 namespace TOHE;
 

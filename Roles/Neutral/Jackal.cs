@@ -3,6 +3,7 @@ using HarmonyLib;
 using Hazel;
 using System.Collections.Generic;
 using System.Linq;
+using TOHE.Roles.Double;
 using UnityEngine;
 using static TOHE.Options;
 using static TOHE.Translator;
@@ -144,7 +145,7 @@ public static class Jackal
     {
         if (target.Is(CustomRoles.Pestilence)) return true;
         if (target.Is(CustomRoles.Jackal)) return true;
-        if (JackalCanAttendant.GetBool() && CanBeAttendant(target) && Mini.Age == 18|| JackalCanAttendant.GetBool() && CanBeAttendant(target) && Mini.Age != 18 && !(target.Is(CustomRoles.NiceMini) || target.Is(CustomRoles.EvilMini)))
+        //if (JackalCanAttendant.GetBool() && CanBeAttendant(target) && Mini.Age == 18|| JackalCanAttendant.GetBool() && CanBeAttendant(target) && Mini.Age != 18 && !(target.Is(CustomRoles.NiceMini) || target.Is(CustomRoles.EvilMini)))
 
         if (!CanRecruitSidekick.GetBool() || RecruitLimit[killer.PlayerId] < 1) return false;
         
@@ -154,7 +155,7 @@ public static class Jackal
             {
                 RecruitLimit[killer.PlayerId]--;
                 SendRPC(killer.PlayerId);
-                if (!AttendantCantRoles.GetBool() && Mini.Age == 18 || !AttendantCantRoles.GetBool() &&  Mini.Age != 18 && !(target.Is(CustomRoles.NiceMini) || target.Is(CustomRoles.EvilMini)))
+                //if (!AttendantCantRoles.GetBool() && Mini.Age == 18 || !AttendantCantRoles.GetBool() &&  Mini.Age != 18 && !(target.Is(CustomRoles.NiceMini) || target.Is(CustomRoles.EvilMini)))
                 target.RpcSetCustomRole(CustomRoles.Sidekick);
 
                 if (!Main.ResetCamPlayerList.Contains(target.PlayerId))

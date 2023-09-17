@@ -1,4 +1,5 @@
 using Hazel;
+using TOHE.Roles.Double;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 
@@ -183,7 +184,7 @@ public static class NameColorManager
             || (target.Is(CustomRoles.NiceMini) && Mini.EveryoneCanKnowMini.GetBool())
             || (target.Is(CustomRoles.EvilMini) && Mini.EveryoneCanKnowMini.GetBool())
             || (target.Is(CustomRoles.NiceMini) && Mini.EveryoneCanKnowMini.GetBool())
-            || (target.Is(CustomRoles.EvilMini) && Mini.EveryoneCanKnowMini.GetBool())
+            || (target.Is(CustomRoles.EvilMini) && Mini.EveryoneCanKnowMini.GetBool());
     }
     public static bool TryGetData(PlayerControl seer, PlayerControl target, out string colorCode)
     {

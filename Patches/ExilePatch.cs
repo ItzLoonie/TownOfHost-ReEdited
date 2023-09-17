@@ -5,6 +5,7 @@ using System.Linq;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Crewmate;
 using TOHE.Roles.Neutral;
+using TOHE.Roles.Double;
 
 namespace TOHE;
 
