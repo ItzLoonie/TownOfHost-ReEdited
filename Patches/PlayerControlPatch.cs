@@ -2427,7 +2427,7 @@ class FixedUpdatePatch
                             {
                                 foreach (var pc in Main.AllPlayerControls)
                                 {
-                                    pc.RpcGuardAndKill(player);
+                                //    pc.RpcGuardAndKill(player);
                                 }
                             }
                         }
@@ -2461,7 +2461,7 @@ class FixedUpdatePatch
                             {
                                 foreach (var pc in Main.AllPlayerControls)
                                 {
-                                    pc.RpcGuardAndKill(player);
+                                //    pc.RpcGuardAndKill(player);
                                 }
                             }
                             Logger.Info($"重置击杀冷却{Main.EvilMiniKillcooldownf -1f}", "Child");

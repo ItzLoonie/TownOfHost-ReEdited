@@ -65,7 +65,7 @@ internal class CustomRoleSelector
         {
             var role = (CustomRoles)Enum.Parse(typeof(CustomRoles), cr.ToString());
             if (role.IsVanilla() || role.IsAdditionRole()) continue;
-            if (role is CustomRoles.GM or CustomRoles.NotAssigned or CustomRoles.Mini) continue;
+            if (role is CustomRoles.GM or CustomRoles.NotAssigned) continue;
             for (int i = 0; i < role.GetCount(); i++)
                 roleList.Add(role);
         }

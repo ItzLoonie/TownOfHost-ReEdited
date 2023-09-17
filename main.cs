@@ -960,6 +960,7 @@ public enum AdditionalWinners
     Phantom = CustomRoles.Phantom,
     Maverick = CustomRoles.Maverick,
     Shaman = CustomRoles.Shaman,
+ //   NiceMini = CustomRoles.NiceMini,
  //   Baker = CustomRoles.Baker,
 }
 public enum SuffixModes

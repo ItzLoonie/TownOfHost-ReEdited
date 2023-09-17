@@ -20,6 +20,7 @@ public class Mini
         IsEvilMini = Random.Range(1, 100) < EvilMiniRate;
     }
     private static List<byte> playerIdList = new();
+    public static bool IsEnable = false;
     public static int GrowUpTime = new();
     public static int GrowUp = new();
     public static int EvilKillCDmin = new();
@@ -55,6 +56,7 @@ public class Mini
         GrowUp = GrowUpDuration.GetInt() / 18;
         Age = 0;
         Up = GrowUp;
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
@@ -64,7 +66,5 @@ public class Mini
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Count > 0;
-
     public static string GetAge(byte playerId) => Utils.ColorString(Color.yellow, Age != 18 ? $"({Age})" : "");
 }
