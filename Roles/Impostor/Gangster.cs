@@ -243,7 +243,7 @@ public static class Gangster
             pc.Is(CustomRoles.Lazy) ||
             pc.Is(CustomRoles.Loyal) ||
             pc.Is(CustomRoles.CyberStar) ||
-            pc.Is(CustomRoles.Egoist)
+            pc.Is(CustomRoles.Egoist) ||
             !pc.Is(CustomRoles.NiceMini) && Mini.Age == 18
             );
     }

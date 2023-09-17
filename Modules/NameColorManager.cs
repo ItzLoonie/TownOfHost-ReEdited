@@ -180,8 +180,8 @@ public static class NameColorManager
             || (target.Is(CustomRoles.Mayor) && Options.MayorRevealWhenDoneTasks.GetBool() && target.GetPlayerTaskState().IsTaskFinished)
             || (seer.Is(CustomRoleTypes.Crewmate) && target.Is(CustomRoles.Marshall) && target.GetPlayerTaskState().IsTaskFinished)
          //   || Mare.KnowTargetRoleColor(target, isMeeting)
-            || EvilDiviner.IsShowTargetRole(seer, target)
-            || PotionMaster.IsShowTargetRole(seer, target);
+            || (target.Is(CustomRoles.NiceMini) && Mini.EveryoneCanKnowMini.GetBool())
+            || (target.Is(CustomRoles.EvilMini) && Mini.EveryoneCanKnowMini.GetBool())
             || (target.Is(CustomRoles.NiceMini) && Mini.EveryoneCanKnowMini.GetBool())
             || (target.Is(CustomRoles.EvilMini) && Mini.EveryoneCanKnowMini.GetBool())
     }
