@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TOHE.Roles.Double;
 using TOHE.Roles.Neutral;
 
 namespace TOHE.Modules;
@@ -45,7 +46,9 @@ internal class CustomRoleSelector
         List<CustomRoles> roleOnList = new();
 
         List<CustomRoles> ImpOnList = new();
+        List<CustomRoles> MiniOnList = new();
         List<CustomRoles> ImpRateList = new();
+        List<CustomRoles> MiniRateList = new();
 
         List<CustomRoles> NonNeutralKillingOnList = new();
         List<CustomRoles> NonNeutralKillingRateList = new();
@@ -71,6 +74,7 @@ internal class CustomRoleSelector
         foreach (var role in roleList) if (role.GetMode() == 2)
         {
             if (role.IsImpostor()) ImpOnList.Add(role);
+            else if (role.IsMini()) MiniOnList.Add(role);
             else if (role.IsNonNK()) NonNeutralKillingOnList.Add(role);
             else if (role.IsNK()) NeutralKillingOnList.Add(role);
             else if (role.IsCoven()) CovenOnList.Add(role);
@@ -80,10 +84,40 @@ internal class CustomRoleSelector
         foreach (var role in roleList) if (role.GetMode() == 1)
         {
             if (role.IsImpostor()) ImpRateList.Add(role);
+            else if (role.IsMini()) MiniRateList.Add(role);
             else if (role.IsNonNK()) NonNeutralKillingRateList.Add(role);
             else if (role.IsNK()) NeutralKillingRateList.Add(role);
             else if (role.IsCoven()) CovenRateList.Add(role);
             else roleRateList.Add(role);
+        }
+
+        while (MiniOnList.Count == 1)
+        {
+            var select = MiniOnList[rd.Next(0, MiniOnList.Count)];
+            MiniOnList.Remove(select);
+            Mini.SetMiniTeam(Mini.EvilMiniSpawnChances.GetFloat());
+            if (!Mini.IsEvilMini)
+            {
+                roleOnList.Add(CustomRoles.NiceMini);
+            }
+            if (Mini.IsEvilMini)
+            {
+                ImpOnList.Add(CustomRoles.EvilMini);
+            }
+        }
+        while (MiniRateList.Count ==1)
+        {
+            var select = MiniRateList[rd.Next(0, MiniRateList.Count)];
+            MiniRateList.Remove(select);
+            Mini.SetMiniTeam(Mini.EvilMiniSpawnChances.GetFloat());
+            if (!Mini.IsEvilMini)
+            {
+                roleRateList.Add(CustomRoles.NiceMini);
+            }
+            if (Mini.IsEvilMini)
+            {
+                ImpRateList.Add(CustomRoles.EvilMini);
+            }
         }
 
         // 抽取优先职业（内鬼）
@@ -328,6 +362,7 @@ internal class CustomRoleSelector
                 var role = rolesToAssign[i];
                 if (dr.Value.GetMode() != role.GetMode()) continue;
                 if (
+                    (dr.Value.IsMini() && role.IsMini()) ||
                     (dr.Value.IsImpostor() && role.IsImpostor()) ||
                     (dr.Value.IsNonNK() && role.IsNonNK()) ||
                     (dr.Value.IsNK() && role.IsNK()) ||

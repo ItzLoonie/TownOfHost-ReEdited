@@ -11,6 +11,7 @@ using TOHE.Roles.AddOns.Impostor;
 using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
+using TOHE.Roles.Double;
 
 namespace TOHE;
 
@@ -1536,6 +1537,7 @@ public static class Options
         Farseer.SetupCustomOption();
         Monitor.SetupCustomOption();
     //    ChiefOfPolice.SetupCustomOption();
+        Mini.SetupCustomOption();
 
         // Neutral
         TextOptionItem.Create(100010, "RoleType.NeutralBenign", TabGroup.NeutralRoles)

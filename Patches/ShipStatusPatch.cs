@@ -106,6 +106,7 @@ class RepairSystemPatch
             if (player.Is(CustomRoles.PotionMaster) && player.IsAlive()) return true;
             if (player.Is(CustomRoles.Refugee) && player.IsAlive()) return true;
             if (player.Is(CustomRoles.Glitch) && player.IsAlive()) return true;
+            if (player.Is(CustomRoles.EvilMini)) return true;
             return false;
         }
 
