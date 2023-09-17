@@ -321,9 +321,9 @@ public class Main : BasePlugin
                 {CustomRoles.Scientist, "#8cffff"},
                 {CustomRoles.GuardianAngel, "#ffffff"},
                 // Special impostor roles
-                {CustomRoles.EvilMini, "#FF0000" },
+                {CustomRoles.EvilMini, "#FF1919" },
                 // Probability roles
-                {CustomRoles.Mini, "#FFFFFF" },
+                {CustomRoles.Mini, "#696969" },
                 // Vanilla Remakes
                 {CustomRoles.CrewmateTOHE, "#8cffff"},
                 {CustomRoles.EngineerTOHE, "#FF6A00"},
@@ -388,7 +388,7 @@ public class Main : BasePlugin
                 {CustomRoles.Monitor, "#7223DA"},
                 {CustomRoles.Swapper, "#66E666"},
                 {CustomRoles.ChiefOfPolice,"#f8cd46"},
-                {CustomRoles.NiceMini, "#FFFFFF" },
+                {CustomRoles.NiceMini, "#8cffff" },
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Agitater, "#F4A460"},
