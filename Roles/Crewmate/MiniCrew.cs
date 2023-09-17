@@ -1,9 +1,4 @@
-﻿using Epic.OnlineServices;
-using System.Collections.Generic;
-using System.Linq;
-using TOHE.Roles.Neutral;
-using static TOHE.Options;
-using static TOHE.Translator;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace TOHE.Roles.Crewmate
@@ -49,7 +44,7 @@ namespace TOHE.Roles.Crewmate
                 .SetParent(Options.CustomRoleSpawnChances[CustomRoles.MiniCrew]);
             CountMeetingTime = BooleanOptionItem.Create(Id + 13, "CountMeetingTime", false, TabGroup.OtherRoles, false)
                 .SetParent(Options.CustomRoleSpawnChances[CustomRoles.MiniCrew]);
-            CanBeEvil = BooleanOptionItem.Create(Id + 14, "CanBeEvil", true, TabGroup.OtherRoles, false)
+            CanBeEvil = BooleanOptionItem.Create(Id + 14, "MiniCanBeEvil", true, TabGroup.OtherRoles, false)
                 .SetParent(Options.CustomRoleSpawnChances[CustomRoles.MiniCrew]);
             EvilMiniSpawnChances = IntegerOptionItem.Create(Id + 15, "EvilMiniSpawnChances", new(0, 100, 5), 20, TabGroup.OtherRoles, false)
                 .SetParent(CanBeEvil)
@@ -69,7 +64,7 @@ namespace TOHE.Roles.Crewmate
             SetMiniTeam();
             isEnable = false;
             LastFixedUpdate = new();
-            DKillCoolDownPreAge = (MiniFinalCD.GetFloat() - MiniBeginCD.GetFloat()) / 18;
+            DKillCoolDownPreAge = MiniFinalCD.GetFloat() < MiniBeginCD.GetFloat() ? (MiniFinalCD.GetFloat() - MiniBeginCD.GetFloat()) / 18 : 0f;
             MiniKillCoolDown = MiniBeginCD.GetFloat();
     }
         public static void Add(byte playerId)
@@ -105,6 +100,8 @@ namespace TOHE.Roles.Crewmate
                 if (IsEvilMini)
                 {
                     MiniKillCoolDown -= DKillCoolDownPreAge;
+                    Main.AllPlayerKillCooldown[player.PlayerId] = MiniKillCoolDown;
+                    player.MarkDirtySettings();
                     player.SetKillCooldown(forceAnime: true);
                 }
             }
