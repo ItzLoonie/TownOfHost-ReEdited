@@ -927,6 +927,7 @@ public enum CustomWinner
     Seeker = CustomRoles.Seeker,
     SoulCollector = CustomRoles.SoulCollector,
     RuthlessRomantic = CustomRoles.RuthlessRomantic,
+    MiniCrew = CustomRoles.MiniCrew,
 }
 public enum AdditionalWinners
 {

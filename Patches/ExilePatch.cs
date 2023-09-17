@@ -48,6 +48,7 @@ class ExileControllerWrapUpPatch
 
         bool DecidedWinner = false;
         if (!AmongUsClient.Instance.AmHost) return;
+        PlayerControl exiledPC = Utils.GetPlayerById(exiled.PlayerId);
         AntiBlackout.RestoreIsDead(doSend: false);
 
         Logger.Info($"{!Collector.CollectorWin(false)}", "!Collector.CollectorWin(false)");
@@ -93,6 +94,28 @@ class ExileControllerWrapUpPatch
                     }
                 }
                 DecidedWinner = true;
+            }
+
+            if (role == CustomRoles.MiniCrew && AmongUsClient.Instance.AmHost)
+            {
+                if (MiniCrew.Age < 18)
+                {
+                    if (MiniCrew.IsEvilMini)
+                    {
+                        CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Impostor);
+                    }
+                    else if (exiledPC.Is(CustomRoles.Admired))
+                    {
+                        CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Crewmate);
+                        CustomWinnerHolder.WinnerIds.Add(exiled.PlayerId);
+                    }
+                    else
+                    {
+                        CustomWinnerHolder.ResetAndSetWinner(CustomWinner.MiniCrew);
+                        CustomWinnerHolder.WinnerIds.Add(exiled.PlayerId);
+                    }
+                    DecidedWinner = true;
+                }
             }
             Executioner.CheckExileTarget(exiled, DecidedWinner);
 

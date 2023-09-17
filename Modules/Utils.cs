@@ -596,7 +596,8 @@ public static class Utils
             pc.Is(CustomRoles.TaskManager) ||
          //   pc.Is(CustomRoles.Cyber) ||
             pc.Is(CustomRoles.Egoist) ||
-            pc.Is(CustomRoles.DualPersonality)
+            pc.Is(CustomRoles.DualPersonality) ||
+            pc.Is(CustomRoles.MiniCrew)
             );
     }
     public static string GetProgressText(PlayerControl pc)

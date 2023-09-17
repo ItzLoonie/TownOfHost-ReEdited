@@ -15,8 +15,12 @@ namespace TOHE.Roles.Crewmate
         public static bool IsEvilMini;
         public static void SetMiniTeam()
         {
-            var rand = IRandom.Instance;
-            IsEvilMini = rand.Next(1, 100) < EvilMiniSpawnChances.GetInt();
+            if (CanBeEvil.GetBool())
+            {
+                var rand = IRandom.Instance;
+                IsEvilMini = rand.Next(1, 100) < EvilMiniSpawnChances.GetInt();
+            }
+            else IsEvilMini = false;
         }
         private static List<byte> playerIdList = new();
         public static int Age = new();
