@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using TOHE.Roles.Double;
 using UnityEngine;
 using static TOHE.Translator;
 
@@ -124,6 +125,12 @@ public static class Judge
                     if (!isUI) Utils.SendMessage(GetString("LaughToWhoTrialSelf"), pc.PlayerId, Utils.ColorString(Color.cyan, GetString("MessageFromKPD")));
                     else pc.ShowPopUp(Utils.ColorString(Color.cyan, GetString("MessageFromKPD")) + "\n" + GetString("LaughToWhoTrialSelf"));
                     judgeSuicide = true;
+                }
+                if ((target.Is(CustomRoles.NiceMini) || target.Is(CustomRoles.EvilMini)) && Mini.Age < 18)
+                {
+                    if (!isUI) Utils.SendMessage(GetString("GuessMini"), pc.PlayerId);
+                    else pc.ShowPopUp(GetString("GuessMini"));
+                    return true;
                 }
                 else if (pc.Is(CustomRoles.Madmate)) judgeSuicide = false;
                 else if (pc.Is(CustomRoles.Charmed)) judgeSuicide = false;

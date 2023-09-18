@@ -2427,16 +2427,14 @@ class FixedUpdatePatch
                         Mini.GrowUpTime ++;
                         if (Mini.GrowUpTime >= Mini.GrowUpDuration.GetInt()/18)
                         {
-                            Mini.Age += 1;
+                            Mini.Age += 1;                            
                             Mini.GrowUpTime = 0;                         
                             player.RpcGuardAndKill();
                             Logger.Info($"年龄增加1", "Child");
                             if (Mini.UpDateAge.GetBool())
                             {
-                                foreach (var pc in Main.AllPlayerControls)
-                                {
-                                //    pc.RpcGuardAndKill(player);
-                                }
+                                Mini.SendRPC();
+                                Utils.NotifyRoles();
                             }
                         }
                     }
@@ -2467,10 +2465,8 @@ class FixedUpdatePatch
 
                             if (Mini.UpDateAge.GetBool())
                             {
-                                foreach (var pc in Main.AllPlayerControls)
-                                {
-                                //    pc.RpcGuardAndKill(player);
-                                }
+                                Mini.SendRPC();
+                                Utils.NotifyRoles();
                             }
                             Logger.Info($"重置击杀冷却{Main.EvilMiniKillcooldownf -1f}", "Child");
                         }
@@ -2767,10 +2763,10 @@ class FixedUpdatePatch
                         break;
                 }
                 if (target.Is(CustomRoles.NiceMini) && Mini.EveryoneCanKnowMini.GetBool())
-                    Mark.Append(Utils.ColorString(Color.white, Mini.Age != 18 ? $"({Mini.Age})" : ""));
+                    Mark.Append(Utils.ColorString(Color.white, Mini.Age != 18 && Mini.UpDateAge.GetBool() ? $"({Mini.Age})" : ""));
 
                 if (target.Is(CustomRoles.EvilMini) && Mini.EveryoneCanKnowMini.GetBool())
-                    Mark.Append(Utils.ColorString(Color.white, Mini.Age != 18 ? $"({Mini.Age})" : ""));
+                    Mark.Append(Utils.ColorString(Color.white, Mini.Age != 18 && Mini.UpDateAge.GetBool() ? $"({Mini.Age})" : ""));
                     
                 if ((Medic.WhoCanSeeProtect.GetInt() is 0 or 2) && seer.PlayerId == target.PlayerId && (Medic.InProtect(seer.PlayerId) || Medic.TempMarkProtected == seer.PlayerId))
                     Mark.Append($"<color={Utils.GetRoleColorCode(CustomRoles.Medic)}>✚</color>");

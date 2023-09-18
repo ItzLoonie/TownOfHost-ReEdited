@@ -1137,11 +1137,11 @@ class MeetingHudStartPatch
                 
             //迷你船员
             if (target.Is(CustomRoles.NiceMini) && Mini.EveryoneCanKnowMini.GetBool())
-                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.NiceMini), Mini.Age != 18 ? $"({Mini.Age})" : ""));
+                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.NiceMini), Mini.Age != 18 && Mini.UpDateAge.GetBool() ? $"({Mini.Age})" : ""));
 
             //迷你船员
             if (target.Is(CustomRoles.EvilMini) && Mini.EveryoneCanKnowMini.GetBool())
-                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.NiceMini), Mini.Age != 18 ? $"({Mini.Age})" : ""));
+                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.NiceMini), Mini.Age != 18 && Mini.UpDateAge.GetBool() ? $"({Mini.Age})" : ""));
 
             //球状闪电提示
             if (BallLightning.IsGhost(target))
