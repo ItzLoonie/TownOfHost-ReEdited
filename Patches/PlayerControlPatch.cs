@@ -691,17 +691,25 @@ class CheckMurderPatch
             if (killer.Is(CustomRoles.Werewolf))
             {
                 Logger.Info("Werewolf Kill", "Mauled");
-                foreach (var player in Main.AllPlayerControls)
                 {
-                    if (!player.IsAlive() || Pelican.IsEaten(player.PlayerId)) continue;
-                    if (player == killer) continue;
-                    if (player.Is(CustomRoles.Pestilence)) continue;
-                    if (Vector2.Distance(killer.transform.position, player.transform.position) <= Werewolf.MaulRadius.GetFloat())
+                _ = new LateTask(() =>
                     {
-                        Main.PlayerStates[player.PlayerId].deathReason = PlayerState.DeathReason.Mauled;
-                        player.SetRealKiller(killer);
-                        player.RpcMurderPlayerV3(player);
-                    }
+                        foreach (var player in Main.AllPlayerControls)
+                        {
+                            if (!player.IsAlive() || Pelican.IsEaten(player.PlayerId)) continue;
+                            if (player == killer) continue;
+                            if (player.Is(CustomRoles.NiceMini) && Mini.Age != 18) continue;
+                            if (player.Is(CustomRoles.EvilMini) && Mini.Age != 18) continue;
+                            if (player.Is(CustomRoles.Pestilence)) continue;
+                            if (Vector2.Distance(killer.transform.position, player.transform.position) <= Werewolf.MaulRadius.GetFloat())
+                                {
+                                Main.PlayerStates[player.PlayerId].deathReason = PlayerState.DeathReason.Mauled;
+                                player.SetRealKiller(killer);
+                                player.RpcMurderPlayerV3(player);
+                            }
+                        }
+                    }, 0.1f, "Werewolf Maul Bug Fix");
+
                 }
             }
 
