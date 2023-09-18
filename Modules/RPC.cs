@@ -131,6 +131,7 @@ enum CustomRPC
     SyncCovenLeader,
     SyncNWitch,
     SyncShroud,
+    SyncMiniAge,
 }
 public enum Sounds
 {
@@ -621,6 +622,9 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetPoliceLimlit:
                 ChiefOfPolice.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SyncMiniAge:
+                Mini.ReceiveRPC(reader);
                 break;
         }
     }
