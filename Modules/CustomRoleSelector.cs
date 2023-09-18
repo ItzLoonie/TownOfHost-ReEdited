@@ -292,6 +292,7 @@ internal class CustomRoleSelector
                         rolesToAssign.Add(CustomRoles.CrewmateTOHE);
                     }
         }
+
         if (CustomRoles.Lucky.IsEnable())
         {
                 if (rolesToAssign.Contains(CustomRoles.Luckey))
@@ -316,6 +317,14 @@ internal class CustomRoleSelector
                         rolesToAssign.Add(CustomRoles.EngineerTOHE);
                     }
         }
+    /*    if (CustomRoles.Tricky.IsEnable())
+        {
+                if (rolesToAssign.Contains(CustomRoles.Trickster))
+                    {
+                        rolesToAssign.Remove(CustomRoles.Trickster);
+                        rolesToAssign.Add(CustomRoles.ImpostorTOHE);
+                    }
+        } */
 
         if (Romantic.IsEnable)
         {

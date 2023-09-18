@@ -37,7 +37,7 @@ public class Main : BasePlugin
 
     public const string PluginGuid = "com.karped1em.townofhostedited";
     public const string PluginVersion = "3.0.10";
-    public const string PluginDisplayVersion = "3.0.0";
+    public const string PluginDisplayVersion = "3.0.0_1";
     public static readonly string SupportedVersionAU = "2023.7.11";
     public const bool Canary = false;
 
@@ -323,7 +323,7 @@ public class Main : BasePlugin
                 // Special impostor roles
                 {CustomRoles.EvilMini, "#FF1919" },
                 // Probability roles
-                {CustomRoles.Mini, "#696969" },
+                {CustomRoles.Mini, "#dddddd" },
                 // Vanilla Remakes
                 {CustomRoles.CrewmateTOHE, "#8cffff"},
                 {CustomRoles.EngineerTOHE, "#FF6A00"},
@@ -937,7 +937,7 @@ public enum CustomWinner
     Seeker = CustomRoles.Seeker,
     SoulCollector = CustomRoles.SoulCollector,
     RuthlessRomantic = CustomRoles.RuthlessRomantic,
-    NiceMini = -6,
+    NiceMini = CustomRoles.Mini,
 }
 public enum AdditionalWinners
 {

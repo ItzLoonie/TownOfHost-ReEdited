@@ -474,11 +474,11 @@ class CheckForEndVotingPatch
         var DecidedWinner = false;
 
         //迷你船员长大前被驱逐抢夺胜利
-        if (crole == CustomRoles.NiceMini && Mini.Age !< 18)
+    /*    if (crole == CustomRoles.NiceMini && Mini.Age !< 18)
         {
             name = string.Format(GetString("ExiledNiceMini"), realName, coloredRole);
             DecidedWinner = true;
-        }
+        } */
 
         //小丑胜利
    /*     if (crole == CustomRoles.Jester)
