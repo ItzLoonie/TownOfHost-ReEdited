@@ -974,12 +974,12 @@ public static class Utils
             case CustomRoles.ChiefOfPolice:
                 ProgressText.Append(ChiefOfPolice.GetSkillLimit(playerId));
                 break; 
-            case CustomRoles.NiceMini:
+        /*    case CustomRoles.NiceMini:
                 ProgressText.Append(Mini.GetAge(playerId));
                 break;
             case CustomRoles.EvilMini:
                 ProgressText.Append(Mini.GetAge(playerId));
-                break;
+                break; */
             default:
                 //タスクテキスト
                 var taskState = Main.PlayerStates?[playerId].GetTaskState();
