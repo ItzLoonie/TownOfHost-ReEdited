@@ -184,7 +184,7 @@ internal class ControllerManagerUpdatePatch
             Utils.ShowActiveSettings();
         }
         // Reset All TOHE Setting To Default
-        if (GetKeysDown(KeyCode.Delete, KeyCode.LeftControl))
+        if (GameStates.IsLobby && GetKeysDown(KeyCode.Delete, KeyCode.LeftControl))
         {
             OptionItem.AllOptions.ToArray().Where(x => x.Id > 0).Do(x => x.SetValueNoRpc(x.DefaultValue));
             Logger.SendInGame(GetString("RestTOHESetting"));
