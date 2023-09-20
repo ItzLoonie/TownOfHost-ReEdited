@@ -36,8 +36,8 @@ public class Main : BasePlugin
     public static readonly string MainMenuText = " ";
 
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "3.0.10";
-    public const string PluginDisplayVersion = "3.0.0_1";
+    public const string PluginVersion = "3.1.0.001";
+    public const string PluginDisplayVersion = "3.1.0 dev 2";
     public static readonly string SupportedVersionAU = "2023.7.11";
     public const bool Canary = false;
 
@@ -132,6 +132,7 @@ public class Main : BasePlugin
     public static List<byte> WorkaholicAlive = new();
     public static List<byte> BurstBodies = new();
     public static List<byte> BaitAlive = new();
+    public static List<byte> TasklessCrewmate = new();
     public static List<byte> BoobyTrapBody = new();
     public static List<byte> BoobyTrapKiller = new();
     //public static List<byte> KilledDiseased = new();
@@ -415,7 +416,7 @@ public class Main : BasePlugin
                 {CustomRoles.Collector, "#9d8892"},
                 {CustomRoles.Provocateur, "#74ba43"},
                 {CustomRoles.Sunnyboy, "#ff9902"},
-                {CustomRoles.Poisoner, "#663399"},
+                {CustomRoles.Poisoner, "#478800"},
                 {CustomRoles.CovenLeader, "#663399"},
                 {CustomRoles.Ritualist, "#663399"},
                 {CustomRoles.Necromancer, "#663399"},
@@ -428,7 +429,7 @@ public class Main : BasePlugin
                 {CustomRoles.Succubus, "#cf6acd"},
                 {CustomRoles.HexMaster, "#663399"},
                 {CustomRoles.Occultist, "#375d91"},
-                {CustomRoles.Wraith, "#663399"},
+                {CustomRoles.Wraith, "#4B0082"},
                 {CustomRoles.Shade, "#000930"},
                 {CustomRoles.NSerialKiller, "#233fcc"},
                 {CustomRoles.BloodKnight, "#630000"},
@@ -441,7 +442,7 @@ public class Main : BasePlugin
                 {CustomRoles.Farseer, "#BA55D3"},
                 {CustomRoles.Pursuer, "#617218"},
                 {CustomRoles.Phantom, "#662962"},
-                {CustomRoles.Jinx, "#663399"},
+                {CustomRoles.Jinx, "#ed2f91"},
                 {CustomRoles.Maverick, "#781717"},
                 {CustomRoles.CursedSoul, "#531269"},
                 {CustomRoles.PotionMaster, "#663399"},
@@ -449,7 +450,7 @@ public class Main : BasePlugin
                 {CustomRoles.Pickpocket, "#47008B"},
                 {CustomRoles.Traitor, "#BA2E05"},
                 {CustomRoles.Vulture, "#556B2F"},
-                {CustomRoles.Medusa, "#663399"},
+                {CustomRoles.Medusa, "#9900CC"},
                 {CustomRoles.Spiritcaller, "#003366"},
                 {CustomRoles.EvilSpirit, "#003366"},
                 {CustomRoles.Convict, "#ff1919"},

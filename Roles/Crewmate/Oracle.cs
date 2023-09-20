@@ -80,14 +80,12 @@ public static class Oracle
                 {
                     if (target.Is(CustomRoles.Admired)) text = "Crewmate";
                     else if (target.GetCustomRole().IsImpostorTeamV2() || target.GetCustomSubRoles().Any(role => role.IsImpostorTeamV2())) text = "Impostor";
-                    else if (target.GetCustomRole().IsCoven() && !target.GetCustomSubRoles().Any(role => role.IsConverted())) text = "Coven";
                     else if (target.GetCustomRole().IsNeutralTeamV2() || target.GetCustomSubRoles().Any(role => role.IsNeutralTeamV2())) text = "Neutral";
                     else if (target.GetCustomRole().IsCrewmateTeamV2() && (target.GetCustomSubRoles().Any(role => role.IsCrewmateTeamV2()) || (target.GetCustomSubRoles().Count == 0))) text = "Crewmate";
                 }
                 else 
                 { 
                     if (target.GetCustomRole().IsImpostor() && !target.Is(CustomRoles.Trickster)) text = "Impostor";
-                    else if (target.GetCustomRole().IsCoven()) text = "Coven";
                     else if (target.GetCustomRole().IsNeutral()) text = "Neutral";
                     else text = "Crewmate";
                 }
@@ -223,25 +221,16 @@ public static class Oracle
                         {
                             if (random_number_2 == 1) text = "Neutral";
                             if (random_number_2 == 2) text = "Impostor";
-                            if (random_number_2 == 3) text = "Coven";
                         }
                         if (text == "Neutral")
                         {
                             if (random_number_2 == 1) text = "Crewmate";
                             if (random_number_2 == 2) text = "Impostor";
-                            if (random_number_2 == 3) text = "Coven";
                         }
                         if (text == "Impostor")
                         {
                             if (random_number_2 == 1) text = "Neutral";
                             if (random_number_2 == 2) text = "Crewmate";
-                            if (random_number_2 == 3) text = "Coven";
-                        }
-                        if (text == "Coven")
-                        {
-                            if (random_number_2 == 1) text = "Neutral";
-                            if (random_number_2 == 2) text = "Crewmate";
-                            if (random_number_2 == 3) text = "Impostor";
                         }
                     }
                 }

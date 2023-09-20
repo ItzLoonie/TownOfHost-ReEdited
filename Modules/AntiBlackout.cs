@@ -74,7 +74,7 @@ public static class AntiBlackout
 
             foreach (var pc in Main.AllPlayerControls)
             {
-                if ((pc.GetCustomRole().IsNK() && !pc.Is(CustomRoles.Arsonist)) || pc.GetCustomRole().IsCoven()) numNeutrals++;
+                if ((pc.GetCustomRole().IsNK() && !pc.Is(CustomRoles.Arsonist))) numNeutrals++;
                 else if (pc.Is(CustomRoles.Arsonist) && Options.ArsonistKeepsGameGoing.GetBool()) numNeutrals++;
             }
 
