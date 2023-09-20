@@ -428,7 +428,7 @@ public class Main : BasePlugin
                 {CustomRoles.VengefulRomantic, "#8B0000"},
                 {CustomRoles.RuthlessRomantic, "#D2691E"},
                 {CustomRoles.Succubus, "#cf6acd"},
-                {CustomRoles.HexMaster, "#663399"},
+                {CustomRoles.HexMaster, "#ff00ff"},
                 {CustomRoles.Occultist, "#375d91"},
                 {CustomRoles.Wraith, "#4B0082"},
                 {CustomRoles.Shade, "#000930"},
