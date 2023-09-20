@@ -739,6 +739,7 @@ public enum CustomRoles
     //Neutral
     Arsonist,
     Agitater,
+    Bandit,
     Seeker,
     SoulCollector,
     HexMaster,

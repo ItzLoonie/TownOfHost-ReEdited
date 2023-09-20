@@ -462,6 +462,7 @@ static class ExtendedPlayerControl
             CustomRoles.Revolutionist => !pc.IsDrawDone(),
             CustomRoles.SwordsMan => pc.IsAlive(),
             CustomRoles.Jackal => pc.IsAlive(),
+            CustomRoles.Bandit => pc.IsAlive(),
             CustomRoles.Sidekick => pc.IsAlive(),
             CustomRoles.Necromancer => pc.IsAlive(),
             CustomRoles.HexMaster => pc.IsAlive(),
@@ -559,6 +560,7 @@ static class ExtendedPlayerControl
             CustomRoles.Amnesiac or
             CustomRoles.Glitch or
             CustomRoles.Crusader or
+            CustomRoles.Bandit or
             CustomRoles.ChiefOfPolice or
             CustomRoles.Wildling
             => false,
@@ -771,6 +773,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Sidekick:
                 Sidekick.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Bandit:
+                Bandit.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.PlagueBearer:
                 PlagueBearer.SetKillCooldown(player.PlayerId);
