@@ -2183,7 +2183,7 @@ class ReportDeadBodyPatch
         Judge.OnReportDeadBody();
     //    Councillor.OnReportDeadBody();
         Greedier.OnReportDeadBody();
-        Tracker.OnReportDeadBody();
+        //Tracker.OnReportDeadBody();
         Addict.OnReportDeadBody();
         Deathpact.OnReportDeadBody();
         ParityCop.OnReportDeadBody();

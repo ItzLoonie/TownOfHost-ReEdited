@@ -1864,9 +1864,9 @@ public static class Utils
                         SelfSuffix.Append(Tracefinder.GetTargetArrow(seer));
                         break;
 
-                    case CustomRoles.Tracker:
-                        SelfSuffix.Append(Tracker.GetTrackerArrow(seer));
-                        break;
+                    //case CustomRoles.Tracker:
+                    //    SelfSuffix.Append(Tracker.GetTrackerArrow(seer));
+                    //    break;
 
                     case CustomRoles.Spiritualist:
                         SelfSuffix.Append(Spiritualist.GetSpiritualistArrow(seer));
@@ -2188,6 +2188,7 @@ public static class Utils
                             break;
 
                         case CustomRoles.Tracker:
+                            SelfSuffix.Append(Tracker.GetTrackerArrow(seer, target));
                             TargetMark.Append(Tracker.GetTargetMark(seer, target));
                             if (isForMeeting && Tracker.IsTrackTarget(seer, target) && Tracker.CanSeeLastRoomInMeeting)
                                 TargetRoleText = $"<size={fontSize}>{Tracker.GetArrowAndLastRoom(seer, target)}</size>\r\n";

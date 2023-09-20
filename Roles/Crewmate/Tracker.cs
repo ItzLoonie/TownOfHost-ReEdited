@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using static TOHE.Options;
 using static TOHE.Translator;
+using static UnityEngine.GraphicsBuffer;
 
 namespace TOHE.Roles.Crewmate
 {
@@ -21,7 +22,7 @@ namespace TOHE.Roles.Crewmate
         public static bool CanSeeLastRoomInMeeting;
 
         public static Dictionary<byte, float> TrackLimit = new();
-        public static Dictionary<byte, byte> TrackerTarget = new();
+        public static Dictionary<byte, List<byte>> TrackerTarget = new();
 
         public static Dictionary<byte, string> msgToSend = new();
 
@@ -49,8 +50,8 @@ namespace TOHE.Roles.Crewmate
         public static void Add(byte playerId)
         {
             playerIdList.Add(playerId);
-            TrackLimit.TryAdd(playerId, TrackLimitOpt.GetInt());
-            TrackerTarget.Add(playerId, byte.MaxValue);
+            TrackLimit.Add(playerId, TrackLimitOpt.GetInt());
+            TrackerTarget.Add(playerId, new List<byte>());
             IsEnable = true;
         }
         public static void SendRPC(byte trackerId = byte.MaxValue, byte targetId = byte.MaxValue)
@@ -65,44 +66,43 @@ namespace TOHE.Roles.Crewmate
             byte trackerId = reader.ReadByte();
             byte targetId = reader.ReadByte();
 
-            if (TrackerTarget[trackerId] != byte.MaxValue)
-            {
-                TargetArrow.Remove(trackerId, TrackerTarget[trackerId]);
-            }
+            //if (TrackerTarget[trackerId].Contains(targetId))
+            //{
+            //    TargetArrow.Remove(trackerId, TrackerTarget[trackerId]);
+            //}
 
-            TrackerTarget[trackerId] = targetId;
-            TargetArrow.Add(trackerId, targetId);
+            //TrackerTarget[trackerId] = targetId;
+            //TargetArrow.Add(trackerId, targetId);
 
         }
-        public static string GetTargetMark(PlayerControl seer, PlayerControl target) => TrackerTarget.ContainsKey(seer.PlayerId) && TrackerTarget[seer.PlayerId] == target.PlayerId ? Utils.ColorString(seer.GetRoleColor(), "◀") : "";
+        public static string GetTargetMark(PlayerControl seer, PlayerControl target) => !(seer == null || target == null) && TrackerTarget.ContainsKey(seer.PlayerId) && TrackerTarget[seer.PlayerId].Contains(target.PlayerId) ? Utils.ColorString(seer.GetRoleColor(), "◀") : "";
 
-        public static void OnReportDeadBody()
+        public static void OnReportDeadBody(GameData.PlayerInfo target)
         {
             if (!OptionCanSeeLastRoomInMeeting.GetBool()) return;
 
-            foreach (var pc in playerIdList)
-            {
-                if (TrackerTarget[pc] == byte.MaxValue)
-                {
-                    continue;
-                }
+            //foreach (var pc in playerIdList)
+            //{
+            //    string room = string.Empty;
+            //    var targetRoom = string.Empty;
 
-                string room = string.Empty;
-                var targetRoom = Main.PlayerStates[TrackerTarget[pc]].LastRoom;
-                if (targetRoom == null) room += GetString("FailToTrack");
-                else room += GetString(targetRoom.RoomId.ToString());
+            //    foreach (var targetId in TrackerTarget.Values)
+            //    {
+            //        targetRoom = ;
+            //    }
+    
+            //    if (targetRoom == null) room += GetString("FailToTrack");
+            //    else room += GetString(targetRoom.RoomId.ToString());
 
-                if (msgToSend.ContainsKey(pc))
-                {
-                    msgToSend[pc] = string.Format(GetString("TrackerLastRoomMessage"), room);
-                }
-                else
-                {
-                    msgToSend.Add(pc, string.Format(GetString("TrackerLastRoomMessage"), room));
-                }
-
-
-            }
+            //    if (msgToSend.ContainsKey(pc))
+            //    {
+            //        msgToSend[pc] = string.Format(GetString("TrackerLastRoomMessage"), room);
+            //    }
+            //    else
+            //    {
+            //        msgToSend.Add(pc, string.Format(GetString("TrackerLastRoomMessage"), room));
+            //    }
+            //}
         }
 
         public static void OnVote(PlayerControl player, PlayerControl target)
@@ -110,33 +110,51 @@ namespace TOHE.Roles.Crewmate
             if (player == null || target == null) return;
             if (TrackLimit[player.PlayerId] < 1) return;
             if (player.PlayerId == target.PlayerId) return;
-            if (target.PlayerId == TrackerTarget[player.PlayerId]) return;
+            if (TrackerTarget[player.PlayerId].Contains(target.PlayerId)) return;
 
-            TrackLimit[player.PlayerId] -= 1;
+            TrackLimit[player.PlayerId]--;
 
-            if (TrackerTarget[player.PlayerId] != byte.MaxValue)
-            {
-                TargetArrow.Remove(player.PlayerId, TrackerTarget[player.PlayerId]);
-            }
-
-            TrackerTarget[player.PlayerId] = target.PlayerId;
+            TrackerTarget[player.PlayerId].Add(target.PlayerId);
+            //TrackerTarget[player.PlayerId] = target.PlayerId;
             TargetArrow.Add(player.PlayerId, target.PlayerId);
 
             SendRPC(player.PlayerId, target.PlayerId);
         }
 
-        public static string GetTrackerArrow(PlayerControl seer, PlayerControl target = null)
+        public static string GetTrackerArrow(PlayerControl seer, PlayerControl target)
         {
+            if (seer == null || target == null) return "";
             if (!seer.Is(CustomRoles.Tracker)) return "";
-            if (target != null && seer.PlayerId != target.PlayerId) return "";
             if (GameStates.IsMeeting) return "";
             if (!TrackerTarget.ContainsKey(seer.PlayerId)) return "";
-            return Utils.ColorString(Color.white, TargetArrow.GetArrows(seer, TrackerTarget[seer.PlayerId]));
+            if (!TrackerTarget[seer.PlayerId].Contains(target.PlayerId)) return "";
+
+            var arrows = string.Empty;
+
+            //var targetData = Utils.GetPlayerById(trackTarget);
+
+            var arrow = TargetArrow.GetArrows(seer, target.PlayerId);
+            arrows += Utils.ColorString(Palette.PlayerColors[target.Data.DefaultOutfit.ColorId], arrow);
+            
+            //foreach (var targetList in TrackerTarget.Values)
+            //{
+            //    foreach (var trackTarget in targetList)
+            //    {
+            //        var targetData = Utils.GetPlayerById(trackTarget);
+
+            //        var arrow = TargetArrow.GetArrows(seer, trackTarget);
+            //        arrows += Utils.ColorString(Palette.PlayerColors[targetData.Data.DefaultOutfit.ColorId], arrow);
+            //    }
+            //}
+
+            return arrows;
+
+            //return Utils.ColorString(Color.white, TargetArrow.GetArrows(seer, TrackerTarget[seer.PlayerId])); //Palette.PlayerColors[TrackerTarget[seer.PlayerId]]
         }
 
         public static bool IsTrackTarget(PlayerControl seer, PlayerControl target)
             => seer.IsAlive() && playerIdList.Contains(seer.PlayerId)
-                && TrackerTarget[seer.PlayerId] == target.PlayerId
+                && TrackerTarget[seer.PlayerId].Contains(target.PlayerId)
                 && target.IsAlive();
 
         public static string GetArrowAndLastRoom(PlayerControl seer, PlayerControl target)
