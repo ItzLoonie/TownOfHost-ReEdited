@@ -1038,6 +1038,8 @@ static class CustomRolesHelper
                 if (pc.Is(CustomRoles.Lucky)
                     || pc.Is(CustomRoles.Luckey)
                     || pc.Is(CustomRoles.Guardian)
+                    || pc.Is(CustomRoles.Bomber)
+                    || pc.Is(CustomRoles.Nuker)
                     || pc.Is(CustomRoles.Jinx)
                     || pc.Is(CustomRoles.CursedWolf))
                     return false;
