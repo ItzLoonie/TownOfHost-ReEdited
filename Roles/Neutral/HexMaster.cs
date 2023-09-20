@@ -36,9 +36,9 @@ public static class HexMaster
     public static SwitchTrigger NowSwitchTrigger;
     public static void SetupCustomOption()
     {
-        SetupSingleRoleOptions(Id, TabGroup.CovenRoles, CustomRoles.HexMaster, 1, zeroOne: false);        
-        ModeSwitchAction = StringOptionItem.Create(Id + 10, "WitchModeSwitchAction", SwitchTriggerText, 2, TabGroup.CovenRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.HexMaster]);
-        HexesLookLikeSpells = BooleanOptionItem.Create(Id + 11, "HexesLookLikeSpells",  false, TabGroup.CovenRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.HexMaster]);
+        SetupSingleRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.HexMaster, 1, zeroOne: false);        
+        ModeSwitchAction = StringOptionItem.Create(Id + 10, "WitchModeSwitchAction", SwitchTriggerText, 2, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.HexMaster]);
+        HexesLookLikeSpells = BooleanOptionItem.Create(Id + 11, "HexesLookLikeSpells",  false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.HexMaster]);
     }
     public static void Init()
     {
@@ -164,7 +164,6 @@ public static class HexMaster
         if (Medic.ProtectList.Contains(target.PlayerId)) return false;
         if (target.Is(CustomRoles.Pestilence)) return false;
         if (target.Is(CustomRoles.HexMaster)) return false;
-        if (target.GetCustomRole().IsCoven()) return false;
 
         if (NowSwitchTrigger == SwitchTrigger.DoubleTrigger)
         {

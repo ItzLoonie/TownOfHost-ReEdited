@@ -1,6 +1,7 @@
 ﻿using Hazel;
 using System.Collections.Generic;
 using System.Linq;
+using TOHE.Roles.Crewmate;
 using UnityEngine;
 using static TOHE.Translator;
 
@@ -72,7 +73,7 @@ internal static class Eraser
         }
 
         var targetRole = target.GetCustomRole();
-        if (targetRole.IsTasklessCrewmate() || targetRole.IsNeutral() || targetRole.IsCoven())
+        if (targetRole.IsTasklessCrewmate() || targetRole.IsNeutral() || Main.TasklessCrewmate.Contains(target.PlayerId) || CopyCat.playerIdList.Contains(target.PlayerId))
         {
             Utils.SendMessage(string.Format(GetString("EraserEraseBaseImpostorOrNeutralRoleNotice"), target.GetRealName()), player.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Eraser), GetString("EraserEraseMsgTitle")));
             return;

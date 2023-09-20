@@ -68,6 +68,7 @@ internal class ChangeRoleSettings
             Main.WorkaholicAlive = new();
             Main.BaitAlive = new();
             Main.BoobyTrapBody = new();
+            Main.TasklessCrewmate = new();
             Main.KillerOfBoobyTrapBody = new();
             Main.CleanerBodies = new();
             Main.BurstBodies = new();
@@ -262,6 +263,7 @@ internal class ChangeRoleSettings
             Crusader.Init();
             CursedSoul.Init();
             Admirer.Init();
+            Imitator.Init();
             Medusa.Init();
             Marshall.Init();
             Amnesiac.Init();
@@ -770,6 +772,9 @@ internal class SelectRolesPatch
                     case CustomRoles.Amnesiac:
                         Amnesiac.Add(pc.PlayerId);
                         break;
+                    case CustomRoles.Imitator:
+                        Imitator.Add(pc.PlayerId);
+                        break;
                     case CustomRoles.DovesOfNeace:
                         Main.DovesOfNeaceNumOfUsed.Add(pc.PlayerId, Options.DovesOfNeaceMaxOfUseage.GetInt());
                         break;
@@ -1050,7 +1055,6 @@ internal class SelectRolesPatch
                 || pc.Is(CustomRoles.God) 
                 || pc.Is(CustomRoles.FFF) 
                 || pc.Is(CustomRoles.Sunnyboy)
-                || pc.GetCustomRole().IsCoven()
                 || pc.Is(CustomRoles.Bomber)
                 || pc.Is(CustomRoles.Nuker) 
                 || pc.Is(CustomRoles.Provocateur)

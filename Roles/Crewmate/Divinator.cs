@@ -91,6 +91,7 @@ public static class Divinator
                 CustomRoles.Monitor or
                 CustomRoles.Dazzler or
                 CustomRoles.Grenadier or
+                CustomRoles.Imitator or
                 CustomRoles.Lighter
                 => "Result1",
 

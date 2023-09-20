@@ -132,7 +132,7 @@ public static class GuessManager
             }
         }
 
-        if (!pc.Is(CustomRoles.Ritualist))
+    /*    if (!pc.Is(CustomRoles.Ritualist))
         {
             if (pc.GetCustomRole().IsCoven() && !Options.CovenMembersCanGuess.GetBool() && !pc.Is(CustomRoles.Guesser))
             {
@@ -140,7 +140,7 @@ public static class GuessManager
                 else pc.ShowPopUp(GetString("GuessNotAllowed"));
                 return true;
             }
-        }
+        } */
 
         if (pc.GetCustomRole().IsNK() && !Options.NeutralKillersCanGuess.GetBool() && !pc.Is(CustomRoles.Guesser))
         {
@@ -451,12 +451,12 @@ public static class GuessManager
                     }
 
                     // Coven Can't Guess Addons
-                    if (role.IsAdditionRole() && !Options.CanGuessAddons.GetBool() && (Options.CovenMembersCanGuess.GetBool()) && pc.Is(CustomRoleTypes.Neutral))
+                /*    if (role.IsAdditionRole() && !Options.CanGuessAddons.GetBool() && (Options.CovenMembersCanGuess.GetBool()) && pc.Is(CustomRoleTypes.Neutral))
                     {
                         if (!isUI) Utils.SendMessage(GetString("GuessAdtRole"), pc.PlayerId);
                         else pc.ShowPopUp(GetString("GuessAdtRole"));
                         return true;
-                    }
+                    } */
 
                     // Guesser Mode Can Guess Addons
                     if (Options.CanGuessAddons.GetBool() && (pc.Is(CustomRoles.EvilGuesser) || pc.Is(CustomRoles.Ritualist) || pc.Is(CustomRoles.NiceGuesser) || pc.Is(CustomRoles.Guesser)))
@@ -933,10 +933,10 @@ public static class GuessManager
                 else if (PlayerControl.LocalPlayer.GetCustomRole() is CustomRoles.NiceGuesser && !Options.CrewmatesCanGuess.GetBool())
                     CreateGuesserButton(__instance);
 
-                if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.GetCustomRole().IsCoven() && Options.CovenMembersCanGuess.GetBool())
-                    CreateGuesserButton(__instance);
+            /*    if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.GetCustomRole().IsCoven() && Options.CovenMembersCanGuess.GetBool())
+                    CreateGuesserButton(__instance); 
                 else if (PlayerControl.LocalPlayer.GetCustomRole() is CustomRoles.Ritualist && !Options.CovenMembersCanGuess.GetBool())
-                    CreateGuesserButton(__instance);
+                    CreateGuesserButton(__instance); */
 
                 if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.GetCustomRole().IsNK() && Options.NeutralKillersCanGuess.GetBool())
                     CreateGuesserButton(__instance);
@@ -950,8 +950,8 @@ public static class GuessManager
                 if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.Is(CustomRoles.EvilGuesser))
                     CreateGuesserButton(__instance);
 
-                if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.Is(CustomRoles.Ritualist))
-                    CreateGuesserButton(__instance);
+            /*    if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.Is(CustomRoles.Ritualist))
+                    CreateGuesserButton(__instance); */
 
                 if (PlayerControl.LocalPlayer.IsAlive() && PlayerControl.LocalPlayer.Is(CustomRoles.NiceGuesser))
                     CreateGuesserButton(__instance);

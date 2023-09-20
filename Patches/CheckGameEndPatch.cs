@@ -354,10 +354,10 @@ class GameEndChecker
                 }
 
                 //Neutral Win Together
-                if (Options.NeutralWinTogether.GetBool() && !CustomWinnerHolder.WinnerIds.Where(x => Utils.GetPlayerById(x) != null && Utils.GetPlayerById(x).GetCustomRole().IsCrewmate() && Utils.GetPlayerById(x).GetCustomRole().IsImpostor() && Utils.GetPlayerById(x).GetCustomRole().IsCoven()).Any())
+                if (Options.NeutralWinTogether.GetBool() && !CustomWinnerHolder.WinnerIds.Where(x => Utils.GetPlayerById(x) != null && Utils.GetPlayerById(x).GetCustomRole().IsCrewmate() && Utils.GetPlayerById(x).GetCustomRole().IsImpostor()).Any())
                 {
                     foreach (var pc in Main.AllPlayerControls)
-                        if (pc.GetCustomRole().IsNeutral() && !pc.GetCustomRole().IsCoven() && !CustomWinnerHolder.WinnerIds.Contains(pc.PlayerId) && !CustomWinnerHolder.WinnerRoles.Contains(pc.GetCustomRole()))
+                        if (pc.GetCustomRole().IsNeutral() && !CustomWinnerHolder.WinnerIds.Contains(pc.PlayerId) && !CustomWinnerHolder.WinnerRoles.Contains(pc.GetCustomRole()))
                             CustomWinnerHolder.WinnerIds.Add(pc.PlayerId);
                 }
                 else if (!Options.NeutralWinTogether.GetBool() && Options.NeutralRoleWinTogether.GetBool())
@@ -366,7 +366,7 @@ class GameEndChecker
                     {
                         var pc = Utils.GetPlayerById(id);
                         if (pc == null || !pc.GetCustomRole().IsNeutral()) continue;
-                        if (pc.GetCustomRole().IsCoven()) continue;
+                    //    if (pc.GetCustomRole().IsCoven()) continue;
                         foreach (var tar in Main.AllPlayerControls)
                             if (!CustomWinnerHolder.WinnerIds.Contains(tar.PlayerId) && tar.GetCustomRole() == pc.GetCustomRole())
                                 CustomWinnerHolder.WinnerIds.Add(tar.PlayerId);
@@ -626,21 +626,6 @@ class GameEndChecker
                 reason = GameOverReason.ImpostorByKill;
                 CustomWinnerHolder.ResetAndSetWinner(CustomWinner.RuthlessRomantic);
                 CustomWinnerHolder.WinnerRoles.Add(CustomRoles.RuthlessRomantic);
-            }
-            else if (Imp == 0 && Jackal == 0 && PP == 0 && Traitor == 0 && Med == 0 && Arso == 0 && Pel == 0 && Vamp == 0 && DH == 0 && Rogue == 0 && Juggy == 0 && RR == 0 && Glitch == 0 && SK == 0 && Rit == 0 && Jinx == 0 && Hex == 0 && Shade == 0 && Agitater == 0 && Pestilence == 0 && PB == 0 && Pois == 0 && Virus == 0 && SC == 0 && WW == 0 && Shr == 0 && BK == 0 && Gam == 0 && CM == 0 && Crew <= Coven) //嗜血骑士胜利
-            {
-                reason = GameOverReason.ImpostorByKill;
-                CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Coven);
-                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.CovenLeader);
-                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Poisoner);
-                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.HexMaster);
-                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Ritualist);
-                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Necromancer);
-                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Wraith);
-                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.PotionMaster);
-                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Jinx);
-                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Banshee);
-                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Medusa);
             }
             else if (Imp == 0 && Jackal == 0 && PP == 0 && Traitor == 0 && Med == 0 && Arso == 0 && Pel == 0 && Vamp == 0 && DH == 0 && Rogue == 0 && Glitch == 0 && SK == 0 && Rit == 0 && Jinx == 0 && Hex == 0 && Shade == 0 && Agitater == 0 && Pestilence == 0 && PB == 0 && Pois == 0 && Virus == 0 && SC == 0 && Juggy == 0 && RR == 0 && Coven == 0 && Shr == 0 && BK == 0 && Gam == 0 && CM == 0 && Crew <= WW) //嗜血骑士胜利
             {

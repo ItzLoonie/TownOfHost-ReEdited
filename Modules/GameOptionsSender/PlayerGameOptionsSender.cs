@@ -82,6 +82,7 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoleTypes.Impostor:
                 AURoleOptions.ShapeshifterCooldown = Options.DefaultShapeshiftCooldown.GetFloat();
                 AURoleOptions.GuardianAngelCooldown = Spiritcaller.SpiritAbilityCooldown.GetFloat();
+                opt.SetVision(true);
                 break;
             case CustomRoleTypes.Neutral:
                 AURoleOptions.GuardianAngelCooldown = Spiritcaller.SpiritAbilityCooldown.GetFloat();
@@ -405,6 +406,10 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Pitfall:
                 Pitfall.ApplyGameOptions();
                 break;
+            default:
+                opt.SetVision(false);
+                break;
+
         }
 
         if (Main.AllPlayerControls.Where(x => x.Is(CustomRoles.Bewilder) && !x.IsAlive() && x.GetRealKiller()?.PlayerId == player.PlayerId && !x.Is(CustomRoles.Hangman)).Any())

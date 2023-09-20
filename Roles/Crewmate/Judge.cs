@@ -28,7 +28,6 @@ public static class Judge
     private static OptionItem CanTrialNeutralK;
     private static OptionItem CanTrialNeutralE;
     private static OptionItem CanTrialNeutralC;
-    private static OptionItem CanTrialCoven;
     public static Dictionary<byte, int> TrialLimit;
 
     public static void SetupCustomOption()
@@ -46,7 +45,6 @@ public static class Judge
         CanTrialNeutralE = BooleanOptionItem.Create(Id + 17, "JudgeCanTrialNeutralE", false, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Judge]);
         CanTrialNeutralC = BooleanOptionItem.Create(Id + 18, "JudgeCanTrialNeutralC", false, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Judge]);
         CanTrialNeutralK = BooleanOptionItem.Create(Id + 15, "JudgeCanTrialNeutralK", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Judge]);
-        CanTrialCoven = BooleanOptionItem.Create(Id + 22, "JudgeCanTrialIsCoven", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Judge]);
         TryHideMsg = BooleanOptionItem.Create(Id + 11, "JudgeTryHideMsg", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Judge])
             .SetColor(Color.green);
     }
@@ -147,7 +145,6 @@ public static class Judge
                 else if (target.GetCustomRole().IsNB() && CanTrialNeutralB.GetBool()) judgeSuicide = false;
                 else if (target.GetCustomRole().IsNE() && CanTrialNeutralE.GetBool()) judgeSuicide = false;
                 else if (target.GetCustomRole().IsNC() && CanTrialNeutralC.GetBool()) judgeSuicide = false;
-                else if (target.GetCustomRole().IsCoven() && CanTrialCoven.GetBool()) judgeSuicide = false;
                 else if (target.GetCustomRole().IsImpostor() && !target.Is(CustomRoles.Trickster)) judgeSuicide = false;
                 else if (target.GetCustomRole().IsMadmate() && CanTrialMadmate.GetBool()) judgeSuicide = false;
                 else judgeSuicide = true;

@@ -381,6 +381,10 @@ class HudManagerPatch
                         __instance.KillButton.OverrideText(GetString("InfectiousKillButtonText"));
                         __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         break;
+                    case CustomRoles.Imitator:
+                        __instance.KillButton.OverrideText(GetString("ImitatorKillButtonText"));
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
+                        break;
                     case CustomRoles.Monarch:
                         __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("MonarchKillButtonText"));

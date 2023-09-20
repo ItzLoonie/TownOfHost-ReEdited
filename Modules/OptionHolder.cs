@@ -1546,6 +1546,7 @@ public static class Options
         Amnesiac.SetupCustomOption();
         Totocalcio.SetupCustomOption();
         SetupRoleOptions(11300, TabGroup.NeutralRoles, CustomRoles.FFF);
+        Imitator.SetupCustomOption();
         Lawyer.SetupCustomOption();
         Maverick.SetupCustomOption();
         SetupRoleOptions(10100, TabGroup.NeutralRoles, CustomRoles.Opportunist);
@@ -1678,58 +1679,62 @@ public static class Options
         Bandit.SetupCustomOption();
         BloodKnight.SetupCustomOption();
         Glitch.SetupCustomOption();
+        HexMaster.SetupCustomOption();
         Infectious.SetupCustomOption();
         Jackal.SetupCustomOption();
+        Jinx.SetupCustomOption();
         Juggernaut.SetupCustomOption();
         Occultist.SetupCustomOption();
+        Medusa.SetupCustomOption();
         Pelican.SetupCustomOption();
         Pickpocket.SetupCustomOption();
+        Poisoner.SetupCustomOption();
+        PotionMaster.SetupCustomOption();
         PlagueBearer.SetupCustomOption();
         NSerialKiller.SetupCustomOption(); // Serial Killer
-        Shade.SetupCustomOption();
+    //    Shade.SetupCustomOption();
         Shroud.SetupCustomOption();
         DarkHide.SetupCustomOption(); // Stalker (TOHY)
         Traitor.SetupCustomOption();
         Virus.SetupCustomOption();
         Werewolf.SetupCustomOption();
+        Wraith.SetupCustomOption();
 
-        CovenRolesMinPlayer = IntegerOptionItem.Create(206, "CovenRolesMinPlayer", new(0, 15, 1), 0, TabGroup.CovenRoles, false)
+
+        CovenRolesMinPlayer = IntegerOptionItem.Create(206, "CovenRolesMinPlayer", new(0, 15, 1), 0, TabGroup.NeutralRoles, false)
             .SetGameMode(CustomGameMode.Standard)
             .SetHeader(true)
+            .SetHidden(true)
             .SetValueFormat(OptionFormat.Players);
-        CovenRolesMaxPlayer = IntegerOptionItem.Create(207, "CovenRolesMaxPlayer", new(0, 15, 1), 0, TabGroup.CovenRoles, false)
+        CovenRolesMaxPlayer = IntegerOptionItem.Create(207, "CovenRolesMaxPlayer", new(0, 15, 1), 0, TabGroup.NeutralRoles, false)
             .SetGameMode(CustomGameMode.Standard)
+            .SetHidden(true)
             .SetValueFormat(OptionFormat.Players);
-        CovenKnowAlliesRole = BooleanOptionItem.Create(212, "CovenKnowAlliesRole", true, TabGroup.CovenRoles, false)
+        CovenKnowAlliesRole = BooleanOptionItem.Create(212, "CovenKnowAlliesRole", true, TabGroup.NeutralRoles, false)
+            .SetHidden(true)
             .SetGameMode(CustomGameMode.Standard);
-        Banshee.SetupCustomOption();
-        CovenLeader.SetupCustomOption();
-        Jinx.SetupCustomOption();
-        HexMaster.SetupCustomOption();
-        Medusa.SetupCustomOption();
-        SetupSingleRoleOptions(3150, TabGroup.CovenRoles, CustomRoles.Necromancer, 1, zeroOne: false);
-        NecromancerKillCD = FloatOptionItem.Create(3162, "KillCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.CovenRoles, false)
+    //    Banshee.SetupCustomOption();
+    //    CovenLeader.SetupCustomOption();
+    /*    SetupSingleRoleOptions(3150, TabGroup.NeutralRoles, CustomRoles.Necromancer, 1, zeroOne: false);
+        NecromancerKillCD = FloatOptionItem.Create(3162, "KillCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Necromancer])
             .SetValueFormat(OptionFormat.Seconds);
-        NecromancerCanKillNum = IntegerOptionItem.Create(3160, "NecromancerCanKillNum", new(1, 15, 1), 1, TabGroup.CovenRoles, false)
+        NecromancerCanKillNum = IntegerOptionItem.Create(3160, "NecromancerCanKillNum", new(1, 15, 1), 1, TabGroup.NeutralRoles, false)
         .SetParent(CustomRoleSpawnChances[CustomRoles.Necromancer])
             .SetValueFormat(OptionFormat.Players);
-        NecromancerCanVent = BooleanOptionItem.Create(3161, "CanVent", true, TabGroup.CovenRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Necromancer]); 
-        Poisoner.SetupCustomOption();
-        PotionMaster.SetupCustomOption();
-        SetupSingleRoleOptions(10450, TabGroup.CovenRoles, CustomRoles.Ritualist, 1, zeroOne: false);
-        ConjCanGuessTime = IntegerOptionItem.Create(10460, "GuesserCanGuessTimes", new(1, 15, 1), 15, TabGroup.CovenRoles, false)
+        NecromancerCanVent = BooleanOptionItem.Create(3161, "CanVent", true, TabGroup.NeutralRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Necromancer]); */
+    /*    SetupSingleRoleOptions(10450, TabGroup.NeutralRoles, CustomRoles.Ritualist, 1, zeroOne: false);
+        ConjCanGuessTime = IntegerOptionItem.Create(10460, "GuesserCanGuessTimes", new(1, 15, 1), 15, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Ritualist])
             .SetValueFormat(OptionFormat.Times);
-        ConjCanGuessAdt = BooleanOptionItem.Create(10461, "ConjCanGuessAdt", false, TabGroup.CovenRoles, false)
+        ConjCanGuessAdt = BooleanOptionItem.Create(10461, "ConjCanGuessAdt", false, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Ritualist]);
-        ConjTryHideMsg = BooleanOptionItem.Create(10462, "GuesserTryHideMsg", true, TabGroup.CovenRoles, false)
+        ConjTryHideMsg = BooleanOptionItem.Create(10462, "GuesserTryHideMsg", true, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Ritualist])
             .SetColor(Color.green);
-        RitualistCanVent = BooleanOptionItem.Create(10463, "CanVent", true, TabGroup.CovenRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Ritualist]);
-        Wraith.SetupCustomOption();
+        RitualistCanVent = BooleanOptionItem.Create(10463, "CanVent", true, TabGroup.NeutralRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Ritualist]); */
 
 
         // Add-Ons
@@ -2355,6 +2360,7 @@ public static class Options
         ShowCovenRemainOnEject = BooleanOptionItem.Create(19814, "ShowCovenRemainOnEject", true, TabGroup.GameSettings, false)
         .SetParent(ShowImpRemainOnEject)
             .SetGameMode(CustomGameMode.Standard)
+            .SetHidden(true)
             .SetColor(new Color32(255, 238, 232, byte.MaxValue));
         ShowTeamNextToRoleNameOnEject = BooleanOptionItem.Create(19812, "ShowTeamNextToRoleNameOnEject", false, TabGroup.GameSettings, false)
             .SetGameMode(CustomGameMode.Standard)
@@ -2808,6 +2814,7 @@ public static class Options
         PassiveNeutralsCanGuess = BooleanOptionItem.Create(19713, "PassiveNeutralsCanGuess", false, TabGroup.TaskSettings, false)
             .SetParent(GuesserMode);
         CovenMembersCanGuess = BooleanOptionItem.Create(19718, "CovenCanGuess", false, TabGroup.TaskSettings, false)
+            .SetHidden(true)
             .SetParent(GuesserMode);
         CanGuessAddons = BooleanOptionItem.Create(19714, "CanGuessAddons", true, TabGroup.TaskSettings, false)
             .SetParent(GuesserMode);

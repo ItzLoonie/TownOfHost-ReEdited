@@ -420,7 +420,7 @@ class CheckForEndVotingPatch
         var name = "";
         int impnum = 0;
         int neutralnum = 0;
-        int covennum = 0;
+    //    int covennum = 0;
 
         if (CustomRolesHelper.RoleExist(CustomRoles.Bard))
         {
@@ -438,8 +438,8 @@ class CheckForEndVotingPatch
                 impnum++;
             else if (pc_role.IsNK() && pc != exiledPlayer.Object)
                 neutralnum++;
-            else if (pc_role.IsCoven() && pc != exiledPlayer.Object)
-                covennum++;
+        /*    else if (pc_role.IsCoven() && pc != exiledPlayer.Object)
+                covennum++; */
         }
         switch (Options.CEMode.GetInt())
         {
@@ -451,7 +451,7 @@ class CheckForEndVotingPatch
                     name = string.Format(GetString("BelongTo"), realName, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Impostor), GetString("TeamImpostor")));
                 else if (player.GetCustomRole().IsCrewmate())
                     name = string.Format(GetString("IsGood"), realName);
-                else if (player.GetCustomRole().IsNeutral() && !player.GetCustomRole().IsCoven() && !player.Is(CustomRoles.Parasite) && !player.Is(CustomRoles.Refugee) && !player.Is(CustomRoles.Crewpostor) && !player.Is(CustomRoles.Convict))
+                else if (player.GetCustomRole().IsNeutral() && !player.Is(CustomRoles.Parasite) && !player.Is(CustomRoles.Refugee) && !player.Is(CustomRoles.Crewpostor) && !player.Is(CustomRoles.Convict))
                     name = string.Format(GetString("BelongTo"), realName, Utils.ColorString(new Color32(127, 140, 141, byte.MaxValue), GetString("TeamNeutral")));
                 break;
             case 2:
@@ -461,12 +461,10 @@ class CheckForEndVotingPatch
                     name += " (";
                     if (player.GetCustomRole().IsImpostor() || player.Is(CustomRoles.Madmate))
                         name += Utils.ColorString(new Color32(255, 25, 25, byte.MaxValue), GetString("TeamImpostor"));
-                    else if (player.GetCustomRole().IsNeutral() && !player.GetCustomRole().IsCoven() || player.Is(CustomRoles.Charmed))
+                    else if (player.GetCustomRole().IsNeutral() || player.Is(CustomRoles.Charmed))
                         name += Utils.ColorString(new Color32(127, 140, 141, byte.MaxValue), GetString("TeamNeutral"));
                     else if (player.GetCustomRole().IsCrewmate())
                         name += Utils.ColorString(new Color32(140, 255, 255, byte.MaxValue), GetString("TeamCrewmate"));
-                    else if (player.GetCustomRole().IsCoven())
-                        name += Utils.ColorString(new Color32(140, 255, 255, byte.MaxValue), GetString("TeamCoven"));
                     name += ")";
                 }
                 break;
@@ -508,7 +506,7 @@ class CheckForEndVotingPatch
         {
             name += "\n";
             string comma = neutralnum > 0 ? "" : "";
-            string commacoven = covennum > 0 ? "" : "";
+        //    string commacoven = covennum > 0 ? "" : "";
             if (impnum == 0) name += GetString("NoImpRemain") + comma;
             if (impnum == 1) name += GetString("OneImpRemain") + comma;
             if (impnum == 2) name += GetString("TwoImpRemain") + comma;
@@ -519,11 +517,6 @@ class CheckForEndVotingPatch
                 name += string.Format(GetString("OneNeutralRemain"), neutralnum) + comma;
                 else
                 name += string.Format(GetString("NeutralRemain"), neutralnum) + comma;
-            if (Options.ShowCovenRemainOnEject.GetBool() && covennum > 0)
-                if (covennum == 1)
-                name += string.Format(GetString("OneCovenRemain"), covennum) + comma;
-                else
-                name += string.Format(GetString("CovenRemain"), covennum) + comma;
         }
 
     EndOfSession:
@@ -910,9 +903,9 @@ class MeetingHudStartPatch
                 if (Options.ImpostorsCanGuess.GetBool() && seer.GetCustomRole().IsImpostor() && !seer.Is(CustomRoles.Councillor))
                     if (!seer.Data.IsDead && !target.Data.IsDead)
                         pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + pva.NameText.text;
-                if (Options.CovenMembersCanGuess.GetBool() && seer.GetCustomRole().IsCoven() && !seer.Is(CustomRoles.Ritualist))
-                    if (!seer.Data.IsDead && !target.Data.IsDead)
-                        pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + pva.NameText.text;
+            //    if (Options.CovenMembersCanGuess.GetBool() && seer.GetCustomRole().IsCoven() && !seer.Is(CustomRoles.Ritualist))
+            //        if (!seer.Data.IsDead && !target.Data.IsDead)
+            //            pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + pva.NameText.text;
                 if (Options.NeutralKillersCanGuess.GetBool() && seer.GetCustomRole().IsNK())
                     if (!seer.Data.IsDead && !target.Data.IsDead)
                         pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(seer.GetCustomRole()), target.PlayerId.ToString()) + " " + pva.NameText.text;

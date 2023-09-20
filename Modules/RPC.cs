@@ -130,6 +130,7 @@ enum CustomRPC
     SetChameleonTimer,
     SetAdmireLimit,
     SetRememberLimit,
+    SetImitateLimit,
     SyncCovenLeader,
     SyncNWitch,
     SyncShroud,
@@ -443,6 +444,9 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetRememberLimit:
                 Amnesiac.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetImitateLimit:
+                Imitator.ReceiveRPC(reader);
                 break;
             case CustomRPC.PlayCustomSound:
                 CustomSoundsManager.ReceiveRPC(reader);
@@ -1087,6 +1091,9 @@ internal static class RPC
                 break;
             case CustomRoles.Amnesiac:
                 Amnesiac.Add(targetId);
+                break;
+            case CustomRoles.Imitator:
+                Imitator.Add(targetId);
                 break;
             case CustomRoles.DovesOfNeace:
                 Main.DovesOfNeaceNumOfUsed.Add(targetId, Options.DovesOfNeaceMaxOfUseage.GetInt());
