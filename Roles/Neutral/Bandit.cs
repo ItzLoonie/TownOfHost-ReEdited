@@ -16,6 +16,7 @@ public static class Bandit
     public static OptionItem StealMode;
     public static OptionItem CanStealBetrayalAddon;
     public static OptionItem CanStealImpOnlyAddon;
+    public static OptionItem CanUseSabotage;
 
     public static Dictionary<byte, int> TotalSteals = new();
     public static Dictionary<byte, Dictionary<byte, CustomRoles>> Targets = new();
@@ -33,8 +34,9 @@ public static class Bandit
         KillCooldown = FloatOptionItem.Create(Id + 11, "BanditKillCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit])
             .SetValueFormat(OptionFormat.Seconds);
         StealMode = StringOptionItem.Create(Id + 12, "BanditStealMode", BanditStealModeOpt, 0, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit]);
-        CanStealBetrayalAddon = BooleanOptionItem.Create(Id + 13, "CanStealBetrayalAddon", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit]);
-        CanStealImpOnlyAddon = BooleanOptionItem.Create(Id + 14, "CanStealImpOnlyAddon", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit]);
+        CanStealBetrayalAddon = BooleanOptionItem.Create(Id + 13, "BanditCanStealBetrayalAddon", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit]);
+        CanStealImpOnlyAddon = BooleanOptionItem.Create(Id + 14, "BanditCanStealImpOnlyAddon", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit]);
+        CanUseSabotage = BooleanOptionItem.Create(Id + 15, "BanditCanUseSabotage", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit]);
     }
 
     public static void Init()
@@ -75,7 +77,6 @@ public static class Bandit
             TotalSteals.Add(PlayerId, 0);
     }
 
-
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
 
     private static CustomRoles? SelectRandomAddon(PlayerControl Target)
@@ -87,8 +88,8 @@ public static class Bandit
             var role = AllSubRoles[i];
             if (role == CustomRoles.Cleansed || // making Bandit unable to steal Cleansed for obvious reasons. Although it can still be cleansed by cleanser.
                 role == CustomRoles.LastImpostor ||
-                (role.IsImpOnlyAddon() && CanStealImpOnlyAddon.GetBool()) ||
-                (role.IsBetrayalAddon() && CanStealBetrayalAddon.GetBool()))
+                (role.IsImpOnlyAddon() && !CanStealImpOnlyAddon.GetBool()) ||
+                (role.IsBetrayalAddon() && !CanStealBetrayalAddon.GetBool()))
             { 
                     Logger.Info($"Removed {role} from stealable addons", "Bandit");
                     AllSubRoles.Remove(role);

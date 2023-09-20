@@ -667,6 +667,7 @@ static class ExtendedPlayerControl
             CustomRoles.Spiritcaller
             => false,
 
+            CustomRoles.Bandit => Bandit.CanUseSabotage.GetBool(),
             CustomRoles.Jackal => Jackal.CanUseSabotage.GetBool(),
             CustomRoles.Sidekick => Jackal.CanUseSabotageSK.GetBool(),
             CustomRoles.Traitor => Traitor.CanUseSabotage.GetBool(),

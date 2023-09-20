@@ -1538,6 +1538,7 @@ static class CustomRolesHelper
            CustomRoles.GM => CountTypes.OutOfGame,
            CustomRoles.Jackal => CountTypes.Jackal,
            CustomRoles.Sidekick => CountTypes.Jackal,
+           CustomRoles.Bandit => CountTypes.Bandit,
            CustomRoles.Poisoner => CountTypes.Coven,
            CustomRoles.CovenLeader => CountTypes.Coven,
            CustomRoles.Banshee => CountTypes.Coven,
