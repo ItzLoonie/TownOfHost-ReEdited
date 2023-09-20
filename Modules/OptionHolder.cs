@@ -1602,6 +1602,7 @@ public static class Options
             .SetColor(new Color32(127, 140, 141, byte.MaxValue));
      //   Baker.SetupCustomOption();
         Collector.SetupCustomOption();
+        Succubus.SetupCustomOption();
         SetupRoleOptions(11400, TabGroup.NeutralRoles, CustomRoles.Phantom);
         PhantomCanVent = BooleanOptionItem.Create(11410, "CanVent", false, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Phantom]);
@@ -1632,7 +1633,6 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Revolutionist])
             .SetValueFormat(OptionFormat.Seconds);
         SoulCollector.SetupCustomOption();
-        Succubus.SetupCustomOption();
         SetupRoleOptions(11500, TabGroup.NeutralRoles, CustomRoles.Terrorist);
         CanTerroristSuicideWin = BooleanOptionItem.Create(11510, "CanTerroristSuicideWin", false, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Terrorist]);
@@ -1684,13 +1684,13 @@ public static class Options
         Jackal.SetupCustomOption();
         Jinx.SetupCustomOption();
         Juggernaut.SetupCustomOption();
-        Occultist.SetupCustomOption();
         Medusa.SetupCustomOption();
+        Occultist.SetupCustomOption();
         Pelican.SetupCustomOption();
         Pickpocket.SetupCustomOption();
         Poisoner.SetupCustomOption();
-        PotionMaster.SetupCustomOption();
         PlagueBearer.SetupCustomOption();
+        PotionMaster.SetupCustomOption();
         NSerialKiller.SetupCustomOption(); // Serial Killer
     //    Shade.SetupCustomOption();
         Shroud.SetupCustomOption();
@@ -3030,6 +3030,28 @@ public static class Options
             .SetGameMode(customGameMode);
 
         var spawnRateOption = IntegerOptionItem.Create(id + 2, "AdditionRolesSpawnRate", new(0, 100, 5), canSetChance ? 65 : 100, tab, false)
+        .SetParent(spawnOption)
+            .SetValueFormat(OptionFormat.Percent)
+            .SetHidden(!canSetChance)
+            .SetGameMode(customGameMode) as IntegerOptionItem;
+
+        CustomAdtRoleSpawnRate.Add(role, spawnRateOption);
+        CustomRoleSpawnChances.Add(role, spawnOption);
+        CustomRoleCounts.Add(role, countOption);
+    }
+    public static void SetupSyndicateRoleOptions(int id, CustomRoles role, CustomGameMode customGameMode = CustomGameMode.Standard, bool canSetNum = false, TabGroup tab = TabGroup.Addons, bool canSetChance = true)
+    {
+        var spawnOption = StringOptionItem.Create(id, role.ToString(), ratesZeroOne, 0, tab, false).SetColor(Utils.GetRoleColor(role))
+            .SetHeader(true)
+            .SetGameMode(customGameMode) as StringOptionItem;
+
+        var countOption = IntegerOptionItem.Create(id + 1, "Maximum", new(1, canSetNum ? 5 : 1, 1), 3, tab, false)
+        .SetParent(spawnOption)
+            .SetValueFormat(OptionFormat.Players)
+            .SetHidden(!canSetNum)
+            .SetGameMode(customGameMode);
+
+        var spawnRateOption = IntegerOptionItem.Create(id + 2, "AdditionRolesSpawnRate", new(0, 100, 5), canSetChance ? 80 : 100, tab, false)
         .SetParent(spawnOption)
             .SetValueFormat(OptionFormat.Percent)
             .SetHidden(!canSetChance)
