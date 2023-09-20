@@ -1276,6 +1276,7 @@ public static class Options
             .SetValueFormat(OptionFormat.Seconds);
         Swooper.SetupCustomOption();
         SetupRoleOptions(4300, TabGroup.ImpostorRoles, CustomRoles.Trickster);
+        Undertaker.SetupCustomOption();
         Vampire.SetupCustomOption();
         SetupRoleOptions(4600, TabGroup.ImpostorRoles, CustomRoles.Warlock);
         WarlockCanKillAllies = BooleanOptionItem.Create(4610, "CanKillAllies", true, TabGroup.ImpostorRoles, false)
@@ -1295,7 +1296,6 @@ public static class Options
         Devourer.SetupCustomOption();
         Pitfall.SetupCustomOption();
         Twister.SetupCustomOption();
-        Undertaker.SetupCustomOption();
 
         TextOptionItem.Create(100004, "RoleType.Madmate", TabGroup.ImpostorRoles)
             .SetGameMode(CustomGameMode.Standard)
