@@ -174,6 +174,7 @@ static class CustomRolesHelper
             CustomRoles.Seeker => RoleTypes.Impostor,
             CustomRoles.Pirate => RoleTypes.Impostor,
             CustomRoles.CopyCat => RoleTypes.Impostor,
+            CustomRoles.Imitator => RoleTypes.Impostor,
             CustomRoles.CursedSoul => RoleTypes.Impostor,
             CustomRoles.Shaman => RoleTypes.Impostor,
             CustomRoles.Admirer => RoleTypes.Impostor,
@@ -315,6 +316,7 @@ static class CustomRolesHelper
             CustomRoles.Lawyer or
             CustomRoles.God or
             CustomRoles.Amnesiac or
+            CustomRoles.Imitator or
             CustomRoles.Pestilence or
             CustomRoles.PlagueBearer or
             CustomRoles.Agitater or
@@ -413,6 +415,7 @@ static class CustomRolesHelper
             CustomRoles.Totocalcio or
             CustomRoles.FFF or
             CustomRoles.Lawyer or
+            CustomRoles.Imitator or
             CustomRoles.Maverick or
             CustomRoles.Opportunist or
             CustomRoles.Pursuer or
@@ -448,6 +451,7 @@ static class CustomRolesHelper
             CustomRoles.Amnesiac or
             CustomRoles.Totocalcio or
             CustomRoles.FFF or
+            CustomRoles.Imitator or
             CustomRoles.Lawyer or
             CustomRoles.Maverick or
             CustomRoles.Opportunist or
@@ -627,6 +631,7 @@ static class CustomRolesHelper
             CustomRoles.HexMaster or
             CustomRoles.Occultist or
             CustomRoles.Glitch or
+            CustomRoles.Imitator or
             CustomRoles.Shaman or
             CustomRoles.Crewpostor or
             CustomRoles.NWitch or
@@ -749,6 +754,7 @@ static class CustomRolesHelper
             CustomRoles.Counterfeiter or
             CustomRoles.Witness or
             CustomRoles.Totocalcio or
+            CustomRoles.Imitator or
             CustomRoles.Farseer or
             CustomRoles.FFF or
             CustomRoles.SwordsMan or
@@ -830,10 +836,10 @@ static class CustomRolesHelper
         return role is
             CustomRoles.Shaman or
             CustomRoles.CursedSoul or
-            CustomRoles.Amnesiac or
             CustomRoles.Glitch or
             CustomRoles.Innocent or
             CustomRoles.Pursuer or
+            CustomRoles.Imitator or
             CustomRoles.Agitater or
             CustomRoles.PlagueBearer or
             CustomRoles.Pirate or

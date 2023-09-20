@@ -462,6 +462,7 @@ public class Main : BasePlugin
                 {CustomRoles.Werewolf, "#191970"},
                 {CustomRoles.Seeker, "#ffaa00"},
                 {CustomRoles.SoulCollector, "#A675A1"},
+                {CustomRoles.Imitator, "#B3D94C"},
             
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
@@ -802,6 +803,7 @@ public enum CustomRoles
     Banshee,
     Occultist,
     Shade,
+    Imitator,
    //two-way camp
     Mini,
    // Sorcerer,

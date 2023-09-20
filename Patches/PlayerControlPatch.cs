@@ -422,9 +422,9 @@ class CheckMurderPatch
                 case CustomRoles.Admirer:
                     Admirer.OnCheckMurder(killer, target);
                     return false;
-        //        case CustomRoles.Amnesiac:
-          //          Amnesiac.OnCheckMurder(killer, target);
-            //        return false;
+                case CustomRoles.Imitator:
+                    Imitator.OnCheckMurder(killer, target);
+                    return false;
                 case CustomRoles.Infectious:
                     Infectious.OnCheckMurder(killer, target);
                     return false;
@@ -1973,6 +1973,13 @@ class ReportDeadBodyPatch
                         {
                         Maverick.Add(__instance.PlayerId);
                         __instance.RpcSetCustomRole(CustomRoles.Maverick);
+                        __instance.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("YouRememberedRole")));
+                        tar.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("RememberedYourRole")));
+                        }
+                        if (Amnesiac.IncompatibleNeutralMode.GetValue() == 5)
+                        {
+                        Imitator.Add(__instance.PlayerId);
+                        __instance.RpcSetCustomRole(CustomRoles.Imitator);
                         __instance.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("YouRememberedRole")));
                         tar.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Amnesiac), GetString("RememberedYourRole")));
                         }

@@ -510,7 +510,7 @@ static class ExtendedPlayerControl
             CustomRoles.Succubus => Succubus.CanUseKillButton(pc),
             CustomRoles.CursedSoul => CursedSoul.CanUseKillButton(pc),
             CustomRoles.Admirer => Admirer.CanUseKillButton(pc),
-            CustomRoles.Amnesiac => false,
+            CustomRoles.Imitator => Imitator.CanUseKillButton(pc),
             //CustomRoles.Warlock => !Main.isCurseAndKill.TryGetValue(pc.PlayerId, out bool wcs) || !wcs,
             CustomRoles.Infectious => Infectious.CanUseKillButton(pc),
             CustomRoles.Monarch => Monarch.CanUseKillButton(pc),
@@ -957,8 +957,8 @@ static class ExtendedPlayerControl
             case CustomRoles.Admirer:
                 Admirer.SetKillCooldown(player.PlayerId);
                 break;
-        /*    case CustomRoles.Amnesiac:
-                Amnesiac.SetKillCooldown(player.PlayerId);
+        /*    case CustomRoles.Imitator:
+                Imitator.SetKillCooldown(player.PlayerId);
                 break; */
             case CustomRoles.Infectious:
                 Infectious.SetKillCooldown(player.PlayerId);

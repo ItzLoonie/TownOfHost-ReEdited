@@ -507,6 +507,7 @@ public static class Utils
             case CustomRoles.CursedSoul:
             case CustomRoles.Admirer:
             case CustomRoles.Amnesiac:
+            case CustomRoles.Imitator:
             case CustomRoles.Infectious:
             case CustomRoles.Monarch:
             case CustomRoles.Deputy:

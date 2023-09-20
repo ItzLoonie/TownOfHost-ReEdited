@@ -1546,6 +1546,7 @@ public static class Options
         Amnesiac.SetupCustomOption();
         Totocalcio.SetupCustomOption();
         SetupRoleOptions(11300, TabGroup.NeutralRoles, CustomRoles.FFF);
+        Imitator.SetupCustomOption();
         Lawyer.SetupCustomOption();
         Maverick.SetupCustomOption();
         SetupRoleOptions(10100, TabGroup.NeutralRoles, CustomRoles.Opportunist);
