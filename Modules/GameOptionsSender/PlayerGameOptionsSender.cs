@@ -231,6 +231,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Poisoner:
                 Poisoner.ApplyGameOptions(opt);
                 break;
+            case CustomRoles.Bandit:
+                Bandit.ApplyGameOptions(opt);
+                break;
             case CustomRoles.Veteran:
                 AURoleOptions.EngineerCooldown = Options.VeteranSkillCooldown.GetFloat();
                 AURoleOptions.EngineerInVentMaxTime = 1;
