@@ -141,7 +141,6 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Arsonist:
        //     case CustomRoles.Minimalism:
             case CustomRoles.Innocent:
-            case CustomRoles.Pelican:
             case CustomRoles.Revolutionist:
             case CustomRoles.Medic:
             case CustomRoles.Crusader:
@@ -158,6 +157,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
             case CustomRoles.Pestilence:
                 opt.SetVision(PlagueBearer.PestilenceHasImpostorVision.GetBool());
+                break;
+            case CustomRoles.Pelican:
+                Pelican.ApplyGameOptions(opt);
                 break;
             case CustomRoles.Refugee:
         //    case CustomRoles.Minion:
@@ -319,12 +321,8 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Lawyer:
                 //Main.NormalOptions.CrewLightMod = Lawyer.LawyerVision.GetFloat();
                 break;
-            case CustomRoles.Wraith:
             case CustomRoles.Shade:
-            case CustomRoles.HexMaster:
             case CustomRoles.Parasite:
-            case CustomRoles.Occultist:
-            case CustomRoles.Agitater:
                 opt.SetVision(true);
                 break;
         /*    case CustomRoles.Chameleon:
@@ -333,6 +331,18 @@ public class PlayerGameOptionsSender : GameOptionsSender
             
             case CustomRoles.Gamer:
                 Gamer.ApplyGameOptions(opt);
+                break;
+            case CustomRoles.HexMaster:
+                HexMaster.ApplyGameOptions(opt);
+                break;
+            case CustomRoles.Occultist:
+                Occultist.ApplyGameOptions(opt);
+                break;
+            case CustomRoles.Wraith:
+                Wraith.ApplyGameOptions(opt);
+                break;
+            case CustomRoles.Agitater:
+                Agitater.ApplyGameOptions(opt);
                 break;
             case CustomRoles.DarkHide:
                 DarkHide.ApplyGameOptions(opt);

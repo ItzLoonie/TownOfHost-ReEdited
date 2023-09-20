@@ -33,12 +33,14 @@ public static class HexMaster
 
     public static OptionItem ModeSwitchAction;
     public static OptionItem HexesLookLikeSpells;
+    public static OptionItem HasImpostorVision;
     public static SwitchTrigger NowSwitchTrigger;
     public static void SetupCustomOption()
     {
         SetupSingleRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.HexMaster, 1, zeroOne: false);        
         ModeSwitchAction = StringOptionItem.Create(Id + 10, "WitchModeSwitchAction", SwitchTriggerText, 2, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.HexMaster]);
         HexesLookLikeSpells = BooleanOptionItem.Create(Id + 11, "HexesLookLikeSpells",  false, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.HexMaster]);
+        HasImpostorVision = BooleanOptionItem.Create(Id + 12, "ImpostorVision",  true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.HexMaster]);
     }
     public static void Init()
     {
@@ -79,6 +81,7 @@ public static class HexMaster
 
         }
     }
+    public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(HasImpostorVision.GetBool());
 
     public static void ReceiveRPC(MessageReader reader, bool doHex)
     {

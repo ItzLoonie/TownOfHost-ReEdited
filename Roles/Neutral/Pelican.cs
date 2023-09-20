@@ -13,6 +13,7 @@ public static class Pelican
     private static Dictionary<byte, List<byte>> eatenList = new();
     private static readonly Dictionary<byte, float> originalSpeed = new();
     public static OptionItem KillCooldown;
+    public static OptionItem HasImpostorVision;
     public static OptionItem CanVent;
     public static void SetupCustomOption()
     {
@@ -20,6 +21,7 @@ public static class Pelican
         KillCooldown = FloatOptionItem.Create(Id + 10, "PelicanKillCooldown", new(0f, 180f, 2.5f), 30f, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Pelican])
             .SetValueFormat(OptionFormat.Seconds);
         CanVent = BooleanOptionItem.Create(Id + 11, "CanVent", true, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Pelican]);
+        HasImpostorVision = BooleanOptionItem.Create(Id + 12, "ImpostorVision", true, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Pelican]);
     }
     public static void Init()
     {
@@ -96,6 +98,8 @@ public static class Pelican
             _ => throw new System.NotImplementedException(),
         };
     }
+    public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(HasImpostorVision.GetBool());
+
     public static string GetProgressText(byte playerId)
     {
         var player = Utils.GetPlayerById(playerId);

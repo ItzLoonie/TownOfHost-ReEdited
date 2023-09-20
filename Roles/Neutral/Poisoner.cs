@@ -28,6 +28,7 @@ public static class Poisoner
     private static float KillDelay;
     public static OptionItem CanVent;
     public static OptionItem KillCooldown;
+    public static OptionItem HasImpostorVision;
     private static readonly Dictionary<byte, PoisonedInfo> PoisonedPlayers = new();
     public static void SetupCustomOption()
     {
@@ -37,6 +38,7 @@ public static class Poisoner
         OptionKillDelay = FloatOptionItem.Create(Id + 11, "PoisonerKillDelay", new(1f, 60f, 1f), 10f, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Poisoner])
             .SetValueFormat(OptionFormat.Seconds);
         CanVent = BooleanOptionItem.Create(Id + 12, "CanVent", true, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Poisoner]);
+        HasImpostorVision = BooleanOptionItem.Create(Id + 12, "ImpostorVision", true, TabGroup.NeutralRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Poisoner]);
     }
 
     public static void Init()
@@ -130,7 +132,7 @@ public static class Poisoner
             Logger.Info("Poisonerに噛まれている" + target.name + "はすでに死んでいました。", "Poisoner");
         }
     }
-    public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(true);
+    public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(HasImpostorVision.GetBool());
 
     public static void OnStartMeeting()
     {

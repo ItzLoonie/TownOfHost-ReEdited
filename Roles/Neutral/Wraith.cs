@@ -18,6 +18,7 @@ public static class Wraith
     private static OptionItem WraithCooldown;
     private static OptionItem WraithDuration;
     private static OptionItem WraithVentNormallyOnCooldown;
+    private static OptionItem HasImpostorVision;
 
     private static Dictionary<byte, long> InvisTime = new();
     private static Dictionary<byte, long> lastTime = new();
@@ -31,6 +32,7 @@ public static class Wraith
         WraithDuration = FloatOptionItem.Create(Id + 4, "WraithDuration", new(1f, 60f, 1f), 15f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Wraith])
             .SetValueFormat(OptionFormat.Seconds);
         WraithVentNormallyOnCooldown = BooleanOptionItem.Create(Id + 5, "WraithVentNormallyOnCooldown", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Wraith]);
+        HasImpostorVision = BooleanOptionItem.Create(Id + 6, "ImpostorVision", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Wraith]);
     }
     public static void Init()
     {
@@ -156,6 +158,7 @@ public static class Wraith
             }
         }, 0.5f, "Wraith Vent");
     }
+    public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(HasImpostorVision.GetBool());
     public static void OnEnterVent(PlayerControl pc, Vent vent)
     {
         if (!IsEnable) return;
