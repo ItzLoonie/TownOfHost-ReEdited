@@ -90,6 +90,7 @@ public static class Bandit
             var role = AllSubRoles[i];
             if (role == CustomRoles.Cleansed || // making Bandit unable to steal Cleansed for obvious reasons. Although it can still be cleansed by cleanser.
                 role == CustomRoles.LastImpostor ||
+                role == CustomRoles.Lovers || // Causes issues involving Lovers Suicide
                 (role.IsImpOnlyAddon() && !CanStealImpOnlyAddon.GetBool()) ||
                 (role.IsBetrayalAddon() && !CanStealBetrayalAddon.GetBool()))
             { 
