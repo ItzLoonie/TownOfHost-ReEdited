@@ -1409,7 +1409,7 @@ class ShapeshiftPatch
                     Sniper.OnShapeshift(shapeshifter, shapeshifting);
                     break;
                 case CustomRoles.Undertaker:
-                    Undertaker.OnShapeshift(shapeshifter);
+                    Undertaker.OnShapeshift(shapeshifter, shapeshifting);
                     break;
                 case CustomRoles.FireWorks:
                     FireWorks.ShapeShiftState(shapeshifter, shapeshifting);

@@ -77,9 +77,9 @@ public static class Undertaker
             MarkedLocation.Add(PlayerId, new UnityEngine.Vector2(Pelican.GetBlackRoomPS().x, Pelican.GetBlackRoomPS().y));
     }
 
-    public static void OnShapeshift(PlayerControl pc)
+    public static void OnShapeshift(PlayerControl pc, bool IsShapeshifting)
     {
-        if (!IsEnable || !pc.IsAlive()) return;
+        if (!IsEnable || !pc.IsAlive() || !IsShapeshifting) return;
         MarkedLocation[pc.PlayerId] = pc.transform.position;
         SendRPC(pc.PlayerId);
     }
