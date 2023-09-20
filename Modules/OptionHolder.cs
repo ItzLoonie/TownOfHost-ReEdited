@@ -1573,7 +1573,6 @@ public static class Options
             .SetColor(new Color32(127, 140, 141, byte.MaxValue));
 
         CursedSoul.SetupCustomOption();
-        Gamer.SetupCustomOption();
         Doomsayer.SetupCustomOption();
         Executioner.SetupCustomOption();
         SetupRoleOptions(10800, TabGroup.NeutralRoles, CustomRoles.Innocent);
@@ -1678,6 +1677,7 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Arsonist]);
         Bandit.SetupCustomOption();
         BloodKnight.SetupCustomOption();
+        Gamer.SetupCustomOption();
         Glitch.SetupCustomOption();
         HexMaster.SetupCustomOption();
         Infectious.SetupCustomOption();
