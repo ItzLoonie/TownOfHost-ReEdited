@@ -1,4 +1,5 @@
 ﻿using Hazel;
+using AmongUs.GameOptions;
 using System.Collections.Generic;
 using static TOHE.Translator;
 

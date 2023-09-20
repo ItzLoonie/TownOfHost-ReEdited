@@ -6,6 +6,7 @@ using System.Text;
 using static TOHE.Options;
 using static TOHE.Translator;
 using TOHE.Roles.Crewmate;
+using AmongUs.GameOptions;
 namespace TOHE.Roles.Neutral;
 
 public static class Occultist
