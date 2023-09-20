@@ -438,6 +438,9 @@ class CheckMurderPatch
                     if (Jackal.OnCheckMurder(killer, target))
                         return false;
                     break;
+                case CustomRoles.Bandit:
+                    if (!Bandit.OnCheckMurder(killer, target)) return false;
+                    break;
                 case CustomRoles.Shaman:
                     if (Main.ShamanTargetChoosen == false)
                     {
@@ -2175,6 +2178,7 @@ class ReportDeadBodyPatch
         Vampire.OnStartMeeting();
         Poisoner.OnStartMeeting();
         Pelican.OnReportDeadBody();
+        Bandit.OnReportDeadBody();
         Agitater.OnReportDeadBody();
         Counterfeiter.OnReportDeadBody();
         QuickShooter.OnReportDeadBody();

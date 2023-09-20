@@ -1676,6 +1676,7 @@ public static class Options
             .SetValueFormat(OptionFormat.Seconds);
         ArsonistKeepsGameGoing = BooleanOptionItem.Create(10412, "ArsonistKeepsGameGoing", false, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Arsonist]);
+        Bandit.SetupCustomOption();
         BloodKnight.SetupCustomOption();
         Glitch.SetupCustomOption();
         HexMaster.SetupCustomOption();

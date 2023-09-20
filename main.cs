@@ -393,6 +393,7 @@ public class Main : BasePlugin
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
                 {CustomRoles.Agitater, "#F4A460"},
+                {CustomRoles.Bandit, "#8B008B"},
                 {CustomRoles.PlagueBearer,"#e5f6b4"},
                 {CustomRoles.Pestilence,"#343136"},
                 {CustomRoles.Jester, "#ec62a5"},
@@ -741,6 +742,7 @@ public enum CustomRoles
     //Neutral
     Arsonist,
     Agitater,
+    Bandit,
     Seeker,
     SoulCollector,
     HexMaster,
@@ -912,6 +914,7 @@ public enum CustomWinner
     Occultist = CustomRoles.Occultist,
     Succubus = CustomRoles.Succubus,
     Wraith = CustomRoles.Wraith,
+    Bandit = CustomRoles.Bandit,
     Shade = CustomRoles.Shade,
     Pirate = CustomRoles.Pirate,
     SerialKiller = CustomRoles.NSerialKiller,

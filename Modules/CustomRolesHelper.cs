@@ -184,6 +184,7 @@ static class CustomRolesHelper
             CustomRoles.Deputy => RoleTypes.Impostor,
             CustomRoles.Arsonist => RoleTypes.Impostor,
             CustomRoles.Jackal => RoleTypes.Impostor,
+            CustomRoles.Bandit => RoleTypes.Impostor,
             CustomRoles.Medusa => RoleTypes.Impostor,
             CustomRoles.Sidekick => RoleTypes.Impostor,
             CustomRoles.SwordsMan => RoleTypes.Impostor,
@@ -302,6 +303,31 @@ static class CustomRolesHelper
             CustomRoles.Ghoul or
             CustomRoles.EvilSpirit;
     }
+    
+    public static bool IsBetrayalAddon(this CustomRoles role)
+    {
+        return role is CustomRoles.Charmed or
+            CustomRoles.Recruit or
+            CustomRoles.Infected or
+            CustomRoles.Contagious or
+            CustomRoles.Lovers or
+            CustomRoles.Madmate or
+            CustomRoles.Soulless or
+            CustomRoles.Admired or
+            CustomRoles.Egoist;
+    }
+
+    public static bool IsImpOnlyAddon(this CustomRoles role)
+    {
+        return role is CustomRoles.Mare or
+            CustomRoles.LastImpostor or
+            CustomRoles.Mare or
+            CustomRoles.Clumsy or
+            CustomRoles.Mimic or
+            CustomRoles.TicketsStealer or
+            CustomRoles.Swift;
+    }
+
     public static bool IsAmneMaverick(this CustomRoles role) // ROLE ASSIGNING, NOT NEUTRAL TYPE
     {
         return role is
@@ -317,6 +343,7 @@ static class CustomRolesHelper
             CustomRoles.God or
             CustomRoles.Amnesiac or
             CustomRoles.Imitator or
+            CustomRoles.Bandit or
             CustomRoles.Pestilence or
             CustomRoles.PlagueBearer or
             CustomRoles.Agitater or
@@ -378,6 +405,7 @@ static class CustomRolesHelper
     {
         return role is
             CustomRoles.Jackal or
+            CustomRoles.Bandit or
             CustomRoles.Glitch or
             CustomRoles.Sidekick or
             CustomRoles.Occultist or
@@ -494,6 +522,7 @@ static class CustomRolesHelper
     {
         return role is
             CustomRoles.Jackal or
+            CustomRoles.Bandit or
             CustomRoles.Sidekick or
             CustomRoles.HexMaster or
             CustomRoles.Occultist or
@@ -654,6 +683,7 @@ static class CustomRolesHelper
             CustomRoles.Arsonist or
             CustomRoles.Sidekick or
             CustomRoles.Jackal or
+            CustomRoles.Bandit or
             CustomRoles.God or
             CustomRoles.Innocent or
             CustomRoles.Pursuer or
@@ -788,6 +818,7 @@ static class CustomRolesHelper
             CustomRoles.Lawyer or
             CustomRoles.Arsonist or
             CustomRoles.Jackal or
+            CustomRoles.Bandit or
             CustomRoles.Sidekick or
             CustomRoles.God or
             CustomRoles.Innocent or
@@ -1507,9 +1538,10 @@ static class CustomRolesHelper
            CustomRoles.GM => CountTypes.OutOfGame,
            CustomRoles.Jackal => CountTypes.Jackal,
            CustomRoles.Sidekick => CountTypes.Jackal,
+           CustomRoles.Bandit => CountTypes.Bandit,
            CustomRoles.Poisoner => CountTypes.Poisoner,
-    //       CustomRoles.CovenLeader => CountTypes.Coven,
-    //       CustomRoles.Banshee => CountTypes.Coven,
+           //CustomRoles.CovenLeader => CountTypes.Coven,
+           //CustomRoles.Banshee => CountTypes.Coven,
            CustomRoles.Pelican => CountTypes.Pelican,
            CustomRoles.Gamer => CountTypes.Gamer,
            CustomRoles.BloodKnight => CountTypes.BloodKnight,
@@ -1565,6 +1597,7 @@ public enum CountTypes
     Impostor,
     Coven,
     Jackal,
+    Bandit,
     Pelican,
     Gamer,
     BloodKnight,
