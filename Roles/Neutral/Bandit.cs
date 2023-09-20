@@ -18,8 +18,6 @@ public static class Bandit
     public static OptionItem CanStealBetrayalAddon;
     public static OptionItem CanStealImpOnlyAddon;
     public static OptionItem CanUseSabotage;
-    public static OptionItem CanVent;
-    public static OptionItem HasImpostorVision;
 
     public static Dictionary<byte, int> TotalSteals = new();
     public static Dictionary<byte, Dictionary<byte, CustomRoles>> Targets = new();
@@ -40,8 +38,6 @@ public static class Bandit
         CanStealBetrayalAddon = BooleanOptionItem.Create(Id + 13, "BanditCanStealBetrayalAddon", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit]);
         CanStealImpOnlyAddon = BooleanOptionItem.Create(Id + 14, "BanditCanStealImpOnlyAddon", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit]);
         CanUseSabotage = BooleanOptionItem.Create(Id + 15, "CanUseSabotage", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit]);
-        CanVent = BooleanOptionItem.Create(Id + 16, "CanVent", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit]);
-        HasImpostorVision = BooleanOptionItem.Create(Id + 17, "ImpostorVision", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit]);
     }
 
     public static void Init()
@@ -83,7 +79,7 @@ public static class Bandit
     }
 
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
-    public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(HasImpostorVision.GetBool());
+    public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(false);
 
     private static CustomRoles? SelectRandomAddon(PlayerControl Target)
     {
