@@ -73,6 +73,7 @@ enum CustomRPC
     SetSoulCollectorLimit,
     SetPelicanEtenNum,
     SwordsManKill,
+    UndertakerLocationSync,
     SetCounterfeiterSellLimit,
     SetPursuerSellLimit,
     SetMedicalerProtectLimit,
@@ -358,6 +359,9 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SniperSync:
                 Sniper.ReceiveRPC(reader);
+                break;
+            case CustomRPC.UndertakerLocationSync:
+                Undertaker.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetLoversPlayers:
                 Main.LoversPlayers.Clear();
@@ -832,6 +836,9 @@ internal static class RPC
                 break;
             case CustomRoles.Sniper:
                 Sniper.Add(targetId);
+                break;
+            case CustomRoles.Undertaker:
+                Undertaker.Add(targetId);
                 break;
             case CustomRoles.Crusader:
                 Crusader.Add(targetId);

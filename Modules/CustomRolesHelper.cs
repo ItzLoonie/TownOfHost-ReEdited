@@ -45,6 +45,7 @@ static class CustomRolesHelper
                 CustomRoles.Wildling => CustomRoles.Shapeshifter,
                 CustomRoles.Morphling => CustomRoles.Shapeshifter,
                 CustomRoles.Warlock => CustomRoles.Shapeshifter,
+                CustomRoles.Undertaker => CustomRoles.Shapeshifter,
                 CustomRoles.SerialKiller => CustomRoles.Shapeshifter,
                 CustomRoles.FireWorks => CustomRoles.Shapeshifter,
                 CustomRoles.SpeedBooster => CustomRoles.Crewmate,
@@ -594,6 +595,7 @@ static class CustomRolesHelper
             CustomRoles.ShapeMaster or
             CustomRoles.Zombie or
             CustomRoles.Warlock or
+            CustomRoles.Undertaker or
             CustomRoles.Assassin or
             CustomRoles.Cultivator or
             CustomRoles.Hacker or

@@ -190,7 +190,8 @@ class ExileControllerWrapUpPatch
                 CustomRoles.ScientistTOHE or
                 CustomRoles.Tracefinder or
                 CustomRoles.Doctor or
-                CustomRoles.Bomber
+                CustomRoles.Bomber or
+                CustomRoles.Undertaker
                 ) pc.RpcResetAbilityCooldown();
 
 

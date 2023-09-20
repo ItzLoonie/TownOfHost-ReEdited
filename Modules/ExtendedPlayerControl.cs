@@ -769,6 +769,9 @@ static class ExtendedPlayerControl
             case CustomRoles.Underdog:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.UnderdogKillCooldown.GetFloat();
                 break;
+            case CustomRoles.Undertaker:
+                Undertaker.SetKillCooldown(player.PlayerId);
+                break;
             case CustomRoles.Jackal:
                 Jackal.SetKillCooldown(player.PlayerId);
                 break;

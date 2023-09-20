@@ -413,6 +413,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Twister:
                 Twister.ApplyGameOptions();
                 break;
+            case CustomRoles.Undertaker:
+                Undertaker.ApplyGameOptions();
+                break;
             case CustomRoles.Spiritcaller:
                 opt.SetVision(Spiritcaller.ImpostorVision.GetBool());
                 break;

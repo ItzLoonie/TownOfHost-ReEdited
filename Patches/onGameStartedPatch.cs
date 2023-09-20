@@ -191,6 +191,7 @@ internal class ChangeRoleSettings
             EvilDiviner.Init();
             FireWorks.Init();
             Sniper.Init();
+            Undertaker.Init();
             TimeThief.Init();
             Puppeteer.Init();
         //    Mare.Init();
@@ -519,6 +520,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Sniper:
                         Sniper.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Undertaker:
+                        Undertaker.Add(pc.PlayerId);
                         break;
                /*     case CustomRoles.Mare:
                         Mare.Add(pc.PlayerId);

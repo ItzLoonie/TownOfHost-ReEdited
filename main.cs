@@ -603,6 +603,7 @@ public enum CustomRoles
     ShapeshifterTOHE,
     //Impostor
     BountyHunter,
+    Undertaker,
     FireWorks,
     Mafia,
     Godfather,

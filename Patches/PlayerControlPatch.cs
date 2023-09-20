@@ -227,6 +227,9 @@ class CheckMurderPatch
                         killer.Notify(GetString("WitnessFoundKiller"));
                     else killer.Notify(GetString("WitnessFoundInnocent"));
                     return false;
+                case CustomRoles.Undertaker:
+                    if (!Undertaker.OnCheckMurder(killer, target)) return false;
+                    break;
                 case CustomRoles.Warlock:
                     if (!Main.CheckShapeshift[killer.PlayerId] && !Main.isCurseAndKill[killer.PlayerId])
                     { //Warlockが変身時以外にキルしたら、呪われる処理
@@ -1405,6 +1408,9 @@ class ShapeshiftPatch
                 case CustomRoles.Sniper:
                     Sniper.OnShapeshift(shapeshifter, shapeshifting);
                     break;
+                case CustomRoles.Undertaker:
+                    Undertaker.OnShapeshift(shapeshifter, shapeshifting);
+                    break;
                 case CustomRoles.FireWorks:
                     FireWorks.ShapeShiftState(shapeshifter, shapeshifting);
                     break;
@@ -2175,6 +2181,7 @@ class ReportDeadBodyPatch
         SoulCollector.OnReportDeadBody();
         Puppeteer.OnReportDeadBody();
         Sniper.OnReportDeadBody();
+        Undertaker.OnReportDeadBody();
         Vampire.OnStartMeeting();
         Poisoner.OnStartMeeting();
         Pelican.OnReportDeadBody();

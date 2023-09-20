@@ -2386,6 +2386,7 @@ public static class Utils
         Eraser.AfterMeetingTasks();
         Cleanser.AfterMeetingTasks();
         BountyHunter.AfterMeetingTasks();
+        //Undertaker.AfterMeetingTasks();
         EvilTracker.AfterMeetingTasks();
         SerialKiller.AfterMeetingTasks();
         Spiritualist.AfterMeetingTasks();
