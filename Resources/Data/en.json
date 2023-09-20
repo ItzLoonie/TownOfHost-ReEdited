@@ -3039,6 +3039,7 @@
   "WinnerRoleText.SoulCollector": "Soul Collector Wins!",
   "WinnerRoleText.NiceMini": "Nice Mini Wins!",
   "WinnerRoleText.Mini": "Nice Mini was killed",
+  "WinnerRoleText.Bandit": "Bandit Wins!",
   "AdditionalWinnerRoleText.Sidekick": "Sidekick",
   "AdditionalWinnerRoleText.Opportunist": "Opportunist",
   "AdditionalWinnerRoleText.Lawyer": "Lawyer",
