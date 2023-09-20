@@ -17,6 +17,7 @@ public static class Bandit
     public static OptionItem CanStealBetrayalAddon;
     public static OptionItem CanStealImpOnlyAddon;
     public static OptionItem CanUseSabotage;
+    public static OptionItem CanVent;
 
     public static Dictionary<byte, int> TotalSteals = new();
     public static Dictionary<byte, Dictionary<byte, CustomRoles>> Targets = new();
@@ -31,12 +32,13 @@ public static class Bandit
     {
         SetupRoleOptions(Id, TabGroup.NeutralRoles, CustomRoles.Bandit);
         MaxSteals = IntegerOptionItem.Create(Id + 10, "BanditMaxSteals", new(1, 20, 1), 3, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit]);
-        KillCooldown = FloatOptionItem.Create(Id + 11, "BanditKillCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit])
+        KillCooldown = FloatOptionItem.Create(Id + 11, "KillCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit])
             .SetValueFormat(OptionFormat.Seconds);
         StealMode = StringOptionItem.Create(Id + 12, "BanditStealMode", BanditStealModeOpt, 0, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit]);
         CanStealBetrayalAddon = BooleanOptionItem.Create(Id + 13, "BanditCanStealBetrayalAddon", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit]);
         CanStealImpOnlyAddon = BooleanOptionItem.Create(Id + 14, "BanditCanStealImpOnlyAddon", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit]);
-        CanUseSabotage = BooleanOptionItem.Create(Id + 15, "BanditCanUseSabotage", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit]);
+        CanUseSabotage = BooleanOptionItem.Create(Id + 15, "CanUseSabotage", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit]);
+        CanVent = BooleanOptionItem.Create(Id + 16, "CanVent", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Bandit]);
     }
 
     public static void Init()

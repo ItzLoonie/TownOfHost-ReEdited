@@ -560,7 +560,6 @@ static class ExtendedPlayerControl
     //        CustomRoles.Minion or
             CustomRoles.Glitch or
             CustomRoles.Crusader or
-            CustomRoles.Bandit or
             CustomRoles.ChiefOfPolice or
             CustomRoles.Wildling
             => false,
@@ -570,6 +569,7 @@ static class ExtendedPlayerControl
             CustomRoles.RuthlessRomantic => Romantic.RuthlessCanVent.GetBool(),
             CustomRoles.Sidekick => Jackal.CanVentSK.GetBool(),
             CustomRoles.Poisoner => Poisoner.CanVent.GetBool(),
+            CustomRoles.Bandit => Bandit.CanVent.GetBool(),
             CustomRoles.NSerialKiller => NSerialKiller.CanVent.GetBool(),
             CustomRoles.Werewolf => Werewolf.CanVent.GetBool(),
             CustomRoles.Pestilence => PlagueBearer.PestilenceCanVent.GetBool(),
