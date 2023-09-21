@@ -49,6 +49,62 @@ public class ModNewsHistory
         if (TranslationController.Instance.currentLanguage.languageID == SupportedLangs.English)
         {
             {
+                // When making new changes/roles, add information
+                // TOHE v3.1.0
+                var news = new ModNews
+                {
+                    Number = 100003,
+                    Title = "Town of Host Re-Edited v3.1.0",
+                    SubTitle = "★★Next small update★★",
+                    ShortTitle = "★TOH-RE v3.1.0",
+                    Text = "<size=150%>Welcome to TOHE v3.1.0!</size>\n\n<size=125%>Support for Among Us v2023.7.11 and v2023.7.12</size>\n"
+
+                        + "\n<b>【Base】</b>\n - Base on TOH v4.1.2\r\n"
+
+                        + "\n<b>【New Roles】</b>" +
+                        "\n\r<b><i>Impostor: (2 roles)</i></b>" +
+                            "\n     - Evil Mini" +
+                            "\n     - Undertaker\n\r" +
+
+                        "\n\r<b><i>Crewmate: (2 roles)</i></b>" +
+                            "\n     - Nice Mini" +
+                            "\n     - Imitator\n\r" +
+
+                        "\n\r<b><i>Neutral: (1 roles)</i></b>" +
+                            "\n     - Bandit\n\r" +
+
+                        "\n\r<b>【Bug Fixes】</b>" +
+                            "\n     - Fixed Mad Psychic" +
+                            "\n     - Fixed Werewolf (no longer leaves duplicate bodies)" +
+                            "\n     - Fixed minor issue with Eraser" +
+                            "\n     - Fixed bug when Lawyer and Executioner have tasks\n\r" +
+
+                        "\n\r<b>【Improvements Roles】</b>" +
+                            "\n     - Tracker" +
+                            "\n     - Amnesiac\n\r" +
+
+                        "\n\r<b>【New Mod Settings】</b>" +
+                            "\n     - Setting: Random Spawns On Vents\n\r" +
+
+                        "\n\r<b>【Some Changes】</b>" +
+                            "\n     - Return Set Default All TOHE Options" +
+                            "\n     - Demon now Neutral Killer (was Neutral Evil)" +
+                            "\n     - Bomber, Nuker and Medic can no longer be Fragile" +
+                            "\n     - Some neutral roles have been given the \"Can Vent\" and \"Has Impostor Vision\" setting" +
+                            "\n     - When certain roles abilities end, their votes will no longer be hidden if the \"Hide Vote\" setting is enabled\n\r" +
+
+                        "\n\r<b>【New Features】</b>" +
+                            "\n     - \n\r" +
+
+                        "\n\r<b>【Removals】</b>" +
+                            "\n     - Removed Covens (Poisoner, Jinx, Potion Master, Medusa, Wraith, and Hex Master are now neutral killers again (Shade, Necromancer, Coven Leader, and Ritualist are now unused))",
+
+                    Date = "2023-9-21T00:00:00Z"
+
+                };
+                AllModNews.Add(news);
+            }
+            {
                 // TOHE v3.0.0
                 var news = new ModNews
                 {
