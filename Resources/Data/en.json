@@ -2020,6 +2020,7 @@
   "Warning.CanNotUseBepInExConsole": "The use of the console is prohibited\nso your console has been off",
   "Error.MeetingException": "Error: {0}\r\nPlease use SHIFT+M+ENTER to end the meeting",
   "Error.InvalidRoleAssignment": "Error: Invalid role found for a player during role assignment({0})",
+  "IncompatibleRoleSet": "There are incompatible roles in your role list.\nYou may experience vanilla roles.",
   "Error.InvalidColor": "Error: Only default colors are available",
   "Error.InvalidColorPreventStart": "Other players are not allowed to use other colors, otherwise it will result in a serious error",
   "ErrorLevel1": "Bugs may occur.",

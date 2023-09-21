@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TOHE.Roles.Crewmate;
 using TOHE.Roles.Double;
 using TOHE.Roles.Neutral;
+using static TOHE.Translator;
 
 namespace TOHE.Modules;
 
@@ -276,12 +278,26 @@ internal class CustomRoleSelector
          //   if (rd.Next(0, 100) < NSerialKiller.ChanceToSpawnAnother.GetInt()) rolesToAssign.Add(CustomRoles.NSerialKiller);
         }
 
+        if (CustomRoles.Autopsy.IsEnable() && CustomRoles.Doctor.IsEnable() || 
+        CustomRoles.Lucky.IsEnable() && CustomRoles.Luckey.IsEnable() ||
+        CustomRoles.Sleuth.IsEnable() && CustomRoles.Detective.IsEnable() ||
+        CustomRoles.Repairman.IsEnable() && CustomRoles.SabotageMaster.IsEnable() ||
+        CustomRoles.Lazy.IsEnable() && CustomRoles.Needy.IsEnable())
+        {
+            _ = new LateTask(() =>
+                {
+                    Logger.SendInGame(GetString("IncompatibleRoleSet"));
+                }, 3f, "Incompatible Role Set Info");
+
+        }
+
         if (CustomRoles.Autopsy.IsEnable())
         {
                 if (rolesToAssign.Contains(CustomRoles.Doctor))
                     {
                         rolesToAssign.Remove(CustomRoles.Doctor);
                         rolesToAssign.Add(CustomRoles.ScientistTOHE);
+                        Logger.Warn($"Incompatible role in list, replacing with vanilla role", "CustomRoleSelector");
                     }
         }
         if (CustomRoles.Lazy.IsEnable())
@@ -290,6 +306,7 @@ internal class CustomRoleSelector
                     {
                         rolesToAssign.Remove(CustomRoles.Needy);
                         rolesToAssign.Add(CustomRoles.CrewmateTOHE);
+                        Logger.Warn($"Incompatible role in list, replacing with vanilla role", "CustomRoleSelector");
                     }
         }
 
@@ -299,6 +316,7 @@ internal class CustomRoleSelector
                     {
                         rolesToAssign.Remove(CustomRoles.Luckey);
                         rolesToAssign.Add(CustomRoles.CrewmateTOHE);
+                        Logger.Warn($"Incompatible role in list, replacing with vanilla role", "CustomRoleSelector");
                     }
         }
         if (CustomRoles.Sleuth.IsEnable())
@@ -307,6 +325,7 @@ internal class CustomRoleSelector
                     {
                         rolesToAssign.Remove(CustomRoles.Detective);
                         rolesToAssign.Add(CustomRoles.CrewmateTOHE);
+                        Logger.Warn($"Incompatible role in list, replacing with vanilla role", "CustomRoleSelector");
                     }
         }
         if (CustomRoles.Repairman.IsEnable())
@@ -315,6 +334,7 @@ internal class CustomRoleSelector
                     {
                         rolesToAssign.Remove(CustomRoles.SabotageMaster);
                         rolesToAssign.Add(CustomRoles.EngineerTOHE);
+                        Logger.Warn($"Incompatible role in list, replacing with vanilla role", "CustomRoleSelector");
                     }
         }
     /*    if (CustomRoles.Tricky.IsEnable())
@@ -323,6 +343,7 @@ internal class CustomRoleSelector
                     {
                         rolesToAssign.Remove(CustomRoles.Trickster);
                         rolesToAssign.Add(CustomRoles.ImpostorTOHE);
+                        Logger.Warn($"Incompatible role in list, replacing with vanilla role", "CustomRoleSelector");
                     }
         } */
 
