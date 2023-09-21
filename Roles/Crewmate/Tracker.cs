@@ -64,6 +64,8 @@ namespace TOHE.Roles.Crewmate
             byte trackerId = reader.ReadByte();
             byte targetId = reader.ReadByte();
 
+            TrackLimit[trackerId]--;
+
             TrackerTarget[trackerId].Add(targetId);
             TargetArrow.Add(trackerId, targetId);
 
