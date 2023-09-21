@@ -92,6 +92,8 @@ public class ModNewsHistory
                             "\n     - Demon now Neutral Killer (was Neutral Evil)" +
                             "\n     - Bomber, Nuker and Medic can no longer be Fragile" +
                             "\n     - Some neutral roles have been given the \"Can Vent\" and \"Has Impostor Vision\" setting" +
+                            "\n     - Judge is now counted as Crewmate Killing" +
+                            "\n     - The Crewmate and Impostor tabs have been reorganized" +
                             "\n     - When certain roles abilities end, their votes will no longer be hidden if the \"Hide Vote\" setting is enabled\n\r" +
 
                         "\n\r<b>【New Features】</b>" +
