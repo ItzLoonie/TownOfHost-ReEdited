@@ -66,12 +66,12 @@ public class ModNewsHistory
                             "\n     - Evil Mini" +
                             "\n     - Undertaker\n\r" +
 
-                        "\n\r<b><i>Crewmate: (2 roles)</i></b>" +
-                            "\n     - Nice Mini" +
-                            "\n     - Imitator\n\r" +
+                        "\n\r<b><i>Crewmate: (1 role)</i></b>" +
+                            "\n     - Nice Mini\n\r" +
 
-                        "\n\r<b><i>Neutral: (1 roles)</i></b>" +
-                            "\n     - Bandit\n\r" +
+                        "\n\r<b><i>Neutral: (2 roles)</i></b>" +
+                            "\n     - Bandit" +
+                            "\n     - Imitator\n\r" +
 
                         "\n\r<b>【Bug Fixes】</b>" +
                             "\n     - Fixed Mad Psychic" +
