@@ -16,7 +16,7 @@ internal static class Eraser
     public static OptionItem HideVote;
 
     private static List<byte> didVote = new();
-    private static Dictionary<byte, int> EraseLimit = new();
+    public static Dictionary<byte, int> EraseLimit = new();
     private static List<byte> PlayerToErase = new();
 
     public static void SetupCustomOption()
