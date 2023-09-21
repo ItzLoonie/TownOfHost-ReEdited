@@ -762,8 +762,6 @@ class MeetingHudStartPatch
                 AddMsg(string.Format(GetString("MediumshipNotifyTarget"), Main.AllPlayerNames[Mediumshiper.ContactPlayer[pc.PlayerId]]), pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Mediumshiper), GetString("MediumshipTitle")));
             if (Main.VirusNotify.ContainsKey(pc.PlayerId))
                 AddMsg(Main.VirusNotify[pc.PlayerId], pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Virus), GetString("VirusNoticeTitle")));
-            if (Tracker.msgToSend.ContainsKey(pc.PlayerId))
-                AddMsg(Tracker.msgToSend[pc.PlayerId], pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Tracker), GetString("TrackerTitle")));
         }
         //宝箱怪的消息（合并）
         if (MimicMsg != "")
@@ -783,7 +781,6 @@ class MeetingHudStartPatch
         Main.SleuthNotify.Clear();
         Main.VirusNotify.Clear();
         Mortician.msgToSend.Clear();
-        Tracker.msgToSend.Clear();
         Pirate.OnMeetingStart();
     }
     public static void Prefix(MeetingHud __instance)

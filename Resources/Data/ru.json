@@ -1624,6 +1624,7 @@
   "BloodhoundArrowsPointingToDeadBody": "Может видеть стрелки указывающие на трупы",
   "BloodhoundLeaveDeadBodyUnreportable": "О трупе который использовал <color=#8B0000>Коронер</color> нельзя будет зарепортить",
   "TrackerHideVote": "Скрыть голоса <color=#3CB371>Трекера</color>",
+  "TrackerCanGetArrowColor": "Может видеть цветные стрелки",
   "LuckyProbability": "Вероятность остаться в живых",
   "ImpCanBeLucky": "<color=#ff1919>Предатели</color> могут стать <color=#b8d7a3>Удачливым</color>",
   "CrewCanBeLucky": "<color=#8cffff>Члены Экипажа</color> могут стать <color=#b8d7a3>Удачливым</color>",
