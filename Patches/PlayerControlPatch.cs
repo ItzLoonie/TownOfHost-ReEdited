@@ -2191,11 +2191,13 @@ class ReportDeadBodyPatch
         QuickShooter.OnReportDeadBody();
         Eraser.OnReportDeadBody();
         Hacker.OnReportDeadBody();
+        Divinator.OnReportDeadBody();
         Judge.OnReportDeadBody();
     //    Councillor.OnReportDeadBody();
         Greedier.OnReportDeadBody();
-        //Tracker.OnReportDeadBody();
+        Tracker.OnReportDeadBody();
         Addict.OnReportDeadBody();
+        Oracle.OnReportDeadBody();
         Deathpact.OnReportDeadBody();
         ParityCop.OnReportDeadBody();
         Doomsayer.OnReportDeadBody();

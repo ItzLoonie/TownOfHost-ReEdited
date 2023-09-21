@@ -1,6 +1,6 @@
 ﻿using Hazel;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 using static TOHE.Options;
 using static TOHE.Translator;
 
@@ -22,6 +22,7 @@ namespace TOHE.Roles.Crewmate
 
         public static Dictionary<byte, float> TrackLimit = new();
         public static Dictionary<byte, List<byte>> TrackerTarget = new();
+        public static Dictionary<byte, float> TempTrackLimit = new();
 
         public static void SetupCustomOption()
         {
@@ -43,6 +44,7 @@ namespace TOHE.Roles.Crewmate
             TrackLimit = new();
             TrackerTarget = new();
             CanSeeLastRoomInMeeting = OptionCanSeeLastRoomInMeeting.GetBool();
+            TempTrackLimit = new();
             IsEnable = false;
         }
         public static void Add(byte playerId)
@@ -87,6 +89,16 @@ namespace TOHE.Roles.Crewmate
             SendRPC(player.PlayerId, target.PlayerId);
         }
 
+        public static void OnReportDeadBody()
+        {
+            if (!IsEnable) return;
+
+            foreach (var trackerId in playerIdList) 
+            {
+                TempTrackLimit[trackerId] = TrackLimit[trackerId];
+            }
+        }
+
         public static string GetTrackerArrow(PlayerControl seer, PlayerControl target = null)
         {
             if (seer == null) return "";
@@ -96,17 +108,15 @@ namespace TOHE.Roles.Crewmate
             if (GameStates.IsMeeting) return "";
 
             var arrows = string.Empty;
-            foreach (var targetList in TrackerTarget.Values)
+            var targetList = TrackerTarget[seer.PlayerId];
+            foreach (var trackTarget in targetList)
             {
-                foreach (var trackTarget in targetList)
-                {
-                    if (!TrackerTarget[seer.PlayerId].Contains(trackTarget)) return "";
+                if (!TrackerTarget[seer.PlayerId].Contains(trackTarget)) return "";
 
-                    var targetData = Utils.GetPlayerById(trackTarget);
+                var targetData = Utils.GetPlayerById(trackTarget);
 
-                    var arrow = TargetArrow.GetArrows(seer, trackTarget);
-                    arrows += Utils.ColorString(CanGetColoredArrow.GetBool() ? Palette.PlayerColors[targetData.Data.DefaultOutfit.ColorId] : Color.white, arrow);
-                }
+                var arrow = TargetArrow.GetArrows(seer, trackTarget);
+                arrows += Utils.ColorString(CanGetColoredArrow.GetBool() ? Palette.PlayerColors[targetData.Data.DefaultOutfit.ColorId] : Color.white, arrow);
             }
             return arrows;
         }

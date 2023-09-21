@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using static TOHE.Options;
 using static TOHE.Translator;
 
@@ -19,6 +18,7 @@ public static class Divinator
 
     public static List<byte> didVote = new();
     public static Dictionary<byte, float> CheckLimit = new();
+    public static Dictionary<byte, float> TempCheckLimit = new();
 
     public static void SetupCustomOption()
     {
@@ -36,6 +36,7 @@ public static class Divinator
     {
         playerIdList = new();
         CheckLimit = new();
+        TempCheckLimit = new();
         IsEnable = false;
     }
     public static void Add(byte playerId)
@@ -483,5 +484,14 @@ public static class Divinator
            }*/
 
         Utils.SendMessage(GetString("DivinatorCheck") + "\n" + msg + "\n\n" + string.Format(GetString("DivinatorCheckLimit"), CheckLimit[player.PlayerId]), player.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Divinator), GetString("DivinatorCheckMsgTitle")));
+    }
+    public static void OnReportDeadBody()
+    {
+        if (!IsEnable) return;
+
+        foreach (var divinatorId in playerIdList)
+        {
+            TempCheckLimit[divinatorId] = CheckLimit[divinatorId];
+        }
     }
 }
