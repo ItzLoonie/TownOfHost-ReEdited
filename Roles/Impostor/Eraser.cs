@@ -1,6 +1,5 @@
 ﻿using Hazel;
 using System.Collections.Generic;
-using System.Linq;
 using TOHE.Roles.Crewmate;
 using UnityEngine;
 using static TOHE.Translator;
@@ -10,6 +9,7 @@ namespace TOHE.Roles.Impostor;
 internal static class Eraser
 {
     private static readonly int Id = 16800;
+    private static List<byte> playerIdList = new();
     public static bool IsEnable = false;
 
     private static OptionItem EraseLimitOpt;
@@ -18,6 +18,7 @@ internal static class Eraser
     private static List<byte> didVote = new();
     public static Dictionary<byte, int> EraseLimit = new();
     private static List<byte> PlayerToErase = new();
+    public static Dictionary<byte, int> TempEraseLimit = new();
 
     public static void SetupCustomOption()
     {
@@ -28,13 +29,16 @@ internal static class Eraser
     }
     public static void Init()
     {
+        playerIdList = new();
         EraseLimit = new();
         PlayerToErase = new();
         didVote = new();
+        TempEraseLimit = new();
         IsEnable = false;
     }
     public static void Add(byte playerId)
     {
+        playerIdList.Add(playerId);
         EraseLimit.Add(playerId, EraseLimitOpt.GetInt());
         IsEnable = true;
 
@@ -91,6 +95,13 @@ internal static class Eraser
     }
     public static void OnReportDeadBody()
     {
+        if (!IsEnable) return;
+
+        foreach (var eraserId in playerIdList)
+        {
+            TempEraseLimit[eraserId] = EraseLimit[eraserId];
+        }
+
         PlayerToErase = new();
         didVote = new();
     }

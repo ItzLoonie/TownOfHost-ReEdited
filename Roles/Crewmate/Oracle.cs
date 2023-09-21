@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using static TOHE.Options;
 using static TOHE.Translator;
-using static UnityEngine.GraphicsBuffer;
 
 namespace TOHE.Roles.Crewmate;
 
@@ -20,6 +19,7 @@ public static class Oracle
     public static OptionItem ChangeRecruitTeam;
     public static List<byte> didVote = new();
     public static Dictionary<byte, float> CheckLimit = new();
+    public static Dictionary<byte, float> TempCheckLimit = new();
 
     public static void SetupCustomOption()
     {
@@ -42,6 +42,7 @@ public static class Oracle
     {
         playerIdList = new();
         CheckLimit = new();
+        TempCheckLimit = new();
         IsEnable = false;
     }
     public static void Add(byte playerId)
@@ -238,5 +239,14 @@ public static class Oracle
         }
 
         Utils.SendMessage(GetString("OracleCheck") + "\n" + msg + "\n\n" + string.Format(GetString("OracleCheckLimit"), CheckLimit[player.PlayerId]), player.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Oracle), GetString("OracleCheckMsgTitle")));}
+    }
+    public static void OnReportDeadBody()
+    {
+        if (!IsEnable) return;
+
+        foreach (var oracleId in playerIdList)
+        {
+            TempCheckLimit[oracleId] = CheckLimit[oracleId];
+        }
     }
 }
