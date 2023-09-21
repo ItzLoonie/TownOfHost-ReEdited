@@ -77,7 +77,8 @@ public class ModNewsHistory
                             "\n     - Fixed Mad Psychic" +
                             "\n     - Fixed Werewolf (no longer leaves duplicate bodies)" +
                             "\n     - Fixed minor issue with Eraser" +
-                            "\n     - Fixed bug when Lawyer and Executioner have tasks\n\r" +
+                            "\n     - Fixed bug when Lawyer and Executioner have tasks" +
+                            "\n     - Fixed bug that caused some roles can not guess add-ons under certain conditions if the \"Can Guess Add-Ons\" setting is enabled\n\r" +
 
                         "\n\r<b>【Improvements Roles】</b>" +
                             "\n     - Tracker" +
