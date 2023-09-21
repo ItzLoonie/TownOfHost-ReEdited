@@ -87,7 +87,7 @@ public class ModNewsHistory
                             "\n     - Setting: Random Spawns On Vents\n\r" +
 
                         "\n\r<b>【Some Changes】</b>" +
-                            "\n     - Return Set Default All TOHE Options" +
+                            "\n     - Keybind \"Set Default All TOHE Options\" was returned" +
                             "\n     - Demon now Neutral Killer (was Neutral Evil)" +
                             "\n     - Bomber, Nuker and Medic can no longer be Fragile" +
                             "\n     - Some neutral roles have been given the \"Can Vent\" and \"Has Impostor Vision\" setting" +
