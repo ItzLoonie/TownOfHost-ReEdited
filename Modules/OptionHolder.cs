@@ -1174,7 +1174,6 @@ public static class Options
         UnderdogKillCooldown = FloatOptionItem.Create(10031, "KillCooldown", new(0f, 180f, 2.5f), 12.5f, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Underdog])
             .SetValueFormat(OptionFormat.Seconds);
-        Undertaker.SetupCustomOption();
         Vampire.SetupCustomOption();
         SetupRoleOptions(3400, TabGroup.ImpostorRoles, CustomRoles.Vindicator);
         VindicatorAdditionalVote = IntegerOptionItem.Create(3410, "MayorAdditionalVote", new(1, 20, 1), 3, TabGroup.ImpostorRoles, false)
@@ -1282,6 +1281,7 @@ public static class Options
         Pitfall.SetupCustomOption();
         QuickShooter.SetupCustomOption();
         Sniper.SetupCustomOption();
+        Undertaker.SetupCustomOption();
         Twister.SetupCustomOption();
         SetupRoleOptions(4600, TabGroup.ImpostorRoles, CustomRoles.Warlock);
         WarlockCanKillAllies = BooleanOptionItem.Create(4610, "CanKillAllies", true, TabGroup.ImpostorRoles, false)
