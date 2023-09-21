@@ -350,6 +350,11 @@ class HudManagerPatch
                         __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("JailorKillButtonText"));
                         break;
+                    case CustomRoles.Undertaker:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
+                        __instance.KillButton.OverrideText(GetString("KillButtonText"));
+                        __instance.AbilityButton.OverrideText(GetString("UndertakerButtonText"));
+                        break;
                     case CustomRoles.Agitater:
                         __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.KillButton.OverrideText(GetString("AgitaterKillButtonText"));
