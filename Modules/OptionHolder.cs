@@ -478,6 +478,7 @@ public static class Options
     public static OptionItem CrewCanBeFool;
     public static OptionItem NeutralCanBeFool;
     public static OptionItem TorchVision;
+    public static OptionItem GlowVision;
     public static OptionItem TorchAffectedByLights;
     public static OptionItem TasklessCrewCanBeLazy;
     public static OptionItem TaskBasedCrewCanBeLazy;
@@ -1074,8 +1075,6 @@ public static class Options
             .SetHeader(true)
             .SetColor(new Color32(255, 25, 25, byte.MaxValue));// KILLING
 
-        EvilTracker.SetupCustomOption();
-        Hacker.SetupCustomOption(); //anonymous
         Sans.SetupCustomOption();//Arrogance
         SetupRoleOptions(1200, TabGroup.ImpostorRoles, CustomRoles.EvilGuesser);
         EGCanGuessTime = IntegerOptionItem.Create(1205, "GuesserCanGuessTimes", new(1, 15, 1), 15, TabGroup.ImpostorRoles, false)
@@ -1113,6 +1112,141 @@ public static class Options
         CultivatorImmortalLevel = IntegerOptionItem.Create(12364420, "CultivatorLevelRequirement", new(1, 10, 1), 4, TabGroup.ImpostorRoles, false).SetParent(CultivatorFourCanNotKill)
             .SetValueFormat(OptionFormat.Level);
 
+        Chronomancer.SetupCustomOption();
+        SetupRoleOptions(2600, TabGroup.ImpostorRoles, CustomRoles.Cleaner);
+        CleanerKillCooldown = FloatOptionItem.Create(2610, "KillCooldown", new(5f, 180f, 2.5f), 30f, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Cleaner])
+            .SetValueFormat(OptionFormat.Seconds);
+        KillCooldownAfterCleaning = FloatOptionItem.Create(2611, "KillCooldownAfterCleaning", new(5f, 180f, 2.5f), 60f, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Cleaner])
+            .SetValueFormat(OptionFormat.Seconds);
+        EvilDiviner.SetupCustomOption();
+        Councillor.SetupCustomOption();
+        SetupRoleOptions(1000, TabGroup.ImpostorRoles, CustomRoles.CursedWolf); //TOH_Y
+        GuardSpellTimes = IntegerOptionItem.Create(1010, "GuardSpellTimes", new(1, 15, 1), 3, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.CursedWolf])
+            .SetValueFormat(OptionFormat.Times);
+        AntiAdminer.SetupCustomOption(); // Disruptor
+        Greedier.SetupCustomOption(); //TOH_Y
+        Gangster.SetupCustomOption();
+        SetupRoleOptions(40000, TabGroup.ImpostorRoles, CustomRoles.Godfather);
+        GodfatherChangeOpt = StringOptionItem.Create(40010, "GodfatherTargetCountMode", GodfatherChangeMode, 0, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Godfather]);
+    //    SetupRoleOptions(300, TabGroup.ImpostorRoles, CustomRoles.ImpostorTOHE);
+        SetupRoleOptions(1500, TabGroup.ImpostorRoles, CustomRoles.Inhibitor);
+        InhibitorCD = FloatOptionItem.Create(1510, "KillCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Inhibitor])
+            .SetValueFormat(OptionFormat.Seconds);
+        SetupRoleOptions(10125, TabGroup.ImpostorRoles, CustomRoles.Ludopath);
+        LudopathRandomKillCD = IntegerOptionItem.Create(10130, "LudopathRandomKillCD", new(1, 100, 1), 45, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Ludopath])
+            .SetValueFormat(OptionFormat.Seconds);
+
+        Lurker.SetupCustomOption();
+   //     Mare.SetupCustomOption();
+        Puppeteer.SetupCustomOption();
+        SetupRoleOptions(1550, TabGroup.ImpostorRoles, CustomRoles.Saboteur);
+        SaboteurCD = FloatOptionItem.Create(1560, "KillCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Saboteur])
+            .SetValueFormat(OptionFormat.Seconds);
+        SetupRoleOptions(4000, TabGroup.ImpostorRoles, CustomRoles.Scavenger);
+        ScavengerKillCooldown = FloatOptionItem.Create(4010, "KillCooldown", new(5f, 180f, 2.5f), 40f, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Scavenger])
+            .SetValueFormat(OptionFormat.Seconds);
+        Witch.SetupCustomOption(); //spellcaster
+        Swooper.SetupCustomOption();
+        TimeThief.SetupCustomOption();
+        SetupRoleOptions(16500, TabGroup.ImpostorRoles, CustomRoles.BoobyTrap);
+        BTKillCooldown = FloatOptionItem.Create(16515, "KillCooldown", new(2.5f, 180f, 2.5f), 30f, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.BoobyTrap])
+            .SetValueFormat(OptionFormat.Seconds);
+        TrapConsecutiveBodies = BooleanOptionItem.Create(16516, "TrapConsecutiveBodies", true, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.BoobyTrap]);
+        TrapTrapsterBody = BooleanOptionItem.Create(16517, "TrapTrapsterBody", true, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.BoobyTrap]);
+        TrapConsecutiveTrapsterBodies = BooleanOptionItem.Create(16518, "TrapConsecutiveBodies", true, TabGroup.ImpostorRoles, false)
+            .SetParent(TrapTrapsterBody);
+        SetupRoleOptions(4300, TabGroup.ImpostorRoles, CustomRoles.Trickster);
+        SetupRoleOptions(10025, TabGroup.ImpostorRoles, CustomRoles.Underdog);
+        UnderdogMaximumPlayersNeededToKill = IntegerOptionItem.Create(10030, "UnderdogMaximumPlayersNeededToKill", new(1, 15, 1), 5, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Underdog])
+            .SetValueFormat(OptionFormat.Players);
+        UnderdogKillCooldown = FloatOptionItem.Create(10031, "KillCooldown", new(0f, 180f, 2.5f), 12.5f, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Underdog])
+            .SetValueFormat(OptionFormat.Seconds);
+        Undertaker.SetupCustomOption();
+        Vampire.SetupCustomOption();
+        SetupRoleOptions(3400, TabGroup.ImpostorRoles, CustomRoles.Vindicator);
+        VindicatorAdditionalVote = IntegerOptionItem.Create(3410, "MayorAdditionalVote", new(1, 20, 1), 3, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Vindicator])
+            .SetValueFormat(OptionFormat.Votes);
+        VindicatorHideVote = BooleanOptionItem.Create(3411, "MayorHideVote", false, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Vindicator]);
+        SetupRoleOptions(16150, TabGroup.ImpostorRoles, CustomRoles.Visionary);
+
+        TextOptionItem.Create(100002, "SubType.Shapeshifter", TabGroup.ImpostorRoles) // KILLING
+            .SetGameMode(CustomGameMode.Standard)
+            .SetHeader(true)
+            .SetColor(new Color32(255, 25, 25, byte.MaxValue));// KILLING
+
+        Camouflager.SetupCustomOption();
+        SetupRoleOptions(3600, TabGroup.ImpostorRoles, CustomRoles.Escapee);
+        EscapeeSSDuration = FloatOptionItem.Create(3610, "ShapeshiftDuration", new(1f, 180f, 1f), 1, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Escapee])
+            .SetValueFormat(OptionFormat.Seconds);
+        EscapeeSSCD = FloatOptionItem.Create(3611, "ShapeshiftCooldown", new(1f, 180f, 1f), 5f, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Escapee])
+            .SetValueFormat(OptionFormat.Seconds);
+        SetupRoleOptions(3800, TabGroup.ImpostorRoles, CustomRoles.Miner);
+        MinerSSDuration = FloatOptionItem.Create(3613, "ShapeshiftDuration", new(1f, 180f, 1f), 1, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Miner])
+            .SetValueFormat(OptionFormat.Seconds);
+        MinerSSCD = FloatOptionItem.Create(3614, "ShapeshiftCooldown", new(1f, 180f, 1f), 15f, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Miner])
+            .SetValueFormat(OptionFormat.Seconds);
+        Morphling.SetupCustomOption();
+        SetupRoleOptions(3100, TabGroup.ImpostorRoles, CustomRoles.Mafia); // Nemesis
+        MafiaCanKillNum = IntegerOptionItem.Create(3200, "MafiaCanKillNum", new(0, 15, 1), 1, TabGroup.ImpostorRoles, false)
+        .SetParent(CustomRoleSpawnChances[CustomRoles.Mafia])
+            .SetValueFormat(OptionFormat.Players);
+        LegacyMafia = BooleanOptionItem.Create(3210, "LegacyMafia", false, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Mafia]);
+        MafiaShapeshiftCD = FloatOptionItem.Create(3211, "ShapeshiftCooldown", new(1f, 180f, 1f), 15f, TabGroup.ImpostorRoles, false)
+            .SetParent(LegacyMafia)
+            .SetValueFormat(OptionFormat.Seconds);
+        MafiaShapeshiftDur = FloatOptionItem.Create(3212, "ShapeshiftDuration", new(1f, 180f, 1f), 30f, TabGroup.ImpostorRoles, false)
+            .SetParent(LegacyMafia)
+            .SetValueFormat(OptionFormat.Seconds);
+        SetupRoleOptions(4100, TabGroup.ImpostorRoles, CustomRoles.ShapeMaster);
+        ShapeMasterShapeshiftDuration = FloatOptionItem.Create(4110, "ShapeshiftDuration", new(1, 60, 1), 10, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.ShapeMaster])
+            .SetValueFormat(OptionFormat.Seconds);
+        SetupRoleOptions(400, TabGroup.ImpostorRoles, CustomRoles.ShapeshifterTOHE);
+        ShapeshiftCD = FloatOptionItem.Create(402, "ShapeshiftCooldown", new(1f, 180f, 1f), 15f, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.ShapeshifterTOHE])
+            .SetValueFormat(OptionFormat.Seconds);
+        ShapeshiftDur = FloatOptionItem.Create(403, "ShapeshiftDuration", new(1f, 180f, 1f), 30f, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.ShapeshifterTOHE])
+            .SetValueFormat(OptionFormat.Seconds);
+
+
+        SetupRoleOptions(3700, TabGroup.ImpostorRoles, CustomRoles.ImperiusCurse);
+        ShapeImperiusCurseShapeshiftDuration = FloatOptionItem.Create(3710, "ShapeshiftDuration", new(2.5f, 180f, 2.5f), 300, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.ImperiusCurse])
+            .SetValueFormat(OptionFormat.Seconds);
+        ImperiusCurseShapeshiftCooldown = FloatOptionItem.Create(3711, "ShapeshiftCooldown", new(1f, 180f, 1f), 15f, TabGroup.ImpostorRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.ImperiusCurse])
+            .SetValueFormat(OptionFormat.Seconds);
+        Wildling.SetupCustomOption();
+
+
+        TextOptionItem.Create(100003, "SubType.SemiShapeshifter", TabGroup.ImpostorRoles) // KILLING
+            .SetGameMode(CustomGameMode.Standard)
+            .SetHeader(true)
+            .SetColor(new Color32(255, 25, 25, byte.MaxValue));// KILLING
+
+        EvilTracker.SetupCustomOption();
+        Hacker.SetupCustomOption(); //anonymous
         SetupRoleOptions(2400, TabGroup.ImpostorRoles, CustomRoles.Bomber);
         BomberRadius = FloatOptionItem.Create(2018, "BomberRadius", new(0.5f, 5f, 0.5f), 2f, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Bomber])
@@ -1139,135 +1273,16 @@ public static class Options
             .SetParent(NukerChance)
             .SetValueFormat(OptionFormat.Multiplier);
         BountyHunter.SetupCustomOption();
-        Camouflager.SetupCustomOption();
-        Chronomancer.SetupCustomOption();
-        SetupRoleOptions(2600, TabGroup.ImpostorRoles, CustomRoles.Cleaner);
-        CleanerKillCooldown = FloatOptionItem.Create(2610, "KillCooldown", new(5f, 180f, 2.5f), 30f, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Cleaner])
-            .SetValueFormat(OptionFormat.Seconds);
-        KillCooldownAfterCleaning = FloatOptionItem.Create(2611, "KillCooldownAfterCleaning", new(5f, 180f, 2.5f), 60f, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Cleaner])
-            .SetValueFormat(OptionFormat.Seconds);
-        EvilDiviner.SetupCustomOption();
-        Councillor.SetupCustomOption();
-        SetupRoleOptions(1000, TabGroup.ImpostorRoles, CustomRoles.CursedWolf); //TOH_Y
-        GuardSpellTimes = IntegerOptionItem.Create(1010, "GuardSpellTimes", new(1, 15, 1), 3, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.CursedWolf])
-            .SetValueFormat(OptionFormat.Times);
         Dazzler.SetupCustomOption();
         Deathpact.SetupCustomOption();
         Devourer.SetupCustomOption();
-        AntiAdminer.SetupCustomOption(); // Disruptor
-        SetupRoleOptions(3600, TabGroup.ImpostorRoles, CustomRoles.Escapee);
-        EscapeeSSDuration = FloatOptionItem.Create(3610, "ShapeshiftDuration", new(1f, 180f, 1f), 1, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Escapee])
-            .SetValueFormat(OptionFormat.Seconds);
-        EscapeeSSCD = FloatOptionItem.Create(3611, "ShapeshiftCooldown", new(1f, 180f, 1f), 5f, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Escapee])
-            .SetValueFormat(OptionFormat.Seconds);
         FireWorks.SetupCustomOption();
-        Greedier.SetupCustomOption(); //TOH_Y
-        Gangster.SetupCustomOption();
-        SetupRoleOptions(40000, TabGroup.ImpostorRoles, CustomRoles.Godfather);
-        GodfatherChangeOpt = StringOptionItem.Create(40010, "GodfatherTargetCountMode", GodfatherChangeMode, 0, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Godfather]);
-        SetupRoleOptions(300, TabGroup.ImpostorRoles, CustomRoles.ImpostorTOHE);
-        SetupRoleOptions(1500, TabGroup.ImpostorRoles, CustomRoles.Inhibitor);
-        InhibitorCD = FloatOptionItem.Create(1510, "KillCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Inhibitor])
-            .SetValueFormat(OptionFormat.Seconds);
-        SetupRoleOptions(10125, TabGroup.ImpostorRoles, CustomRoles.Ludopath);
-        LudopathRandomKillCD = IntegerOptionItem.Create(10130, "LudopathRandomKillCD", new(1, 100, 1), 45, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Ludopath])
-            .SetValueFormat(OptionFormat.Seconds);
-
-        Lurker.SetupCustomOption();
-   //     Mare.SetupCustomOption();
         SerialKiller.SetupCustomOption();
-        SetupRoleOptions(3800, TabGroup.ImpostorRoles, CustomRoles.Miner);
-        MinerSSDuration = FloatOptionItem.Create(3613, "ShapeshiftDuration", new(1f, 180f, 1f), 1, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Miner])
-            .SetValueFormat(OptionFormat.Seconds);
-        MinerSSCD = FloatOptionItem.Create(3614, "ShapeshiftCooldown", new(1f, 180f, 1f), 15f, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Miner])
-            .SetValueFormat(OptionFormat.Seconds);
-        Morphling.SetupCustomOption();
-        SetupRoleOptions(3100, TabGroup.ImpostorRoles, CustomRoles.Mafia); // Nemesis
-        MafiaCanKillNum = IntegerOptionItem.Create(3200, "MafiaCanKillNum", new(0, 15, 1), 1, TabGroup.ImpostorRoles, false)
-        .SetParent(CustomRoleSpawnChances[CustomRoles.Mafia])
-            .SetValueFormat(OptionFormat.Players);
-        LegacyMafia = BooleanOptionItem.Create(3210, "LegacyMafia", false, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Mafia]);
-        MafiaShapeshiftCD = FloatOptionItem.Create(3211, "ShapeshiftCooldown", new(1f, 180f, 1f), 15f, TabGroup.ImpostorRoles, false)
-            .SetParent(LegacyMafia)
-            .SetValueFormat(OptionFormat.Seconds);
-        MafiaShapeshiftDur = FloatOptionItem.Create(3212, "ShapeshiftDuration", new(1f, 180f, 1f), 30f, TabGroup.ImpostorRoles, false)
-            .SetParent(LegacyMafia)
-            .SetValueFormat(OptionFormat.Seconds);
         Assassin.SetupCustomOption(); // Ninja
         Pitfall.SetupCustomOption();
-        Puppeteer.SetupCustomOption();
         QuickShooter.SetupCustomOption();
-        SetupRoleOptions(1550, TabGroup.ImpostorRoles, CustomRoles.Saboteur);
-        SaboteurCD = FloatOptionItem.Create(1560, "KillCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Saboteur])
-            .SetValueFormat(OptionFormat.Seconds);
-        SetupRoleOptions(4000, TabGroup.ImpostorRoles, CustomRoles.Scavenger);
-        ScavengerKillCooldown = FloatOptionItem.Create(4010, "KillCooldown", new(5f, 180f, 2.5f), 40f, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Scavenger])
-            .SetValueFormat(OptionFormat.Seconds);
-        SetupRoleOptions(4100, TabGroup.ImpostorRoles, CustomRoles.ShapeMaster);
-        ShapeMasterShapeshiftDuration = FloatOptionItem.Create(4110, "ShapeshiftDuration", new(1, 60, 1), 10, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.ShapeMaster])
-            .SetValueFormat(OptionFormat.Seconds);
-        SetupRoleOptions(400, TabGroup.ImpostorRoles, CustomRoles.ShapeshifterTOHE);
-        ShapeshiftCD = FloatOptionItem.Create(402, "ShapeshiftCooldown", new(1f, 180f, 1f), 15f, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.ShapeshifterTOHE])
-            .SetValueFormat(OptionFormat.Seconds);
-        ShapeshiftDur = FloatOptionItem.Create(403, "ShapeshiftDuration", new(1f, 180f, 1f), 30f, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.ShapeshifterTOHE])
-            .SetValueFormat(OptionFormat.Seconds);
-
-
         Sniper.SetupCustomOption();
-        SetupRoleOptions(3700, TabGroup.ImpostorRoles, CustomRoles.ImperiusCurse);
-        ShapeImperiusCurseShapeshiftDuration = FloatOptionItem.Create(3710, "ShapeshiftDuration", new(2.5f, 180f, 2.5f), 300, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.ImperiusCurse])
-            .SetValueFormat(OptionFormat.Seconds);
-        ImperiusCurseShapeshiftCooldown = FloatOptionItem.Create(3711, "ShapeshiftCooldown", new(1f, 180f, 1f), 15f, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.ImperiusCurse])
-            .SetValueFormat(OptionFormat.Seconds);
-        Witch.SetupCustomOption(); //spellcaster
-        Swooper.SetupCustomOption();
-        TimeThief.SetupCustomOption();
-        SetupRoleOptions(16500, TabGroup.ImpostorRoles, CustomRoles.BoobyTrap);
-        BTKillCooldown = FloatOptionItem.Create(16515, "KillCooldown", new(2.5f, 180f, 2.5f), 30f, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.BoobyTrap])
-            .SetValueFormat(OptionFormat.Seconds);
-        TrapConsecutiveBodies = BooleanOptionItem.Create(16516, "TrapConsecutiveBodies", true, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.BoobyTrap]);
-        TrapTrapsterBody = BooleanOptionItem.Create(16517, "TrapTrapsterBody", true, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.BoobyTrap]);
-        TrapConsecutiveTrapsterBodies = BooleanOptionItem.Create(16518, "TrapConsecutiveBodies", true, TabGroup.ImpostorRoles, false)
-            .SetParent(TrapTrapsterBody);
-        SetupRoleOptions(4300, TabGroup.ImpostorRoles, CustomRoles.Trickster);
         Twister.SetupCustomOption();
-        SetupRoleOptions(10025, TabGroup.ImpostorRoles, CustomRoles.Underdog);
-        UnderdogMaximumPlayersNeededToKill = IntegerOptionItem.Create(10030, "UnderdogMaximumPlayersNeededToKill", new(1, 15, 1), 5, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Underdog])
-            .SetValueFormat(OptionFormat.Players);
-        UnderdogKillCooldown = FloatOptionItem.Create(10031, "KillCooldown", new(0f, 180f, 2.5f), 12.5f, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Underdog])
-            .SetValueFormat(OptionFormat.Seconds);
-        Undertaker.SetupCustomOption();
-        Vampire.SetupCustomOption();
-        SetupRoleOptions(3400, TabGroup.ImpostorRoles, CustomRoles.Vindicator);
-        VindicatorAdditionalVote = IntegerOptionItem.Create(3410, "MayorAdditionalVote", new(1, 20, 1), 3, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Vindicator])
-            .SetValueFormat(OptionFormat.Votes);
-        VindicatorHideVote = BooleanOptionItem.Create(3411, "MayorHideVote", false, TabGroup.ImpostorRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Vindicator]);
-        SetupRoleOptions(16150, TabGroup.ImpostorRoles, CustomRoles.Visionary);
         SetupRoleOptions(4600, TabGroup.ImpostorRoles, CustomRoles.Warlock);
         WarlockCanKillAllies = BooleanOptionItem.Create(4610, "CanKillAllies", true, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Warlock]);
@@ -1276,8 +1291,6 @@ public static class Options
         WarlockShiftDuration = FloatOptionItem.Create(4612, "ShapeshiftDuration", new(1, 180, 1), 1, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Warlock])
             .SetValueFormat(OptionFormat.Seconds);
-        Wildling.SetupCustomOption();
-
 
 
 
@@ -1320,7 +1333,7 @@ public static class Options
         Chameleon.SetupCustomOption();
         Cleanser.SetupCustomOption();
         Bloodhound.SetupCustomOption();
-        SetupRoleOptions(5050, TabGroup.CrewmateRoles, CustomRoles.CrewmateTOHE);
+    //    SetupRoleOptions(5050, TabGroup.CrewmateRoles, CustomRoles.CrewmateTOHE);
         Deputy.SetupCustomOption();
         SetupRoleOptions(6600, TabGroup.CrewmateRoles, CustomRoles.Detective);
         DetectiveCanknowKiller = BooleanOptionItem.Create(6610, "DetectiveCanknowKiller", true, TabGroup.CrewmateRoles, false)
