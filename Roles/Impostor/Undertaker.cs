@@ -12,7 +12,6 @@ public static class Undertaker
     public static bool IsEnable = false;
 
     public static OptionItem SSCooldown;
-    public static OptionItem SSDuration;
     public static OptionItem KillCooldown;
     public static OptionItem FreezeTime;
 
@@ -24,9 +23,7 @@ public static class Undertaker
         Options.SetupRoleOptions(Id, TabGroup.ImpostorRoles, CustomRoles.Undertaker);
         KillCooldown = FloatOptionItem.Create(Id + 10, "UndertakerKillCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Undertaker])
             .SetValueFormat(OptionFormat.Seconds);
-        SSCooldown = FloatOptionItem.Create(Id + 11, "UndertakerSSCooldown", new(0f, 180f, 2.5f), 15f, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Undertaker])
-            .SetValueFormat(OptionFormat.Seconds);
-        SSDuration = FloatOptionItem.Create(Id + 12, "UndertakerSSDuration", new(2.5f, 180f, 2.5f), 15f, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Undertaker])
+        SSCooldown = FloatOptionItem.Create(Id + 11, "UndertakerSSCooldown", new(0f, 180f, 2.5f), 25f, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Undertaker])
             .SetValueFormat(OptionFormat.Seconds);
         FreezeTime = FloatOptionItem.Create(Id + 13, "UndertakerFreezeDuration", new(1f, 5f, 1f), 5, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Undertaker])
             .SetValueFormat(OptionFormat.Seconds);
@@ -51,7 +48,7 @@ public static class Undertaker
     public static void ApplyGameOptions()
     {
         AURoleOptions.ShapeshifterCooldown = SSCooldown.GetFloat();
-        AURoleOptions.ShapeshifterDuration = SSDuration.GetFloat();
+        AURoleOptions.ShapeshifterDuration = 1f;
     }
 
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
