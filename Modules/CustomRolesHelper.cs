@@ -563,7 +563,7 @@ static class CustomRolesHelper
         return role is
             CustomRoles.SwordsMan or
             CustomRoles.Veteran or
-        //    CustomRoles.CopyCat or
+            CustomRoles.Judge or
             CustomRoles.Bodyguard or
             CustomRoles.Reverie or
             CustomRoles.Crusader or
