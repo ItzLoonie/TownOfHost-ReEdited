@@ -156,7 +156,7 @@ class GameEndChecker
                         {
                             reason = GameOverReason.ImpostorByKill;
                             CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Egoist);
-                            CustomWinnerHolder.WinnerIds.Add(pc.PlayerId);
+                            CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Egoist);
                         }
                 }
 
