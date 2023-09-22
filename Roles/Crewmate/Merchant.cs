@@ -22,6 +22,7 @@ namespace TOHE.Roles.Crewmate
             CustomRoles.Watcher,
             CustomRoles.Seer,
             CustomRoles.Bait,
+            CustomRoles.Cyber,
             CustomRoles.Trapper,
             CustomRoles.Brakar, // Tiebreaker
             CustomRoles.Necroview,

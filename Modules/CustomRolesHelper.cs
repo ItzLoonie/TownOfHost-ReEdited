@@ -245,6 +245,7 @@ static class CustomRolesHelper
             CustomRoles.Lovers or
             CustomRoles.LastImpostor or
             CustomRoles.Ntr or
+            CustomRoles.Cyber or
             CustomRoles.Madmate or
             CustomRoles.Watcher or
             CustomRoles.Admired or

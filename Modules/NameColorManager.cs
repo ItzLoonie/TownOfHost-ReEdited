@@ -142,6 +142,8 @@ public static class NameColorManager
             }
         }
 
+        // Cyber
+        if (target.Is(CustomRoles.Cyber) && Options.CyberKnown.GetBool()) color = Main.roleColors[CustomRoles.Cyber];
 
         // Rogue
         if (seer.Is(CustomRoles.Rogue) && target.Is(CustomRoles.Rogue) && Options.RogueKnowEachOther.GetBool()) color = Main.roleColors[CustomRoles.Rogue];
