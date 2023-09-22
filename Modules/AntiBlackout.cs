@@ -76,6 +76,7 @@ public static class AntiBlackout
             {
                 if ((pc.GetCustomRole().IsNK() && !pc.Is(CustomRoles.Arsonist))) numNeutrals++;
                 else if (pc.Is(CustomRoles.Arsonist) && Options.ArsonistKeepsGameGoing.GetBool()) numNeutrals++;
+                else if (pc.Is(CustomRoles.Succubus)) numNeutrals++;
             }
 
             Logger.Info($" {numNeutrals}", "AntiBlackout Num Neutrals");
