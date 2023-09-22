@@ -76,6 +76,8 @@ public class ModNewsHistory
                         "\n\r<b>【Bug Fixes】</b>" +
                             "\n     - Fixed Mad Psychic" +
                             "\n     - Fixed Werewolf (no longer leaves duplicate bodies)" +
+                            "\n     - Fixed Swapper kicking clients" +
+                            "\n     - Fixed Egoist win screen showing double (hopefully)" +
                             "\n     - Fixed minor issue with Eraser" +
                             "\n     - Fixed bug when Lawyer and Executioner have tasks" +
                             "\n     - Fixed bug that caused some roles can not guess add-ons under certain conditions if the \"Can Guess Add-Ons\" setting is enabled\n\r" +
@@ -100,7 +102,7 @@ public class ModNewsHistory
                             "\n     - \n\r" +
 
                         "\n\r<b>【Removals】</b>" +
-                            "\n     - Removed Covens (Poisoner, Jinx, Potion Master, Medusa, Wraith, and Hex Master are now neutral killers again (Shade, Necromancer, Coven Leader, and Ritualist are now unused))",
+                            "\n     - Removed Covens (Poisoner, Jinx, Potion Master, Medusa, Wraith, and Hex Master are now neutral killers again.\nShade, Necromancer, Coven Leader, and Ritualist are now unused)",
 
                     Date = "2023-9-21T00:00:00Z"
 

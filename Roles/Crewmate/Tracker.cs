@@ -29,12 +29,12 @@ namespace TOHE.Roles.Crewmate
             SetupRoleOptions(Id, TabGroup.CrewmateRoles, CustomRoles.Tracker);
             TrackLimitOpt = IntegerOptionItem.Create(Id + 10, "DivinatorSkillLimit", new(0, 20, 1), 1, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Tracker])
                 .SetValueFormat(OptionFormat.Times);
-            CanGetColoredArrow = BooleanOptionItem.Create(Id + 11, "TrackerCanGetArrowColor", true, TabGroup.CrewmateRoles, false)
+            CanGetColoredArrow = BooleanOptionItem.Create(Id + 15, "TrackerCanGetArrowColor", true, TabGroup.CrewmateRoles, false)
                 .SetParent(CustomRoleSpawnChances[CustomRoles.Tracker]);
-            OptionCanSeeLastRoomInMeeting = BooleanOptionItem.Create(Id + 12, "EvilTrackerCanSeeLastRoomInMeeting", true, TabGroup.CrewmateRoles, false)
+            OptionCanSeeLastRoomInMeeting = BooleanOptionItem.Create(Id + 16, "EvilTrackerCanSeeLastRoomInMeeting", true, TabGroup.CrewmateRoles, false)
                 .SetParent(CustomRoleSpawnChances[CustomRoles.Tracker]);
-            HideVote = BooleanOptionItem.Create(Id + 13, "TrackerHideVote", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Tracker]);
-            TrackerAbilityUseGainWithEachTaskCompleted = FloatOptionItem.Create(Id + 14, "AbilityUseGainWithEachTaskCompleted", new(0f, 5f, 0.1f), 1f, TabGroup.CrewmateRoles, false)
+            HideVote = BooleanOptionItem.Create(Id + 17, "TrackerHideVote", false, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Tracker]);
+            TrackerAbilityUseGainWithEachTaskCompleted = FloatOptionItem.Create(Id + 18, "AbilityUseGainWithEachTaskCompleted", new(0f, 5f, 0.1f), 1f, TabGroup.CrewmateRoles, false)
                 .SetParent(CustomRoleSpawnChances[CustomRoles.Tracker])
                 .SetValueFormat(OptionFormat.Times);
         }
