@@ -81,6 +81,7 @@ public class ModNewsHistory
                             "\n     - Fixed minor issue with Eraser" +
                             "\n     - Fixed bug when Lawyer and Executioner have tasks" +
                             "\n     - Fixed Hex Master win condition" +
+                            "\n     - Fixed bug when Necroview and Visionary used the ability when they are dead" +
                             "\n     - Fixed bug that caused some roles can not guess add-ons under certain conditions if the \"Can Guess Add-Ons\" setting is enabled\n\r" +
 
                         "\n\r<b>【Improvements Roles】</b>" +
