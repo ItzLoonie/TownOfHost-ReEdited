@@ -342,6 +342,9 @@ class CheckMurderPatch
                     if (!Pirate.OnCheckMurder(killer, target))
                         return false;
                     break;
+                case CustomRoles.Doppelganger:
+                    Doppelganger.OnCheckMurder(killer, target);
+                    break;
 
                 case CustomRoles.Arsonist:
                     killer.SetKillCooldown(Options.ArsonistDouseTime.GetFloat());
@@ -1184,7 +1187,7 @@ class MurderPlayerPatch
         Logger.Info($"{__instance.GetNameWithRole()} => {target.GetNameWithRole()}{(target.protectedByGuardian ? "(Protected)" : "")}", "MurderPlayer");
 
         if (RandomSpawn.CustomNetworkTransformPatch.NumOfTP.TryGetValue(__instance.PlayerId, out var num) && num > 2) RandomSpawn.CustomNetworkTransformPatch.NumOfTP[__instance.PlayerId] = 3;
-        if (!target.protectedByGuardian)
+        if (!target.protectedByGuardian || !Doppelganger.DoppelVictim.ContainsKey(target.PlayerId))
             Camouflage.RpcSetSkin(target, ForceRevert: true);
     }
     public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] PlayerControl target)

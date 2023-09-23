@@ -464,6 +464,7 @@ public class Main : BasePlugin
                 {CustomRoles.Seeker, "#ffaa00"},
                 {CustomRoles.SoulCollector, "#A675A1"},
                 {CustomRoles.Imitator, "#B3D94C"},
+                {CustomRoles.Doppelganger,"#f6f4a3" },
             
                 // GM
                 {CustomRoles.GM, "#ff5b70"},
@@ -742,6 +743,7 @@ public enum CustomRoles
 
     //Neutral
     Arsonist,
+    Doppelganger,
     Agitater,
     Bandit,
     Seeker,
@@ -945,6 +947,7 @@ public enum CustomWinner
     SoulCollector = CustomRoles.SoulCollector,
     RuthlessRomantic = CustomRoles.RuthlessRomantic,
     NiceMini = CustomRoles.Mini,
+    Doppelganger = CustomRoles.Doppelganger,
 }
 public enum AdditionalWinners
 {
