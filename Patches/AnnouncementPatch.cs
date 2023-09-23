@@ -74,7 +74,7 @@ public class ModNewsHistory
                             "\n     - Imitator\n\r" +
 
                         "\n\r<b><i>Add-on: (1 add-on)</i></b>" +
-                            "\n     - Cyber" +
+                            "\n     - Cyber\n\r" +
 
                         "\n\r<b>【Bug Fixes】</b>" +
                             "\n     - Fixed Mad Psychic" +
