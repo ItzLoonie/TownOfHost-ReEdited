@@ -73,6 +73,9 @@ public class ModNewsHistory
                             "\n     - Bandit" +
                             "\n     - Imitator\n\r" +
 
+                        "\n\r<b><i>Add-on: (1 add-on)</i></b>" +
+                            "\n     - Cyber" +
+
                         "\n\r<b>【Bug Fixes】</b>" +
                             "\n     - Fixed Mad Psychic" +
                             "\n     - Fixed Werewolf (no longer leaves duplicate bodies)" +
@@ -80,7 +83,7 @@ public class ModNewsHistory
                             "\n     - Fixed Egoist win screen showing double (hopefully)" +
                             "\n     - Fixed minor issue with Eraser" +
                             "\n     - Fixed bug when Lawyer and Executioner have tasks" +
-                            "\n     - Fixed Hex Master win condition" +
+                            "\n     - Fixed Hex Master and Wraith win condition" +
                             "\n     - Fixed bug when Necroview and Visionary used the ability when they are dead" +
                             "\n     - Fixed bug that caused some roles can not guess add-ons under certain conditions if the \"Can Guess Add-Ons\" setting is enabled\n\r" +
 
@@ -98,7 +101,8 @@ public class ModNewsHistory
                             "\n     - Some neutral roles have been given the \"Can Vent\" and \"Has Impostor Vision\" setting" +
                             "\n     - Judge is now counted as Crewmate Killing" +
                             "\n     - The Crewmate and Impostor tabs have been reorganized" +
-                            "\n     - When certain roles abilities end, their votes will no longer be hidden if the \"Hide Vote\" setting is enabled\n\r" +
+                            "\n     - When certain roles abilities end, their votes will no longer be hidden if the \"Hide Vote\" setting is enabled" +
+                            "\n     - Added warning for when black screen prevention is disabled but the NK count is higher than 1\n\r" +
 
                         "\n\r<b>【New Features】</b>" +
                             "\n     - \n\r" +
