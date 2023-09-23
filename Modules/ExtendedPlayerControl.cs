@@ -568,6 +568,8 @@ static class ExtendedPlayerControl
             CustomRoles.RuthlessRomantic => Romantic.RuthlessCanVent.GetBool(),
             CustomRoles.Sidekick => Jackal.CanVentSK.GetBool(),
             CustomRoles.Poisoner => Poisoner.CanVent.GetBool(),
+            CustomRoles.Vampiress => Vampiress.CanVent.GetBool(),
+            CustomRoles.Vampire => Vampire.CanVent.GetBool(),
             CustomRoles.DarkHide => DarkHide.CanVent.GetBool(),
             CustomRoles.NSerialKiller => NSerialKiller.CanVent.GetBool(),
             CustomRoles.Werewolf => Werewolf.CanVent.GetBool(),
@@ -922,6 +924,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Assassin:
                 Assassin.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Vampiress:
+                Vampiress.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.Sans:
                 Sans.SetKillCooldown(player.PlayerId);
