@@ -562,6 +562,67 @@ public class ModNewsHistory
         else if (TranslationController.Instance.currentLanguage.languageID == SupportedLangs.SChinese)
         {
             {
+                // TOHE v3.1.0
+                var news = new ModNews
+                {
+                    Number = 80003,
+                    Title = "Town of Host Re-Edited v3.1.0",
+                    SubTitle = "★★下一个小更新★★",
+                    ShortTitle = "★TOH-RE v3.1.0",
+                    Text = "<size=150%>欢迎来到 TOHE v3.1.0!</size>\n\n<size=125%>支持 Among Us v2023.7.11 和 v2023.7.12</size>\n"
+
+                        + "\n<b>【对应官方版本】</b>\n - 基于官方版本 v4.1.2\r\n"
+
+                        + "\n<b>【身份新增】</b>" +
+                        "\n\r<b><i>内鬼: (2 个新身份)</i></b>" +
+                            "\n     - 坏迷你船员" +
+                            "\n     - 暗杀者\n\r" +
+
+                        "\n\r<b><i>船员: (1 个新身份)</i></b>" +
+                            "\n     - 好迷你船员\n\r" +
+
+                        "\n\r<b><i>中立: (2 个新身份)</i></b>" +
+                            "\n     - 强盗" +
+                            "\n     - 模仿者\n\r" +
+
+                        "\n\r<b>【Bug修复】</b>" +
+                            "\n     - Fixed Mad Psychic" +
+                            "\n     - Fixed Werewolf (no longer leaves duplicate bodies)" +
+                            "\n     - Fixed Swapper kicking clients" +
+                            "\n     - Fixed Egoist win screen showing double (hopefully)" +
+                            "\n     - Fixed minor issue with Eraser" +
+                            "\n     - Fixed bug when Lawyer and Executioner have tasks" +
+                            "\n     - Fixed bug that caused some roles can not guess add-ons under certain conditions if the \"Can Guess Add-Ons\" setting is enabled\n\r" +
+
+                        "\n\r<b>【Improvements Roles】</b>" +
+                            "\n     - Tracker" +
+                            "\n     - Amnesiac\n\r" +
+
+                        "\n\r<b>【New Mod Settings】</b>" +
+                            "\n     - Setting: Random Spawns On Vents\n\r" +
+
+                        "\n\r<b>【Some Changes】</b>" +
+                            "\n     - Keybind \"Set Default All TOHE Options\" was returned" +
+                            "\n     - Demon now Neutral Killer (was Neutral Evil)" +
+                            "\n     - Bomber, Nuker and Medic can no longer be Fragile" +
+                            "\n     - Some neutral roles have been given the \"Can Vent\" and \"Has Impostor Vision\" setting" +
+                            "\n     - Judge is now counted as Crewmate Killing" +
+                            "\n     - The Crewmate and Impostor tabs have been reorganized" +
+                            "\n     - When certain roles abilities end, their votes will no longer be hidden if the \"Hide Vote\" setting is enabled\n\r" +
+
+                        "\n\r<b>【New Features】</b>" +
+                            "\n     - \n\r" +
+
+                        "\n\r<b>【Removals】</b>" +
+                            "\n     - Removed Covens (Poisoner, Jinx, Potion Master, Medusa, Wraith, and Hex Master are now neutral killers again.\nShade, Necromancer, Coven Leader, and Ritualist are now unused)",
+
+                    Date = "2023-9-21T00:00:00Z"
+
+                };
+                AllModNews.Add(news);
+            }
+
+            {
                 // TOHE v3.0.0
                 var news = new ModNews
                 {
