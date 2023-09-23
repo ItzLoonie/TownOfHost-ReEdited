@@ -84,7 +84,7 @@ public class ModNewsHistory
                             "\n     - Fixed Egoist win screen showing double (hopefully)" +
                             "\n     - Fixed minor issue with Eraser" +
                             "\n     - Fixed bug when Lawyer and Executioner have tasks" +
-                            "\n     - Fixed Hex Master win condition" +
+                            "\n     - Fixed Hex Master and Wraith win condition" +
                             "\n     - Fixed bug when Necroview and Visionary used the ability when they are dead" +
                             "\n     - Fixed bug that caused some roles can not guess add-ons under certain conditions if the \"Can Guess Add-Ons\" setting is enabled\n\r" +
 
@@ -568,7 +568,7 @@ public class ModNewsHistory
                 {
                     Number = 80003,
                     Title = "Town of Host Re-Edited v3.1.0",
-                    SubTitle = "★★下一个小更新★★",
+                    SubTitle = "★★更新较小，但仍然有点大★★",
                     ShortTitle = "★TOH-RE v3.1.0",
                     Text = "<size=150%>欢迎来到 TOHE v3.1.0!</size>\n\n<size=125%>支持 Among Us v2023.7.11 和 v2023.7.12</size>\n"
 
@@ -578,7 +578,7 @@ public class ModNewsHistory
                         "\n\r<b><i>内鬼: (3 个新身份)</i></b>" +
                             "\n     - 坏迷你船员" +
                             "\n     - 暗杀者\n\r" +
-                            "\n     -吸血鬼女王\n\r" +
+                            "\n     - 吸血鬼女王(来自TOHTOR)\n\r" +
 
                         "\n\r<b><i>船员: (1 个新身份)</i></b>" +
                             "\n     - 好迷你船员\n\r" +
@@ -586,40 +586,44 @@ public class ModNewsHistory
                         "\n\r<b><i>中立: (2 个新身份)</i></b>" +
                             "\n     - 强盗" +
                             "\n     - 模仿者\n\r" +
-                            "\n\r<b><i>Add-on: (1 add-on)</i></b>" +
-                            "\n     - Cyber\n\r"
 
+                            "\n\r<b><i>附加职业 (1 个附加职业)</i></b>" +
+                            "\n     - 网络人\n\r" +
 
                         "\n\r<b>【Bug修复】</b>" +
-                         "\n     - 修复了疯狂的通灵师" +
-                            "\n     - 修复狼人（不再留下重复的尸体）" +
-                            "\n     - 修复了清洁者的小问题" +
-                            "\n     -修复了妖术师和幽灵获胜的条件" + 
-                            "\n     - 修复了在启用“可以猜测附加职业”设置的情况下，导致某些角色在某些条件下无法\"猜测附加职业\"的错误\n\r" +
+                            "\n     - 修复了背叛的愚者" +
+                            "\n     - 修复了狼人（不再留下重复的尸体）" +
+                            "\n     - 修复了换票师会踢出客户端(Mod)端" +
+                            "\n     - 修复了自我主义者获胜画面显示双重的bug（希望如此）" +
+                            "\n     - 修复了抹除者的小问题" +
+                            "\n     - 修复了律师和处刑者有任务时的bug" +
+                            "\n     - 修复了巫师和魅影的获胜条件" + 
+                            "\n     - 修复了死神和幻想家死亡时还能使用技能的bug" +
+                            "\n     - 修复了在启用\"可以猜测附加职业\"设置的情况下，导致某些身份在某些条件下无法猜测附加职业的bug\n\r" +
 
-                        "\n\r<b>【改进身份】</b>" +
-                            "\n     - 追踪者" +
+                        "\n\r<b>【身份更改】</b>" +
+                            "\n     - 正义追踪者" +
                             "\n     - 失忆者\n\r" +
 
-                        "\n\r<b>【新Mod设置】</b>" +
-                            "\n     - 设置：通风口随机生成\n\r" +
+                        "\n\r<b>【新客户端(Mod)设置】</b>" +
+                            "\n     - 设置：通风口随机出生\n\r" +
 
-                        "\n\r<b>【改变】</b>" +
-                            "\n     - \"设置默认的所有TOHE选项\"已返回" +
-                            "\n     - 恶魔现在是中立杀手（以前是邪恶中立）" +
-                            "\n     - 轰炸机、核武器和医生不再脆弱" +
-                            "\n     - 一些中立角色被赋予了\"可以使用通风口\"和\"拥有内鬼视角\"设置" +
-                            "\n     - 法官现在被视为船员击杀" +
-                            "\n     - 船员和内鬼选项已重新组织" +
-                            "\n     - 当某些角色的能力结束时，如果启用\"隐藏投票\"设置，他们的投票将不再隐藏\n\r" +
-                            "\n     - 添加了黑屏防护禁用但NK计数高于1时的警告\n\r" +
+                        "\n\r<b>【一些改变】</b>" +
+                            "\n     - \"设置默认的所有TOHE选项\"已返厂" +
+                            "\n     - 玩家现在是带刀中立（以前是邪恶中立）" +
+                            "\n     - 自爆兵、核武器和医生不再获得脆弱" +
+                            "\n     - 一些中立身份被赋予了\"可以使用通风口\"和\"拥有内鬼视野\"的设置" +
+                            "\n     - 法官现在被视为带刀船员" +
+                            "\n     - 船员和内鬼标签已重新整理" +
+                            "\n     - 当某些身份的技能结束时，如果启用\"隐藏投票\"的设置，他们的投票将不再隐藏" +
+                            "\n     - 添加了防止黑屏但带刀中立数量大于 1 时的警告\n\r" +
 
+                        "\n\r<b>【迁移】</b>" +
+                            "\n     - 删除了巫师阵营(投毒者、扫把星、药剂师、美杜莎、魅影和巫师又重新成为带刀中立\n遮蔽者、亡灵巫师、巫师领袖和祭祀者现在未被使用)\n\r" +
 
-                        "\n\r<b>【新功能】</b>" +
-                            "\n     - 敬请期待\n\r" +
+                        "\n\r<b>【删除】</b>" +
+                            "\n     - 删除了巫师阵营",
 
-                        "\n\r<b>【去除】</b>" +
-                            "\n     - 移除了巫师阵营",
                     Date = "2023-9-21T00:00:00Z"
 
                 };
