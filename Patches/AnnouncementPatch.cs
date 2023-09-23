@@ -83,7 +83,7 @@ public class ModNewsHistory
                             "\n     - Fixed Egoist win screen showing double (hopefully)" +
                             "\n     - Fixed minor issue with Eraser" +
                             "\n     - Fixed bug when Lawyer and Executioner have tasks" +
-                            "\n     - Fixed Hex Master and Wraith win condition" +
+                            "\n     - Fixed Hex Master win condition" +
                             "\n     - Fixed bug when Necroview and Visionary used the ability when they are dead" +
                             "\n     - Fixed bug that caused some roles can not guess add-ons under certain conditions if the \"Can Guess Add-Ons\" setting is enabled\n\r" +
 
@@ -574,9 +574,10 @@ public class ModNewsHistory
                         + "\n<b>【对应官方版本】</b>\n - 基于官方版本 v4.1.2\r\n"
 
                         + "\n<b>【身份新增】</b>" +
-                        "\n\r<b><i>内鬼: (2 个新身份)</i></b>" +
+                        "\n\r<b><i>内鬼: (3 个新身份)</i></b>" +
                             "\n     - 坏迷你船员" +
                             "\n     - 暗杀者\n\r" +
+                            "\n     -吸血鬼女王\n\r" +
 
                         "\n\r<b><i>船员: (1 个新身份)</i></b>" +
                             "\n     - 好迷你船员\n\r" +
@@ -584,38 +585,40 @@ public class ModNewsHistory
                         "\n\r<b><i>中立: (2 个新身份)</i></b>" +
                             "\n     - 强盗" +
                             "\n     - 模仿者\n\r" +
+                            "\n\r<b><i>Add-on: (1 add-on)</i></b>" +
+                            "\n     - Cyber\n\r"
+
 
                         "\n\r<b>【Bug修复】</b>" +
-                            "\n     - Fixed Mad Psychic" +
-                            "\n     - Fixed Werewolf (no longer leaves duplicate bodies)" +
-                            "\n     - Fixed Swapper kicking clients" +
-                            "\n     - Fixed Egoist win screen showing double (hopefully)" +
-                            "\n     - Fixed minor issue with Eraser" +
-                            "\n     - Fixed bug when Lawyer and Executioner have tasks" +
-                            "\n     - Fixed bug that caused some roles can not guess add-ons under certain conditions if the \"Can Guess Add-Ons\" setting is enabled\n\r" +
+                         "\n     - 修复了疯狂的通灵师" +
+                            "\n     - 修复狼人（不再留下重复的尸体）" +
+                            "\n     - 修复了清洁者的小问题" +
+                            "\n     -修复了妖术师和幽灵获胜的条件" + 
+                            "\n     - 修复了在启用“可以猜测附加职业”设置的情况下，导致某些角色在某些条件下无法\"猜测附加职业\"的错误\n\r" +
 
-                        "\n\r<b>【Improvements Roles】</b>" +
-                            "\n     - Tracker" +
-                            "\n     - Amnesiac\n\r" +
+                        "\n\r<b>【改进身份】</b>" +
+                            "\n     - 追踪者" +
+                            "\n     - 失忆者\n\r" +
 
-                        "\n\r<b>【New Mod Settings】</b>" +
-                            "\n     - Setting: Random Spawns On Vents\n\r" +
+                        "\n\r<b>【新Mod设置】</b>" +
+                            "\n     - 设置：通风口随机生成\n\r" +
 
-                        "\n\r<b>【Some Changes】</b>" +
-                            "\n     - Keybind \"Set Default All TOHE Options\" was returned" +
-                            "\n     - Demon now Neutral Killer (was Neutral Evil)" +
-                            "\n     - Bomber, Nuker and Medic can no longer be Fragile" +
-                            "\n     - Some neutral roles have been given the \"Can Vent\" and \"Has Impostor Vision\" setting" +
-                            "\n     - Judge is now counted as Crewmate Killing" +
-                            "\n     - The Crewmate and Impostor tabs have been reorganized" +
-                            "\n     - When certain roles abilities end, their votes will no longer be hidden if the \"Hide Vote\" setting is enabled\n\r" +
+                        "\n\r<b>【改变】</b>" +
+                            "\n     - \"设置默认的所有TOHE选项\"已返回" +
+                            "\n     - 恶魔现在是中立杀手（以前是邪恶中立）" +
+                            "\n     - 轰炸机、核武器和医生不再脆弱" +
+                            "\n     - 一些中立角色被赋予了\"可以使用通风口\"和\"拥有内鬼视角\"设置" +
+                            "\n     - 法官现在被视为船员击杀" +
+                            "\n     - 船员和内鬼选项已重新组织" +
+                            "\n     - 当某些角色的能力结束时，如果启用\"隐藏投票\"设置，他们的投票将不再隐藏\n\r" +
+                            "\n     - 添加了黑屏防护禁用但NK计数高于1时的警告\n\r" +
 
-                        "\n\r<b>【New Features】</b>" +
-                            "\n     - \n\r" +
 
-                        "\n\r<b>【Removals】</b>" +
-                            "\n     - Removed Covens (Poisoner, Jinx, Potion Master, Medusa, Wraith, and Hex Master are now neutral killers again.\nShade, Necromancer, Coven Leader, and Ritualist are now unused)",
+                        "\n\r<b>【新功能】</b>" +
+                            "\n     - 敬请期待\n\r" +
 
+                        "\n\r<b>【去除】</b>" +
+                            "\n     - 移除了巫师阵营",
                     Date = "2023-9-21T00:00:00Z"
 
                 };
