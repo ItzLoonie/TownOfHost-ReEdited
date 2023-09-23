@@ -34,6 +34,7 @@ static class CustomRolesHelper
                 CustomRoles.Executioner => CustomRoles.Crewmate,
                 CustomRoles.Lawyer => CustomRoles.Crewmate,
                 CustomRoles.Vampire => CustomRoles.Impostor,
+                CustomRoles.Vampiress => CustomRoles.Shapeshifter,
                 CustomRoles.BountyHunter => CustomRoles.Shapeshifter,
                 CustomRoles.Trickster => CustomRoles.Impostor,
                 CustomRoles.Witch => CustomRoles.Impostor,
@@ -595,6 +596,7 @@ static class CustomRolesHelper
             CustomRoles.Morphling or
             CustomRoles.BountyHunter or
             CustomRoles.Vampire or
+            CustomRoles.Vampiress or
             CustomRoles.Witch or
             CustomRoles.Vindicator or
             CustomRoles.ShapeMaster or
@@ -1285,6 +1287,7 @@ static class CustomRolesHelper
                     || pc.Is(CustomRoles.Ludopath)
                     || pc.Is(CustomRoles.Swooper)
                     || pc.Is(CustomRoles.Vampire)
+                    || pc.Is(CustomRoles.Vampiress)
                     || pc.Is(CustomRoles.Sans)
                     || pc.Is(CustomRoles.LastImpostor)
                     || pc.Is(CustomRoles.Bomber)
@@ -1303,6 +1306,7 @@ static class CustomRolesHelper
                     || pc.Is(CustomRoles.BoobyTrap)
                     || pc.Is(CustomRoles.Swooper)
                     || pc.Is(CustomRoles.Vampire)
+                    || pc.Is(CustomRoles.Vampiress)
                     || pc.Is(CustomRoles.Scavenger)
                     || pc.Is(CustomRoles.Puppeteer)
                     || pc.Is(CustomRoles.Warlock)

@@ -214,6 +214,7 @@ internal class ChangeRoleSettings
             EvilTracker.Init();
             Snitch.Init();
             Vampire.Init();
+            Vampiress.Init();
             Poisoner.Init();
             AntiAdminer.Init();
             Monitor.Init();
@@ -531,6 +532,9 @@ internal class SelectRolesPatch
                         break; */
                     case CustomRoles.Vampire:
                         Vampire.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Vampiress:
+                        Vampiress.Add(pc.PlayerId);
                         break;
                     case CustomRoles.SwordsMan:
                         SwordsMan.Add(pc.PlayerId);

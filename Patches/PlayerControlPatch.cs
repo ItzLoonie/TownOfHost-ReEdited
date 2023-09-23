@@ -218,6 +218,17 @@ class CheckMurderPatch
                 case CustomRoles.Vampire:
                     if (!Vampire.OnCheckMurder(killer, target)) return false;
                     break;
+                case CustomRoles.Vampiress:
+                    if (Main.CheckShapeshift[killer.PlayerId])
+                    {
+                        Vampiress.OnCheckMurder(killer, target);
+                    }
+                    if (!Main.CheckShapeshift[killer.PlayerId])
+                    {
+                        Vampiress.OnCheckBite(killer, target);
+                        return false;
+                    }
+                    break;
                 case CustomRoles.Poisoner:
                     if (!Poisoner.OnCheckMurder(killer, target)) return false;
                     break;
@@ -2197,6 +2208,7 @@ class ReportDeadBodyPatch
         Undertaker.OnReportDeadBody();
         Vampire.OnStartMeeting();
         Poisoner.OnStartMeeting();
+        Vampiress.OnStartMeeting();
         Pelican.OnReportDeadBody();
         Bandit.OnReportDeadBody();
         Agitater.OnReportDeadBody();
@@ -2344,6 +2356,7 @@ class FixedUpdatePatch
 
             DoubleTrigger.OnFixedUpdate(player);
             Vampire.OnFixedUpdate(player);
+            Vampiress.OnFixedUpdate(player);
             Poisoner.OnFixedUpdate(player);
             BountyHunter.FixedUpdate(player);
             Seeker.FixedUpdate(player);
@@ -2731,7 +2744,9 @@ class FixedUpdatePatch
                         if (pc.Is(CustomRoles.Vampire) || pc.Is(CustomRoles.Warlock) || pc.Is(CustomRoles.Assassin))
                             Main.AllPlayerKillCooldown[pc.PlayerId] = Options.DefaultKillCooldown * 2;
                         if (pc.Is(CustomRoles.Poisoner))
-                            Main.AllPlayerKillCooldown[pc.PlayerId] = Options.DefaultKillCooldown * 2;
+                            Main.AllPlayerKillCooldown[pc.PlayerId] = Poisoner.KillCooldown.GetFloat() * 2;
+                        if (pc.Is(CustomRoles.Vampiress))
+                            Main.AllPlayerKillCooldown[pc.PlayerId] = Vampiress.KillCooldown.GetFloat() * 2;
                     }
 
                 if (!Main.DoBlockNameChange && AmongUsClient.Instance.AmHost)

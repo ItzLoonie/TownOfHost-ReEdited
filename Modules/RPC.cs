@@ -859,6 +859,9 @@ internal static class RPC
             case CustomRoles.Vampire:
                 Vampire.Add(targetId);
                 break;
+            case CustomRoles.Vampiress:
+                Vampiress.Add(targetId);
+                break;
             case CustomRoles.Executioner:
                 Executioner.Add(targetId);
                 break;
