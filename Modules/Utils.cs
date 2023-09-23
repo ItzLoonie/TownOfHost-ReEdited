@@ -227,17 +227,17 @@ public static class Utils
                 seer.KillFlash();
                 seer.Notify(ColorString(GetRoleColor(CustomRoles.CyberStar), GetString("OnCyberStarDead")));
             }
-         /*   else if (target.Is(CustomRoles.Cyber))
+            else if (target.Is(CustomRoles.Cyber))
             {
                 if (!Options.ImpKnowCyberDead.GetBool() && seer.GetCustomRole().IsImpostor()) continue;
                 if (!Options.NeutralKnowCyberDead.GetBool() && seer.GetCustomRole().IsNeutral()) continue;
                 if (!Options.CrewKnowCyberDead.GetBool() && seer.GetCustomRole().IsCrewmate()) continue;
                 seer.KillFlash();
                 seer.Notify(ColorString(GetRoleColor(CustomRoles.Cyber), GetString("OnCyberDead"))); 
-            } */
+            } 
         }
         if (target.Is(CustomRoles.CyberStar) && !Main.CyberStarDead.Contains(target.PlayerId)) Main.CyberStarDead.Add(target.PlayerId);
-      //  if (target.Is(CustomRoles.Cyber) && !Main.CyberDead.Contains(target.PlayerId)) Main.CyberDead.Add(target.PlayerId);
+        if (target.Is(CustomRoles.Cyber) && !Main.CyberDead.Contains(target.PlayerId)) Main.CyberDead.Add(target.PlayerId);
     }
     public static bool KillFlashCheck(PlayerControl killer, PlayerControl target, PlayerControl seer)
     {
@@ -1799,6 +1799,9 @@ public static class Utils
             if (seer.Is(CustomRoles.SuperStar) && Options.EveryOneKnowSuperStar.GetBool())
                 SelfMark.Append(ColorString(GetRoleColor(CustomRoles.SuperStar), "★"));
 
+            if (seer.Is(CustomRoles.Cyber) && Options.CyberKnown.GetBool())
+                SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Cyber), "★"));
+
             if (BallLightning.IsEnable && BallLightning.IsGhost(seer))
                 SelfMark.Append(ColorString(GetRoleColor(CustomRoles.BallLightning), "■"));
 
@@ -2067,6 +2070,9 @@ public static class Utils
 
                     if (target.Is(CustomRoles.SuperStar) && Options.EveryOneKnowSuperStar.GetBool())
                         TargetMark.Append(ColorString(GetRoleColor(CustomRoles.SuperStar), "★"));
+
+                    if (target.Is(CustomRoles.Cyber) && Options.CyberKnown.GetBool())
+                        TargetMark.Append(ColorString(GetRoleColor(CustomRoles.Cyber), "★"));
 
                     if (BallLightning.IsEnable && BallLightning.IsGhost(target))
                         TargetMark.Append(ColorString(GetRoleColor(CustomRoles.BallLightning), "■"));
@@ -2450,11 +2456,11 @@ public static class Utils
                 break;
         }
 
-        /*    var States = Main.PlayerStates[target.PlayerId];
+            var States = Main.PlayerStates[target.PlayerId];
                 foreach (var subRole in States.SubRoles)
             switch (subRole)
             {
-               /* case CustomRoles.Cyber:
+                case CustomRoles.Cyber:
                 if (GameStates.IsMeeting)
                 {
                     //网红死亡消息提示
@@ -2467,7 +2473,7 @@ public static class Utils
                     }
                 }
                 break;    
-            } */
+            } 
         if (Romantic.BetPlayer.ContainsValue(target.PlayerId))
             Romantic.ChangeRole(target.PlayerId);
         if (Lawyer.Target.ContainsValue(target.PlayerId))

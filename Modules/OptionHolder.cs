@@ -383,6 +383,7 @@ public static class Options
     public static OptionItem ImpKnowCyberDead;
     public static OptionItem CrewKnowCyberDead;
     public static OptionItem NeutralKnowCyberDead;
+    public static OptionItem CyberKnown;
 
     // Sleuth
     public static OptionItem SleuthCanKnowKillerRole;
@@ -1794,6 +1795,21 @@ public static class Options
         BurstKillDelay = FloatOptionItem.Create(13863, "BurstKillDelay", new(1f, 180f, 1f), 5f, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Burst])
             .SetValueFormat(OptionFormat.Seconds);
+        SetupAdtRoleOptions(33050, CustomRoles.Cyber, canSetNum: true);
+        ImpCanBeCyber = BooleanOptionItem.Create(33060, "ImpCanBeCyber", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Cyber]);
+        CrewCanBeCyber = BooleanOptionItem.Create(33061, "CrewCanBeCyber", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Cyber]);
+        NeutralCanBeCyber = BooleanOptionItem.Create(33062, "NeutralCanBeCyber", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Cyber]);
+        ImpKnowCyberDead = BooleanOptionItem.Create(33063, "ImpKnowCyberDead", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Cyber]);
+        CrewKnowCyberDead = BooleanOptionItem.Create(33064, "CrewKnowCyberDead", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Cyber]);
+        NeutralKnowCyberDead = BooleanOptionItem.Create(33065, "NeutralKnowCyberDead", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Cyber]);
+        CyberKnown = BooleanOptionItem.Create(33066, "CyberKnown", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Cyber]);
         SetupAdtRoleOptions(13900, CustomRoles.DoubleShot, canSetNum: true, tab: TabGroup.Addons);
         ImpCanBeDoubleShot = BooleanOptionItem.Create(13910, "ImpCanBeDoubleShot", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.DoubleShot]);
@@ -1860,6 +1876,12 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Brakar]);
         NeutralCanBeTiebreaker = BooleanOptionItem.Create(14912, "NeutralCanBeTiebreaker", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Brakar]);
+        SetupAdtRoleOptions(14200, CustomRoles.Torch, canSetNum: true);
+        TorchVision = FloatOptionItem.Create(14210, "TorchVision", new(0.5f, 5f, 0.25f), 1.25f, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Torch])
+            .SetValueFormat(OptionFormat.Multiplier);
+        TorchAffectedByLights = BooleanOptionItem.Create(14220, "TorchAffectedByLights", false, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Torch]);
         SetupAdtRoleOptions(15000, CustomRoles.Watcher, canSetNum: true);
         ImpCanBeWatcher = BooleanOptionItem.Create(15010, "ImpCanBeWatcher", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Watcher]);
@@ -1950,7 +1972,7 @@ public static class Options
         NeutralCanBeVoidBallot = BooleanOptionItem.Create(36432, "NeutralCanBeVoidBallot", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.VoidBallot]);
 
-        TextOptionItem.Create(100030, "RoleType.Mixed", TabGroup.Addons) // HELPFUL
+        TextOptionItem.Create(100030, "RoleType.Mixed", TabGroup.Addons) // MIXED
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 154, 206, byte.MaxValue));
         SetupAdtRoleOptions(41000, CustomRoles.Antidote, canSetNum: true);
@@ -2031,12 +2053,6 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.DualPersonality]);
     //    HideDualVotes = BooleanOptionItem.Create(14713, "HideDualVotes", true, TabGroup.Addons, false)
      //   .SetParent(DualVotes);
-        SetupAdtRoleOptions(14200, CustomRoles.Torch, canSetNum: true);
-        TorchVision = FloatOptionItem.Create(14210, "TorchVision", new(0.5f, 5f, 0.25f), 1.25f, TabGroup.Addons, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Torch])
-            .SetValueFormat(OptionFormat.Multiplier);
-        TorchAffectedByLights = BooleanOptionItem.Create(14220, "TorchAffectedByLights", false, TabGroup.Addons, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Torch]);
 
 
         TextOptionItem.Create(100016, "RoleType.Impostor", TabGroup.Addons) // IMPOSTOR

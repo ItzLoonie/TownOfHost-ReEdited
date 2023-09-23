@@ -744,6 +744,13 @@ class MeetingHudStartPatch
                 if (!Options.NeutralKnowCyberStarDead.GetBool() && pc.GetCustomRole().IsNeutral()) continue;
                 AddMsg(string.Format(GetString("CyberStarDead"), Main.AllPlayerNames[csId]), pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.CyberStar), GetString("CyberStarNewsTitle")));
             }
+            foreach (var csId in Main.CyberDead)
+            {
+                if (!Options.ImpKnowCyberDead.GetBool() && pc.GetCustomRole().IsImpostor()) continue;
+                if (!Options.NeutralKnowCyberDead.GetBool() && pc.GetCustomRole().IsNeutral()) continue;
+                if (!Options.CrewKnowCyberDead.GetBool() && pc.GetCustomRole().IsCrewmate()) continue;
+                AddMsg(string.Format(GetString("CyberDead"), Main.AllPlayerNames[csId]), pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Cyber), GetString("CyberNewsTitle")));
+            }
 
             //侦探报告线索
             if (Main.DetectiveNotify.ContainsKey(pc.PlayerId))
@@ -779,6 +786,7 @@ class MeetingHudStartPatch
         _ = new LateTask(() => { msgToSend.Do(x => Utils.SendMessage(x.Item1, x.Item2, x.Item3)); }, 3f, "Skill Notice OnMeeting Start");
 
         Main.CyberStarDead.Clear();
+        Main.CyberDead.Clear();
         Main.DetectiveNotify.Clear();
         Main.SleuthNotify.Clear();
         Main.VirusNotify.Clear();
@@ -1126,6 +1134,9 @@ class MeetingHudStartPatch
             //如果是大明星
             if (target.Is(CustomRoles.SuperStar) && Options.EveryOneKnowSuperStar.GetBool())
                 sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.SuperStar), "★"));
+                
+            if (target.Is(CustomRoles.Cyber) && Options.CyberKnown.GetBool())
+                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Cyber), "★"));
                 
             //迷你船员
             if (target.Is(CustomRoles.NiceMini) && Mini.EveryoneCanKnowMini.GetBool())

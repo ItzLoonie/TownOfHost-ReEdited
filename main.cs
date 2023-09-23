@@ -531,7 +531,7 @@ public class Main : BasePlugin
                 {CustomRoles.Nimble, "#FFFAA6"},
                 {CustomRoles.Repairman, "#3333ff"},
 
-          //      {CustomRoles.Cyber, "#ee4a55" },
+                {CustomRoles.Cyber, "#F46F4E" },
 
              //   {CustomRoles.QuickFix, "#3333ff"},
 
@@ -877,7 +877,7 @@ public enum CustomRoles
     Clumsy,
     Nimble,
     Repairman,
-  //  Cyber,
+    Cyber,
     // QuickFix
 }
 //WinData

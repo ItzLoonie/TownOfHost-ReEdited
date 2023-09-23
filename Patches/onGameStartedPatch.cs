@@ -63,6 +63,7 @@ internal class ChangeRoleSettings
             Main.ForCrusade = new();
             Main.KillGhoul = new();
             Main.CyberStarDead = new();
+            Main.CyberDead = new();
             Main.KilledDiseased = new();
             Main.KilledAntidote = new();
             Main.WorkaholicAlive = new();
