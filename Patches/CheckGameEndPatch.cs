@@ -382,8 +382,6 @@ class GameEndChecker
     public static void StartEndGame(GameOverReason reason)
     {
         var sender = new CustomRpcSender("EndGameSender", SendOption.Reliable, true);
-        if (PlayerControl.LocalPlayer.Is(CustomRoles.NSerialKiller) || NSerialKiller.SKVictim.Contains(PlayerControl.LocalPlayer.PlayerId)) Main.nickName = NSerialKiller.HostOGName;
-
         sender.StartMessage(-1); // 5: GameData
         MessageWriter writer = sender.stream;
 
