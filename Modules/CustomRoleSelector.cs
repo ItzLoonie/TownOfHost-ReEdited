@@ -281,6 +281,8 @@ internal class CustomRoleSelector
         if (CustomRoles.Autopsy.IsEnable() && CustomRoles.Doctor.IsEnable() || 
         CustomRoles.Lucky.IsEnable() && CustomRoles.Luckey.IsEnable() ||
         CustomRoles.Sleuth.IsEnable() && CustomRoles.Detective.IsEnable() ||
+        CustomRoles.Cyber.IsEnable() && CustomRoles.SuperStar.IsEnable() ||
+        CustomRoles.Cyber.IsEnable() && CustomRoles.CyberStar.IsEnable() ||
         CustomRoles.Repairman.IsEnable() && CustomRoles.SabotageMaster.IsEnable() ||
         CustomRoles.Lazy.IsEnable() && CustomRoles.Needy.IsEnable())
         {
@@ -291,12 +293,39 @@ internal class CustomRoleSelector
 
         }
 
+        if (Options.NeutralKillingRolesMaxPlayer.GetInt() > 1 && !Options.TemporaryAntiBlackoutFix.GetBool())
+        {
+            _ = new LateTask(() =>
+                {
+                    Logger.SendInGame(GetString("NeutralKillingBlackoutWarning"));
+                }, 4f, "Neutral Killing Blackout Warning");
+
+        }
+
         if (CustomRoles.Autopsy.IsEnable())
         {
                 if (rolesToAssign.Contains(CustomRoles.Doctor))
                     {
                         rolesToAssign.Remove(CustomRoles.Doctor);
                         rolesToAssign.Add(CustomRoles.ScientistTOHE);
+                        Logger.Warn($"Incompatible role in list, replacing with vanilla role", "CustomRoleSelector");
+                    }
+        }
+        if (CustomRoles.Cyber.IsEnable())
+        {
+                if (rolesToAssign.Contains(CustomRoles.SuperStar))
+                    {
+                        rolesToAssign.Remove(CustomRoles.SuperStar);
+                        rolesToAssign.Add(CustomRoles.CrewmateTOHE);
+                        Logger.Warn($"Incompatible role in list, replacing with vanilla role", "CustomRoleSelector");
+                    }
+        }
+        if (CustomRoles.Cyber.IsEnable())
+        {
+                if (rolesToAssign.Contains(CustomRoles.CyberStar))
+                    {
+                        rolesToAssign.Remove(CustomRoles.CyberStar);
+                        rolesToAssign.Add(CustomRoles.CrewmateTOHE);
                         Logger.Warn($"Incompatible role in list, replacing with vanilla role", "CustomRoleSelector");
                     }
         }

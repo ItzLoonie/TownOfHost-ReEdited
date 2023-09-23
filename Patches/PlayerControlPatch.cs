@@ -1147,6 +1147,16 @@ class CheckMurderPatch
                         return false;
                     }
                 }
+                if (target.Is(CustomRoles.Cyber))
+                {
+                    if (Main.AllAlivePlayerControls.Where(x =>
+                    x.PlayerId != killer.PlayerId &&
+                    x.PlayerId != target.PlayerId &&
+                    Vector2.Distance(x.transform.position, target.transform.position) < 2f
+                    ).ToList().Count >= 1) 
+                    return false;
+
+                }
             }
         }
 
@@ -2852,6 +2862,9 @@ class FixedUpdatePatch
 
                 if (target.Is(CustomRoles.SuperStar) && Options.EveryOneKnowSuperStar.GetBool())
                     Mark.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.SuperStar), "★"));
+
+                if (target.Is(CustomRoles.Cyber) && Options.CyberKnown.GetBool())
+                    Mark.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Cyber), "★"));
 
                 if (BallLightning.IsGhost(target))
                     Mark.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.BallLightning), "■"));
