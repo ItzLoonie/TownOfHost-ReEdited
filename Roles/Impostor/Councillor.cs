@@ -114,7 +114,7 @@ public static class Councillor
                 {
                     if (!isUI) Utils.SendMessage(GetString("LaughToWhoMurderSelf"), pc.PlayerId, Utils.ColorString(Color.cyan, GetString("MessageFromKPD")));
                     else pc.ShowPopUp(Utils.ColorString(Color.cyan, GetString("MessageFromKPD")) + "\n" + GetString("LaughToWhoMurderSelf"));
-                    CouncillorSuicide = true;
+                    return true;
                 }
                 if ((target.Is(CustomRoles.NiceMini) || target.Is(CustomRoles.EvilMini)) && Mini.Age < 18)
                 {
