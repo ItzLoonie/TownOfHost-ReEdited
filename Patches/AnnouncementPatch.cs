@@ -55,15 +55,16 @@ public class ModNewsHistory
                 {
                     Number = 100003,
                     Title = "Town of Host Re-Edited v3.1.0",
-                    SubTitle = "★★Next small update★★",
+                    SubTitle = "★★Smaller uodate, but still kinda large★★",
                     ShortTitle = "★TOH-RE v3.1.0",
                     Text = "<size=150%>Welcome to TOHE v3.1.0!</size>\n\n<size=125%>Support for Among Us v2023.7.11 and v2023.7.12</size>\n"
 
                         + "\n<b>【Base】</b>\n - Base on TOH v4.1.2\r\n"
 
                         + "\n<b>【New Roles】</b>" +
-                        "\n\r<b><i>Impostor: (2 roles)</i></b>" +
+                        "\n\r<b><i>Impostor: (3 roles)</i></b>" +
                             "\n     - Evil Mini" +
+                            "\n     - Vampiress (from TOHTOR)" +
                             "\n     - Undertaker\n\r" +
 
                         "\n\r<b><i>Crewmate: (1 role)</i></b>" +
