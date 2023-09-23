@@ -2709,7 +2709,7 @@
   "NeutralCanBeCyber": "<color=#7f8c8d>Нейтралы</color> могут стать <color=#F46F4E>Знаменитым</color>",
   "ImpKnowCyberDead": "<color=#ff1919>Предатели</color> могут знать что <color=#F46F4E>Знаменитый</color> умер",
   "CrewKnowCyberDead": "<color=#8cffff>Члены Экипажа</color> могут знать что <color=#F46F4E>Знаменитый</color> умер",
-  "NeutralKnowCyberDead": "<color=#7f8c8d>Neutrals</color> могут знать что <color=#F46F4E>Знаменитый</color> умер",
+  "NeutralKnowCyberDead": "<color=#7f8c8d>Нейтралы</color> могут знать что <color=#F46F4E>Знаменитый</color> умер",
   "CyberKnown": "Все могут знать кто явялется <color=#F46F4E>Знаменитым</color>",
   "ImpCanBeRepairman": "<color=#ff1919>Предатели</color> могут стать <color=#3333ff>Механиком</color>",
   "CrewCanBeRepairman": "<color=#8cffff>Члены Экипажа</color> могут стать <color=#3333ff>Механиком</color>",
