@@ -455,6 +455,7 @@ public static class Utils
             case CustomRoles.Arsonist:
             case CustomRoles.Jackal:
             case CustomRoles.Bandit:
+            case CustomRoles.Doppelganger:
             case CustomRoles.Sidekick:
             case CustomRoles.Poisoner:
             case CustomRoles.CovenLeader:
@@ -962,6 +963,9 @@ public static class Utils
                 break;
             case CustomRoles.Bandit:
                 ProgressText.Append(Bandit.GetStealLimit(playerId));
+                break;
+            case CustomRoles.Doppelganger:
+                ProgressText.Append(Doppelganger.GetStealLimit(playerId));
                 break;
             case CustomRoles.Spiritcaller:
                 ProgressText.Append(Spiritcaller.GetSpiritLimit());

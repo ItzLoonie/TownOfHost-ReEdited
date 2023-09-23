@@ -206,6 +206,7 @@ internal class ChangeRoleSettings
             Jackal.Init();
             Sidekick.Init();
             Bandit.Init();
+            Doppelganger.Init();
             Sheriff.Init();
             CopyCat.Init();
             Cleanser.Init();
@@ -573,6 +574,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Bandit:
                         Bandit.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Doppelganger:
+                        Doppelganger.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Poisoner:
                         Poisoner.Add(pc.PlayerId);

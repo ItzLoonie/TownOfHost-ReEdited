@@ -526,6 +526,7 @@ static class ExtendedPlayerControl
             CustomRoles.Agitater => pc.IsAlive(),
             CustomRoles.ChiefOfPolice => ChiefOfPolice.CanUseKillButton(pc.PlayerId),
             CustomRoles.EvilMini => pc.IsAlive(),
+            CustomRoles.Doppelganger => pc.IsAlive(),
 
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
@@ -557,6 +558,7 @@ static class ExtendedPlayerControl
             CustomRoles.PlagueBearer or
             CustomRoles.Admirer or
             CustomRoles.Bandit or
+            CustomRoles.Doppelganger or
             CustomRoles.Glitch or
             CustomRoles.Crusader or
             CustomRoles.ChiefOfPolice or
@@ -780,6 +782,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Bandit:
                 Bandit.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Doppelganger:
+                Doppelganger.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.PlagueBearer:
                 PlagueBearer.SetKillCooldown(player.PlayerId);

@@ -1672,6 +1672,7 @@ public static class Options
         Bandit.SetupCustomOption();
         BloodKnight.SetupCustomOption();
         Gamer.SetupCustomOption();
+        Doppelganger.SetupCustomOption();
         Glitch.SetupCustomOption();
         HexMaster.SetupCustomOption();
         Infectious.SetupCustomOption();
