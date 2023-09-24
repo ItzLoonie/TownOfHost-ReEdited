@@ -84,6 +84,7 @@ public class ModNewsHistory
                             "\n     - Fixed Swapper kicking clients" +
                             "\n     - Fixed Egoist win screen showing double" +
                             "\n     - Fixed minor issue with Eraser" +
+                            "\n     - Fixed «Neutrals Win Together» (Again)" +
                             "\n     - Fixed bug when Lawyer and Executioner have tasks" +
                             "\n     - Fixed Hex Master and Wraith win condition" +
                             "\n     - Fixed bug when Necroview and Visionary used the ability when they are dead" +
@@ -396,6 +397,7 @@ public class ModNewsHistory
                             "\n     - Исправлен баг когда Обменник кикал игроков" +
                             "\n     - Исправлен экран победы Эгоиста который показывал двух победителей" +
                             "\n     - Исправлены некоторые баги со Стирачкой" +
+                            "\n     - Исправлена настройка «Все Нейтралы побеждают вместеr» (Снова)" +
                             "\n     - Исправлен баг когда у Адвоката и Палача были задания" +
                             "\n     - Исправлено условие победы у Мастера Проклятий и у Духа" +
                             "\n     - Исправлен баг когда Некровил и Визионер использовали способность, когда они были мертвы" +
