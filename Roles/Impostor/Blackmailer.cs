@@ -39,9 +39,4 @@ public static class Blackmailer
         AURoleOptions.ShapeshifterCooldown = SkillCooldown.GetFloat();
         AURoleOptions.ShapeshifterDuration = 1f;
     }
-
-    internal static bool Extortions(PlayerControl localPlayer, string text)
-    {
-        throw new NotImplementedException();
-    }
 }

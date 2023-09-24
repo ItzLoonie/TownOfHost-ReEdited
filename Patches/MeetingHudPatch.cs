@@ -757,7 +757,7 @@ class MeetingHudStartPatch
             //勒索者勒索警告
             foreach (var player in Blackmailer.ForBlackmailer)
             {        
-                 AddMsg(string.Format(GetString("BlackmailerDead"), Main.AllPlayerNames[player]), pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Blackmailer), GetString("BlackmaileKillTitle")));
+                AddMsg(string.Format(GetString("BlackmailerDead"), Main.AllPlayerNames[player]), pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Blackmailer), GetString("BlackmaileKillTitle")));
             }
             //侦探报告线索
             if (Main.DetectiveNotify.ContainsKey(pc.PlayerId))
