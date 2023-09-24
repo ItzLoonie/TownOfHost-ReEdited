@@ -102,7 +102,6 @@ public class ModNewsHistory
                             "\n     - Bomber, Nuker and Medic can no longer be Fragile" +
                             "\n     - Some neutral roles have been given the «Can Vent» and «Has Impostor Vision» setting" +
                             "\n     - Judge is now counted as Crewmate Killing" +
-                            "\n     - The Crewmate and Impostor tabs have been reorganized" +
                             "\n     - When certain roles abilities end, their votes will no longer be hidden if the «Hide Vote» setting is enabled (Divinator, Eraser, Tracker, Oracle)" +
                             "\n     - Added warning for when black screen prevention is disabled but the NK count is higher than 1\n\r" +
 
@@ -415,7 +414,6 @@ public class ModNewsHistory
                             "\n     - Бомбер, Крипер и Медик больше не могут стать Хрупким (Атрибут)" +
                             "\n     - Некоторым нейтральным ролям были добавлены настройки «Может использовать вентиляцию» и «Имеет дальность обзора Предателя»" +
                             "\n     - Судья теперь считается как Член Экипажа Убийца" +
-                            "\n     - Вкладки Членов Экипажа и Предателей были реорганизованы" +
                             "\n     - Когда навыки у Следователя, Стирачки, Трекера или у Оракла заканчивались, их голоса больше не будут скрываться, если у них включена настройка «Скрыть голос»" +
                             "\n     - Добавлено предупреждение, когда настройка «Предотвращение черного экрана» отключена, но количество Нейтральных Убийц в игре больше одного\n\r" +
 
