@@ -1199,6 +1199,7 @@ public static class Options
         TextOptionItem.Create(100002, "RoleType.ImpSupport", TabGroup.ImpostorRoles)// SUPPORT
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 25, 25, byte.MaxValue));// SUPPORT
+        Blackmailer.SetupCustomOption();
         Camouflager.SetupCustomOption();
         SetupRoleOptions(2600, TabGroup.ImpostorRoles, CustomRoles.Cleaner);
         CleanerKillCooldown = FloatOptionItem.Create(2610, "KillCooldown", new(5f, 180f, 2.5f), 30f, TabGroup.ImpostorRoles, false)
@@ -1300,7 +1301,6 @@ public static class Options
         Devourer.SetupCustomOption();
         Pitfall.SetupCustomOption();
         Twister.SetupCustomOption();
-        Blackmailer.SetupCustomOption();
         
         TextOptionItem.Create(100004, "RoleType.Madmate", TabGroup.ImpostorRoles)
             .SetGameMode(CustomGameMode.Standard)
