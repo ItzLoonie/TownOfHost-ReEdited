@@ -2394,7 +2394,7 @@
   "DivinatorCheck.Result10": "<b>{0}</b> is either Councillor, Dictator, Judge, Cursed Soul, Cleanser, or Cursed Wolf",
   "DivinatorCheck.Result11": "<b>{0}</b> is either Addict, Escapist, Miner, Chronomancer, or Morphling",
   "DivinatorCheck.Result12": "<b>{0}</b> is either Demon, Zombie, Celebrity, Super Star, Deathpact, or Devourer",
-  "DivinatorCheck.Result13": "<b>{0}</b> is either God, Oracle, Visionary, Inspector, Blackmailer, or Pirate",
+  "DivinatorCheck.Result13": "<b>{0}</b> is either God, Oracle, Visionary, Inspector, or Pirate",
   "DivinatorCheck.Result14": "<b>{0}</b> is either Anonymous, Mayor, Paranoid, Pickpocket, or Vindicator",
   "DivinatorCheck.Result15": "<b>{0}</b> is either Infectious, Virus, Monarch, Revolutionist, or Cultist",
   "DivinatorCheck.Result16": "<b>{0}</b> is either Innocent, Masochist, Inhibitor, Mechanic, Shaman, or Saboteur",
