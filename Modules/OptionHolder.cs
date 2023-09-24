@@ -981,20 +981,21 @@ public static class Options
     }
     public static void Load()
     {
+        // Start Load Settings
         if (IsLoaded) return;
         OptionSaver.Initialize();
 
-        // 预设
+        // Preset Option
         _ = PresetOptionItem.Create(0, TabGroup.SystemSettings)
-            .SetColor(new Color32(255, 235, 4, byte.MaxValue))
-            .SetHeader(true);
+                .SetColor(new Color32(255, 235, 4, byte.MaxValue))
+                .SetHeader(true);
 
-        // 游戏模式
+        // Game Mode
         GameMode = StringOptionItem.Create(1, "GameMode", gameModes, 0, TabGroup.GameSettings, false)
             .SetHidden(true)
             .SetHeader(true);
 
-        #region 职业详细设置
+        #region Roles/Add-ons Settings
         CustomRoleCounts = new();
         CustomRoleSpawnChances = new();
         CustomAdtRoleSpawnRate = new();
@@ -2253,11 +2254,11 @@ public static class Options
         NeutralCanBeFool = BooleanOptionItem.Create(19212, "NeutralCanBeFool", true, TabGroup.OtherRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Fool]);
 
-          
+
 
         #endregion
 
-        #region 系统设置
+        #region System Settings
 
         TemporaryAntiBlackoutFix = BooleanOptionItem.Create(44427, "TemporaryAntiBlackoutFix", true, TabGroup.SystemSettings, false)
             .SetHeader(true)
@@ -2368,7 +2369,7 @@ public static class Options
 
         #endregion 
 
-        #region 游戏设置
+        #region Game Settings
 
         //驱逐相关设定
         TextOptionItem.Create(100023, "MenuTitle.Ejections", TabGroup.GameSettings)
@@ -2987,6 +2988,8 @@ public static class Options
 
         #endregion 
 
+
+        // End Load Settings
         OptionSaver.Load();
         IsLoaded = true;
     }

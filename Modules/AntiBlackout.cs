@@ -27,7 +27,7 @@ public static class AntiBlackout
     ///</summary>
     public static bool IsRequired => Options.NoGameEnd.GetBool()
         // Neutrals
-        || Jackal.IsEnable || BloodKnight.IsEnable || Pyromaniac.IsEnable
+        || Jackal.IsEnable || BloodKnight.IsEnable
         || Glitch.IsEnable || Infectious.IsEnable
         || Juggernaut.IsEnable || Pelican.IsEnable
         || Pickpocket.IsEnable || NSerialKiller.IsEnable
@@ -37,6 +37,7 @@ public static class AntiBlackout
         || NWitch.IsEnable || Maverick.IsEnable
         || Shade.IsEnable || RuthlessRomantic.IsEnable
         || Spiritcaller.IsEnable || Occultist.IsEnable
+        || Pyromaniac.IsEnable
         || PlagueBearer.IsEnable || CustomRoles.Pestilence.RoleExist(true)
         || CustomRoles.Sidekick.RoleExist(true) || (CustomRoles.Arsonist.RoleExist(true) && Options.ArsonistKeepsGameGoing.GetBool())
         // Covens

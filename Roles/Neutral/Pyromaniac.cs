@@ -1,6 +1,6 @@
 using AmongUs.GameOptions;
 using System.Collections.Generic;
-using System.Linq;
+
 using static TOHE.Options;
 
 namespace TOHE.Roles.Neutral;
@@ -10,6 +10,7 @@ public static class Pyromaniac
     private static readonly int Id = 128020;
     public static List<byte> playerIdList = new();
     public static List<byte> DousedList = new();
+    public static bool IsEnable = false;
 
     private static OptionItem KillCooldown;
     private static OptionItem DouseCooldown;
@@ -33,16 +34,17 @@ public static class Pyromaniac
     {
         playerIdList = new();
         DousedList = new();
+        IsEnable = false;
     }
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
             Main.ResetCamPlayerList.Add(playerId);
     }
-    public static bool IsEnable => playerIdList.Any();
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
     public static void ApplyGameOptions(IGameOptions opt) => opt.SetVision(HasImpostorVision.GetBool());
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
@@ -52,7 +54,7 @@ public static class Pyromaniac
 
         if (DousedList.Contains(target.PlayerId))
         {
-            new LateTask(() => { killer.SetKillCooldown(BurnCooldown.GetFloat()); }, 0.1f);
+            _ = new LateTask(() => { killer.SetKillCooldown(BurnCooldown.GetFloat()); }, 0.1f);
             return true;
         }
         else

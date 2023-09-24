@@ -2515,7 +2515,7 @@
   "NeutralCanBeUnlucky": "<color=#7f8c8d>Neutrals</color> can become <color=#b8d7a3>Unlucky</color>",
   "BlackmailerSkillCooldown": "Blackmail Cooldown",
   "BlackmailerMax": "Maximum times blackmailed players may speak",
-  "BlackmailerDead": "Warning! <b>{0}</b> has been blackmailed by a <color=#ff1919Blackmailer</color>!",
+  "BlackmailerDead": "Warning! <b>{0}</b> has been blackmailed by a <color=#ff1919>Blackmailer</color>!",
   "BlackmailerShutUp": "Shush! You'll die if you keep talking.",
   "UnluckyTaskSuicideChance": "Chance to suicide from doing tasks",
   "UnluckyKillSuicideChance": "Chance to suicide from killing",
