@@ -37,7 +37,7 @@ public class Main : BasePlugin
 
     public const string PluginGuid = "com.karped1em.townofhostedited";
     public const string PluginVersion = "3.1.0.085";
-    public const string PluginDisplayVersion = "3.1.0 dev 7";
+    public const string PluginDisplayVersion = "3.1.0 dev 8";
     public static readonly string SupportedVersionAU = "2023.7.11";
     public const bool Canary = false;
 
@@ -375,6 +375,7 @@ public class Main : BasePlugin
                 {CustomRoles.Tracker, "#3CB371"},
                 {CustomRoles.Merchant, "#D27D2D"},
                 {CustomRoles.Retributionist, "#228B22"},
+                {CustomRoles.Alchemist, "#a058bf"},
                 {CustomRoles.Deputy, "#df9026"},
                 {CustomRoles.Jailer,"#aa900d"},
                 {CustomRoles.Guardian, "#2E8B57"},
@@ -728,6 +729,7 @@ public enum CustomRoles
     Tracker,
     Merchant,
     Retributionist,
+    Alchemist,
     Deputy,
     Guardian,
     Addict,

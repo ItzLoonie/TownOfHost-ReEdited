@@ -142,6 +142,7 @@ static class CustomRolesHelper
                 CustomRoles.EvilSpirit => CustomRoles.GuardianAngel,
                 CustomRoles.Lurker => CustomRoles.Impostor,
                 CustomRoles.Doomsayer => CustomRoles.Crewmate,
+                CustomRoles.Alchemist => CustomRoles.Engineer,
                 CustomRoles.Pitfall => CustomRoles.Shapeshifter,
                 CustomRoles.Swapper => CustomRoles.Crewmate,
                 CustomRoles.NiceMini => CustomRoles.Crewmate,

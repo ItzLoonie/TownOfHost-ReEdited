@@ -80,6 +80,9 @@ class RepairSystemPatch
         // Repairman
         if (player.Is(CustomRoles.Repairman))
             Repairman.RepairSystem(__instance, systemType, amount);
+        
+        // Alchemist
+        if (player.Is(CustomRoles.Alchemist) && Alchemist.FixNextSabo) Alchemist.RepairSystem(systemType, amount);
 
         if (systemType == SystemTypes.Electrical && 0 <= amount && amount <= 4)
         {
@@ -171,6 +174,15 @@ class SwitchSystemRepairPatch
             SabotageMaster.SwitchSystemRepair(__instance, amount);
         if (player.Is(CustomRoles.Repairman))
             Repairman.SwitchSystemRepair(__instance, amount);
+        if (player.Is(CustomRoles.Alchemist) && Alchemist.FixNextSabo == true)
+        {
+            if (amount is >= 0 and <= 4)
+            {
+                __instance.ActualSwitches = 0;
+                __instance.ExpectedSwitches = 0;
+            }
+            Alchemist.FixNextSabo = false;
+        }
     }
 }
 [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.Start))]

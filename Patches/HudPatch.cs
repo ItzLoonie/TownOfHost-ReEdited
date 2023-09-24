@@ -317,6 +317,10 @@ class HudManagerPatch
                         __instance.AbilityButton.OverrideText(GetString(Chameleon.IsInvis(PlayerControl.LocalPlayer.PlayerId) ? "ChameleonRevertDisguise" : "ChameleonDisguise"));
                         __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         break;
+                    case CustomRoles.Alchemist:
+                        __instance.AbilityButton.OverrideText(GetString("AlchemistVentButtonText"));
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
+                        break;
                     case CustomRoles.Mario:
                         __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.buttonLabelText.text = GetString("VectorVentButtonText");
@@ -485,6 +489,10 @@ class HudManagerPatch
                 else if (player.Is(CustomRoles.Swooper))
                 {
                     LowerInfoText.text = Swooper.GetHudText(player);
+                }
+                else if (player.Is(CustomRoles.Alchemist))
+                {
+                    LowerInfoText.text = Alchemist.GetHudText(player);
                 }
                 else if (player.Is(CustomRoles.Wraith))
                 {

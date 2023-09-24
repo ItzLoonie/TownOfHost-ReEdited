@@ -182,6 +182,7 @@ public static class Divinator
                 CustomRoles.Miner or
                 CustomRoles.Bastion or
                 CustomRoles.Chronomancer or
+                CustomRoles.Alchemist or
                 CustomRoles.Morphling
                 => "Result11",
 

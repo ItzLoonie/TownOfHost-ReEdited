@@ -73,6 +73,7 @@ enum CustomRPC
     SetSoulCollectorLimit,
     SetPelicanEtenNum,
     SwordsManKill,
+    SetAlchemistTimer,
     UndertakerLocationSync,
     SetCounterfeiterSellLimit,
     SetPursuerSellLimit,
@@ -565,6 +566,9 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetChameleonTimer:
                 Chameleon.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetAlchemistTimer:
+                Alchemist.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetBKTimer:
                 BloodKnight.ReceiveRPC(reader);
@@ -1074,6 +1078,9 @@ internal static class RPC
                 break;
             case CustomRoles.BloodKnight:
                 BloodKnight.Add(targetId);
+                break;
+            case CustomRoles.Alchemist:
+                Alchemist.Add(targetId);
                 break;
             case CustomRoles.Banshee:
                 Banshee.Add(targetId);

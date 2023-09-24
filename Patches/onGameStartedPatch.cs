@@ -294,6 +294,7 @@ internal class ChangeRoleSettings
             Traitor.Init();
             Spiritualist.Init();
             Vulture.Init();
+            Alchemist.Init();
             Chameleon.Init();
             Wildling.Init();
             Morphling.Init();
@@ -753,6 +754,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Chameleon:
                         Chameleon.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Alchemist:
+                        Alchemist.Add(pc.PlayerId);
                         break;
                     case CustomRoles.BloodKnight:
                         BloodKnight.Add(pc.PlayerId);

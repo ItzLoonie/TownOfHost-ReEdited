@@ -74,7 +74,18 @@ public static class Utils
     public static void TPAll(Vector2 location)
     {
         foreach (PlayerControl pc in Main.AllAlivePlayerControls)
-            pc.RpcTeleport(new Vector2(location.x, location.y));
+            TP(pc.NetTransform, location);
+    }
+
+    public static void TP(CustomNetworkTransform nt, Vector2 location)
+    {
+        location += new Vector2(0, 0.3636f);
+        if (AmongUsClient.Instance.AmHost) nt.SnapTo(location);
+        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(nt.NetId, (byte)RpcCalls.SnapTo, SendOption.None);
+        //nt.WriteVector2(location, writer);
+        NetHelpers.WriteVector2(location, writer);
+        writer.Write(nt.lastSequenceId);
+        AmongUsClient.Instance.FinishRpcImmediately(writer);
     }
 
     public static void RpcTeleport(this PlayerControl player, Vector2 location)
@@ -210,6 +221,15 @@ public static class Utils
         }
     }
     //誰かが死亡したときのメソッド
+    public static void SetVisionV2(this IGameOptions opt)
+    {
+        opt.SetFloat(FloatOptionNames.ImpostorLightMod, opt.GetFloat(FloatOptionNames.CrewLightMod));
+        if (IsActive(SystemTypes.Electrical))
+        {
+            opt.SetFloat(FloatOptionNames.ImpostorLightMod, opt.GetFloat(FloatOptionNames.ImpostorLightMod) / 5);
+        }
+        return;
+    }
     public static void TargetDies(PlayerControl killer, PlayerControl target)
     {
         if (!target.Data.IsDead || GameStates.IsMeeting) return;
@@ -779,6 +799,9 @@ public static class Utils
                 else TextColor121 = Color.white;
                 ProgressText.Append(ColorString(TextColor12, $"({Completed12}/{taskState12.AllTasksCount})"));
                 ProgressText.Append(ColorString(TextColor121, $" <color=#ffffff>-</color> {Math.Round(Bloodhound.UseLimit[playerId], 1)}"));
+                break;
+            case CustomRoles.Alchemist:
+                ProgressText.Append(Alchemist.GetProgressText(playerId));
                 break;
             case CustomRoles.Chameleon:
                 var taskState13 = Main.PlayerStates?[playerId].GetTaskState();

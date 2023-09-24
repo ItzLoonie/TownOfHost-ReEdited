@@ -109,6 +109,10 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 AURoleOptions.EngineerCooldown = Chameleon.ChameleonCooldown.GetFloat() + 1f;
                 AURoleOptions.EngineerInVentMaxTime = 1f;
                 break;
+            case CustomRoles.Alchemist:
+                AURoleOptions.EngineerCooldown = Alchemist.VentCooldown.GetFloat();
+                AURoleOptions.EngineerInVentMaxTime = 1;
+                break;
             case CustomRoles.ShapeMaster:
                 AURoleOptions.ShapeshifterCooldown = 1f;
                 AURoleOptions.ShapeshifterLeaveSkin = false;
@@ -472,6 +476,13 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 opt.SetFloat(FloatOptionNames.CrewLightMod, Options.GrenadierCauseVision.GetFloat());
                 opt.SetFloat(FloatOptionNames.ImpostorLightMod, Options.GrenadierCauseVision.GetFloat());
             }
+        }
+
+        if (player.GetCustomRole() == CustomRoles.Alchemist && Alchemist.VisionPotionActive)
+        {
+            opt.SetVisionV2();
+            if (Utils.IsActive(SystemTypes.Electrical)) opt.SetFloat(FloatOptionNames.CrewLightMod, Alchemist.VisionOnLightsOut.GetFloat() * 5);
+            else opt.SetFloat(FloatOptionNames.CrewLightMod, Alchemist.Vision.GetFloat());
         }
 
         if (Main.Lighter.Any() && player.GetCustomRole() == CustomRoles.Lighter)
