@@ -1632,6 +1632,17 @@ class ShapeshiftPatch
                     if (shapeshifting)
                         Pitfall.OnShapeshift(shapeshifter);
                     break;
+                case CustomRoles.Blackmailer:
+                if (shapeshifting)
+                {
+                    if (!target.IsAlive())
+                    {
+                        NameNotifyManager.Notify(__instance, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Scavenger), GetString("NotAssassin")));
+                        break;
+                    }
+                    Blackmailer.ForBlackmailer.Add(target.PlayerId);
+                }
+                break;
             }
         }
 

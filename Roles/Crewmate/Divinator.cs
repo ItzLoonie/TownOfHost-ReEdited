@@ -197,6 +197,7 @@ public static class Divinator
                 CustomRoles.Oracle or
                 CustomRoles.Pirate or
                 CustomRoles.Visionary or
+                CustomRoles.Blackmailer or
                 CustomRoles.ParityCop
                 => "Result13",
 

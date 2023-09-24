@@ -432,6 +432,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Pitfall:
                 Pitfall.ApplyGameOptions();
                 break;
+            case CustomRoles.Blackmailer:
+                Blackmailer.ApplyGameOptions();
+                break;
             default:
                 opt.SetVision(false);
                 break;

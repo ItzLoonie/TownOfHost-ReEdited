@@ -2347,7 +2347,7 @@
   "DivinatorCheck.Result10": "<b>{0}</b> 可能是\n议员\n独裁者\n法官\n被诅咒的灵魂\n清洗者\n呪狼",
   "DivinatorCheck.Result11": "<b>{0}</b> 可能是\n瘾君子\n处刑人\n矿工\n天文学家\n化形者",
   "DivinatorCheck.Result12": "<b>{0}</b> 可能是\n玩家\n僵尸\n网红\n大明星\n死亡契约\n吞噬者",
-  "DivinatorCheck.Result13": "<b>{0}</b> 可能是\n神\n神谕\n幻想家\n检查员\n决斗者",
+  "DivinatorCheck.Result13": "<b>{0}</b> 可能是\n神\n神谕\n幻想家\n检查员\n决斗者\n勒索者",
   "DivinatorCheck.Result14": "<b>{0}</b> 可能是\n隐匿者\n市长\n被害妄想症\n小偷\n卫道士",
   "DivinatorCheck.Result15": "<b>{0}</b> 可能是\n感染者阵营\n病毒阵营\n君主阵营\n革命者阵营\n魅魔阵营",
   "DivinatorCheck.Result16": "<b>{0}</b> 可能是\n冤罪师\n受虐狂\n抑制者\n修理工\n萨满\n破坏者",
@@ -3092,5 +3092,12 @@
   "ImpKnowCyberDead": "<color=#ff1919>内鬼阵营</color>知道网络人死亡",
   "CrewKnowCyberDead": "<color=#8cffff>船员阵营</color>知道网络人死亡",
   "NeutralKnowCyberDead": "<color=#7f8c8d>中立阵营</color>知道网络人死亡",
-  "CyberKnown": "所有人都能看到网络人"
+  "CyberKnown": "所有人都能看到网络人",
+  "Blackmailer": "勒索者",
+  "BlackmailerInfo": "给我闭嘴吧你！你不应该知道太多！",
+  "BlackmailerInfoLong": "(内鬼阵营):\n勒索者变形目标时会勒该玩家，被勒索的玩家无法说话，当说话次数大于设置的时候，被勒索的人就会被杀死",
+  "BlackmailerSkillCooldown": "勒索冷却时间",
+  "BlackmailerMax": "目标最大说话次数",
+  "BlackmailerDead": "警告！玩家 <b>{0}</b> 被勒索者勒索了！",
+  "BlackmailerShutUp": "不要继续说话了，否则\n勒索者会杀死你！"
 }
