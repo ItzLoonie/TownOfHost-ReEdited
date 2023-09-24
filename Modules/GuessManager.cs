@@ -12,7 +12,6 @@ using TOHE.Roles.Neutral;
 using TOHE.Roles.AddOns.Common;
 using static TOHE.Translator;
 using TOHE.Roles.Double;
-using TOHE.Roles.Impostor;
 
 namespace TOHE;
 
