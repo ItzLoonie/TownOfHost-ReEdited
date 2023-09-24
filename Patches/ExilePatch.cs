@@ -187,6 +187,7 @@ class ExileControllerWrapUpPatch
                 CustomRoles.Scientist or
                 CustomRoles.Lighter or
                 CustomRoles.Pitfall or
+                CustomRoles.Vampiress or
                 CustomRoles.ScientistTOHE or
                 CustomRoles.Tracefinder or
                 CustomRoles.Doctor or
