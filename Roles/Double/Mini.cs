@@ -46,7 +46,7 @@ public class Mini
         MinorCD = FloatOptionItem.Create(Id + 110, "MinorCooldown", new(0f, 180f, 2.5f), 45f, TabGroup.CrewmateRoles, false).SetParent(CanBeEvil)
             .SetValueFormat(OptionFormat.Seconds);
         MajorCD = FloatOptionItem.Create(Id + 112, "MajorCooldown", new(0f, 180f, 2.5f), 15f, TabGroup.CrewmateRoles, false).SetParent(CanBeEvil)
-           .SetValueFormat(OptionFormat.Seconds);
+            .SetValueFormat(OptionFormat.Seconds);
         UpDateAge = BooleanOptionItem.Create(Id + 114, "UpDateAge", true, TabGroup.CrewmateRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Mini]);
     }
     public static void Init()
@@ -61,6 +61,7 @@ public class Mini
     public static void Add(byte playerId)
     {
         playerIdList.Add(playerId);
+        IsEnable = true;
 
         if (!AmongUsClient.Instance.AmHost) return;
         if (!Main.ResetCamPlayerList.Contains(playerId))
