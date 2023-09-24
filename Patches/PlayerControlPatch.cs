@@ -3134,7 +3134,7 @@ class EnterVentPatch
         HexMaster.OnEnterVent(pc);
         Occultist.OnEnterVent(pc);
 
-        if (pc.Is(CustomRoles.Mayor) && Options.MayorHasPortableButton.GetBool())
+        if (pc.Is(CustomRoles.Mayor) && Options.MayorHasPortableButton.GetBool() && !CopyCat.playerIdList.Contains(pc.PlayerId))
         {
             if (Main.MayorUsedButtonCount.TryGetValue(pc.PlayerId, out var count) && count < Options.MayorNumOfUseButton.GetInt())
             {
@@ -3323,7 +3323,7 @@ class CoEnterVentPatch
         if (Main.BombedVents.Contains(id))
         {
             var pc = __instance.myPlayer;
-            if (pc.GetCustomRole().IsCrewmate() && !pc.Is(CustomRoles.Bastion)) { }
+            if (pc.GetCustomRole().IsCrewmate() && !pc.Is(CustomRoles.Bastion) && !pc.IsCrewVenter() && !CopyCat.playerIdList.Contains(pc.PlayerId)) { }
             else
             {
                 _ = new LateTask(() =>

@@ -1099,6 +1099,15 @@ static class ExtendedPlayerControl
             || target.Is(CustomRoles.Lookout)
             || target.Is(CustomRoles.Bodyguard);
     }
+    public static bool IsCrewVenter(this PlayerControl target)
+    {
+        return target.Is(CustomRoles.EngineerTOHE)
+            || target.Is(CustomRoles.SabotageMaster)
+            || target.Is(CustomRoles.CopyCat)
+            || target.Is(CustomRoles.Monitor) && Monitor.CanVent.GetBool()
+            || target.Is(CustomRoles.SwordsMan) && SwordsMan.CanVent.GetBool()
+            || target.Is(CustomRoles.Nimble);
+    }
     public static void TrapperKilled(this PlayerControl killer, PlayerControl target)
     {
         Logger.Info($"{target?.Data?.PlayerName}はTrapperだった", "Trapper");
