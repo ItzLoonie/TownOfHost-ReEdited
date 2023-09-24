@@ -461,6 +461,7 @@ public static class Utils
             case CustomRoles.Necromancer:
             case CustomRoles.Ritualist:
             case CustomRoles.NSerialKiller:
+            case CustomRoles.Pyromaniac:
             case CustomRoles.Werewolf:
             case CustomRoles.Traitor:
             case CustomRoles.Glitch:

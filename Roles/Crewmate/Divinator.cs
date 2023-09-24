@@ -291,6 +291,7 @@ public static class Divinator
                 CustomRoles.Jinx or
                 CustomRoles.SwordsMan or
                 CustomRoles.Veteran or
+                CustomRoles.Pyromaniac or
                 CustomRoles.TaskManager or
                 CustomRoles.Shroud or
                 CustomRoles.Hangman or

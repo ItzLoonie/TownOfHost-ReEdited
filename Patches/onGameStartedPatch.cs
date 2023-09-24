@@ -278,6 +278,7 @@ internal class ChangeRoleSettings
             Bloodhound.Init();
             Tracker.Init();
             Merchant.Init();
+            Pyromaniac.Init();
             NSerialKiller.Init();
             Maverick.Init();
             Jinx.Init();
@@ -813,6 +814,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.NSerialKiller:
                         NSerialKiller.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Pyromaniac:
+                        Pyromaniac.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Werewolf:
                         Werewolf.Add(pc.PlayerId);

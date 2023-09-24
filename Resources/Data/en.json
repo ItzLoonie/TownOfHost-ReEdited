@@ -216,6 +216,7 @@
   "Mini": "Mini",
   "Jester": "Jester",
   "Arsonist": "Arsonist",
+  "Pyromaniac": "Pyromaniac",
   "Terrorist": "Terrorist",
   "Executioner": "Executioner",
   "Lawyer": "Lawyer",
@@ -581,6 +582,7 @@
   "ChiefOfPoliceInfo": "Recruit as a <color=#ffb347>Sheriff</color> by killing players with knives",
   "NiceMiniInfo": "No one can hurt you until you grow up.",
   "ArsonistInfo": "Douse everyone in gasoline and ignite",
+  "PyromaniacInfo": "Douse and kill everyone",
   "JesterInfo": "Get voted out",
   "OpportunistInfo": "Stay alive until the end",
   "TerroristInfo": "Finish your tasks, THEN die",
@@ -840,6 +842,7 @@
   "ChiefOfPoliceInfoLong": "(Crewmates):\nPlayers with swords can be recruited to join the sheriff's team to serve the crew, but players without swords cannot be recruited.\n note: only one recruitment opportunity",
   "NiceMiniInfoLong": "(Crewmates):\nAs a Nice Mini, you can't be killed until you grow up, and if you die or are evicted from the meeting before you grow up, everyone loses.",
   "ArsonistInfoLong": "(Neutrals):\nThe Arsonist can douse by clicking the kill button on the player and following them for a few seconds. When the dousing starts and it's successful, a shield animation will be displayed as a reminder (only visible to themselves). When the Arsonist has doused all surviving players, the Arsonist can vent to start the fire and win alone.\n\nIf the player name shows 「△」, that means they are being doused;\nif the player name shows 「▲」, it means they have been completely doused.",
+  "PyromaniacInfoLong": "(Neutrals):\nAs the Pyromaniac, your job is to kill everyone and be the last one standing. Your special ability is that you can douse players. Whenever you kill a doused player, your kill cooldown will be very short.",
   "MiniInfoLong": "(Crewmate or Impostor):\nThe Mini is two roles. Either a Nice Mini or an Evil Mini is chosen.\n\nUse '/r nicemini' and '/r evilmini' respectively for more details.",
   "JesterInfoLong": "(Neutrals):\nIf the Jester get voted out, the Jester wins the game alone. If the Jester is still alive at the end of the game, the Jester loses the game. Note: Jester, Executioner, and Innocent can win together.",
   "TerroristInfoLong": "(Neutrals):\nIf the Terrorist dies after completing all tasks, the Terrorist wins the game alone. (They can win by either being voted out or killed).",
@@ -1382,6 +1385,9 @@
   "SniperPrecisionShooting": "Precise Shooting",
   "SniperAimAssist": "Aim Assist",
   "SniperAimAssistOneshot": "One shot Assist",
+
+  "PyroDouseCooldown": "Douse cooldown",
+  "PyroBurnCooldown": "Kill cooldown after killing a doused player",
 
   "UndertakerKillCooldown": "Kill Cooldown",
   "UndertakerSSCooldown": "Mark Cooldown",

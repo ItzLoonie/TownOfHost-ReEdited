@@ -455,6 +455,7 @@ public static class Amnesiac
         if (player.Is(CustomRoles.Succubus) && target.Is(CustomRoles.Succubus)) return true;
         if (player.Is(CustomRoles.Poisoner) && target.Is(CustomRoles.Poisoner)) return true;
         if (player.Is(CustomRoles.Shroud) && target.Is(CustomRoles.Shroud)) return true;
+        if (player.Is(CustomRoles.Pyromaniac) && target.Is(CustomRoles.Pyromaniac)) return true;
         if (player.Is(CustomRoles.Refugee) && target.Is(CustomRoles.Refugee)) return true;
         if (player.Is(CustomRoles.Werewolf) && target.Is(CustomRoles.Werewolf)) return true;
         if (player.Is(CustomRoles.Occultist) && target.Is(CustomRoles.Occultist)) return true;

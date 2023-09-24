@@ -36,8 +36,8 @@ public class Main : BasePlugin
     public static readonly string MainMenuText = " ";
 
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "3.1.0.080";
-    public const string PluginDisplayVersion = "3.1.0 dev 6";
+    public const string PluginVersion = "3.1.0.085";
+    public const string PluginDisplayVersion = "3.1.0 dev 7";
     public static readonly string SupportedVersionAU = "2023.7.11";
     public const bool Canary = false;
 
@@ -392,6 +392,7 @@ public class Main : BasePlugin
                 {CustomRoles.NiceMini, "#edc240" },
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
+                {CustomRoles.Pyromaniac, "#ff6633"},
                 {CustomRoles.Agitater, "#F4A460"},
                 {CustomRoles.Bandit, "#8B008B"},
                 {CustomRoles.PlagueBearer,"#e5f6b4"},
@@ -743,6 +744,7 @@ public enum CustomRoles
 
     //Neutral
     Arsonist,
+    Pyromaniac,
     Agitater,
     Bandit,
     Seeker,
@@ -896,6 +898,7 @@ public enum CustomWinner
     Lovers = CustomRoles.Lovers,
     Executioner = CustomRoles.Executioner,
     Arsonist = CustomRoles.Arsonist,
+    Pyromaniac = CustomRoles.Pyromaniac,
     Agitater = CustomRoles.Agitater,
     Revolutionist = CustomRoles.Revolutionist,
     Jackal = CustomRoles.Jackal,

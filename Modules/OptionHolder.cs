@@ -1698,6 +1698,7 @@ public static class Options
         Poisoner.SetupCustomOption();
         PlagueBearer.SetupCustomOption();
         PotionMaster.SetupCustomOption();
+    //    Pyromaniac.SetupCustomOption(); // Someone please fix this role, Gurge's code doesn't work correctly
         NSerialKiller.SetupCustomOption(); // Serial Killer
     //    Shade.SetupCustomOption();
         Shroud.SetupCustomOption();

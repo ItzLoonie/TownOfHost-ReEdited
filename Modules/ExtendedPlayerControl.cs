@@ -460,6 +460,7 @@ static class ExtendedPlayerControl
             CustomRoles.Pelican => pc.IsAlive(),
             CustomRoles.Arsonist => !pc.IsDouseDone(),
             CustomRoles.Revolutionist => !pc.IsDrawDone(),
+            CustomRoles.Pyromaniac => pc.IsAlive(),
             CustomRoles.SwordsMan => pc.IsAlive(),
             CustomRoles.Jackal => pc.IsAlive(),
             CustomRoles.Bandit => pc.IsAlive(),
@@ -596,6 +597,7 @@ static class ExtendedPlayerControl
             CustomRoles.HexMaster => true,
             CustomRoles.Occultist => true,
             CustomRoles.Wraith => true,
+            CustomRoles.Pyromaniac => Pyromaniac.CanVent.GetBool(),
             CustomRoles.Shade => true,
             CustomRoles.Amnesiac => true,
          //   CustomRoles.Chameleon => true,
@@ -628,6 +630,7 @@ static class ExtendedPlayerControl
             CustomRoles.Arsonist or
             CustomRoles.Medusa or
             CustomRoles.SwordsMan or
+            CustomRoles.Pyromaniac or
             CustomRoles.Reverie or
             CustomRoles.Innocent or
             CustomRoles.Pelican or
@@ -754,6 +757,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.PotionMaster:
                 PotionMaster.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Pyromaniac:
+                Pyromaniac.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.Pickpocket:
                 Pickpocket.SetKillCooldown(player.PlayerId);

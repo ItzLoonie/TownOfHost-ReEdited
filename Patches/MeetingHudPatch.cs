@@ -991,6 +991,7 @@ class MeetingHudStartPatch
                 case CustomRoles.Infectious:
                 case CustomRoles.RuthlessRomantic:
                 case CustomRoles.Virus:
+                case CustomRoles.Pyromaniac:
                 case CustomRoles.Medusa:
                 case CustomRoles.Succubus:
                 case CustomRoles.CovenLeader:

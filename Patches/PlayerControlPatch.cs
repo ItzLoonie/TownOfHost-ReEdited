@@ -229,6 +229,9 @@ class CheckMurderPatch
                         return false;
                     }
                     break;
+                case CustomRoles.Pyromaniac:
+                    if (!Pyromaniac.OnCheckMurder(killer, target)) return false;
+                    break;
                 case CustomRoles.Poisoner:
                     if (!Poisoner.OnCheckMurder(killer, target)) return false;
                     break;

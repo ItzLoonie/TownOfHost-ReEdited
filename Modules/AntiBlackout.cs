@@ -27,7 +27,7 @@ public static class AntiBlackout
     ///</summary>
     public static bool IsRequired => Options.NoGameEnd.GetBool()
         // Neutrals
-        || Jackal.IsEnable || BloodKnight.IsEnable
+        || Jackal.IsEnable || BloodKnight.IsEnable || Pyromaniac.IsEnable
         || Glitch.IsEnable || Infectious.IsEnable
         || Juggernaut.IsEnable || Pelican.IsEnable
         || Pickpocket.IsEnable || NSerialKiller.IsEnable

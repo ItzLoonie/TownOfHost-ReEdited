@@ -185,6 +185,7 @@ static class CustomRolesHelper
             CustomRoles.Monarch => RoleTypes.Impostor,
             CustomRoles.Deputy => RoleTypes.Impostor,
             CustomRoles.Arsonist => RoleTypes.Impostor,
+            CustomRoles.Pyromaniac => RoleTypes.Impostor,
             CustomRoles.Jackal => RoleTypes.Impostor,
             CustomRoles.Bandit => RoleTypes.Impostor,
             CustomRoles.Medusa => RoleTypes.Impostor,
@@ -387,6 +388,7 @@ static class CustomRolesHelper
             CustomRoles.Sidekick or
             CustomRoles.Infectious or
             CustomRoles.Glitch or
+            CustomRoles.Pyromaniac or
             CustomRoles.Shade or
             CustomRoles.Medusa or
             CustomRoles.Wraith or
@@ -425,6 +427,7 @@ static class CustomRolesHelper
             CustomRoles.Refugee or
             CustomRoles.Parasite or
             CustomRoles.NSerialKiller or
+            CustomRoles.Pyromaniac or
             CustomRoles.Werewolf or
             CustomRoles.PotionMaster or
             CustomRoles.Gamer or
@@ -532,7 +535,7 @@ static class CustomRolesHelper
             CustomRoles.CovenLeader or
             CustomRoles.Ritualist or
             CustomRoles.Refugee or
-    //        CustomRoles.Minion or
+            CustomRoles.Pyromaniac or
             CustomRoles.Infectious or
             CustomRoles.Wraith or
             CustomRoles.Crewpostor or
@@ -681,7 +684,7 @@ static class CustomRolesHelper
             CustomRoles.Juggernaut or
             CustomRoles.CovenLeader or
             CustomRoles.Refugee or
-    //        CustomRoles.Minion or
+            CustomRoles.Pyromaniac or
             CustomRoles.Jinx or
             CustomRoles.Lawyer or
             CustomRoles.Arsonist or
@@ -768,6 +771,7 @@ static class CustomRolesHelper
             CustomRoles.Revolutionist or
             CustomRoles.Maverick or
             CustomRoles.NWitch or
+            CustomRoles.Pyromaniac or
             CustomRoles.Shroud or
             CustomRoles.Succubus or
             CustomRoles.Gamer or
@@ -1571,6 +1575,7 @@ static class CustomRolesHelper
            CustomRoles.Jinx => CountTypes.Jinx,
            CustomRoles.Infectious => CountTypes.Infectious,
            CustomRoles.Crewpostor => CountTypes.Impostor,
+           CustomRoles.Pyromaniac => CountTypes.Pyromaniac,
            CustomRoles.Virus => CountTypes.Virus,
            CustomRoles.PotionMaster => CountTypes.PotionMaster,
            CustomRoles.Ritualist => CountTypes.Coven,
@@ -1630,6 +1635,7 @@ public enum CountTypes
     PlagueBearer,
     Glitch,
     Arsonist,
+    Pyromaniac,
     Shroud,
     Werewolf,
     Agitater,

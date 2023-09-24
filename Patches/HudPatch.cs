@@ -212,6 +212,7 @@ class HudManagerPatch
                         break;
                     case CustomRoles.NSerialKiller:
                     case CustomRoles.Juggernaut:
+                    case CustomRoles.Pyromaniac:
                     case CustomRoles.Jackal:
                     case CustomRoles.Virus:
                     case CustomRoles.BloodKnight:
