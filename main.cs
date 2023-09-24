@@ -129,6 +129,7 @@ public class Main : BasePlugin
     //public static Dictionary<byte, long> FlashbangInProtect = new();
     public static List<byte> CyberStarDead = new();
     public static List<byte> CyberDead = new();
+    public static List<int> BombedVents = new();
     public static List<byte> WorkaholicAlive = new();
     public static List<byte> BurstBodies = new();
     public static List<byte> BaitAlive = new();
@@ -337,6 +338,7 @@ public class Main : BasePlugin
                 {CustomRoles.Snitch, "#b8fb4f"},
                 {CustomRoles.Marshall, "#5573aa"},
                 {CustomRoles.Mayor, "#204d42"},
+                {CustomRoles.Bastion, "#696969"},
                 {CustomRoles.Paranoia, "#c993f5"},
                 {CustomRoles.Psychic, "#6F698C"},
                 {CustomRoles.Cleanser,"#98FF98" },
@@ -687,6 +689,7 @@ public enum CustomRoles
     CyberStar,
     Cleanser,
     Mayor,
+    Bastion,
     Paranoia,
     Psychic,
     SabotageMaster,

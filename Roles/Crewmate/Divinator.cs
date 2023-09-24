@@ -180,6 +180,7 @@ public static class Divinator
                 CustomRoles.Addict or
                 CustomRoles.Escapee or
                 CustomRoles.Miner or
+                CustomRoles.Bastion or
                 CustomRoles.Chronomancer or
                 CustomRoles.Morphling
                 => "Result11",

@@ -33,6 +33,7 @@ static class CustomRolesHelper
                 CustomRoles.Terrorist => CustomRoles.Engineer,
                 CustomRoles.Executioner => CustomRoles.Crewmate,
                 CustomRoles.Lawyer => CustomRoles.Crewmate,
+                CustomRoles.Bastion => CustomRoles.Engineer,
                 CustomRoles.Vampire => CustomRoles.Impostor,
                 CustomRoles.Vampiress => CustomRoles.Shapeshifter,
                 CustomRoles.BountyHunter => CustomRoles.Shapeshifter,
@@ -570,6 +571,7 @@ static class CustomRolesHelper
             CustomRoles.Veteran or
             CustomRoles.Judge or
             CustomRoles.Bodyguard or
+            CustomRoles.Bastion or
             CustomRoles.Reverie or
             CustomRoles.Crusader or
             CustomRoles.NiceGuesser or

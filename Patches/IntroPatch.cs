@@ -275,9 +275,6 @@ class BeginCrewmatePatch
             case CustomRoles.Chameleon:
                 PlayerControl.LocalPlayer.Data.Role.IntroSound = PlayerControl.LocalPlayer.MyPhysics.ImpostorDiscoveredSound;
                 break;
-            case CustomRoles.Addict:
-                PlayerControl.LocalPlayer.Data.Role.IntroSound = ShipStatus.Instance.VentEnterSound;
-                break;
         /*    case CustomRoles.ParityCop:
             case CustomRoles.Mediumshiper:
             case CustomRoles.Mayor:

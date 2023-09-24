@@ -103,6 +103,7 @@ internal class ChangeRoleSettings
             Main.AllKillers = new();
             Main.MadGrenadierBlinding = new();
             Main.CursedWolfSpellCount = new();
+            Main.BombedVents = new();
             Main.JinxSpellCount = new();
             Main.OverDeadPlayerList = new();
             Main.Provoked = new();

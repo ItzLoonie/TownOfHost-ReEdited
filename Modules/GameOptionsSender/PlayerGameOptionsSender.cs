@@ -256,6 +256,10 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 AURoleOptions.EngineerCooldown = Options.TimeMasterSkillCooldown.GetFloat();
                 AURoleOptions.EngineerInVentMaxTime = 1;
                 break;
+            case CustomRoles.Bastion:
+                AURoleOptions.EngineerInVentMaxTime = 1;
+                AURoleOptions.EngineerCooldown = Options.BastionBombCooldown.GetFloat();
+                break;
             case CustomRoles.FFF:
             case CustomRoles.Pursuer:
             case CustomRoles.Necromancer:
