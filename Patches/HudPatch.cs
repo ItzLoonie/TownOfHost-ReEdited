@@ -326,6 +326,10 @@ class HudManagerPatch
                         __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.buttonLabelText.text = GetString("VeteranVentButtonText");
                         break;
+                    case CustomRoles.Bastion:
+                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
+                        __instance.AbilityButton.buttonLabelText.text = GetString("BastionVentButtonText");
+                        break;
                     case CustomRoles.TimeMaster:
                         __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
                         __instance.AbilityButton.buttonLabelText.text = GetString("TimeMasterVentButtonText");

@@ -2200,6 +2200,7 @@ class ReportDeadBodyPatch
         Main.GuesserGuessed.Clear();
         Main.VeteranInProtect.Clear();
         Main.GrenadierBlinding.Clear();
+        Main.BombedVents.Clear();
         Main.MadGrenadierBlinding.Clear();
         Main.Lighter.Clear();
         Main.AllKillers.Clear();
@@ -3200,6 +3201,15 @@ class EnterVentPatch
         Chameleon.OnEnterVent(pc, __instance);
         Lurker.OnEnterVent(pc);
 
+        if (pc.GetCustomRole() == CustomRoles.Bastion)
+        {
+            {
+                if (!Main.BombedVents.Contains(__instance.Id)) Main.BombedVents.Add(__instance.Id);
+                pc.Notify(GetString("VentBombSuccess"));
+            }
+        }
+
+
         if (pc.Is(CustomRoles.Veteran) && !Main.VeteranInProtect.ContainsKey(pc.PlayerId))
         {
             Main.VeteranInProtect.Remove(pc.PlayerId);
@@ -3321,7 +3331,27 @@ class CoEnterVentPatch
     {
         if (!AmongUsClient.Instance.AmHost) return true;
 
-        if (AmongUsClient.Instance.IsGameStarted &&
+        if (Main.BombedVents.Contains(id))
+        {
+            var pc = __instance.myPlayer;
+            if (pc.GetCustomRole().IsCrewmate() && !pc.Is(CustomRoles.Bastion)) { }
+            else
+            {
+                _ = new LateTask(() =>
+                {
+                    foreach (var bastion in Main.AllAlivePlayerControls.Where(bastion => bastion.GetCustomRole() == CustomRoles.Bastion))
+                    {
+                        pc.SetRealKiller(bastion);
+                        bastion.Notify(GetString("BastionNotify"));
+                        pc.Notify(GetString("EnteredBombedVent"));
+                        pc.RpcMurderPlayerV3(pc);
+                        Main.PlayerStates[pc.PlayerId].deathReason = PlayerState.DeathReason.Bombed;
+                        Main.BombedVents.Remove(id);}
+                }, 0.5f);
+                return true;
+            }
+        }
+      if (AmongUsClient.Instance.IsGameStarted &&
             __instance.myPlayer.IsDouseDone())
         {
             CustomSoundsManager.RPCPlayCustomSoundAll("Boom");
