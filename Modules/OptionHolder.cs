@@ -249,6 +249,7 @@ public static class Options
     public static OptionItem VeteranAbilityUseGainWithEachTaskCompleted;
     public static OptionItem BodyguardProtectRadius;
     public static OptionItem BastionBombCooldown;
+    public static OptionItem BombsClearAfterMeeting;
     public static OptionItem WitnessCD;
     public static OptionItem WitnessTime;
     public static OptionItem ParanoiaNumOfUseButton;
@@ -1474,6 +1475,8 @@ public static class Options
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(140, 255, 255, byte.MaxValue));
         SetupSingleRoleOptions(5525, TabGroup.CrewmateRoles, CustomRoles.Bastion, 1);
+        BombsClearAfterMeeting = BooleanOptionItem.Create(5529, "BombsClearAfterMeeting", false, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Bastion]);
         BastionBombCooldown = FloatOptionItem.Create(5528, "BombCooldown", new(0, 180, 1), 15, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Bastion])
             .SetValueFormat(OptionFormat.Seconds);

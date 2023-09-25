@@ -1612,6 +1612,7 @@
   "BastionNotify": "A bomb was set off",
   "EnteredBombedVent": "That vent was bombed!",
   "BastionVentButtonText": "Bomb",
+  "BombsClearAfterMeeting": "Bombs clear after meetings",
   "VentBombSuccess": "Bomb has been planted",
   "LowLoadMode": "Low Load Mode",
   "ShowLobbyCode": "Show lobby code in Discord status",

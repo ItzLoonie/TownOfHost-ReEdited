@@ -2205,7 +2205,10 @@ class ReportDeadBodyPatch
         Main.GuesserGuessed.Clear();
         Main.VeteranInProtect.Clear();
         Main.GrenadierBlinding.Clear();
-        Main.BombedVents.Clear();
+        if (Options.BombsClearAfterMeeting.GetBool()) 
+        {
+            Main.BombedVents.Clear();
+        }
         Main.MadGrenadierBlinding.Clear();
         Main.Lighter.Clear();
         Main.AllKillers.Clear();
