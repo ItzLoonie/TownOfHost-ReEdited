@@ -74,6 +74,20 @@ public static class Puppeteer
 
         return false;
     }
+    public static bool OnCheckPuppet(PlayerControl killer, PlayerControl target)
+    {
+        if (target.Is(CustomRoles.Needy) || target.Is(CustomRoles.Lazy) || Medic.ProtectList.Contains(target.PlayerId)) return false;
+            return killer.CheckDoubleTrigger(target, () => 
+            {         
+                PuppeteerList[target.PlayerId] = killer.PlayerId;
+                killer.SetKillCooldown();
+                Utils.NotifyRoles(SpecifySeer: killer);
+                SendRPC(killer.PlayerId, target.PlayerId, 1);
+                killer.RPCPlayCustomSound("Line");
+            }
+
+        );
+    }
 
     public static void OnFixedUpdate(PlayerControl puppet)
     {

@@ -283,7 +283,7 @@ class CheckMurderPatch
                     if (!Occultist.OnCheckMurder(killer, target)) return false;
                     break;
                 case CustomRoles.Puppeteer:
-                    if (!Puppeteer.OnCheckMurder(killer, target)) return false;
+                    if (!Puppeteer.OnCheckPuppet(killer, target)) return false;
                     break;
                 case CustomRoles.NWitch:
                     if (!NWitch.OnCheckMurder(killer, target)) return false;

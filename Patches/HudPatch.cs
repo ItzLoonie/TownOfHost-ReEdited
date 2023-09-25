@@ -164,7 +164,7 @@ class HudManagerPatch
                         break;
                     case CustomRoles.Puppeteer:
                         __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
-                        Puppeteer.SetKillButtonText(__instance);
+                        __instance.KillButton.OverrideText(GetString("KillButtonText"));
                         break;
                     case CustomRoles.CovenLeader:
                         __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
