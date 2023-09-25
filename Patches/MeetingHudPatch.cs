@@ -1148,7 +1148,7 @@ class MeetingHudStartPatch
             
             //玩家被勒索提示
             if (Blackmailer.ForBlackmailer.Contains(target.PlayerId))
-                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.SuperStar), "╳")); 
+                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Blackmailer), "╳")); 
             
             //迷你船员提示
             if (target.Is(CustomRoles.NiceMini) && Mini.EveryoneCanKnowMini.GetBool())

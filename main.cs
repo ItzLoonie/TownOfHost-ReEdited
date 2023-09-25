@@ -176,6 +176,7 @@ public class Main : BasePlugin
     public static Dictionary<byte, long> RevolutionistStart = new();
     public static Dictionary<byte, long> RevolutionistLastTime = new();
     public static Dictionary<byte, int> RevolutionistCountdown = new();
+    public static Dictionary<byte, byte> BloodlustList = new();
     public static Dictionary<byte, byte> SpeedBoostTarget = new();
     public static Dictionary<byte, int> MayorUsedButtonCount = new();
     public static Dictionary<byte, int> ParaUsedButtonCount = new();
@@ -526,6 +527,7 @@ public class Main : BasePlugin
                 {CustomRoles.Aware,"#4B0082"},
                 {CustomRoles.Fragile,"#D3D3D3"},
                 {CustomRoles.Burst, "#B619B9"},
+                {CustomRoles.Bloodlust, "#691a2e"},
 
                 {CustomRoles.Swift, "#ff1919"},
                 {CustomRoles.Mare, "#ff1919"},
@@ -882,6 +884,7 @@ public enum CustomRoles
     Ghoul,
     Mare,
     Burst,
+    Bloodlust,
     Sleuth,
     Clumsy,
     Nimble,

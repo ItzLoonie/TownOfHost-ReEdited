@@ -2025,6 +2025,7 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Aware]);
         AwareknowRole = BooleanOptionItem.Create(42433, "AwareKnowRole", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Aware]);
+        SetupAdtRoleOptions(33080, CustomRoles.Bloodlust, canSetNum: true);
         SetupAdtRoleOptions(33000, CustomRoles.Diseased, canSetNum: true);
         ImpCanBeDiseased = BooleanOptionItem.Create(111426, "ImpCanBeDiseased", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Diseased]);
@@ -2430,6 +2431,7 @@ public static class Options
             .SetParent(RandomMapsMode)
             .SetValueFormat(OptionFormat.Percent);
         NewHideMsg = BooleanOptionItem.Create(00017565, "NewHideMsg", true, TabGroup.GameSettings, false)
+            .SetHidden(true)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(193, 255, 209, byte.MaxValue));
 

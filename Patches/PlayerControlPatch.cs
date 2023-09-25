@@ -201,6 +201,11 @@ class CheckMurderPatch
         if (Counterfeiter.OnClientMurder(killer)) return false;
         if (Pursuer.OnClientMurder(killer)) return false;
         if (Addict.IsImmortal(target)) return false;
+        if (Alchemist.IsProtected && target.Is(CustomRoles.Alchemist))
+        {
+            killer.SetKillCooldown(time: 5f);
+            return false;
+        };
 
         //判定凶手技能
         if (killer.PlayerId != target.PlayerId)
@@ -2394,7 +2399,7 @@ class FixedUpdatePatch
                 }
                 else
                 {
-                    Vector2 puppeteerPos = player.transform.position;
+                    Vector2 bloodlustPos = player.transform.position;
                     Dictionary<byte, float> targetDistance = new();
                     float dis;
                     foreach (var target in PlayerControl.AllPlayerControls)
@@ -2402,7 +2407,7 @@ class FixedUpdatePatch
                         if (!target.IsAlive()) continue;
                         if (target.PlayerId != player.PlayerId && target.PlayerId != Agitater.LastBombedPlayer && !target.Data.IsDead)
                         {
-                            dis = Vector2.Distance(puppeteerPos, target.transform.position);
+                            dis = Vector2.Distance(bloodlustPos, target.transform.position);
                             targetDistance.Add(target.PlayerId, dis);
                         }
                     }
@@ -2733,6 +2738,7 @@ class FixedUpdatePatch
                 Wraith.OnFixedUpdate(player);
                 Shade.OnFixedUpdate(player);
                 Chameleon.OnFixedUpdate(player);
+                Alchemist.OnFixedUpdate(player);
 
                 if (GameStates.IsInTask)
                 {
@@ -2749,6 +2755,52 @@ class FixedUpdatePatch
                     if (player == PlayerControl.LocalPlayer)
                         Monitor.FixedUpdate();
                 }
+                
+                if (GameStates.IsInTask && Main.BloodlustList.ContainsKey(player.PlayerId))
+                {
+                    if (!player.IsAlive() || Pelican.IsEaten(player.PlayerId))
+                    {
+                        Main.BloodlustList.Remove(player.PlayerId);
+                    }
+                    else
+                    {
+                        Vector2 bloodlustPos = player.transform.position;//PuppeteerListのKeyの位置
+                        Dictionary<byte, float> targetDistance = new();
+                        float dis;
+                        foreach (var target in Main.AllAlivePlayerControls)
+                        {
+                            if (target.PlayerId != player.PlayerId && !target.Is(CustomRoles.Glitch) && !target.Is(CustomRoles.Pestilence))
+                            {
+                                dis = Vector2.Distance(bloodlustPos, target.transform.position);
+                                targetDistance.Add(target.PlayerId, dis);
+                            }
+                        }
+                        if (targetDistance.Any())
+                        {
+                            var min = targetDistance.OrderBy(c => c.Value).FirstOrDefault();//一番値が小さい
+                            PlayerControl target = Utils.GetPlayerById(min.Key);
+                            var KillRange = NormalGameOptionsV07.KillDistances[Mathf.Clamp(Main.NormalOptions.KillDistance, 0, 2)];
+                            if (min.Value <= KillRange && player.CanMove && target.CanMove)
+                            {
+                                if (player.RpcCheckAndMurder(target, true))
+                                {
+                                    var bloodlustId = Main.BloodlustList[player.PlayerId];
+                                    RPC.PlaySoundRPC(bloodlustId, Sounds.KillSound);
+                                    target.SetRealKiller(Utils.GetPlayerById(bloodlustId));
+                                    player.RpcMurderPlayerV3(target);
+                                    //Utils.MarkEveryoneDirtySettings();
+                                    player.MarkDirtySettings();
+                                    target.MarkDirtySettings();
+                                    Main.BloodlustList.Remove(player.PlayerId);
+                                    //Utils.NotifyRoles();
+                                    Utils.NotifyRoles(SpecifySeer: player);
+                                    Utils.NotifyRoles(SpecifySeer: target);
+                                }
+                            }
+                        }
+                    }
+                }
+
 
                 if (GameStates.IsInGame && Main.RefixCooldownDelay <= 0)
                     foreach (var pc in Main.AllPlayerControls)
@@ -3198,6 +3250,7 @@ class EnterVentPatch
         Wraith.OnEnterVent(pc, __instance);
         Shade.OnEnterVent(pc, __instance);
         Addict.OnEnterVent(pc, __instance);
+        Alchemist.OnEnterVent(pc, __instance.Id);
         Chameleon.OnEnterVent(pc, __instance);
         Lurker.OnEnterVent(pc);
 
@@ -3414,6 +3467,9 @@ class CoEnterVentPatch
 
         if (__instance.myPlayer.Is(CustomRoles.Chameleon))
             Chameleon.OnCoEnterVent(__instance, id);
+
+        if (__instance.myPlayer.Is(CustomRoles.Alchemist) && Alchemist.PotionID == 6)
+            Alchemist.OnCoEnterVent(__instance, id);
 
         if (__instance.myPlayer.Is(CustomRoles.DovesOfNeace)) __instance.myPlayer.Notify(GetString("DovesOfNeaceMaxUsage"));
         if (__instance.myPlayer.Is(CustomRoles.Veteran)) __instance.myPlayer.Notify(GetString("VeteranMaxUsage"));

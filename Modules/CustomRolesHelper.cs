@@ -308,6 +308,7 @@ static class CustomRolesHelper
             //      CustomRoles.Cyber or
             CustomRoles.DoubleShot or
             CustomRoles.Ghoul or
+            CustomRoles.Bloodlust or
             CustomRoles.EvilSpirit;
     }
     
@@ -1055,6 +1056,14 @@ static class CustomRolesHelper
                     || pc.Is(CustomRoles.Needy))
                     return false;
                 if (pc.GetCustomRole().IsNeutral() || pc.GetCustomRole().IsImpostor() || pc.GetCustomRole().IsTasklessCrewmate() || pc.GetCustomRole().IsTaskBasedCrewmate())
+                    return false;
+                break;
+
+            case CustomRoles.Bloodlust:
+                if (pc.Is(CustomRoles.Lazy)
+                    || pc.Is(CustomRoles.Needy))
+                    return false;
+                if (pc.GetCustomRole().IsNeutral() || pc.GetCustomRole().IsImpostor() || pc.GetCustomRole().IsTasklessCrewmate())
                     return false;
                 break;
 

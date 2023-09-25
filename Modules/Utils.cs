@@ -1826,6 +1826,9 @@ public static class Utils
             if (seer.Is(CustomRoles.Cyber) && Options.CyberKnown.GetBool())
                 SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Cyber), "★"));
 
+            if (Blackmailer.ForBlackmailer.Contains(seer.PlayerId))
+                SelfMark.Append(ColorString(Utils.GetRoleColor(CustomRoles.Blackmailer), "╳")); 
+
             if (BallLightning.IsEnable && BallLightning.IsGhost(seer))
                 SelfMark.Append(ColorString(GetRoleColor(CustomRoles.BallLightning), "■"));
 
