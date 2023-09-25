@@ -2731,6 +2731,7 @@ class FixedUpdatePatch
                 Pitfall.OnFixedUpdate(player);
                 Swooper.OnFixedUpdate(player);
                 Wraith.OnFixedUpdate(player);
+                if (Alchemist.IsEnable) Alchemist.OnFixedUpdate(player);
                 Shade.OnFixedUpdate(player);
                 Chameleon.OnFixedUpdate(player);
 
@@ -3198,6 +3199,7 @@ class EnterVentPatch
         Wraith.OnEnterVent(pc, __instance);
         Shade.OnEnterVent(pc, __instance);
         Addict.OnEnterVent(pc, __instance);
+        if (Alchemist.IsEnable) Alchemist.OnEnterVent(pc, __instance.Id);
         Chameleon.OnEnterVent(pc, __instance);
         Lurker.OnEnterVent(pc);
 
@@ -3414,6 +3416,9 @@ class CoEnterVentPatch
 
         if (__instance.myPlayer.Is(CustomRoles.Chameleon))
             Chameleon.OnCoEnterVent(__instance, id);
+
+        if (__instance.myPlayer.Is(CustomRoles.Alchemist) && Alchemist.PotionID == 6)
+            Alchemist.OnCoEnterVent(__instance, id);
 
         if (__instance.myPlayer.Is(CustomRoles.DovesOfNeace)) __instance.myPlayer.Notify(GetString("DovesOfNeaceMaxUsage"));
         if (__instance.myPlayer.Is(CustomRoles.Veteran)) __instance.myPlayer.Notify(GetString("VeteranMaxUsage"));
