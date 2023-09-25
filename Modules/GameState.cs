@@ -431,7 +431,7 @@ public class TaskState
                 Main.BloodlustList[player.PlayerId] = player.PlayerId;
                 player.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Bloodlust), string.Format(Translator.GetString("BloodlustAdded"))));
             }
-            
+
             if (player.Is(CustomRoles.Alchemist) && player.IsAlive()) Alchemist.OnTaskComplete(player);
 
             if (player.Is(CustomRoles.Divinator) && player.IsAlive())
@@ -445,6 +445,10 @@ public class TaskState
             if (player.Is(CustomRoles.Grenadier) && player.IsAlive())
             {
                 Main.GrenadierNumOfUsed[player.PlayerId] += Options.GrenadierAbilityUseGainWithEachTaskCompleted.GetFloat();
+            }
+            if (player.Is(CustomRoles.Bastion) && player.IsAlive())
+            {
+                Main.BastionNumberOfAbilityUses += Options.BastionAbilityUseGainWithEachTaskCompleted.GetFloat();
             }
             if (player.Is(CustomRoles.Lighter) && player.IsAlive())
             {

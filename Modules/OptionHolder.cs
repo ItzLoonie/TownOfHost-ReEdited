@@ -250,6 +250,8 @@ public static class Options
     public static OptionItem BodyguardProtectRadius;
     public static OptionItem BastionBombCooldown;
     public static OptionItem BombsClearAfterMeeting;
+    public static OptionItem BastionAbilityUseGainWithEachTaskCompleted;
+    public static OptionItem BastionMaxBombs;
     public static OptionItem WitnessCD;
     public static OptionItem WitnessTime;
     public static OptionItem ParanoiaNumOfUseButton;
@@ -1480,6 +1482,11 @@ public static class Options
         BastionBombCooldown = FloatOptionItem.Create(5528, "BombCooldown", new(0, 180, 1), 15, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Bastion])
             .SetValueFormat(OptionFormat.Seconds);
+        BastionAbilityUseGainWithEachTaskCompleted = FloatOptionItem.Create(5530, "AbilityUseGainWithEachTaskCompleted", new(0f, 5f, 0.1f), 1f, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Bastion])
+            .SetValueFormat(OptionFormat.Times);
+        BastionMaxBombs = IntegerOptionItem.Create(5531, "BastionMaxBombs", new(1, 20, 1), 5, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Bastion]);
         SetupRoleOptions(8400, TabGroup.CrewmateRoles, CustomRoles.Bodyguard);
         BodyguardProtectRadius = FloatOptionItem.Create(8410, "BodyguardProtectRadius", new(0.5f, 5f, 0.5f), 1.5f, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Bodyguard])

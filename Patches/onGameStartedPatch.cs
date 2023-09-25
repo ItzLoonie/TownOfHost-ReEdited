@@ -738,6 +738,9 @@ internal class SelectRolesPatch
                     case CustomRoles.Grenadier:
                         Main.GrenadierNumOfUsed.Add(pc.PlayerId, Options.GrenadierSkillMaxOfUseage.GetInt());
                         break;
+                    case CustomRoles.Bastion:
+                        Main.BastionNumberOfAbilityUses = Options.BastionMaxBombs.GetInt();
+                        break;
                     case CustomRoles.Swooper:
                         Swooper.Add(pc.PlayerId);
                         break;

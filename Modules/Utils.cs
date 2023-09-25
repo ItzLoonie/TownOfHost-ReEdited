@@ -674,6 +674,20 @@ public static class Utils
                 ProgressText.Append(ColorString(TextColor3, $"({Completed3}/{taskState3.AllTasksCount})"));
                 ProgressText.Append(ColorString(TextColor31, $" <color=#ffffff>-</color> {Math.Round(Main.GrenadierNumOfUsed[playerId], 1)}"));
                 break;
+            case CustomRoles.Bastion:
+                var taskState15 = Main.PlayerStates?[playerId].GetTaskState();
+                Color TextColor15;
+                var TaskCompleteColor15 = Color.green;
+                var NonCompleteColor15 = Color.yellow;
+                var NormalColor15 = taskState15.IsTaskFinished ? TaskCompleteColor15 : NonCompleteColor15;
+                TextColor15 = comms ? Color.gray : NormalColor15;
+                string Completed15 = comms ? "?" : $"{taskState15.CompletedTasksCount}";
+                Color TextColor151;
+                if (Main.BastionNumberOfAbilityUses < 1) TextColor151 = Color.red;
+                else TextColor151 = Color.white;
+                ProgressText.Append(ColorString(TextColor15, $"({Completed15}/{taskState15.AllTasksCount})"));
+                ProgressText.Append(ColorString(TextColor151, $" <color=#777777>-</color> {Math.Round(Main.BastionNumberOfAbilityUses, 1)}"));
+                break;
             case CustomRoles.Divinator:
                 var taskState4 = Main.PlayerStates?[playerId].GetTaskState();
                 Color TextColor4;

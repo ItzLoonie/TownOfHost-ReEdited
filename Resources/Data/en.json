@@ -1613,6 +1613,7 @@
   "EnteredBombedVent": "That vent was bombed!",
   "BastionVentButtonText": "Bomb",
   "BombsClearAfterMeeting": "Bombs clear after meetings",
+  "BastionMaxBombs": "(Initial) Maximum bombs",
   "VentBombSuccess": "Bomb has been planted",
   "LowLoadMode": "Low Load Mode",
   "ShowLobbyCode": "Show lobby code in Discord status",

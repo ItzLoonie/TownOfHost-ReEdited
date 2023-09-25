@@ -185,6 +185,7 @@ public class Main : BasePlugin
     public static Dictionary<byte, float> VeteranNumOfUsed = new();
     public static Dictionary<byte, long> GrenadierBlinding = new();
     public static Dictionary<byte, long> MadGrenadierBlinding = new();
+    public static float BastionNumberOfAbilityUses = 0;
     public static Dictionary<byte, float> GrenadierNumOfUsed = new();
     public static Dictionary<byte, long> Lighter = new();
     public static Dictionary<byte, float> LighterNumOfUsed = new();

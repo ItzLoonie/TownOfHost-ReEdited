@@ -1061,6 +1061,9 @@ internal static class RPC
             case CustomRoles.Lighter:
                 Main.LighterNumOfUsed.Add(targetId, Options.LighterSkillMaxOfUseage.GetInt());
                 break;
+            case CustomRoles.Bastion:
+                Main.BastionNumberOfAbilityUses = Options.BastionMaxBombs.GetInt();
+                break;
             case CustomRoles.TimeMaster:
                 Main.TimeMasterNumOfUsed.Add(targetId, Options.TimeMasterMaxUses.GetInt());
                 break;

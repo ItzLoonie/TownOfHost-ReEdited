@@ -3259,9 +3259,15 @@ class EnterVentPatch
 
         if (pc.GetCustomRole() == CustomRoles.Bastion)
         {
+            if (Main.BastionNumberOfAbilityUses >= 1)
             {
+                Main.BastionNumberOfAbilityUses -= 1;
                 if (!Main.BombedVents.Contains(__instance.Id)) Main.BombedVents.Add(__instance.Id);
                 pc.Notify(GetString("VentBombSuccess"));
+            }
+            else
+            {
+                pc.Notify(GetString("OutOfAbilityUsesDoMoreTasks"));
             }
         }
 
