@@ -1330,7 +1330,7 @@ public static class Options
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(140, 255, 255, byte.MaxValue));
         Addict.SetupCustomOption();
-    //    Alchemist.SetupCustomOption();
+        Alchemist.SetupCustomOption();
 
         SetupRoleOptions(5300, TabGroup.CrewmateRoles, CustomRoles.CyberStar);
         ImpKnowCyberStarDead = BooleanOptionItem.Create(5400, "ImpKnowCyberStarDead", false, TabGroup.CrewmateRoles, false)

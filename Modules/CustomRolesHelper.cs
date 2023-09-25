@@ -1061,6 +1061,8 @@ static class CustomRolesHelper
 
             case CustomRoles.Bloodlust:
                 if (pc.Is(CustomRoles.Lazy)
+                    || pc.Is(CustomRoles.Merchant)
+                    || pc.Is(CustomRoles.Alchemist)
                     || pc.Is(CustomRoles.Needy))
                     return false;
                 if (pc.GetCustomRole().IsNeutral() || pc.GetCustomRole().IsImpostor() || pc.GetCustomRole().IsTasklessCrewmate())

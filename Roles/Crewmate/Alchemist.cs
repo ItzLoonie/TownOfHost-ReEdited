@@ -27,7 +27,6 @@ namespace TOHE.Roles.Crewmate
         public static OptionItem Vision;
         public static OptionItem VisionOnLightsOut;
         public static OptionItem VisionDuration;
-        public static OptionItem InvisDuration;
 
         public static void SetupCustomOption()
         {
@@ -35,8 +34,6 @@ namespace TOHE.Roles.Crewmate
             VentCooldown = FloatOptionItem.Create(Id + 11, "VentCooldown", new(0f, 70f, 1f), 15f, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Alchemist])
                 .SetValueFormat(OptionFormat.Seconds);
             ShieldDuration = FloatOptionItem.Create(Id + 12, "AlchemistShieldDur", new(5f, 70f, 1f), 20f, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Alchemist])
-                .SetValueFormat(OptionFormat.Seconds);
-            InvisDuration = FloatOptionItem.Create(Id + 13, "AlchemistInvisDur", new(5f, 70f, 1f), 20f, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Alchemist])
                 .SetValueFormat(OptionFormat.Seconds);
             Vision = FloatOptionItem.Create(Id + 16, "AlchemistVision", new(0f, 1f, 0.05f), 0.85f, TabGroup.CrewmateRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Alchemist])
                 .SetValueFormat(OptionFormat.Multiplier);
@@ -78,16 +75,16 @@ namespace TOHE.Roles.Crewmate
                 case 3: // TP to random player
                     pc.Notify(GetString("AlchemistGotTPPotion"), 15f);
                     break;
-                case 4: // Increased speed
-                    pc.Notify(GetString("AlchemistGotSpeedPotion"), 15f);
+                case 4: // Nothing
+                    pc.Notify(GetString("AlchemistGotNullPotion"), 15f);
                     break;
                 case 5: // Quick fix next sabo
                     FixNextSabo = true;
                     PotionID = 10;
                     pc.Notify(GetString("AlchemistGotQFPotion"), 15f);
                     break;
-                case 6: // Invisibility
-                    pc.Notify(GetString("AlchemistGotInvisPotion"), 15f);
+                case 6: // Bloodlust
+                    pc.Notify(GetString("AlchemistGotBloodlustPotion"), 15f);
                     break;
                 case 7: // Increased vision
                     pc.Notify(GetString("AlchemistGotSightPotion"), 15f);
@@ -136,8 +133,12 @@ namespace TOHE.Roles.Crewmate
                 case 5: // Quick fix next sabo
                     // Done when making the potion
                     break;
-                case 6: // Invisibility
-                    // Handled by OnCoEnterVent
+                case 6: // Bloodlust
+                    player.Notify(GetString("AlchemistPotionBloodlust"));
+                    if (!Main.BloodlustList.ContainsKey(player.PlayerId))
+                    {
+                        Main.BloodlustList[player.PlayerId] = player.PlayerId;
+                    }
                     break;
                 case 7: // Increased vision
                     VisionPotionActive = true;
@@ -146,10 +147,10 @@ namespace TOHE.Roles.Crewmate
                     _ = new LateTask(() => { VisionPotionActive = false; player.MarkDirtySettings(); player.Notify(GetString("AlchemistVisionOut")); }, VisionDuration.GetFloat());
                     break;
                 case 10:
-                    player.MyPhysics.RpcBootFromVent(ventId);
                     player.Notify("NoPotion");
                     break;
                 default: // just in case
+                    player.Notify("NoPotion");
                     break;
             }
 
@@ -173,7 +174,7 @@ namespace TOHE.Roles.Crewmate
             long last = long.Parse(reader.ReadString());
             if (invis > 0) InvisTime.Add(PlayerControl.LocalPlayer.PlayerId, invis);
         }
-        public static void OnCoEnterVent(PlayerPhysics __instance, int ventId)
+    /*    public static void OnCoEnterVent(PlayerPhysics __instance, int ventId)
         {
             PotionID = 10;
             var pc = __instance.myPlayer;
@@ -190,10 +191,10 @@ namespace TOHE.Roles.Crewmate
 
                 InvisTime.Add(pc.PlayerId, Utils.GetTimeStamp());
                 SendRPC(pc);
-                NameNotifyManager.Notify(pc, GetString("ChameleonInvisState"), InvisDuration.GetFloat());
+            //    NameNotifyManager.Notify(pc, GetString("ChameleonInvisState"), InvisDuration.GetFloat());
             }, 0.5f, "Alchemist Invis");
-        }
-        public static void OnFixedUpdate(PlayerControl player)
+        } */
+    /*    public static void OnFixedUpdate(PlayerControl player)
         {
             if (!GameStates.IsInTask || !IsEnable) return;
 
@@ -227,40 +228,40 @@ namespace TOHE.Roles.Crewmate
                 InvisTime = newList;
                 refreshList.Do(x => SendRPC(Utils.GetPlayerById(x)));
             }
-        }
+        } */
         public static string GetHudText(PlayerControl pc)
         {
             if (pc == null || !GameStates.IsInTask || !PlayerControl.LocalPlayer.IsAlive()) return string.Empty;
             var str = new StringBuilder();
-            if (IsInvis(pc.PlayerId))
+        /*    if (IsInvis(pc.PlayerId))
             {
                 var remainTime = InvisTime[pc.PlayerId] + (long)InvisDuration.GetFloat() - Utils.GetTimeStamp();
                 str.Append(string.Format(GetString("ChameleonInvisStateCountdown"), remainTime + 1));
             }
-            else
+            else */
             {
                 switch (PotionID)
                 {
                     case 1: // Shield
-                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#00ff97>Shield Potion</color></b>");
+                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#00ff97>Potion of Resistance</color></b>");
                         break;
                     case 2: // Suicide
-                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#ff0000>Awkward Potion</color></b>");
+                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#478800>Potion of Poison</color></b>");
                         break;
                     case 3: // TP to random player
-                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#42d1ff>Teleport Potion</color></b>");
+                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#42d1ff>Potion of Warping</color></b>");
                         break;
-                    case 4: // Increased speed
-                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#ff8400>Speed Potion</color></b>");
+                    case 4: // Nothing
+                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#ff8400>Water Bottle</color></b>");
                         break;
                     case 5: // Quick fix next sabo
-                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#3333ff>Quick Fix Potion</color></b>");
+                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#3333ff>Potion of Fixing</color></b>");
                         break;
-                    case 6: // Invisibility
-                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#01c834>Invisibility Potion</color></b>");
+                    case 6: // Bloodlust
+                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#691a2e>Potion of Harming</color></b>");
                         break;
                     case 7: // Increased vision
-                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#eee5be>Sight Potion</color></b>");
+                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#663399>Potion of Night Vision</color></b>");
                         break;
                     case 10:
                         str.Append("<color=#00ffa5>Potion in store:</color> <color=#888888>None</color>");
@@ -268,7 +269,7 @@ namespace TOHE.Roles.Crewmate
                     default: // just in case
                         break;
                 }
-                if (FixNextSabo) str.Append("\n<b><color=#3333ff>Quick Fix Potion</color></b> waiting for use");
+                if (FixNextSabo) str.Append("\n<b><color=#3333ff>Potion of Fixing</color></b> waiting for use");
             }
             return str.ToString();
         }
@@ -282,22 +283,22 @@ namespace TOHE.Roles.Crewmate
                     str.Append("<color=#00ffa5>Stored:</color> <color=#00ff97>Potion of Resistance</color>");
                     break;
                 case 2: // Suicide
-                    str.Append("<color=#00ffa5>Stored:</color> <color=#ff0000>Potion of Poison</color>");
+                    str.Append("<color=#00ffa5>Stored:</color> <color=#478800>Potion of Poison</color>");
                     break;
                 case 3: // TP to random player
                     str.Append("<color=#00ffa5>Stored:</color> <color=#42d1ff>Potion of Warping</color>");
                     break;
                 case 4: // Nothing
-                    str.Append("<color=#00ffa5>Stored:</color> <color=#ff8400>Water Bottle</color>");
+                    str.Append("<color=#00ffa5>Stored:</color> <color=#ffffff>Water Bottle</color>");
                     break;
                 case 5: // Quick fix next sabo
                     str.Append("<color=#00ffa5>Stored:</color> <color=#3333ff>Potion of Fixing</color>");
                     break;
-                case 6: // Invisibility
-                    str.Append("<color=#00ffa5>Stored:</color> <color=#01c834>Potion of Invisiblity</color>");
+                case 6: // Bloodlust
+                    str.Append("<color=#00ffa5>Stored:</color> <color=#691a2e>Potion of Harming</color>");
                     break;
                 case 7: // Increased vision
-                    str.Append("<color=#00ffa5>Stored:</color> <color=#eee5be>Potion of Night Vision</color>");
+                    str.Append("<color=#00ffa5>Stored:</color> <color=#663399>Potion of Night Vision</color>");
                     break;
                 default:
                     break;

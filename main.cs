@@ -396,7 +396,7 @@ public class Main : BasePlugin
                 {CustomRoles.NiceMini, "#edc240" },
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
-                {CustomRoles.Pyromaniac, "#ff6633"},
+                {CustomRoles.Pyromaniac, "#ff2400"},
                 {CustomRoles.Agitater, "#F4A460"},
                 {CustomRoles.Bandit, "#8B008B"},
                 {CustomRoles.PlagueBearer,"#e5f6b4"},

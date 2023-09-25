@@ -2738,7 +2738,7 @@ class FixedUpdatePatch
                 Wraith.OnFixedUpdate(player);
                 Shade.OnFixedUpdate(player);
                 Chameleon.OnFixedUpdate(player);
-                Alchemist.OnFixedUpdate(player);
+            //    Alchemist.OnFixedUpdate(player);
 
                 if (GameStates.IsInTask)
                 {
@@ -3468,8 +3468,8 @@ class CoEnterVentPatch
         if (__instance.myPlayer.Is(CustomRoles.Chameleon))
             Chameleon.OnCoEnterVent(__instance, id);
 
-        if (__instance.myPlayer.Is(CustomRoles.Alchemist) && Alchemist.PotionID == 6)
-            Alchemist.OnCoEnterVent(__instance, id);
+    /*    if (__instance.myPlayer.Is(CustomRoles.Alchemist) && Alchemist.PotionID == 6)
+            Alchemist.OnCoEnterVent(__instance, id); */
 
         if (__instance.myPlayer.Is(CustomRoles.DovesOfNeace)) __instance.myPlayer.Notify(GetString("DovesOfNeaceMaxUsage"));
         if (__instance.myPlayer.Is(CustomRoles.Veteran)) __instance.myPlayer.Notify(GetString("VeteranMaxUsage"));
