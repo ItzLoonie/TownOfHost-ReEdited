@@ -431,6 +431,9 @@ public class TaskState
                 Main.BloodlustList[player.PlayerId] = player.PlayerId;
                 player.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Bloodlust), string.Format(Translator.GetString("BloodlustAdded"))));
             }
+            
+            if (player.Is(CustomRoles.Alchemist) && player.IsAlive()) Alchemist.OnTaskComplete(player);
+
             if (player.Is(CustomRoles.Divinator) && player.IsAlive())
             {
                 Divinator.CheckLimit[player.PlayerId] += Divinator.AbilityUseGainWithEachTaskCompleted.GetFloat();
