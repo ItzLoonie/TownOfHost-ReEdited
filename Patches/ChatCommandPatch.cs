@@ -41,10 +41,10 @@ internal class ChatCommands
         var cancelVal = "";
         Main.isChatCommand = true;
         Logger.Info(text, "SendChat");
-        if ((Options.NewHideMsg.GetBool() || Blackmailer.ForBlackmailer.Contains(PlayerControl.LocalPlayer.PlayerId)) && PlayerControl.LocalPlayer.IsAlive())
+    /*    if ((Options.NewHideMsg.GetBool() || Blackmailer.ForBlackmailer.Contains(PlayerControl.LocalPlayer.PlayerId)) && PlayerControl.LocalPlayer.IsAlive())
         {
             ChatManager.SendMessage(PlayerControl.LocalPlayer, text);
-        }
+        } */
         
         if (text.Length >= 3) if (text[..2] == "/r" && text[..3] != "/rn" && text[..3] != "/rs") args[0] = "/r";
         if (text.Length >= 4) if (text[..3] == "/up") args[0] = "/up";
@@ -60,12 +60,12 @@ internal class ChatCommands
         Directory.CreateDirectory(modTagsFiles);
         Directory.CreateDirectory(sponsorTagsFiles);
 
-        if ((Options.NewHideMsg.GetBool() && ChatManager.cancel == true || Blackmailer.ForBlackmailer.Contains(PlayerControl.LocalPlayer.PlayerId)) && PlayerControl.LocalPlayer.IsAlive())
+    /*    if ((Options.NewHideMsg.GetBool() && ChatManager.cancel == true || Blackmailer.ForBlackmailer.Contains(PlayerControl.LocalPlayer.PlayerId)) && PlayerControl.LocalPlayer.IsAlive())
         {
             ChatManager.SendPreviousMessagesToAll();
             ChatManager.cancel = false;
             goto Canceled;
-        }
+        } */
 
         switch (args[0])
         {
@@ -1026,10 +1026,10 @@ internal class ChatCommands
     {
         canceled = false;
         if (!AmongUsClient.Instance.AmHost) return;
-        if ((Options.NewHideMsg.GetBool() || Blackmailer.ForBlackmailer.Contains(player.PlayerId)) && PlayerControl.LocalPlayer.IsAlive() && player.PlayerId != 0)
+    /*    if ((Options.NewHideMsg.GetBool() || Blackmailer.ForBlackmailer.Contains(player.PlayerId)) && PlayerControl.LocalPlayer.IsAlive() && player.PlayerId != 0)
         {
             ChatManager.SendMessage(player, text);
-        }
+        } */
 
         if (text.StartsWith("\n")) text = text[1..];
         //if (!text.StartsWith("/")) return;
@@ -1049,13 +1049,13 @@ internal class ChatCommands
         Directory.CreateDirectory(modTagsFiles);
         Directory.CreateDirectory(sponsorTagsFiles);
 
-        if ((Options.NewHideMsg.GetBool() && ChatManager.cancel == true || Blackmailer.ForBlackmailer.Contains(PlayerControl.LocalPlayer.PlayerId)) && PlayerControl.LocalPlayer.IsAlive() && player.PlayerId != 0)
+    /*    if ((Options.NewHideMsg.GetBool() && ChatManager.cancel == true || Blackmailer.ForBlackmailer.Contains(PlayerControl.LocalPlayer.PlayerId)) && PlayerControl.LocalPlayer.IsAlive() && player.PlayerId != 0)
         {
             ChatManager.SendPreviousMessagesToAll();
             ChatManager.cancel = false;
             canceled = true; 
             return; 
-        }
+        } */
         
         switch (args[0])
         {
