@@ -280,30 +280,30 @@ namespace TOHE.Roles.Crewmate
             switch (PotionID)
             {
                 case 1: // Shield
-                    str.Append("<color=#00ffa5>Stored:</color> <color=#00ff97>Potion of Resistance</color>");
+                    str.Append("<color=#00ff97>✚</color>");
                     break;
                 case 2: // Suicide
-                    str.Append("<color=#00ffa5>Stored:</color> <color=#478800>Potion of Poison</color>");
+                    str.Append("<color=#478800>⁂</color>");
                     break;
                 case 3: // TP to random player
-                    str.Append("<color=#00ffa5>Stored:</color> <color=#42d1ff>Potion of Warping</color>");
+                    str.Append("<color=#42d1ff>§</color>");
                     break;
                 case 4: // Nothing
-                    str.Append("<color=#00ffa5>Stored:</color> <color=#ffffff>Water Bottle</color>");
+                    str.Append("<color=#ffffff>◎</color>");
                     break;
                 case 5: // Quick fix next sabo
-                    str.Append("<color=#00ffa5>Stored:</color> <color=#3333ff>Potion of Fixing</color>");
+                    str.Append("<color=#3333ff>★</color>");
                     break;
                 case 6: // Bloodlust
-                    str.Append("<color=#00ffa5>Stored:</color> <color=#691a2e>Potion of Harming</color>");
+                    str.Append("<color=#691a2e>乂</color>");
                     break;
                 case 7: // Increased vision
-                    str.Append("<color=#00ffa5>Stored:</color> <color=#663399>Potion of Night Vision</color>");
+                    str.Append("<color=#663399>◉</color>");
                     break;
                 default:
                     break;
             }
-            if (FixNextSabo) str.Append(" <color=#777777>(<color=#3333ff>Quick Fix</color>)</color>");
+            if (FixNextSabo) str.Append("<color=#3333ff>★</color>");
             return str.ToString();
         }
         public static void RepairSystem(SystemTypes systemType, byte amount)
