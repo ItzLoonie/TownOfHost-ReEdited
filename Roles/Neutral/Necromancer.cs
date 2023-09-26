@@ -63,7 +63,7 @@ public static class Necromancer
         var rd = IRandom.Instance;
         var vents = Object.FindObjectsOfType<Vent>();
         var vent = vents[rd.Next(0, vents.Count)];
-        _ = new LateTask(() => { Utils.TP(target.NetTransform, new Vector2(vent.transform.position.x, vent.transform.position.y)); }, 0.01f);
+        _ = new LateTask(() => { target.RpcTeleport(new Vector2(vent.transform.position.x, vent.transform.position.y)); }, 0.01f);
 
         Timer = RevengeTime.GetInt();
         Countdown(Timer, target);

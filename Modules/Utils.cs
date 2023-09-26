@@ -74,20 +74,8 @@ public static class Utils
     public static void TPAll(Vector2 location)
     {
         foreach (PlayerControl pc in Main.AllAlivePlayerControls)
-            TP(pc.NetTransform, location);
+            pc.RpcTeleport(new Vector2(location.x, location.y));
     }
-
-    public static void TP(CustomNetworkTransform nt, Vector2 location)
-    {
-        location += new Vector2(0, 0.3636f);
-        if (AmongUsClient.Instance.AmHost) nt.SnapTo(location);
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(nt.NetId, (byte)RpcCalls.SnapTo, SendOption.None);
-        //nt.WriteVector2(location, writer);
-        NetHelpers.WriteVector2(location, writer);
-        writer.Write(nt.lastSequenceId);
-        AmongUsClient.Instance.FinishRpcImmediately(writer);
-    }
-
     public static void RpcTeleport(this PlayerControl player, Vector2 location)
     {
         Logger.Info($" {player.PlayerId}", "Teleport - Player Id");
