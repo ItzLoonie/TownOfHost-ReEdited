@@ -54,6 +54,9 @@ public static class NameColorManager
         if (seer.Is(CustomRoles.Admirer) && (target.Is(CustomRoles.Admired))) color = Main.roleColors[CustomRoles.Admirer];
         if (seer.Is(CustomRoles.Admired) && (target.Is(CustomRoles.Admirer))) color = Main.roleColors[CustomRoles.Admirer];
 
+        // Bounties
+        if (seer.Is(CustomRoles.BountyHunter) && BountyHunter.GetTarget(seer) == target.PlayerId) color = "bf1313";
+
     //    if (seer.GetCustomRole().IsCoven() && (target.GetCustomRole().IsCoven())) color = Main.roleColors[CustomRoles.CovenLeader];
 
         // Amnesiac
