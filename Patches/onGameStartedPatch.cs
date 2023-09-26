@@ -54,7 +54,6 @@ internal class ChangeRoleSettings
             Main.FarseerTimer = new();
             Main.CursedPlayers = new();
             Main.MafiaRevenged = new();
-            Main.NecromancerRevenged = new();
             Main.RetributionistRevenged = new();
             Main.isCurseAndKill = new();
             Main.isCursed = false;
@@ -308,6 +307,7 @@ internal class ChangeRoleSettings
             Pirate.Init();
             Shroud.Init();
             Werewolf.Init();
+            Necromancer.Init();
             Chronomancer.Init();
             Seeker.Init();
             Pitfall.Init();

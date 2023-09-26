@@ -266,7 +266,6 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
             case CustomRoles.FFF:
             case CustomRoles.Pursuer:
-            case CustomRoles.Necromancer:
             case CustomRoles.Ritualist:
                 opt.SetVision(true);
                 break;
@@ -278,6 +277,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
                 break;
             case CustomRoles.Werewolf:
                 Werewolf.ApplyGameOptions(opt);
+                break;
+            case CustomRoles.Necromancer:
+                Necromancer.ApplyGameOptions(opt);
                 break;
             case CustomRoles.Morphling:
                 Morphling.ApplyGameOptions();

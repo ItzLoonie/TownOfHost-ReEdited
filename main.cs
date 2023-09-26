@@ -162,7 +162,6 @@ public class Main : BasePlugin
     public static Dictionary<byte, PlayerControl> CursedPlayers = new();
     public static Dictionary<byte, bool> isCurseAndKill = new();
     public static Dictionary<byte, int> MafiaRevenged = new();
-    public static Dictionary<byte, int> NecromancerRevenged = new();
     public static Dictionary<byte, int> RetributionistRevenged = new();
     public static Dictionary<byte, int> GuesserGuessed = new();
     public static Dictionary<byte, int> CapitalismAddTask = new();
@@ -426,7 +425,7 @@ public class Main : BasePlugin
                 {CustomRoles.Poisoner, "#478800"},
                 {CustomRoles.CovenLeader, "#663399"},
                 {CustomRoles.Ritualist, "#663399"},
-                {CustomRoles.Necromancer, "#663399"},
+                {CustomRoles.Necromancer, "#9C87AB"},
                 {CustomRoles.Banshee, "#663399"},
                 {CustomRoles.NWitch, "#BF5FFF"},
                 {CustomRoles.Totocalcio, "#ff9409"},
@@ -934,6 +933,7 @@ public enum CustomWinner
     Pirate = CustomRoles.Pirate,
     SerialKiller = CustomRoles.NSerialKiller,
     Werewolf = CustomRoles.Werewolf,
+    Necromancer = CustomRoles.Necromancer,
     Witch = CustomRoles.NWitch,
     Juggernaut = CustomRoles.Juggernaut,
     Infectious = CustomRoles.Infectious,

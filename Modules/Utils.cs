@@ -2254,10 +2254,6 @@ public static class Utils
                                 TargetPlayerName = ColorString(GetRoleColor(CustomRoles.Mafia), target.PlayerId.ToString()) + " " + TargetPlayerName;
                             break;
 
-                        case CustomRoles.Necromancer:
-                            if (!seer.IsAlive() && target.IsAlive())
-                                TargetPlayerName = ColorString(GetRoleColor(CustomRoles.Necromancer), target.PlayerId.ToString()) + " " + TargetPlayerName;
-                            break;
 
                         case CustomRoles.Retributionist:
                             if (!seer.IsAlive() && target.IsAlive())
@@ -2337,12 +2333,6 @@ public static class Utils
 
 
 
-                                // Coven
-                             /*   if (Options.CovenMembersCanGuess.GetBool() && seer.GetCustomRole().IsCoven() && !seer.Is(CustomRoles.Ritualist) && !seer.Is(CustomRoles.Necromancer))
-                                    TargetPlayerName = GetTragetId;
-
-                                else if (seer.Is(CustomRoles.Ritualist) && !Options.CovenMembersCanGuess.GetBool())
-                                    TargetPlayerName = GetTragetId; */
                             }
                         }
                         else // Guesser Mode is Off ID

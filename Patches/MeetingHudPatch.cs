@@ -733,9 +733,6 @@ class MeetingHudStartPatch
             //黑手党死后技能提示
             if (pc.Is(CustomRoles.Mafia) && !pc.IsAlive())
                 AddMsg(GetString("MafiaDeadMsg"), pc.PlayerId);
-            //亡灵巫师死后技能提示
-            if (pc.Is(CustomRoles.Necromancer) && !pc.IsAlive())
-                AddMsg(GetString("NecromancerDeadMsg"), pc.PlayerId);
             //惩罚者死后技能提示
             if (pc.Is(CustomRoles.Retributionist) && !pc.IsAlive())
                 AddMsg(GetString("RetributionistDeadMsg"), pc.PlayerId);
@@ -997,6 +994,7 @@ class MeetingHudStartPatch
                 case CustomRoles.Banshee:
                 case CustomRoles.Infectious:
                 case CustomRoles.RuthlessRomantic:
+                case CustomRoles.Necromancer:
                 case CustomRoles.Virus:
                 case CustomRoles.Pyromaniac:
                 case CustomRoles.Medusa:
@@ -1032,11 +1030,6 @@ class MeetingHudStartPatch
                 case CustomRoles.Mafia:
                     if (seer.Data.IsDead && !target.Data.IsDead)
                         pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Mafia), target.PlayerId.ToString()) + " " + pva.NameText.text;
-                    break;
-                case CustomRoles.Necromancer:
-                    sb.Append(Snitch.GetWarningMark(seer, target));
-                    if (seer.Data.IsDead && !target.Data.IsDead)
-                        pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Necromancer), target.PlayerId.ToString()) + " " + pva.NameText.text;
                     break;
                 case CustomRoles.Retributionist:
                     if (seer.Data.IsDead && !target.Data.IsDead)
@@ -1241,8 +1234,6 @@ class MeetingHudUpdatePatch
             //若黑手党死亡则创建技能按钮
             if (myRole is CustomRoles.Mafia && !PlayerControl.LocalPlayer.IsAlive() && GameObject.Find("ShootButton") == null)
                 MafiaRevengeManager.CreateJudgeButton(__instance);
-            if (myRole is CustomRoles.Necromancer && !PlayerControl.LocalPlayer.IsAlive() && GameObject.Find("ShootButton") == null)
-                NecromancerRevengeManager.CreateJudgeButton(__instance);
             if (myRole is CustomRoles.Retributionist && !PlayerControl.LocalPlayer.IsAlive() && GameObject.Find("ShootButton") == null)
                 RetributionistRevengeManager.CreateJudgeButton(__instance);
 

@@ -201,7 +201,8 @@ class CheckMurderPatch
         if (Counterfeiter.OnClientMurder(killer)) return false;
         if (Pursuer.OnClientMurder(killer)) return false;
         if (Addict.IsImmortal(target)) return false;
-        if (Alchemist.IsProtected && target.Is(CustomRoles.Alchemist))
+        if (target.Is(CustomRoles.Necromancer) && !Necromancer.OnKillAttempt(killer, target)) return false;
+            if (Alchemist.IsProtected && target.Is(CustomRoles.Alchemist))
         {
             killer.SetKillCooldown(time: 5f);
             return false;
@@ -284,6 +285,9 @@ class CheckMurderPatch
                     break;
                 case CustomRoles.Puppeteer:
                     if (!Puppeteer.OnCheckPuppet(killer, target)) return false;
+                    break;
+                case CustomRoles.Necromancer: //必须在击杀发生前处理
+                    if (!Necromancer.OnCheckMurder(killer, target)) return false;
                     break;
                 case CustomRoles.NWitch:
                     if (!NWitch.OnCheckMurder(killer, target)) return false;

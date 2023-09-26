@@ -536,6 +536,7 @@ static class ExtendedPlayerControl
         if (!pc.IsAlive() || pc.Data.Role.Role == RoleTypes.GuardianAngel) return false;
         if (CopyCat.playerIdList.Contains(pc.PlayerId)) return true;
         if (Main.TasklessCrewmate.Contains(pc.PlayerId)) return true;
+        if (Necromancer.Killer && !pc.Is(CustomRoles.Necromancer)) return false;
         if (pc.Is(CustomRoles.Nimble)) return true;
      //   if (pc.Is(CustomRoles.Circumvent)) return false;
 
@@ -580,7 +581,7 @@ static class ExtendedPlayerControl
             CustomRoles.NWitch => NWitch.CanVent.GetBool(),
             CustomRoles.CovenLeader => CovenLeader.CanVent.GetBool(),
             CustomRoles.Ritualist => Options.RitualistCanVent.GetBool(),
-            CustomRoles.Necromancer => Options.NecromancerCanVent.GetBool(),
+            CustomRoles.Necromancer => Necromancer.CanVent.GetBool(),
             CustomRoles.Shroud => Shroud.CanVent.GetBool(),
             CustomRoles.Maverick => Maverick.CanVent.GetBool(),
             CustomRoles.Jinx => Jinx.CanVent.GetBool(),
@@ -821,7 +822,7 @@ static class ExtendedPlayerControl
                 Main.AllPlayerKillCooldown[player.PlayerId] = Werewolf.KillCooldown.GetFloat();
                 break;
             case CustomRoles.Necromancer:
-                Main.AllPlayerKillCooldown[player.PlayerId] = Options.NecromancerKillCD.GetFloat();
+                Necromancer.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.Traitor:
                 Traitor.SetKillCooldown(player.PlayerId);

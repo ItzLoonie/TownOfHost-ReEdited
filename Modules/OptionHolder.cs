@@ -261,7 +261,6 @@ public static class Options
     public static OptionItem EveryOneKnowSuperStar;
     public static OptionItem MNKillCooldown;
     public static OptionItem MafiaCanKillNum;
-    public static OptionItem NecromancerCanKillNum;
     public static OptionItem RetributionistCanKillNum;
     public static OptionItem MinimumPlayersAliveToRetri;
     public static OptionItem CanOnlyRetributeWithTasksDone;
@@ -534,9 +533,6 @@ public static class Options
     public static OptionItem ConjTryHideMsg;
     public static OptionItem RitualistCanVent;
 
-    // Necromancer
-    public static OptionItem NecromancerKillCD;
-    public static OptionItem NecromancerCanVent;
 
     // Masochist
     public static OptionItem MasochistKillMax;
@@ -1710,6 +1706,7 @@ public static class Options
         Jinx.SetupCustomOption();
         Juggernaut.SetupCustomOption();
         Medusa.SetupCustomOption();
+        Necromancer.SetupCustomOption();
         Occultist.SetupCustomOption();
         Pelican.SetupCustomOption();
         Pickpocket.SetupCustomOption();
@@ -1741,15 +1738,6 @@ public static class Options
             .SetGameMode(CustomGameMode.Standard);
     //    Banshee.SetupCustomOption();
     //    CovenLeader.SetupCustomOption();
-    /*    SetupSingleRoleOptions(3150, TabGroup.NeutralRoles, CustomRoles.Necromancer, 1, zeroOne: false);
-        NecromancerKillCD = FloatOptionItem.Create(3162, "KillCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.NeutralRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Necromancer])
-            .SetValueFormat(OptionFormat.Seconds);
-        NecromancerCanKillNum = IntegerOptionItem.Create(3160, "NecromancerCanKillNum", new(1, 15, 1), 1, TabGroup.NeutralRoles, false)
-        .SetParent(CustomRoleSpawnChances[CustomRoles.Necromancer])
-            .SetValueFormat(OptionFormat.Players);
-        NecromancerCanVent = BooleanOptionItem.Create(3161, "CanVent", true, TabGroup.NeutralRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Necromancer]); */
     /*    SetupSingleRoleOptions(10450, TabGroup.NeutralRoles, CustomRoles.Ritualist, 1, zeroOne: false);
         ConjCanGuessTime = IntegerOptionItem.Create(10460, "GuesserCanGuessTimes", new(1, 15, 1), 15, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Ritualist])

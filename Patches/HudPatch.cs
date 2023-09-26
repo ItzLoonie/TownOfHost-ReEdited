@@ -222,6 +222,7 @@ class HudManagerPatch
                     case CustomRoles.Refugee:
                     case CustomRoles.Traitor:
                     case CustomRoles.PotionMaster:
+                    case CustomRoles.Werewolf:
                     case CustomRoles.Spiritcaller:
                     case CustomRoles.Ritualist:
                     case CustomRoles.Necromancer:

@@ -190,6 +190,7 @@ public static class CopyCat
             CustomRoles.Bastion or
             CustomRoles.Addict or
             CustomRoles.Chameleon or
+            CustomRoles.Alchemist or
             //bcoz of arrows
             CustomRoles.Mortician or
             CustomRoles.Bloodhound or
@@ -210,7 +211,7 @@ public static class CopyCat
         if (CopyCrewVar.GetBool())
         {
             if (role == CustomRoles.Eraser) role = CustomRoles.Cleanser;
-            if (role == CustomRoles.Mafia || role == CustomRoles.Necromancer) role = CustomRoles.Retributionist;
+            if (role == CustomRoles.Mafia) role = CustomRoles.Retributionist;
             if (role == CustomRoles.Visionary) role = CustomRoles.Oracle;
             if (role == CustomRoles.Workaholic) role = CustomRoles.Snitch;
             if (role == CustomRoles.Sunnyboy) role = CustomRoles.Doctor;

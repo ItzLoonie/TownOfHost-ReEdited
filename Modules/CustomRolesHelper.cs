@@ -395,6 +395,7 @@ static class CustomRolesHelper
             CustomRoles.Pyromaniac or
             CustomRoles.Shade or
             CustomRoles.Medusa or
+            CustomRoles.Necromancer or
             CustomRoles.Wraith or
             CustomRoles.Shroud or
             CustomRoles.Pelican or
@@ -437,6 +438,7 @@ static class CustomRolesHelper
             CustomRoles.Gamer or
             CustomRoles.Arsonist or
             CustomRoles.Pickpocket or
+            CustomRoles.Necromancer or
             CustomRoles.Traitor or
             CustomRoles.Shroud or
             CustomRoles.Virus or
@@ -1575,7 +1577,7 @@ static class CustomRolesHelper
            CustomRoles.Succubus => CountTypes.Succubus,
            CustomRoles.HexMaster => CountTypes.HexMaster,
            CustomRoles.Occultist => CountTypes.Occultist,
-           CustomRoles.Necromancer => CountTypes.Coven,
+           CustomRoles.Necromancer => CountTypes.Necromancer,
            CustomRoles.NWitch => CountTypes.NWitch,
            CustomRoles.Shroud => CountTypes.Shroud,
            CustomRoles.Werewolf => CountTypes.Werewolf,
@@ -1657,5 +1659,6 @@ public enum CountTypes
     Agitater,
     Occultist,
     Shade,
-    RuthlessRomantic
+    RuthlessRomantic,
+    Necromancer
 }
