@@ -136,7 +136,7 @@ class GameEndChecker
                     }
                 }
 
-                //利己主义者抢夺胜利（船员）
+                // Egoist (Crewmate)
                 if (CustomWinnerHolder.WinnerTeam == CustomWinner.Crewmate)
                 {
                     foreach (var pc in Main.AllAlivePlayerControls.Where(x => x.GetCustomRole().IsCrewmate()))
@@ -145,15 +145,12 @@ class GameEndChecker
                             reason = GameOverReason.ImpostorByKill;
                             CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Egoist);
 
-                            if (!CustomWinnerHolder.WinnerRoles.Contains(CustomRoles.Egoist))
-                                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Egoist);
-
                             if (!CustomWinnerHolder.WinnerIds.Contains(pc.PlayerId))
                                 CustomWinnerHolder.WinnerIds.Add(pc.PlayerId);
                         }
                 }
 
-                //利己主义者抢夺胜利（内鬼）
+                // Egoist (Impostor)
                 if (CustomWinnerHolder.WinnerTeam == CustomWinner.Impostor)
                 {
                     foreach (var pc in Main.AllAlivePlayerControls.Where(x => x.GetCustomRole().IsImpostor()))
@@ -161,9 +158,6 @@ class GameEndChecker
                         {
                             reason = GameOverReason.ImpostorByKill;
                             CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Egoist);
-
-                            if (!CustomWinnerHolder.WinnerRoles.Contains(CustomRoles.Egoist))
-                                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Egoist);
                             
                             if (!CustomWinnerHolder.WinnerIds.Contains(pc.PlayerId))
                                 CustomWinnerHolder.WinnerIds.Add(pc.PlayerId);
