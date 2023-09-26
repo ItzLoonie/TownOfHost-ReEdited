@@ -158,7 +158,6 @@ namespace TOHE.Roles.Crewmate
 
             NameNotifyManager.Notice.Remove(player.PlayerId);
         }
-        private static long lastFixedTime = 0;
         public static bool IsInvis(byte id) => InvisTime.ContainsKey(id);
         private static void SendRPC(PlayerControl pc)
         {
