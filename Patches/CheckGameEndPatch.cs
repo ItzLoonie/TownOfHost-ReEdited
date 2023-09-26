@@ -144,7 +144,12 @@ class GameEndChecker
                         {
                             reason = GameOverReason.ImpostorByKill;
                             CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Egoist);
-                            CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Egoist);
+
+                            if (!CustomWinnerHolder.WinnerRoles.Contains(CustomRoles.Egoist))
+                                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Egoist);
+
+                            if (!CustomWinnerHolder.WinnerIds.Contains(pc.PlayerId))
+                                CustomWinnerHolder.WinnerIds.Add(pc.PlayerId);
                         }
                 }
 
@@ -156,7 +161,12 @@ class GameEndChecker
                         {
                             reason = GameOverReason.ImpostorByKill;
                             CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Egoist);
-                            CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Egoist);
+
+                            if (!CustomWinnerHolder.WinnerRoles.Contains(CustomRoles.Egoist))
+                                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Egoist);
+                            
+                            if (!CustomWinnerHolder.WinnerIds.Contains(pc.PlayerId))
+                                CustomWinnerHolder.WinnerIds.Add(pc.PlayerId);
                         }
                 }
 
