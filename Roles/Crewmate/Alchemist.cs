@@ -5,6 +5,7 @@ namespace TOHE.Roles.Crewmate
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using UnityEngine;
     using TOHE.Modules;
     using TOHE.Roles.Neutral;
     using static TOHE.Options;
@@ -123,7 +124,7 @@ namespace TOHE.Roles.Crewmate
                         var tar1 = AllAlivePlayer[player.PlayerId];
                         AllAlivePlayer.Remove(tar1);
                         var tar2 = AllAlivePlayer[rd.Next(0, AllAlivePlayer.Count)];
-                        Utils.TP(tar1.NetTransform, tar2.GetTruePosition());
+                        tar1.RpcTeleport(new Vector2(tar2.transform.position.x, tar2.transform.position.y));
                         tar1.RPCPlayCustomSound("Teleport");
                     }, 2f);
                     break;
