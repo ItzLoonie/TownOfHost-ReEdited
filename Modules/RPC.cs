@@ -832,7 +832,7 @@ internal static class RPC
                 TimeThief.Add(targetId);
                 break;
             case CustomRoles.Puppeteer:
-                Puppeteer.Add();
+                Puppeteer.Add(targetId);
                 break;
             case CustomRoles.Sniper:
                 Sniper.Add(targetId);
