@@ -22,7 +22,7 @@ public static class OptionSaver
             OptionSaverFileInfo.Create().Dispose();
         }
     }
-    /// <summary>現在のオプションからjsonシリアライズ用のオブジェクトを生成</summary>
+    /// <summary>Generate object for json serialization from current options</summary>
     private static SerializableOptionsData GenerateOptionsData()
     {
         Dictionary<int, int> singleOptions = new();
@@ -48,12 +48,12 @@ public static class OptionSaver
             PresetOptions = presetOptions,
         };
     }
-    /// <summary>デシリアライズされたオブジェクトを読み込み，オプション値を設定</summary>
+    /// <summary>Read deserialized object and set option values</summary>
     private static void LoadOptionsData(SerializableOptionsData serializableOptionsData)
     {
         if (serializableOptionsData.Version != Version)
         {
-            // 今後バージョン間の移行方法を用意する場合，ここでバージョンごとの変換メソッドに振り分ける
+            // If you want to provide a method for migrating between versions in the future, you can distribute the conversion method for each version here
             Logger.Info($"Loaded option version {serializableOptionsData.Version} does not match current version {Version}, overwriting with default value", "Option Saver");
             Save();
             return;
@@ -79,7 +79,7 @@ public static class OptionSaver
             }
         }
     }
-    /// <summary>現在のオプションをjsonファイルに保存</summary>
+    /// <summary>Save current options to json file</summary>
     public static void Save()
     {
         if (AmongUsClient.Instance != null && !AmongUsClient.Instance.AmHost) return;
@@ -87,7 +87,7 @@ public static class OptionSaver
         var jsonString = JsonSerializer.Serialize(GenerateOptionsData(), new JsonSerializerOptions { WriteIndented = true, });
         File.WriteAllText(OptionSaverFileInfo.FullName, jsonString);
     }
-    /// <summary>jsonファイルからオプションを読み込み</summary>
+    /// <summary>Read options from json file</summary>
     public static void Load()
     {
         var jsonString = File.ReadAllText(OptionSaverFileInfo.FullName);
@@ -101,16 +101,16 @@ public static class OptionSaver
         LoadOptionsData(JsonSerializer.Deserialize<SerializableOptionsData>(jsonString));
     }
 
-    /// <summary>json保存に適したオプションデータ</summary>
+    /// <summary>Optional data suitable for json storage</summary>
     public class SerializableOptionsData
     {
         public int Version { get; init; }
-        /// <summary>プリセット外のオプション</summary>
+        /// <summary>Non-preset options</summary>
         public Dictionary<int, int> SingleOptions { get; init; }
-        /// <summary>プリセット内のオプション</summary>
+        /// <summary>Options in the preset</summary>
         public Dictionary<int, int[]> PresetOptions { get; init; }
     }
 
-    /// <summary>オプションの形式に互換性のない変更(プリセット数変更など)を加えるときはここの数字を上げる</summary>
+    /// <summary>Raise the number here when making incompatible changes to the format of an option (e.g., changing the number of presets)</summary>
     public static readonly int Version = 0;
 }
