@@ -60,10 +60,7 @@ public static class Necromancer
         if (target == null) return false;
         if (IsRevenge) return true;
 
-        var rd = IRandom.Instance;
-        var vents = Object.FindObjectsOfType<Vent>();
-        var vent = vents[rd.Next(0, vents.Count)];
-        _ = new LateTask(() => { target.RpcTeleport(new Vector2(vent.transform.position.x, vent.transform.position.y)); }, 0.01f);
+        _ = new LateTask(() => { target.RpcRandomVentTeleport(); }, 0.01f, "Random Vent Teleport - Necromancer");
 
         Timer = RevengeTime.GetInt();
         Countdown(Timer, target);
