@@ -77,8 +77,9 @@ public class ModNewsHistory
                             "\n     - Imitator" +
                             "\n     - Pyromaniac\n\r" +
 
-                        "\n\r<b><i>Add-on: (1 add-on)</i></b>" +
-                            "\n     - Cyber\n\r" +
+                        "\n\r<b><i>Add-on: (2 add-ons)</i></b>" +
+                            "\n     - Cyber" +
+                            "\n     - Bloodlust\n\r" +
 
                         "\n\r<b>【Bug Fixes】</b>" +
                             "\n     - Fixed Mad Psychic" +
@@ -397,8 +398,9 @@ public class ModNewsHistory
                             "\n     - Имитатор" +
                             "\n     - Пиромант\n\r" +
 
-                        "\n\r<b><i>Атрибут: (1 атрибут)</i></b>" +
-                            "\n     - Знаменитый\n\r" +
+                        "\n\r<b><i>Атрибут: (2 атрибута)</i></b>" +
+                            "\n     - Знаменитый" +
+                            "\n     - Кровожадный\n\r" +
 
                         "\n\r<b>【Исправление Багов】</b>" +
                             "\n     - Исправлен Безумный Экстрасенс" +
