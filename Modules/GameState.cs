@@ -70,11 +70,11 @@ public class PlayerState
         }
         if (role == CustomRoles.Arsonist)
         {
-            if (Options.ArsonistKeepsGameGoing.GetBool())
+            if (Options.ArsonistCanIgniteAnytime.GetBool())
             {
                 countTypes = CountTypes.Arsonist;
             }
-            if (!Options.ArsonistKeepsGameGoing.GetBool())
+            if (!Options.ArsonistCanIgniteAnytime.GetBool())
             {
                 countTypes = CountTypes.Crew;
             }

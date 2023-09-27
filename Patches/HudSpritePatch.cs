@@ -65,7 +65,7 @@ public static class HudSpritePatch
                 break;
             case CustomRoles.Arsonist:
                 newKillButton = CustomButton.Get("Douse");
-                if (player.IsDouseDone()) newVentButton = CustomButton.Get("Ignite");
+                if (player.IsDouseDone() || (Options.ArsonistCanIgniteAnytime.GetBool() && Utils.GetDousedPlayerCount(player.PlayerId).Item1 >= Options.ArsonistMinPlayersToIgnite.GetInt())) newVentButton = CustomButton.Get("Ignite");
                 break;
             case CustomRoles.FireWorks:
                 if (FireWorks.nowFireWorksCount[player.PlayerId] == 0)

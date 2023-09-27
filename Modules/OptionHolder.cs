@@ -232,6 +232,9 @@ public static class Options
     public static OptionItem ArsonistDouseTime;
     public static OptionItem ArsonistCooldown;
     public static OptionItem ArsonistKeepsGameGoing;
+    public static OptionItem ArsonistCanIgniteAnytime;
+    public static OptionItem ArsonistMinPlayersToIgnite;
+    public static OptionItem ArsonistMaxPlayersToIgnite;
     public static OptionItem JesterCanUseButton;
     public static OptionItem JesterCanVent;
     public static OptionItem HideJesterVote;
@@ -1688,14 +1691,18 @@ public static class Options
             .SetColor(new Color32(127, 140, 141, byte.MaxValue));
         Agitater.SetupCustomOption();
         SetupRoleOptions(10400, TabGroup.NeutralRoles, CustomRoles.Arsonist);
-        ArsonistDouseTime = FloatOptionItem.Create(10410, "ArsonistDouseTime", new(0f, 10f, 1f), 3f, TabGroup.NeutralRoles, false)
+        ArsonistDouseTime = FloatOptionItem.Create(10416, "ArsonistDouseTime", new(0f, 10f, 1f), 0f, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Arsonist])
             .SetValueFormat(OptionFormat.Seconds);
-        ArsonistCooldown = FloatOptionItem.Create(10411, "Cooldown", new(0f, 180f, 1f), 10f, TabGroup.NeutralRoles, false)
+        ArsonistCooldown = FloatOptionItem.Create(10417, "Cooldown", new(0f, 180f, 1f), 25f, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Arsonist])
             .SetValueFormat(OptionFormat.Seconds);
-        ArsonistKeepsGameGoing = BooleanOptionItem.Create(10412, "ArsonistKeepsGameGoing", false, TabGroup.NeutralRoles, false)
+        ArsonistCanIgniteAnytime = BooleanOptionItem.Create(10413, "ArsonistCanIgniteAnytime", true, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Arsonist]);
+        ArsonistMinPlayersToIgnite = IntegerOptionItem.Create(10414, "ArsonistMinPlayersToIgnite", new(1, 14, 1), 1, TabGroup.NeutralRoles, false)
+            .SetParent(ArsonistCanIgniteAnytime);
+        ArsonistMaxPlayersToIgnite = IntegerOptionItem.Create(10415, "ArsonistMaxPlayersToIgnite", new(1, 14, 1), 3, TabGroup.NeutralRoles, false)
+            .SetParent(ArsonistCanIgniteAnytime);
         Bandit.SetupCustomOption();
         BloodKnight.SetupCustomOption();
         Gamer.SetupCustomOption();

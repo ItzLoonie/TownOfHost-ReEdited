@@ -626,7 +626,8 @@ public static class Utils
         {
             case CustomRoles.Arsonist:
                 var doused = GetDousedPlayerCount(playerId);
-                ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Arsonist).ShadeColor(0.25f), $"({doused.Item1}/{doused.Item2})"));
+                if (!Options.ArsonistCanIgniteAnytime.GetBool()) ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Arsonist).ShadeColor(0.25f), $"({doused.Item1}/{doused.Item2})"));
+                else ProgressText.Append(ColorString(GetRoleColor(CustomRoles.Arsonist).ShadeColor(0.25f), $"({doused.Item1}/{Options.ArsonistMaxPlayersToIgnite.GetInt()})"));
                 break;
             case CustomRoles.SoulCollector:
                 ProgressText.Append(SoulCollector.GetProgressText(playerId));

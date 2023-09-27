@@ -3407,25 +3407,50 @@ class CoEnterVentPatch
                 return true;
             }
         }
-      if (AmongUsClient.Instance.IsGameStarted &&
-            __instance.myPlayer.IsDouseDone())
+        if (AmongUsClient.Instance.IsGameStarted)
         {
-            CustomSoundsManager.RPCPlayCustomSoundAll("Boom");
-            foreach (var pc in Main.AllAlivePlayerControls)
+            if (__instance.myPlayer.IsDouseDone())
             {
-                if (pc != __instance.myPlayer)
+                CustomSoundsManager.RPCPlayCustomSoundAll("Boom");
+                foreach (var pc in Main.AllAlivePlayerControls)
                 {
-                    //生存者は焼殺
-                    pc.SetRealKiller(__instance.myPlayer);
-                    Main.PlayerStates[pc.PlayerId].deathReason = PlayerState.DeathReason.Torched;
-                    pc.RpcMurderPlayerV3(pc);
-                    Main.PlayerStates[pc.PlayerId].SetDead();
+                    if (pc != __instance.myPlayer)
+                    {
+                        //生存者は焼殺
+                        pc.SetRealKiller(__instance.myPlayer);
+                        Main.PlayerStates[pc.PlayerId].deathReason = PlayerState.DeathReason.Torched;
+                        pc.RpcMurderPlayerV3(pc);
+                        Main.PlayerStates[pc.PlayerId].SetDead();
+                    }
+                }
+                foreach (var pc in Main.AllPlayerControls) pc.KillFlash();
+                CustomWinnerHolder.ShiftWinnerAndSetWinner(CustomWinner.Arsonist); //焼殺で勝利した人も勝利させる
+                CustomWinnerHolder.WinnerIds.Add(__instance.myPlayer.PlayerId);
+                return true;
+            }
+            else if (Options.ArsonistCanIgniteAnytime.GetBool())
+            {
+                var douseCount = Utils.GetDousedPlayerCount(__instance.myPlayer.PlayerId).Item1;
+                if (douseCount >= Options.ArsonistMinPlayersToIgnite.GetInt()) // Don't check for max, since the player would not be able to ignite at all if they somehow get more players doused than the max
+                {
+                    if (douseCount > Options.ArsonistMaxPlayersToIgnite.GetInt()) Logger.Warn("Arsonist Ignited with more players doused than the maximum amount in the settings", "Arsonist Ignite");
+                    foreach (var pc in Main.AllAlivePlayerControls)
+                    {
+                        if (!__instance.myPlayer.IsDousedPlayer(pc)) continue;
+                        pc.KillFlash();
+                        pc.SetRealKiller(__instance.myPlayer);
+                        Main.PlayerStates[pc.PlayerId].deathReason = PlayerState.DeathReason.Torched;
+                        pc.RpcMurderPlayerV3(pc);
+                        Main.PlayerStates[pc.PlayerId].SetDead();
+                    }
+                    if (Main.AllAlivePlayerControls.Count() == 1)
+                    {
+                        CustomWinnerHolder.ShiftWinnerAndSetWinner(CustomWinner.Arsonist); //焼殺で勝利した人も勝利させる
+                        CustomWinnerHolder.WinnerIds.Add(__instance.myPlayer.PlayerId);
+                    }
+                    return true;
                 }
             }
-            foreach (var pc in Main.AllPlayerControls) pc.KillFlash();
-            CustomWinnerHolder.ShiftWinnerAndSetWinner(CustomWinner.Arsonist); //焼殺で勝利した人も勝利させる
-            CustomWinnerHolder.WinnerIds.Add(__instance.myPlayer.PlayerId);
-            return true;
         }
 
         if (AmongUsClient.Instance.IsGameStarted && __instance.myPlayer.IsDrawDone())//完成拉拢任务的玩家跳管后

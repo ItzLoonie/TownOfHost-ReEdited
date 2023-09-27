@@ -243,33 +243,33 @@ namespace TOHE.Roles.Crewmate
                 switch (PotionID)
                 {
                     case 1: // Shield
-                        str.Append(GetString("PotionStore" + GetString("StoreShield")));
+                        str.Append(GetString("PotionStore") + GetString("StoreShield"));
                         break;
                     case 2: // Suicide
-                        str.Append(GetString("PotionStore" + GetString("StoreSuicide")));
+                        str.Append(GetString("PotionStore") + GetString("StoreSuicide"));
                         break;
                     case 3: // TP to random player
-                        str.Append(GetString("PotionStore" + GetString("StoreTP")));
+                        str.Append(GetString("PotionStore") + GetString("StoreTP"));
                         break;
                     case 4: // Nothing
-                        str.Append(GetString("PotionStore" + GetString("StoreWB")));
+                        str.Append(GetString("PotionStore") + GetString("StoreWB"));
                         break;
                     case 5: // Quick fix next sabo
-                        str.Append(GetString("PotionStore" + GetString("StoreQF")));
+                        str.Append(GetString("PotionStore") + GetString("StoreQF"));
                         break;
                     case 6: // Bloodlust
-                        str.Append(GetString("PotionStore" + GetString("StoreBL")));
+                        str.Append(GetString("PotionStore") + GetString("StoreBL"));
                         break;
                     case 7: // Increased vision
-                        str.Append(GetString("PotionStore" + GetString("StoreNS")));
+                        str.Append(GetString("PotionStore") + GetString("StoreNS"));
                         break;
                     case 10:
-                        str.Append(GetString("PotionStore" + GetString("StoreNull")));
+                        str.Append(GetString("PotionStore") + GetString("StoreNull"));
                         break;
                     default: // just in case
                         break;
                 }
-                if (FixNextSabo) str.Append(GetString("WaitQF"));
+                if (FixNextSabo) str.Append(GetString("WaitQFPotion"));
             }
             return str.ToString();
         }
