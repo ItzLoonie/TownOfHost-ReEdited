@@ -243,28 +243,28 @@ namespace TOHE.Roles.Crewmate
                 switch (PotionID)
                 {
                     case 1: // Shield
-                        str.Append(GetString("PotionStore" + GetString("StoreShield")));
+                        str.Append(GetString("StoreShield"));
                         break;
                     case 2: // Suicide
-                        str.Append(GetString("PotionStore" + GetString("StoreSuicide")));
+                        str.Append(GetString("StoreSuicide"));
                         break;
                     case 3: // TP to random player
-                        str.Append(GetString("PotionStore" + GetString("StoreTP")));
+                        str.Append(GetString("StoreTP"));
                         break;
                     case 4: // Nothing
-                        str.Append(GetString("PotionStore" + GetString("StoreWB")));
+                        str.Append(GetString("StoreWB"));
                         break;
                     case 5: // Quick fix next sabo
-                        str.Append(GetString("PotionStore" + GetString("StoreQF")));
+                        str.Append(GetString("StoreQF"));
                         break;
                     case 6: // Bloodlust
-                        str.Append(GetString("PotionStore" + GetString("StoreBL")));
+                        str.Append(GetString("StoreBL"));
                         break;
                     case 7: // Increased vision
-                        str.Append(GetString("PotionStore" + GetString("StoreNS")));
+                        str.Append(GetString("StoreNS"));
                         break;
                     case 10:
-                        str.Append(GetString("PotionStore" + GetString("StoreNull")));
+                        str.Append(GetString("StoreNull"));
                         break;
                     default: // just in case
                         break;
