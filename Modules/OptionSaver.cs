@@ -9,7 +9,6 @@ public static class OptionSaver
 {
     private static readonly DirectoryInfo SaveDataDirectoryInfo = new("./TOHE-DATA/SaveData/");
     private static readonly FileInfo OptionSaverFileInfo = new($"{SaveDataDirectoryInfo.FullName}/Options.json");
-    private static readonly LogHandler logger = Logger.Handler(nameof(OptionSaver));
 
     public static void Initialize()
     {
@@ -34,12 +33,12 @@ public static class OptionSaver
             {
                 if (!singleOptions.TryAdd(option.Id, option.SingleValue))
                 {
-                    logger.Warn($"Duplicate SingleOption ID: {option.Id}");
+                    Logger.Warn($"Duplicate SingleOption ID: {option.Id}", "Option Saver");
                 }
             }
             else if (!presetOptions.TryAdd(option.Id, option.AllValues))
             {
-                logger.Warn($"Duplicate preset option ID: {option.Id}");
+                Logger.Warn($"Duplicate preset option ID: {option.Id}", "Option Saver");
             }
         }
         return new SerializableOptionsData
@@ -55,7 +54,7 @@ public static class OptionSaver
         if (serializableOptionsData.Version != Version)
         {
             // 今後バージョン間の移行方法を用意する場合，ここでバージョンごとの変換メソッドに振り分ける
-            logger.Info($"読み込まれたオプションのバージョン {serializableOptionsData.Version} が現在のバージョン {Version} と一致しないためデフォルト値で上書きします");
+            Logger.Info($"Loaded option version {serializableOptionsData.Version} does not match current version {Version}, overwriting with default value", "Option Saver");
             Save();
             return;
         }
@@ -95,7 +94,7 @@ public static class OptionSaver
         // 空なら読み込まず，デフォルト値をセーブする
         if (jsonString.Length <= 0)
         {
-            logger.Info("オプションデータが空のためデフォルト値を保存");
+            Logger.Info("Save default value as option data is empty", "Option Saver");
             Save();
             return;
         }
