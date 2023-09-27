@@ -2821,7 +2821,7 @@
   "StoreBL": "<b><color=#691a2e>Вред</color></b>",
   "StoreNS": "<b><color=#663399>Ночное видение</color></b>",
   "StoreNull": "<color=#888888>Ничего</color>",
-  "PotionStore": "<color=#00ffa5>Текущее зелье: </color>",
+  "PotionStore": "<color=#00ffa5>Зелье в магазине: </color>",
   "WaitQFPotion": "\n<b><color=#3333ff>Зелье исправления</color></b> ждет использования",
   "AlchemistShielded": "Зелье сопротивления началась",
   "AlchemistHasVision": "Зелье ночного видения началась",
