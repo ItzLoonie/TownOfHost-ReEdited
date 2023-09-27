@@ -1271,6 +1271,8 @@
   "ArsonistCanIgniteAnytime": "Can Ignite Anytime",
   "ArsonistMinPlayersToIgnite": "Minimum doused needed for ignite",
   "ArsonistMaxPlayersToIgnite": "Maximum doused needed for ignite",
+  "PuppetCountForDoubleKill": "Total puppet count needed for double kill",
+  "PuppeteerDoubleKills": "Puppet dies alongside victim",
   "ShowFPS": "Show FPS",
   "FPSGame": "FPS: ",
   "Cooldown": "Cooldown",

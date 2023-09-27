@@ -19,10 +19,13 @@ public static class Puppeteer
     public static bool IsEnable = false;
 
     public static Dictionary<byte, byte> PuppeteerList = new();
+    public static OptionItem PuppeteerDoubleKills;
 
     public static void SetupCustomOption()
     {
         SetupRoleOptions(Id, TabGroup.ImpostorRoles, CustomRoles.Puppeteer);
+        PuppeteerDoubleKills = BooleanOptionItem.Create(Id + 12, "PuppeteerDoubleKills", false, TabGroup.ImpostorRoles, true)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Puppeteer]);
     }
     public static void Init()
     {
@@ -93,6 +96,7 @@ public static class Puppeteer
         );
     }
 
+
     public static void OnFixedUpdate(PlayerControl puppet)
     {
         if (!IsEnable) return;
@@ -136,6 +140,12 @@ public static class Puppeteer
                         PuppeteerList.Remove(puppet.PlayerId);
                         SendRPC(byte.MaxValue, puppet.PlayerId, 2);
                         Utils.NotifyRoles(SpecifySeer: puppet);
+                        if (!puppet.Is(CustomRoles.Pestilence) && PuppeteerDoubleKills.GetBool())
+                        {
+                            puppet.RpcMurderPlayerV3(puppet);
+                            Main.PlayerStates[puppet.PlayerId].deathReason = PlayerState.DeathReason.Drained;
+                            puppet.SetRealKiller(Utils.GetPlayerById(puppeteerId));
+                        }
                     }
                 }
             }
