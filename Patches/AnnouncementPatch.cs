@@ -67,16 +67,19 @@ public class ModNewsHistory
                             "\n     - Vampiress (from TOH-TOR)" +
                             "\n     - Undertaker\n\r" +
 
-                        "\n\r<b><i>Crewmate: (2 role)</i></b>" +
+                        "\n\r<b><i>Crewmate: (3 roles)</i></b>" +
                             "\n     - Nice Mini" +
-                            "\n     - Bastion\n\r" +
+                            "\n     - Bastion" +
+                            "\n     - Alchemist\n\r" +
 
-                        "\n\r<b><i>Neutral: (2 roles)</i></b>" +
+                        "\n\r<b><i>Neutral: (3 roles)</i></b>" +
                             "\n     - Bandit" +
-                            "\n     - Imitator\n\r" +
+                            "\n     - Imitator" +
+                            "\n     - Pyromaniac\n\r" +
 
-                        "\n\r<b><i>Add-on: (1 add-on)</i></b>" +
-                            "\n     - Cyber\n\r" +
+                        "\n\r<b><i>Add-on: (2 add-ons)</i></b>" +
+                            "\n     - Cyber" +
+                            "\n     - Bloodlust\n\r" +
 
                         "\n\r<b>【Bug Fixes】</b>" +
                             "\n     - Fixed Mad Psychic" +
@@ -90,9 +93,13 @@ public class ModNewsHistory
                             "\n     - Fixed bug when Necroview and Visionary used the ability when they are dead" +
                             "\n     - Fixed bug that caused some roles can not guess add-ons under certain conditions if the «Can Guess Add-Ons» setting is enabled\n\r" +
 
+                        "\n\r<b>【Rework Roles】</b>" +
+                            "\n     - Necromancer\n\r" +
+
                         "\n\r<b>【Improvements Roles】</b>" +
                             "\n     - Tracker" +
-                            "\n     - Amnesiac\n\r" +
+                            "\n     - Amnesiac" +
+                            "\n     - Puppeteer\n\r" +
 
                         "\n\r<b>【New Mod Settings】</b>" +
                             "\n     - Setting: Random Spawns On Vents\n\r" +
@@ -104,10 +111,11 @@ public class ModNewsHistory
                             "\n     - Some neutral roles have been given the «Can Vent» and «Has Impostor Vision» setting" +
                             "\n     - Judge is now counted as Crewmate Killing" +
                             "\n     - When certain roles abilities end, their votes will no longer be hidden if the «Hide Vote» setting is enabled (Divinator, Eraser, Tracker, Oracle)" +
-                            "\n     - Added warning for when black screen prevention is disabled but the NK count is higher than 1\n\r" +
+                            "\n     - Added warning for when black screen prevention is disabled but the NK count is higher than 1" +
+                            "\n     - The Bounty Hunter target's nickname is now shown in dark red\n\r" +
 
                         "\n\r<b>【Removals】</b>" +
-                            "\n     - Removed Covens (Poisoner, Jinx, Potion Master, Medusa, Wraith, and Hex Master are now neutral killers again.\nShade, Necromancer, Coven Leader, and Ritualist are now unused)",
+                            "\n     - Removed Covens (Poisoner, Jinx, Potion Master, Medusa, Wraith, and Hex Master are now neutral killers again.\nShade, Coven Leader, and Ritualist are now unused)",
 
                     Date = "2023-9-24T00:00:00Z"
 
@@ -380,16 +388,19 @@ public class ModNewsHistory
                             "\n     - Вампирша (Из TOH-TOR)" +
                             "\n     - Андертейкер\n\r" +
 
-                        "\n\r<b><i>Член Экипажа: (2 роли)</i></b>" +
+                        "\n\r<b><i>Член Экипажа: (3 роли)</i></b>" +
                             "\n     - Добрый Мини" +
-                            "\n     - Бастион\n\r" +
+                            "\n     - Бастион" +
+                            "\n     - Алхимик\n\r" +
 
-                        "\n\r<b><i>Нейтрал: (2 роли)</i></b>" +
+                        "\n\r<b><i>Нейтрал: (3 роли)</i></b>" +
                             "\n     - Бандит" +
-                            "\n     - Имитатор\n\r" +
+                            "\n     - Имитатор" +
+                            "\n     - Пиромант\n\r" +
 
-                        "\n\r<b><i>Атрибут: (1 атрибут)</i></b>" +
-                            "\n     - Знаменитый\n\r" +
+                        "\n\r<b><i>Атрибут: (2 атрибута)</i></b>" +
+                            "\n     - Знаменитый" +
+                            "\n     - Кровожадный\n\r" +
 
                         "\n\r<b>【Исправление Багов】</b>" +
                             "\n     - Исправлен Безумный Экстрасенс" +
@@ -403,9 +414,13 @@ public class ModNewsHistory
                             "\n     - Исправлен баг когда Некровил и Визионер использовали способность, когда они были мертвы" +
                             "\n     - Исправлен баг из-за этого некоторые роли не могли угадать атрибуты при определенных условиях, если включена настройка «Может угадывать атрибуты»\n\r" +
 
+                        "\n\r<b>【Переработка Ролей】</b>" +
+                            "\n     - Некромант\n\r" +
+
                         "\n\r<b>【Улучшения Ролей】</b>" +
                             "\n     - Трекер" +
-                            "\n     - Амнезияк\n\r" +
+                            "\n     - Амнезияк" +
+                            "\n     - Кукловод\n\r" +
 
                         "\n\r<b>【Новые Настройки Мода】</b>" +
                             "\n     - Настройка: Случайные появления на вентиляциях\n\r" +
@@ -417,10 +432,11 @@ public class ModNewsHistory
                             "\n     - Некоторым нейтральным ролям были добавлены настройки «Может использовать вентиляцию» и «Имеет дальность обзора Предателя»" +
                             "\n     - Судья теперь считается как Член Экипажа Убийца" +
                             "\n     - Когда навыки у Следователя, Стирачки, Трекера или у Оракла заканчивались, их голоса больше не будут скрываться, если у них включена настройка «Скрыть голос»" +
-                            "\n     - Добавлено предупреждение, когда настройка «Предотвращение черного экрана» отключена, но количество Нейтральных Убийц в игре больше одного\n\r" +
+                            "\n     - Добавлено предупреждение, когда настройка «Предотвращение черного экрана» отключена, но количество Нейтральных Убийц в игре больше одного" +
+                            "\n     - Никнейм цели Охотника за Головами теперь отображается темно-красным\n\r" +
 
                         "\n\r<b>【Уделаены】</b>" +
-                            "\n     - Удалена команда Ковенов (Отравитель, Джинкс, Ритуальщик, Медуза, Дух и Мастер Проклятий теперь снова Нейтральные Убийцы.\nТень, Некромант, Лидер Ковена и Фокусник теперь не используются)",
+                            "\n     - Удалена команда Ковенов (Отравитель, Джинкс, Ритуальщик, Медуза, Дух и Мастер Проклятий теперь снова Нейтральные Убийцы.\nТень, Лидер Ковена и Фокусник теперь не используются)",
 
                     Date = "2023-9-24T00:00:00Z"
 
