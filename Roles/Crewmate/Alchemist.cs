@@ -243,33 +243,33 @@ namespace TOHE.Roles.Crewmate
                 switch (PotionID)
                 {
                     case 1: // Shield
-                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#00ff97>Potion of Resistance</color></b>");
+                        str.Append(GetString("PotionStore" + GetString("StoreShield")));
                         break;
                     case 2: // Suicide
-                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#478800>Potion of Poison</color></b>");
+                        str.Append(GetString("PotionStore" + GetString("StoreSuicide")));
                         break;
                     case 3: // TP to random player
-                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#42d1ff>Potion of Warping</color></b>");
+                        str.Append(GetString("PotionStore" + GetString("StoreTP")));
                         break;
                     case 4: // Nothing
-                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#ff8400>Water Bottle</color></b>");
+                        str.Append(GetString("PotionStore" + GetString("StoreWB")));
                         break;
                     case 5: // Quick fix next sabo
-                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#3333ff>Potion of Fixing</color></b>");
+                        str.Append(GetString("PotionStore" + GetString("StoreQF")));
                         break;
                     case 6: // Bloodlust
-                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#691a2e>Potion of Harming</color></b>");
+                        str.Append(GetString("PotionStore" + GetString("StoreBL")));
                         break;
                     case 7: // Increased vision
-                        str.Append("<color=#00ffa5>Potion in store:</color> <b><color=#663399>Potion of Night Vision</color></b>");
+                        str.Append(GetString("PotionStore" + GetString("StoreNS")));
                         break;
                     case 10:
-                        str.Append("<color=#00ffa5>Potion in store:</color> <color=#888888>None</color>");
+                        str.Append(GetString("PotionStore" + GetString("StoreNull")));
                         break;
                     default: // just in case
                         break;
                 }
-                if (FixNextSabo) str.Append("\n<b><color=#3333ff>Potion of Fixing</color></b> waiting for use");
+                if (FixNextSabo) str.Append(GetString("WaitQF"));
             }
             return str.ToString();
         }
