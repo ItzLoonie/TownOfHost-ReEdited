@@ -24,6 +24,7 @@ internal class ChatCommands
     private static string modLogFiles = @"./TOHE-DATA/ModLogs.txt";
     private static string modTagsFiles = @"./TOHE-DATA/Tags/MOD_TAGS";
     private static string sponsorTagsFiles = @"./TOHE-DATA/Tags/SPONSOR_TAGS";
+    private static string vipTagsFiles = @"./TOHE-DATA/Tags/VIP_TAGS";
 
 
     public static List<string> ChatHistory = new();
@@ -58,6 +59,7 @@ internal class ChatCommands
         if (RetributionistRevengeManager.RetributionistMsgCheck(PlayerControl.LocalPlayer, text)) goto Canceled;
         if (Swapper.SwapMsg(PlayerControl.LocalPlayer, text)) goto Canceled; 
         Directory.CreateDirectory(modTagsFiles);
+        Directory.CreateDirectory(vipTagsFiles);
         Directory.CreateDirectory(sponsorTagsFiles);
 
     /*    if ((Options.NewHideMsg.GetBool() && ChatManager.cancel == true || Blackmailer.ForBlackmailer.Contains(PlayerControl.LocalPlayer.PlayerId)) && PlayerControl.LocalPlayer.IsAlive())
@@ -1047,6 +1049,7 @@ internal class ChatCommands
         if (MafiaRevengeManager.MafiaMsgCheck(player, text)) return;
         if (RetributionistRevengeManager.RetributionistMsgCheck(player, text)) return;
         Directory.CreateDirectory(modTagsFiles);
+        Directory.CreateDirectory(vipTagsFiles);
         Directory.CreateDirectory(sponsorTagsFiles);
 
     /*    if ((Options.NewHideMsg.GetBool() && ChatManager.cancel == true || Blackmailer.ForBlackmailer.Contains(PlayerControl.LocalPlayer.PlayerId)) && PlayerControl.LocalPlayer.IsAlive() && player.PlayerId != 0)
@@ -1534,6 +1537,41 @@ internal class ChatCommands
                 //Logger.Msg($"File exists, creating file at {modTagsFiles}/{player.FriendCode}.txt", "modcolor");
                 //Logger.Msg($"{subArgs}","modcolor");
                 File.WriteAllText(colorFilePath, $"{subArgs}");
+                break;
+            case "/vipcolor":
+            case "/vipcolour":
+                if (Options.ApplyVipList.GetValue() == 0)
+                {
+                    Utils.SendMessage(GetString("VipColorCommandDisabled"), player.PlayerId);
+                    break;
+                }
+                if (!Utils.IsPlayerVIP(player.FriendCode))
+                {
+                    Utils.SendMessage(GetString("VipColorCommandNoAccess"), player.PlayerId);
+                    break;
+                }
+                if (!GameStates.IsLobby)
+                {
+                    Utils.SendMessage(GetString("VipColorCommandNoLobby"), player.PlayerId);
+                    break;
+                }
+                subArgs = args.Length < 3 ? "" : args[1] + " " + args[2];
+                Regex regexx = new Regex(@"^[0-9A-Fa-f]{6}\s[0-9A-Fa-f]{6}$");
+                if (string.IsNullOrEmpty(subArgs) || !regexx.IsMatch(subArgs))
+                {
+                    Logger.Msg($"{subArgs}", "vipcolor");
+                    Utils.SendMessage(GetString("VipColorInvalidHexCode"), player.PlayerId);
+                    break;
+                }
+                string colorFilePathh = $"{vipTagsFiles}/{player.FriendCode}.txt";
+                if (!File.Exists(colorFilePathh))
+                {
+                    Logger.Msg($"File Not exist, creating file at {vipTagsFiles}/{player.FriendCode}.txt", "vipcolor");
+                    File.Create(colorFilePathh).Close();
+                }
+                //Logger.Msg($"File exists, creating file at {vipTagsFiles}/{player.FriendCode}.txt", "vipcolor");
+                //Logger.Msg($"{subArgs}","modcolor");
+                File.WriteAllText(colorFilePathh, $"{subArgs}");
                 break;
             case "/tagcolor":
             case "/tagcolour":

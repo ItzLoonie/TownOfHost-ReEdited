@@ -842,6 +842,7 @@ public static class Options
     public static OptionItem KickLowLevelPlayer;
     public static OptionItem ApplyBanList;
     public static OptionItem ApplyModeratorList;
+    public static OptionItem ApplyVipList;
     public static OptionItem ApplyAllowList;
     public static OptionItem AutoWarnStopWords;
 
@@ -2290,6 +2291,7 @@ public static class Options
         OptKickNintendoPlayer = BooleanOptionItem.Create(19355, "OptKickNintendoPlayer", false, TabGroup.SystemSettings, false)
             .SetParent(KickOtherPlatformPlayer); //Switch
         KickPlayerFriendCodeNotExist = BooleanOptionItem.Create(19302, "KickPlayerFriendCodeNotExist", false, TabGroup.SystemSettings, true);
+        ApplyVipList = BooleanOptionItem.Create(19308, "ApplyVipList", true, TabGroup.SystemSettings, false);
         ApplyDenyNameList = BooleanOptionItem.Create(19303, "ApplyDenyNameList", true, TabGroup.SystemSettings, true);
         ApplyBanList = BooleanOptionItem.Create(19304, "ApplyBanList", true, TabGroup.SystemSettings, true);
         ApplyModeratorList = BooleanOptionItem.Create(19305, "ApplyModeratorList", false, TabGroup.SystemSettings, false);
