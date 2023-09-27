@@ -225,15 +225,7 @@ class CheckMurderPatch
                     if (!Vampire.OnCheckMurder(killer, target)) return false;
                     break;
                 case CustomRoles.Vampiress:
-                    if (Main.CheckShapeshift[killer.PlayerId])
-                    {
-                        Vampiress.OnCheckMurder(killer, target);
-                    }
-                    if (!Main.CheckShapeshift[killer.PlayerId])
-                    {
-                        Vampiress.OnCheckBite(killer, target);
-                        return false;
-                    }
+                    if (!Vampiress.OnCheckKill(killer, target)) return false;
                     break;
                 case CustomRoles.Pyromaniac:
                     if (!Pyromaniac.OnCheckMurder(killer, target)) return false;
@@ -2812,12 +2804,10 @@ class FixedUpdatePatch
                 if (GameStates.IsInGame && Main.RefixCooldownDelay <= 0)
                     foreach (var pc in Main.AllPlayerControls)
                     {
-                        if (pc.Is(CustomRoles.Vampire) || pc.Is(CustomRoles.Warlock) || pc.Is(CustomRoles.Assassin))
+                        if (pc.Is(CustomRoles.Vampire) || pc.Is(CustomRoles.Warlock) || pc.Is(CustomRoles.Assassin) || pc.Is(CustomRoles.Vampiress))
                             Main.AllPlayerKillCooldown[pc.PlayerId] = Options.DefaultKillCooldown * 2;
                         if (pc.Is(CustomRoles.Poisoner))
                             Main.AllPlayerKillCooldown[pc.PlayerId] = Poisoner.KillCooldown.GetFloat() * 2;
-                        if (pc.Is(CustomRoles.Vampiress))
-                            Main.AllPlayerKillCooldown[pc.PlayerId] = Vampiress.KillCooldown.GetFloat() * 2;
                     }
 
                 if (!Main.DoBlockNameChange && AmongUsClient.Instance.AmHost)

@@ -1282,7 +1282,7 @@ public static class Options
         SetupRoleOptions(4300, TabGroup.ImpostorRoles, CustomRoles.Trickster);
         Undertaker.SetupCustomOption();
         Vampire.SetupCustomOption();
-        Vampiress.SetupCustomOption();
+    //    Vampiress.SetupCustomOption();
         SetupRoleOptions(4600, TabGroup.ImpostorRoles, CustomRoles.Warlock);
         WarlockCanKillAllies = BooleanOptionItem.Create(4610, "CanKillAllies", true, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Warlock]);

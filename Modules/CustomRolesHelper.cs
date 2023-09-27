@@ -35,7 +35,7 @@ static class CustomRolesHelper
                 CustomRoles.Lawyer => CustomRoles.Crewmate,
                 CustomRoles.Bastion => CustomRoles.Engineer,
                 CustomRoles.Vampire => CustomRoles.Impostor,
-                CustomRoles.Vampiress => CustomRoles.Shapeshifter,
+                CustomRoles.Vampiress => CustomRoles.Impostor,
                 CustomRoles.BountyHunter => CustomRoles.Shapeshifter,
                 CustomRoles.Trickster => CustomRoles.Impostor,
                 CustomRoles.Witch => CustomRoles.Impostor,

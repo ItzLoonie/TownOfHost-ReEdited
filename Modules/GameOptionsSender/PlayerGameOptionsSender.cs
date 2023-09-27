@@ -378,9 +378,6 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Assassin:
                 Assassin.ApplyGameOptions();
                 break;
-            case CustomRoles.Vampiress:
-                Vampiress.ApplyGameOptions();
-                break;
             case CustomRoles.Hacker:
                 Hacker.ApplyGameOptions();
                 break;

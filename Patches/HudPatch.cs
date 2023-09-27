@@ -130,19 +130,9 @@ class HudManagerPatch
                         Occultist.GetAbilityButtonText(__instance);
                         break;
                     case CustomRoles.Vampire:
-                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
-                        Vampire.SetKillButtonText();
-                        break;
                     case CustomRoles.Vampiress:
                         __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
-                        if (!shapeshifting)
-                        {
-                            __instance.KillButton.OverrideText(GetString("VampireBiteButtonText"));
-                        }
-                        if (shapeshifting)
-                        {
-                            __instance.KillButton.OverrideText(GetString("KillButtonText"));
-                        }
+                        Vampire.SetKillButtonText();
                         break;
                     case CustomRoles.Poisoner:
                         __instance.ReportButton.OverrideText(GetString("ReportButtonText"));

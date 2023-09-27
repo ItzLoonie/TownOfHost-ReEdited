@@ -188,7 +188,6 @@ class ExileControllerWrapUpPatch
                 CustomRoles.Lighter or
                 CustomRoles.Pitfall or
                 CustomRoles.Bastion or
-                CustomRoles.Vampiress or
                 CustomRoles.ScientistTOHE or
                 CustomRoles.Tracefinder or
                 CustomRoles.Doctor or
