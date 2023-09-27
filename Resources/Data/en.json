@@ -2844,7 +2844,7 @@
   "StoreBL": "<color=#00ffa5>Potion in store: </color><b><color=#691a2e>Potion of Harming</color></b>",
   "StoreNS": "<color=#00ffa5>Potion in store: </color><b><color=#663399>Potion of Night Vision</color></b>",
   "StoreNull": "<color=#00ffa5>Potion in store: </color><color=#888888>None</color>",
-  "WaitQFPotion": "\n<b><color=#3333ff>Potion of Fixing</color></b> waiting for use",
+  "WaitQF": "\n<b><color=#3333ff>Potion of Fixing</color></b> waiting for use",
   "AlchemistShielded": "Potion of Resistance started",
   "AlchemistHasVision": "Potion of Night Vision started",
   "AlchemistShieldOut": "Potion of Resistance ended",
