@@ -2633,14 +2633,14 @@
   "IncompatibleCrewmateMode": "Если член экипажа не совместим, вспомнить",
   "RememberedYourRole": "Амнезиак запомнил твою роль!",
   "YouRememberedRole": "Ты вспомнил, кем ты был!",
-  
+
   "BanditStealMode.OnMeeting": "На встрече",
   "BanditStealMode.Instantly": "Моментально",
   "BanditMaxSteals": "Максимум кражей",
   "BanditStealMode": "Кража происходит",
   "BanditCanStealBetrayalAddon": "Может украсть предательские атрибуты",
   "BanditCanStealImpOnlyAddon": "Может украсть только атрибуты <color=#ff1919>Предателей</color>",
-  
+
   "NecromancerRevengeTime": "Время некромантии",
   "NecromancerRevenge": "У тебя есть {0}с чтобы убить <color=#ff1919>{1}</color>",
   "NecromancerSuccess": "Некромантия завершена! Ты выжил убив своего убийцу",
@@ -2813,6 +2813,16 @@
   "AlchemistGotNullPotion": "Бутылка с водой: Ничего не делает",
   "AlchemistGotBloodlustPotion": "Зелье вреда: убейте игрока, с которым вступите в контакт",
   "NoPotion": "У тебя нет зелий",
+  "StoreShield": "<b><color=#00ff97>Сопротивление</color></b>",
+  "StoreSuicide": "<b><color=#478800>Зелье Яда</color></b>",
+  "StoreTP": "<b><color=#42d1ff>Телепортация</color></b>",
+  "StoreWB": "<b><color=#ff8400>Бутылка с водой</color></b>",
+  "StoreQF": "<b><color=#3333ff>Исправление</color></b>",
+  "StoreBL": "<b><color=#691a2e>Вред</color></b>",
+  "StoreNS": "<b><color=#663399>Ночное видение</color></b>",
+  "StoreNull": "<color=#888888>Ничего</color>",
+  "PotionStore": "<color=#00ffa5>Зелье в магазине: </color>",
+  "WaitQFPotion": "\n<b><color=#3333ff>Зелье исправления</color></b> ждет использования",
   "AlchemistShielded": "Зелье сопротивления началась",
   "AlchemistHasVision": "Зелье ночного видения началась",
   "AlchemistShieldOut": "Зелье сопротивления закончилась",
