@@ -202,14 +202,16 @@ class CheckMurderPatch
         if (Pursuer.OnClientMurder(killer)) return false;
         if (Addict.IsImmortal(target)) return false;
         if (target.Is(CustomRoles.Necromancer) && !Necromancer.OnKillAttempt(killer, target)) return false;
-            if (Alchemist.IsProtected && target.Is(CustomRoles.Alchemist))
+        
+        if (Alchemist.IsProtected && target.Is(CustomRoles.Alchemist))
         {
             killer.SetKillCooldown(time: 5f);
             return false;
         };
+        
         if (Glitch.hackedIdList.ContainsKey(killer.PlayerId))
         {
-            killer.Notify(string.Format(GetString("HackedByGlitch"), "Kill"));
+            killer.Notify(string.Format(GetString("HackedByGlitch"), GetString("GlitchKill")));
             return false;
         }
 
@@ -2366,7 +2368,7 @@ class FixedUpdatePatch
         {
             if (Glitch.hackedIdList.ContainsKey(__instance.PlayerId))
             {
-                __instance.Notify(string.Format(GetString("HackedByGlitch"), "Report"));
+                __instance.Notify(string.Format(GetString("HackedByGlitch"), GetString("GlitchReport")));
                 Logger.Info("Dead Body Report Blocked (player is hacked by Glitch)", "FixedUpdate.ReportDeadBody");
                 ReportDeadBodyPatch.WaitReport[__instance.PlayerId].Clear();
             }
@@ -3401,7 +3403,7 @@ class CoEnterVentPatch
         {
             _ = new LateTask(() =>
             {
-                __instance.myPlayer?.Notify(string.Format(GetString("HackedByGlitch"), "Vent"));
+                __instance.myPlayer?.Notify(string.Format(GetString("HackedByGlitch"), GetString("GlitchVent")));
                 __instance.myPlayer?.MyPhysics?.RpcBootFromVent(id);
             }, 0.5f);
             return true;

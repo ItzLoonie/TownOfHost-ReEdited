@@ -94,15 +94,20 @@ public class ModNewsHistory
                             "\n     - Fixed bug that caused some roles can not guess add-ons under certain conditions if the «Can Guess Add-Ons» setting is enabled\n\r" +
 
                         "\n\r<b>【Rework Roles】</b>" +
-                            "\n     - Necromancer\n\r" +
+                            "\n     - Necromancer" +
+                            "\n     - Arsonist\n\r" +
 
                         "\n\r<b>【Improvements Roles】</b>" +
                             "\n     - Tracker" +
                             "\n     - Amnesiac" +
-                            "\n     - Puppeteer\n\r" +
+                            "\n     - Puppeteer" +
+                            "\n     - Glitch\n\r" +
 
                         "\n\r<b>【New Mod Settings】</b>" +
                             "\n     - Setting: Random Spawns On Vents\n\r" +
+
+                        "\n\r<b>【New Features】</b>" +
+                            "\n     - Added VIP system\n\r" +
 
                         "\n\r<b>【Some Changes】</b>" +
                             "\n     - Keybind «Set Default All TOHE Options» was returned (Ctrl + Delete)" +
@@ -415,17 +420,23 @@ public class ModNewsHistory
                             "\n     - Исправлен баг из-за этого некоторые роли не могли угадать атрибуты при определенных условиях, если включена настройка «Может угадывать атрибуты»\n\r" +
 
                         "\n\r<b>【Переработка Ролей】</b>" +
-                            "\n     - Некромант\n\r" +
+                            "\n     - Некромант" +
+                            "\n     - Арзонист\n\r" +
 
                         "\n\r<b>【Улучшения Ролей】</b>" +
                             "\n     - Трекер" +
                             "\n     - Амнезияк" +
-                            "\n     - Кукловод\n\r" +
+                            "\n     - Кукловод" +
+                            "\n     - Глич\n\r" +
 
                         "\n\r<b>【Новые Настройки Мода】</b>" +
                             "\n     - Настройка: Случайные появления на вентиляциях\n\r" +
 
+                        "\n\r<b>【Новые Функции】</b>" +
+                            "\n     - Добавлена VIP система\n\r" +
+
                         "\n\r<b>【Некоторые Изменения】</b>" +
+                            "\n     - Система модераторов теперь полностью переведена и не содержит пустых сообщений" +
                             "\n     - Привязка клавиш «Установить все настройки TOHE по умолчанию» был возвращен (Ctrl + Delete)" +
                             "\n     - Демон теперь Нейтральный Убийца (был Злым Нейтралом)" +
                             "\n     - Бомбер, Крипер и Медик больше не могут стать Хрупким (Атрибут)" +
