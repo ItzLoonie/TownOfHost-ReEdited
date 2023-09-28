@@ -87,15 +87,20 @@ public static class Utils
         if (AmongUsClient.Instance.AmHost)
             player.NetTransform.SnapTo(location);
 
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(player.NetTransform.NetId, (byte)RpcCalls.SnapTo, SendOption.None);
-        Logger.Info($" {player.NetTransform.NetId}", "Teleport - NetTransform Id");
+        var sender = CustomRpcSender.Create("RpcTeleport", sendOption: SendOption.None);
+        {
+            sender.AutoStartRpc(player.NetTransform.NetId, (byte)RpcCalls.SnapTo);
+            {
+                Logger.Info($" {player.NetTransform.NetId}", "Teleport - NetTransform Id");
 
-        NetHelpers.WriteVector2(location, writer);
+                NetHelpers.WriteVector2(location, sender.stream);
+                sender.Write(player.NetTransform.lastSequenceId);
 
-        writer.Write(player.NetTransform.lastSequenceId);
-        Logger.Info($" {player.NetTransform.lastSequenceId}", "Teleport - Player NetTransform lastSequenceId - writer");
-
-        AmongUsClient.Instance.FinishRpcImmediately(writer);
+                Logger.Info($" {player.NetTransform.lastSequenceId}", "Teleport - Player NetTransform lastSequenceId - writer");
+            }
+            sender.EndRpc();
+        }
+        sender.SendMessage();
     }
     public static void RpcRandomVentTeleport(this PlayerControl player)
     {
