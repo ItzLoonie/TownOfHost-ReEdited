@@ -3152,7 +3152,7 @@
   "StoreBL": "<b><color=#691a2e>伤害药水</color>",
   "StoreNS": "<b><color=#663399>夜视药水</color>",
   "StoreNull": "<color=#888888>无</color>",
-  "PotionStore": "<color=#00ffa5>药水在店里： </color>",
+  "PotionStore": "<color=#00ffa5>药水在店里：</color>",
   "WaitQFPotion": "\n<color=#3333ff>修复药水</color>等待使用",
   "VampiressChance": "<color=#ff1919>吸血鬼女王</color>的概率",
   "ArsonistCanIgniteAnytime": "可随时点燃",
