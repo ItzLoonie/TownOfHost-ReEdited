@@ -84,19 +84,19 @@ public static class Utils
         if (player.inVent)
             player.MyPhysics.RpcBootFromVent(0);
 
-        Vector2 teleporPlayer = location;
-        ushort Xpos = (ushort)(NetHelpers.XRange.ReverseLerp(teleporPlayer.x) * 65535f);
-        ushort Ypos = (ushort)(NetHelpers.YRange.ReverseLerp(teleporPlayer.y) * 65535f);
+        if (AmongUsClient.Instance.AmHost)
+            player.NetTransform.SnapTo(location);
 
         var sender = CustomRpcSender.Create("RpcTeleport", sendOption: SendOption.None);
-        sender.AutoStartRpc(player.NetTransform.NetId, (byte)RpcCalls.SnapTo)
-            .Write(Xpos)
-            .Write(Ypos)
-            //.WriteNetObject(player)
-        .EndRpc();
-
+        {
+            sender.AutoStartRpc(player.NetTransform.NetId, (byte)RpcCalls.SnapTo);
+            {
+                NetHelpers.WriteVector2(location, sender.stream);
+                sender.Write(player.NetTransform.lastSequenceId);
+            }
+            sender.EndRpc();
+        }
         sender.SendMessage();
-        player.NetTransform.SnapTo(teleporPlayer);
     }
     public static void RpcRandomVentTeleport(this PlayerControl player)
     {
