@@ -37,7 +37,7 @@ public static class AntiBlackout
         || NWitch.IsEnable || Maverick.IsEnable
         || Shade.IsEnable || RuthlessRomantic.IsEnable
         || Spiritcaller.IsEnable || Occultist.IsEnable
-        || Pyromaniac.IsEnable
+        || Pyromaniac.IsEnable || Huntsman.IsEnable
         || PlagueBearer.IsEnable || CustomRoles.Pestilence.RoleExist(true)
         || CustomRoles.Sidekick.RoleExist(true) || (CustomRoles.Arsonist.RoleExist(true) && Options.ArsonistCanIgniteAnytime.GetBool())
         // Covens

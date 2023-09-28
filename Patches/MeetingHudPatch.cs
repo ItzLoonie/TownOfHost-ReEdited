@@ -997,6 +997,7 @@ class MeetingHudStartPatch
                 case CustomRoles.CovenLeader:
                 case CustomRoles.Pickpocket:
                 case CustomRoles.PotionMaster:
+                case CustomRoles.Huntsman:
                 case CustomRoles.Traitor:
                 case CustomRoles.Spiritcaller:
                     sb.Append(Snitch.GetWarningMark(seer, target));

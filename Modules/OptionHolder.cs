@@ -1709,6 +1709,7 @@ public static class Options
         Gamer.SetupCustomOption();
         Glitch.SetupCustomOption();
         HexMaster.SetupCustomOption();
+        Huntsman.SetupCustomOption();
         Infectious.SetupCustomOption();
         Jackal.SetupCustomOption();
         Jinx.SetupCustomOption();

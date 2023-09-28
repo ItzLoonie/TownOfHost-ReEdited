@@ -1153,6 +1153,9 @@ internal static class RPC
             case CustomRoles.Traitor:
                 Traitor.Add(targetId);
                 break;
+            case CustomRoles.Huntsman:
+                Huntsman.Add(targetId);
+                break;
             case CustomRoles.NWitch:
                 NWitch.Add(targetId);
                 break;

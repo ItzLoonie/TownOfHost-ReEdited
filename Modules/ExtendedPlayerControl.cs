@@ -473,6 +473,7 @@ static class ExtendedPlayerControl
             CustomRoles.Arsonist => Options.ArsonistCanIgniteAnytime.GetBool() ? Utils.GetDousedPlayerCount(pc.PlayerId).Item1 < Options.ArsonistMaxPlayersToIgnite.GetInt() : !pc.IsDouseDone(),
             CustomRoles.Revolutionist => !pc.IsDrawDone(),
             CustomRoles.Pyromaniac => pc.IsAlive(),
+            CustomRoles.Huntsman => pc.IsAlive(),
             CustomRoles.SwordsMan => pc.IsAlive(),
             CustomRoles.Jackal => pc.IsAlive(),
             CustomRoles.Bandit => pc.IsAlive(),
@@ -580,6 +581,7 @@ static class ExtendedPlayerControl
             CustomRoles.VengefulRomantic => Romantic.VengefulCanVent.GetBool(),
             CustomRoles.Glitch => Glitch.CanVent.GetBool(),
             CustomRoles.RuthlessRomantic => Romantic.RuthlessCanVent.GetBool(),
+            CustomRoles.Huntsman => Huntsman.CanVent.GetBool(),
             CustomRoles.Sidekick => Jackal.CanVentSK.GetBool(),
             CustomRoles.Poisoner => Poisoner.CanVent.GetBool(),
             CustomRoles.Vampiress => Vampire.CanVent.GetBool(),
@@ -637,6 +639,7 @@ static class ExtendedPlayerControl
             CustomRoles.CopyCat or
             CustomRoles.CursedSoul or
             CustomRoles.Admirer or
+            CustomRoles.Huntsman or
             CustomRoles.Amnesiac or
             CustomRoles.Monarch or
             CustomRoles.Deputy or
@@ -841,6 +844,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Glitch:
                 Glitch.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Huntsman:
+                Main.AllPlayerKillCooldown[player.PlayerId] = Huntsman.KCD;
                 break;
             case CustomRoles.NWitch:
                 NWitch.SetKillCooldown(player.PlayerId);
