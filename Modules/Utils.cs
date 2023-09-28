@@ -11,6 +11,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using UnityEngine;
+
 using TOHE.Modules;
 using TOHE.Roles.AddOns.Crewmate;
 using TOHE.Roles.AddOns.Impostor;
@@ -18,7 +20,6 @@ using TOHE.Roles.Crewmate;
 using TOHE.Roles.Double;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
-using UnityEngine;
 using static TOHE.Translator;
 
 namespace TOHE;
@@ -71,10 +72,12 @@ public static class Utils
             }
         }
     }
-    public static void TPAll(Vector2 location)
+    public static void RpcTeleportAllPlayers(Vector2 location)
     {
-        foreach (PlayerControl pc in Main.AllAlivePlayerControls)
+        foreach (var pc in Main.AllAlivePlayerControls)
+        {
             pc.RpcTeleport(new Vector2(location.x, location.y));
+        }
     }
     public static void RpcTeleport(this PlayerControl player, Vector2 location)
     {
@@ -328,7 +331,7 @@ public static class Utils
     public static Color GetRoleColor(CustomRoles role)
     {
         if (!Main.roleColors.TryGetValue(role, out var hexColor)) hexColor = "#ffffff";
-        ColorUtility.TryParseHtmlString(hexColor, out Color c);
+        _ = ColorUtility.TryParseHtmlString(hexColor, out Color c);
         return c;
     }
     public static string GetRoleColorCode(CustomRoles role)
@@ -1393,6 +1396,8 @@ public static class Utils
             case "黑":
             case "black":
             case "Black":
+            case "Чёрн":
+            case "Черн":
             case "Чёрный":
             case "Черный":
             case "чёрный":
@@ -1660,8 +1665,8 @@ public static class Utils
 
     private static Color HexToColor(string hex)
     {
-        Color color = new Color();
-        ColorUtility.TryParseHtmlString("#" + hex, out color);
+        Color color = new();
+        _ = ColorUtility.TryParseHtmlString("#" + hex, out color);
         return color;
     }
 
@@ -2431,20 +2436,21 @@ public static class Utils
             foreach (var pid in Main.KilledDiseased.Keys)
             {
                 Main.KilledDiseased[pid] = 0;
-                Utils.GetPlayerById(pid).ResetKillCooldown();
+                GetPlayerById(pid).ResetKillCooldown();
             }
             Main.KilledDiseased.Clear();
         }
-            //Main.KilledDiseased.Clear();
+
         if (Options.AntidoteCDReset.GetBool())
         {
             foreach (var pid in Main.KilledAntidote.Keys)
             {
                 Main.KilledAntidote[pid] = 0;
-                Utils.GetPlayerById(pid).ResetKillCooldown();
+                GetPlayerById(pid).ResetKillCooldown();
             }
             Main.KilledAntidote.Clear();
         }
+
         Swooper.AfterMeetingTasks();
         Glitch.AfterMeetingTasks();
         Wraith.AfterMeetingTasks();
