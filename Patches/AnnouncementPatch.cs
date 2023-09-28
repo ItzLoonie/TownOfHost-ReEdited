@@ -55,7 +55,7 @@ public class ModNewsHistory
                 {
                     Number = 100003,
                     Title = "Town of Host Re-Edited v3.1.0",
-                    SubTitle = "★★Smaller uodate, but still kinda large★★",
+                    SubTitle = "★★Smaller update, but still kinda large★★",
                     ShortTitle = "★TOH-RE v3.1.0",
                     Text = "<size=150%>Welcome to TOHE v3.1.0!</size>\n\n<size=125%>Support for Among Us v2023.7.11 and v2023.7.12</size>\n"
 
@@ -64,54 +64,65 @@ public class ModNewsHistory
                         + "\n<b>【New Roles】</b>" +
                         "\n\r<b><i>Impostor: (3 roles)</i></b>" +
                             "\n     - Evil Mini" +
-                            "\n     - Vampiress (from TOHTOR)" +
+                            "\n     - Vampiress (from TOH-TOR)" +
                             "\n     - Undertaker\n\r" +
 
-                        "\n\r<b><i>Crewmate: (1 role)</i></b>" +
-                            "\n     - Nice Mini\n\r" +
+                        "\n\r<b><i>Crewmate: (3 roles)</i></b>" +
+                            "\n     - Nice Mini" +
+                            "\n     - Bastion" +
+                            "\n     - Alchemist\n\r" +
 
-                        "\n\r<b><i>Neutral: (2 roles)</i></b>" +
+                        "\n\r<b><i>Neutral: (3 roles)</i></b>" +
                             "\n     - Bandit" +
-                            "\n     - Imitator\n\r" +
+                            "\n     - Imitator" +
+                            "\n     - Pyromaniac\n\r" +
 
-                        "\n\r<b><i>Add-on: (1 add-on)</i></b>" +
-                            "\n     - Cyber\n\r" +
+                        "\n\r<b><i>Add-on: (2 add-ons)</i></b>" +
+                            "\n     - Cyber" +
+                            "\n     - Bloodlust\n\r" +
 
                         "\n\r<b>【Bug Fixes】</b>" +
                             "\n     - Fixed Mad Psychic" +
                             "\n     - Fixed Werewolf (no longer leaves duplicate bodies)" +
                             "\n     - Fixed Swapper kicking clients" +
-                            "\n     - Fixed Egoist win screen showing double (hopefully)" +
+                            "\n     - Fixed Egoist win screen showing double" +
                             "\n     - Fixed minor issue with Eraser" +
+                            "\n     - Fixed «Neutrals Win Together» (Again)" +
                             "\n     - Fixed bug when Lawyer and Executioner have tasks" +
                             "\n     - Fixed Hex Master and Wraith win condition" +
                             "\n     - Fixed bug when Necroview and Visionary used the ability when they are dead" +
-                            "\n     - Fixed bug that caused some roles can not guess add-ons under certain conditions if the \"Can Guess Add-Ons\" setting is enabled\n\r" +
+                            "\n     - Fixed bug that caused some roles can not guess add-ons under certain conditions if the «Can Guess Add-Ons» setting is enabled\n\r" +
+
+                        "\n\r<b>【Rework Roles】</b>" +
+                            "\n     - Necromancer" +
+                            "\n     - Arsonist\n\r" +
 
                         "\n\r<b>【Improvements Roles】</b>" +
                             "\n     - Tracker" +
-                            "\n     - Amnesiac\n\r" +
+                            "\n     - Amnesiac" +
+                            "\n     - Puppeteer" +
+                            "\n     - Glitch\n\r" +
 
                         "\n\r<b>【New Mod Settings】</b>" +
                             "\n     - Setting: Random Spawns On Vents\n\r" +
 
-                        "\n\r<b>【Some Changes】</b>" +
-                            "\n     - Keybind \"Set Default All TOHE Options\" was returned" +
-                            "\n     - Demon now Neutral Killer (was Neutral Evil)" +
-                            "\n     - Bomber, Nuker and Medic can no longer be Fragile" +
-                            "\n     - Some neutral roles have been given the \"Can Vent\" and \"Has Impostor Vision\" setting" +
-                            "\n     - Judge is now counted as Crewmate Killing" +
-                            "\n     - The Crewmate and Impostor tabs have been reorganized" +
-                            "\n     - When certain roles abilities end, their votes will no longer be hidden if the \"Hide Vote\" setting is enabled" +
-                            "\n     - Added warning for when black screen prevention is disabled but the NK count is higher than 1\n\r" +
-
                         "\n\r<b>【New Features】</b>" +
-                            "\n     - \n\r" +
+                            "\n     - Added VIP system\n\r" +
+
+                        "\n\r<b>【Some Changes】</b>" +
+                            "\n     - Keybind «Set Default All TOHE Options» was returned (Ctrl + Delete)" +
+                            "\n     - Demon is now Neutral Killer (was Neutral Evil)" +
+                            "\n     - Bomber, Nuker and Medic can no longer be Fragile" +
+                            "\n     - Some neutral roles have been given the «Can Vent» and «Has Impostor Vision» setting" +
+                            "\n     - Judge is now counted as Crewmate Killing" +
+                            "\n     - When certain roles abilities end, their votes will no longer be hidden if the «Hide Vote» setting is enabled (Divinator, Eraser, Tracker, Oracle)" +
+                            "\n     - Added warning for when black screen prevention is disabled but the NK count is higher than 1" +
+                            "\n     - The Bounty Hunter target's nickname is now shown in dark red\n\r" +
 
                         "\n\r<b>【Removals】</b>" +
-                            "\n     - Removed Covens (Poisoner, Jinx, Potion Master, Medusa, Wraith, and Hex Master are now neutral killers again.\nShade, Necromancer, Coven Leader, and Ritualist are now unused)",
+                            "\n     - Removed Covens (Poisoner, Jinx, Potion Master, Medusa, Wraith, and Hex Master are now neutral killers again.\nShade, Coven Leader, and Ritualist are now unused)",
 
-                    Date = "2023-9-21T00:00:00Z"
+                    Date = "2023-9-24T00:00:00Z"
 
                 };
                 AllModNews.Add(news);
@@ -365,6 +376,85 @@ public class ModNewsHistory
         else if (TranslationController.Instance.currentLanguage.languageID == SupportedLangs.Russian)
         {
             {
+                // TOHE v3.1.0
+                var news = new ModNews
+                {
+                    Number = 90001,
+                    Title = "Town of Host Re-Edited v3.1.0",
+                    SubTitle = "★★Следующее небольшое обновление★★",
+                    ShortTitle = "★TOH-RE v3.1.0",
+                    Text = "<size=150%>Добро Пожаловать в TOHE v3.1.0!</size>\n\n<size=125%>Поддерживает версию Among Us v2023.7.11 и v2023.7.12</size>\n"
+
+                        + "\n<b>【Основан】</b>\n - Основан на TOH v4.1.2\r\n"
+
+                        + "\n<b>【Новые роли】</b>" +
+                        "\n\r<b><i>Предатель: (3 роли)</i></b>" +
+                            "\n     - Злой Мини" +
+                            "\n     - Вампирша (Из TOH-TOR)" +
+                            "\n     - Андертейкер\n\r" +
+
+                        "\n\r<b><i>Член Экипажа: (3 роли)</i></b>" +
+                            "\n     - Добрый Мини" +
+                            "\n     - Бастион" +
+                            "\n     - Алхимик\n\r" +
+
+                        "\n\r<b><i>Нейтрал: (3 роли)</i></b>" +
+                            "\n     - Бандит" +
+                            "\n     - Имитатор" +
+                            "\n     - Пиромант\n\r" +
+
+                        "\n\r<b><i>Атрибут: (2 атрибута)</i></b>" +
+                            "\n     - Знаменитый" +
+                            "\n     - Кровожадный\n\r" +
+
+                        "\n\r<b>【Исправление Багов】</b>" +
+                            "\n     - Исправлен Безумный Экстрасенс" +
+                            "\n     - Исправлен Оборотень (больше не оставляет двойные трупы)" +
+                            "\n     - Исправлен баг когда Обменник кикал игроков" +
+                            "\n     - Исправлен экран победы Эгоиста который показывал двух победителей" +
+                            "\n     - Исправлены некоторые баги со Стирачкой" +
+                            "\n     - Исправлена настройка «Все Нейтралы побеждают вместеr» (Снова)" +
+                            "\n     - Исправлен баг когда у Адвоката и Палача были задания" +
+                            "\n     - Исправлено условие победы у Мастера Проклятий и у Духа" +
+                            "\n     - Исправлен баг когда Некровил и Визионер использовали способность, когда они были мертвы" +
+                            "\n     - Исправлен баг из-за этого некоторые роли не могли угадать атрибуты при определенных условиях, если включена настройка «Может угадывать атрибуты»\n\r" +
+
+                        "\n\r<b>【Переработка Ролей】</b>" +
+                            "\n     - Некромант" +
+                            "\n     - Арзонист\n\r" +
+
+                        "\n\r<b>【Улучшения Ролей】</b>" +
+                            "\n     - Трекер" +
+                            "\n     - Амнезияк" +
+                            "\n     - Кукловод" +
+                            "\n     - Глич\n\r" +
+
+                        "\n\r<b>【Новые Настройки Мода】</b>" +
+                            "\n     - Настройка: Случайные появления на вентиляциях\n\r" +
+
+                        "\n\r<b>【Новые Функции】</b>" +
+                            "\n     - Добавлена VIP система\n\r" +
+
+                        "\n\r<b>【Некоторые Изменения】</b>" +
+                            "\n     - Система модераторов теперь полностью переведена и не содержит пустых сообщений" +
+                            "\n     - Привязка клавиш «Установить все настройки TOHE по умолчанию» был возвращен (Ctrl + Delete)" +
+                            "\n     - Демон теперь Нейтральный Убийца (был Злым Нейтралом)" +
+                            "\n     - Бомбер, Крипер и Медик больше не могут стать Хрупким (Атрибут)" +
+                            "\n     - Некоторым нейтральным ролям были добавлены настройки «Может использовать вентиляцию» и «Имеет дальность обзора Предателя»" +
+                            "\n     - Судья теперь считается как Член Экипажа Убийца" +
+                            "\n     - Когда навыки у Следователя, Стирачки, Трекера или у Оракла заканчивались, их голоса больше не будут скрываться, если у них включена настройка «Скрыть голос»" +
+                            "\n     - Добавлено предупреждение, когда настройка «Предотвращение черного экрана» отключена, но количество Нейтральных Убийц в игре больше одного" +
+                            "\n     - Никнейм цели Охотника за Головами теперь отображается темно-красным\n\r" +
+
+                        "\n\r<b>【Уделаены】</b>" +
+                            "\n     - Удалена команда Ковенов (Отравитель, Джинкс, Ритуальщик, Медуза, Дух и Мастер Проклятий теперь снова Нейтральные Убийцы.\nТень, Лидер Ковена и Фокусник теперь не используются)",
+
+                    Date = "2023-9-24T00:00:00Z"
+
+                };
+                AllModNews.Add(news);
+            }
+            {
                 // TOHE v3.0.0
                 var news = new ModNews
                 {
@@ -568,16 +658,17 @@ public class ModNewsHistory
                 {
                     Number = 80003,
                     Title = "Town of Host Re-Edited v3.1.0",
-                    SubTitle = "★★下一个小更新★★",
+                    SubTitle = "★★更新较小，但仍然有点大★★",
                     ShortTitle = "★TOH-RE v3.1.0",
                     Text = "<size=150%>欢迎来到 TOHE v3.1.0!</size>\n\n<size=125%>支持 Among Us v2023.7.11 和 v2023.7.12</size>\n"
 
                         + "\n<b>【对应官方版本】</b>\n - 基于官方版本 v4.1.2\r\n"
 
                         + "\n<b>【身份新增】</b>" +
-                        "\n\r<b><i>内鬼: (2 个新身份)</i></b>" +
+                        "\n\r<b><i>内鬼: (3 个新身份)</i></b>" +
                             "\n     - 坏迷你船员" +
                             "\n     - 暗杀者\n\r" +
+                            "\n     - 吸血鬼女王(来自TOHTOR)\n\r" +
 
                         "\n\r<b><i>船员: (1 个新身份)</i></b>" +
                             "\n     - 好迷你船员\n\r" +
@@ -586,38 +677,44 @@ public class ModNewsHistory
                             "\n     - 强盗" +
                             "\n     - 模仿者\n\r" +
 
+                            "\n\r<b><i>附加职业 (1 个附加职业)</i></b>" +
+                            "\n     - 网络人\n\r" +
+
                         "\n\r<b>【Bug修复】</b>" +
-                            "\n     - Fixed Mad Psychic" +
-                            "\n     - Fixed Werewolf (no longer leaves duplicate bodies)" +
-                            "\n     - Fixed Swapper kicking clients" +
-                            "\n     - Fixed Egoist win screen showing double (hopefully)" +
-                            "\n     - Fixed minor issue with Eraser" +
-                            "\n     - Fixed bug when Lawyer and Executioner have tasks" +
-                            "\n     - Fixed bug that caused some roles can not guess add-ons under certain conditions if the \"Can Guess Add-Ons\" setting is enabled\n\r" +
+                            "\n     - 修复了背叛的愚者" +
+                            "\n     - 修复了狼人（不再留下重复的尸体）" +
+                            "\n     - 修复了换票师会踢出客户端(Mod)端" +
+                            "\n     - 修复了自我主义者获胜画面显示双重的bug（希望如此）" +
+                            "\n     - 修复了抹除者的小问题" +
+                            "\n     - 修复了律师和处刑者有任务时的bug" +
+                            "\n     - 修复了巫师和魅影的获胜条件" + 
+                            "\n     - 修复了死神和幻想家死亡时还能使用技能的bug" +
+                            "\n     - 修复了在启用\"可以猜测附加职业\"设置的情况下，导致某些身份在某些条件下无法猜测附加职业的bug\n\r" +
 
-                        "\n\r<b>【Improvements Roles】</b>" +
-                            "\n     - Tracker" +
-                            "\n     - Amnesiac\n\r" +
+                        "\n\r<b>【身份更改】</b>" +
+                            "\n     - 正义追踪者" +
+                            "\n     - 失忆者\n\r" +
 
-                        "\n\r<b>【New Mod Settings】</b>" +
-                            "\n     - Setting: Random Spawns On Vents\n\r" +
+                        "\n\r<b>【新客户端(Mod)设置】</b>" +
+                            "\n     - 设置：通风口随机出生\n\r" +
 
-                        "\n\r<b>【Some Changes】</b>" +
-                            "\n     - Keybind \"Set Default All TOHE Options\" was returned" +
-                            "\n     - Demon now Neutral Killer (was Neutral Evil)" +
-                            "\n     - Bomber, Nuker and Medic can no longer be Fragile" +
-                            "\n     - Some neutral roles have been given the \"Can Vent\" and \"Has Impostor Vision\" setting" +
-                            "\n     - Judge is now counted as Crewmate Killing" +
-                            "\n     - The Crewmate and Impostor tabs have been reorganized" +
-                            "\n     - When certain roles abilities end, their votes will no longer be hidden if the \"Hide Vote\" setting is enabled\n\r" +
+                        "\n\r<b>【一些改变】</b>" +
+                            "\n     - \"设置默认的所有TOHE选项\"已返厂" +
+                            "\n     - 玩家现在是带刀中立（以前是邪恶中立）" +
+                            "\n     - 自爆兵、核武器和医生不再获得脆弱" +
+                            "\n     - 一些中立身份被赋予了\"可以使用通风口\"和\"拥有内鬼视野\"的设置" +
+                            "\n     - 法官现在被视为带刀船员" +
+                            "\n     - 船员和内鬼标签已重新整理" +
+                            "\n     - 当某些身份的技能结束时，如果启用\"隐藏投票\"的设置，他们的投票将不再隐藏" +
+                            "\n     - 添加了防止黑屏但带刀中立数量大于 1 时的警告\n\r" +
 
-                        "\n\r<b>【New Features】</b>" +
-                            "\n     - \n\r" +
+                        "\n\r<b>【迁移】</b>" +
+                            "\n     - 删除了巫师阵营(投毒者、扫把星、药剂师、美杜莎、魅影和巫师又重新成为带刀中立\n遮蔽者、亡灵巫师、巫师领袖和祭祀者现在未被使用)\n\r" +
 
-                        "\n\r<b>【Removals】</b>" +
-                            "\n     - Removed Covens (Poisoner, Jinx, Potion Master, Medusa, Wraith, and Hex Master are now neutral killers again.\nShade, Necromancer, Coven Leader, and Ritualist are now unused)",
+                        "\n\r<b>【删除】</b>" +
+                            "\n     - 删除了巫师阵营",
 
-                    Date = "2023-9-21T00:00:00Z"
+                    Date = "2023-9-24T00:00:00Z"
 
                 };
                 AllModNews.Add(news);

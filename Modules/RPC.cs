@@ -73,6 +73,7 @@ enum CustomRPC
     SetSoulCollectorLimit,
     SetPelicanEtenNum,
     SwordsManKill,
+    SetAlchemistTimer,
     UndertakerLocationSync,
     SetCounterfeiterSellLimit,
     SetPursuerSellLimit,
@@ -103,7 +104,6 @@ enum CustomRPC
     MeetingKill,
     MafiaRevenge,
     RetributionistRevenge,
-    NecromancerRevenge,
     SetSwooperTimer,
     SetWraithTimer,
     SetShadeTimer,
@@ -151,7 +151,7 @@ public enum Sounds
 internal class RPCHandlerPatch
 {
     public static bool TrustedRpc(byte id)
-    => (CustomRPC)id is CustomRPC.VersionCheck or CustomRPC.RequestRetryVersionCheck or CustomRPC.AntiBlackout or CustomRPC.Judge or CustomRPC.MeetingKill or CustomRPC.Guess or CustomRPC.MafiaRevenge or CustomRPC.NecromancerRevenge or CustomRPC.RetributionistRevenge or CustomRPC.SetSwapperVotes;
+    => (CustomRPC)id is CustomRPC.VersionCheck or CustomRPC.RequestRetryVersionCheck or CustomRPC.AntiBlackout or CustomRPC.Judge or CustomRPC.MeetingKill or CustomRPC.Guess or CustomRPC.MafiaRevenge or CustomRPC.RetributionistRevenge or CustomRPC.SetSwapperVotes;
     public static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader)
     {
         var rpcType = (RpcCalls)callId;
@@ -552,9 +552,6 @@ internal class RPCHandlerPatch
             case CustomRPC.MafiaRevenge:
                 MafiaRevengeManager.ReceiveRPC(reader, __instance);
                 break;
-            case CustomRPC.NecromancerRevenge:
-                NecromancerRevengeManager.ReceiveRPC(reader, __instance);
-                break;
             case CustomRPC.RetributionistRevenge:
                 RetributionistRevengeManager.ReceiveRPC(reader, __instance);
                 break;
@@ -569,6 +566,9 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetChameleonTimer:
                 Chameleon.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetAlchemistTimer:
+                Alchemist.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetBKTimer:
                 BloodKnight.ReceiveRPC(reader);
@@ -836,7 +836,7 @@ internal static class RPC
                 TimeThief.Add(targetId);
                 break;
             case CustomRoles.Puppeteer:
-                Puppeteer.Add();
+                Puppeteer.Add(targetId);
                 break;
             case CustomRoles.Sniper:
                 Sniper.Add(targetId);
@@ -1064,6 +1064,9 @@ internal static class RPC
             case CustomRoles.Lighter:
                 Main.LighterNumOfUsed.Add(targetId, Options.LighterSkillMaxOfUseage.GetInt());
                 break;
+            case CustomRoles.Bastion:
+                Main.BastionNumberOfAbilityUses = Options.BastionMaxBombs.GetInt();
+                break;
             case CustomRoles.TimeMaster:
                 Main.TimeMasterNumOfUsed.Add(targetId, Options.TimeMasterMaxUses.GetInt());
                 break;
@@ -1081,6 +1084,9 @@ internal static class RPC
                 break;
             case CustomRoles.BloodKnight:
                 BloodKnight.Add(targetId);
+                break;
+            case CustomRoles.Alchemist:
+                Alchemist.Add(targetId);
                 break;
             case CustomRoles.Banshee:
                 Banshee.Add(targetId);
@@ -1144,6 +1150,9 @@ internal static class RPC
                 break;
             case CustomRoles.NSerialKiller:
                 NSerialKiller.Add(targetId);
+                break;
+            case CustomRoles.Pyromaniac:
+                Pyromaniac.Add(targetId);
                 break;
             case CustomRoles.Werewolf:
                 Werewolf.Add(targetId);
@@ -1213,6 +1222,9 @@ internal static class RPC
                 break;
             case CustomRoles.EvilMini:
                 Mini.Add(targetId);
+                break;
+            case CustomRoles.Blackmailer:
+                Blackmailer.Add(targetId);
                 break;
         }
         HudManager.Instance.SetHudActive(true);

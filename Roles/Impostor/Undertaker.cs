@@ -103,7 +103,6 @@ public static class Undertaker
 
         if (!IsThisRole(killer.PlayerId)) return true;
         if (target.Is(CustomRoles.Bait)) return true;
-        if (target.Is(CustomRoles.Glitch)) return true;
         if (target.Is(CustomRoles.Pestilence)) return true;
         if (target.Is(CustomRoles.Guardian) && target.AllTasksCompleted()) return true;
         if (target.Is(CustomRoles.Opportunist) && target.AllTasksCompleted() && Options.OppoImmuneToAttacksWhenTasksDone.GetBool()) return false;

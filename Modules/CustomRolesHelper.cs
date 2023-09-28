@@ -33,8 +33,9 @@ static class CustomRolesHelper
                 CustomRoles.Terrorist => CustomRoles.Engineer,
                 CustomRoles.Executioner => CustomRoles.Crewmate,
                 CustomRoles.Lawyer => CustomRoles.Crewmate,
+                CustomRoles.Bastion => CustomRoles.Engineer,
                 CustomRoles.Vampire => CustomRoles.Impostor,
-                CustomRoles.Vampiress => CustomRoles.Shapeshifter,
+                CustomRoles.Vampiress => CustomRoles.Impostor,
                 CustomRoles.BountyHunter => CustomRoles.Shapeshifter,
                 CustomRoles.Trickster => CustomRoles.Impostor,
                 CustomRoles.Witch => CustomRoles.Impostor,
@@ -141,10 +142,12 @@ static class CustomRolesHelper
                 CustomRoles.EvilSpirit => CustomRoles.GuardianAngel,
                 CustomRoles.Lurker => CustomRoles.Impostor,
                 CustomRoles.Doomsayer => CustomRoles.Crewmate,
+                CustomRoles.Alchemist => CustomRoles.Engineer,
                 CustomRoles.Pitfall => CustomRoles.Shapeshifter,
                 CustomRoles.Swapper => CustomRoles.Crewmate,
                 CustomRoles.NiceMini => CustomRoles.Crewmate,
                 CustomRoles.EvilMini => CustomRoles.Impostor,
+                CustomRoles.Blackmailer => CustomRoles.Shapeshifter,
 
                 _ => role.IsImpostor() ? CustomRoles.Impostor : CustomRoles.Crewmate,
             };
@@ -185,6 +188,7 @@ static class CustomRolesHelper
             CustomRoles.Monarch => RoleTypes.Impostor,
             CustomRoles.Deputy => RoleTypes.Impostor,
             CustomRoles.Arsonist => RoleTypes.Impostor,
+            CustomRoles.Pyromaniac => RoleTypes.Impostor,
             CustomRoles.Jackal => RoleTypes.Impostor,
             CustomRoles.Doppelganger => RoleTypes.Impostor,
             CustomRoles.Bandit => RoleTypes.Impostor,
@@ -305,6 +309,7 @@ static class CustomRolesHelper
             //      CustomRoles.Cyber or
             CustomRoles.DoubleShot or
             CustomRoles.Ghoul or
+            CustomRoles.Bloodlust or
             CustomRoles.EvilSpirit;
     }
     
@@ -346,6 +351,7 @@ static class CustomRolesHelper
             CustomRoles.Lawyer or
             CustomRoles.God or
             CustomRoles.Amnesiac or
+            CustomRoles.Glitch or
             CustomRoles.Imitator or
             CustomRoles.Bandit or
             CustomRoles.Pestilence or
@@ -388,9 +394,10 @@ static class CustomRolesHelper
         return role is
             CustomRoles.Sidekick or
             CustomRoles.Infectious or
-            CustomRoles.Glitch or
+            CustomRoles.Pyromaniac or
             CustomRoles.Shade or
             CustomRoles.Medusa or
+            CustomRoles.Necromancer or
             CustomRoles.Wraith or
             CustomRoles.Shroud or
             CustomRoles.Pelican or
@@ -408,6 +415,8 @@ static class CustomRolesHelper
 
     public static bool IsNK(this CustomRoles role)
     {
+        if (Options.ArsonistCanIgniteAnytime.GetBool() && role == CustomRoles.Arsonist) return true;
+
         return role is
             CustomRoles.Jackal or
             CustomRoles.Doppelganger or
@@ -428,11 +437,12 @@ static class CustomRolesHelper
             CustomRoles.Refugee or
             CustomRoles.Parasite or
             CustomRoles.NSerialKiller or
+            CustomRoles.Pyromaniac or
             CustomRoles.Werewolf or
             CustomRoles.PotionMaster or
             CustomRoles.Gamer or
-            CustomRoles.Arsonist or
             CustomRoles.Pickpocket or
+            CustomRoles.Necromancer or
             CustomRoles.Traitor or
             CustomRoles.Shroud or
             CustomRoles.Virus or
@@ -445,6 +455,8 @@ static class CustomRolesHelper
     }
     public static bool IsNonNK(this CustomRoles role) // ROLE ASSIGNING, NOT NEUTRAL TYPE
     {
+        if (!Options.ArsonistCanIgniteAnytime.GetBool() && role == CustomRoles.Arsonist) return true;
+
         return role is
             CustomRoles.Amnesiac or
             CustomRoles.Totocalcio or
@@ -536,7 +548,7 @@ static class CustomRolesHelper
             CustomRoles.CovenLeader or
             CustomRoles.Ritualist or
             CustomRoles.Refugee or
-    //        CustomRoles.Minion or
+            CustomRoles.Pyromaniac or
             CustomRoles.Infectious or
             CustomRoles.Wraith or
             CustomRoles.Crewpostor or
@@ -571,6 +583,7 @@ static class CustomRolesHelper
             CustomRoles.Veteran or
             CustomRoles.Judge or
             CustomRoles.Bodyguard or
+            CustomRoles.Bastion or
             CustomRoles.Reverie or
             CustomRoles.Crusader or
             CustomRoles.NiceGuesser or
@@ -653,6 +666,7 @@ static class CustomRolesHelper
             CustomRoles.Twister or
             CustomRoles.Lurker or
             CustomRoles.EvilMini or
+            CustomRoles.Blackmailer or
             CustomRoles.Pitfall;
     }
     public static bool IsNeutral(this CustomRoles role)
@@ -685,7 +699,7 @@ static class CustomRolesHelper
             CustomRoles.Juggernaut or
             CustomRoles.CovenLeader or
             CustomRoles.Refugee or
-    //        CustomRoles.Minion or
+            CustomRoles.Pyromaniac or
             CustomRoles.Jinx or
             CustomRoles.Lawyer or
             CustomRoles.Arsonist or
@@ -773,6 +787,7 @@ static class CustomRolesHelper
             CustomRoles.Revolutionist or
             CustomRoles.Maverick or
             CustomRoles.NWitch or
+            CustomRoles.Pyromaniac or
             CustomRoles.Shroud or
             CustomRoles.Succubus or
             CustomRoles.Gamer or
@@ -1057,6 +1072,16 @@ static class CustomRolesHelper
                     return false;
                 break;
 
+            case CustomRoles.Bloodlust:
+                if (pc.Is(CustomRoles.Lazy)
+                    || pc.Is(CustomRoles.Merchant)
+                    || pc.Is(CustomRoles.Alchemist)
+                    || pc.Is(CustomRoles.Needy))
+                    return false;
+                if (pc.GetCustomRole().IsNeutral() || pc.GetCustomRole().IsImpostor() || pc.GetCustomRole().IsTasklessCrewmate())
+                    return false;
+                break;
+
             case CustomRoles.Torch:
                 if (pc.Is(CustomRoles.Bewilder)
                     || pc.Is(CustomRoles.Sunglasses)
@@ -1096,7 +1121,6 @@ static class CustomRolesHelper
                     || pc.Is(CustomRoles.Vindicator) 
                     || pc.Is(CustomRoles.TicketsStealer)
                     || pc.Is(CustomRoles.Pickpocket) 
-                    || pc.Is(CustomRoles.Glitch)
                     || pc.Is(CustomRoles.Dictator))
                     return false;
                 if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeVoidBallot.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeVoidBallot.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeVoidBallot.GetBool()))
@@ -1564,7 +1588,7 @@ static class CustomRolesHelper
            CustomRoles.Succubus => CountTypes.Succubus,
            CustomRoles.HexMaster => CountTypes.HexMaster,
            CustomRoles.Occultist => CountTypes.Occultist,
-           CustomRoles.Necromancer => CountTypes.Coven,
+           CustomRoles.Necromancer => CountTypes.Necromancer,
            CustomRoles.NWitch => CountTypes.NWitch,
            CustomRoles.Shroud => CountTypes.Shroud,
            CustomRoles.Werewolf => CountTypes.Werewolf,
@@ -1580,6 +1604,7 @@ static class CustomRolesHelper
            CustomRoles.Jinx => CountTypes.Jinx,
            CustomRoles.Infectious => CountTypes.Infectious,
            CustomRoles.Crewpostor => CountTypes.Impostor,
+           CustomRoles.Pyromaniac => CountTypes.Pyromaniac,
            CustomRoles.Virus => CountTypes.Virus,
            CustomRoles.PotionMaster => CountTypes.PotionMaster,
            CustomRoles.Ritualist => CountTypes.Coven,
@@ -1640,10 +1665,12 @@ public enum CountTypes
     PlagueBearer,
     Glitch,
     Arsonist,
+    Pyromaniac,
     Shroud,
     Werewolf,
     Agitater,
     Occultist,
     Shade,
-    RuthlessRomantic
+    RuthlessRomantic,
+    Necromancer
 }

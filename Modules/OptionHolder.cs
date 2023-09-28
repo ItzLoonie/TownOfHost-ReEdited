@@ -143,6 +143,7 @@ public static class Options
     public static OptionItem ShowTeamNextToRoleNameOnEject;
     public static OptionItem CheatResponses;
     public static OptionItem LowLoadMode;
+    public static OptionItem NewHideMsg;
 
     // Dummy Settings
     public static OptionItem SpawnSidekickAlone;
@@ -231,6 +232,9 @@ public static class Options
     public static OptionItem ArsonistDouseTime;
     public static OptionItem ArsonistCooldown;
     public static OptionItem ArsonistKeepsGameGoing;
+    public static OptionItem ArsonistCanIgniteAnytime;
+    public static OptionItem ArsonistMinPlayersToIgnite;
+    public static OptionItem ArsonistMaxPlayersToIgnite;
     public static OptionItem JesterCanUseButton;
     public static OptionItem JesterCanVent;
     public static OptionItem HideJesterVote;
@@ -247,6 +251,10 @@ public static class Options
     public static OptionItem VeteranSkillMaxOfUseage;
     public static OptionItem VeteranAbilityUseGainWithEachTaskCompleted;
     public static OptionItem BodyguardProtectRadius;
+    public static OptionItem BastionBombCooldown;
+    public static OptionItem BombsClearAfterMeeting;
+    public static OptionItem BastionAbilityUseGainWithEachTaskCompleted;
+    public static OptionItem BastionMaxBombs;
     public static OptionItem WitnessCD;
     public static OptionItem WitnessTime;
     public static OptionItem ParanoiaNumOfUseButton;
@@ -256,7 +264,6 @@ public static class Options
     public static OptionItem EveryOneKnowSuperStar;
     public static OptionItem MNKillCooldown;
     public static OptionItem MafiaCanKillNum;
-    public static OptionItem NecromancerCanKillNum;
     public static OptionItem RetributionistCanKillNum;
     public static OptionItem MinimumPlayersAliveToRetri;
     public static OptionItem CanOnlyRetributeWithTasksDone;
@@ -529,9 +536,6 @@ public static class Options
     public static OptionItem ConjTryHideMsg;
     public static OptionItem RitualistCanVent;
 
-    // Necromancer
-    public static OptionItem NecromancerKillCD;
-    public static OptionItem NecromancerCanVent;
 
     // Masochist
     public static OptionItem MasochistKillMax;
@@ -838,6 +842,7 @@ public static class Options
     public static OptionItem KickLowLevelPlayer;
     public static OptionItem ApplyBanList;
     public static OptionItem ApplyModeratorList;
+    public static OptionItem ApplyVipList;
     public static OptionItem ApplyAllowList;
     public static OptionItem AutoWarnStopWords;
 
@@ -980,20 +985,21 @@ public static class Options
     }
     public static void Load()
     {
+        // Start Load Settings
         if (IsLoaded) return;
         OptionSaver.Initialize();
 
-        // 预设
+        // Preset Option
         _ = PresetOptionItem.Create(0, TabGroup.SystemSettings)
-            .SetColor(new Color32(255, 235, 4, byte.MaxValue))
-            .SetHeader(true);
+                .SetColor(new Color32(255, 235, 4, byte.MaxValue))
+                .SetHeader(true);
 
-        // 游戏模式
+        // Game Mode
         GameMode = StringOptionItem.Create(1, "GameMode", gameModes, 0, TabGroup.GameSettings, false)
             .SetHidden(true)
             .SetHeader(true);
 
-        #region 职业详细设置
+        #region Roles/Add-ons Settings
         CustomRoleCounts = new();
         CustomRoleSpawnChances = new();
         CustomAdtRoleSpawnRate = new();
@@ -1280,7 +1286,7 @@ public static class Options
         SetupRoleOptions(4300, TabGroup.ImpostorRoles, CustomRoles.Trickster);
         Undertaker.SetupCustomOption();
         Vampire.SetupCustomOption();
-        Vampiress.SetupCustomOption();
+    //    Vampiress.SetupCustomOption();
         SetupRoleOptions(4600, TabGroup.ImpostorRoles, CustomRoles.Warlock);
         WarlockCanKillAllies = BooleanOptionItem.Create(4610, "CanKillAllies", true, TabGroup.ImpostorRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Warlock]);
@@ -1299,7 +1305,7 @@ public static class Options
         Devourer.SetupCustomOption();
         Pitfall.SetupCustomOption();
         Twister.SetupCustomOption();
-
+        
         TextOptionItem.Create(100004, "RoleType.Madmate", TabGroup.ImpostorRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 25, 25, byte.MaxValue));
@@ -1327,6 +1333,7 @@ public static class Options
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(140, 255, 255, byte.MaxValue));
         Addict.SetupCustomOption();
+        Alchemist.SetupCustomOption();
 
         SetupRoleOptions(5300, TabGroup.CrewmateRoles, CustomRoles.CyberStar);
         ImpKnowCyberStarDead = BooleanOptionItem.Create(5400, "ImpKnowCyberStarDead", false, TabGroup.CrewmateRoles, false)
@@ -1469,6 +1476,17 @@ public static class Options
         TextOptionItem.Create(100008, "RoleType.CrewKilling", TabGroup.CrewmateRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(140, 255, 255, byte.MaxValue));
+        SetupSingleRoleOptions(5525, TabGroup.CrewmateRoles, CustomRoles.Bastion, 1);
+        BombsClearAfterMeeting = BooleanOptionItem.Create(5529, "BombsClearAfterMeeting", false, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Bastion]);
+        BastionBombCooldown = FloatOptionItem.Create(5528, "BombCooldown", new(0, 180, 1), 15, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Bastion])
+            .SetValueFormat(OptionFormat.Seconds);
+        BastionAbilityUseGainWithEachTaskCompleted = FloatOptionItem.Create(5530, "AbilityUseGainWithEachTaskCompleted", new(0f, 5f, 0.1f), 1f, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Bastion])
+            .SetValueFormat(OptionFormat.Times);
+        BastionMaxBombs = IntegerOptionItem.Create(5531, "BastionMaxBombs", new(1, 20, 1), 5, TabGroup.CrewmateRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Bastion]);
         SetupRoleOptions(8400, TabGroup.CrewmateRoles, CustomRoles.Bodyguard);
         BodyguardProtectRadius = FloatOptionItem.Create(8410, "BodyguardProtectRadius", new(0.5f, 5f, 0.5f), 1.5f, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Bodyguard])
@@ -1674,14 +1692,18 @@ public static class Options
             .SetColor(new Color32(127, 140, 141, byte.MaxValue));
         Agitater.SetupCustomOption();
         SetupRoleOptions(10400, TabGroup.NeutralRoles, CustomRoles.Arsonist);
-        ArsonistDouseTime = FloatOptionItem.Create(10410, "ArsonistDouseTime", new(0f, 10f, 1f), 3f, TabGroup.NeutralRoles, false)
+        ArsonistDouseTime = FloatOptionItem.Create(10416, "ArsonistDouseTime", new(0f, 10f, 1f), 0f, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Arsonist])
             .SetValueFormat(OptionFormat.Seconds);
-        ArsonistCooldown = FloatOptionItem.Create(10411, "Cooldown", new(0f, 180f, 1f), 10f, TabGroup.NeutralRoles, false)
+        ArsonistCooldown = FloatOptionItem.Create(10417, "Cooldown", new(0f, 180f, 1f), 25f, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Arsonist])
             .SetValueFormat(OptionFormat.Seconds);
-        ArsonistKeepsGameGoing = BooleanOptionItem.Create(10412, "ArsonistKeepsGameGoing", false, TabGroup.NeutralRoles, false)
+        ArsonistCanIgniteAnytime = BooleanOptionItem.Create(10413, "ArsonistCanIgniteAnytime", true, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Arsonist]);
+        ArsonistMinPlayersToIgnite = IntegerOptionItem.Create(10414, "ArsonistMinPlayersToIgnite", new(1, 14, 1), 1, TabGroup.NeutralRoles, false)
+            .SetParent(ArsonistCanIgniteAnytime);
+        ArsonistMaxPlayersToIgnite = IntegerOptionItem.Create(10415, "ArsonistMaxPlayersToIgnite", new(1, 14, 1), 3, TabGroup.NeutralRoles, false)
+            .SetParent(ArsonistCanIgniteAnytime);
         Bandit.SetupCustomOption();
         BloodKnight.SetupCustomOption();
         Gamer.SetupCustomOption();
@@ -1693,12 +1715,14 @@ public static class Options
         Jinx.SetupCustomOption();
         Juggernaut.SetupCustomOption();
         Medusa.SetupCustomOption();
+        Necromancer.SetupCustomOption();
         Occultist.SetupCustomOption();
         Pelican.SetupCustomOption();
         Pickpocket.SetupCustomOption();
         Poisoner.SetupCustomOption();
         PlagueBearer.SetupCustomOption();
         PotionMaster.SetupCustomOption();
+        Pyromaniac.SetupCustomOption();
         NSerialKiller.SetupCustomOption(); // Serial Killer
     //    Shade.SetupCustomOption();
         Shroud.SetupCustomOption();
@@ -1723,15 +1747,6 @@ public static class Options
             .SetGameMode(CustomGameMode.Standard);
     //    Banshee.SetupCustomOption();
     //    CovenLeader.SetupCustomOption();
-    /*    SetupSingleRoleOptions(3150, TabGroup.NeutralRoles, CustomRoles.Necromancer, 1, zeroOne: false);
-        NecromancerKillCD = FloatOptionItem.Create(3162, "KillCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.NeutralRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Necromancer])
-            .SetValueFormat(OptionFormat.Seconds);
-        NecromancerCanKillNum = IntegerOptionItem.Create(3160, "NecromancerCanKillNum", new(1, 15, 1), 1, TabGroup.NeutralRoles, false)
-        .SetParent(CustomRoleSpawnChances[CustomRoles.Necromancer])
-            .SetValueFormat(OptionFormat.Players);
-        NecromancerCanVent = BooleanOptionItem.Create(3161, "CanVent", true, TabGroup.NeutralRoles, false)
-            .SetParent(CustomRoleSpawnChances[CustomRoles.Necromancer]); */
     /*    SetupSingleRoleOptions(10450, TabGroup.NeutralRoles, CustomRoles.Ritualist, 1, zeroOne: false);
         ConjCanGuessTime = IntegerOptionItem.Create(10460, "GuesserCanGuessTimes", new(1, 15, 1), 15, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Ritualist])
@@ -2017,6 +2032,7 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Aware]);
         AwareknowRole = BooleanOptionItem.Create(42433, "AwareKnowRole", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Aware]);
+        SetupAdtRoleOptions(33080, CustomRoles.Bloodlust, canSetNum: true);
         SetupAdtRoleOptions(33000, CustomRoles.Diseased, canSetNum: true);
         ImpCanBeDiseased = BooleanOptionItem.Create(111426, "ImpCanBeDiseased", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Diseased]);
@@ -2175,6 +2191,7 @@ public static class Options
         SetupRoleOptions(16900, TabGroup.OtherRoles, CustomRoles.OverKiller);
         Disperser.SetupCustomOption();
         Hangman.SetupCustomOption();
+    //    Blackmailer.SetupCustomOption();
 
         // 船员
         TextOptionItem.Create(100019, "OtherRoles.CrewmateRoles", TabGroup.OtherRoles)
@@ -2247,11 +2264,11 @@ public static class Options
         NeutralCanBeFool = BooleanOptionItem.Create(19212, "NeutralCanBeFool", true, TabGroup.OtherRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Fool]);
 
-          
+
 
         #endregion
 
-        #region 系统设置
+        #region System Settings
 
         TemporaryAntiBlackoutFix = BooleanOptionItem.Create(44427, "TemporaryAntiBlackoutFix", true, TabGroup.SystemSettings, false)
             .SetHeader(true)
@@ -2275,6 +2292,7 @@ public static class Options
         OptKickNintendoPlayer = BooleanOptionItem.Create(19355, "OptKickNintendoPlayer", false, TabGroup.SystemSettings, false)
             .SetParent(KickOtherPlatformPlayer); //Switch
         KickPlayerFriendCodeNotExist = BooleanOptionItem.Create(19302, "KickPlayerFriendCodeNotExist", false, TabGroup.SystemSettings, true);
+        ApplyVipList = BooleanOptionItem.Create(19308, "ApplyVipList", true, TabGroup.SystemSettings, false);
         ApplyDenyNameList = BooleanOptionItem.Create(19303, "ApplyDenyNameList", true, TabGroup.SystemSettings, true);
         ApplyBanList = BooleanOptionItem.Create(19304, "ApplyBanList", true, TabGroup.SystemSettings, true);
         ApplyModeratorList = BooleanOptionItem.Create(19305, "ApplyModeratorList", false, TabGroup.SystemSettings, false);
@@ -2362,7 +2380,7 @@ public static class Options
 
         #endregion 
 
-        #region 游戏设置
+        #region Game Settings
 
         //驱逐相关设定
         TextOptionItem.Create(100023, "MenuTitle.Ejections", TabGroup.GameSettings)
@@ -2420,6 +2438,10 @@ public static class Options
         UseMoreRandomMapSelection = BooleanOptionItem.Create(19920, "UseMoreRandomMapSelection", false, TabGroup.GameSettings, false)
             .SetParent(RandomMapsMode)
             .SetValueFormat(OptionFormat.Percent);
+        NewHideMsg = BooleanOptionItem.Create(00017565, "NewHideMsg", true, TabGroup.GameSettings, false)
+            .SetHidden(true)
+            .SetGameMode(CustomGameMode.Standard)
+            .SetColor(new Color32(193, 255, 209, byte.MaxValue));
 
         //MapDleksChance = IntegerOptionItem.Create(19915, "MapDleks", new(0, 100, 5), 10, TabGroup.GameSettings, false)
         //    .SetParent(RandomMapsMode)
@@ -2981,6 +3003,8 @@ public static class Options
 
         #endregion 
 
+
+        // End Load Settings
         OptionSaver.Load();
         IsLoaded = true;
     }

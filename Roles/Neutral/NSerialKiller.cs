@@ -40,7 +40,7 @@ public static class NSerialKiller
       /*  ChanceToSpawnAnother = IntegerOptionItem.Create(Id + 17, "ChanceToSpawnAnother", new(0, 100, 5), 30, TabGroup.NeutralRoles, false)
             .SetParent(ChanceToSpawn)
             .SetValueFormat(OptionFormat.Percent); */
-        ReflectHarmfulInteractions = BooleanOptionItem.Create(Id + 18, "ReflectHarmfulInteractions", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NSerialKiller]);
+    //    ReflectHarmfulInteractions = BooleanOptionItem.Create(Id + 18, "ReflectHarmfulInteractions", true, TabGroup.NeutralRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.NSerialKiller]);
     }
     public static void Init()
     {

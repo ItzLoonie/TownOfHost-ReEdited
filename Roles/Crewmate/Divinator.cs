@@ -139,7 +139,6 @@ public static class Divinator
                 CustomRoles.Seeker or
                 CustomRoles.Tracker or
                 CustomRoles.Romantic
-
                 => "Result6",
 
 
@@ -180,7 +179,9 @@ public static class Divinator
                 CustomRoles.Addict or
                 CustomRoles.Escapee or
                 CustomRoles.Miner or
+                CustomRoles.Bastion or
                 CustomRoles.Chronomancer or
+                CustomRoles.Alchemist or
                 CustomRoles.Morphling
                 => "Result11",
 
@@ -196,6 +197,7 @@ public static class Divinator
                 CustomRoles.Oracle or
                 CustomRoles.Pirate or
                 CustomRoles.Visionary or
+                CustomRoles.Blackmailer or
                 CustomRoles.ParityCop
                 => "Result13",
 
@@ -291,6 +293,7 @@ public static class Divinator
                 CustomRoles.Jinx or
                 CustomRoles.SwordsMan or
                 CustomRoles.Veteran or
+                CustomRoles.Pyromaniac or
                 CustomRoles.TaskManager or
                 CustomRoles.Shroud or
                 CustomRoles.Hangman or
@@ -310,6 +313,7 @@ public static class Divinator
                 CustomRoles.TimeThief or
                 CustomRoles.ShapeMaster or
                 CustomRoles.Werewolf or
+                CustomRoles.Vampiress or
                 CustomRoles.Sniper
                 => "Result27",
 

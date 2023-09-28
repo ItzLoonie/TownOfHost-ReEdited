@@ -54,7 +54,6 @@ internal class ChangeRoleSettings
             Main.FarseerTimer = new();
             Main.CursedPlayers = new();
             Main.MafiaRevenged = new();
-            Main.NecromancerRevenged = new();
             Main.RetributionistRevenged = new();
             Main.isCurseAndKill = new();
             Main.isCursed = false;
@@ -73,6 +72,7 @@ internal class ChangeRoleSettings
             Main.KillerOfBoobyTrapBody = new();
             Main.CleanerBodies = new();
             Main.BurstBodies = new();
+            Main.BloodlustList = new();
             Main.MedusaBodies = new();
             Main.InfectedBodies = new();
             Main.VirusNotify = new();
@@ -103,6 +103,7 @@ internal class ChangeRoleSettings
             Main.AllKillers = new();
             Main.MadGrenadierBlinding = new();
             Main.CursedWolfSpellCount = new();
+            Main.BombedVents = new();
             Main.JinxSpellCount = new();
             Main.OverDeadPlayerList = new();
             Main.Provoked = new();
@@ -279,6 +280,7 @@ internal class ChangeRoleSettings
             Bloodhound.Init();
             Tracker.Init();
             Merchant.Init();
+            Pyromaniac.Init();
             NSerialKiller.Init();
             Maverick.Init();
             Jinx.Init();
@@ -293,6 +295,7 @@ internal class ChangeRoleSettings
             Traitor.Init();
             Spiritualist.Init();
             Vulture.Init();
+            Alchemist.Init();
             Chameleon.Init();
             Wildling.Init();
             Morphling.Init();
@@ -305,6 +308,7 @@ internal class ChangeRoleSettings
             Pirate.Init();
             Shroud.Init();
             Werewolf.Init();
+            Necromancer.Init();
             Chronomancer.Init();
             Seeker.Init();
             Pitfall.Init();
@@ -312,6 +316,7 @@ internal class ChangeRoleSettings
             Swapper.Init();
             ChiefOfPolice.Init();
             Mini.Init();
+            Blackmailer.Init();
             
             CustomWinnerHolder.Reset();
             AntiBlackout.Reset();
@@ -519,7 +524,7 @@ internal class SelectRolesPatch
                         Camouflager.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Puppeteer:
-                        Puppeteer.Add();
+                        Puppeteer.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Sniper:
                         Sniper.Add(pc.PlayerId);
@@ -737,6 +742,9 @@ internal class SelectRolesPatch
                     case CustomRoles.Grenadier:
                         Main.GrenadierNumOfUsed.Add(pc.PlayerId, Options.GrenadierSkillMaxOfUseage.GetInt());
                         break;
+                    case CustomRoles.Bastion:
+                        Main.BastionNumberOfAbilityUses = Options.BastionMaxBombs.GetInt();
+                        break;
                     case CustomRoles.Swooper:
                         Swooper.Add(pc.PlayerId);
                         break;
@@ -754,6 +762,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Chameleon:
                         Chameleon.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Alchemist:
+                        Alchemist.Add(pc.PlayerId);
                         break;
                     case CustomRoles.BloodKnight:
                         BloodKnight.Add(pc.PlayerId);
@@ -817,6 +828,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.NSerialKiller:
                         NSerialKiller.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Pyromaniac:
+                        Pyromaniac.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Werewolf:
                         Werewolf.Add(pc.PlayerId);
@@ -889,6 +903,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.ChiefOfPolice:
                         ChiefOfPolice.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Blackmailer:
+                        Blackmailer.Add(pc.PlayerId);
                         break;
                 }
                 foreach (var subRole in pc.GetCustomSubRoles())

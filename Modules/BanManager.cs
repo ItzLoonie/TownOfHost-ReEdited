@@ -15,6 +15,7 @@ public static class BanManager
     private static readonly string DENY_NAME_LIST_PATH = @"./TOHE-DATA/DenyName.txt";
     private static readonly string BAN_LIST_PATH = @"./TOHE-DATA/BanList.txt";
     private static readonly string MODERATOR_LIST_PATH = @"./TOHE-DATA/Moderators.txt";
+    private static readonly string VIP_LIST_PATH = @"./TOHE-DATA/VIP-List.txt";
     private static List<string> EACList = new();
     public static void Init()
     {
@@ -38,6 +39,12 @@ public static class BanManager
                 Logger.Warn("Creating a new Moderators.txt file", "BanManager");
                 File.Create(MODERATOR_LIST_PATH).Close();
                 File.WriteAllText(MODERATOR_LIST_PATH, GetResourcesTxt("TOHE.Resources.Config.Moderators.txt"));
+            }
+            if (!File.Exists(VIP_LIST_PATH))
+            {
+                Logger.Warn("Creating a new VIP-List.txt file", "BanManager");
+                File.Create(VIP_LIST_PATH).Close();
+                File.WriteAllText(VIP_LIST_PATH, GetResourcesTxt("TOHE.Resources.Config.VIP-List.txt"));
             }
 
             //读取EAC名单

@@ -70,11 +70,11 @@ public class PlayerState
         }
         if (role == CustomRoles.Arsonist)
         {
-            if (Options.ArsonistKeepsGameGoing.GetBool())
+            if (Options.ArsonistCanIgniteAnytime.GetBool())
             {
                 countTypes = CountTypes.Arsonist;
             }
-            if (!Options.ArsonistKeepsGameGoing.GetBool())
+            if (!Options.ArsonistCanIgniteAnytime.GetBool())
             {
                 countTypes = CountTypes.Crew;
             }
@@ -426,6 +426,14 @@ public class TaskState
 
                 }
             }
+            if (player.Is(CustomRoles.Bloodlust) && player.IsAlive() && !Main.BloodlustList.ContainsKey(player.PlayerId))
+            {
+                Main.BloodlustList[player.PlayerId] = player.PlayerId;
+                player.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Bloodlust), string.Format(Translator.GetString("BloodlustAdded"))));
+            }
+
+            if (player.Is(CustomRoles.Alchemist) && player.IsAlive()) Alchemist.OnTaskComplete(player);
+
             if (player.Is(CustomRoles.Divinator) && player.IsAlive())
             {
                 Divinator.CheckLimit[player.PlayerId] += Divinator.AbilityUseGainWithEachTaskCompleted.GetFloat();
@@ -437,6 +445,10 @@ public class TaskState
             if (player.Is(CustomRoles.Grenadier) && player.IsAlive())
             {
                 Main.GrenadierNumOfUsed[player.PlayerId] += Options.GrenadierAbilityUseGainWithEachTaskCompleted.GetFloat();
+            }
+            if (player.Is(CustomRoles.Bastion) && player.IsAlive())
+            {
+                Main.BastionNumberOfAbilityUses += Options.BastionAbilityUseGainWithEachTaskCompleted.GetFloat();
             }
             if (player.Is(CustomRoles.Lighter) && player.IsAlive())
             {

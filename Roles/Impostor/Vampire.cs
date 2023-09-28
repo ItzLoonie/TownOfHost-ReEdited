@@ -25,8 +25,9 @@ public static class Vampire
     private static readonly List<byte> PlayerIdList = new();
     public static bool IsEnable = false;
 
-    private static OptionItem OptionKillDelay;
+    public static OptionItem OptionKillDelay;
     public static OptionItem CanVent;
+    public static OptionItem VampiressChance;
     private static float KillDelay;
     private static readonly Dictionary<byte, BittenInfo> BittenPlayers = new();
     public static void SetupCustomOption()
@@ -35,6 +36,9 @@ public static class Vampire
         OptionKillDelay = FloatOptionItem.Create(Id + 10, "VampireKillDelay", new(1f, 60f, 1f), 10f, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Vampire])
             .SetValueFormat(OptionFormat.Seconds);
         CanVent = BooleanOptionItem.Create(Id + 11, "CanVent", true, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Vampire]);
+        VampiressChance = IntegerOptionItem.Create(Id + 12, "VampiressChance", new(0, 100, 5), 25, TabGroup.ImpostorRoles, false)
+            .SetParent(Options.CustomRoleSpawnChances[CustomRoles.Vampire])
+            .SetValueFormat(OptionFormat.Percent);
     }
     public static void Init()
     {
@@ -55,7 +59,6 @@ public static class Vampire
     {
         if (!IsThisRole(killer.PlayerId)) return true;
         if (target.Is(CustomRoles.Bait)) return true;
-        if (target.Is(CustomRoles.Glitch)) return true;
         if (target.Is(CustomRoles.Pestilence)) return true;
         if (target.Is(CustomRoles.Guardian) && target.AllTasksCompleted()) return true;
         if (target.Is(CustomRoles.Opportunist) && target.AllTasksCompleted() && Options.OppoImmuneToAttacksWhenTasksDone.GetBool()) return false;

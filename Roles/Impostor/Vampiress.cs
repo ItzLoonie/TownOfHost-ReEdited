@@ -21,42 +21,27 @@ public static class Vampiress
         }
     }
 
-    private static readonly int Id = 4550;
     private static readonly List<byte> PlayerIdList = new();
     public static bool IsEnable = false;
 
-    private static OptionItem OptionKillDelay;
-    private static OptionItem ShapeshiftDur;
-    private static OptionItem ShapeshiftCD;
-    public static OptionItem KillCooldown;
-    public static OptionItem CanVent;
     private static float KillDelay;
     private static readonly Dictionary<byte, BittenInfo> BittenPlayers = new();
-    public static void SetupCustomOption()
-    {
-        Options.SetupRoleOptions(Id, TabGroup.ImpostorRoles, CustomRoles.Vampiress);
-        KillCooldown = FloatOptionItem.Create(Id + 10, "KillCooldown", new(0f, 180f, 2.5f), 25f, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Vampiress])
-            .SetValueFormat(OptionFormat.Seconds);
-        OptionKillDelay = FloatOptionItem.Create(Id + 11, "VampireKillDelay", new(1f, 60f, 1f), 10f, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Vampiress])
-            .SetValueFormat(OptionFormat.Seconds);
-        ShapeshiftCD = FloatOptionItem.Create(Id + 12, "ShapeshiftCooldown", new(1f, 180f, 1f), 30f, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Vampiress])
-            .SetValueFormat(OptionFormat.Seconds);
-        ShapeshiftDur = FloatOptionItem.Create(Id + 13, "ShapeshiftDuration", new(1f, 60f, 1f), 15f, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Vampiress])
-            .SetValueFormat(OptionFormat.Seconds);
-        CanVent = BooleanOptionItem.Create(Id + 14, "CanVent", false, TabGroup.ImpostorRoles, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.Vampiress]);
-    }
     public static void Init()
     {
         PlayerIdList.Clear();
         BittenPlayers.Clear();
         IsEnable = false;
 
-        KillDelay = OptionKillDelay.GetFloat();
+        KillDelay = Vampire.OptionKillDelay.GetFloat();
     }
     public static void Add(byte playerId)
     {
         PlayerIdList.Add(playerId);
         IsEnable = true;
+        
+        // Double Trigger
+        var pc = Utils.GetPlayerById(playerId);
+        pc.AddDoubleTrigger();
     }
     public static bool IsThisRole(byte playerId) => PlayerIdList.Contains(playerId);
 
@@ -64,7 +49,6 @@ public static class Vampiress
     {
         if (!IsThisRole(killer.PlayerId)) return true;
         if (target.Is(CustomRoles.Bait)) return true;
-        if (target.Is(CustomRoles.Glitch)) return true;
         if (target.Is(CustomRoles.Pestilence)) return true;
         if (target.Is(CustomRoles.Guardian) && target.AllTasksCompleted()) return true;
         if (target.Is(CustomRoles.Opportunist) && target.AllTasksCompleted() && Options.OppoImmuneToAttacksWhenTasksDone.GetBool()) return false;
@@ -81,12 +65,34 @@ public static class Vampiress
         }
         return false;
     }
+    public static bool OnCheckKill(PlayerControl killer, PlayerControl target)
+    {
+        if (!IsThisRole(killer.PlayerId)) return true;
+        if (target.Is(CustomRoles.Bait)) return true;
+        if (target.Is(CustomRoles.Pestilence)) return true;
+        if (target.Is(CustomRoles.Guardian) && target.AllTasksCompleted()) return true;
+        if (target.Is(CustomRoles.Opportunist) && target.AllTasksCompleted() && Options.OppoImmuneToAttacksWhenTasksDone.GetBool()) return false;
+        if (target.Is(CustomRoles.Veteran) && Main.VeteranInProtect.ContainsKey(target.PlayerId)) return true;
+        if (Medic.ProtectList.Contains(target.PlayerId)) return false;
+
+        return killer.CheckDoubleTrigger(target, () => 
+            {
+                killer.SetKillCooldown();
+                killer.RPCPlayCustomSound("Bite");
+
+                //誰かに噛まれていなければ登録
+                if (!BittenPlayers.ContainsKey(target.PlayerId))
+                {
+                    BittenPlayers.Add(target.PlayerId, new(killer.PlayerId, 0f));
+                }
+            }
+        );
+    }
 
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
     {
         if (!IsThisRole(killer.PlayerId)) return true;
         if (target.Is(CustomRoles.Bait)) return true;
-        if (target.Is(CustomRoles.Glitch)) return true;
         if (target.Is(CustomRoles.Pestilence)) return true;
         if (target.Is(CustomRoles.Guardian) && target.AllTasksCompleted()) return true;
         if (target.Is(CustomRoles.Opportunist) && target.AllTasksCompleted() && Options.OppoImmuneToAttacksWhenTasksDone.GetBool()) return false;
@@ -147,12 +153,7 @@ public static class Vampiress
             Logger.Info("Vampiressに噛まれている" + target.name + "はすでに死んでいました。", "Vampiress");
         }
     }
-    public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
-    public static void ApplyGameOptions()
-    {
-        AURoleOptions.ShapeshifterCooldown = ShapeshiftCD.GetFloat();
-        AURoleOptions.ShapeshifterDuration = ShapeshiftDur.GetFloat();
-    }
+    public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = Options.DefaultKillCooldown;
 
 
     public static void OnStartMeeting()

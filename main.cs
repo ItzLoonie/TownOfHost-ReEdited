@@ -36,8 +36,8 @@ public class Main : BasePlugin
     public static readonly string MainMenuText = " ";
 
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "3.1.0.080";
-    public const string PluginDisplayVersion = "3.1.0 dev 6";
+    public const string PluginVersion = "3.1.0.102";
+    public const string PluginDisplayVersion = "3.1.0 dev 10";
     public static readonly string SupportedVersionAU = "2023.7.11";
     public const bool Canary = false;
 
@@ -129,6 +129,7 @@ public class Main : BasePlugin
     //public static Dictionary<byte, long> FlashbangInProtect = new();
     public static List<byte> CyberStarDead = new();
     public static List<byte> CyberDead = new();
+    public static List<int> BombedVents = new();
     public static List<byte> WorkaholicAlive = new();
     public static List<byte> BurstBodies = new();
     public static List<byte> BaitAlive = new();
@@ -161,7 +162,6 @@ public class Main : BasePlugin
     public static Dictionary<byte, PlayerControl> CursedPlayers = new();
     public static Dictionary<byte, bool> isCurseAndKill = new();
     public static Dictionary<byte, int> MafiaRevenged = new();
-    public static Dictionary<byte, int> NecromancerRevenged = new();
     public static Dictionary<byte, int> RetributionistRevenged = new();
     public static Dictionary<byte, int> GuesserGuessed = new();
     public static Dictionary<byte, int> CapitalismAddTask = new();
@@ -175,6 +175,7 @@ public class Main : BasePlugin
     public static Dictionary<byte, long> RevolutionistStart = new();
     public static Dictionary<byte, long> RevolutionistLastTime = new();
     public static Dictionary<byte, int> RevolutionistCountdown = new();
+    public static Dictionary<byte, byte> BloodlustList = new();
     public static Dictionary<byte, byte> SpeedBoostTarget = new();
     public static Dictionary<byte, int> MayorUsedButtonCount = new();
     public static Dictionary<byte, int> ParaUsedButtonCount = new();
@@ -183,6 +184,7 @@ public class Main : BasePlugin
     public static Dictionary<byte, float> VeteranNumOfUsed = new();
     public static Dictionary<byte, long> GrenadierBlinding = new();
     public static Dictionary<byte, long> MadGrenadierBlinding = new();
+    public static float BastionNumberOfAbilityUses = 0;
     public static Dictionary<byte, float> GrenadierNumOfUsed = new();
     public static Dictionary<byte, long> Lighter = new();
     public static Dictionary<byte, float> LighterNumOfUsed = new();
@@ -337,6 +339,7 @@ public class Main : BasePlugin
                 {CustomRoles.Snitch, "#b8fb4f"},
                 {CustomRoles.Marshall, "#5573aa"},
                 {CustomRoles.Mayor, "#204d42"},
+                {CustomRoles.Bastion, "#696969"},
                 {CustomRoles.Paranoia, "#c993f5"},
                 {CustomRoles.Psychic, "#6F698C"},
                 {CustomRoles.Cleanser,"#98FF98" },
@@ -373,6 +376,7 @@ public class Main : BasePlugin
                 {CustomRoles.Tracker, "#3CB371"},
                 {CustomRoles.Merchant, "#D27D2D"},
                 {CustomRoles.Retributionist, "#228B22"},
+                {CustomRoles.Alchemist, "#a058bf"},
                 {CustomRoles.Deputy, "#df9026"},
                 {CustomRoles.Jailer,"#aa900d"},
                 {CustomRoles.Guardian, "#2E8B57"},
@@ -392,6 +396,7 @@ public class Main : BasePlugin
                 {CustomRoles.NiceMini, "#edc240" },
                 //第三陣営役職
                 {CustomRoles.Arsonist, "#ff6633"},
+                {CustomRoles.Pyromaniac, "#ff2400"},
                 {CustomRoles.Agitater, "#F4A460"},
                 {CustomRoles.Bandit, "#8B008B"},
                 {CustomRoles.PlagueBearer,"#e5f6b4"},
@@ -420,7 +425,7 @@ public class Main : BasePlugin
                 {CustomRoles.Poisoner, "#478800"},
                 {CustomRoles.CovenLeader, "#663399"},
                 {CustomRoles.Ritualist, "#663399"},
-                {CustomRoles.Necromancer, "#663399"},
+                {CustomRoles.Necromancer, "#9C87AB"},
                 {CustomRoles.Banshee, "#663399"},
                 {CustomRoles.NWitch, "#BF5FFF"},
                 {CustomRoles.Totocalcio, "#ff9409"},
@@ -523,6 +528,7 @@ public class Main : BasePlugin
                 {CustomRoles.Aware,"#4B0082"},
                 {CustomRoles.Fragile,"#D3D3D3"},
                 {CustomRoles.Burst, "#B619B9"},
+                {CustomRoles.Bloodlust, "#691a2e"},
 
                 {CustomRoles.Swift, "#ff1919"},
                 {CustomRoles.Mare, "#ff1919"},
@@ -670,6 +676,7 @@ public enum CustomRoles
     Chronomancer,
     Pitfall,
     EvilMini,
+    Blackmailer,
     // Flashbang,
     //Crewmate(Vanilla)
     Engineer,
@@ -687,6 +694,7 @@ public enum CustomRoles
     CyberStar,
     Cleanser,
     Mayor,
+    Bastion,
     Paranoia,
     Psychic,
     SabotageMaster,
@@ -724,6 +732,7 @@ public enum CustomRoles
     Tracker,
     Merchant,
     Retributionist,
+    Alchemist,
     Deputy,
     Guardian,
     Addict,
@@ -744,7 +753,7 @@ public enum CustomRoles
 
     //Neutral
     Arsonist,
-    Doppelganger,
+    Pyromaniac,
     Agitater,
     Bandit,
     Seeker,
@@ -876,6 +885,7 @@ public enum CustomRoles
     Ghoul,
     Mare,
     Burst,
+    Bloodlust,
     Sleuth,
     Clumsy,
     Nimble,
@@ -898,6 +908,7 @@ public enum CustomWinner
     Lovers = CustomRoles.Lovers,
     Executioner = CustomRoles.Executioner,
     Arsonist = CustomRoles.Arsonist,
+    Pyromaniac = CustomRoles.Pyromaniac,
     Agitater = CustomRoles.Agitater,
     Revolutionist = CustomRoles.Revolutionist,
     Jackal = CustomRoles.Jackal,
@@ -923,6 +934,7 @@ public enum CustomWinner
     Pirate = CustomRoles.Pirate,
     SerialKiller = CustomRoles.NSerialKiller,
     Werewolf = CustomRoles.Werewolf,
+    Necromancer = CustomRoles.Necromancer,
     Witch = CustomRoles.NWitch,
     Juggernaut = CustomRoles.Juggernaut,
     Infectious = CustomRoles.Infectious,

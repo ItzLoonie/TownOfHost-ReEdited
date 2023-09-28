@@ -19,19 +19,26 @@ public static class Puppeteer
     public static bool IsEnable = false;
 
     public static Dictionary<byte, byte> PuppeteerList = new();
+    public static OptionItem PuppeteerDoubleKills;
 
     public static void SetupCustomOption()
     {
         SetupRoleOptions(Id, TabGroup.ImpostorRoles, CustomRoles.Puppeteer);
+        PuppeteerDoubleKills = BooleanOptionItem.Create(Id + 12, "PuppeteerDoubleKills", false, TabGroup.ImpostorRoles, true)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Puppeteer]);
     }
     public static void Init()
     {
         PuppeteerList = new();
         IsEnable = false;
     }
-    public static void Add()
+    public static void Add(byte playerId)
     {
         IsEnable = true;
+
+        // Double Trigger
+        var pc = Utils.GetPlayerById(playerId);
+        pc.AddDoubleTrigger();
     }
     private static void SendRPC(byte puppetId, byte targetId, byte typeId)
     {
@@ -74,6 +81,21 @@ public static class Puppeteer
 
         return false;
     }
+    public static bool OnCheckPuppet(PlayerControl killer, PlayerControl target)
+    {
+        if (target.Is(CustomRoles.Needy) || target.Is(CustomRoles.Lazy) || Medic.ProtectList.Contains(target.PlayerId)) return false;
+            return killer.CheckDoubleTrigger(target, () => 
+            {         
+                PuppeteerList[target.PlayerId] = killer.PlayerId;
+                killer.SetKillCooldown();
+                Utils.NotifyRoles(SpecifySeer: killer);
+                SendRPC(killer.PlayerId, target.PlayerId, 1);
+                killer.RPCPlayCustomSound("Line");
+            }
+
+        );
+    }
+
 
     public static void OnFixedUpdate(PlayerControl puppet)
     {
@@ -93,7 +115,7 @@ public static class Puppeteer
 
             foreach (var target in Main.AllAlivePlayerControls)
             {
-                if (target.PlayerId != puppet.PlayerId && !(target.Is(CustomRoleTypes.Impostor) || target.Is(CustomRoles.Glitch) || target.Is(CustomRoles.Pestilence)))
+                if (target.PlayerId != puppet.PlayerId && !(target.Is(CustomRoleTypes.Impostor) || target.Is(CustomRoles.Pestilence)))
                 {
                     dis = Vector2.Distance(puppeteerPos, target.transform.position);
                     targetDistance.Add(target.PlayerId, dis);
@@ -118,6 +140,12 @@ public static class Puppeteer
                         PuppeteerList.Remove(puppet.PlayerId);
                         SendRPC(byte.MaxValue, puppet.PlayerId, 2);
                         Utils.NotifyRoles(SpecifySeer: puppet);
+                        if (!puppet.Is(CustomRoles.Pestilence) && PuppeteerDoubleKills.GetBool())
+                        {
+                            puppet.RpcMurderPlayerV3(puppet);
+                            Main.PlayerStates[puppet.PlayerId].deathReason = PlayerState.DeathReason.Drained;
+                            puppet.SetRealKiller(Utils.GetPlayerById(puppeteerId));
+                        }
                     }
                 }
             }

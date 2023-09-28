@@ -201,8 +201,6 @@ class CheckForEndVotingPatch
                 
                 // Hide Jester Vote
                 if (CheckRole(ps.TargetPlayerId, CustomRoles.Jester) && Options.HideJesterVote.GetBool()) continue;
-                // Hide Glitch Vote
-                if (CheckRole(ps.TargetPlayerId, CustomRoles.Glitch)) continue;
 
 
                 //主动叛变模式下自票无效
@@ -632,9 +630,6 @@ static class ExtendedMeetingHud
                 if (CheckForEndVotingPatch.CheckRole(ps.TargetPlayerId, CustomRoles.Knighted)
                     && ps.TargetPlayerId != ps.VotedFor
                     ) VoteNum += 1;
-                if (CheckForEndVotingPatch.CheckRole(ps.TargetPlayerId, CustomRoles.Glitch)
-                    && ps.TargetPlayerId != ps.VotedFor
-                    ) VoteNum = 0;
                 if (CheckForEndVotingPatch.CheckRole(ps.TargetPlayerId, CustomRoles.Vindicator)
                     && ps.TargetPlayerId != ps.VotedFor
                     ) VoteNum += Options.VindicatorAdditionalVote.GetInt();
@@ -733,8 +728,7 @@ class MeetingHudStartPatch
             //黑手党死后技能提示
             if (pc.Is(CustomRoles.Mafia) && !pc.IsAlive())
                 AddMsg(GetString("MafiaDeadMsg"), pc.PlayerId);
-            if (pc.Is(CustomRoles.Necromancer) && !pc.IsAlive())
-                AddMsg(GetString("NecromancerDeadMsg"), pc.PlayerId);
+            //惩罚者死后技能提示
             if (pc.Is(CustomRoles.Retributionist) && !pc.IsAlive())
                 AddMsg(GetString("RetributionistDeadMsg"), pc.PlayerId);
             //网红死亡消息提示
@@ -744,6 +738,7 @@ class MeetingHudStartPatch
                 if (!Options.NeutralKnowCyberStarDead.GetBool() && pc.GetCustomRole().IsNeutral()) continue;
                 AddMsg(string.Format(GetString("CyberStarDead"), Main.AllPlayerNames[csId]), pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.CyberStar), GetString("CyberStarNewsTitle")));
             }
+            //网络人死亡消息提示
             foreach (var csId in Main.CyberDead)
             {
                 if (!Options.ImpKnowCyberDead.GetBool() && pc.GetCustomRole().IsImpostor()) continue;
@@ -751,7 +746,11 @@ class MeetingHudStartPatch
                 if (!Options.CrewKnowCyberDead.GetBool() && pc.GetCustomRole().IsCrewmate()) continue;
                 AddMsg(string.Format(GetString("CyberDead"), Main.AllPlayerNames[csId]), pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Cyber), GetString("CyberNewsTitle")));
             }
-
+            //勒索者勒索警告
+            foreach (var player in Blackmailer.ForBlackmailer)
+            {        
+                AddMsg(string.Format(GetString("BlackmailerDead"), Main.AllPlayerNames[player]), pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Blackmailer), GetString("BlackmaileKillTitle")));
+            }
             //侦探报告线索
             if (Main.DetectiveNotify.ContainsKey(pc.PlayerId))
                 AddMsg(Main.DetectiveNotify[pc.PlayerId], pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Detective), GetString("DetectiveNoticeTitle")));
@@ -763,10 +762,10 @@ class MeetingHudStartPatch
             //入殓师的检查
             if (Mortician.msgToSend.ContainsKey(pc.PlayerId))
                 AddMsg(Mortician.msgToSend[pc.PlayerId], pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Mortician), GetString("MorticianCheckTitle")));
-            //通灵师的提示（自己）
+            //调查员的提示（自己）
             if (Mediumshiper.ContactPlayer.ContainsValue(pc.PlayerId))
                 AddMsg(string.Format(GetString("MediumshipNotifySelf"), Main.AllPlayerNames[Mediumshiper.ContactPlayer.Where(x => x.Value == pc.PlayerId).FirstOrDefault().Key], Mediumshiper.ContactLimit[pc.PlayerId]), pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Mediumshiper), GetString("MediumshipTitle")));
-            //通灵师的提示（目标）
+            //调查员的提示（目标）
             if (Mediumshiper.ContactPlayer.ContainsKey(pc.PlayerId) && (!Mediumshiper.OnlyReceiveMsgFromCrew.GetBool() || pc.GetCustomRole().IsCrewmate()))
                 AddMsg(string.Format(GetString("MediumshipNotifyTarget"), Main.AllPlayerNames[Mediumshiper.ContactPlayer[pc.PlayerId]]), pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Mediumshiper), GetString("MediumshipTitle")));
             if (Main.VirusNotify.ContainsKey(pc.PlayerId))
@@ -990,7 +989,9 @@ class MeetingHudStartPatch
                 case CustomRoles.Banshee:
                 case CustomRoles.Infectious:
                 case CustomRoles.RuthlessRomantic:
+                case CustomRoles.Necromancer:
                 case CustomRoles.Virus:
+                case CustomRoles.Pyromaniac:
                 case CustomRoles.Medusa:
                 case CustomRoles.Succubus:
                 case CustomRoles.CovenLeader:
@@ -1024,11 +1025,6 @@ class MeetingHudStartPatch
                 case CustomRoles.Mafia:
                     if (seer.Data.IsDead && !target.Data.IsDead)
                         pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Mafia), target.PlayerId.ToString()) + " " + pva.NameText.text;
-                    break;
-                case CustomRoles.Necromancer:
-                    sb.Append(Snitch.GetWarningMark(seer, target));
-                    if (seer.Data.IsDead && !target.Data.IsDead)
-                        pva.NameText.text = Utils.ColorString(Utils.GetRoleColor(CustomRoles.Necromancer), target.PlayerId.ToString()) + " " + pva.NameText.text;
                     break;
                 case CustomRoles.Retributionist:
                     if (seer.Data.IsDead && !target.Data.IsDead)
@@ -1130,21 +1126,25 @@ class MeetingHudStartPatch
             if (target.PlayerId == Pirate.PirateTarget)
                 sb.Append(Pirate.GetPlunderedMark(target.PlayerId, true));
 
-
             //如果是大明星
             if (target.Is(CustomRoles.SuperStar) && Options.EveryOneKnowSuperStar.GetBool())
                 sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.SuperStar), "★"));
-                
+            
+            //网络人提示
             if (target.Is(CustomRoles.Cyber) && Options.CyberKnown.GetBool())
                 sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Cyber), "★"));
-                
-            //迷你船员
+            
+            //玩家被勒索提示
+            if (Blackmailer.ForBlackmailer.Contains(target.PlayerId))
+                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Blackmailer), "╳")); 
+            
+            //迷你船员提示
             if (target.Is(CustomRoles.NiceMini) && Mini.EveryoneCanKnowMini.GetBool())
-                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.NiceMini), Mini.Age != 18 && Mini.UpDateAge.GetBool() ? $"({Mini.Age})" : ""));
+                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Mini), Mini.Age != 18 && Mini.UpDateAge.GetBool() ? $"({Mini.Age})" : ""));
 
-            //迷你船员
+            //迷你船员提示
             if (target.Is(CustomRoles.EvilMini) && Mini.EveryoneCanKnowMini.GetBool())
-                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.NiceMini), Mini.Age != 18 && Mini.UpDateAge.GetBool() ? $"({Mini.Age})" : ""));
+                sb.Append(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Mini), Mini.Age != 18 && Mini.UpDateAge.GetBool() ? $"({Mini.Age})" : ""));
 
             //球状闪电提示
             if (BallLightning.IsGhost(target))
@@ -1229,8 +1229,6 @@ class MeetingHudUpdatePatch
             //若黑手党死亡则创建技能按钮
             if (myRole is CustomRoles.Mafia && !PlayerControl.LocalPlayer.IsAlive() && GameObject.Find("ShootButton") == null)
                 MafiaRevengeManager.CreateJudgeButton(__instance);
-            if (myRole is CustomRoles.Necromancer && !PlayerControl.LocalPlayer.IsAlive() && GameObject.Find("ShootButton") == null)
-                NecromancerRevengeManager.CreateJudgeButton(__instance);
             if (myRole is CustomRoles.Retributionist && !PlayerControl.LocalPlayer.IsAlive() && GameObject.Find("ShootButton") == null)
                 RetributionistRevengeManager.CreateJudgeButton(__instance);
 

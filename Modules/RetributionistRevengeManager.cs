@@ -40,7 +40,7 @@ public static class RetributionistRevengeManager
         }
         if (Options.CanOnlyRetributeWithTasksDone.GetBool())
         {
-            if (!pc.GetPlayerTaskState().IsTaskFinished && pc.Data.IsDead && !CopyCat.playerIdList.Contains(pc.PlayerId))
+            if (!pc.GetPlayerTaskState().IsTaskFinished && pc.Data.IsDead && !CopyCat.playerIdList.Contains(pc.PlayerId) && !Main.TasklessCrewmate.Contains(pc.PlayerId))
             {
                 if (!isUI) Utils.SendMessage(GetString("RetributionistKillDisable"), pc.PlayerId);
                 else pc.ShowPopUp(GetString("RetributionistKillDisable"));
