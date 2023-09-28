@@ -82,11 +82,11 @@ public static class Utils
         Logger.Info($" {location}", "Teleport - Location");
 
         if (player.inVent)
+        {
             player.MyPhysics.RpcBootFromVent(0);
+        }
 
-        if (AmongUsClient.Instance.AmHost)
-            player.NetTransform.SnapTo(location);
-
+        player.NetTransform.SnapTo(location);
         var sender = CustomRpcSender.Create("RpcTeleport", sendOption: SendOption.None);
         {
             sender.AutoStartRpc(player.NetTransform.NetId, (byte)RpcCalls.SnapTo);
