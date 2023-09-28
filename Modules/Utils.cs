@@ -91,8 +91,12 @@ public static class Utils
         {
             sender.AutoStartRpc(player.NetTransform.NetId, (byte)RpcCalls.SnapTo);
             {
+                Logger.Info($" {player.NetTransform.NetId}", "Teleport - NetTransform Id");
+
                 NetHelpers.WriteVector2(location, sender.stream);
                 sender.Write(player.NetTransform.lastSequenceId);
+
+                Logger.Info($" {player.NetTransform.lastSequenceId}", "Teleport - Player NetTransform lastSequenceId - writer");
             }
             sender.EndRpc();
         }
