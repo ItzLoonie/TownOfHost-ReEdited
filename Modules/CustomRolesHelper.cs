@@ -350,6 +350,7 @@ static class CustomRolesHelper
             CustomRoles.Lawyer or
             CustomRoles.God or
             CustomRoles.Amnesiac or
+            CustomRoles.Glitch or
             CustomRoles.Imitator or
             CustomRoles.Bandit or
             CustomRoles.Pestilence or
@@ -391,7 +392,6 @@ static class CustomRolesHelper
         return role is
             CustomRoles.Sidekick or
             CustomRoles.Infectious or
-            CustomRoles.Glitch or
             CustomRoles.Pyromaniac or
             CustomRoles.Shade or
             CustomRoles.Medusa or
