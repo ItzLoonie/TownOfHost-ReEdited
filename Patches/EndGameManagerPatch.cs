@@ -1,23 +1,22 @@
-using System.Linq;
 using HarmonyLib;
 using TMPro;
 using UnityEngine;
+using static TOHE.Translator;
 
 namespace TOHE.Patches;
 
 [HarmonyPatch(typeof(EndGameManager), nameof(EndGameManager.ShowButtons))]
 public class EndGameManagerPatch
 {
+    public static GameObject CountdownText;
     public static bool IsRestarting { get; private set; }
-    //private static string _playAgainText = "Re-entering lobby in {0}s";
-    //private static TextMeshPro autoPlayAgainText;
 
     public static void Postfix(EndGameManager __instance)
     {
         if (!AmongUsClient.Instance.AmHost || !Options.AutoPlayAgain.GetBool()) return;
         IsRestarting = false;
 
-        _ = new LateTask(() =>
+        _ = _ = new LateTask(() =>
         {
             Logger.Msg("Beginning Auto Play Again Countdown!", "AutoPlayAgain");
             IsRestarting = true;
@@ -28,7 +27,6 @@ public class EndGameManagerPatch
     public static void CancelPlayAgain()
     {
         IsRestarting = false;
-        //if (autoPlayAgainText != null) autoPlayAgainText.gameObject.SetActive(false);
     }
 
     private static void BeginAutoPlayAgainCountdown(EndGameManager endGameManager, int seconds)
@@ -38,18 +36,22 @@ public class EndGameManagerPatch
         EndGameNavigation navigation = endGameManager.Navigation;
         if (navigation == null) return;
 
-        /*if (autoPlayAgainText == null)
+        if (seconds == Options.AutoPlayAgainCountdown.GetInt())
         {
-            autoPlayAgainText = Object.Instantiate(navigation.gameObject.GetComponentInChildren<TextMeshPro>(), navigation.transform);
-            autoPlayAgainText.fontSize += 6;
-            autoPlayAgainText.color = Color.white;
-            autoPlayAgainText.transform.localScale += new Vector3(0.25f, 0.25f);
-            _ = new LateTask(() => autoPlayAgainText.text = _playAgainText.StringBuilder(seconds.ToString()), 0.001f);
-            autoPlayAgainText.transform.localPosition += new Vector3(3.5f, 2.6f); 
-        }*/
+            CountdownText = new GameObject("CountdownText");
+            CountdownText.transform.position = new Vector3(0f, 2.5f, 10f);
+            var CountdownTextText = CountdownText.AddComponent<TextMeshPro>();
+            CountdownTextText.text = string.Format(GetString("CountdownText"), seconds);
+            CountdownTextText.alignment = TextAlignmentOptions.Center;
+            CountdownTextText.fontSize = 3f;
+        }
+        else
+        {
+            var CountdownTextText = CountdownText.GetComponent<TextMeshPro>();
+            CountdownTextText.text = string.Format(GetString("CountdownText"), seconds);
+        }
 
-        //   autoPlayAgainText.text = _playAgainText.Formatted(seconds.ToString());
-        if (seconds == 0) navigation.NextGame();
-        else _ = new LateTask(() => BeginAutoPlayAgainCountdown(endGameManager, seconds - 1), 1.1f);
+        if (seconds == 0) { navigation.NextGame(); CountdownText.transform.DestroyChildren(); }
+        else _ = new LateTask(() => { BeginAutoPlayAgainCountdown(endGameManager, seconds - 1); }, 1f);
     }
 }
