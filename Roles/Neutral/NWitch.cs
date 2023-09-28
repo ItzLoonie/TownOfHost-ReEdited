@@ -98,7 +98,7 @@ public static class NWitch
             {
 
                 {
-                    if (target.PlayerId != taglocked.PlayerId && !(target.Is(CustomRoles.NWitch) || target.Is(CustomRoles.Glitch) || target.Is(CustomRoles.Pestilence)))
+                    if (target.PlayerId != taglocked.PlayerId && !(target.Is(CustomRoles.NWitch) || target.Is(CustomRoles.Pestilence)))
                     {
                         dis = Vector2.Distance(taglockedPos, target.transform.position);
                         targetDistance.Add(target.PlayerId, dis);

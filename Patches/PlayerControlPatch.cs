@@ -207,6 +207,11 @@ class CheckMurderPatch
             killer.SetKillCooldown(time: 5f);
             return false;
         };
+        if (Glitch.hackedIdList.ContainsKey(killer.PlayerId))
+        {
+            killer.Notify(string.Format(GetString("HackedByGlitch"), "Kill"));
+            return false;
+        }
 
         //判定凶手技能
         if (killer.PlayerId != target.PlayerId)
@@ -271,6 +276,9 @@ class CheckMurderPatch
                     break;
                 case CustomRoles.HexMaster:
                     if (!HexMaster.OnCheckMurder(killer, target)) return false;
+                    break;
+                case CustomRoles.Glitch:
+                    if (!Glitch.OnCheckMurder(killer, target)) return false;
                     break;
                 case CustomRoles.Occultist:
                     if (!Occultist.OnCheckMurder(killer, target)) return false;
@@ -547,7 +555,7 @@ class CheckMurderPatch
         }
 
 
-        if (killer.Is(CustomRoles.Swift) && !target.Is(CustomRoles.Glitch) && !target.Is(CustomRoles.Pestilence))
+        if (killer.Is(CustomRoles.Swift)&& !target.Is(CustomRoles.Pestilence))
         {
             target.RpcMurderPlayerV3(target);
             if (!Options.DisableShieldAnimations.GetBool()) killer.RpcGuardAndKill(killer);
@@ -641,7 +649,7 @@ class CheckMurderPatch
 
                     if (target.Is(CustomRoles.Avanger))
                     {
-                        var pcList = Main.AllAlivePlayerControls.Where(x => x.PlayerId != target.PlayerId || Pelican.IsEaten(x.PlayerId) || Medic.ProtectList.Contains(x.PlayerId) || target.Is(CustomRoles.Pestilence) || target.Is(CustomRoles.Glitch)).ToList();
+                        var pcList = Main.AllAlivePlayerControls.Where(x => x.PlayerId != target.PlayerId || Pelican.IsEaten(x.PlayerId) || Medic.ProtectList.Contains(x.PlayerId) || target.Is(CustomRoles.Pestilence)).ToList();
                         var rp = pcList[IRandom.Instance.Next(0, pcList.Count)];
                         Main.PlayerStates[rp.PlayerId].deathReason = PlayerState.DeathReason.Revenge;
                         rp.SetRealKiller(target);
@@ -933,7 +941,7 @@ class CheckMurderPatch
         {
             foreach (var player in Main.AllPlayerControls)
             {
-                if (player.Is(CustomRoles.Crusader) && player.IsAlive() && !killer.Is(CustomRoles.Pestilence) && !killer.Is(CustomRoles.Glitch) && !killer.Is(CustomRoles.Minimalism))
+                if (player.Is(CustomRoles.Crusader) && player.IsAlive() && !killer.Is(CustomRoles.Pestilence) && !killer.Is(CustomRoles.Minimalism))
                 {
                     player.RpcMurderPlayerV3(killer);
                     Main.ForCrusade.Remove(target.PlayerId);
@@ -1079,14 +1087,6 @@ class CheckMurderPatch
                     return false;
                 }
                 break;
-            case CustomRoles.Glitch:
-                    if (killer.Is(CustomRoles.Pestilence)) break;
-                    killer.SetRealKiller(target);
-                    target.RpcMurderPlayerV3(killer);
-                    Logger.Info($"{target.GetRealName()} 老兵反弹击杀：{killer.GetRealName()}", "Glitch Kill");
-                    Main.PlayerStates[killer.PlayerId].deathReason = PlayerState.DeathReason.Hack;
-                    return false;             
-            //检查明星附近是否有人
             case CustomRoles.SuperStar:
                 if (Main.AllAlivePlayerControls.Where(x =>
                     x.PlayerId != killer.PlayerId &&
@@ -1520,7 +1520,7 @@ class ShapeshiftPatch
                             var pos = shapeshifter.transform.position;
                             var dis = Vector2.Distance(pos, tg.transform.position);
 
-                            if (!tg.IsAlive() || Pelican.IsEaten(tg.PlayerId) || Medic.ProtectList.Contains(tg.PlayerId) || (tg.Is(CustomRoleTypes.Impostor) && Options.ImpostorsSurviveBombs.GetBool()) || tg.inVent || tg.Is(CustomRoles.Glitch) || tg.Is(CustomRoles.Pestilence)) continue;
+                            if (!tg.IsAlive() || Pelican.IsEaten(tg.PlayerId) || Medic.ProtectList.Contains(tg.PlayerId) || (tg.Is(CustomRoleTypes.Impostor) && Options.ImpostorsSurviveBombs.GetBool()) || tg.inVent || tg.Is(CustomRoles.Pestilence)) continue;
                             if (dis > Options.BomberRadius.GetFloat()) continue;
                             if (tg.PlayerId == shapeshifter.PlayerId) continue;
 
@@ -1556,7 +1556,7 @@ class ShapeshiftPatch
                             var pos = shapeshifter.transform.position;
                             var dis = Vector2.Distance(pos, tg.transform.position);
 
-                            if (!tg.IsAlive() || Pelican.IsEaten(tg.PlayerId) || Medic.ProtectList.Contains(tg.PlayerId) || tg.inVent || tg.Is(CustomRoles.Glitch) || tg.Is(CustomRoles.Pestilence)) continue;
+                            if (!tg.IsAlive() || Pelican.IsEaten(tg.PlayerId) || Medic.ProtectList.Contains(tg.PlayerId) || tg.inVent || tg.Is(CustomRoles.Pestilence)) continue;
                             if (dis > Options.NukeRadius.GetFloat()) continue;
                             if (tg.PlayerId == shapeshifter.PlayerId) continue;
 
@@ -1648,7 +1648,7 @@ class ShapeshiftPatch
         }
 
         //変身解除のタイミングがずれて名前が直せなかった時のために強制書き換え
-        if (!shapeshifting)
+        if (!shapeshifting && !shapeshifter.Is(CustomRoles.Glitch))
         {
             _ = new LateTask(() =>
             {
@@ -2362,19 +2362,29 @@ class FixedUpdatePatch
                 }
             }
 
-            if (GameStates.IsInTask && ReportDeadBodyPatch.CanReport[__instance.PlayerId] && ReportDeadBodyPatch.WaitReport[__instance.PlayerId].Count > 0)
+        if (GameStates.IsInTask && ReportDeadBodyPatch.CanReport[__instance.PlayerId] && ReportDeadBodyPatch.WaitReport[__instance.PlayerId].Any())
+        {
+            if (Glitch.hackedIdList.ContainsKey(__instance.PlayerId))
+            {
+                __instance.Notify(string.Format(GetString("HackedByGlitch"), "Report"));
+                Logger.Info("Dead Body Report Blocked (player is hacked by Glitch)", "FixedUpdate.ReportDeadBody");
+                ReportDeadBodyPatch.WaitReport[__instance.PlayerId].Clear();
+            }
+            else
             {
                 var info = ReportDeadBodyPatch.WaitReport[__instance.PlayerId][0];
                 ReportDeadBodyPatch.WaitReport[__instance.PlayerId].Clear();
                 Logger.Info($"{__instance.GetNameWithRole()}:通報可能になったため通報処理を行います", "ReportDeadbody");
                 __instance.ReportDeadBody(info);
             }
+        }
 
             DoubleTrigger.OnFixedUpdate(player);
             Vampire.OnFixedUpdate(player);
             Vampiress.OnFixedUpdate(player);
             Poisoner.OnFixedUpdate(player);
             BountyHunter.FixedUpdate(player);
+            Glitch.UpdateHackCooldown(player);
             Seeker.FixedUpdate(player);
             SerialKiller.FixedUpdate(player);
             
@@ -2768,7 +2778,7 @@ class FixedUpdatePatch
                         float dis;
                         foreach (var target in Main.AllAlivePlayerControls)
                         {
-                            if (target.PlayerId != player.PlayerId && !target.Is(CustomRoles.Glitch) && !target.Is(CustomRoles.Pestilence))
+                            if (target.PlayerId != player.PlayerId && !target.Is(CustomRoles.Pestilence))
                             {
                                 dis = Vector2.Distance(bloodlustPos, target.transform.position);
                                 targetDistance.Add(target.PlayerId, dis);
@@ -3386,6 +3396,16 @@ class CoEnterVentPatch
     public static bool Prefix(PlayerPhysics __instance, [HarmonyArgument(0)] int id)
     {
         if (!AmongUsClient.Instance.AmHost) return true;
+
+        if (Glitch.hackedIdList.ContainsKey(__instance.myPlayer.PlayerId))
+        {
+            _ = new LateTask(() =>
+            {
+                __instance.myPlayer?.Notify(string.Format(GetString("HackedByGlitch"), "Vent"));
+                __instance.myPlayer?.MyPhysics?.RpcBootFromVent(id);
+            }, 0.5f);
+            return true;
+        }
 
         if (Main.BombedVents.Contains(id))
         {

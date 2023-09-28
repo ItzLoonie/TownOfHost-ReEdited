@@ -215,6 +215,11 @@ static class ExtendedPlayerControl
         if (target == null) target = player;
         if (time >= 0f) Main.AllPlayerKillCooldown[player.PlayerId] = time * 2;
         else Main.AllPlayerKillCooldown[player.PlayerId] *= 2;
+        if (player.Is(CustomRoles.Glitch))
+        {
+            Glitch.LastKill = Utils.GetTimeStamp() + ((int)(time / 2) - Glitch.KillCooldown.GetInt());
+            Glitch.KCDTimer = (int)(time / 2) - Glitch.KillCooldown.GetInt();
+        }
         if (forceAnime || !player.IsModClient() || !Options.DisableShieldAnimations.GetBool())
         {
             player.SyncSettings();
@@ -290,6 +295,13 @@ static class ExtendedPlayerControl
     {
         if (!AmongUsClient.Instance.AmHost) return; //ホスト以外が実行しても何も起こさない
         Logger.Info($"アビリティクールダウンのリセット:{target.name}({target.PlayerId})", "RpcResetAbilityCooldown");
+        if (target.Is(CustomRoles.Glitch))
+        {
+            Glitch.LastHack = Utils.GetTimeStamp();
+            Glitch.LastMimic = Utils.GetTimeStamp();
+            Glitch.MimicCDTimer = 10;
+            Glitch.HackCDTimer = 10;
+        }
         if (PlayerControl.LocalPlayer == target)
         {
             //targetがホストだった場合
@@ -559,7 +571,6 @@ static class ExtendedPlayerControl
             CustomRoles.PlagueBearer or
             CustomRoles.Admirer or
             CustomRoles.Bandit or
-            CustomRoles.Glitch or
             CustomRoles.Crusader or
             CustomRoles.ChiefOfPolice or
             CustomRoles.Wildling
@@ -567,6 +578,7 @@ static class ExtendedPlayerControl
 
             CustomRoles.Jackal => Jackal.CanVent.GetBool(),
             CustomRoles.VengefulRomantic => Romantic.VengefulCanVent.GetBool(),
+            CustomRoles.Glitch => Glitch.CanVent.GetBool(),
             CustomRoles.RuthlessRomantic => Romantic.RuthlessCanVent.GetBool(),
             CustomRoles.Sidekick => Jackal.CanVentSK.GetBool(),
             CustomRoles.Poisoner => Poisoner.CanVent.GetBool(),

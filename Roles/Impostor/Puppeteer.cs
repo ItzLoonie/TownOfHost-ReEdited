@@ -115,7 +115,7 @@ public static class Puppeteer
 
             foreach (var target in Main.AllAlivePlayerControls)
             {
-                if (target.PlayerId != puppet.PlayerId && !(target.Is(CustomRoleTypes.Impostor) || target.Is(CustomRoles.Glitch) || target.Is(CustomRoles.Pestilence)))
+                if (target.PlayerId != puppet.PlayerId && !(target.Is(CustomRoleTypes.Impostor) || target.Is(CustomRoles.Pestilence)))
                 {
                     dis = Vector2.Distance(puppeteerPos, target.transform.position);
                     targetDistance.Add(target.PlayerId, dis);

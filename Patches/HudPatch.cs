@@ -222,8 +222,8 @@ class HudManagerPatch
                         __instance.KillButton.OverrideText(GetString("KillButtonText"));
                         break;
                     case CustomRoles.Glitch:
-                        __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
-                        __instance.SabotageButton.OverrideText(GetString("HackButtonText"));
+                        __instance.KillButton.OverrideText(GetString("KillButtonText"));
+                        __instance.SabotageButton.OverrideText(GetString("MimicButtonText"));
                         break;
                     case CustomRoles.FFF:
                         __instance.ReportButton.OverrideText(GetString("ReportButtonText"));
@@ -496,6 +496,10 @@ class HudManagerPatch
                 else if (player.Is(CustomRoles.Chameleon))
                 {
                     LowerInfoText.text = Chameleon.GetHudText(player);
+                }
+                else if (player.Is(CustomRoles.Glitch))
+                {
+                    LowerInfoText.text = Glitch.GetHudText(player);
                 }
                 else if (player.Is(CustomRoles.BloodKnight))
                 {

@@ -2441,6 +2441,7 @@ public static class Utils
             Main.KilledAntidote.Clear();
         }
         Swooper.AfterMeetingTasks();
+        Glitch.AfterMeetingTasks();
         Wraith.AfterMeetingTasks();
         Shade.AfterMeetingTasks();
         Chameleon.AfterMeetingTasks();
