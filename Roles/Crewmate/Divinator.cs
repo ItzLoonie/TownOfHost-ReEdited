@@ -139,7 +139,6 @@ public static class Divinator
                 CustomRoles.Seeker or
                 CustomRoles.Tracker or
                 CustomRoles.Romantic
-
                 => "Result6",
 
 
@@ -314,6 +313,7 @@ public static class Divinator
                 CustomRoles.TimeThief or
                 CustomRoles.ShapeMaster or
                 CustomRoles.Werewolf or
+                CustomRoles.Vampiress or
                 CustomRoles.Sniper
                 => "Result27",
 
