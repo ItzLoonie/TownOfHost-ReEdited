@@ -1,6 +1,8 @@
 using AmongUs.Data;
 using System.Collections.Generic;
+using System.Linq;
 using TOHE.Roles.Impostor;
+using TOHE.Roles.Neutral;
 
 namespace TOHE;
 
@@ -104,7 +106,7 @@ public static class Camouflage
             Utils.NotifyRoles(NoCache: true);
         }
     }
-    public static void RpcSetSkin(PlayerControl target, bool ForceRevert = false, bool RevertToDefault = false)
+    public static void RpcSetSkin(PlayerControl target, bool ForceRevert = false, bool RevertToDefault = false, bool GameEnd = false)
     {
         if (!(AmongUsClient.Instance.AmHost && (Options.CommsCamouflage.GetBool() || Camouflager.IsEnable))) return;
         if (target == null) return;
@@ -131,7 +133,20 @@ public static class Camouflage
                 id = Main.ShapeshiftTarget[id];
             }
 
-            newOutfit = PlayerSkins[id];
+            if (!GameEnd && Doppelganger.DoppelPresentSkin.Keys.Contains(id)) newOutfit = Doppelganger.DoppelPresentSkin[id];
+            else
+            {
+                if (GameEnd && Doppelganger.DoppelVictim.Keys.Contains(id))
+                {
+                    if (id == PlayerControl.LocalPlayer.PlayerId) Main.nickName = Doppelganger.DoppelVictim[id];
+                    else 
+                    { 
+                        var dpc = Utils.GetPlayerById(id);
+                        if (dpc != null) dpc.RpcSetName(Doppelganger.DoppelVictim[id]);
+                    }
+                }
+                newOutfit = PlayerSkins[id];
+            }
         }
         Logger.Info($"newOutfit={newOutfit.GetString()}", "RpcSetSkin");
 

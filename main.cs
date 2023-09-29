@@ -753,6 +753,7 @@ public enum CustomRoles
 
     //Neutral
     Arsonist,
+    Doppelganger,
     Pyromaniac,
     Agitater,
     Bandit,

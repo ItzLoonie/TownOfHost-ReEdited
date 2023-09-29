@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using TOHE.Modules;
 using TOHE.Roles.Impostor;
+using TOHE.Roles.Neutral;
 using UnityEngine;
 using static TOHE.Translator;
 
@@ -25,6 +26,18 @@ class EndGamePatch
         SummaryText = new();
         foreach (var id in Main.PlayerStates.Keys)
         {
+            if (Doppelganger.IsEnable)
+            {
+                if (Doppelganger.DoppelVictim.Keys.Contains(id))
+                {
+                    var dpc = Utils.GetPlayerById(id);
+                    if (dpc != null) 
+                    { 
+                        if (id == PlayerControl.LocalPlayer.PlayerId) Main.nickName = Doppelganger.DoppelVictim[id];
+                        else dpc.RpcSetName(Doppelganger.DoppelVictim[id]);
+                    }
+                }
+            }
             if (Main.EnableRoleSummary.Value)
             {
                 SummaryText[id] = Utils.SummaryTexts(id, disableColor: false);

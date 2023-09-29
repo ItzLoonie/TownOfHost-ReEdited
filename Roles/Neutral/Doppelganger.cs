@@ -15,6 +15,7 @@ public static class Doppelganger
     public static OptionItem MaxSteals;
 
     public static Dictionary<byte, string> DoppelVictim = new();
+    public static Dictionary<byte, GameData.PlayerOutfit> DoppelPresentSkin = new();
     public static Dictionary<byte, int> TotalSteals = new();
 
 
@@ -38,7 +39,7 @@ public static class Doppelganger
         playerIdList.Add(playerId);
         IsEnable = true;
         TotalSteals.Add(playerId, 0);
-        if (playerId == PlayerControl.LocalPlayer.PlayerId) DoppelVictim[playerId] = Main.nickName;
+        if (playerId == PlayerControl.LocalPlayer.PlayerId && Main.nickName.Length != 0) DoppelVictim[playerId] = Main.nickName;
         else DoppelVictim[playerId] = Utils.GetPlayerById(playerId).Data.PlayerName;
 
         if (!AmongUsClient.Instance.AmHost) return;
@@ -98,6 +99,7 @@ public static class Doppelganger
             .EndRpc();
 
         sender.SendMessage();
+        DoppelPresentSkin[pc.PlayerId] = newOutfit;
     }
 
     public static void OnCheckMurder(PlayerControl killer, PlayerControl target)
@@ -108,22 +110,30 @@ public static class Doppelganger
             TotalSteals[killer.PlayerId] = MaxSteals.GetInt();
             return;
         }
-        if (target.Is(CustomRoles.Pestilence) ||
-            target.Is(CustomRoles.Glitch) ||
-            (target.Is(CustomRoles.Guardian) && target.AllTasksCompleted()) ||
-            (target.Is(CustomRoles.Opportunist) && target.AllTasksCompleted() && Options.OppoImmuneToAttacksWhenTasksDone.GetBool()) ||
-            (target.Is(CustomRoles.Veteran) && Main.VeteranInProtect.ContainsKey(target.PlayerId)) ||
-            (target.Is(CustomRoles.Jinx) && Main.JinxSpellCount[target.PlayerId] > 0) ||
-            (target.Is(CustomRoles.CursedWolf) && Main.CursedWolfSpellCount[target.PlayerId] > 0))  return;
-        TotalSteals[killer.PlayerId]++;
-        var killerSkin = new GameData.PlayerOutfit()
-            .Set(killer.Data.PlayerName, killer.CurrentOutfit.ColorId, killer.CurrentOutfit.HatId, killer.CurrentOutfit.SkinId, killer.CurrentOutfit.VisorId, killer.CurrentOutfit.PetId);
-        var targetSkin = new GameData.PlayerOutfit()
-            .Set(target.Data.PlayerName, target.CurrentOutfit.ColorId, target.CurrentOutfit.HatId, target.CurrentOutfit.SkinId, target.CurrentOutfit.VisorId, target.CurrentOutfit.PetId);
 
-        RpcChangeSkin(killer, targetSkin);
+        TotalSteals[killer.PlayerId]++;
+
+        string kname;
+        if (killer.PlayerId == PlayerControl.LocalPlayer.PlayerId && Main.nickName.Length != 0) kname = Main.nickName;
+        else kname = killer.Data.PlayerName;
+        string tname;
+        if (target.PlayerId == PlayerControl.LocalPlayer.PlayerId && Main.nickName.Length != 0) tname = Main.nickName;
+        else tname = target.Data.PlayerName;
+
+        var killerSkin = new GameData.PlayerOutfit()
+            .Set(kname, killer.CurrentOutfit.ColorId, killer.CurrentOutfit.HatId, killer.CurrentOutfit.SkinId, killer.CurrentOutfit.VisorId, killer.CurrentOutfit.PetId);
+
+        var targetSkin = new GameData.PlayerOutfit()
+            .Set(tname, target.CurrentOutfit.ColorId, target.CurrentOutfit.HatId, target.CurrentOutfit.SkinId, target.CurrentOutfit.VisorId, target.CurrentOutfit.PetId);
+
+        DoppelVictim[target.PlayerId] = tname;
+        
+
         RpcChangeSkin(target, killerSkin);
-        DoppelVictim[target.PlayerId] = target.Data.PlayerName;
+        Logger.Info("Changed target skin", "Doppelganger");
+        RpcChangeSkin(killer, targetSkin);
+        Logger.Info("Changed killer skin", "Doppelganger");
+
         SendRPC(killer.PlayerId);
         Utils.NotifyRoles();
         killer.ResetKillCooldown();
@@ -133,6 +143,3 @@ public static class Doppelganger
 
     public static string GetStealLimit(byte playerId) => Utils.ColorString(TotalSteals[playerId] < MaxSteals.GetInt() ? Utils.GetRoleColor(CustomRoles.Doppelganger).ShadeColor(0.25f) : Color.gray, TotalSteals.TryGetValue(playerId, out var stealLimit) ? $"({MaxSteals.GetInt() - stealLimit})" : "Invalid");
 }
-// StartEndGame()
-// if (PlayerControl.LocalPlayer.Is(CustomRoles.NSerialKiller) || NSerialKiller.SKVictim.Contains(PlayerControl.LocalPlayer.PlayerId)) Main.nickName = NSerialKiller.HostOGName;
-

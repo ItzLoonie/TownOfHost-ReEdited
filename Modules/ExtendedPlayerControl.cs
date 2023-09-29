@@ -573,7 +573,6 @@ static class ExtendedPlayerControl
             CustomRoles.Admirer or
             CustomRoles.Bandit or
             CustomRoles.Doppelganger or
-            CustomRoles.Glitch or
             CustomRoles.Crusader or
             CustomRoles.ChiefOfPolice or
             CustomRoles.Wildling
