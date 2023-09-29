@@ -527,6 +527,7 @@ public class Main : BasePlugin
                 {CustomRoles.Antidote,"#FF9876"},
                 {CustomRoles.VoidBallot,"#FF3399"},
                 {CustomRoles.Aware,"#4B0082"},
+                {CustomRoles.Stubborn,"#FF5733"},
                 {CustomRoles.Fragile,"#D3D3D3"},
                 {CustomRoles.Burst, "#B619B9"},
                 {CustomRoles.Bloodlust, "#691a2e"},
@@ -896,6 +897,7 @@ public enum CustomRoles
     Circumvent,
     Repairman,
     Cyber,
+    Stubborn
     // QuickFix
 }
 //WinData

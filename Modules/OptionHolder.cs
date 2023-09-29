@@ -473,6 +473,10 @@ public static class Options
     public static OptionItem AntidoteCDOpt;
     public static OptionItem AntidoteCDReset;
 
+    public static OptionItem ImpCanBeStubborn;
+    public static OptionItem CrewCanBeStubborn;
+    public static OptionItem NeutralCanBeStubborn;
+
     public static OptionItem ImpCanBeBait;
     public static OptionItem CrewCanBeBait;
     public static OptionItem NeutralCanBeBait;
@@ -2081,9 +2085,16 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.DualPersonality]);
         DualVotes = BooleanOptionItem.Create(14712, "DualVotes", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.DualPersonality]);
-    //    HideDualVotes = BooleanOptionItem.Create(14713, "HideDualVotes", true, TabGroup.Addons, false)
-     //   .SetParent(DualVotes);
+        //    HideDualVotes = BooleanOptionItem.Create(14713, "HideDualVotes", true, TabGroup.Addons, false)
+        //   .SetParent(DualVotes);
 
+        SetupAdtRoleOptions(24687, CustomRoles.Stubborn, canSetNum: true);
+        ImpCanBeStubborn = BooleanOptionItem.Create(24697, "ImpCanBeStubborn", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Stubborn]);
+        CrewCanBeStubborn = BooleanOptionItem.Create(24698, "CrewCanBeStubborn", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Stubborn]);
+        NeutralCanBeStubborn = BooleanOptionItem.Create(24699, "NeutralCanBeStubborn", true, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Stubborn]);
 
         TextOptionItem.Create(100016, "RoleType.Impostor", TabGroup.Addons) // IMPOSTOR
             .SetGameMode(CustomGameMode.Standard)

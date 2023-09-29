@@ -313,6 +313,7 @@ static class CustomRolesHelper
             CustomRoles.DoubleShot or
             CustomRoles.Ghoul or
             CustomRoles.Bloodlust or
+            CustomRoles.Stubborn or
             CustomRoles.EvilSpirit;
     }
     
@@ -337,6 +338,7 @@ static class CustomRolesHelper
             CustomRoles.Clumsy or
             CustomRoles.Mimic or
             CustomRoles.TicketsStealer or
+            CustomRoles.Circumvent or
             CustomRoles.Swift;
     }
 
@@ -953,6 +955,7 @@ static class CustomRolesHelper
             CustomRoles.Knighted or
             CustomRoles.Glitch or
             CustomRoles.Pickpocket or
+            CustomRoles.Stubborn or
             CustomRoles.TicketsStealer;
     }
     public static bool CheckAddonConfilct(CustomRoles role, PlayerControl pc)
@@ -969,6 +972,10 @@ static class CustomRolesHelper
         // Checking for conflicts with roles and other add-ons
         switch (role)
         {
+            case CustomRoles.Stubborn:
+                if ((pc.GetCustomRole().IsCrewmate() && !Options.CrewCanBeStubborn.GetBool()) || (pc.GetCustomRole().IsNeutral() && !Options.NeutralCanBeStubborn.GetBool()) || (pc.GetCustomRole().IsImpostor() && !Options.ImpCanBeStubborn.GetBool()))
+                    return false;
+                break;
             case CustomRoles.Autopsy:
                 if (pc.Is(CustomRoles.Doctor))
                     return false;
