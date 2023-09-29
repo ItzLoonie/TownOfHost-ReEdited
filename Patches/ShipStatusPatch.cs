@@ -166,7 +166,7 @@ class CloseDoorsPatch
 {
     public static bool Prefix(ShipStatus __instance)
     {
-        return !(Options.DisableSabotage.GetBool());
+        return !Options.DisableSabotage.GetBool();
     }
 }
 [HarmonyPatch(typeof(SwitchSystem), nameof(SwitchSystem.RepairDamage))]
