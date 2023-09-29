@@ -2456,6 +2456,7 @@ public static class Utils
             }
             Main.KilledAntidote.Clear();
         }
+        if (Blackmailer.IsEnable) Blackmailer.ForBlackmailer.Clear();
 
         Swooper.AfterMeetingTasks();
         Glitch.AfterMeetingTasks();

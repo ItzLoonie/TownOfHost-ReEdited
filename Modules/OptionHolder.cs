@@ -2192,7 +2192,7 @@ public static class Options
         SetupRoleOptions(16900, TabGroup.OtherRoles, CustomRoles.OverKiller);
         Disperser.SetupCustomOption();
         Hangman.SetupCustomOption();
-    //    Blackmailer.SetupCustomOption();
+        Blackmailer.SetupCustomOption();
 
         // 船员
         TextOptionItem.Create(100019, "OtherRoles.CrewmateRoles", TabGroup.OtherRoles)

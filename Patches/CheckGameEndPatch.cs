@@ -4,6 +4,7 @@ using Hazel;
 using System.Collections.Generic;
 using System.Linq;
 using TOHE.Roles.Double;
+using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using static TOHE.Translator;
 
@@ -406,6 +407,7 @@ class GameEndChecker
         //        else pc.RpcSetName(Doppelganger.DoppelVictim[pid]);
         //    }
         //}
+        if (Blackmailer.IsEnable) Blackmailer.ForBlackmailer.Clear();
         //ゴーストロール化
         List<byte> ReviveRequiredPlayerIds = new();
         var winner = CustomWinnerHolder.WinnerTeam;
