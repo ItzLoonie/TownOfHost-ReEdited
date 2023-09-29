@@ -201,7 +201,7 @@ class ExileControllerWrapUpPatch
             {
                 if (pc.Is(CustomRoles.Infectious) && !pc.IsAlive())
                 {
-                    Infectious.MurderInfectedPlayers(pc);
+                    Infectious.MurderInfectedPlayers();
                 }
             }
 

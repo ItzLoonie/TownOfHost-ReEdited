@@ -1991,7 +1991,7 @@ public static class Utils
             {
                 if (seer.IsAlive())
                 {
-                    if (Shroud.IsEnable && Shroud.ShroudList.ContainsValue(seer.PlayerId))
+                    if (Shroud.IsEnable && Shroud.ShroudList.ContainsKey(seer.PlayerId))
                         SelfMark.Append(ColorString(GetRoleColor(CustomRoles.Shroud), "◈"));
                 }
 
@@ -2129,7 +2129,7 @@ public static class Utils
                         if (Pirate.IsEnable)
                             TargetMark.Append(Pirate.GetPlunderedMark(target.PlayerId, true));
 
-                        if (target.IsAlive()) 
+                        if (!seer.Is(CustomRoles.Shroud) && target.IsAlive()) 
                             TargetMark.Append(Shroud.GetShroudMark(target.PlayerId, true));
                     }
                     if (target.Is(CustomRoles.NiceMini) && Mini.EveryoneCanKnowMini.GetBool())

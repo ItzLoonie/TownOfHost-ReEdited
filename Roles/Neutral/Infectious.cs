@@ -98,12 +98,15 @@ public static class Infectious
         Logger.Info($"{killer.GetNameWithRole()} : 剩余{BiteLimit}次招募机会", "Infectious");
         return false;
     }
-    public static void MurderInfectedPlayers(PlayerControl infected)
+    public static void MurderInfectedPlayers()
     {
-        if (infected.Is(CustomRoles.Infected) && infected.IsAlive())
+        foreach (var alivePlater in Main.AllAlivePlayerControls)
         {
-            infected.RpcMurderPlayerV3(infected);
-            Main.PlayerStates[infected.PlayerId].deathReason = PlayerState.DeathReason.Infected;
+            if (alivePlater.Is(CustomRoles.Infected))
+            {
+                alivePlater.RpcMurderPlayerV3(alivePlater);
+                Main.PlayerStates[alivePlater.PlayerId].deathReason = PlayerState.DeathReason.Infected;
+            }
         }
     }
     public static bool KnowRole(PlayerControl player, PlayerControl target)
