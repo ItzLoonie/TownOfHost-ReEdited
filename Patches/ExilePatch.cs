@@ -199,7 +199,10 @@ class ExileControllerWrapUpPatch
 
             if (Infectious.IsEnable)
             {
-                Infectious.MurderInfectedPlayers(pc);
+                if (pc.Is(CustomRoles.Infectious) && !pc.IsAlive())
+                {
+                    Infectious.MurderInfectedPlayers(pc);
+                }
             }
 
             if (Shroud.IsEnable)
