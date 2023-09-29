@@ -1710,6 +1710,7 @@ public static class Options
         Doppelganger.SetupCustomOption();
         Glitch.SetupCustomOption();
         HexMaster.SetupCustomOption();
+        Huntsman.SetupCustomOption();
         Infectious.SetupCustomOption();
         Jackal.SetupCustomOption();
         Jinx.SetupCustomOption();
@@ -2113,6 +2114,7 @@ public static class Options
         JudgeCanBeMadmate = BooleanOptionItem.Create(15820, "JudgeCanBeMadmate", false, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Madmate]);
         LastImpostor.SetupCustomOption();
+        SetupAdtRoleOptions(16065, CustomRoles.Circumvent, canSetNum: true, tab: TabGroup.Addons);
         SetupAdtRoleOptions(16070, CustomRoles.Clumsy, canSetNum: true, tab: TabGroup.Addons);
         ChanceToMiss = IntegerOptionItem.Create(16085, "ChanceToMiss", new(0, 100, 5), 50, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Clumsy])

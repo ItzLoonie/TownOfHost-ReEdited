@@ -229,6 +229,9 @@ public class PlayerGameOptionsSender : GameOptionsSender
             case CustomRoles.Sidekick:
                 Sidekick.ApplyGameOptions(opt);
                 break;
+            case CustomRoles.Huntsman:
+                Huntsman.ApplyGameOptions(opt);
+                break;
             case CustomRoles.Vulture:
                 Vulture.ApplyGameOptions(opt);
                 AURoleOptions.EngineerCooldown = 0f;

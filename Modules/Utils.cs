@@ -481,6 +481,7 @@ public static class Utils
             case CustomRoles.Pyromaniac:
             case CustomRoles.Werewolf:
             case CustomRoles.Traitor:
+            case CustomRoles.Huntsman:
             case CustomRoles.Glitch:
             case CustomRoles.Pickpocket:
             case CustomRoles.Maverick:
@@ -2261,6 +2262,7 @@ public static class Utils
                         TargetRoleText = Farseer.RandomRole[seer.PlayerId];
                         TargetRoleText += Farseer.GetTaskState();
                     }
+
 
                 // ====== Target player name ======
 

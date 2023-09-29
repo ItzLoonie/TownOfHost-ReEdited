@@ -262,6 +262,7 @@ public static class Divinator
                 CustomRoles.Vampire or
                 CustomRoles.DovesOfNeace or
                 CustomRoles.ImperiusCurse or
+                CustomRoles.Huntsman or
                 CustomRoles.CovenLeader or
                 CustomRoles.Traitor
                 => "Result21",

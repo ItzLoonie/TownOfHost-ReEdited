@@ -247,6 +247,7 @@ internal class ChangeRoleSettings
             Hacker.Init();
             Psychic.Init();
             Glitch.Init();
+            Huntsman.Init();
             Deputy.Init();
             Pickpocket.Init();
             Hangman.Init();
@@ -598,6 +599,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Glitch:
                         Glitch.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Huntsman:
+                        Huntsman.Add(pc.PlayerId);
                         break;
                     case CustomRoles.CopyCat:
                         CopyCat.Add(pc.PlayerId);

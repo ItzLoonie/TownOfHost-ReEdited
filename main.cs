@@ -36,8 +36,8 @@ public class Main : BasePlugin
     public static readonly string MainMenuText = " ";
 
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "3.1.0.102";
-    public const string PluginDisplayVersion = "3.1.0 dev 10";
+    public const string PluginVersion = "3.1.0.105";
+    public const string PluginDisplayVersion = "3.1.0 dev 10.1";
     public static readonly string SupportedVersionAU = "2023.7.11";
     public const bool Canary = false;
 
@@ -423,6 +423,7 @@ public class Main : BasePlugin
                 {CustomRoles.Provocateur, "#74ba43"},
                 {CustomRoles.Sunnyboy, "#ff9902"},
                 {CustomRoles.Poisoner, "#478800"},
+                {CustomRoles.Huntsman, "#ad8739"},
                 {CustomRoles.CovenLeader, "#663399"},
                 {CustomRoles.Ritualist, "#663399"},
                 {CustomRoles.Necromancer, "#9C87AB"},
@@ -535,6 +536,7 @@ public class Main : BasePlugin
                 {CustomRoles.Ghoul, "#B22222"},
                 {CustomRoles.Sleuth, "#803333" },
                 {CustomRoles.Clumsy, "#ff1919"},
+                {CustomRoles.Circumvent, "#ff1919"},
                 {CustomRoles.Nimble, "#FFFAA6"},
                 {CustomRoles.Repairman, "#3333ff"},
 
@@ -816,6 +818,7 @@ public enum CustomRoles
     CovenLeader,
     Ritualist,
     Necromancer,
+    Huntsman,
     Banshee,
     Occultist,
     Shade,
@@ -890,6 +893,7 @@ public enum CustomRoles
     Sleuth,
     Clumsy,
     Nimble,
+    Circumvent,
     Repairman,
     Cyber,
     // QuickFix
@@ -936,6 +940,7 @@ public enum CustomWinner
     SerialKiller = CustomRoles.NSerialKiller,
     Werewolf = CustomRoles.Werewolf,
     Necromancer = CustomRoles.Necromancer,
+    Huntsman = CustomRoles.Huntsman,
     Witch = CustomRoles.NWitch,
     Juggernaut = CustomRoles.Juggernaut,
     Infectious = CustomRoles.Infectious,

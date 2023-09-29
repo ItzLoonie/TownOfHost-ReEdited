@@ -1,6 +1,7 @@
 using AmongUs.GameOptions;
 using System.Linq;
 using TOHE.Roles.Crewmate;
+using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 
 namespace TOHE;
@@ -180,6 +181,7 @@ static class CustomRolesHelper
             CustomRoles.Pirate => RoleTypes.Impostor,
             CustomRoles.CopyCat => RoleTypes.Impostor,
             CustomRoles.Imitator => RoleTypes.Impostor,
+            CustomRoles.Huntsman => RoleTypes.Impostor,
             CustomRoles.CursedSoul => RoleTypes.Impostor,
             CustomRoles.Shaman => RoleTypes.Impostor,
             CustomRoles.Admirer => RoleTypes.Impostor,
@@ -284,6 +286,7 @@ static class CustomRolesHelper
             CustomRoles.Sleuth or
             CustomRoles.Clumsy or
             CustomRoles.Nimble or
+            CustomRoles.Circumvent or
             CustomRoles.Youtuber or
             CustomRoles.Soulless or
             CustomRoles.Loyal or
@@ -344,6 +347,7 @@ static class CustomRolesHelper
             CustomRoles.Terrorist or
             CustomRoles.Opportunist or
             CustomRoles.Masochist or
+            CustomRoles.Huntsman or
             CustomRoles.Executioner or
             CustomRoles.Mario or
             CustomRoles.Shaman or
@@ -423,6 +427,7 @@ static class CustomRolesHelper
             CustomRoles.Bandit or
             CustomRoles.Glitch or
             CustomRoles.Sidekick or
+            CustomRoles.Huntsman or
             CustomRoles.Occultist or
             CustomRoles.Infectious or
             CustomRoles.Shade or
@@ -677,6 +682,7 @@ static class CustomRolesHelper
             CustomRoles.Mario or
             CustomRoles.Masochist or
             CustomRoles.Amnesiac or
+            CustomRoles.Huntsman or
             CustomRoles.Medusa or
             CustomRoles.Ritualist or
             CustomRoles.HexMaster or
@@ -1354,6 +1360,17 @@ static class CustomRolesHelper
                     return false;
                 break;
 
+            case CustomRoles.Circumvent:
+                if (pc.Is(CustomRoles.Vampire) && !Vampire.CanVent.GetBool()
+                    || pc.Is(CustomRoles.Vampiress) && !Vampire.CanVent.GetBool()
+                    || pc.Is(CustomRoles.Swooper)
+                    || pc.Is(CustomRoles.Wildling)
+                    || pc.Is(CustomRoles.Minimalism))
+                    return false;
+                if (!pc.GetCustomRole().IsImpostor())
+                    return false;
+                break;
+
             case CustomRoles.Clumsy:
                 if (pc.Is(CustomRoles.Swift)
                     || pc.Is(CustomRoles.Bomber)
@@ -1612,7 +1629,7 @@ static class CustomRolesHelper
            CustomRoles.Traitor => CountTypes.Traitor,
            CustomRoles.Medusa => CountTypes.Medusa,
            CustomRoles.Refugee => CountTypes.Impostor,
-    //       CustomRoles.Minion => CountTypes.Coven,
+           CustomRoles.Huntsman => CountTypes.Huntsman,
            CustomRoles.Glitch => CountTypes.Glitch,
           // CustomRoles.Phantom => CountTypes.OutOfGame,
         //   CustomRoles.CursedSoul => CountTypes.OutOfGame, // if they count as OutOfGame, it prevents them from winning lmao
@@ -1665,6 +1682,7 @@ public enum CountTypes
     PlagueBearer,
     Glitch,
     Arsonist,
+    Huntsman,
     Pyromaniac,
     Shroud,
     Werewolf,

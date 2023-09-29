@@ -212,6 +212,7 @@ class HudManagerPatch
                     case CustomRoles.SwordsMan:
                     case CustomRoles.Parasite:
                     case CustomRoles.Refugee:
+                    case CustomRoles.Huntsman:
                     case CustomRoles.Traitor:
                     case CustomRoles.PotionMaster:
                     case CustomRoles.Werewolf:
@@ -491,6 +492,10 @@ class HudManagerPatch
                 else if (player.Is(CustomRoles.Alchemist))
                 {
                     LowerInfoText.text = Alchemist.GetHudText(player);
+                }
+                else if (player.Is(CustomRoles.Huntsman))
+                {
+                    LowerInfoText.text = Huntsman.GetHudText(player);
                 }
                 else if (player.Is(CustomRoles.Wraith))
                 {

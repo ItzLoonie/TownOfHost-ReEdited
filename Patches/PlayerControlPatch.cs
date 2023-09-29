@@ -282,6 +282,9 @@ class CheckMurderPatch
                 case CustomRoles.Glitch:
                     if (!Glitch.OnCheckMurder(killer, target)) return false;
                     break;
+                case CustomRoles.Huntsman:
+                    Huntsman.OnCheckMurder(killer, target);
+                    break;
                 case CustomRoles.Occultist:
                     if (!Occultist.OnCheckMurder(killer, target)) return false;
                     break;
@@ -2219,6 +2222,7 @@ class ReportDeadBodyPatch
         Camouflager.OnReportDeadBody();
         Psychic.OnReportDeadBody();
         BountyHunter.OnReportDeadBody();
+        Huntsman.OnReportDeadBody();
         SerialKiller.OnReportDeadBody();
         SoulCollector.OnReportDeadBody();
         Puppeteer.OnReportDeadBody();
