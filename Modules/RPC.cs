@@ -119,6 +119,7 @@ enum CustomRPC
     SetCurrentRevealTarget,
     SetJackalRecruitLimit,
     SetBanditStealLimit,
+    SetDoppelgangerStealLimit,
     SetBloodhoundArrow,
     SetVultureArrow,
     SetSpiritcallerSpiritLimit,
@@ -442,6 +443,9 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetBanditStealLimit:
                 Bandit.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetDoppelgangerStealLimit:
+                Doppelganger.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetAdmireLimit:
                 Admirer.ReceiveRPC(reader);
@@ -884,6 +888,9 @@ internal static class RPC
                 break;
             case CustomRoles.Bandit:
                 Bandit.Add(targetId);
+                break;
+            case CustomRoles.Doppelganger:
+                Doppelganger.Add(targetId);
                 break;
             case CustomRoles.Poisoner:
                 Poisoner.Add(targetId);

@@ -45,7 +45,8 @@ public static class AntiBlackout
         || HexMaster.IsEnable || Jinx.IsEnable
         || Medusa.IsEnable || Poisoner.IsEnable
         || PotionMaster.IsEnable || Wraith.IsEnable
-        || Necromancer.IsEnable;
+        || Necromancer.IsEnable
+        || Bandit.IsEnable || Doppelganger.IsEnable;
     ///<summary>
     ///Difference between the number of non-impostors and the number of imposters
     ///</summary>

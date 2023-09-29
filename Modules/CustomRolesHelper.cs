@@ -192,6 +192,7 @@ static class CustomRolesHelper
             CustomRoles.Arsonist => RoleTypes.Impostor,
             CustomRoles.Pyromaniac => RoleTypes.Impostor,
             CustomRoles.Jackal => RoleTypes.Impostor,
+            CustomRoles.Doppelganger => RoleTypes.Impostor,
             CustomRoles.Bandit => RoleTypes.Impostor,
             CustomRoles.Medusa => RoleTypes.Impostor,
             CustomRoles.Sidekick => RoleTypes.Impostor,
@@ -385,6 +386,7 @@ static class CustomRolesHelper
             CustomRoles.Romantic or
             CustomRoles.RuthlessRomantic or
             CustomRoles.VengefulRomantic or
+            CustomRoles.Doppelganger or
             //     CustomRoles.Juggernaut or
             //      CustomRoles.Jinx or
             //     CustomRoles.Poisoner or
@@ -421,6 +423,7 @@ static class CustomRolesHelper
 
         return role is
             CustomRoles.Jackal or
+            CustomRoles.Doppelganger or
             CustomRoles.Bandit or
             CustomRoles.Glitch or
             CustomRoles.Sidekick or
@@ -541,6 +544,7 @@ static class CustomRolesHelper
     {
         return role is
             CustomRoles.Jackal or
+            CustomRoles.Doppelganger or
             CustomRoles.Bandit or
             CustomRoles.Sidekick or
             CustomRoles.HexMaster or
@@ -707,6 +711,7 @@ static class CustomRolesHelper
             CustomRoles.Arsonist or
             CustomRoles.Sidekick or
             CustomRoles.Jackal or
+            CustomRoles.Doppelganger or
             CustomRoles.Bandit or
             CustomRoles.God or
             CustomRoles.Innocent or
@@ -820,7 +825,9 @@ static class CustomRolesHelper
             CustomRoles.Amnesiac or
             CustomRoles.Monarch or
             CustomRoles.Parasite or
-            CustomRoles.PlagueBearer;
+            CustomRoles.PlagueBearer or 
+            CustomRoles.Bandit or
+            CustomRoles.Doppelganger;
     }
 
     public static bool IsNeutralWithGuessAccess(this CustomRoles role)
@@ -844,6 +851,7 @@ static class CustomRolesHelper
             CustomRoles.Arsonist or
             CustomRoles.Jackal or
             CustomRoles.Bandit or
+            CustomRoles.Doppelganger or
             CustomRoles.Sidekick or
             CustomRoles.God or
             CustomRoles.Innocent or
@@ -1586,6 +1594,7 @@ static class CustomRolesHelper
            CustomRoles.GM => CountTypes.OutOfGame,
            CustomRoles.Jackal => CountTypes.Jackal,
            CustomRoles.Sidekick => CountTypes.Jackal,
+           CustomRoles.Doppelganger => CountTypes.Doppelganger,
            CustomRoles.Bandit => CountTypes.Bandit,
            CustomRoles.Poisoner => CountTypes.Poisoner,
            //CustomRoles.CovenLeader => CountTypes.Coven,
@@ -1646,6 +1655,7 @@ public enum CountTypes
     Impostor,
     Coven,
     Jackal,
+    Doppelganger,
     Bandit,
     Pelican,
     Gamer,

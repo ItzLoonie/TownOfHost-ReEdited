@@ -63,7 +63,7 @@ namespace TOHE.Modules.ChatManager
             string playername = player.GetNameWithRole();
             message = message.ToLower().TrimStart().TrimEnd();
             if (!player.IsAlive() || !AmongUsClient.Instance.AmHost) return;
-            if (!GameStates.IsInGame) operate = 3;
+            if (GameStates.IsInGame) operate = 3;
             if (CheckCommond(ref msg, "id|guesslist|gl编号|玩家编号|玩家id|id列表|玩家列表|列表|所有id|全部id")) operate = 1;
             else if (CheckCommond(ref msg, "shoot|guess|bet|st|gs|bt|猜|赌", false)) operate = 2;
             if ((operate == 1 || Blackmailer.ForBlackmailer.Contains(player.PlayerId)) && player.IsAlive())

@@ -1203,6 +1203,7 @@ class CheckMurderPatch
         }
 
         if (!check) killer.RpcMurderPlayerV3(target);
+        if (killer.Is(CustomRoles.Doppelganger)) Doppelganger.OnCheckMurder(killer, target);
         return true;
     }
 }
@@ -1214,7 +1215,7 @@ class MurderPlayerPatch
         Logger.Info($"{__instance.GetNameWithRole()} => {target.GetNameWithRole()}{(target.protectedByGuardian ? "(Protected)" : "")}", "MurderPlayer");
 
         if (RandomSpawn.CustomNetworkTransformPatch.NumOfTP.TryGetValue(__instance.PlayerId, out var num) && num > 2) RandomSpawn.CustomNetworkTransformPatch.NumOfTP[__instance.PlayerId] = 3;
-        if (!target.protectedByGuardian)
+        if (!target.protectedByGuardian && !Doppelganger.DoppelVictim.ContainsKey(target.PlayerId))
             Camouflage.RpcSetSkin(target, ForceRevert: true);
     }
     public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] PlayerControl target)
@@ -1225,7 +1226,6 @@ class MurderPlayerPatch
         if (Main.OverDeadPlayerList.Contains(target.PlayerId)) return;
 
         PlayerControl killer = __instance; //読み替え変数
-
         if (Main.GodfatherTarget.Contains(target.PlayerId) && !(killer.GetCustomRole().IsImpostor() || killer.GetCustomRole().IsMadmate() || killer.Is(CustomRoles.Madmate)))
         {
             if (Options.GodfatherChangeOpt.GetValue() == 0) killer.RpcSetCustomRole(CustomRoles.Refugee);
@@ -2292,7 +2292,7 @@ class ReportDeadBodyPatch
         Main.RevolutionistLastTime.Clear();
 
         Main.AllPlayerControls
-            .Where(pc => Main.CheckShapeshift.ContainsKey(pc.PlayerId))
+            .Where(pc => Main.CheckShapeshift.ContainsKey(pc.PlayerId) && !Doppelganger.DoppelVictim.Keys.Contains(pc.PlayerId))
             .Do(pc => Camouflage.RpcSetSkin(pc, RevertToDefault: true));
 
         MeetingTimeManager.OnReportDeadBody();
