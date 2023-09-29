@@ -89,6 +89,11 @@ public static class Cleanser
             Utils.SendMessage(GetString("CleanserRemoveSelf"), voter.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Cleanser), GetString("CleanserTitle")));
             return;
         }
+        if (target.Is(CustomRoles.Stubborn))
+        {
+            Utils.SendMessage(GetString("CleanserCantRemove"), voter.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Cleanser), GetString("CleanserTitle")));
+            return;
+        }
         if (CleanserTarget[voter.PlayerId] != byte.MaxValue) return;
 
         CleanserUses[voter.PlayerId]++;

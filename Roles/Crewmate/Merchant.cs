@@ -146,6 +146,8 @@ namespace TOHE.Roles.Crewmate
                     &&
                     (Cleanser.CleansedCanGetAddon.GetBool() || (!Cleanser.CleansedCanGetAddon.GetBool() && !x.Is(CustomRoles.Cleansed)))
                     &&
+                    (!x.Is(CustomRoles.Stubborn))
+                    &&
                     (
                         (OptionCanTargetCrew.GetBool() && CustomRolesHelper.IsCrewmate(x.GetCustomRole())) 
                         ||

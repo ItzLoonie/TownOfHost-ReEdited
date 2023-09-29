@@ -112,7 +112,7 @@ public static class Bandit
     public static bool OnCheckMurder(PlayerControl killer, PlayerControl target)
     {
         if (!IsEnable) return true;
-        if (!target.HasSubRole()) return true;
+        if (!target.HasSubRole() || target.Is(CustomRoles.Stubborn)) return true;
         if (TotalSteals[killer.PlayerId] >= MaxSteals.GetInt())
         {
             Logger.Info("Max steals reached killing the player", "Bandit");
