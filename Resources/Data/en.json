@@ -1701,7 +1701,7 @@
   "ImpCanBeTiebreaker": "<color=#ff1919>Impostors</color> can become <color=#1447af>Tiebreaker</color>",
   "CrewCanBeTiebreaker": "<color=#8cffff>Crewmates</color> can become <color=#1447af>Tiebreaker</color>",
   "NeutralCanBeTiebreaker": "<color=#7f8c8d>Neutrals</color> can become <color=#1447af>Tiebreaker</color>",
-  "HexesLookLikeSpells": "<color=#663399>Hexes</color> appear as <color=#ff1919>spells</color>",
+  "HexesLookLikeSpells": "<color=#ff00ff>Hexes</color> appear as <color=#ff1919>spells</color>",
   "HexButtonText": "Hex",
   "ObliviousBaitImmune": "Immune to <color=#00f7ff>Bait</color>",
   "ImpCanBeOnbound": "<color=#ff1919>Impostors</color> can become <color=#baaae9>Onbound</color>",
