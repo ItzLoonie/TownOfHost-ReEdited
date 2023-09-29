@@ -551,7 +551,7 @@ static class ExtendedPlayerControl
         if (Main.TasklessCrewmate.Contains(pc.PlayerId)) return true;
         if (Necromancer.Killer && !pc.Is(CustomRoles.Necromancer)) return false;
         if (pc.Is(CustomRoles.Nimble)) return true;
-     //   if (pc.Is(CustomRoles.Circumvent)) return false;
+        if (pc.Is(CustomRoles.Circumvent)) return false;
 
         return pc.GetCustomRole() switch
         {

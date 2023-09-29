@@ -628,14 +628,14 @@ class GameEndChecker
             else if (Imp == 0 && Jackal == 0 && PP == 0 && Traitor == 0 && Med == 0 && Arso == 0 && Pel == 0 && Vamp == 0 && DH == 0 && Rogue == 0 && Coven == 0 && Glitch == 0 && SK == 0 && Rit == 0 && Jinx == 0 && Occ == 0 && Wraith == 0 && Agitater == 0 && Pestilence == 0 && PB == 0 && Pois == 0 && Virus == 0 && SC == 0 && WW == 0 && Shr == 0 && BK == 0 && Gam == 0 && CM == 0 && Bandit == 0 && Necro == 0 && RR == 0 && Hunt == 0 && Crew <= Juggy) //嗜血骑士胜利
             {
                 reason = GameOverReason.ImpostorByKill;
-                CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Huntsman);
-                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Huntsman);
+                CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Juggernaut);
+                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Juggernaut);
             }
             else if (Imp == 0 && Jackal == 0 && PP == 0 && Traitor == 0 && Med == 0 && Arso == 0 && Pel == 0 && Vamp == 0 && DH == 0 && Rogue == 0 && Coven == 0 && Glitch == 0 && SK == 0 && Rit == 0 && Jinx == 0 && Occ == 0 && Wraith == 0 && Agitater == 0 && Pestilence == 0 && PB == 0 && Pois == 0 && Virus == 0 && SC == 0 && WW == 0 && Shr == 0 && BK == 0 && Gam == 0 && CM == 0 && Bandit == 0 && Necro == 0 && Juggy == 0 && RR == 0 && Crew <= Hunt) //嗜血骑士胜利
             {
                 reason = GameOverReason.ImpostorByKill;
-                CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Juggernaut);
-                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Juggernaut);
+                CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Huntsman);
+                CustomWinnerHolder.WinnerRoles.Add(CustomRoles.Huntsman);
             }
             else if (Imp == 0 && Jackal == 0 && PP == 0 && Traitor == 0 && Med == 0 && Arso == 0 && Pel == 0 && Vamp == 0 && DH == 0 && Rogue == 0 && Coven == 0 && Glitch == 0 && SK == 0 && Rit == 0 && Jinx == 0 && Occ == 0 && Wraith == 0 && Agitater == 0 && Pestilence == 0 && PB == 0 && Pois == 0 && Virus == 0 && SC == 0 && WW == 0 && Shr == 0 && BK == 0 && Gam == 0 && CM == 0 && Bandit == 0 && Juggy == 0 && Hunt == 0 && RR == 0 && Crew <= Necro) //嗜血骑士胜利
             {

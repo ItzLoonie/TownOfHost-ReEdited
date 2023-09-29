@@ -1,6 +1,7 @@
 using AmongUs.GameOptions;
 using System.Linq;
 using TOHE.Roles.Crewmate;
+using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 
 namespace TOHE;
@@ -284,6 +285,7 @@ static class CustomRolesHelper
             CustomRoles.Sleuth or
             CustomRoles.Clumsy or
             CustomRoles.Nimble or
+            CustomRoles.Circumvent or
             CustomRoles.Youtuber or
             CustomRoles.Soulless or
             CustomRoles.Loyal or
@@ -1347,6 +1349,17 @@ static class CustomRolesHelper
                     || pc.Is(CustomRoles.CopyCat))
                     return false;
                 if (!pc.GetCustomRole().IsTasklessCrewmate())
+                    return false;
+                break;
+
+            case CustomRoles.Circumvent:
+                if (pc.Is(CustomRoles.Vampire) && !Vampire.CanVent.GetBool()
+                    || pc.Is(CustomRoles.Vampiress) && !Vampire.CanVent.GetBool()
+                    || pc.Is(CustomRoles.Swooper)
+                    || pc.Is(CustomRoles.Wildling)
+                    || pc.Is(CustomRoles.Minimalism))
+                    return false;
+                if (!pc.GetCustomRole().IsImpostor())
                     return false;
                 break;
 

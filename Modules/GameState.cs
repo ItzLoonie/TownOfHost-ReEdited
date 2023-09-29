@@ -197,6 +197,15 @@ public class PlayerState
             SubRoles.Remove(CustomRoles.Loyal);
             SubRoles.Remove(CustomRoles.Admired);
         }
+
+        // This exist as it would be possible for them to exist on the same player via Bandit, but since Bandit can't vent without Nimble, allowing them to have Circumvent is pointless
+        if (role == CustomRoles.Nimble)
+        {
+            SubRoles.Remove(CustomRoles.Circumvent);
+        }
+
+
+
         if (role == CustomRoles.Admired)
         {
             countTypes = CountTypes.Crew;
