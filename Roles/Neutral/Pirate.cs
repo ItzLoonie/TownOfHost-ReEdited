@@ -5,6 +5,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using static TOHE.Translator;
+using TOHE.Modules.ChatManager;
 
 namespace TOHE.Roles.Neutral;
 public static class Pirate
@@ -162,7 +163,11 @@ public static class Pirate
         if (operate)
         {
 
-            if (TryHideMsg.GetBool()) TryHideMsgForDuel();
+            if (TryHideMsg.GetBool())
+            {
+                if (Options.NewHideMsg.GetBool()) ChatManager.SendPreviousMessagesToAll();
+                else TryHideMsgForDuel();
+            }
             else if (pc.AmOwner) Utils.SendMessage(originMsg, 255, pc.GetRealName());
 
             if (!MsgToPlayerAndRole(msg, out int rpsOption, out string error))
