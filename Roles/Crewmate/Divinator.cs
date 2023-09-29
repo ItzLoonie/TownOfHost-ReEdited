@@ -247,7 +247,8 @@ public static class Divinator
                 CustomRoles.Ritualist or
                 CustomRoles.Camouflager or
                 CustomRoles.Shade or
-                CustomRoles.Chameleon
+                CustomRoles.Chameleon or
+                CustomRoles.Doppelganger
                 => "Result19",
 
                 CustomRoles.Jackal or

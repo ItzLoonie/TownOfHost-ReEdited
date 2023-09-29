@@ -1707,7 +1707,6 @@ public static class Options
         Bandit.SetupCustomOption();
         BloodKnight.SetupCustomOption();
         Gamer.SetupCustomOption();
-        Doppelganger.SetupCustomOption();
         Glitch.SetupCustomOption();
         HexMaster.SetupCustomOption();
         Huntsman.SetupCustomOption();
@@ -2215,6 +2214,7 @@ public static class Options
         TextOptionItem.Create(100020, "OtherRoles.NeutralRoles", TabGroup.OtherRoles)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(127, 140, 141, byte.MaxValue));
+        Doppelganger.SetupCustomOption();
         SetupRoleOptions(18200, TabGroup.OtherRoles, CustomRoles.God);
         NotifyGodAlive = BooleanOptionItem.Create(18210, "NotifyGodAlive", true, TabGroup.OtherRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.God]);
