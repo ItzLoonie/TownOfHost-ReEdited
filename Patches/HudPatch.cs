@@ -733,7 +733,15 @@ class MapBehaviourShowPatch
         if (opts.Mode is MapOptions.Modes.Normal or MapOptions.Modes.Sabotage)
         {
             var player = PlayerControl.LocalPlayer;
-            if (player.Is(CustomRoleTypes.Impostor) || (player.Is(CustomRoles.Parasite)) || (player.Is(CustomRoles.Bandit) && Bandit.CanUseSabotage.GetBool()) || (player.Is(CustomRoles.PotionMaster)) || (player.Is(CustomRoles.Glitch)) || (player.Is(CustomRoles.Refugee)) || (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool()) || (player.Is(CustomRoles.Traitor) && Traitor.CanUseSabotage.GetBool()))
+
+            if (player.Is(CustomRoleTypes.Impostor)
+            || player.Is(CustomRoles.Parasite)
+            || player.Is(CustomRoles.Refugee)
+            || player.Is(CustomRoles.Glitch)
+            || (player.Is(CustomRoles.Bandit) && Bandit.CanUseSabotage.GetBool())
+            || (player.Is(CustomRoles.Jackal) && Jackal.CanUseSabotage.GetBool())
+            || (player.Is(CustomRoles.Sidekick) && Jackal.CanUseSabotageSK.GetBool())
+            || (player.Is(CustomRoles.Traitor) && Traitor.CanUseSabotage.GetBool()))
                 opts.Mode = MapOptions.Modes.Sabotage;
             else
                 opts.Mode = MapOptions.Modes.Normal;
@@ -772,13 +780,15 @@ class TaskPanelBehaviourPatch
                         if ((line.StartsWith("<color=#FF1919FF>") || line.StartsWith("<color=#FF0000FF>")) && sb.Length < 1 && !line.Contains('(')) continue;
                         sb.Append(line + "\r\n");
                     }
+                    
                     if (sb.Length > 1)
                     {
                         var text = sb.ToString().TrimEnd('\n').TrimEnd('\r');
-                        if (!Utils.HasTasks(player.Data, false) && sb.ToString().Count(s => s == '\n') >= 2)
-                            text = $"{ Utils.ColorString(Utils.GetRoleColor(player.GetCustomRole()).ShadeColor(0.2f), GetString("FakeTask"))}\r\n{text}";
+                        if (!Utils.HasTasks(player.Data, false) && sb.ToString().Count(s => (s == '\n')) >= 2)
+                            text = $"{Utils.ColorString(Utils.GetRoleColor(player.GetCustomRole()).ShadeColor(0.2f), GetString("FakeTask"))}\r\n{text}";
                         AllText += $"\r\n\r\n<size=85%>{text}</size>";
                     }
+
                     if (MeetingStates.FirstMeeting)
                     {
                         AllText += $"\r\n\r\n</color><size=70%>{GetString("PressF1ShowMainRoleDes")}";
