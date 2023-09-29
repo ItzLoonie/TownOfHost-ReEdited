@@ -128,11 +128,11 @@ public static class Shroud
 
     public static void MurderShroudedPlayers(PlayerControl shrouded)
     {
-        if (ShroudList.ContainsKey(shrouded.PlayerId))
-        {
-            shrouded.RpcMurderPlayerV3(shrouded);
-            Main.PlayerStates[shrouded.PlayerId].deathReason = PlayerState.DeathReason.Shrouded;
-        }
+        if (!ShroudList.ContainsKey(shrouded.PlayerId)) return;
+
+        shrouded.RpcMurderPlayerV3(shrouded);
+        Main.PlayerStates[shrouded.PlayerId].deathReason = PlayerState.DeathReason.Shrouded;
+
         ShroudList.Clear();
         SendRPC(byte.MaxValue, byte.MaxValue, 0);
     }
