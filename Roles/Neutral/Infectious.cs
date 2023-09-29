@@ -100,12 +100,12 @@ public static class Infectious
     }
     public static void MurderInfectedPlayers()
     {
-        foreach (var alivePlater in Main.AllAlivePlayerControls)
+        foreach (var alivePlayer in Main.AllAlivePlayerControls)
         {
-            if (alivePlater.Is(CustomRoles.Infected))
+            if (alivePlayer.Is(CustomRoles.Infected))
             {
-                alivePlater.RpcMurderPlayerV3(alivePlater);
-                Main.PlayerStates[alivePlater.PlayerId].deathReason = PlayerState.DeathReason.Infected;
+                alivePlayer.RpcMurderPlayerV3(alivePlayer);
+                Main.PlayerStates[alivePlayer.PlayerId].deathReason = PlayerState.DeathReason.Infected;
             }
         }
     }

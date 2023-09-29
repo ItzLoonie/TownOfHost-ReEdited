@@ -72,14 +72,16 @@ public class ModNewsHistory
                             "\n     - Bastion" +
                             "\n     - Alchemist\n\r" +
 
-                        "\n\r<b><i>Neutral: (3 roles)</i></b>" +
+                        "\n\r<b><i>Neutral: (4 roles)</i></b>" +
                             "\n     - Bandit" +
                             "\n     - Imitator" +
-                            "\n     - Pyromaniac\n\r" +
+                            "\n     - Pyromaniac" +
+                            "\n     - Huntsman\n\r" +
 
-                        "\n\r<b><i>Add-on: (2 add-ons)</i></b>" +
+                        "\n\r<b><i>Add-on: (3 add-ons)</i></b>" +
                             "\n     - Cyber" +
-                            "\n     - Bloodlust\n\r" +
+                            "\n     - Bloodlust" +
+                            "\n     - Circumvent\n\r" +
 
                         "\n\r<b>【Bug Fixes】</b>" +
                             "\n     - Fixed Mad Psychic" +
@@ -87,6 +89,7 @@ public class ModNewsHistory
                             "\n     - Fixed Swapper kicking clients" +
                             "\n     - Fixed Egoist win screen showing double" +
                             "\n     - Fixed minor issue with Eraser" +
+                            "\n     - Fixed Infectious and Shroud" +
                             "\n     - Fixed «Neutrals Win Together» (Again)" +
                             "\n     - Fixed bug when Lawyer and Executioner have tasks" +
                             "\n     - Fixed Hex Master and Wraith win condition" +
@@ -95,13 +98,13 @@ public class ModNewsHistory
 
                         "\n\r<b>【Rework Roles】</b>" +
                             "\n     - Necromancer" +
-                            "\n     - Arsonist\n\r" +
+                            "\n     - Arsonist" +
+                            "\n     - Glitch\n\r" +
 
                         "\n\r<b>【Improvements Roles】</b>" +
                             "\n     - Tracker" +
                             "\n     - Amnesiac" +
-                            "\n     - Puppeteer" +
-                            "\n     - Glitch\n\r" +
+                            "\n     - Puppeteer\n\r" +
 
                         "\n\r<b>【New Mod Settings】</b>" +
                             "\n     - Setting: Random Spawns On Vents\n\r" +
@@ -122,7 +125,7 @@ public class ModNewsHistory
                         "\n\r<b>【Removals】</b>" +
                             "\n     - Removed Covens (Poisoner, Jinx, Potion Master, Medusa, Wraith, and Hex Master are now neutral killers again.\nShade, Coven Leader, and Ritualist are now unused)",
 
-                    Date = "2023-9-24T00:00:00Z"
+                    Date = "2023-9-29T00:00:00Z"
 
                 };
                 AllModNews.Add(news);
@@ -398,14 +401,16 @@ public class ModNewsHistory
                             "\n     - Бастион" +
                             "\n     - Алхимик\n\r" +
 
-                        "\n\r<b><i>Нейтрал: (3 роли)</i></b>" +
+                        "\n\r<b><i>Нейтрал: (4 роли)</i></b>" +
                             "\n     - Бандит" +
                             "\n     - Имитатор" +
-                            "\n     - Пиромант\n\r" +
+                            "\n     - Пиромант" +
+                            "\n     - Охотник\n\r" +
 
-                        "\n\r<b><i>Атрибут: (2 атрибута)</i></b>" +
+                        "\n\r<b><i>Атрибут: (3 атрибута)</i></b>" +
                             "\n     - Знаменитый" +
-                            "\n     - Кровожадный\n\r" +
+                            "\n     - Кровожадный" +
+                            "\n     - Расстройчивый\n\r" +
 
                         "\n\r<b>【Исправление Багов】</b>" +
                             "\n     - Исправлен Безумный Экстрасенс" +
@@ -413,6 +418,7 @@ public class ModNewsHistory
                             "\n     - Исправлен баг когда Обменник кикал игроков" +
                             "\n     - Исправлен экран победы Эгоиста который показывал двух победителей" +
                             "\n     - Исправлены некоторые баги со Стирачкой" +
+                            "\n     - Исправлены некоторые баги у Заразного и у Накрывателя" +
                             "\n     - Исправлена настройка «Все Нейтралы побеждают вместеr» (Снова)" +
                             "\n     - Исправлен баг когда у Адвоката и Палача были задания" +
                             "\n     - Исправлено условие победы у Мастера Проклятий и у Духа" +
@@ -421,13 +427,13 @@ public class ModNewsHistory
 
                         "\n\r<b>【Переработка Ролей】</b>" +
                             "\n     - Некромант" +
-                            "\n     - Арзонист\n\r" +
+                            "\n     - Арзонист" +
+                            "\n     - Глич\n\r" +
 
                         "\n\r<b>【Улучшения Ролей】</b>" +
                             "\n     - Трекер" +
                             "\n     - Амнезияк" +
-                            "\n     - Кукловод" +
-                            "\n     - Глич\n\r" +
+                            "\n     - Кукловод\n\r" +
 
                         "\n\r<b>【Новые Настройки Мода】</b>" +
                             "\n     - Настройка: Случайные появления на вентиляциях\n\r" +
@@ -449,7 +455,7 @@ public class ModNewsHistory
                         "\n\r<b>【Уделаены】</b>" +
                             "\n     - Удалена команда Ковенов (Отравитель, Джинкс, Ритуальщик, Медуза, Дух и Мастер Проклятий теперь снова Нейтральные Убийцы.\nТень, Лидер Ковена и Фокусник теперь не используются)",
 
-                    Date = "2023-9-24T00:00:00Z"
+                    Date = "2023-9-29T00:00:00Z"
 
                 };
                 AllModNews.Add(news);
