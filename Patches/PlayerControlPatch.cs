@@ -2222,7 +2222,7 @@ class ReportDeadBodyPatch
         Camouflager.OnReportDeadBody();
         Psychic.OnReportDeadBody();
         BountyHunter.OnReportDeadBody();
-        Huntsman.OnReportDeadBody();
+        if (Huntsman.IsEnable) Huntsman.OnReportDeadBody();
         SerialKiller.OnReportDeadBody();
         SoulCollector.OnReportDeadBody();
         Puppeteer.OnReportDeadBody();
