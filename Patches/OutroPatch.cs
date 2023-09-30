@@ -284,7 +284,7 @@ class SetEverythingUpPatch
             }
             if (!Main.EnableRoleSummary.Value)
             {
-                RoleSummary.fontSizeMin = RoleSummary.fontSizeMax = RoleSummary.fontSize = 1f;
+                RoleSummary.fontSizeMin = RoleSummary.fontSizeMax = RoleSummary.fontSize = 1.25f;
             }
         }
         var RoleSummaryRectTransform = RoleSummary.GetComponent<RectTransform>();
