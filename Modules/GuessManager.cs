@@ -12,6 +12,7 @@ using TOHE.Roles.Neutral;
 using TOHE.Roles.AddOns.Common;
 using static TOHE.Translator;
 using TOHE.Roles.Double;
+using TOHE.Modules.ChatManager;
 
 namespace TOHE;
 
@@ -169,9 +170,13 @@ public static class GuessManager
             (pc.Is(CustomRoles.EvilGuesser) && Options.EGTryHideMsg.GetBool()) ||
             (pc.Is(CustomRoles.Ritualist) && Options.ConjTryHideMsg.GetBool()) ||
             (pc.Is(CustomRoles.Doomsayer) && Doomsayer.DoomsayerTryHideMsg.GetBool()) ||
-            (pc.Is(CustomRoles.Guesser) && Options.GTryHideMsg.GetBool()) || 
+            (pc.Is(CustomRoles.Guesser) && Options.GTryHideMsg.GetBool()) ||
             (Options.GuesserMode.GetBool() && Options.HideGuesserCommands.GetBool())
-            ) TryHideMsg();
+            ) 
+            {
+                if (Options.NewHideMsg.GetBool()) ChatManager.SendPreviousMessagesToAll();
+                else TryHideMsg(); 
+            }
             else if (pc.AmOwner && !isUI) Utils.SendMessage(originMsg, 255, pc.GetRealName());
 
             if (!MsgToPlayerAndRole(msg, out byte targetId, out CustomRoles role, out string error))

@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using static TOHE.Options;
 using static TOHE.Translator;
+using TOHE.Modules.ChatManager;
 
 namespace TOHE.Roles.Crewmate;
 public static class ParityCop
@@ -104,7 +105,11 @@ public static class ParityCop
         else if (operate == 2)
         {
 
-            if (TryHideMsg.GetBool()) TryHideMsgForCompare();
+            if (TryHideMsg.GetBool())
+            { 
+                if (Options.NewHideMsg.GetBool()) ChatManager.SendPreviousMessagesToAll();
+                else TryHideMsgForCompare(); 
+            }
             else if (pc.AmOwner) Utils.SendMessage(originMsg, 255, pc.GetRealName());
 
             if (!MsgToPlayerAndRole(msg, out byte targetId1, out byte targetId2, out string error))
