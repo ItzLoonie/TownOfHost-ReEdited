@@ -23,7 +23,7 @@ public static class Doppelganger
     {
         SetupSingleRoleOptions(Id, TabGroup.OtherRoles, CustomRoles.Doppelganger, 1, zeroOne: false);
         MaxSteals = IntegerOptionItem.Create(Id + 10, "DoppelMaxSteals", new(1, 14, 1), 9, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Doppelganger]);
-        KillCooldown = FloatOptionItem.Create(Id + 11, "DoppelKillCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Doppelganger])
+        KillCooldown = FloatOptionItem.Create(Id + 11, "KillCooldown", new(0f, 180f, 2.5f), 20f, TabGroup.OtherRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Doppelganger])
             .SetValueFormat(OptionFormat.Seconds);
     }
 
