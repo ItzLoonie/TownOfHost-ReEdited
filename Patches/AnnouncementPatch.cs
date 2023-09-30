@@ -59,12 +59,14 @@ public class ModNewsHistory
                     ShortTitle = "★TOH-RE v3.1.0",
                     Text = "<size=150%>Welcome to TOHE v3.1.0!</size>\n\n<size=125%>Support for Among Us v2023.7.11 and v2023.7.12</size>\n"
 
+                        + "\n<b><size=180%>Now this version supports public lobbies!</size></b>\r\n"
+
                         + "\n<b>【Base】</b>\n - Base on TOH v4.1.2\r\n"
 
                         + "\n<b>【New Roles】</b>" +
                         "\n\r<b><i>Impostor: (3 roles)</i></b>" +
                             "\n     - Evil Mini" +
-                            "\n     - Vampiress (from TOH-TOR)" +
+                            "\n     - Vampiress (from TOH-TOR and it's hidden role)" +
                             "\n     - Undertaker\n\r" +
 
                         "\n\r<b><i>Crewmate: (3 roles)</i></b>" +
@@ -72,21 +74,24 @@ public class ModNewsHistory
                             "\n     - Bastion" +
                             "\n     - Alchemist\n\r" +
 
-                        "\n\r<b><i>Neutral: (4 roles)</i></b>" +
+                        "\n\r<b><i>Neutral: (5 roles)</i></b>" +
                             "\n     - Bandit" +
                             "\n     - Imitator" +
                             "\n     - Pyromaniac" +
-                            "\n     - Huntsman\n\r" +
+                            "\n     - Huntsman" +
+                            "\n     - Doppelganger (Experimental role)\n\r" +
 
-                        "\n\r<b><i>Add-on: (3 add-ons)</i></b>" +
+                        "\n\r<b><i>Add-on: (4 add-ons)</i></b>" +
                             "\n     - Cyber" +
                             "\n     - Bloodlust" +
-                            "\n     - Circumvent\n\r" +
+                            "\n     - Circumvent" +
+                            "\n     - Stubborn\n\r" +
 
                         "\n\r<b>【Bug Fixes】</b>" +
                             "\n     - Fixed Mad Psychic" +
                             "\n     - Fixed Werewolf (no longer leaves duplicate bodies)" +
                             "\n     - Fixed Swapper kicking clients" +
+                            "\n     - Fixed Setting «Disable Close Door»" +
                             "\n     - Fixed Egoist win screen showing double" +
                             "\n     - Fixed minor issue with Eraser" +
                             "\n     - Fixed Infectious and Shroud" +
@@ -388,12 +393,14 @@ public class ModNewsHistory
                     ShortTitle = "★TOH-RE v3.1.0",
                     Text = "<size=150%>Добро Пожаловать в TOHE v3.1.0!</size>\n\n<size=125%>Поддерживает версию Among Us v2023.7.11 и v2023.7.12</size>\n"
 
+                        + "\n<b><size=180%>Теперь эта версия поддерживает публичные лобби!</size></b>\r\n"
+
                         + "\n<b>【Основан】</b>\n - Основан на TOH v4.1.2\r\n"
 
                         + "\n<b>【Новые роли】</b>" +
                         "\n\r<b><i>Предатель: (3 роли)</i></b>" +
                             "\n     - Злой Мини" +
-                            "\n     - Вампирша (Из TOH-TOR)" +
+                            "\n     - Вампирша (Из TOH-TOR и это скрытая роль)" +
                             "\n     - Андертейкер\n\r" +
 
                         "\n\r<b><i>Член Экипажа: (3 роли)</i></b>" +
@@ -401,21 +408,24 @@ public class ModNewsHistory
                             "\n     - Бастион" +
                             "\n     - Алхимик\n\r" +
 
-                        "\n\r<b><i>Нейтрал: (4 роли)</i></b>" +
+                        "\n\r<b><i>Нейтрал: (5 ролей)</i></b>" +
                             "\n     - Бандит" +
                             "\n     - Имитатор" +
                             "\n     - Пиромант" +
-                            "\n     - Охотник\n\r" +
+                            "\n     - Охотник" +
+                            "\n     - Двойник (Эксперементальная роль)\n\r" +
 
-                        "\n\r<b><i>Атрибут: (3 атрибута)</i></b>" +
+                        "\n\r<b><i>Атрибут: (4 атрибута)</i></b>" +
                             "\n     - Знаменитый" +
                             "\n     - Кровожадный" +
-                            "\n     - Расстройчивый\n\r" +
+                            "\n     - Расстройчивый" +
+                            "\n     - Упрямый\n\r" +
 
                         "\n\r<b>【Исправление Багов】</b>" +
                             "\n     - Исправлен Безумный Экстрасенс" +
                             "\n     - Исправлен Оборотень (больше не оставляет двойные трупы)" +
                             "\n     - Исправлен баг когда Обменник кикал игроков" +
+                            "\n     - Исправлен настройка «Отключить саботаж дверей»" +
                             "\n     - Исправлен экран победы Эгоиста который показывал двух победителей" +
                             "\n     - Исправлены некоторые баги со Стирачкой" +
                             "\n     - Исправлены некоторые баги у Заразного и у Накрывателя" +
