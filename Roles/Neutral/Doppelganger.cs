@@ -107,7 +107,7 @@ public static class Doppelganger
         if (killer == null || target == null || !IsEnable || Camouflage.IsCamouflage || Camouflager.IsActive) return;
         if (Main.CheckShapeshift.TryGetValue(target.PlayerId, out bool isShapeshifitng) && isShapeshifitng)
         {
-            Logger.Warn("Target was shapeshifting", "Doppelganger");
+            Logger.Info("Target was shapeshifting", "Doppelganger");
             return; 
         } 
         if (TotalSteals[killer.PlayerId] >= MaxSteals.GetInt())
@@ -135,9 +135,9 @@ public static class Doppelganger
         
 
         RpcChangeSkin(target, killerSkin);
-        Logger.Warn("Changed target skin", "Doppelganger");
+        Logger.Info("Changed target skin", "Doppelganger");
         RpcChangeSkin(killer, targetSkin);
-        Logger.Warn("Changed killer skin", "Doppelganger");
+        Logger.Info("Changed killer skin", "Doppelganger");
 
         SendRPC(killer.PlayerId);
         Utils.NotifyRoles();
