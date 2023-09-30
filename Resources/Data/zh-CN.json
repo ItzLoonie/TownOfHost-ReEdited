@@ -3174,7 +3174,7 @@
   "MimicDur": "<color=#3333ff>模仿持续时间:</color> {0}秒",
   "HackCD": "<color=#39FF14>黑客冷却时间:</color> {0}秒",
   "KCD": "<color=#ff1919>击杀冷却时间:</color> {0}秒",
-  "MimicCD": "<color=#3333ff>模仿冷却时间:</color>  "Huntsman": "Huntsman", {0}秒",
+  "MimicCD": "<color=#3333ff>模仿冷却时间:</color>  
   "HackedByGlitch": "<color=#39FF14>您已被缺点者黑客入侵，您无法{0}</color>",
   "WinnerRoleText.RuthlessRomantic": "无情浪漫者胜利！",
   "GlitchKill": "击杀",
@@ -3198,7 +3198,7 @@
   "CircumventInfoLong": "(附加职业):\n规避者无法无法使用通风管，且只能分配给内鬼阵营",
   "Doppelganger": "分身者",
   "DoppelgangerInfo": "偷取目标的身份",
-  "DoppelgangerInfoLong": "(中立阵营):\分身者使用击杀按钮偷取玩家的身份（他们的名字和皮肤），然后击杀目标玩家。\n注意：- 隐蔽激活时，无法偷取目标身份",
+  "DoppelgangerInfoLong": "(中立阵营):\n分身者使用击杀按钮偷取玩家的身份（他们的名字和皮肤），然后击杀目标玩家。\n注意：- 隐蔽激活时，无法偷取目标身份",
   "DoppelMaxSteals": "最大偷取数量",
   "DoppelKillCooldown": "击杀冷却时间",
   "Stubborn": "固执者",
