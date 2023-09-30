@@ -261,6 +261,7 @@ public static class VengefulRomantic
         else
         {
             killer.RpcMurderPlayerV3(killer);
+            Main.PlayerStates[killer.PlayerId].deathReason = PlayerState.DeathReason.Misfire;
             return false;
         }
     }
