@@ -2602,9 +2602,8 @@ public static class Options
         DisableSabotage = BooleanOptionItem.Create(22800, "DisableSabotage", false, TabGroup.GameSettings, false)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 153, 153, byte.MaxValue));
-        DisableCloseDoor = BooleanOptionItem.Create(22810, "DisableCloseDoor", false, TabGroup.GameSettings, false)
+        DisableCloseDoor = BooleanOptionItem.Create(22805, "DisableCloseDoor", false, TabGroup.GameSettings, false)
             .SetGameMode(CustomGameMode.Standard)
-            .SetParent(DisableSabotage)
             .SetColor(new Color32(255, 153, 153, byte.MaxValue));
 
         //禁用设备
