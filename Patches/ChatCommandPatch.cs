@@ -265,7 +265,7 @@ internal class ChatCommands
                         {
                             if (Options.ShowImpRemainOnEject.GetBool())
                             {
-                                if (players.GetCustomRole().IsImpostor())
+                                if (players.GetCustomRole().IsImpostor() && players.Is(CustomRoles.Trickster))
                                 impnum++;
                             }
                             if (Options.ShowNKRemainOnEject.GetBool())
@@ -1171,7 +1171,7 @@ internal class ChatCommands
                         {
                             if (Options.ShowImpRemainOnEject.GetBool())
                             {
-                                if (players.GetCustomRole().IsImpostor())
+                                if (players.GetCustomRole().IsImpostor() && players.Is(CustomRoles.Trickster))
                                 impnum++;
                             }
                             if (Options.ShowNKRemainOnEject.GetBool())
