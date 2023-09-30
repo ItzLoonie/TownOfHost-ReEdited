@@ -3174,7 +3174,7 @@
   "MimicDur": "<color=#3333ff>模仿持续时间:</color> {0}秒",
   "HackCD": "<color=#39FF14>黑客冷却时间:</color> {0}秒",
   "KCD": "<color=#ff1919>击杀冷却时间:</color> {0}秒",
-  "MimicCD": "<color=#3333ff>模仿冷却时间:</color>  
+  "MimicCD": "<color=#3333ff>模仿冷却时间:</color> {0}秒",  
   "HackedByGlitch": "<color=#39FF14>您已被缺点者黑客入侵，您无法{0}</color>",
   "WinnerRoleText.RuthlessRomantic": "无情浪漫者胜利！",
   "GlitchKill": "击杀",
