@@ -49,10 +49,8 @@ class RepairSystemPatch
 
         if (Options.DisableSabotage.GetBool() && systemType == SystemTypes.Sabotage) return false;
 
-        if (Options.DisableCloseDoor.GetBool() && systemType == SystemTypes.Doors) return false;
-
         //Note: "SystemTypes.Laboratory" сauses bugs in the Host, it is better not to use
-        if (player.Is(CustomRoles.Fool) && 
+        if (player.Is(CustomRoles.Fool) &&
             (systemType is
             SystemTypes.Reactor or
             SystemTypes.LifeSupp or
@@ -82,7 +80,8 @@ class RepairSystemPatch
             Repairman.RepairSystem(__instance, systemType, amount);
         
         // Alchemist
-        if (player.Is(CustomRoles.Alchemist) && Alchemist.FixNextSabo) Alchemist.RepairSystem(systemType, amount);
+        if (player.Is(CustomRoles.Alchemist) && Alchemist.FixNextSabo)
+            Alchemist.RepairSystem(systemType, amount);
 
         if (systemType == SystemTypes.Electrical && 0 <= amount && amount <= 4)
         {
@@ -166,7 +165,7 @@ class CloseDoorsPatch
 {
     public static bool Prefix(ShipStatus __instance)
     {
-        return !Options.DisableSabotage.GetBool();
+        return !(Options.DisableCloseDoor.GetBool());
     }
 }
 [HarmonyPatch(typeof(SwitchSystem), nameof(SwitchSystem.RepairDamage))]
