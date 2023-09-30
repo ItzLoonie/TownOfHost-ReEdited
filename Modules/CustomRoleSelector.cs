@@ -312,7 +312,7 @@ internal class CustomRoleSelector
                     {
                         rolesToAssign.Remove(CustomRoles.Doctor);
                         rolesToAssign.Add(CustomRoles.ScientistTOHE);
-                        Logger.Warn($"Incompatible role in list, replacing with vanilla role", "CustomRoleSelector");
+                        Logger.Warn($"Doctor -> Scientist", "Incompatible Role Set");
                     }
         }
         if (CustomRoles.Cyber.IsEnable())
@@ -321,7 +321,7 @@ internal class CustomRoleSelector
                     {
                         rolesToAssign.Remove(CustomRoles.SuperStar);
                         rolesToAssign.Add(CustomRoles.CrewmateTOHE);
-                        Logger.Warn($"Incompatible role in list, replacing with vanilla role", "CustomRoleSelector");
+                        Logger.Warn($"Super Star -> Crewmate", "Incompatible Role Set");
                     }
         }
         if (CustomRoles.Cyber.IsEnable())
@@ -330,7 +330,7 @@ internal class CustomRoleSelector
                     {
                         rolesToAssign.Remove(CustomRoles.CyberStar);
                         rolesToAssign.Add(CustomRoles.CrewmateTOHE);
-                        Logger.Warn($"Incompatible role in list, replacing with vanilla role", "CustomRoleSelector");
+                        Logger.Warn($"Celebrity -> Crewmate", "Incompatible Role Set");
                     }
         }
         if (CustomRoles.Lazy.IsEnable())
@@ -339,7 +339,7 @@ internal class CustomRoleSelector
                     {
                         rolesToAssign.Remove(CustomRoles.Needy);
                         rolesToAssign.Add(CustomRoles.CrewmateTOHE);
-                        Logger.Warn($"Incompatible role in list, replacing with vanilla role", "CustomRoleSelector");
+                        Logger.Warn($"Lazy Guy -> Crewmate", "Incompatible Role Set");
                     }
         }
 
@@ -349,7 +349,7 @@ internal class CustomRoleSelector
                     {
                         rolesToAssign.Remove(CustomRoles.Luckey);
                         rolesToAssign.Add(CustomRoles.CrewmateTOHE);
-                        Logger.Warn($"Incompatible role in list, replacing with vanilla role", "CustomRoleSelector");
+                        Logger.Warn($"Luckey -> Crewmate", "Incompatible Role Set");
                     }
         }
         if (CustomRoles.Sleuth.IsEnable())
@@ -358,7 +358,7 @@ internal class CustomRoleSelector
                     {
                         rolesToAssign.Remove(CustomRoles.Detective);
                         rolesToAssign.Add(CustomRoles.CrewmateTOHE);
-                        Logger.Warn($"Incompatible role in list, replacing with vanilla role", "CustomRoleSelector");
+                        Logger.Warn($"Detective -> Crewmate", "Incompatible Role Set");
                     }
         }
         if (CustomRoles.Repairman.IsEnable())
@@ -367,7 +367,7 @@ internal class CustomRoleSelector
                     {
                         rolesToAssign.Remove(CustomRoles.SabotageMaster);
                         rolesToAssign.Add(CustomRoles.EngineerTOHE);
-                        Logger.Warn($"Incompatible role in list, replacing with vanilla role", "CustomRoleSelector");
+                        Logger.Warn($"Mechanic -> Engineer", "Incompatible Role Set");
                     }
         }
     /*    if (CustomRoles.Tricky.IsEnable())
@@ -376,7 +376,7 @@ internal class CustomRoleSelector
                     {
                         rolesToAssign.Remove(CustomRoles.Trickster);
                         rolesToAssign.Add(CustomRoles.ImpostorTOHE);
-                        Logger.Warn($"Incompatible role in list, replacing with vanilla role", "CustomRoleSelector");
+                        Logger.Warn($"Trickster -> Impostor", "Incompatible Role Set");
                     }
         } */
 
