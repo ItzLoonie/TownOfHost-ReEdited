@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TOHE.Modules;
+using TOHE.Roles.AddOns.Common;
 using TOHE.Roles.AddOns.Impostor;
 using TOHE.Roles.Crewmate;
 using TOHE.Roles.Double;
@@ -1073,6 +1074,8 @@ static class ExtendedPlayerControl
             LastImpostor.SetKillCooldown();
         if (player.Is(CustomRoles.Mare))
             Main.AllPlayerKillCooldown[player.PlayerId] = Options.MareKillCD.GetFloat();
+        if (player.Is(CustomRoles.Overclocked))
+            Main.AllPlayerKillCooldown[player.PlayerId] -= Main.AllPlayerKillCooldown[player.PlayerId] * (Options.OverclockedReduction.GetFloat() / 100);
         
         if (Main.KilledDiseased.ContainsKey(player.PlayerId))
         {

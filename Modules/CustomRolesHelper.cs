@@ -313,6 +313,7 @@ static class CustomRolesHelper
             CustomRoles.DoubleShot or
             CustomRoles.Ghoul or
             CustomRoles.Bloodlust or
+            CustomRoles.Overclocked or
             CustomRoles.Stubborn or
             CustomRoles.EvilSpirit;
     }
@@ -1065,6 +1066,11 @@ static class CustomRolesHelper
                 break;
 
             case CustomRoles.Reach:
+                if (!pc.CanUseKillButton())
+                    return false;
+                break;
+
+            case CustomRoles.Overclocked:
                 if (!pc.CanUseKillButton())
                     return false;
                 break;

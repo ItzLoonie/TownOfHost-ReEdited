@@ -531,7 +531,7 @@ public class Main : BasePlugin
                 {CustomRoles.Fragile,"#D3D3D3"},
                 {CustomRoles.Burst, "#B619B9"},
                 {CustomRoles.Bloodlust, "#691a2e"},
-
+                {CustomRoles.Overclocked, "#C4AD2C"},
                 {CustomRoles.Swift, "#ff1919"},
                 {CustomRoles.Mare, "#ff1919"},
                 {CustomRoles.Ghoul, "#B22222"},
@@ -897,7 +897,8 @@ public enum CustomRoles
     Circumvent,
     Repairman,
     Cyber,
-    Stubborn
+    Stubborn,
+    Overclocked
     // QuickFix
 }
 //WinData
