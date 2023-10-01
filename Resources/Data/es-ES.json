@@ -1647,7 +1647,7 @@
   "ColorCommandNoAccess": "No tienes acceso al comando para cambiar de color",
   "ColorCommandNoLobby": "Sólo puedes usar este comando en la sala de espera, cuando la partida no haya comenzado",
   "ColorInvalidHexCode": "Código hex especificado no válido. Por favor, use /modcolor [codigohex] [codigohex] para cambiar el color de MODERATOR♥.\nPor Ejemplo, /modcolor 33ccff ff99cc",
-  "TagColorInvalidHexCode": "Código hex especificado no válido. Por favor, use /tagcolor [codigohex] [codigohex] para cambiar el color de tu nombre.\nPor Ejemplo, /tagcolor 33ccff ff99cc",
+  "TagColorInvalidHexCode": "Código hex especificado no válido. Por favor, use /tagcolor [codigohex] para cambiar el color de tu nombre.\nPor Ejemplo, /tagcolor ff00ff",
   "midCommandDisabled": "El comando mid está desactivado",
   "midCommandNoAccess": "No tienes acceso al comando mid",
   "WarnCommandDisabled": "El commando warn está desactivado",

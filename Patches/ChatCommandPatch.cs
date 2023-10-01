@@ -540,8 +540,8 @@ internal class ChatCommands
                             Utils.SendMessage(GetString("ColorCommandNoLobby"), PlayerControl.LocalPlayer.PlayerId);
                             break;
                         }
-                        subArgs = args.Length < 3 ? "" : args[1] + " " + args[2];
-                        if (string.IsNullOrEmpty(subArgs) || !Utils.CheckGradientCode(subArgs))
+                        subArgs = args.Length != 2 ? "" : args[1];
+                        if (string.IsNullOrEmpty(subArgs) || !Utils.CheckColorHex(subArgs))
                         {
                             Logger.Msg($"{subArgs}", "tagcolor");
                             Utils.SendMessage(GetString("TagColorInvalidHexCode"), PlayerControl.LocalPlayer.PlayerId);
@@ -1584,8 +1584,8 @@ internal class ChatCommands
                         Utils.SendMessage(GetString("ColorCommandNoLobby"), player.PlayerId);
                         break;
                     }
-                    subArgs = args.Length < 3 ? "" : args[1] + " " + args[2];
-                    if (string.IsNullOrEmpty(subArgs) || !Utils.CheckGradientCode(subArgs))
+                    subArgs = args.Length != 2 ? "" : args[1];
+                    if (string.IsNullOrEmpty(subArgs) || !Utils.CheckColorHex(subArgs))
                     {
                         Logger.Msg($"{subArgs}", "tagcolor");
                         Utils.SendMessage(GetString("TagColorInvalidHexCode"), player.PlayerId);
