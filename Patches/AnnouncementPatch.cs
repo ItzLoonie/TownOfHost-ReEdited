@@ -64,15 +64,17 @@ public class ModNewsHistory
                         + "\n<b>【Base】</b>\n - Base on TOH v4.1.2\r\n"
 
                         + "\n<b>【New Roles】</b>" +
-                        "\n\r<b><i>Impostor: (3 roles)</i></b>" +
+                        "\n\r<b><i>Impostor: (4 roles)</i></b>" +
                             "\n     - Evil Mini" +
                             "\n     - Vampiress (from TOH-TOR and it's hidden role)" +
+                            "\n     - Blackmailer (Experimental role)" +
                             "\n     - Undertaker\n\r" +
 
-                        "\n\r<b><i>Crewmate: (3 roles)</i></b>" +
+                        "\n\r<b><i>Crewmate: (4 roles)</i></b>" +
                             "\n     - Nice Mini" +
                             "\n     - Bastion" +
-                            "\n     - Alchemist\n\r" +
+                            "\n     - Alchemist" +
+                            "\n     - Investigator\n\r" +
 
                         "\n\r<b><i>Neutral: (5 roles)</i></b>" +
                             "\n     - Bandit" +
@@ -81,11 +83,12 @@ public class ModNewsHistory
                             "\n     - Huntsman" +
                             "\n     - Doppelganger (Experimental role)\n\r" +
 
-                        "\n\r<b><i>Add-on: (4 add-ons)</i></b>" +
+                        "\n\r<b><i>Add-on: (5 add-ons)</i></b>" +
                             "\n     - Cyber" +
                             "\n     - Bloodlust" +
                             "\n     - Circumvent" +
-                            "\n     - Stubborn\n\r" +
+                            "\n     - Stubborn" +
+                            "\n     - Overclocked\n\r" +
 
                         "\n\r<b>【Bug Fixes】</b>" +
                             "\n     - Fixed Mad Psychic" +
@@ -125,7 +128,8 @@ public class ModNewsHistory
                             "\n     - Judge is now counted as Crewmate Killing" +
                             "\n     - When certain roles abilities end, their votes will no longer be hidden if the «Hide Vote» setting is enabled (Divinator, Eraser, Tracker, Oracle)" +
                             "\n     - Added warning for when black screen prevention is disabled but the NK count is higher than 1" +
-                            "\n     - The Bounty Hunter target's nickname is now shown in dark red\n\r" +
+                            "\n     - The Bounty Hunter target's nickname is now shown in dark red" +
+                            "\n     - Trickster no longer counts towards the Impostor remaining count for the /kcount command and ejection scene\n\r" +
 
                         "\n\r<b>【Removals】</b>" +
                             "\n     - Removed Covens (Poisoner, Jinx, Potion Master, Medusa, Wraith, and Hex Master are now neutral killers again.\nShade, Coven Leader, and Ritualist are now unused)",
@@ -398,15 +402,17 @@ public class ModNewsHistory
                         + "\n<b>【Основан】</b>\n - Основан на TOH v4.1.2\r\n"
 
                         + "\n<b>【Новые роли】</b>" +
-                        "\n\r<b><i>Предатель: (3 роли)</i></b>" +
+                        "\n\r<b><i>Предатель: (4 роли)</i></b>" +
                             "\n     - Злой Мини" +
                             "\n     - Вампирша (Из TOH-TOR и это скрытая роль)" +
+                            "\n     - Шантажист (Эксперементальная роль)" +
                             "\n     - Андертейкер\n\r" +
 
-                        "\n\r<b><i>Член Экипажа: (3 роли)</i></b>" +
+                        "\n\r<b><i>Член Экипажа: (4 роли)</i></b>" +
                             "\n     - Добрый Мини" +
                             "\n     - Бастион" +
-                            "\n     - Алхимик\n\r" +
+                            "\n     - Алхимик" +
+                            "\n     - Исследователь\n\r" +
 
                         "\n\r<b><i>Нейтрал: (5 ролей)</i></b>" +
                             "\n     - Бандит" +
@@ -415,17 +421,18 @@ public class ModNewsHistory
                             "\n     - Охотник" +
                             "\n     - Двойник (Эксперементальная роль)\n\r" +
 
-                        "\n\r<b><i>Атрибут: (4 атрибута)</i></b>" +
+                        "\n\r<b><i>Атрибут: (5 атрибута)</i></b>" +
                             "\n     - Знаменитый" +
                             "\n     - Кровожадный" +
                             "\n     - Расстройчивый" +
-                            "\n     - Упрямый\n\r" +
+                            "\n     - Упрямый" +
+                            "\n     - Разогнанный\n\r" +
 
                         "\n\r<b>【Исправление Багов】</b>" +
                             "\n     - Исправлен Безумный Экстрасенс" +
                             "\n     - Исправлен Оборотень (больше не оставляет двойные трупы)" +
                             "\n     - Исправлен баг когда Обменник кикал игроков" +
-                            "\n     - Исправлен настройка «Отключить саботаж дверей»" +
+                            "\n     - Исправлена настройка «Отключить саботаж дверей»" +
                             "\n     - Исправлен экран победы Эгоиста который показывал двух победителей" +
                             "\n     - Исправлены некоторые баги со Стирачкой" +
                             "\n     - Исправлены некоторые баги у Заразного и у Накрывателя" +
@@ -460,7 +467,8 @@ public class ModNewsHistory
                             "\n     - Судья теперь считается как Член Экипажа Убийца" +
                             "\n     - Когда навыки у Следователя, Стирачки, Трекера или у Оракла заканчивались, их голоса больше не будут скрываться, если у них включена настройка «Скрыть голос»" +
                             "\n     - Добавлено предупреждение, когда настройка «Предотвращение черного экрана» отключена, но количество Нейтральных Убийц в игре больше одного" +
-                            "\n     - Никнейм цели Охотника за Головами теперь отображается темно-красным\n\r" +
+                            "\n     - Никнейм цели Охотника за Головами теперь отображается темно-красным" +
+                            "\n     - Трюкач больше не учитывается при подсчете оставшихся Предателей при использовании /kcount и во время сцены изгнания\n\r" +
 
                         "\n\r<b>【Уделаены】</b>" +
                             "\n     - Удалена команда Ковенов (Отравитель, Джинкс, Ритуальщик, Медуза, Дух и Мастер Проклятий теперь снова Нейтральные Убийцы.\nТень, Лидер Ковена и Фокусник теперь не используются)",
