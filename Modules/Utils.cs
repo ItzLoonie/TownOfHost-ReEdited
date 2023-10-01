@@ -1626,6 +1626,14 @@ public static class Utils
         var friendCodes = File.ReadAllLines(friendCodesFilePath);
         return friendCodes.Any(code => code.Contains(friendCode));
     }
+    public static bool CheckColorHex(string ColorCode)
+    {
+        {
+            Regex regex = new Regex("^[0-9A-Fa-f]{6}$");
+            if (!regex.IsMatch(ColorCode)) return false;
+            return true;
+        }
+    }
     public static bool CheckGradientCode(string ColorCode)
     {
         Regex regex = new Regex(@"^[0-9A-Fa-f]{6}\s[0-9A-Fa-f]{6}$");
