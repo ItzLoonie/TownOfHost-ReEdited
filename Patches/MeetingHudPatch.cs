@@ -750,7 +750,7 @@ class MeetingHudStartPatch
             }
             //勒索者勒索警告
             foreach (var player in Blackmailer.ForBlackmailer)
-            {        
+            {
                 var playername = Utils.GetPlayerById(player).GetRealName();
                 if (Doppelganger.DoppelVictim.Keys.Contains(player)) playername = Doppelganger.DoppelVictim[player];
                 AddMsg(string.Format(GetString("BlackmailerDead"), playername, pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Blackmailer), GetString("BlackmaileKillTitle"))));
