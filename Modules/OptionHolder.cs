@@ -1887,7 +1887,7 @@ public static class Options
         NeutralCanBeNimble = BooleanOptionItem.Create(14062, "NeutralCanBeNimble", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Nimble]); */
         SetupAdtRoleOptions(14950, CustomRoles.Overclocked, canSetNum: true);
-        OverclockedReduction = FloatOptionItem.Create(14960, "OverclockedReduction", new(0f, 90f, 5f), 40f, TabGroup.Addons, false)
+        OverclockedReduction = FloatOptionItem.Create(14961, "OverclockedReduction", new(5f, 95f, 5f), 40f, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Overclocked])
             .SetValueFormat(OptionFormat.Percent);
         Repairman.SetupCustomOption(); //Repairman
