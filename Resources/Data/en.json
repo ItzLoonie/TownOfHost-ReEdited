@@ -2944,6 +2944,7 @@
   "PitfallTrap": "You have fallen into a trap!",
   "DivinationMaxCount": "Maximum Reveals",
   "RitualMaxCount": "Maximum Reveals",
+  "CleanserHideVote": "Hide Cleanser's vote",
   "OracleSkillLimit": "Maximum Uses",
   "OracleHideVote": "Hide <color=#6666FF>Oracle</color>'s vote",
   "OracleCheckReachLimit": "You're out of uses!",
