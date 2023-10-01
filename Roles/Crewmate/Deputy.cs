@@ -66,6 +66,7 @@ public static class Deputy
         if (CanBeHandcuffed(target))
         {
             HandcuffLimit--;
+            SendRPC();
 
             killer.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Deputy), GetString("DeputyHandcuffedPlayer")));
             target.Notify(Utils.ColorString(Utils.GetRoleColor(CustomRoles.Deputy), GetString("HandcuffedByDeputy")));

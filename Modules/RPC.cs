@@ -114,6 +114,8 @@ enum CustomRPC
     SetCursedSoulCurseLimit,
     SetMonarchKnightLimit,
     SetDeputyHandcuffLimit,
+    SetInvestgatorLimit,
+    SyncInvestigator, // Unused
     SetVirusInfectLimit,
     SetRevealedPlayer,
     SetCurrentRevealTarget,
@@ -602,6 +604,9 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SetDeputyHandcuffLimit:
                 Deputy.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SetInvestgatorLimit:
+                Investigator.ReceiveRPC(reader);
                 break;
             case CustomRPC.SetVirusInfectLimit:
                 Virus.ReceiveRPC(reader);
@@ -1129,6 +1134,9 @@ internal static class RPC
                 break;
             case CustomRoles.Deputy:
                 Deputy.Add(targetId);
+                break;
+            case CustomRoles.Investigator:
+                Investigator.Add(targetId);
                 break;
             case CustomRoles.Virus:
                 Virus.Add(targetId);

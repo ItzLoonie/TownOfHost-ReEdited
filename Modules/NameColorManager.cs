@@ -1,4 +1,5 @@
 using Hazel;
+using TOHE.Roles.Crewmate;
 using TOHE.Roles.Double;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
@@ -53,6 +54,20 @@ public static class NameColorManager
         // Admirer
         if (seer.Is(CustomRoles.Admirer) && (target.Is(CustomRoles.Admired))) color = Main.roleColors[CustomRoles.Admirer];
         if (seer.Is(CustomRoles.Admired) && (target.Is(CustomRoles.Admirer))) color = Main.roleColors[CustomRoles.Admirer];
+
+        // Investigator
+    /*    if (seer.Is(CustomRoles.Investigator) && Investigator.InvestigatedList.ContainsKey(target.PlayerId) && target.GetCustomRole().IsCK() && Investigator.CrewKillingShowAs.GetInt() == 0) color = "ff1919";
+        if (seer.Is(CustomRoles.Investigator) && Investigator.InvestigatedList.ContainsKey(target.PlayerId) && target.GetCustomRole().IsCK() && Investigator.CrewKillingShowAs.GetInt() == 1) color = "00ff00";
+        if (seer.Is(CustomRoles.Investigator) && Investigator.InvestigatedList.ContainsKey(target.PlayerId) && target.GetCustomRole().IsCK() && Investigator.CrewKillingShowAs.GetInt() == 2) color = "696969";
+        if (seer.Is(CustomRoles.Investigator) && Investigator.InvestigatedList.ContainsKey(target.PlayerId) && target.GetCustomRole().IsNK() && Investigator.NeutralKillingShowAs.GetInt() == 0) color = "ff1919";
+        if (seer.Is(CustomRoles.Investigator) && Investigator.InvestigatedList.ContainsKey(target.PlayerId) && target.GetCustomRole().IsNK() && Investigator.NeutralKillingShowAs.GetInt() == 1) color = "00ff00";
+        if (seer.Is(CustomRoles.Investigator) && Investigator.InvestigatedList.ContainsKey(target.PlayerId) && target.GetCustomRole().IsNK() && Investigator.NeutralKillingShowAs.GetInt() == 2) color = "696969";
+        if (seer.Is(CustomRoles.Investigator) && Investigator.InvestigatedList.ContainsKey(target.PlayerId) && target.GetCustomRole().IsNonNK() && Investigator.PassiveNeutralsShowAs.GetInt() == 0) color = "ff1919";
+        if (seer.Is(CustomRoles.Investigator) && Investigator.InvestigatedList.ContainsKey(target.PlayerId) && target.GetCustomRole().IsNonNK() && Investigator.PassiveNeutralsShowAs.GetInt() == 1) color = "00ff00";
+        if (seer.Is(CustomRoles.Investigator) && Investigator.InvestigatedList.ContainsKey(target.PlayerId) && target.GetCustomRole().IsNonNK() && Investigator.PassiveNeutralsShowAs.GetInt() == 2) color = "696969";
+        if (seer.Is(CustomRoles.Investigator) && Investigator.InvestigatedList.ContainsKey(target.PlayerId) && target.GetCustomRole().IsImpostor()) color = "ff1919";
+        if (seer.Is(CustomRoles.Investigator) && Investigator.InvestigatedList.ContainsKey(target.PlayerId) && target.GetCustomRole().IsMadmate()) color = "ff1919";
+        if (seer.Is(CustomRoles.Investigator) && Investigator.InvestigatedList.ContainsKey(target.PlayerId) && target.GetCustomRole().IsCrewmate() && !target.GetCustomRole().IsCK()) color = "00ff00"; */
 
         // Bounties
         if (seer.Is(CustomRoles.BountyHunter) && BountyHunter.GetTarget(seer) == target.PlayerId) color = "bf1313";

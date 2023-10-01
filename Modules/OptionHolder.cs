@@ -2227,6 +2227,7 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Glitch]); */
    //     Divinator.SetupCustomOption();
         Swapper.SetupCustomOption();
+        Investigator.SetupCustomOption();
         // 中立
         TextOptionItem.Create(100020, "OtherRoles.NeutralRoles", TabGroup.OtherRoles)
             .SetGameMode(CustomGameMode.Standard)

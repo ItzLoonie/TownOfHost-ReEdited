@@ -531,6 +531,7 @@ static class ExtendedPlayerControl
             CustomRoles.Infectious => Infectious.CanUseKillButton(pc),
             CustomRoles.Monarch => Monarch.CanUseKillButton(pc),
             CustomRoles.Deputy => Deputy.CanUseKillButton(pc),
+            CustomRoles.Investigator => Investigator.CanUseKillButton(pc),
             CustomRoles.Virus => pc.IsAlive(),
             CustomRoles.Farseer => pc.IsAlive(),
             CustomRoles.Spiritcaller => pc.IsAlive(),
@@ -560,6 +561,7 @@ static class ExtendedPlayerControl
             CustomRoles.Minimalism or
             CustomRoles.Sheriff or
             CustomRoles.Deputy or
+            CustomRoles.Investigator or
             CustomRoles.Innocent or
         //    CustomRoles.SwordsMan or
             CustomRoles.FFF or
@@ -644,6 +646,7 @@ static class ExtendedPlayerControl
             CustomRoles.Admirer or
             CustomRoles.Huntsman or
             CustomRoles.Amnesiac or
+            CustomRoles.Investigator or
             CustomRoles.Monarch or
             CustomRoles.Deputy or
             CustomRoles.Arsonist or
@@ -1015,6 +1018,9 @@ static class ExtendedPlayerControl
                 break;
             case CustomRoles.Deputy:
                 Deputy.SetKillCooldown(player.PlayerId);
+                break;
+            case CustomRoles.Investigator:
+                Investigator.SetKillCooldown(player.PlayerId);
                 break;
             case CustomRoles.Virus:
                 Virus.SetKillCooldown(player.PlayerId);

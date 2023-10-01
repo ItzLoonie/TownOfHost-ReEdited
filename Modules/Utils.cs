@@ -531,6 +531,7 @@ public static class Utils
             case CustomRoles.Infectious:
             case CustomRoles.Monarch:
             case CustomRoles.Deputy:
+            case CustomRoles.Investigator:
             case CustomRoles.Virus:
             case CustomRoles.Farseer:
             case CustomRoles.Counterfeiter:
@@ -983,6 +984,9 @@ public static class Utils
                 break;
             case CustomRoles.Deputy:
                 ProgressText.Append(Deputy.GetHandcuffLimit());
+                break;
+            case CustomRoles.Investigator:
+                ProgressText.Append(Investigator.GetInvestigateLimit());
                 break;
             case CustomRoles.Virus:
                 ProgressText.Append(Virus.GetInfectLimit());

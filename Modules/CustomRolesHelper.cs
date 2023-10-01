@@ -785,6 +785,7 @@ static class CustomRolesHelper
             CustomRoles.Sheriff or
             CustomRoles.Medic or
             CustomRoles.Crusader or
+            CustomRoles.Investigator or
             CustomRoles.Deputy or
             CustomRoles.Glitch or
             CustomRoles.PotionMaster or
@@ -929,6 +930,7 @@ static class CustomRolesHelper
             CustomRoles.Witness or
             CustomRoles.Monarch or
             CustomRoles.Farseer or
+            CustomRoles.Investigator or
             CustomRoles.SwordsMan or
             CustomRoles.Admirer or
             CustomRoles.Reverie or

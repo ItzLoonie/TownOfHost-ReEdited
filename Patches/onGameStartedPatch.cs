@@ -249,6 +249,7 @@ internal class ChangeRoleSettings
             Glitch.Init();
             Huntsman.Init();
             Deputy.Init();
+            Investigator.Init();
             Pickpocket.Init();
             Hangman.Init();
             Judge.Init();
@@ -814,6 +815,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Deputy:
                         Deputy.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Investigator:
+                        Investigator.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Virus:
                         Virus.Add(pc.PlayerId);

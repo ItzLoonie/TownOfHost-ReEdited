@@ -465,6 +465,9 @@ class CheckMurderPatch
                 case CustomRoles.Deputy:
                     Deputy.OnCheckMurder(killer, target);
                     return false;
+                case CustomRoles.Investigator:
+                    Investigator.OnCheckMurder(killer, target);
+                    return false;
                 case CustomRoles.Jackal:
                     if (Jackal.OnCheckMurder(killer, target))
                         return false;
