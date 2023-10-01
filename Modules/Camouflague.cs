@@ -8,7 +8,7 @@ namespace TOHE;
 
 static class PlayerOutfitExtension
 {
-    public static GameData.PlayerOutfit Set(this GameData.PlayerOutfit instance, string playerName, int colorId, string hatId, string skinId, string visorId, string petId)
+    public static GameData.PlayerOutfit Set(this GameData.PlayerOutfit instance, string playerName, int colorId, string hatId, string skinId, string visorId, string petId,  string nameplateId)
     {
         instance.PlayerName = playerName;
         instance.ColorId = colorId;
@@ -16,6 +16,7 @@ static class PlayerOutfitExtension
         instance.SkinId = skinId;
         instance.VisorId = visorId;
         instance.PetId = petId;
+        instance.NamePlateId = nameplateId;
         return instance;
     }
     public static bool Compare(this GameData.PlayerOutfit instance, GameData.PlayerOutfit targetOutfit)
@@ -34,7 +35,7 @@ static class PlayerOutfitExtension
 }
 public static class Camouflage
 {
-    static GameData.PlayerOutfit CamouflageOutfit = new GameData.PlayerOutfit().Set("", 15, "", "", "", ""); // Default
+    static GameData.PlayerOutfit CamouflageOutfit = new GameData.PlayerOutfit().Set("", 15, "", "", "", "", ""); // Default
 
     public static bool IsCamouflage;
     public static Dictionary<byte, GameData.PlayerOutfit> PlayerSkins = new();
@@ -48,32 +49,32 @@ public static class Camouflage
         { 
             case 0: // Default
                 CamouflageOutfit = new GameData.PlayerOutfit()
-                    .Set("", 15, "", "", "", "");
+                    .Set("", 15, "", "", "", "", "");
                 break;
 
             case 1: // Host's outfit
                 CamouflageOutfit = new GameData.PlayerOutfit()
-                    .Set("", DataManager.Player.Customization.Color, DataManager.Player.Customization.Hat, DataManager.Player.Customization.Skin, DataManager.Player.Customization.Visor, DataManager.Player.Customization.Pet);
+                    .Set("", DataManager.Player.Customization.Color, DataManager.Player.Customization.Hat, DataManager.Player.Customization.Skin, DataManager.Player.Customization.Visor, DataManager.Player.Customization.Pet, "");
                 break;
 
             case 2: // Karpe
                 CamouflageOutfit = new GameData.PlayerOutfit()
-                    .Set("", 13, "hat_pk05_Plant", "", "visor_BubbleBumVisor", "");
+                    .Set("", 13, "hat_pk05_Plant", "", "visor_BubbleBumVisor", "", "");
                 break;
 
             case 3: // Loonie
                 CamouflageOutfit = new GameData.PlayerOutfit()
-                    .Set("", 12, "hat_pkHW01_Wolf", "skin_scarfskin", "visor_Carrot", "pet_Pusheen");
+                    .Set("", 12, "hat_pkHW01_Wolf", "skin_scarfskin", "visor_Carrot", "pet_Pusheen", "");
                 break;
 
             case 4: // Lauryn
                 CamouflageOutfit = new GameData.PlayerOutfit()
-                    .Set("", 13, "hat_rabbitEars", "skin_Bananaskin", "visor_BubbleBumVisor", "pet_Pusheen");
+                    .Set("", 13, "hat_rabbitEars", "skin_Bananaskin", "visor_BubbleBumVisor", "pet_Pusheen", "");
                 break;
 
             case 5: // Moe
                 CamouflageOutfit = new GameData.PlayerOutfit()
-                    .Set("", 4, "hat_mira_headset_yellow", "skin_SuitB", "visor_lollipopCrew", "pet_EmptyPet");
+                    .Set("", 4, "hat_mira_headset_yellow", "skin_SuitB", "visor_lollipopCrew", "pet_EmptyPet", "");
                 break;
         }
     }

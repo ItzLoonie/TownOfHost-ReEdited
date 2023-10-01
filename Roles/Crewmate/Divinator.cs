@@ -204,6 +204,7 @@ public static class Divinator
                 CustomRoles.Hacker or
                 CustomRoles.Mayor or
                 CustomRoles.Paranoia or
+                CustomRoles.Mastermind or
                 CustomRoles.Pickpocket or
                 CustomRoles.Vindicator
                 => "Result14",

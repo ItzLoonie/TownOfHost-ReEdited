@@ -187,6 +187,11 @@ class CheckMurderPatch
             return false;
         }
 
+        if (Mastermind.ManipulatedPlayers.ContainsKey(killer.PlayerId))
+        {
+            return Mastermind.ForceKillForManipulatedPlayer(killer, target);
+        }
+
         //実際のキラーとkillerが違う場合の入れ替え処理
         if (Sniper.IsEnable) Sniper.TryGetSniper(target.PlayerId, ref killer);
         if (killer != __instance) Logger.Info($"Real Killer={killer.GetNameWithRole()}", "CheckMurder");
@@ -290,6 +295,9 @@ class CheckMurderPatch
                     break;
                 case CustomRoles.Puppeteer:
                     if (!Puppeteer.OnCheckPuppet(killer, target)) return false;
+                    break;
+                case CustomRoles.Mastermind:
+                    if (!Mastermind.OnCheckMurder(killer, target)) return false;
                     break;
                 case CustomRoles.Necromancer: //必须在击杀发生前处理
                     if (!Necromancer.OnCheckMurder(killer, target)) return false;
@@ -2231,6 +2239,7 @@ class ReportDeadBodyPatch
         Puppeteer.OnReportDeadBody();
         Sniper.OnReportDeadBody();
         Undertaker.OnReportDeadBody();
+        if (Mastermind.IsEnable) Mastermind.OnReportDeadBody();
         Vampire.OnStartMeeting();
         Poisoner.OnStartMeeting();
         Vampiress.OnStartMeeting();
@@ -2393,7 +2402,8 @@ class FixedUpdatePatch
             Vampiress.OnFixedUpdate(player);
             Poisoner.OnFixedUpdate(player);
             BountyHunter.FixedUpdate(player);
-            Glitch.UpdateHackCooldown(player);
+            if (player.Is(CustomRoles.Glitch) && !lowLoad) Glitch.UpdateHackCooldown(player);
+            if (player.Is(CustomRoles.Mastermind) && !lowLoad) Mastermind.OnFixedUpdate();
             Seeker.FixedUpdate(player);
             SerialKiller.FixedUpdate(player);
             

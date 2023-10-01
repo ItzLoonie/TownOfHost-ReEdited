@@ -455,6 +455,7 @@ static class ExtendedPlayerControl
     {
         int playerCount = Main.AllAlivePlayerControls.Count();
         if (!pc.IsAlive() || pc.Data.Role.Role == RoleTypes.GuardianAngel || Pelican.IsEaten(pc.PlayerId)) return false;
+        if (Mastermind.ManipulatedPlayers.ContainsKey(pc.PlayerId)) return true;
 
         return pc.GetCustomRole() switch
         {
@@ -471,6 +472,7 @@ static class ExtendedPlayerControl
             CustomRoles.Crusader => Crusader.CanUseKillButton(pc.PlayerId),
             CustomRoles.CopyCat => pc.IsAlive(),
             CustomRoles.Pelican => pc.IsAlive(),
+            CustomRoles.Mastermind => pc.IsAlive(),
             CustomRoles.Arsonist => Options.ArsonistCanIgniteAnytime.GetBool() ? Utils.GetDousedPlayerCount(pc.PlayerId).Item1 < Options.ArsonistMaxPlayersToIgnite.GetInt() : !pc.IsDouseDone(),
             CustomRoles.Revolutionist => !pc.IsDrawDone(),
             CustomRoles.Pyromaniac => pc.IsAlive(),
@@ -543,6 +545,101 @@ static class ExtendedPlayerControl
             CustomRoles.ChiefOfPolice => ChiefOfPolice.CanUseKillButton(pc.PlayerId),
             CustomRoles.EvilMini => pc.IsAlive(),
             CustomRoles.Doppelganger => pc.IsAlive(),
+
+            _ => pc.Is(CustomRoleTypes.Impostor),
+        };
+    }
+    public static bool HasKillButton(this PlayerControl pc)
+    {
+        if (!pc.IsAlive() || pc.Data.Role.Role == RoleTypes.GuardianAngel || Pelican.IsEaten(pc.PlayerId)) return false;
+
+        return pc.GetCustomRole() switch
+        {
+            CustomRoles.FireWorks => true,
+            CustomRoles.Mafia => true,
+            CustomRoles.Shaman => true,
+            CustomRoles.Underdog => true,
+            CustomRoles.Inhibitor => true,
+            CustomRoles.Saboteur => true,
+            CustomRoles.Sniper => true,
+            CustomRoles.Sheriff => true,
+            CustomRoles.Jailer => true,
+            CustomRoles.Crusader => true,
+            CustomRoles.CopyCat => true,
+            CustomRoles.Pelican => true,
+            CustomRoles.Mastermind => true,
+            CustomRoles.Arsonist => true,
+            CustomRoles.Revolutionist =>true,
+            CustomRoles.Pyromaniac => true,
+            CustomRoles.Huntsman => true,
+            CustomRoles.SwordsMan => true,
+            CustomRoles.Jackal => true,
+            CustomRoles.Bandit => true,
+            CustomRoles.Sidekick => true,
+            CustomRoles.Necromancer => true,
+            CustomRoles.HexMaster => true,
+            CustomRoles.Occultist => true,
+            CustomRoles.Poisoner => true,
+            CustomRoles.Juggernaut => true,
+            CustomRoles.Reverie => true,
+            CustomRoles.PotionMaster => true,
+            CustomRoles.NSerialKiller => true,
+            CustomRoles.Werewolf => true,
+            CustomRoles.Medusa => true,
+            CustomRoles.Traitor => true,
+            CustomRoles.Glitch => true,
+            CustomRoles.Pickpocket => true,
+            CustomRoles.Maverick => true,
+            CustomRoles.Jinx => true,
+            CustomRoles.Parasite => true,
+            CustomRoles.Refugee => true,
+    //        CustomRoles.Minion => true,
+            CustomRoles.NWitch => true,
+            CustomRoles.Witness => true,
+            CustomRoles.CovenLeader => true,
+            CustomRoles.Ritualist => true,
+            CustomRoles.Shroud => true,
+            CustomRoles.Wraith => true,
+            CustomRoles.Shade => true,
+            CustomRoles.Bomber => true,
+            CustomRoles.Nuker => true,
+            CustomRoles.Innocent => true,
+            CustomRoles.Counterfeiter => true,
+            CustomRoles.Pursuer => true,
+            CustomRoles.Morphling => true,
+            CustomRoles.FFF => true,
+            CustomRoles.Medic => true,
+            CustomRoles.Gamer => true,
+            CustomRoles.DarkHide => true,
+            CustomRoles.Provocateur => true,
+            CustomRoles.Assassin => true,
+            CustomRoles.BloodKnight => true,
+            CustomRoles.Banshee => true,
+            CustomRoles.Amnesiac => true,
+            CustomRoles.Totocalcio => true,
+            CustomRoles.Romantic => true,
+            CustomRoles.RuthlessRomantic => true,
+            CustomRoles.VengefulRomantic => true,
+            CustomRoles.Succubus => true,
+            CustomRoles.CursedSoul => true,
+            CustomRoles.Admirer => true,
+            CustomRoles.Imitator => true,
+            //CustomRoles.Warlock => !Main.isCurseAndKill.TryGetValue(pc.PlayerId, out bool wcs) || !wcs,
+            CustomRoles.Infectious => true,
+            CustomRoles.Monarch => true,
+            CustomRoles.Deputy => true,
+            CustomRoles.Investigator => true,
+            CustomRoles.Virus => true,
+            CustomRoles.Farseer => true,
+            CustomRoles.Spiritcaller => true,
+            CustomRoles.PlagueBearer => true,
+            CustomRoles.Pestilence => true,
+            CustomRoles.Pirate => true,
+            CustomRoles.Seeker => true,
+            CustomRoles.Agitater => true,
+            CustomRoles.ChiefOfPolice => true,
+            CustomRoles.EvilMini => true,
+            CustomRoles.Doppelganger => true,
 
             _ => pc.Is(CustomRoleTypes.Impostor),
         };
@@ -790,8 +887,13 @@ static class ExtendedPlayerControl
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.ArsonistCooldown.GetFloat(); //アーソニストはアーソニストのキルクールに。
                 break;
             case CustomRoles.Inhibitor:
-            case CustomRoles.Saboteur:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.InhibitorCD.GetFloat(); //アーソニストはアーソニストのキルクールに。
+                break;
+            case CustomRoles.Saboteur:
+                Main.AllPlayerKillCooldown[player.PlayerId] = Options.SaboteurCD.GetFloat(); //アーソニストはアーソニストのキルクールに。
+                break;
+            case CustomRoles.Mastermind:
+                Main.AllPlayerKillCooldown[player.PlayerId] = Mastermind.KillCooldown.GetFloat();
                 break;
             case CustomRoles.Revolutionist:
                 Main.AllPlayerKillCooldown[player.PlayerId] = Options.RevolutionistCooldown.GetFloat();

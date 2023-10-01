@@ -73,6 +73,11 @@ public static class NameColorManager
         if (seer.Is(CustomRoles.BountyHunter) && BountyHunter.GetTarget(seer) == target.PlayerId) color = "bf1313";
         if (seer.Is(CustomRoles.Huntsman) && Huntsman.Targets.Contains(target.PlayerId)) color = "6e5524";
 
+        // Mastermind
+        if (seer.Is(CustomRoles.Mastermind) && Mastermind.ManipulateDelays.ContainsKey(target.PlayerId)) color = "#00ffa5";
+        if (seer.Is(CustomRoles.Mastermind) && Mastermind.ManipulatedPlayers.ContainsKey(target.PlayerId)) color = Main.roleColors[CustomRoles.Arsonist];
+
+
     //    if (seer.GetCustomRole().IsCoven() && (target.GetCustomRole().IsCoven())) color = Main.roleColors[CustomRoles.CovenLeader];
 
         // Amnesiac

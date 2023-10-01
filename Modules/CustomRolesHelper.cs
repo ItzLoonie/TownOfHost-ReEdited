@@ -61,6 +61,7 @@ static class CustomRolesHelper
                 CustomRoles.ScientistTOHE => CustomRoles.Scientist,
                 CustomRoles.Tracefinder => CustomRoles.Scientist,
                 CustomRoles.Puppeteer => CustomRoles.Impostor,
+                CustomRoles.Mastermind => CustomRoles.Impostor,
                 CustomRoles.TimeThief => CustomRoles.Impostor,
                 CustomRoles.EvilTracker => CustomRoles.Shapeshifter,
                 CustomRoles.Paranoia => CustomRoles.Engineer,
@@ -640,6 +641,7 @@ static class CustomRolesHelper
             CustomRoles.TimeThief or
             CustomRoles.Trickster or
             CustomRoles.Mafia or
+            CustomRoles.Mastermind or
             CustomRoles.Chronomancer or
             CustomRoles.Minimalism or
             CustomRoles.FireWorks or
@@ -1355,6 +1357,7 @@ static class CustomRolesHelper
                     || pc.Is(CustomRoles.Vampiress)
                     || pc.Is(CustomRoles.Scavenger)
                     || pc.Is(CustomRoles.Puppeteer)
+                    || pc.Is(CustomRoles.Mastermind)
                     || pc.Is(CustomRoles.Warlock)
                     || pc.Is(CustomRoles.Witch)
                     || pc.Is(CustomRoles.Mafia)

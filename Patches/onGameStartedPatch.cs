@@ -178,7 +178,7 @@ internal class ChangeRoleSettings
 
                 RandomSpawn.CustomNetworkTransformPatch.NumOfTP.Add(pc.PlayerId, 0);
                 var outfit = pc.Data.DefaultOutfit;
-                Camouflage.PlayerSkins[pc.PlayerId] = new GameData.PlayerOutfit().Set(outfit.PlayerName, outfit.ColorId, outfit.HatId, outfit.SkinId, outfit.VisorId, outfit.PetId);
+                Camouflage.PlayerSkins[pc.PlayerId] = new GameData.PlayerOutfit().Set(outfit.PlayerName, outfit.ColorId, outfit.HatId, outfit.SkinId, outfit.VisorId, outfit.PetId, outfit.NamePlateId);
                 Main.clientIdList.Add(pc.GetClientId());
             }
             Main.VisibleTasksCount = true;
@@ -196,7 +196,7 @@ internal class ChangeRoleSettings
             Undertaker.Init();
             TimeThief.Init();
             Puppeteer.Init();
-        //    Mare.Init();
+            Mastermind.Init();
             Witch.Init();
             HexMaster.Init();
             Occultist.Init();
@@ -527,6 +527,9 @@ internal class SelectRolesPatch
                         break;
                     case CustomRoles.Puppeteer:
                         Puppeteer.Add(pc.PlayerId);
+                        break;
+                    case CustomRoles.Mastermind:
+                        Mastermind.Add(pc.PlayerId);
                         break;
                     case CustomRoles.Sniper:
                         Sniper.Add(pc.PlayerId);
