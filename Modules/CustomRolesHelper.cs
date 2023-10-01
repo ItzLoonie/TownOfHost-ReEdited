@@ -182,6 +182,7 @@ static class CustomRolesHelper
             CustomRoles.CopyCat => RoleTypes.Impostor,
             CustomRoles.Imitator => RoleTypes.Impostor,
             CustomRoles.Huntsman => RoleTypes.Impostor,
+            CustomRoles.Investigator => RoleTypes.Impostor,
             CustomRoles.CursedSoul => RoleTypes.Impostor,
             CustomRoles.Shaman => RoleTypes.Impostor,
             CustomRoles.Admirer => RoleTypes.Impostor,
