@@ -4,23 +4,24 @@ public static class LastImpostor
 {
     private static readonly int Id = 15900;
     public static byte currentId = byte.MaxValue;
-    public static OptionItem KillCooldown;
+    public static OptionItem CooldownReduction;
     public static void SetupCustomOption()
     {
         Options.SetupSingleRoleOptions(Id, TabGroup.Addons, CustomRoles.LastImpostor, 1);
-        KillCooldown = FloatOptionItem.Create(Id + 10, "KillCooldown", new(0f, 180f, 1f), 8f, TabGroup.Addons, false).SetParent(Options.CustomRoleSpawnChances[CustomRoles.LastImpostor])
-            .SetValueFormat(OptionFormat.Seconds);
+        CooldownReduction = FloatOptionItem.Create(Id + 15, "OverclockedReduction", new(5f, 95f, 5f), 50f, TabGroup.Addons, false)
+            .SetParent(Options.CustomRoleSpawnChances[CustomRoles.LastImpostor])
+            .SetValueFormat(OptionFormat.Percent);
     }
     public static void Init() => currentId = byte.MaxValue;
     public static void Add(byte id) => currentId = id;
     public static void SetKillCooldown()
     {
         if (currentId == byte.MaxValue) return;
-        if (!Main.AllPlayerKillCooldown.TryGetValue(currentId, out var x) || KillCooldown.GetFloat() >= x) return;
-        Main.AllPlayerKillCooldown[currentId] = KillCooldown.GetFloat();
+        if (!Main.AllPlayerKillCooldown.TryGetValue(currentId, out var x)) return;
+        Main.AllPlayerKillCooldown[currentId] -= Main.AllPlayerKillCooldown[currentId] * (CooldownReduction.GetFloat() / 100);
     }
     public static bool CanBeLastImpostor(PlayerControl pc)
-        => pc.IsAlive() && !pc.Is(CustomRoles.LastImpostor) && pc.Is(CustomRoleTypes.Impostor);
+        => pc.IsAlive() && !pc.Is(CustomRoles.LastImpostor)&& !pc.Is(CustomRoles.Overclocked) && pc.Is(CustomRoleTypes.Impostor);
     public static void SetSubRole()
     {
         //ラストインポスターがすでにいれば処理不要
