@@ -31,9 +31,9 @@ namespace TOHE.Roles.Impostor
             //ManipulateCDOpt = FloatOptionItem.Create(Id + 11, "MastermindCD", new(0f, 180f, 2.5f), 30f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Mastermind])
             //    .SetValueFormat(OptionFormat.Seconds);
             // Manipulation Cooldown = Kill Cooldown + Delay + Time Limit
-            TimeLimit = IntegerOptionItem.Create(Id + 12, "MastermindTimeLimit", new(1, 60, 1), 20, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Mastermind])
+            TimeLimit = FloatOptionItem.Create(Id + 12, "MastermindTimeLimit", new(1f, 60f, 1f), 20f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Mastermind])
                 .SetValueFormat(OptionFormat.Seconds);
-            Delay = IntegerOptionItem.Create(Id + 13, "MastermindDelay", new(0, 30, 1), 7, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Mastermind])
+            Delay = FloatOptionItem.Create(Id + 13, "MastermindDelay", new(0f, 30f, 1f), 7f, TabGroup.ImpostorRoles, false).SetParent(CustomRoleSpawnChances[CustomRoles.Mastermind])
                 .SetValueFormat(OptionFormat.Seconds);
         }
 
