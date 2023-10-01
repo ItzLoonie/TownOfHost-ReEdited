@@ -753,7 +753,7 @@ class MeetingHudStartPatch
             {        
                 var playername = Utils.GetPlayerById(player).GetRealName();
                 if (Doppelganger.DoppelVictim.Keys.Contains(player)) playername = Doppelganger.DoppelVictim[player];
-                AddMsg(string.Format(GetString("BlackmailerDead"), playername, pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Blackmailer), GetString("BlackmaileKillTitle")));
+                AddMsg(string.Format(GetString("BlackmailerDead"), playername, pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Blackmailer), GetString("BlackmaileKillTitle"))));
             }
             //侦探报告线索
             if (Main.DetectiveNotify.ContainsKey(pc.PlayerId))
