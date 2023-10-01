@@ -1437,13 +1437,13 @@ public static class Options
         DovesOfNeaceAbilityUseGainWithEachTaskCompleted = FloatOptionItem.Create(7712, "AbilityUseGainWithEachTaskCompleted", new(0f, 5f, 0.1f), 1f, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.DovesOfNeace])
             .SetValueFormat(OptionFormat.Times);
-        SetupRoleOptions(7800, TabGroup.CrewmateRoles, CustomRoles.Paranoia);
+    /*    SetupRoleOptions(7800, TabGroup.CrewmateRoles, CustomRoles.Paranoia);
         ParanoiaNumOfUseButton = IntegerOptionItem.Create(7810, "ParanoiaNumOfUseButton", new(1, 20, 1), 3, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Paranoia])
             .SetValueFormat(OptionFormat.Times);
         ParanoiaVentCooldown = FloatOptionItem.Create(7811, "ParanoiaVentCooldown", new(0, 180, 1), 10, TabGroup.CrewmateRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Paranoia])
-            .SetValueFormat(OptionFormat.Seconds);
+            .SetValueFormat(OptionFormat.Seconds); */
         Psychic.SetupCustomOption();
         SetupRoleOptions(5100, TabGroup.CrewmateRoles, CustomRoles.ScientistTOHE);
         ScientistCD = FloatOptionItem.Create(5110, "VitalsCooldown", new(1f, 250f, 1f), 3f, TabGroup.CrewmateRoles, false)
@@ -1887,7 +1887,7 @@ public static class Options
         NeutralCanBeNimble = BooleanOptionItem.Create(14062, "NeutralCanBeNimble", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Nimble]); */
         SetupAdtRoleOptions(14950, CustomRoles.Overclocked, canSetNum: true);
-        OverclockedReduction = FloatOptionItem.Create(14961, "OverclockedReduction", new(5f, 95f, 5f), 40f, TabGroup.Addons, false)
+        OverclockedReduction = FloatOptionItem.Create(14960, "OverclockedReduction", new(0f, 90f, 5f), 40f, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Overclocked])
             .SetValueFormat(OptionFormat.Percent);
         Repairman.SetupCustomOption(); //Repairman

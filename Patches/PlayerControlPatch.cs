@@ -3218,7 +3218,7 @@ class EnterVentPatch
             if (Main.MayorUsedButtonCount.TryGetValue(pc.PlayerId, out var count) && count < Options.MayorNumOfUseButton.GetInt())
             {
                 pc?.MyPhysics?.RpcBootFromVent(__instance.Id);
-                pc?.ReportDeadBody(null);
+                pc?.NoCheckStartMeeting(pc?.Data);
             }
         }
       /*  if (pc.Is(CustomRoles.Wraith)) // THIS WAS FOR WEREWOLF TESTING PURPOSES, PLEASE IGNORE
