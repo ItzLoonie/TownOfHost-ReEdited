@@ -12,6 +12,7 @@ using TOHE.Roles.Crewmate;
 using TOHE.Roles.Impostor;
 using TOHE.Roles.Neutral;
 using TOHE.Roles.Double;
+using TOHE.Roles.AddOns.Common;
 
 namespace TOHE;
 
@@ -200,6 +201,7 @@ public static class Options
     public static OptionItem GGTryHideMsg;
     public static OptionItem LuckeyProbability;
     public static OptionItem LuckyProbability;
+    public static OptionItem OverclockedReduction;
     public static OptionItem VindicatorAdditionalVote;
     public static OptionItem VindicatorHideVote;
     public static OptionItem MayorAdditionalVote;
@@ -1884,6 +1886,10 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Nimble]);
         NeutralCanBeNimble = BooleanOptionItem.Create(14062, "NeutralCanBeNimble", true, TabGroup.Addons, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Nimble]); */
+        SetupAdtRoleOptions(14950, CustomRoles.Overclocked, canSetNum: true);
+        OverclockedReduction = FloatOptionItem.Create(14960, "OverclockedReduction", new(0f, 90f, 5f), 40f, TabGroup.Addons, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Overclocked])
+            .SetValueFormat(OptionFormat.Percent);
         Repairman.SetupCustomOption(); //Repairman
         SetupAdtRoleOptions(14800, CustomRoles.Seer, canSetNum: true);
         ImpCanBeSeer = BooleanOptionItem.Create(14810, "ImpCanBeSeer", true, TabGroup.Addons, false)
@@ -2602,9 +2608,8 @@ public static class Options
         DisableSabotage = BooleanOptionItem.Create(22800, "DisableSabotage", false, TabGroup.GameSettings, false)
             .SetGameMode(CustomGameMode.Standard)
             .SetColor(new Color32(255, 153, 153, byte.MaxValue));
-        DisableCloseDoor = BooleanOptionItem.Create(22810, "DisableCloseDoor", false, TabGroup.GameSettings, false)
+        DisableCloseDoor = BooleanOptionItem.Create(22805, "DisableCloseDoor", false, TabGroup.GameSettings, false)
             .SetGameMode(CustomGameMode.Standard)
-            .SetParent(DisableSabotage)
             .SetColor(new Color32(255, 153, 153, byte.MaxValue));
 
         //禁用设备

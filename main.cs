@@ -36,8 +36,8 @@ public class Main : BasePlugin
     public static readonly string MainMenuText = " ";
 
     public const string PluginGuid = "com.karped1em.townofhostedited";
-    public const string PluginVersion = "3.1.0.105";
-    public const string PluginDisplayVersion = "3.1.0 dev 10.1";
+    public const string PluginVersion = "3.1.0.121";
+    public const string PluginDisplayVersion = "3.1.0 dev 12";
     public static readonly string SupportedVersionAU = "2023.7.11";
     public const bool Canary = false;
 
@@ -531,7 +531,7 @@ public class Main : BasePlugin
                 {CustomRoles.Fragile,"#D3D3D3"},
                 {CustomRoles.Burst, "#B619B9"},
                 {CustomRoles.Bloodlust, "#691a2e"},
-
+                {CustomRoles.Overclocked, "#C4AD2C"},
                 {CustomRoles.Swift, "#ff1919"},
                 {CustomRoles.Mare, "#ff1919"},
                 {CustomRoles.Ghoul, "#B22222"},
@@ -897,7 +897,8 @@ public enum CustomRoles
     Circumvent,
     Repairman,
     Cyber,
-    Stubborn
+    Stubborn,
+    Overclocked
     // QuickFix
 }
 //WinData

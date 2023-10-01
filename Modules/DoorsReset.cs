@@ -10,7 +10,7 @@ public static class DoorsReset
     public static void Initialize()
     {
         // AirshipとPolus以外は非対応
-        if ((MapNames)Main.NormalOptions.MapId is not (MapNames.Airship or MapNames.Polus))
+        if (((MapNames)Main.NormalOptions.MapId is not (MapNames.Airship or MapNames.Polus)) || Options.DisableCloseDoor.GetBool())
         {
             isEnabled = false;
             return;

@@ -434,7 +434,7 @@ class CheckForEndVotingPatch
         foreach (var pc in Main.AllAlivePlayerControls)
         {
             var pc_role = pc.GetCustomRole();
-            if (pc_role.IsImpostor() && pc != exiledPlayer.Object)
+            if (pc_role.IsImpostor() && !pc.Is(CustomRoles.Trickster) && pc != exiledPlayer.Object)
                 impnum++;
             else if (pc_role.IsNK() && pc != exiledPlayer.Object)
                 neutralnum++;
