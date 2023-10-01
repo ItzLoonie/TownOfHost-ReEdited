@@ -67,6 +67,19 @@ public static class Doppelganger
 
     public static void SetKillCooldown(byte id) => Main.AllPlayerKillCooldown[id] = KillCooldown.GetFloat();
 
+    //overloading
+    public static GameData.PlayerOutfit Set(this GameData.PlayerOutfit instance, string playerName, int colorId, string hatId, string skinId, string visorId, string petId, string nameplateId)
+    {
+        instance.PlayerName = playerName;
+        instance.ColorId = colorId;
+        instance.HatId = hatId;
+        instance.SkinId = skinId;
+        instance.VisorId = visorId;
+        instance.PetId = petId;
+        instance.NamePlateId = nameplateId;
+        return instance;
+    }
+
     public static void RpcChangeSkin(PlayerControl pc, GameData.PlayerOutfit newOutfit)
     {
         var sender = CustomRpcSender.Create(name: $"Doppelganger.RpcChangeSkin({pc.Data.PlayerName})");
@@ -98,6 +111,11 @@ public static class Doppelganger
             .Write(newOutfit.PetId)
             .EndRpc();
 
+        pc.SetNamePlate(newOutfit.NamePlateId);
+        sender.AutoStartRpc(pc.NetId, (byte)RpcCalls.SetNamePlateStr)
+            .Write(newOutfit.NamePlateId)
+            .EndRpc();
+
         sender.SendMessage();
         DoppelPresentSkin[pc.PlayerId] = newOutfit;
     }
@@ -126,10 +144,10 @@ public static class Doppelganger
         else tname = target.Data.PlayerName;
 
         var killerSkin = new GameData.PlayerOutfit()
-            .Set(kname, killer.CurrentOutfit.ColorId, killer.CurrentOutfit.HatId, killer.CurrentOutfit.SkinId, killer.CurrentOutfit.VisorId, killer.CurrentOutfit.PetId);
+            .Set(kname, killer.CurrentOutfit.ColorId, killer.CurrentOutfit.HatId, killer.CurrentOutfit.SkinId, killer.CurrentOutfit.VisorId, killer.CurrentOutfit.PetId, killer.CurrentOutfit.NamePlateId);
 
         var targetSkin = new GameData.PlayerOutfit()
-            .Set(tname, target.CurrentOutfit.ColorId, target.CurrentOutfit.HatId, target.CurrentOutfit.SkinId, target.CurrentOutfit.VisorId, target.CurrentOutfit.PetId);
+            .Set(tname, target.CurrentOutfit.ColorId, target.CurrentOutfit.HatId, target.CurrentOutfit.SkinId, target.CurrentOutfit.VisorId, target.CurrentOutfit.PetId, target.CurrentOutfit.NamePlateId);
 
         DoppelVictim[target.PlayerId] = tname;
         
