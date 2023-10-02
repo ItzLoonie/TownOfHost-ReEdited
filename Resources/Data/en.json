@@ -10,6 +10,7 @@
   "Patreon": "Patreon",
   "Discord": "Discord",
   "Website": "Website",
+  "PlayerNameForRoleInfo": "Hi {0}, your role is:- \n",
   "SubText.Crewmate": "Find and exile the <color=#ff1919>Impostors</color>",
   "SubText.Impostor": "Sabotage and kill everyone",
   "SubText.Neutral": "Work alone to achieve your victory",

@@ -36,6 +36,7 @@ public static class TemplateManager
         ["NumShortTasks"] = () => Main.NormalOptions.NumShortTasks.ToString(),
         ["Date"] = () => DateTime.Now.ToShortDateString(),
         ["Time"] = () => DateTime.Now.ToShortTimeString(),
+        ["PlayerName"] = () => ""
         
     };
 
@@ -97,6 +98,13 @@ public static class TemplateManager
         string[] tmp = Array.Empty<string>();
         List<string> sendList = new();
         HashSet<string> tags = new();
+        Func<string> playerName = () => "";
+        if (playerId != 0xff)
+        {
+            playerName = () => Main.AllPlayerNames[playerId];   
+        }
+
+        _replaceDictionary["PlayerName"] = playerName;
         while ((text = sr.ReadLine()) != null)
         {
             tmp = text.Split(":");
