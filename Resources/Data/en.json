@@ -1175,6 +1175,7 @@
   "AutoDisplayLastResult": "Auto Display Last Result",
   "EnableYTPlan": "Enable Youtuber Plan",
   "KickLowLevelPlayer": "Kick players whose level is lower than",
+  "ApplyWhiteList": "Turn on Whitelist to bypass level kick",
   "AutoKickStart": "Kick players that say start",
   "AutoKickStartTimes": "Number of warnings before kick",
   "AutoKickStartAsBan": "Block a player after they're kicked",

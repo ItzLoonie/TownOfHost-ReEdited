@@ -18,7 +18,7 @@ public static class TemplateManager
     private static Dictionary<string, Func<string>> _replaceDictionary = new()
     {
         ["RoomCode"] = () => InnerNet.GameCode.IntToGameName(AmongUsClient.Instance.GameId),
-        ["PlayerName"] = () => DataManager.Player.Customization.Name,
+        ["HostName"] = () => DataManager.Player.Customization.Name,
         ["AmongUsVersion"] = () => UnityEngine.Application.version,
         ["InternalVersion"] = () => Main.PluginVersion,
         ["ModVersion"] = () => Main.PluginDisplayVersion,

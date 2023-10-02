@@ -2313,11 +2313,11 @@ public static class Options
         OptKickNintendoPlayer = BooleanOptionItem.Create(19355, "OptKickNintendoPlayer", false, TabGroup.SystemSettings, false)
             .SetParent(KickOtherPlatformPlayer); //Switch
         KickPlayerFriendCodeNotExist = BooleanOptionItem.Create(19302, "KickPlayerFriendCodeNotExist", false, TabGroup.SystemSettings, true);
+        ApplyAllowList = BooleanOptionItem.Create(19305, "ApplyWhiteList", false, TabGroup.SystemSettings, false);
         ApplyVipList = BooleanOptionItem.Create(19308, "ApplyVipList", true, TabGroup.SystemSettings, false);
         ApplyDenyNameList = BooleanOptionItem.Create(19303, "ApplyDenyNameList", true, TabGroup.SystemSettings, true);
         ApplyBanList = BooleanOptionItem.Create(19304, "ApplyBanList", true, TabGroup.SystemSettings, true);
-        ApplyModeratorList = BooleanOptionItem.Create(19305, "ApplyModeratorList", false, TabGroup.SystemSettings, false);
-        //    ApplyAllowList = BooleanOptionItem.Create(19306, "ApplyAllowList", false, TabGroup.SystemSettings, false);
+        ApplyModeratorList = BooleanOptionItem.Create(19306, "ApplyModeratorList", false, TabGroup.SystemSettings, false);
         AllowSayCommand = BooleanOptionItem.Create(19307, "AllowSayCommand", false, TabGroup.SystemSettings, false)
             .SetParent(ApplyModeratorList);
         //     ApplyReminderMsg = BooleanOptionItem.Create(19308, "ApplyReminderMsg", false, TabGroup.SystemSettings, false);
