@@ -239,6 +239,7 @@ public static class Options
     public static OptionItem ArsonistMaxPlayersToIgnite;
     public static OptionItem JesterCanUseButton;
     public static OptionItem JesterCanVent;
+    public static OptionItem MeetingsNeededForJesterWin;
     public static OptionItem HideJesterVote;
     public static OptionItem LegacyMafia;
     public static OptionItem NotifyGodAlive;
@@ -1619,6 +1620,9 @@ public static class Options
             .SetParent(CustomRoleSpawnChances[CustomRoles.Jester]);
         HideJesterVote = BooleanOptionItem.Create(10916, "HideJesterVote", true, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Jester]);
+        MeetingsNeededForJesterWin = IntegerOptionItem.Create(10917, "MeetingsNeededForWin", new(0, 10, 1), 2, TabGroup.NeutralRoles, false)
+            .SetParent(CustomRoleSpawnChances[CustomRoles.Jester])
+            .SetValueFormat(OptionFormat.Times);
         SunnyboyChance = IntegerOptionItem.Create(10912, "SunnyboyChance", new(0, 100, 5), 0, TabGroup.NeutralRoles, false)
             .SetParent(CustomRoleSpawnChances[CustomRoles.Jester])
             .SetValueFormat(OptionFormat.Percent);

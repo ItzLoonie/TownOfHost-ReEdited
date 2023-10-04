@@ -781,10 +781,10 @@ public static class Utils
                 TextColor10 = comms ? Color.gray : NormalColor10;
                 string Completed10 = comms ? "?" : $"{taskState10.CompletedTasksCount}";
                 Color TextColor101;
-                if (SabotageMaster.SkillLimit.GetFloat() - SabotageMaster.UsedSkillCount < 1) TextColor101 = Color.red;
+                if (SabotageMaster.SkillLimit.GetFloat() - SabotageMaster.UsedSkillCount[playerId] < 1) TextColor101 = Color.red;
                 else TextColor101 = Color.white;
                 ProgressText.Append(ColorString(TextColor10, $"({Completed10}/{taskState10.AllTasksCount})"));
-                ProgressText.Append(ColorString(TextColor101, $" <color=#ffffff>-</color> {Math.Round(SabotageMaster.SkillLimit.GetFloat() - SabotageMaster.UsedSkillCount, 1)}"));
+                ProgressText.Append(ColorString(TextColor101, $" <color=#ffffff>-</color> {Math.Round(SabotageMaster.SkillLimit.GetFloat() - SabotageMaster.UsedSkillCount[playerId], 1)}"));
                 break;
             case CustomRoles.Tracker:
                 var taskState11 = Main.PlayerStates?[playerId].GetTaskState();
@@ -2055,7 +2055,7 @@ public static class Utils
             string SelfRoleName = $"<size={fontSize}>{seer.GetDisplayRoleName()}{SelfTaskText}</size>";
             string SelfDeathReason = seer.KnowDeathReason(seer) ? $"({ColorString(GetRoleColor(CustomRoles.Doctor), GetVitalText(seer.PlayerId))})" : "";
             string SelfName = $"{ColorString(seer.GetRoleColor(), SeerRealName)}{SelfDeathReason}{SelfMark}";
-            
+
             switch (seerRole)
             {
                 case CustomRoles.PlagueBearer:
@@ -2113,7 +2113,7 @@ public static class Utils
             SelfName += SelfSuffix.ToString() == "" ? "" : "\r\n " + SelfSuffix.ToString();
 
             if (!isForMeeting) SelfName += "\r\n";
-
+            
             seer.RpcSetNamePrivate(SelfName, true, force: NoCache);
 
 
@@ -2281,7 +2281,7 @@ public static class Utils
                     string TargetPlayerName = target.GetRealName(isForMeeting);
 
 
-                  // ========= During Game And Meeting =========
+                    // ========= During Game And Meeting =========
                     switch (seerRole)
                     {
                         case CustomRoles.EvilTracker:
@@ -2454,7 +2454,9 @@ public static class Utils
             foreach (var pid in Main.KilledDiseased.Keys)
             {
                 Main.KilledDiseased[pid] = 0;
-                GetPlayerById(pid).ResetKillCooldown();
+                var kdpc = GetPlayerById(pid);
+                if (kdpc == null) continue;
+                kdpc.ResetKillCooldown();
             }
             Main.KilledDiseased.Clear();
         }
@@ -2464,7 +2466,9 @@ public static class Utils
             foreach (var pid in Main.KilledAntidote.Keys)
             {
                 Main.KilledAntidote[pid] = 0;
-                GetPlayerById(pid).ResetKillCooldown();
+                var kapc = GetPlayerById(pid);
+                if (kapc == null) continue;
+                kapc.ResetKillCooldown();
             }
             Main.KilledAntidote.Clear();
         }

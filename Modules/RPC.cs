@@ -139,6 +139,7 @@ enum CustomRPC
     SyncNWitch,
     SyncShroud,
     SyncMiniAge,
+    SyncSabotageMasterSkill,
 }
 public enum Sounds
 {
@@ -647,6 +648,9 @@ internal class RPCHandlerPatch
                 break;
             case CustomRPC.SyncMiniAge:
                 Mini.ReceiveRPC(reader);
+                break;
+            case CustomRPC.SyncSabotageMasterSkill:
+                SabotageMaster.ReceiveRPC(reader);
                 break;
         }
     }

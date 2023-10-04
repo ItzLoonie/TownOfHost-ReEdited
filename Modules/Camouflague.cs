@@ -139,12 +139,12 @@ public static class Camouflage
             {
                 if (GameEnd && Doppelganger.DoppelVictim.Keys.Contains(id))
                 {
-                    if (id == PlayerControl.LocalPlayer.PlayerId) Main.nickName = Doppelganger.DoppelVictim[id];
-                    else 
-                    { 
-                        var dpc = Utils.GetPlayerById(id);
-                        if (dpc != null) dpc.RpcSetName(Doppelganger.DoppelVictim[id]);
-                    }
+                    //if (id == PlayerControl.LocalPlayer.PlayerId) Main.nickName = Doppelganger.DoppelVictim[id];
+                    //else 
+                    //{ 
+                    var dpc = Utils.GetPlayerById(id);
+                    if (dpc != null) dpc.RpcSetName(Doppelganger.DoppelVictim[id]);
+                    //}
                 }
                 newOutfit = PlayerSkins[id];
             }

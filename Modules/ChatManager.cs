@@ -134,21 +134,21 @@ namespace TOHE.Modules.ChatManager
                 writer.SendMessage();
             }
 
-                foreach (var entry in chatHistory)
-                {
-                    var entryParts = entry.Split(':');
-                    var senderId = entryParts[0].Trim();
-                    var senderMessage = entryParts[1].Trim();
+            foreach (var entry in chatHistory)
+            {
+                var entryParts = entry.Split(':');
+                var senderId = entryParts[0].Trim();
+                var senderMessage = entryParts[1].Trim();
 
-                    foreach (var senderPlayer in Main.AllPlayerControls)
+                foreach (var senderPlayer in Main.AllPlayerControls)
+                {
+                    if (senderPlayer.PlayerId.ToString() == senderId)
                     {
-                        if (senderPlayer.PlayerId.ToString() == senderId)
-                        {
                         if (!senderPlayer.IsAlive())
                         {
-                            var deathReason = (PlayerState.DeathReason)senderPlayer.PlayerId;
+                            //var deathReason = (PlayerState.DeathReason)senderPlayer.PlayerId;
                             senderPlayer.Revive();
-                            
+
 
                             DestroyableSingleton<HudManager>.Instance.Chat.AddChat(senderPlayer, senderMessage);
 
@@ -160,7 +160,7 @@ namespace TOHE.Modules.ChatManager
                             writer.EndMessage();
                             writer.SendMessage();
                             senderPlayer.Die(DeathReason.Kill, true);
-                            Main.PlayerStates[senderPlayer.PlayerId].deathReason = deathReason;
+                            //Main.PlayerStates[senderPlayer.PlayerId].deathReason = deathReason;
                         }
                         else
                         {

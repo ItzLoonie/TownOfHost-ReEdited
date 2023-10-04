@@ -489,7 +489,8 @@ public class TaskState
             } */
             if (player.Is(CustomRoles.SabotageMaster) && player.IsAlive())
             {
-                SabotageMaster.UsedSkillCount -= SabotageMaster.SMAbilityUseGainWithEachTaskCompleted.GetFloat();
+                SabotageMaster.UsedSkillCount[player.PlayerId] -= SabotageMaster.SMAbilityUseGainWithEachTaskCompleted.GetFloat();
+                SabotageMaster.SendRPC(player.PlayerId);
             }
             if (player.Is(CustomRoles.Tracker) && player.IsAlive())
             {

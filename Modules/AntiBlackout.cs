@@ -187,5 +187,10 @@ public static class AntiBlackout
         if (isDeadCache == null) isDeadCache = new();
         isDeadCache.Clear();
         IsCached = false;
+        ShowExiledInfo = false;
+        StoreExiledMessage = "";
     }
+
+    public static bool ShowExiledInfo = false;
+    public static string StoreExiledMessage = "";
 }
