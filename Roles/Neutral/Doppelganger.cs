@@ -84,8 +84,13 @@ public static class Doppelganger
     public static void RpcChangeSkin(PlayerControl pc, GameData.PlayerOutfit newOutfit)
     {
         var sender = CustomRpcSender.Create(name: $"Doppelganger.RpcChangeSkin({pc.Data.PlayerName})");
-        if (pc.PlayerId == PlayerControl.LocalPlayer.PlayerId) Main.nickName = newOutfit.PlayerName;
-        else pc.RpcSetName(newOutfit.PlayerName);
+        //if (pc.PlayerId == PlayerControl.LocalPlayer.PlayerId) Main.nickName = newOutfit.PlayerName;
+        pc.SetName(newOutfit.PlayerName);
+        sender.AutoStartRpc(pc.NetId, (byte)RpcCalls.SetName)
+            .Write(newOutfit.PlayerName)
+        .EndRpc();
+        //pc.RpcSetName(newOutfit.PlayerName); 
+        Main.AllPlayerNames[pc.PlayerId] = newOutfit.PlayerName;
 
         pc.SetColor(newOutfit.ColorId);
         sender.AutoStartRpc(pc.NetId, (byte)RpcCalls.SetColor)
