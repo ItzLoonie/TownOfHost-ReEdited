@@ -25,6 +25,7 @@
 
 
 
+
 </p>
 
 ---
@@ -80,3 +81,8 @@
 ### :star: [TOHE+](https://github.com/Gurge44/TOHE_PLUS)
 >
 > - Provided roles: Pyromaniac, Necromancer, Huntsman, Alchemist, and others
+
+
+
+## For dev and canary versions released to Patrons and Server Boosters in the Discord Server
+Distributing dev and canary version to non-testers is considered piracy and thus, illegal.
