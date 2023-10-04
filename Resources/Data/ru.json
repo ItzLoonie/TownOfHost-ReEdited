@@ -2804,7 +2804,6 @@
   "ImpCanBeRepairman": "<color=#ff1919>Предатели</color> могут стать <color=#3333ff>Механиком</color>",
   "CrewCanBeRepairman": "<color=#8cffff>Члены Экипажа</color> могут стать <color=#3333ff>Механиком</color>",
   "NeutralCanBeRepairman": "<color=#7f8c8d>Нейтралы</color> могут стать <color=#3333ff>Механиком</color>",
-  "RepairmanSkillLimit": "Лимит использования способностей",
   "ImpCanBeBewilder": "<color=#ff1919>Предатели</color> могут стать <color=#c894f5>Растёрянным</color>",
   "CrewCanBeBewilder": "<color=#8cffff>Члены Экипажа</color> могут стать <color=#c894f5>Растёрянным</color>",
   "NeutralCanBeBewilder": "<color=#7f8c8d>Нейтралы</color> могут стать <color=#c894f5>Растёрянным</color>",
