@@ -32,9 +32,13 @@ class EndGamePatch
                 {
                     var dpc = Utils.GetPlayerById(id);
                     if (dpc != null) 
-                    { 
-                        if (id == PlayerControl.LocalPlayer.PlayerId) Main.nickName = Doppelganger.DoppelVictim[id];
-                        else dpc.RpcSetName(Doppelganger.DoppelVictim[id]);
+                    {
+                        //if (id == PlayerControl.LocalPlayer.PlayerId) Main.nickName = Doppelganger.DoppelVictim[id];
+                        //else
+                        //{ 
+                        dpc.RpcSetName(Doppelganger.DoppelVictim[id]);
+                        //}
+                        Main.AllPlayerNames[id] = Doppelganger.DoppelVictim[id];
                     }
                 }
             }

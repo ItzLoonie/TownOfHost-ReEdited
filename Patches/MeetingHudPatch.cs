@@ -68,6 +68,8 @@ class CheckForEndVotingPatch
                     {
                         __instance.RpcVotingComplete(states.ToArray(), null, true);
                         ExileControllerWrapUpPatch.AntiBlackout_LastExiled = voteTarget.Data;
+                        AntiBlackout.ShowExiledInfo = true;
+                        ConfirmEjections(voteTarget.Data, true);
                     }
                     else __instance.RpcVotingComplete(states.ToArray(), voteTarget.Data, false); //通常処理
 
@@ -379,6 +381,11 @@ class CheckForEndVotingPatch
             {
                 __instance.RpcVotingComplete(states.ToArray(), null, true);
                 ExileControllerWrapUpPatch.AntiBlackout_LastExiled = exiledPlayer;
+                if (exiledPlayer != null)
+                {
+                    AntiBlackout.ShowExiledInfo = true;
+                    ConfirmEjections(exiledPlayer, true);
+                }
             }
             else __instance.RpcVotingComplete(states.ToArray(), exiledPlayer, tie); // Normal processing
 
@@ -398,7 +405,7 @@ class CheckForEndVotingPatch
     }
 
     // 参考：https://github.com/music-discussion/TownOfHost-TheOtherRoles
-    private static void ConfirmEjections(GameData.PlayerInfo exiledPlayer)
+    private static void ConfirmEjections(GameData.PlayerInfo exiledPlayer, bool AntiBlackoutStore =  false)
     {
         if (!AmongUsClient.Instance.AmHost) return;
         if (exiledPlayer == null) return;
@@ -525,19 +532,27 @@ class CheckForEndVotingPatch
 
 
         name += "<size=0>";
-        _ = new LateTask(() =>
+        if (!AntiBlackoutStore)
         {
-            Main.DoBlockNameChange = true;
-            if (GameStates.IsInGame) player.RpcSetName(name);
-        }, 3.0f, "Change Exiled Player Name");
-        _ = new LateTask(() =>
-        {
-            if (GameStates.IsInGame && !player.Data.Disconnected)
+            _ = new LateTask(() =>
             {
-                player.RpcSetName(realName);
-                Main.DoBlockNameChange = false;
-            }
-        }, 11.5f, "Change Exiled Player Name Back");
+                Main.DoBlockNameChange = true;
+                if (GameStates.IsInGame) player.RpcSetName(name);
+            }, 3.0f, "Change Exiled Player Name");
+            _ = new LateTask(() =>
+            {
+                if (GameStates.IsInGame && !player.Data.Disconnected)
+                {
+                    player.RpcSetName(realName);
+                    Main.DoBlockNameChange = false;
+                }
+            }, 11.5f, "Change Exiled Player Name Back");
+        }
+        else
+        {
+            AntiBlackout.StoreExiledMessage = name;
+            Logger.Info(AntiBlackout.StoreExiledMessage, "AntiBlackoutStore");
+        }
     }
     public static bool CheckRole(byte id, CustomRoles role)
     {
@@ -749,10 +764,10 @@ class MeetingHudStartPatch
                 AddMsg(string.Format(GetString("CyberDead"), Main.AllPlayerNames[csId]), pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Cyber), GetString("CyberNewsTitle")));
             }
             //勒索者勒索警告
-            foreach (var player in Blackmailer.ForBlackmailer)
+            if (Blackmailer.IsEnable && pc != null && Blackmailer.ForBlackmailer.Contains(pc.PlayerId))
             {
-                var playername = Utils.GetPlayerById(player).GetRealName();
-                if (Doppelganger.DoppelVictim.Keys.Contains(player)) playername = Doppelganger.DoppelVictim[player];
+                var playername = pc.GetRealName();
+                if (Doppelganger.DoppelVictim.Keys.Contains(pc.PlayerId)) playername = Doppelganger.DoppelVictim[pc.PlayerId];
                 AddMsg(string.Format(GetString("BlackmailerDead"), playername, pc.PlayerId, Utils.ColorString(Utils.GetRoleColor(CustomRoles.Blackmailer), GetString("BlackmaileKillTitle"))));
             }
             //侦探报告线索
@@ -869,6 +884,20 @@ class MeetingHudStartPatch
                 Utils.SendMessage(GetString("Warning.OverrideExiledPlayer"), 255, Utils.ColorString(Color.red, GetString("DefaultSystemMessageTitle")));
 
             }, 5f, "Warning ImpostorOverrideExiledPlayer");
+        }
+
+        if (AntiBlackout.ShowExiledInfo)
+        {
+            AntiBlackout.ShowExiledInfo = false;
+            if (AntiBlackout.StoreExiledMessage != "")
+            {
+                AntiBlackout.StoreExiledMessage = GetString("Warning.ShowAntiBlackExiledPlayer") + AntiBlackout.StoreExiledMessage;
+                _ = new LateTask(() =>
+                {
+                    Utils.SendMessage(AntiBlackout.StoreExiledMessage, 255, Utils.ColorString(Color.red, GetString("DefaultSystemMessageTitle")));
+                    AntiBlackout.StoreExiledMessage = "";
+                }, 5.5f, "AntiBlackout.StoreExiledMessage");
+            }
         }
 
         if (MeetingStates.FirstMeeting) TemplateManager.SendTemplate("OnFirstMeeting", noErr: true);

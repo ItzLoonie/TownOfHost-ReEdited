@@ -73,7 +73,7 @@ class RepairSystemPatch
         
         // Mechanic
         if (player.Is(CustomRoles.SabotageMaster))
-            SabotageMaster.RepairSystem(__instance, systemType, amount);
+            SabotageMaster.RepairSystem(__instance, systemType, amount, player.PlayerId);
 
         // Repairman
         if (player.Is(CustomRoles.Repairman))
@@ -174,7 +174,7 @@ class SwitchSystemRepairPatch
     public static void Postfix(SwitchSystem __instance, [HarmonyArgument(0)] PlayerControl player, [HarmonyArgument(1)] byte amount)
     {
         if (player.Is(CustomRoles.SabotageMaster))
-            SabotageMaster.SwitchSystemRepair(__instance, amount);
+            SabotageMaster.SwitchSystemRepair(__instance, amount, player.PlayerId);
         if (player.Is(CustomRoles.Repairman))
             Repairman.SwitchSystemRepair(__instance, amount);
         if (player.Is(CustomRoles.Alchemist) && Alchemist.FixNextSabo == true)

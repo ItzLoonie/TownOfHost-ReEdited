@@ -111,6 +111,7 @@ internal class ChangeRoleSettings
             Main.FirstDied = byte.MaxValue;
             Main.MadmateNum = 0;
             Main.BardCreations = 0;
+            Main.MeetingsPassed = 0;
             Main.DovesOfNeaceNumOfUsed = new();
             Main.GodfatherTarget = new();
             Main.CultivatorKillMax = new();

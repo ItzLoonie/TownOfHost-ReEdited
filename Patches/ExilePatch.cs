@@ -80,21 +80,24 @@ class ExileControllerWrapUpPatch
                     DecidedWinner = true;
                 }
             }
-            if (role == CustomRoles.Jester && AmongUsClient.Instance.AmHost)
-            {
-                CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Jester);
-                CustomWinnerHolder.WinnerIds.Add(exiled.PlayerId);
-                foreach (var executioner in Executioner.playerIdList)
+            if (Options.MeetingsNeededForJesterWin.GetInt() <= Main.MeetingsPassed)
+            {           
+                if (role == CustomRoles.Jester && AmongUsClient.Instance.AmHost)
                 {
-                    var GetValue = Executioner.Target.TryGetValue(executioner, out var targetId);
-                    if (GetValue && exiled.PlayerId == targetId)
+                    CustomWinnerHolder.ResetAndSetWinner(CustomWinner.Jester);
+                    CustomWinnerHolder.WinnerIds.Add(exiled.PlayerId);
+                    foreach (var executioner in Executioner.playerIdList)
                     {
-                        CustomWinnerHolder.AdditionalWinnerTeams.Add(AdditionalWinners.Executioner);
-                        CustomWinnerHolder.WinnerIds.Add(executioner);
+                        var GetValue = Executioner.Target.TryGetValue(executioner, out var targetId);
+                        if (GetValue && exiled.PlayerId == targetId)
+                        {
+                            CustomWinnerHolder.AdditionalWinnerTeams.Add(AdditionalWinners.Executioner);
+                            CustomWinnerHolder.WinnerIds.Add(executioner);
+                        }
                     }
+                    DecidedWinner = true;
                 }
-                DecidedWinner = true;
-            }
+            }            
             Executioner.CheckExileTarget(exiled, DecidedWinner);
 
             if (role == CustomRoles.Terrorist) Utils.CheckTerroristWin(exiled);
@@ -209,6 +212,8 @@ class ExileControllerWrapUpPatch
             {
                 Shroud.MurderShroudedPlayers(pc);
             }
+
+            Main.MeetingsPassed++;
 
             pc.RpcRemovePet();
 

@@ -64,24 +64,25 @@ public class ModNewsHistory
                         + "\n<b>【Base】</b>\n - Base on TOH v4.1.2\r\n"
 
                         + "\n<b>【New Roles】</b>" +
-                        "\n\r<b><i>Impostor: (4 roles)</i></b>" +
+                        "\n\r<b><i>Impostor: (5 roles)</i></b>" +
                             "\n     - Evil Mini" +
+                            "\n     - Mastermind" +
                             "\n     - Vampiress (from TOH-TOR and it's hidden role)" +
-                            "\n     - Blackmailer (Experimental role)" +
+                            "\n     - Blackmailer (experimental)" +
                             "\n     - Undertaker\n\r" +
 
                         "\n\r<b><i>Crewmate: (4 roles)</i></b>" +
                             "\n     - Nice Mini" +
                             "\n     - Bastion" +
                             "\n     - Alchemist" +
-                            "\n     - Investigator\n\r" +
+                            "\n     - Investigator (experimental)\n\r" +
 
                         "\n\r<b><i>Neutral: (5 roles)</i></b>" +
                             "\n     - Bandit" +
                             "\n     - Imitator" +
                             "\n     - Pyromaniac" +
                             "\n     - Huntsman" +
-                            "\n     - Doppelganger (Experimental role)\n\r" +
+                            "\n     - Doppelganger (experimental)\n\r" +
 
                         "\n\r<b><i>Add-on: (5 add-ons)</i></b>" +
                             "\n     - Cyber" +
