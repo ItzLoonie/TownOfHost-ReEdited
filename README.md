@@ -12,16 +12,12 @@
 > This mod is not affiliated with Among Us or Innersloth LLC, and the content contained therein is not endorsed or otherwise sponsored by Innersloth LLC. Portions of the materials contained herein are the property of Innersloth LLC.
 <br>
 
-> Note: The website is still a Work In Progress, please bear with us - Moe 
+> Note: There is an Impostor mod called Town of Host Enhanced. Do not support or play that mod. 
 </p>
 <p align="center">
 
 <center>
-<a href="https://tohre.dev/" target="_blank"><img src="https://img.shields.io/badge/Website%20-%231DA1F2.svg?&style=for-the-badge&logo=vuedotjs&logoColor=white&color=3aa675"/></a>
-<a href="https://discord.gg/hkk2p9ggv4" target="_blank"><img src="https://img.shields.io/badge/Discord%20-%231DA1F2.svg?&style=for-the-badge&logo=discord&logoColor=white&color=5662f6"/></a><br>
 <a href="https://github.com/Loonie-Toons/TownOfHost-ReEdited/releases/latest" target="_blank"><img src="https://img.shields.io/badge/Latest Version%20-%231DA1F2.svg?&style=for-the-badge&logo=github&logoColor=white&color=181717"/></a>
-<a href="https://patreon.com/TOHRE" target="_blank"><img src="https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white"/></a>
-</center>
 
 
 
@@ -81,8 +77,3 @@
 ### :star: [TOHE+](https://github.com/Gurge44/TOHE_PLUS)
 >
 > - Provided roles: Pyromaniac, Necromancer, Huntsman, Alchemist, and others
-
-
-
-## For dev and canary versions released to Patrons and Server Boosters in the Discord Server
-Distributing dev and canary version to non-testers is considered piracy and thus, illegal.
