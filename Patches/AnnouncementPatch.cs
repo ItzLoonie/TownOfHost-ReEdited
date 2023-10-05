@@ -54,9 +54,9 @@ public class ModNewsHistory
                 var news = new ModNews
                 {
                     Number = 100003,
-                    Title = "Town of Host Re-Edited v3.1.0",
+                    Title = "Re-Edited v3.1.0",
                     SubTitle = "★★Smaller update, but still kinda large★★",
-                    ShortTitle = "★TOH-RE v3.1.0",
+                    ShortTitle = "★Re-Edited v3.1.0",
                     Text = "<size=150%>Welcome to TOHE v3.1.0!</size>\n\n<size=125%>Support for Among Us v2023.7.11 and v2023.7.12</size>\n"
 
                         + "\n<b><size=180%>Now this version supports public lobbies!</size></b>\r\n"
@@ -145,9 +145,9 @@ public class ModNewsHistory
                 var news = new ModNews
                 {
                     Number = 100002,
-                    Title = "Town of Host Re-Edited v3.0.0",
+                    Title = "Re-Edited v3.0.0",
                     SubTitle = "★★The next big update!★★",
-                    ShortTitle = "★TOH-RE v3.0.0",
+                    ShortTitle = "★Re-Edited v3.0.0",
                     Text = "<size=150%>Welcome to TOHE v3.0.0!</size>\n\n<size=125%>Support for Among Us v2023.7.11 and v2023.7.12</size>\n"
 
                         + "\n<b>【Base】</b>\n - Base on TOH v4.1.2\r\n"
@@ -393,9 +393,9 @@ public class ModNewsHistory
                 var news = new ModNews
                 {
                     Number = 90001,
-                    Title = "Town of Host Re-Edited v3.1.0",
+                    Title = "Re-Edited v3.1.0",
                     SubTitle = "★★Следующее небольшое обновление★★",
-                    ShortTitle = "★TOH-RE v3.1.0",
+                    ShortTitle = "★Re-Edited v3.1.0",
                     Text = "<size=150%>Добро Пожаловать в TOHE v3.1.0!</size>\n\n<size=125%>Поддерживает версию Among Us v2023.7.11 и v2023.7.12</size>\n"
 
                         + "\n<b><size=180%>Теперь эта версия поддерживает публичные лобби!</size></b>\r\n"
@@ -484,9 +484,9 @@ public class ModNewsHistory
                 var news = new ModNews
                 {
                     Number = 90000,
-                    Title = "Town of Host Re-Edited v3.0.0",
+                    Title = "Re-Edited v3.0.0",
                     SubTitle = "★★Следующее большое обновление!★★",
-                    ShortTitle = "★TOH-RE v3.0.0",
+                    ShortTitle = "★Re-Edited v3.0.0",
                     Text = "<size=150%>Добро Пожаловать в TOHE v3.0.0!</size>\n\n<size=125%>Поддерживает версию Among Us v2023.7.11 и v2023.7.12</size>\n"
 
                         + "\n<b>【Основан】</b>\n - Основан на TOH v4.1.2\r\n"
@@ -682,9 +682,9 @@ public class ModNewsHistory
                 var news = new ModNews
                 {
                     Number = 80003,
-                    Title = "Town of Host Re-Edited v3.1.0",
+                    Title = "Re-Edited v3.1.0",
                     SubTitle = "★★更新较小，但仍然有点大★★",
-                    ShortTitle = "★TOH-RE v3.1.0",
+                    ShortTitle = "★Re-Edited v3.1.0",
                     Text = "<size=150%>欢迎来到 TOHE v3.1.0!</size>\n\n<size=125%>支持 Among Us v2023.7.11 和 v2023.7.12</size>\n"
 
                         + "\n<b>【对应官方版本】</b>\n - 基于官方版本 v4.1.2\r\n"
@@ -750,9 +750,9 @@ public class ModNewsHistory
                 var news = new ModNews
                 {
                     Number = 80002,
-                    Title = "Town of Host Re-Edited v3.0.0",
+                    Title = "Re-Edited v3.0.0",
                     SubTitle = "★★下一次的重大更新！★★",
-                    ShortTitle = "★TOH-RE v3.0.0",
+                    ShortTitle = "★Re-Edited v3.0.0",
                     Text = "<size=150%>欢迎来到 TOHE v3.0.0!</size>\n\n<size=125%>支持 Among Us v2023.7.11 和 v2023.7.12</size>\n"
 
                         + "\n<b>【对应官方版本】</b>\n - 基于官方版本 v4.1.2\r\n"
