@@ -15,7 +15,7 @@
 > It is highly recommended that you do **not** play that mod.<br>
 > The project lead of that mod is highly malicious and should not be trusted.<br>
 
-> Town of Host Refined or [Town of Next](https://github.com/KARPED1EM/TownOfNext) are highly recommended to use over Town of Host Enhanced.
+> TOHR or [TONX](https://github.com/KARPED1EM/TownOfNext) are highly recommended to use over TOHEN.
 </p>
 <p align="center">
 
