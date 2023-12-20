@@ -8,16 +8,14 @@
 <p align="right">
   
 > ### Regarding this mod
->
-> This mod is not affiliated with Among Us or Innersloth LLC, and the content contained therein is not endorsed or otherwise sponsored by Innersloth LLC. Portions of the materials contained herein are the property of Innersloth LLC.
-<br>
-
 > Re-Edited has been discontinued.<br>
 > For an updated version of the mod, see Town of Host Refined.<br>
 
 > The mod "Town of Host Enhanced" is unsupported.<br>
 > It is highly recommended that you do **not** play that mod.<br>
 > The project lead of that mod is highly malicious and should not be trusted.<br>
+
+> Town of Host Refined or [Town of Next](https://github.com/KARPED1EM/TownOfNext) are highly recommended to use over Town of Host Enhanced.
 </p>
 <p align="center">
 
@@ -28,6 +26,8 @@
 
 ---
 
+<br>
+<br>
 <br>
 
 **Credit to these mods and their developers for the code and help:**
@@ -79,3 +79,7 @@
 ### :star: [TOHE+](https://github.com/Gurge44/TOHE_PLUS)
 >
 > - Provided roles: Pyromaniac, Necromancer, Huntsman, Alchemist, and others
+
+> ### Other information
+> This mod is not affiliated with Among Us or Innersloth LLC, and the content contained therein is not endorsed or otherwise sponsored by Innersloth LLC. Portions of the materials contained herein are the property of Innersloth LLC.
+<br>
