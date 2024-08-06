@@ -1,7 +1,7 @@
 
 
 
-<h1 align="center">Re-Edited</h1>
+<h1 align="center">Town of Host Re-Edited</h1>
 
 <br>
 
@@ -10,13 +10,13 @@
 <p align="right">
   
 > ### Regarding this mod
-> Re-Edited has been discontinued.<br>
+> Town of Host Re-Edited has been discontinued.<br>
 > Thank you for playing!<br>
 
-> For those aware of the Town of Host Enhanced (TOHEN) mod,<br>
-> it's been known to be an IP grabber of some sort.<br>
-> I do not know this for certain, but it is highly recommended to **not** play that mod.<br>
-> The project lead has a history of being highly malicious. 
+> For an updated version of the mod, see [Town of Host Enhanced](https://github.com/0xDrMoe/TownofHost-Enhanced).<br>
+> It's constantly being updated and makes use of the Discord Server TOH-RE used previously.<br>
+
+> You could also try [Endless Host Roles](https://github.com/Gurge44/EndlessHostRoles), an old fork of this mod that has gone so far it may as well not be a fork anymore.<br>
 
 
 </p>
